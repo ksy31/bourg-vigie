@@ -56,7 +56,7 @@ main{padding-bottom:76px}
 </head>
 <body>
 <main>
-<h1><span id="vt">Vigie</span> <small id="day"></small></h1>
+<h1>Bourg-Vigie <small id="day"></small></h1>
 <div class="res"><div id="g"><b>0</b>or</div><div id="w"><b>0</b>bois</div><div id="s"><b>0</b>pierre</div></div>
 <div class="tab on" id="tv"><canvas id="cv"></canvas>
 <div class="spd" id="sp" style="margin-top:8px"><button data-s="0">Pause</button><button data-s="1" class="on">×1</button><button data-s="5">×5</button><button data-s="20">×20</button><button data-s="60">×60</button></div>
@@ -75,7 +75,7 @@ main{padding-bottom:76px}
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 des disparus</h3><div id="lb"></div></div>
 </main>
 <nav id="nav"><button class="on" data-t="tv">Carte</button><button data-t="tb">Bâtir</button><button data-t="th">Aventuriers</button><button data-t="tl">Top 10</button><button data-t="to">Options</button></nav>
-<div id="pv" hidden><div><h2 id="pvt" style="margin:0 0 4px;font-size:20px"></h2><p id="pg" style="margin:0"></p><div id="pu"></div><input id="vn" maxlength="20" placeholder="Nom du village" style="width:100%;font:inherit;padding:9px;margin-bottom:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)"><button id="pn" style="width:100%">Nouvelle run</button><button id="pc" hidden style="width:100%;margin-top:6px;background:var(--card);color:var(--fg);border:1px solid var(--line)">Annuler</button></div></div>
+<div id="pv" hidden><div><h2 id="pvt" style="margin:0 0 4px;font-size:20px"></h2><p id="pg" style="margin:0"></p><div id="pu"></div><button id="pn" style="width:100%">Nouvelle run</button></div></div>
 <script>
 const Z=[
 {n:'Forêt',x:20,y:76,d:4,c:'#4f7a46',e:[['Loup',.8],['Bandit',1],['Sanglier',1.2],['Ours',1.5]],f:[['Loup-garou',1],['Ombre sylvestre',1.2],['Hibou spectral',.9],['Dryade corrompue',1.5]]},
@@ -111,7 +111,7 @@ function victory(h){
  const gain=2+Math.floor(S.hero.length/3);
  P.glory+=gain;P.runs++;save();S.speed=0;
  $('pvt').textContent=`${h.name} a terrassé le Roi Démon ! +${gain} Gloire`;
- shop();$('pn').textContent='Nouvelle run';$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;
+ shop();$('pv').hidden=false;
 }
 function shop(){
  $('pg').textContent=`Gloire : ${P.glory} · bonus permanents`;
@@ -119,14 +119,14 @@ function shop(){
  $('pu').querySelectorAll('button').forEach(b=>b.onclick=()=>{const k=b.dataset.u;if(P.glory>=P[k]+1){P.glory-=P[k]+1;P[k]++;save();shop()}});
 }
 function newRun(){
- S=fresh();S.vn=($('vn').value.trim()||'Vigie').slice(0,20);logs=[];$('pn').textContent='Nouvelle run';$('pc').hidden=true;$('pv').hidden=true;
+ S=fresh();logs=[];$('pn').textContent='Nouvelle run';$('pv').hidden=true;
  document.querySelector('#sp [data-s="1"]').click();
  ui();log('Nouvelle run : le village repart de zéro, plus fort grâce à la Gloire.','ok');
 }
 const T={x:50,y:102};
-const NAMES=['KaoTiem', 'Nathalie', 'Lilian', 'Lena', 'Anne', 'Chani', 'Momo', 'NayTiem', 'David', 'Julie', 'Didier', 'Karine', 'Julien-F', 'SanTiem', 'Marie-Laure', 'Karian', 'Marine', 'Cléo', 'Alicia', 'Liam', 'SouTiem', 'Jenny', 'Tommy', 'Willy', 'Meily', 'Claude', 'Cécile', 'Claire', 'Laure', 'KaoTon', 'Ludivine', 'Axel', 'Aurore', 'Ambre', 'SainPou', 'Mike', 'Sébastien', 'KaoPou', 'Carla', 'Loann', 'Enzo', 'Noëlla', 'NayPou', 'Christel', 'Maëlys', 'Thibault', 'FamPou', 'Alexandre', 'Lucas', 'Patrick', 'SouPou', 'Leila', 'Lay', 'Arnaud', 'Léa', 'Khe', 'Carlos', 'Mélinda', 'Nathan', 'Ou', 'MeyTsoy', 'NayTsoy', 'Mathieu', 'Emy', 'Élodie', 'Tristan', 'Fred', 'Pa', 'Raphaëlle', 'Camille', 'Julien', 'Sy', 'Émilie', 'Inès', 'Arthur', 'José', 'Angélique', 'Laurie', 'Eva', 'Lucas-G', 'Maël', 'Clara', 'Naomie', 'Baptiste', 'Chloé', 'Marvin'];
+const NAMES=['KaoTiem', 'Nathalie', 'Lilian', 'Lena', 'Anne', 'Chani', 'Momo', 'NayTiem', 'David', 'Julie', 'Didier', 'Karine', 'Julien-F', 'SanTiem', 'Marie-Laure', 'Karian', 'Marine', 'Cléo', 'Alicia', 'Liam', 'SouTiem', 'Jenny', 'Tommy', 'Willy', 'Meily', 'Claude', 'Cécile', 'Claire', 'Laure', 'KaoTon', 'Ludivine', 'Axel', 'Aurore', 'Ambre', 'SainPou', 'Mike', 'Sébastien', 'KaoPou', 'Carla', 'Loann', 'Enzo', 'Noëlla', 'NayPou', 'Christel', 'Maëlys', 'Thibault', 'FamPou', 'Alexandre', 'Lucas', 'Patrick', 'SouPou', 'Leila', 'Lay', 'Arnaud', 'Léa', 'Khe', 'Carlos', 'Mélinda', 'Nathan', 'Ou', 'MeyTsoy', 'NayTsoy', 'Mathieu', 'Emy', 'Élodie', 'Tristan', 'Fred', 'Pa', 'Raphaëlle', 'Camille', 'Julien', 'Sy', 'Émilie', 'Inès', 'Arthur', 'MARINE', 'José', 'Angélique', 'Laurie', 'Eva', 'Lucas-G', 'Maël', 'Clara', 'Naomie', 'Baptiste', 'Chloé', 'Marvin'];
 const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];
-const fresh=()=>({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',ds:0,dl:900,pl:[{e:NE.A,i:0}],npc:{A:{n:NAMES[Math.floor(Math.random()*NAMES.length)],lv:1,xp:0}}});
+const fresh=()=>({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],ds:0,dl:900,pl:[{e:NE.A,i:0}],npc:{A:{n:NAMES[Math.floor(Math.random()*NAMES.length)],lv:1,xp:0}}});
 let S=fresh(),showT=false;
 const rname=()=>{const f=NAMES.filter(n=>!S.hero.some(h=>h.name===n)&&!Object.values(S.npc).some(x=>x.n===n)),a=f.length?f:NAMES;return a[R(0,a.length-1)]};
 const rem=h=>{if(h.st==='fight')return h.t;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.z:T;return Math.hypot(tg.x-h.x,tg.y-h.y)/(h.v*spf(h))};
@@ -134,7 +134,7 @@ const fm=s=>{s=Math.ceil(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,
 const nl=k=>S.npc[k]?S.npc[k].lv:0;
 const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);
 const isNight=()=>{const x=hr();return x>=21||x<4};
-function gameOver(){S.over=1;S.speed=0;$('pvt').textContent='Game over';$('pg').textContent=`Plus d’aventuriers ni d’or pour recruter. Tu as tenu ${S.day} jours.`;$('pu').innerHTML='';$('pn').textContent='Recommencer';$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false}
+function gameOver(){S.over=1;S.speed=0;$('pvt').textContent='Game over';$('pg').textContent=`Plus d’aventuriers ni d’or pour recruter. Tu as tenu ${S.day} jours.`;$('pu').innerHTML='';$('pn').textContent='Recommencer';$('pv').hidden=false}
 const spf=h=>(1+h.eq.b*.05)*(1+(h.hs?h.hs.sp*.04*(1+.1*S.stable):0));
 function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*4){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
 function leave(h,z){h.z=z;h.v=spd(z);h.st='go'}
@@ -151,7 +151,7 @@ function hspend(h){
 }
 const SK='bvs';
 function saveG(){try{localStorage.setItem(SK,JSON.stringify(S));$('sv').textContent='Sauvegardé ✓'}catch(e){$('sv').textContent='Échec'}}
-function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n):null;h.last=h.last?ZA.find(x=>x.n===h.last.n):null});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';S=s}catch(e){}}
+function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n):null;h.last=h.last?ZA.find(x=>x.n===h.last.n):null});s.alert=null;s.speed=1;S=s}catch(e){}}
 let wl=null;
 async function wake(on){try{if(on){wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null});$('wn').textContent=''}else if(wl){await wl.release();wl=null}}catch(e){$('wn').textContent='(indisponible ici)';$('wk').checked=false}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&$('wk').checked)wake(true)});
@@ -265,7 +265,7 @@ function tick(dt){
 }
 function ui(){
  $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
- $('vt').textContent=S.vn;$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ${S.hero.length} aventurier${S.hero.length>1?'s':''} · ★${P.glory}`;
+ $('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ${S.hero.length} aventurier${S.hero.length>1?'s':''} · ★${P.glory}`;
  $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
  for(const id in BD){const b=BD[id],c=b.c(S[b.k]||0);$('b'+id).innerHTML=`${b.n} niv. ${(S[b.k]||0)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g}
  
@@ -295,7 +295,7 @@ function drawTown(){
  }
  for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it)continue;const p=SLOTS[it.i%36],x=(T.x+p[0]+3.6)*sc,y=(T.y+p[1]+2.6)*sc;cx.fillStyle='#8e5bd6';cx.lineWidth=1.5;cx.fillRect(x-1.7*sc,y-1.7*sc,3.4*sc,3.4*sc);cx.strokeRect(x-1.7*sc,y-1.7*sc,3.4*sc,3.4*sc);cx.fillStyle='#fff';cx.font=`700 ${sc*2.4}px Alegreya,serif`;cx.fillText(S.npc[k].n[0],x,y+.8*sc)}
  const st=B<4?'Hameau':B<9?'Village':B<16?'Bourg':'Cité';
- cx.fillStyle='#1d2326';cx.font=`700 ${sc*3.6}px Alegreya,serif`;cx.fillText(st+' de '+S.vn,T.x*sc,(T.y+15)*sc);
+ cx.fillStyle='#1d2326';cx.font=`700 ${sc*3.6}px Alegreya,serif`;cx.fillText(st+' de Vigie',T.x*sc,(T.y+15)*sc);
 }
 function shp(c,x,y,r){cx.beginPath();const n={G:4,V:3,M:4,R:6}[c],o={G:Math.PI/4,V:-Math.PI/2,M:0,R:0}[c];for(let i=0;i<n;i++){const a=o+i*2*Math.PI/n,px=x+r*Math.cos(a),py=y+r*Math.sin(a);i?cx.lineTo(px,py):cx.moveTo(px,py)}cx.closePath()}
 function draw(){
@@ -348,7 +348,7 @@ function loop(now){
  draw();requestAnimationFrame(loop);
 }
 $('bR').onclick=recruit;for(const id in BD)$('b'+id).onclick=()=>build(id);$('bB').onclick=sendBoss;$('pn').onclick=newRun;$('tt').onchange=()=>{showT=$('tt').checked;ui()};$('wk').onchange=()=>wake($('wk').checked);
-$('sb').onclick=saveG;$('rb').onclick=()=>{$('pvt').textContent='Nouvelle partie';$('pg').textContent='La partie en cours sera effacée. Nom du village :';$('pu').innerHTML='';$('pn').textContent='Commencer';$('vn').value=S.vn;$('pc').hidden=false;$('pv').hidden=false};$('pc').onclick=()=>{$('pc').hidden=true;$('pv').hidden=true};
+$('sb').onclick=saveG;$('rb').onclick=()=>{try{localStorage.removeItem(SK)}catch(e){}newRun()};
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.id===b.dataset.t));if(b.dataset.t==='tv')fit()});
 document.querySelectorAll('#sp button').forEach(b=>b.onclick=()=>{
  S.speed=+b.dataset.s;document.querySelectorAll('#sp button').forEach(x=>x.classList.toggle('on',x===b));
