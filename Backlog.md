@@ -1,37 +1,30 @@
-idées
+# 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
+## 🚨 Étape 1 : Corrections de bugs et blocages (Priorité absolue)
+- [ ] **Verrouiller le zoom :** Empêcher le zoom sur toute l'interface de l'application (CSS/Viewport) et ne garder le zoom actif uniquement sur la carte (map).
+- [ ] **Écran toujours allumé :** Activer par défaut le mode "écran toujours allumé" (Wake Lock) et supprimer l'option de l'interface.
 
-amélioration
-réduire consommation de batterie : créé un APk pour ne pas passer par Chrome ?
-mode écran allumé toujours actif et faire disparaitre l'option
+## 🎨 Étape 2 : Améliorations rapides, Textes et UI (Facile)
+- [ ] **Renommer le "Spa" :** Remplacer le nom "Spa" par un nom cohérent avec l'univers du jeu tout en gardant l'effet de réduction de mortalité.
+- [ ] **Transition Jour/Nuit :** Ajouter une transition visuelle douce (fondu CSS/Canvas) lors du passage entre le jour et la nuit.
+- [ ] **Halo lumineux la nuit :** Ajouter un effet de halo lumineux autour des personnages lorsqu'il fait nuit.
+- [ ] **Indicateurs de sauvegarde :** Afficher une popup de confirmation lors d'une sauvegarde réussie et ajouter un timer indiquant le temps écoulé depuis la dernière sauvegarde.
+- [ ] **Game Over style Tekken :** Ajouter une option de fin où la fenetre de gamme over et remplaçait par*"You lose, continue ?"* comme dans Tekken
 
-bug
-toute l'application est zoomable, et pas que la map
-rajoute un bâtiment "mairie" de base non améliore le, il s'agit de l'endroit qui va récupérer les butins et les stockés 
-le maire pourra augmenter de niveau mais très lentement et sera un PNJ..plus le niveau serra élevé plus les gains d'or sera élevé. ça fait doublons avec le marché mais c'est pas grave
+## 📜 Étape 3 : Console, Données et Panneau Développeur (Moyen)
+- [ ] **Horodatage de la console :** Ajouter le jour et la date du jeu en en-tête de chaque message affiché dans la console.
+- [ ] **Historique de la console :** Sauvegarder les messages de la console (LocalStorage) pour les réafficher à la réouverture du jeu.
+- [ ] **Top 10 persistant :** Conserver les 10 meilleurs aventuriers toutes parties confondues, en ne gardant que le meilleur score si un même nom apparaît plusieurs fois.
+- [ ] **Menu Développeur (Roue crantée) :** Ajouter une roue crantée discrète donnant accès à des options développeur.
+- [ ] **Gestion dynamique des noms :** Dans ce menu développeur, afficher la liste de tous les noms possibles d'aventuriers et permettre d'en ajouter, modifier ou supprimer sans refaire une mise à jour du jeu.
 
-garder l'historique de la console pour l'afficher à la réouverture du jeu
-rajouter en entête le jour et la date du jeu des messages dans la console
-mettre les personnages en halo lumineux la nuit 
+## 🏗️ Étape 4 : Nouvelles mécaniques de jeu (Avancé)
+- [ ] **Nouveau bâtiment "Mairie" :** Créer un bâtiment de base (non améliorable au début) qui récupère et stocke les butins.
+- [ ] **PNJ Maire :** Associer un PNJ Maire à la mairie qui gagne des niveaux très lentement et augmente passivement les gains d'or selon son niveau.
 
-vrac :
-ux ui : rajouter une popup de bonne sauvegarde
-mettre un timer de la dernière save 
-rajouter une option : fin Fred qui dit pour le game over : you lose, continue ? comme dans Tekken
-
-affichage :
-faire une transition douce entre le mode nuit et jour
-
-rajouter une roue cranté un peu caché pour des options développeur
-mettre la liste de tout les noms possibles, et permettre la modification ou l'ajout / retrait de noms pour éviter une nouvelle release à chaque fois
-
-top 10 : garder finalement les 10 meilleurs aventuriers toute partie confondu. mais ne garder que le meilleur si le même nom doit y apparaître 
-
-question ?
-possible de faire un mode multijoueur? où les 2 villages de rassemblent et permettent une coopération entre les aventuriers des 2 joueurs ?
-
-possible de faire un petit widget qui permet de faire tourner le jeu en arrière plan et ne voit que la console ?
-
-renommage du spa, le principe de moins de mort est bien mais le spa dénote avec l'univers
-
-équilibrage 
+## 🔬 Étape 5 : Recherche, Optimisation et Architecture (Pour plus tard)
+- [ ] **Équilibrage général :** Ajuster les valeurs du jeu (coûts, gains d'or du maire, vitesse de progression).
+- [ ] **Réduction batterie & APK :** Transformer l'application web en APK (via Capacitor ou TWA) et optimiser la boucle de jeu pour réduire la consommation de batterie par rapport à Chrome.
+- [ ] **Mode arrière-plan / Widget :** Étudier la faisabilité d'un mode réduit ou widget affichant uniquement la console pendant que le jeu tourne en arrière-plan.
+- [ ] **Mode Multijoueur :** Étudier la faisabilité d'un mode coopératif où les villages de deux joueurs se rassemblent pour faire coopérer leurs aventuriers.
+- [ ] 
