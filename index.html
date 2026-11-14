@@ -53,13 +53,14 @@ main{padding-bottom:76px}
 #nav button.on{color:var(--btn);box-shadow:inset 0 3px 0 var(--btn)}
 #log{max-height:240px;overflow:auto}
 html,body{touch-action:manipulation}
-#toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);background:var(--btn);color:var(--btnfg);padding:8px 14px;border-radius:20px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+#toast{white-space:nowrap;position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);background:var(--btn);color:var(--btnfg);padding:8px 14px;border-radius:20px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
 #toast.on{opacity:1}
+#mu{min-height:32px;padding:2px 10px;font-size:16px;background:var(--card);color:var(--fg);border:1px solid var(--line);flex:none}
 </style>
 </head>
 <body>
 <main>
-<h1><span id="vt">Vigie</span> <small id="day"></small></h1>
+<h1><span id="vt">Vigie</span> <small id="day"></small><button id="mu" aria-label="Musique">🔊</button></h1>
 <div class="res"><div id="g"><b>0</b>or</div><div id="w"><b>0</b>bois</div><div id="s"><b>0</b>pierre</div></div>
 <div class="tab on" id="tv"><canvas id="cv"></canvas>
 <label style="display:block;margin:8px 0;font-size:15px"><input type="checkbox" id="tt"> Afficher le temps de trajet restant</label>
@@ -72,7 +73,7 @@ html,body{touch-action:manipulation}
 <button id="bB" style="grid-column:1/-1"></button>
 </div></div>
 <div class="tab" id="to">
-<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.4.1</p></div>
+<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.5.1</p></div>
 <div class="tab" id="th"><div id="ros"></div></div>
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 des disparus</h3><div id="lb"></div></div>
 </main>
@@ -281,7 +282,7 @@ function ui(){
  const bh=bestRest();$('bB').innerHTML=bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`;$('bB').disabled=!bh||S.hero.some(x=>x.z===BZ&&x.st!=='rest');
  $('lb').innerHTML=S.lb.length?S.lb.map((x,i)=>`<div class="chip">${i+1}. <b>${x.n}</b> ${CI[x.c]} ${CL[x.c].n} niv. ${x.lv}<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ${x.d} j · tué par ${x.by}<br>${gn(x)||'sans équip.'}</i></div>`).join(''):'<p>Personne n’est encore mort.</p>';
  const L={rest:'repos',go:'en route',fight:'combat',back:'retour'};
- $('ros').innerHTML=S.hero.map(h=>`<span class="chip"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''} · ${L[h.st]}${showT&&h.st!=='rest'?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc"><b>${n.n}</b> ${NT[k]} niv. ${n.lv} · ${n.xp}/${n.lv*4}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'');
+ $('ros').innerHTML=S.hero.map(h=>`<span class="chip"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''} · ${L[h.st]}${showT&&h.st!=='rest'?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc"><b>${n.n}</b> ${NT[k]} niv. ${n.lv}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'');
 }
 const cv=$('cv'),cx=cv.getContext('2d');
 let W=360,H=432,sc=3.6;
@@ -344,6 +345,7 @@ function draw(){
  for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);cx.globalAlpha=1}
  cx.restore();
  {const f=S.hero.filter(h=>h.st==='fight').slice(0,5);if(f.length){const fs=sc*2.9,lh=fs*1.4;cx.fillStyle='rgba(20,24,26,.8)';cx.beginPath();cx.roundRect(6,6,W*.66,lh*(f.length+1)+8,8);cx.fill();cx.textAlign='left';cx.fillStyle='#e2b43c';cx.font=`700 ${fs}px Alegreya,serif`;cx.fillText('Combats en cours',12,6+lh);cx.fillStyle='#fff';cx.font=`${fs}px Alegreya,serif`;f.forEach((h,i)=>cx.fillText(`${h.name} vs ${h.en.n}`,12,6+lh*(i+2)));cx.textAlign='center'}}
+ if(tipId!=null){const q=S.hero.find(z=>z.id===tipId);if(q){const sx=(q.x*sc+((q.id%3)-1)*sc*1.5)*cam.z+cam.x,sy=(q.y*sc+((q.id%2)-.5)*sc*2)*cam.z+cam.y,t=`${q.name} · niv. ${q.lv}`;cx.font='700 13px Alegreya,serif';const w=(cx.measureText(t).width||80)+18,by=Math.max(4,sy-46);cx.textAlign='center';cx.fillStyle='rgba(20,24,26,.93)';cx.beginPath();cx.roundRect(sx-w/2,by,w,26,8);cx.fill();cx.beginPath();cx.moveTo(sx-5,by+26);cx.lineTo(sx+5,by+26);cx.lineTo(sx,by+33);cx.fill();cx.fillStyle='#fff';cx.fillText(t,sx,by+18)}else tipId=null}
  if(S.alert&&performance.now()-S.alert.at<7000){cx.fillStyle='rgba(192,57,43,.95)';cx.beginPath();cx.roundRect(6,H-sc*9-6,W-12,sc*9,8);cx.fill();cx.fillStyle='#fff';cx.font=`700 ${sc*3.6}px Alegreya,serif`;cx.fillText(S.alert.txt,W/2,H-sc*9-6+sc*5.6)}
 }
 const cam={x:0,y:0,z:1},pt=new Map();let pd=0;
@@ -354,6 +356,31 @@ cv.addEventListener('pointermove',e=>{if(!pt.has(e.pointerId))return;const o=pt.
 const pup=e=>{pt.delete(e.pointerId);pd=0};cv.addEventListener('pointerup',pup);cv.addEventListener('pointercancel',pup);
 cv.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.15:.87)},{passive:false});
 cv.addEventListener('dblclick',()=>{cam.x=cam.y=0;cam.z=1});
+let tipId=null,tp=null;
+function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){const d=Math.hypot(q.x+((q.id%3)-1)*1.5-mx,q.y+((q.id%2)-.5)*2-my);if(d<bd){bd=d;b=q}}tipId=b&&bd*sc*cam.z<26?b.id:null}
+cv.addEventListener('pointerdown',e=>{tp=e.isPrimary&&pt.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null});
+cv.addEventListener('pointermove',e=>{if(tp&&Math.hypot(e.offsetX-tp.x,e.offsetY-tp.y)>8)tp.m=1});
+cv.addEventListener('pointerup',e=>{if(tp&&!tp.m&&Date.now()-tp.t<500)tap(e.offsetX,e.offsetY);tp=null});
+const MU={mute:(()=>{try{return localStorage.getItem('bvm')==='1'}catch(e){return false}})()};
+const MA=[[12,null,10,12,14,null,12,null],[10,null,7,10,12,null,10,null],[8,null,12,null,10,8,null,7],[7,null,10,12,10,null,7,null],[12,null,14,15,14,null,12,null],[10,null,12,null,14,12,10,null],[14,null,12,null,10,7,null,null],[12,null,null,null,7,null,null,null]];
+const MB=[[14,null,12,14,15,null,17,null],[14,null,12,10,12,null,14,null],[12,null,15,null,14,12,null,10],[10,null,12,14,12,null,10,null],[15,null,14,12,14,null,15,null],[14,null,12,null,10,12,14,null],[12,null,10,null,7,10,12,null],[12,null,7,null,0,null,null,null]];
+const MR=[-12,-14,-16,-14,-12,-19,-17,-12];
+function musicStart(){
+ if(MU.ctx||MU.mute)return;
+ try{
+  const C=new (window.AudioContext||window.webkitAudioContext)(),bus=C.createGain(),d=C.createDelay(1),fb=C.createGain(),wet=C.createGain();
+  bus.gain.value=.2;d.delayTime.value=.34;fb.gain.value=.3;wet.gain.value=.3;
+  bus.connect(C.destination);bus.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(C.destination);
+  const pluck=(s,t,dur,g)=>{const f=293.66*Math.pow(2,s/12),o=C.createOscillator(),o2=C.createOscillator(),g2=C.createGain(),e=C.createGain(),lp=C.createBiquadFilter();o.type='triangle';o2.type='sine';o.frequency.value=f;o2.frequency.value=f*2;g2.gain.value=.3;lp.type='lowpass';lp.frequency.value=Math.min(4000,f*5);e.gain.setValueAtTime(.0001,t);e.gain.linearRampToValueAtTime(g,t+.01);e.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(e);e.connect(bus);o.start(t);o2.start(t);o.stop(t+dur+.05);o2.stop(t+dur+.05)};
+  MU.ctx=C;MU.i=0;MU.t=C.currentTime+.3;
+  MU.timer=setInterval(()=>{while(MU.t<C.currentTime+1){const bar=Math.floor(MU.i/8)%16,e=MU.i%8,m=(bar<8?MA:MB)[bar%8][e];if(m!=null)pluck(m,MU.t,1.3,.5);if(e===0)pluck(MR[bar%8],MU.t,1.8,.45);if(e===4)pluck(MR[bar%8]+7,MU.t,1.5,.3);MU.t+=.4545;MU.i++}},250);
+  C.resume()
+ }catch(e){MU.ctx=null}
+}
+function musicToggle(){MU.mute=!MU.mute;try{localStorage.setItem('bvm',MU.mute?'1':'0')}catch(e){}$('mu').textContent=MU.mute?'🔇':'🔊';if(MU.mute){if(MU.ctx)MU.ctx.suspend()}else if(MU.ctx)MU.ctx.resume();else musicStart()}
+$('mu').textContent=MU.mute?'🔇':'🔊';$('mu').onclick=musicToggle;
+document.addEventListener('pointerup',musicStart);
+document.addEventListener('visibilitychange',()=>{if(!MU.ctx)return;if(document.hidden||MU.mute)MU.ctx.suspend();else MU.ctx.resume()});
 let last=performance.now(),acc=0;
 function loop(now){
  const dt=Math.min(.1,(now-last)/1000);last=now;

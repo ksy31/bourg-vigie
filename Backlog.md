@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.4.1 « Correctif bloquant »**
+Version actuelle du jeu : **v2.5.1 « Nouveau Monde : ambiance et UI »**
 
 ## ✅ Déjà intégré
 
@@ -20,20 +20,20 @@ Version actuelle du jeu : **v2.4.1 « Correctif bloquant »**
 ### v2.4.1 « Correctif bloquant »
 - [x] **Cohérence des combats et niveau des monstres :** montée de la difficulté ramenée à +1,5 % par jour (plafond +75 %), zones choisies plus prudemment, niveaux 1 et 2 protégés de la mort (fuite blessé), hasard conservé.
 
-## 🎨 v2.5 « Nouveau Monde » : Refonte graphique 2D et Ambiance
+### v2.5.1 « Nouveau Monde : ambiance et UI »
+- [x] **Musique médiévale fantasy (Web Audio) :** synthétiseur intégré, mélodie de luth en boucle, démarrage au premier tap, bouton 🔊/🔇 toujours visible, pause automatique quand on quitte l'onglet.
+- [x] **Popup de sauvegarde sur une ligne.**
+- [x] **Masquer la progression des PNJ :** le niveau reste affiché, la progression x/y est retirée.
+- [x] **Infobulle personnage sur la carte :** tap sur un aventurier = nom et niveau, fermeture au tap ailleurs.
 
-### Correctifs rapides, UI & Ambiance sonore
-- [ ] **Musique médiévale fantasy (Web Audio) :** coder un petit synthétiseur intégré (Web Audio API, sans fichier externe) jouant une mélodie médiévale douce en boucle (son type luth/harpe ou flûte), démarrant au premier clic sur l'écran avec un bouton toujours visible (`🔊`/`🔇`) pour couper/activer le son (et mise en pause automatique quand on quitte l'onglet).
-- [ ] **Popup de sauvegarde sur une ligne :** forcer l'affichage de la notification de sauvegarde réussie sur **une seule ligne** (`white-space: nowrap`).
-- [ ] **Masquer le niveau d'avancement des PNJ :** retirer l'affichage du niveau/progression des PNJ ajouté par erreur lors de la v2.4.
-- [ ] **Infobulle personnage sur la carte :** au clic/tap sur l'icône d'un personnage sur la carte, afficher une petite fiche avec son **nom** et son **niveau**. Fermer automatiquement cette bulle dès que l'on clique ailleurs.
+## 🎨 v2.5.2 et v2.5.3 « Nouveau Monde » : Refonte graphique 2D
 
-### Refonte graphique de la carte & décors (finir l'effet "Paint")
+### v2.5.2 : Refonte graphique de la carte & décors (finir l'effet "Paint")
 - [ ] **Sol et nature vivante :** enrichir le fond de carte avec des détails fixes (touffes d'herbe, petites fleurs, cailloux, relief doux) et ajouter des **ombres portées** sous tous les éléments (bâtiments, arbres, personnages). Mettre en cache le décor statique pour économiser la batterie.
 - [ ] **Zones illustrées (sans texte de danger) :** supprimer l'affichage textuel/numérique de la notion de « danger » et remplacer les ronds de couleur par de vrais décors dessinés correspondant au lieu (ex. : bosquet de **vrais arbres** détaillés pour la forêt, rochers en relief pour la montagne, pierres brisées pour les ruines, etc.) accompagnés d'une icône claire.
 - [ ] **Vrais chemins texturés :** remplacer les simples traits par des chemins de terre ou de pavés détaillés (bords irréguliers, petits cailloux, herbe en bordure).
 
-### Village, Éclairage & Déplacements
+### v2.5.3 : Village, Éclairage & Déplacements
 - [ ] **Agrandir et réorganiser le village :** agrandir la zone du village, espacer davantage les bâtiments entre eux, redessiner les bâtiments avec plus de détails (toits, portes, cheminées) et placer la **Mairie au centre**.
 - [ ] **Éclairage ciblé et naturel :** ne placer les lumières du village qu'aux extrémités (périmètre extérieur) et une seule devant chaque entrée de bâtiment. Le long des chemins, décaler les lampadaires aléatoirement à gauche ou à droite du tracé (position fixée une fois au chargement).
 - [ ] **Trajets des aventuriers dans le village :** lors d'un retour avec récompense, faire déplacer visuellement l'aventurier jusqu'à la **Mairie** (au centre) pour déposer son butin, puis jusqu'à l'**Auberge** pour se reposer.
@@ -53,6 +53,7 @@ Version actuelle du jeu : **v2.4.1 « Correctif bloquant »**
 
 ## ⏳ En attente / à étudier plus tard
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
+- [ ] **Rééquilibrage de la difficulté :** un aventurier niveau 1 est jugé trop facile depuis la v2.4.1 (à reprendre plus tard).
 - [ ] **Widget / arrière-plan :** impossible en web (le jeu se fige écran éteint). Demanderait une réécriture en Android natif (Kotlin) avec service permanent. Non retenu pour l'instant.
 
 ## ❌ Abandonné

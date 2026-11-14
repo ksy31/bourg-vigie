@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.5.1 « Nouveau Monde : ambiance et UI »
+
+### Ajouté
+- **Musique médiévale** générée par synthèse (Web Audio, aucun fichier externe) : mélodie de luth en boucle sur 16 mesures, qui démarre au premier tap.
+- **Bouton 🔊/🔇** toujours visible en haut à droite (préférence mémorisée). La musique se met en pause quand on quitte l'onglet ou l'application.
+- **Infobulle d'aventurier** : un tap sur un aventurier de la carte affiche son nom et son niveau. Elle se ferme au tap ailleurs.
+
+### Corrigé
+- La popup de sauvegarde s'affiche sur une seule ligne.
+- La progression des PNJ (x/y) n'est plus affichée dans la liste (leur niveau reste visible).
+
+### Modifié
+- Version affichée dans les Options : v2.5.1.
+
 ## v2.4.1 « Correctif bloquant »
 
 ### Corrigé
