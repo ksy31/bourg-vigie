@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.4 « Veille nocturne »
+
+### Corrigé
+- **Zoom verrouillé** sur toute l'interface (seule la carte se zoome).
+- **Écran toujours allumé** par défaut (option supprimée).
+
+### Ajouté
+- **Transition jour/nuit** progressive (crépuscule 20h-21h, aube 4h-5h).
+- **Halo lumineux** autour des aventuriers la nuit.
+- **Sauvegarde** : popup de confirmation sur sauvegarde manuelle, et timer « dernière sauvegarde il y a X » dans les Options.
+- **Game over « You lose, Continue ? »** avec compte à rebours de 10 s.
+
+### Modifié
+- **Spa** renommé **Sanctuaire** (icône ⛪, effet de réduction de mortalité inchangé). Les anciennes sauvegardes sont converties.
+- Version affichée dans les Options : v2.4.
+
 ## v2.3 « Hôtel de ville »
 
 ### Ajouté

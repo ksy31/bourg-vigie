@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <title>Bourg-Vigie</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#2f5d50">
@@ -52,6 +52,9 @@ main{padding-bottom:76px}
 #nav button{flex:1;background:none;color:var(--fg);border-radius:0;min-height:52px;font-size:11.5px;padding:4px 1px}
 #nav button.on{color:var(--btn);box-shadow:inset 0 3px 0 var(--btn)}
 #log{max-height:240px;overflow:auto}
+html,body{touch-action:manipulation}
+#toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);background:var(--btn);color:var(--btnfg);padding:8px 14px;border-radius:20px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+#toast.on{opacity:1}
 </style>
 </head>
 <body>
@@ -69,17 +72,17 @@ main{padding-bottom:76px}
 <button id="bB" style="grid-column:1/-1"></button>
 </div></div>
 <div class="tab" id="to">
-<label style="display:block;margin-bottom:8px;font-size:15px"><input type="checkbox" id="wk"> Garder l’écran allumé <small id="wn"></small></label>
-<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.3</p></div>
+<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.4</p></div>
 <div class="tab" id="th"><div id="ros"></div></div>
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 des disparus</h3><div id="lb"></div></div>
 </main>
+<div id="toast"></div>
 <nav id="nav"><button class="on" data-t="tv">Carte</button><button data-t="tb">Bâtir</button><button data-t="th">Aventuriers</button><button data-t="tl">Top 10</button><button data-t="to">Options</button></nav>
 <div id="pv" hidden><div><h2 id="pvt" style="margin:0 0 4px;font-size:20px"></h2><p id="pg" style="margin:0"></p><div id="pu"></div><input id="vn" maxlength="20" placeholder="Nom du village" style="width:100%;font:inherit;padding:9px;margin-bottom:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)"><button id="pn" style="width:100%">Nouvelle run</button><button id="pc" hidden style="width:100%;margin-top:6px;background:var(--card);color:var(--fg);border:1px solid var(--line)">Annuler</button></div></div>
 <script>
 const CL={G:{n:'Guerrier',p:1.15,die:.4,g:1,r:1,cost:20,t:'Solide : survit mieux aux défaites.'},V:{n:'Voleur',p:.95,die:.5,g:1.4,r:1,cost:25,t:'Rapporte 40 % d’or en plus.'},M:{n:'Mage',p:1.3,die:.85,g:1,r:1,cost:30,t:'Très puissant, mais fragile.'},R:{n:'Rôdeur',p:1,die:.55,g:1,r:1.5,cost:22,t:'Rapporte 50 % de ressources en plus.'}};
 const dz=z=>z.d*(1+Math.floor(S.t/90)*.04);
-const NE={A:'🛏️',F:'🔨',T:'🍺',S:'♨️',M:'🏪',E:'🐴',V:'🏛️'};
+const NE={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',M:'🏪',E:'🐴',V:'🏛️'};
 const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',M:'Marchand',E:'Palefrenier',V:'Maire'};
 const CI={G:'■',V:'▲',M:'◆',R:'⬢'};
 const gn=x=>SL[x.c].filter(k=>x.eq[k]).map(k=>`${pn(x,k)} ${x.eq[k]}`).join(', ');
@@ -106,7 +109,7 @@ const BD={
  H:{n:'Maison',t:'+1 place, à vendre',k:'houses',c:l=>({w:20+l*15,s:8+l*8,g:0})},
  F:{n:'Forge',t:'+puissance',k:'forge',c:l=>({w:25+l*25,s:25+l*25,g:30+l*40})},
  T:{n:'Taverne',t:'repos −12 %',k:'tavern',c:l=>({w:30+l*25,s:10+l*12,g:40+l*50})},
- S:{n:'Spa',t:'morts −8 %',k:'spa',c:l=>({w:20+l*20,s:30+l*25,g:60+l*70})},
+ S:{n:'Sanctuaire',t:'morts −8 %',k:'spa',c:l=>({w:20+l*20,s:30+l*25,g:60+l*70})},
  M:{n:'Marché',t:'or +10 %',k:'market',c:l=>({w:40+l*30,s:20+l*20,g:50+l*60})}};
 const cs=c=>[c.w&&c.w+' bois',c.s&&c.s+' pierre',c.g&&c.g+' or'].filter(Boolean).join(', ');
 const bestRest=()=>S.hero.filter(h=>h.st==='rest').sort((a,b)=>power(b)-power(a))[0];
@@ -123,7 +126,7 @@ function shop(){
  $('pu').querySelectorAll('button').forEach(b=>b.onclick=()=>{const k=b.dataset.u;if(P.glory>=P[k]+1){P.glory-=P[k]+1;P[k]++;save();shop()}});
 }
 function newRun(){
- S=fresh();buildZ();S.vn=($('vn').value.trim()||'Vigie').slice(0,20);logs=[];$('pn').textContent='Nouvelle run';$('pc').hidden=true;$('pv').hidden=true;
+ clearInterval(gameOver.t);S=fresh();buildZ();S.vn=($('vn').value.trim()||'Vigie').slice(0,20);logs=[];$('pn').textContent='Nouvelle run';$('pc').hidden=true;$('pv').hidden=true;
   ui();log('Nouvelle run : le village repart de zéro, plus fort grâce à la Gloire.','ok');
 }
 const T={x:50,y:102};
@@ -137,7 +140,8 @@ const fm=s=>{s=Math.ceil(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,
 const nl=k=>S.npc[k]?S.npc[k].lv:0;
 const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);
 const isNight=()=>{const x=hr();return x>=21||x<4};
-function gameOver(){S.over=1;S.speed=0;$('pvt').textContent='Game over';$('pg').textContent=`Plus d’aventuriers ni d’or pour recruter. Tu as tenu ${S.day} jours.`;$('pu').innerHTML='';$('pn').textContent='Recommencer';$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false}
+const dk=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24;if(x>=21||x<4)return 1;if(x>=20)return x-20;if(x<5)return 5-x;return 0};
+function gameOver(){S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
 const spf=h=>(1+h.eq.b*.05)*(1+(h.hs?h.hs.sp*.04*(1+.1*S.stable):0));
 function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*4){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
 function leave(h,z){h.z=z;const a=Math.random()*6.283,r=Math.sqrt(Math.random())*5.2;h.pt={x:z.x+Math.cos(a)*r,y:z.y+Math.sin(a)*r};h.v=spd(h.pt,h);h.st='go'}
@@ -153,11 +157,12 @@ function hspend(h){
   if(h.gold>=p){h.gold-=p;S.g+=p;h.buff=1.08+.02*nl('T');npcx('T')}}
 }
 const SK='bvs';
-function saveG(){try{localStorage.setItem(SK,JSON.stringify(S));$('sv').textContent='Sauvegardé ✓'}catch(e){$('sv').textContent='Échec'}}
-function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';s.lb=s.lb||[];s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){const f=NAMES.filter(n=>!s.hero.some(h=>h.name===n)&&!Object.values(s.npc).some(x=>x.n===n));s.npc.V={n:f.length?f[Math.floor(Math.random()*f.length)]:'Maire',lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}S=s;buildZ();s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y}})}catch(e){}}
+function saveG(m){try{S.sat=Date.now();localStorage.setItem(SK,JSON.stringify(S));if(m===true)toast('Sauvegarde réussie ✓')}catch(e){if(m===true)toast('Échec de la sauvegarde')}}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';s.lb=s.lb||[];s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){const f=NAMES.filter(n=>!s.hero.some(h=>h.name===n)&&!Object.values(s.npc).some(x=>x.n===n));s.npc.V={n:f.length?f[Math.floor(Math.random()*f.length)]:'Maire',lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}s.pl.forEach(it=>{if(it.e==='♨️')it.e=NE.S});S=s;buildZ();s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y}})}catch(e){}}
 let wl=null;
-async function wake(on){try{if(on){wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null});$('wn').textContent=''}else if(wl){await wl.release();wl=null}}catch(e){$('wn').textContent='(indisponible ici)';$('wk').checked=false}}
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&$('wk').checked)wake(true)});
+async function wake(){try{if(wl)return;wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null})}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')wake()});
 let logs=[];
 const $=id=>document.getElementById(id);
 const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
@@ -269,7 +274,7 @@ function tick(dt){
 }
 function ui(){
  $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
- $('vt').textContent=S.vn;$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ${S.hero.length} aventurier${S.hero.length>1?'s':''} · ★${P.glory}`;
+ $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ${S.hero.length} aventurier${S.hero.length>1?'s':''} · ★${P.glory}`;
  $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
  for(const id in BD){const b=BD[id],c=b.c(S[b.k]||0);$('b'+id).innerHTML=`${b.n} niv. ${(S[b.k]||0)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g}
  
@@ -329,10 +334,13 @@ function draw(){
   if(showT&&(h.st==='go'||h.st==='back')){cx.font=`700 ${sc*2.6}px Alegreya,serif`;cx.fillText(fm(rem(h)),x,y-sc*3.2)}
   if(h.loot&&h.st==='back'){cx.fillStyle='#e2b43c';cx.beginPath();cx.arc(x+sc*2,y-sc*2,sc*.9,0,7);cx.fill()}
  }
- if(isNight()){cx.fillStyle='rgba(3,5,20,.66)';cx.fillRect(-W*3,-H*3,W*7,H*7);cx.fillStyle='#ffd37a';
-  const dot=(x,y,r)=>{cx.globalAlpha=.22;cx.beginPath();cx.arc(x,y,r*3,0,7);cx.fill();cx.globalAlpha=1;cx.beginPath();cx.arc(x,y,r,0,7);cx.fill()};
+ {const K=dk();if(K>0){cx.fillStyle=`rgba(3,5,20,${.66*K})`;cx.fillRect(-W*3,-H*3,W*7,H*7);cx.fillStyle='#ffd37a';
+  const dot=(x,y,r)=>{cx.globalAlpha=.22*K;cx.beginPath();cx.arc(x,y,r*3,0,7);cx.fill();cx.globalAlpha=K;cx.beginPath();cx.arc(x,y,r,0,7);cx.fill()};
   for(const z of ZA){const dx=z.x-T.x,dy=z.y-T.y,n=Math.floor(Math.hypot(dx,dy)/6);for(let i=1;i<n;i++)dot((T.x+dx*i/n)*sc,(T.y+dy*i/n)*sc,sc*.5)}
-  for(const it of S.pl){const p=slot(it);dot((T.x+p[0])*sc,(T.y+p[1]+.4)*sc,sc*.6)}}
+  for(const it of S.pl){const p=slot(it);dot((T.x+p[0])*sc,(T.y+p[1]+.4)*sc,sc*.6)}
+  cx.globalAlpha=1;
+  for(const q of S.hero){const x=q.x*sc+((q.id%3)-1)*sc*1.5,y=q.y*sc+((q.id%2)-.5)*sc*2,g=cx.createRadialGradient(x,y,0,x,y,sc*7);g.addColorStop(0,`rgba(255,215,130,${.4*K})`);g.addColorStop(1,'rgba(255,215,130,0)');cx.fillStyle=g;cx.beginPath();cx.arc(x,y,sc*7,0,7);cx.fill()}
+  }}
  for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);cx.globalAlpha=1}
  cx.restore();
  {const f=S.hero.filter(h=>h.st==='fight').slice(0,5);if(f.length){const fs=sc*2.9,lh=fs*1.4;cx.fillStyle='rgba(20,24,26,.8)';cx.beginPath();cx.roundRect(6,6,W*.66,lh*(f.length+1)+8,8);cx.fill();cx.textAlign='left';cx.fillStyle='#e2b43c';cx.font=`700 ${fs}px Alegreya,serif`;cx.fillText('Combats en cours',12,6+lh);cx.fillStyle='#fff';cx.font=`${fs}px Alegreya,serif`;f.forEach((h,i)=>cx.fillText(`${h.name} vs ${h.en.n}`,12,6+lh*(i+2)));cx.textAlign='center'}}
@@ -356,11 +364,11 @@ function loop(now){
  acc+=dt;if(acc>.3){acc=0;ui();if(!S.over&&!S.hero.length&&S.g<rcost())gameOver()}
  draw();requestAnimationFrame(loop);
 }
-$('bR').onclick=recruit;for(const id in BD)$('b'+id).onclick=()=>build(id);$('bB').onclick=sendBoss;$('pn').onclick=newRun;$('tt').onchange=()=>{showT=$('tt').checked;ui()};$('wk').onchange=()=>wake($('wk').checked);
-$('sb').onclick=saveG;$('rb').onclick=()=>{$('pvt').textContent='Nouvelle partie';$('pg').textContent='La partie en cours sera effacée. Nom du village :';$('pu').innerHTML='';$('pn').textContent='Commencer';$('vn').value=S.vn;$('pc').hidden=false;$('pv').hidden=false};$('pc').onclick=()=>{$('pc').hidden=true;$('pv').hidden=true};
+$('bR').onclick=recruit;for(const id in BD)$('b'+id).onclick=()=>build(id);$('bB').onclick=sendBoss;$('pn').onclick=newRun;$('tt').onchange=()=>{showT=$('tt').checked;ui()};
+$('sb').onclick=()=>saveG(true);$('rb').onclick=()=>{$('pvt').textContent='Nouvelle partie';$('pg').textContent='La partie en cours sera effacée. Nom du village :';$('pu').innerHTML='';$('pn').textContent='Commencer';$('vn').value=S.vn;$('pc').hidden=false;$('pv').hidden=false};$('pc').onclick=()=>{$('pc').hidden=true;$('pv').hidden=true};
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.id===b.dataset.t));if(b.dataset.t==='tv')fit()});
 addEventListener('resize',fit);
-buildZ();loadG();fit();ui();log('Recrute tes premiers aventuriers : ils partiront seuls en quête.');setInterval(saveG,30000);
+buildZ();loadG();fit();ui();wake();document.addEventListener('pointerdown',()=>wake());document.addEventListener('touchmove',e=>{if(e.touches.length>1&&!e.target.closest('canvas'))e.preventDefault()},{passive:false});log('Recrute tes premiers aventuriers : ils partiront seuls en quête.');setInterval(saveG,30000);
 requestAnimationFrame(loop);
 </script>
 <script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})</script>
