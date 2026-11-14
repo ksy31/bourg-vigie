@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.5.1 « Nouveau Monde : ambiance et UI »**
+Version actuelle du jeu : **v2.6a « Chroniques (1/2) »**
 
 ## ✅ Déjà intégré
 
@@ -26,6 +26,11 @@ Version actuelle du jeu : **v2.5.1 « Nouveau Monde : ambiance et UI »**
 - [x] **Masquer la progression des PNJ :** le niveau reste affiché, la progression x/y est retirée.
 - [x] **Infobulle personnage sur la carte :** tap sur un aventurier = nom et niveau, fermeture au tap ailleurs.
 
+### v2.6a « Chroniques (1/2) »
+- [x] **Horodatage de la console :** `[J12 · 14h] message`.
+- [x] **Historique de la console :** 20 dernières lignes sauvegardées ; message d'accueil uniquement au début d'une nouvelle partie.
+- [x] **Top 10 global :** un classement pour toutes les parties, un seul score par nom (monstres tués, or gagné, niveau, jours).
+
 ## 🎨 v2.5.2 et v2.5.3 « Nouveau Monde » : Refonte graphique 2D
 
 ### v2.5.2 : Refonte graphique de la carte & décors (finir l'effet "Paint")
@@ -38,10 +43,7 @@ Version actuelle du jeu : **v2.5.1 « Nouveau Monde : ambiance et UI »**
 - [ ] **Éclairage ciblé et naturel :** ne placer les lumières du village qu'aux extrémités (périmètre extérieur) et une seule devant chaque entrée de bâtiment. Le long des chemins, décaler les lampadaires aléatoirement à gauche ou à droite du tracé (position fixée une fois au chargement).
 - [ ] **Trajets des aventuriers dans le village :** lors d'un retour avec récompense, faire déplacer visuellement l'aventurier jusqu'à la **Mairie** (au centre) pour déposer son butin, puis jusqu'à l'**Auberge** pour se reposer.
 
-## 📜 v2.6 « Chroniques » : Console, Données et Panneau Développeur
-- [ ] **Horodatage de la console :** en-tête de chaque message au format `[J12 · 14h] message` (jour et heure de jeu, entre crochets).
-- [ ] **Historique de la console :** sauvegarder les **20 dernières lignes** pour les réafficher à la réouverture. Le message d'accueil n'apparaît qu'au début d'une nouvelle partie, plus à la réouverture.
-- [ ] **Top 10 global :** un seul classement pour toutes les parties confondues, avec un seul score par nom (le meilleur). Remplace le top 10 de la partie en cours. Ordre : monstres tués, or gagné, niveau, jours.
+## 📜 v2.6b « Chroniques (2/2) » : Panneau Développeur et Noms
 - [ ] **Menu Développeur (roue crantée) :** roue crantée discrète donnant accès aux options développeur (d'autres options seront ajoutées plus tard). Contenu de départ : gestion des noms, export/import de sauvegarde, ajout de ressources de test.
 - [ ] **Gestion dynamique des noms :** liste de tous les noms possibles, avec ajout, modification et suppression sans mise à jour du jeu (champ pour coller une liste, un nom par ligne). Quand la liste est épuisée, des noms inventés sont générés et affichés en *italique* (jeu, classement, PNJ), donc pas de nombre minimum.
 

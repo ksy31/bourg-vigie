@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.6a « Chroniques (1/2) »
+
+### Ajouté
+- **Console horodatée** : chaque message commence par `[J12 · 14h]` (jour et heure de jeu).
+- **Historique de la console** : les 20 derniers messages sont sauvegardés et réaffichés à la réouverture.
+- **Top 10 global** : un seul classement pour toutes les parties, un seul score par nom (le meilleur). Ordre : monstres tués, or gagné, niveau, jours. Les classements des parties précédentes sont repris.
+
+### Modifié
+- Le message d'accueil n'apparaît plus qu'au début d'une nouvelle partie.
+- Le message de nouvelle partie ne mentionne plus la Gloire.
+- Version affichée dans les Options : v2.6a.
+
 ## v2.5.1 « Nouveau Monde : ambiance et UI »
 
 ### Ajouté
