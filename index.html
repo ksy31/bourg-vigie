@@ -72,7 +72,7 @@ html,body{touch-action:manipulation}
 <button id="bB" style="grid-column:1/-1"></button>
 </div></div>
 <div class="tab" id="to">
-<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.4</p></div>
+<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.4.1</p></div>
 <div class="tab" id="th"><div id="ros"></div></div>
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 des disparus</h3><div id="lb"></div></div>
 </main>
@@ -81,7 +81,7 @@ html,body{touch-action:manipulation}
 <div id="pv" hidden><div><h2 id="pvt" style="margin:0 0 4px;font-size:20px"></h2><p id="pg" style="margin:0"></p><div id="pu"></div><input id="vn" maxlength="20" placeholder="Nom du village" style="width:100%;font:inherit;padding:9px;margin-bottom:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)"><button id="pn" style="width:100%">Nouvelle run</button><button id="pc" hidden style="width:100%;margin-top:6px;background:var(--card);color:var(--fg);border:1px solid var(--line)">Annuler</button></div></div>
 <script>
 const CL={G:{n:'Guerrier',p:1.15,die:.4,g:1,r:1,cost:20,t:'Solide : survit mieux aux défaites.'},V:{n:'Voleur',p:.95,die:.5,g:1.4,r:1,cost:25,t:'Rapporte 40 % d’or en plus.'},M:{n:'Mage',p:1.3,die:.85,g:1,r:1,cost:30,t:'Très puissant, mais fragile.'},R:{n:'Rôdeur',p:1,die:.55,g:1,r:1.5,cost:22,t:'Rapporte 50 % de ressources en plus.'}};
-const dz=z=>z.d*(1+Math.floor(S.t/90)*.04);
+const dz=z=>z.d*(1+Math.min(.75,(S.day-1)*.015));
 const NE={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',M:'🏪',E:'🐴',V:'🏛️'};
 const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',M:'Marchand',E:'Palefrenier',V:'Maire'};
 const CI={G:'■',V:'▲',M:'◆',R:'⬢'};
@@ -200,7 +200,7 @@ function build(id){
  log(`${b.n} niveau ${l+1} construit : ${b.t}.`,'ok');ui();
 }
 function pick(h){
- const th=.8-h.bold*.55;
+ const th=.9-h.bold*.4;
  let c=[],tot=0;
  for(const z of Z){
   if(win(h,dz(z))<th)continue;
@@ -241,7 +241,7 @@ function resolve(h){
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2)));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');h.won=e.n;h.st='back';if(e.boss)victory(h);
- }else if((e.boss||power(h)/e.d<1.3)&&Math.random()<(e.boss?.85:c.die*(e.el?.5:1)*(1-Math.min(.5,(h.eq.a+h.eq.s)*.06))*Math.max(.2,1-.08*S.spa-.02*nl('S')))){
+ }else if((e.boss||(power(h)/e.d<1.3&&h.lv>2))&&Math.random()<(e.boss?.85:c.die*(e.el?.5:1)*(1-Math.min(.5,(h.eq.a+h.eq.s)*.06))*Math.max(.2,1-.08*S.spa-.02*nl('S')))){
   if(h.home)h.home.o=null;if(h.hs)h.hs.o=null;S.lb.push({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});S.lb.sort((a,b)=>b.k-a.k||b.g-a.g||b.lv-a.lv||b.d-a.d);S.lb=S.lb.slice(0,10);S.marks.push({x:h.x,y:h.y,t:S.t});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');

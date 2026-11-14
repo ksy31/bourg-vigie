@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.4 « Veille nocturne »**
+Version actuelle du jeu : **v2.4.1 « Correctif bloquant »**
 
 ## ✅ Déjà intégré
 
@@ -17,13 +17,13 @@ Version actuelle du jeu : **v2.4 « Veille nocturne »**
 - [x] **Indicateurs de sauvegarde :** popup de confirmation (sauvegarde manuelle) et timer « dernière sauvegarde il y a X ».
 - [x] **Game Over style Tekken :** « You lose, Continue ? » avec compte à rebours de 10 s.
 
-## 🚨 v2.4.1 « Correctif bloquant » : Combats et progression (urgent)
-- [ ] **Cohérence des combats et niveau des monstres :** vérifier si le niveau des monstres augmente avec le temps (ce qui rend les nouvelles recrues niveau 1 injouables à partir du jour 10 et bloque la progression) et corriger l'incohérence des combats (un aventurier niveau 1 peut tuer un ours alors qu'un niveau 5 se fait tuer par un ours) tout en gardant la part d'aléatoire actuelle mais de manière logique.
+### v2.4.1 « Correctif bloquant »
+- [x] **Cohérence des combats et niveau des monstres :** montée de la difficulté ramenée à +1,5 % par jour (plafond +75 %), zones choisies plus prudemment, niveaux 1 et 2 protégés de la mort (fuite blessé), hasard conservé.
 
 ## 🎨 v2.5 « Nouveau Monde » : Refonte graphique 2D et Ambiance
 
 ### Correctifs rapides, UI & Ambiance sonore
-- [ ] **Musique médiévale fantasy (Web Audio) :** coder un petit synthétiseur intégré (Web Audio API, sans fichier externe) jouant une mélodie médiévale douce en boucle (son type luth/harpe ou flûte), démarrant au premier clic sur l'écran avec un bouton discret (`🔊`/`🔇`) pour couper/activer le son (et mise en pause automatique quand on quitte l'onglet).
+- [ ] **Musique médiévale fantasy (Web Audio) :** coder un petit synthétiseur intégré (Web Audio API, sans fichier externe) jouant une mélodie médiévale douce en boucle (son type luth/harpe ou flûte), démarrant au premier clic sur l'écran avec un bouton toujours visible (`🔊`/`🔇`) pour couper/activer le son (et mise en pause automatique quand on quitte l'onglet).
 - [ ] **Popup de sauvegarde sur une ligne :** forcer l'affichage de la notification de sauvegarde réussie sur **une seule ligne** (`white-space: nowrap`).
 - [ ] **Masquer le niveau d'avancement des PNJ :** retirer l'affichage du niveau/progression des PNJ ajouté par erreur lors de la v2.4.
 - [ ] **Infobulle personnage sur la carte :** au clic/tap sur l'icône d'un personnage sur la carte, afficher une petite fiche avec son **nom** et son **niveau**. Fermer automatiquement cette bulle dès que l'on clique ailleurs.
@@ -58,4 +58,3 @@ Version actuelle du jeu : **v2.4 « Veille nocturne »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
-- [ ] 

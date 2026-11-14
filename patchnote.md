@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.4.1 « Correctif bloquant »
+
+### Corrigé
+- **Progression bloquée** : la force des monstres augmentait de 4 % toutes les 90 s de jeu (environ ×4,6 au jour 10), rendant les nouvelles recrues injouables. Elle augmente désormais de 1,5 % par jour de jeu, plafonnée à +75 %.
+- **Incohérence des combats** : un aventurier de niveau 5 mourait face à un ours alors qu'un niveau 1 en tuait un. Avec la nouvelle échelle, un niveau 1 garde environ 70 à 90 % de victoire contre les monstres faibles de la zone la plus facile, même au jour 50.
+
+### Modifié
+- Les aventuriers choisissent des zones un peu plus prudentes (seuil de victoire attendu relevé).
+- Les aventuriers de niveau 1 et 2 ne meurent plus en cas de défaite : ils fuient blessés (repos plus long). Au niveau 3 et plus, la mort reste possible si le monstre est plus fort.
+- Le hasard des combats est conservé.
+- Version affichée dans les Options : v2.4.1.
+
 ## v2.4 « Veille nocturne »
 
 ### Corrigé
