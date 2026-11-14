@@ -1,30 +1,61 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-## 🚨 Étape 1 : Corrections de bugs et blocages (Priorité absolue)
-- [ ] **Verrouiller le zoom :** Empêcher le zoom sur toute l'interface de l'application (CSS/Viewport) et ne garder le zoom actif uniquement sur la carte (map).
-- [ ] **Écran toujours allumé :** Activer par défaut le mode "écran toujours allumé" (Wake Lock) et supprimer l'option de l'interface.
+Version actuelle du jeu : **v2.4 « Veille nocturne »**
 
-## 🎨 Étape 2 : Améliorations rapides, Textes et UI (Facile)
-- [ ] **Renommer le "Spa" :** Remplacer le nom "Spa" par un nom cohérent avec l'univers du jeu tout en gardant l'effet de réduction de mortalité.
-- [ ] **Transition Jour/Nuit :** Ajouter une transition visuelle douce (fondu CSS/Canvas) lors du passage entre le jour et la nuit.
-- [ ] **Halo lumineux la nuit :** Ajouter un effet de halo lumineux autour des personnages lorsqu'il fait nuit.
-- [ ] **Indicateurs de sauvegarde :** Afficher une popup de confirmation lors d'une sauvegarde réussie et ajouter un timer indiquant le temps écoulé depuis la dernière sauvegarde.
-- [ ] **Game Over style Tekken :** Ajouter une option de fin où la fenetre de gamme over et remplaçait par*"You lose, continue ?"* comme dans Tekken
+## ✅ Déjà intégré
 
-## 📜 Étape 3 : Console, Données et Panneau Développeur (Moyen)
-- [ ] **Horodatage de la console :** Ajouter le jour et la date du jeu en en-tête de chaque message affiché dans la console.
-- [ ] **Historique de la console :** Sauvegarder les messages de la console (LocalStorage) pour les réafficher à la réouverture du jeu.
-- [ ] **Top 10 persistant :** Conserver les 10 meilleurs aventuriers toutes parties confondues, en ne gardant que le meilleur score si un même nom apparaît plusieurs fois.
-- [ ] **Menu Développeur (Roue crantée) :** Ajouter une roue crantée discrète donnant accès à des options développeur.
-- [ ] **Gestion dynamique des noms :** Dans ce menu développeur, afficher la liste de tous les noms possibles d'aventuriers et permettre d'en ajouter, modifier ou supprimer sans refaire une mise à jour du jeu.
+### v2.3 « Hôtel de ville »
+- [x] **Mairie :** bâtiment de départ, non améliorable, qui matérialise la caisse du village (sans plafond).
+- [x] **PNJ Maire :** monte d'un niveau tous les `niveau × 4` retours d'aventuriers avec au moins une ressource (une fuite ne compte pas). +1 % d'or par niveau.
 
-## 🏗️ Étape 4 : Nouvelles mécaniques de jeu (Avancé)
-- [ ] **Nouveau bâtiment "Mairie" :** Créer un bâtiment de base (non améliorable au début) qui récupère et stocke les butins.
-- [ ] **PNJ Maire :** Associer un PNJ Maire à la mairie qui gagne des niveaux très lentement et augmente passivement les gains d'or selon son niveau.
+### v2.4 « Veille nocturne »
+- [x] **Verrouiller le zoom :** zoom bloqué sur toute l'interface, actif uniquement sur la carte.
+- [x] **Écran toujours allumé :** activé par défaut, option supprimée.
+- [x] **Renommer le Spa :** devient **Sanctuaire** (effet de réduction de mortalité inchangé).
+- [x] **Transition Jour/Nuit :** fondu progressif (crépuscule 20h-21h, aube 4h-5h).
+- [x] **Halo lumineux la nuit :** halo autour des aventuriers.
+- [x] **Indicateurs de sauvegarde :** popup de confirmation (sauvegarde manuelle) et timer « dernière sauvegarde il y a X ».
+- [x] **Game Over style Tekken :** « You lose, Continue ? » avec compte à rebours de 10 s.
 
-## 🔬 Étape 5 : Recherche, Optimisation et Architecture (Pour plus tard)
-- [ ] **Équilibrage général :** Ajuster les valeurs du jeu (coûts, gains d'or du maire, vitesse de progression).
-- [ ] **Réduction batterie & APK :** Transformer l'application web en APK (via Capacitor ou TWA) et optimiser la boucle de jeu pour réduire la consommation de batterie par rapport à Chrome.
-- [ ] **Mode arrière-plan / Widget :** Étudier la faisabilité d'un mode réduit ou widget affichant uniquement la console pendant que le jeu tourne en arrière-plan.
-- [ ] **Mode Multijoueur :** Étudier la faisabilité d'un mode coopératif où les villages de deux joueurs se rassemblent pour faire coopérer leurs aventuriers.
+## 🚨 v2.4.1 « Correctif bloquant » : Combats et progression (urgent)
+- [ ] **Cohérence des combats et niveau des monstres :** vérifier si le niveau des monstres augmente avec le temps (ce qui rend les nouvelles recrues niveau 1 injouables à partir du jour 10 et bloque la progression) et corriger l'incohérence des combats (un aventurier niveau 1 peut tuer un ours alors qu'un niveau 5 se fait tuer par un ours) tout en gardant la part d'aléatoire actuelle mais de manière logique.
+
+## 🎨 v2.5 « Nouveau Monde » : Refonte graphique 2D et Ambiance
+
+### Correctifs rapides, UI & Ambiance sonore
+- [ ] **Musique médiévale fantasy (Web Audio) :** coder un petit synthétiseur intégré (Web Audio API, sans fichier externe) jouant une mélodie médiévale douce en boucle (son type luth/harpe ou flûte), démarrant au premier clic sur l'écran avec un bouton discret (`🔊`/`🔇`) pour couper/activer le son (et mise en pause automatique quand on quitte l'onglet).
+- [ ] **Popup de sauvegarde sur une ligne :** forcer l'affichage de la notification de sauvegarde réussie sur **une seule ligne** (`white-space: nowrap`).
+- [ ] **Masquer le niveau d'avancement des PNJ :** retirer l'affichage du niveau/progression des PNJ ajouté par erreur lors de la v2.4.
+- [ ] **Infobulle personnage sur la carte :** au clic/tap sur l'icône d'un personnage sur la carte, afficher une petite fiche avec son **nom** et son **niveau**. Fermer automatiquement cette bulle dès que l'on clique ailleurs.
+
+### Refonte graphique de la carte & décors (finir l'effet "Paint")
+- [ ] **Sol et nature vivante :** enrichir le fond de carte avec des détails fixes (touffes d'herbe, petites fleurs, cailloux, relief doux) et ajouter des **ombres portées** sous tous les éléments (bâtiments, arbres, personnages). Mettre en cache le décor statique pour économiser la batterie.
+- [ ] **Zones illustrées (sans texte de danger) :** supprimer l'affichage textuel/numérique de la notion de « danger » et remplacer les ronds de couleur par de vrais décors dessinés correspondant au lieu (ex. : bosquet de **vrais arbres** détaillés pour la forêt, rochers en relief pour la montagne, pierres brisées pour les ruines, etc.) accompagnés d'une icône claire.
+- [ ] **Vrais chemins texturés :** remplacer les simples traits par des chemins de terre ou de pavés détaillés (bords irréguliers, petits cailloux, herbe en bordure).
+
+### Village, Éclairage & Déplacements
+- [ ] **Agrandir et réorganiser le village :** agrandir la zone du village, espacer davantage les bâtiments entre eux, redessiner les bâtiments avec plus de détails (toits, portes, cheminées) et placer la **Mairie au centre**.
+- [ ] **Éclairage ciblé et naturel :** ne placer les lumières du village qu'aux extrémités (périmètre extérieur) et une seule devant chaque entrée de bâtiment. Le long des chemins, décaler les lampadaires aléatoirement à gauche ou à droite du tracé (position fixée une fois au chargement).
+- [ ] **Trajets des aventuriers dans le village :** lors d'un retour avec récompense, faire déplacer visuellement l'aventurier jusqu'à la **Mairie** (au centre) pour déposer son butin, puis jusqu'à l'**Auberge** pour se reposer.
+
+## 📜 v2.6 « Chroniques » : Console, Données et Panneau Développeur
+- [ ] **Horodatage de la console :** en-tête de chaque message au format `[J12 · 14h] message` (jour et heure de jeu, entre crochets).
+- [ ] **Historique de la console :** sauvegarder les **20 dernières lignes** pour les réafficher à la réouverture. Le message d'accueil n'apparaît qu'au début d'une nouvelle partie, plus à la réouverture.
+- [ ] **Top 10 global :** un seul classement pour toutes les parties confondues, avec un seul score par nom (le meilleur). Remplace le top 10 de la partie en cours. Ordre : monstres tués, or gagné, niveau, jours.
+- [ ] **Menu Développeur (roue crantée) :** roue crantée discrète donnant accès aux options développeur (d'autres options seront ajoutées plus tard). Contenu de départ : gestion des noms, export/import de sauvegarde, ajout de ressources de test.
+- [ ] **Gestion dynamique des noms :** liste de tous les noms possibles, avec ajout, modification et suppression sans mise à jour du jeu (champ pour coller une liste, un nom par ligne). Quand la liste est épuisée, des noms inventés sont générés et affichés en *italique* (jeu, classement, PNJ), donc pas de nombre minimum.
+
+## 🔋 v2.7 « Longue veille » : Optimisation
+- [ ] **Réduction de la consommation de batterie :** mise en cache de la carte (sol, routes, village), rendu limité à environ 20 images/s, rafraîchissement du seul onglet affiché, fond noir pur en mode sombre (écran AMOLED).
+
+## 📱 Guide APK
+- [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
+
+## ⏳ En attente / à étudier plus tard
+- [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
+- [ ] **Widget / arrière-plan :** impossible en web (le jeu se fige écran éteint). Demanderait une réécriture en Android natif (Kotlin) avec service permanent. Non retenu pour l'instant.
+
+## ❌ Abandonné
+- [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
+- [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
 - [ ] 
