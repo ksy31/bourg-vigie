@@ -70,7 +70,7 @@ main{padding-bottom:76px}
 </div></div>
 <div class="tab" id="to">
 <label style="display:block;margin-bottom:8px;font-size:15px"><input type="checkbox" id="wk"> Garder l’écran allumé <small id="wn"></small></label>
-<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.0</p></div>
+<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><p style="text-align:right;color:var(--mut);font-size:12px;margin:24px 0 0">v2.3</p></div>
 <div class="tab" id="th"><div id="ros"></div></div>
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 des disparus</h3><div id="lb"></div></div>
 </main>
@@ -79,8 +79,8 @@ main{padding-bottom:76px}
 <script>
 const CL={G:{n:'Guerrier',p:1.15,die:.4,g:1,r:1,cost:20,t:'Solide : survit mieux aux défaites.'},V:{n:'Voleur',p:.95,die:.5,g:1.4,r:1,cost:25,t:'Rapporte 40 % d’or en plus.'},M:{n:'Mage',p:1.3,die:.85,g:1,r:1,cost:30,t:'Très puissant, mais fragile.'},R:{n:'Rôdeur',p:1,die:.55,g:1,r:1.5,cost:22,t:'Rapporte 50 % de ressources en plus.'}};
 const dz=z=>z.d*(1+Math.floor(S.t/90)*.04);
-const NE={A:'🛏️',F:'🔨',T:'🍺',S:'♨️',M:'🏪',E:'🐴'};
-const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',M:'Marchand',E:'Palefrenier'};
+const NE={A:'🛏️',F:'🔨',T:'🍺',S:'♨️',M:'🏪',E:'🐴',V:'🏛️'};
+const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',M:'Marchand',E:'Palefrenier',V:'Maire'};
 const CI={G:'■',V:'▲',M:'◆',R:'⬢'};
 const gn=x=>SL[x.c].filter(k=>x.eq[k]).map(k=>`${pn(x,k)} ${x.eq[k]}`).join(', ');
 const BZ={n:'Trône du Roi',x:54,y:42,d:0,boss:1,c:'#5c1a1f'};
@@ -129,7 +129,7 @@ function newRun(){
 const T={x:50,y:102};
 const NAMES=['KaoTiem', 'Nathalie', 'Lilian', 'Lena', 'Anne', 'Chani', 'Momo', 'NayTiem', 'David', 'Julie', 'Didier', 'Karine', 'Julien-F', 'SanTiem', 'Marie-Laure', 'Karian', 'Marine', 'Cléo', 'Alicia', 'Liam', 'SouTiem', 'Jenny', 'Tommy', 'Willy', 'Meily', 'Claude', 'Cécile', 'Claire', 'Laure', 'KaoTon', 'Ludivine', 'Axel', 'Aurore', 'Ambre', 'SainPou', 'Mike', 'Sébastien', 'KaoPou', 'Carla', 'Loann', 'Enzo', 'Noëlla', 'NayPou', 'Christel', 'Maëlys', 'Thibault', 'FamPou', 'Alexandre', 'Lucas', 'Patrick', 'SouPou', 'Leila', 'Lay', 'Arnaud', 'Léa', 'Khe', 'Carlos', 'Mélinda', 'Nathan', 'Ou', 'MeyTsoy', 'NayTsoy', 'Mathieu', 'Emy', 'Élodie', 'Tristan', 'Fred', 'Pa', 'Raphaëlle', 'Camille', 'Julien', 'Sy', 'Émilie', 'Inès', 'Arthur', 'José', 'Angélique', 'Laurie', 'Eva', 'Lucas-G', 'Maël', 'Clara', 'Naomie', 'Baptiste', 'Chloé', 'Marvin'];
 const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];
-const fresh=()=>({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:layout(),ds:0,dl:900,pl:[{e:NE.A,i:0}],npc:{A:{n:NAMES[Math.floor(Math.random()*NAMES.length)],lv:1,xp:0}}});
+const fresh=()=>({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:layout(),ds:0,dl:900,pl:[{e:NE.A,i:0},{e:NE.V,i:1}],npc:(()=>{const a=Math.floor(Math.random()*NAMES.length),b=(a+1+Math.floor(Math.random()*(NAMES.length-1)))%NAMES.length;return{A:{n:NAMES[a],lv:1,xp:0},V:{n:NAMES[b],lv:1,xp:0}}})()});
 let S=fresh(),showT=false;
 const rname=()=>{const f=NAMES.filter(n=>!S.hero.some(h=>h.name===n)&&!Object.values(S.npc).some(x=>x.n===n)),a=f.length?f:NAMES;return a[R(0,a.length-1)]};
 const rem=h=>{if(h.st==='fight')return h.t;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:base(h);return Math.hypot(tg.x-h.x,tg.y-h.y)/(h.v*spf(h))};
@@ -154,7 +154,7 @@ function hspend(h){
 }
 const SK='bvs';
 function saveG(){try{localStorage.setItem(SK,JSON.stringify(S));$('sv').textContent='Sauvegardé ✓'}catch(e){$('sv').textContent='Échec'}}
-function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';s.lb=s.lb||[];s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());S=s;buildZ();s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y}})}catch(e){}}
+function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';s.lb=s.lb||[];s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){const f=NAMES.filter(n=>!s.hero.some(h=>h.name===n)&&!Object.values(s.npc).some(x=>x.n===n));s.npc.V={n:f.length?f[Math.floor(Math.random()*f.length)]:'Maire',lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}S=s;buildZ();s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y}})}catch(e){}}
 let wl=null;
 async function wake(on){try{if(on){wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null});$('wn').textContent=''}else if(wl){await wl.release();wl=null}}catch(e){$('wn').textContent='(indisponible ici)';$('wk').checked=false}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&$('wk').checked)wake(true)});
@@ -232,7 +232,7 @@ function resolve(h){
   if(z.n==='Cimetière'){h.loot.g=R(16,26);h.loot.s=R(2,4);if(Math.random()<.4)h.loot.gear=1}
   if(z.n==='Volcan'){h.loot.g=R(35,60);h.loot.w=4;h.loot.s=4;if(Math.random()<.6)h.loot.gear=1}
   const k=e.el?2:.7+.3*e.m,l=h.loot;
-  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.1*S.market+.02*nl('M')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1));l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
+  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.1*S.market+.02*nl('M')+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1));l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2)));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');h.won=e.n;h.st='back';if(e.boss)victory(h);
@@ -255,7 +255,7 @@ function tick(dt){
    if(d<=sp){h.x=tg.x;h.y=tg.y;
     if(h.st==='go')arrive(h);
     else{
-     if(h.loot){const l=h.loot,pg=Math.round(l.g*.3);h.gold+=pg;h.earned+=l.g;S.g+=l.g-pg;S.w+=l.w;S.s+=l.s;if(S.market)npcx('M');
+     if(h.loot){const l=h.loot,pg=Math.round(l.g*.3);h.gold+=pg;h.earned+=l.g;S.g+=l.g-pg;S.w+=l.w;S.s+=l.s;if(S.market)npcx('M');if(l.g+l.w+l.s>0)npcx('V');
       let m=`${h.name} bat ${h.won} : +${l.g} or (${pg} à sa bourse)`+(l.w?`, ${l.w} bois`:'')+(l.s?`, ${l.s} pierre`:'');
       if(l.gear)m+=' · '+giveGear(h);
       log(m+'.');
@@ -276,7 +276,7 @@ function ui(){
  const bh=bestRest();$('bB').innerHTML=bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`;$('bB').disabled=!bh||S.hero.some(x=>x.z===BZ&&x.st!=='rest');
  $('lb').innerHTML=S.lb.length?S.lb.map((x,i)=>`<div class="chip">${i+1}. <b>${x.n}</b> ${CI[x.c]} ${CL[x.c].n} niv. ${x.lv}<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ${x.d} j · tué par ${x.by}<br>${gn(x)||'sans équip.'}</i></div>`).join(''):'<p>Personne n’est encore mort.</p>';
  const L={rest:'repos',go:'en route',fight:'combat',back:'retour'};
- $('ros').innerHTML=S.hero.map(h=>`<span class="chip"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''} · ${L[h.st]}${showT&&h.st!=='rest'?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc"><b>${n.n}</b> ${NT[k]} niv. ${n.lv}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'');
+ $('ros').innerHTML=S.hero.map(h=>`<span class="chip"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''} · ${L[h.st]}${showT&&h.st!=='rest'?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc"><b>${n.n}</b> ${NT[k]} niv. ${n.lv} · ${n.xp}/${n.lv*4}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'');
 }
 const cv=$('cv'),cx=cv.getContext('2d');
 let W=360,H=432,sc=3.6;
@@ -288,7 +288,7 @@ const SLOTS=(()=>{const a=[];for(let dx=-24;dx<=24;dx+=8)for(const dy of[-21,-14
 const slot=it=>{const k=Math.floor(it.i/SLOTS.length),p=SLOTS[it.i%SLOTS.length];return[p[0]+k*4,p[1]+k*4]};
 const base=h=>{const it=(h.home&&S.pl.find(x=>x.h===h.home))||S.pl.find(x=>x.e===NE.A)||S.pl[0],p=slot(it);return{x:T.x+p[0],y:T.y+p[1]+3.4}};
 function drawTown(){
- const u=S.pl.map(it=>[slot(it),it.e,it]),B=S.pl.length-1;
+ const u=S.pl.map(it=>[slot(it),it.e,it]),B=S.pl.length-2;
  let rx=10,ry=8;
  for(const [p] of u){rx=Math.max(rx,Math.abs(p[0])+8);ry=Math.max(ry,Math.abs(p[1]+7)+8)}
  cx.fillStyle='#cdbf95';cx.strokeStyle='#1d2326';cx.lineWidth=2;
