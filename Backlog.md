@@ -35,18 +35,28 @@ Version actuelle du jeu : **v2.7b « Nouveau Monde : décors (2/2) »**
 - [x] **Menu Développeur (roue crantée) :** gestion des noms, export/import de sauvegarde, ajout de ressources de test (d'autres options seront ajoutées plus tard).
 - [x] **Gestion dynamique des noms :** liste modifiable sans mise à jour ; noms inventés en *italique* quand la liste est épuisée.
 
-## 🎨 v2.7 et v2.8 « Nouveau Monde » : Refonte graphique 2D
-
 ### v2.7 (a/b) : Refonte graphique de la carte & décors (finir l'effet "Paint")
 - [x] **Sol et nature vivante (ombres des arbres : voir v2.7b) :** enrichir le fond de carte avec des détails fixes (touffes d'herbe, petites fleurs, cailloux, relief doux) et ajouter des **ombres portées** sous tous les éléments (bâtiments, arbres, personnages). Mettre en cache le décor statique pour économiser la batterie.
 - [x] **Zones illustrées (sans texte de danger) :** supprimer l'affichage textuel/numérique de la notion de « danger » et remplacer les ronds de couleur par de vrais décors dessinés correspondant au lieu (ex. : bosquet de **vrais arbres** détaillés pour la forêt, rochers en relief pour la montagne, pierres brisées pour les ruines, etc.) accompagnés d'une icône claire.
 - [x] **Vrais chemins texturés :** remplacer les simples traits par des chemins de terre ou de pavés détaillés (bords irréguliers, petits cailloux, herbe en bordure).
 - [x] **Rééquilibrage de la difficulté (v2.7b) :** jeu devenu trop simple, les aventuriers ne mouraient plus. Protection des niveaux 1 et 2 retirée (sauf les 2 premiers jours).
 
-### v2.8 : Village, Éclairage & Déplacements
+## 🎨 v2.8 « Vie du village & Équilibre » (prochain)
+
+### Village, Éclairage & Déplacements complets
 - [ ] **Agrandir et réorganiser le village :** agrandir la zone du village, espacer davantage les bâtiments entre eux, redessiner les bâtiments avec plus de détails (toits, portes, cheminées) et placer la **Mairie au centre**.
 - [ ] **Éclairage ciblé et naturel :** ne placer les lumières du village qu'aux extrémités (périmètre extérieur) et une seule devant chaque entrée de bâtiment. Le long des chemins, décaler les lampadaires aléatoirement à gauche ou à droite du tracé (position fixée une fois au chargement).
-- [ ] **Trajets des aventuriers dans le village :** lors d'un retour avec récompense, faire déplacer visuellement l'aventurier jusqu'à la **Mairie** (au centre) pour déposer son butin, puis jusqu'à l'**Auberge** pour se reposer.
+- [ ] **Déplacements et durée des actions dans le village :** chaque action au village (dépôt de butin à la **Mairie**, achat à la forge, achat de maison/cheval, soin au sanctuaire, repos à l'**Auberge**) nécessite un déplacement visuel vers le bâtiment précis. Chaque action sur place prend du temps (environ **1 à 2 minutes** en jeu). Lors d'un retour d'expédition avec récompense, l'aventurier passe d'abord par la **Mairie** avant d'enchaîner ses autres actions.
+- [ ] **Révision des temps de trajet (Carte) :** ajuster la durée des déplacements vers les lieux d'aventure pour que le lieu le plus éloigné prenne environ **5 minutes** pour l'aller (sans monture).
+- [ ] **Avantage du cheval :** une fois acheté, le cheval doit réduire considérablement le temps de trajet sur la carte.
+
+### Rééquilibrage (Combats, Difficulté & Achats)
+- [ ] **Suppression totale de la protection débutants :** retirer complètement la protection des niveaux 1 et 2 dans les 2 premiers jours (les aventuriers peuvent mourir dès le jour 1).
+- [ ] **Restaurer l'équilibrage des lieux et sous-zones :** vérifier et corriger l'équilibrage des zones et sous-zones qui semble avoir été cassé lors de la suppression de l'affichage du « danger » en v2.7 (garder l'affichage sans texte de danger, mais rétablir la vraie progression de difficulté entre les lieux et sous-zones).
+- [ ] **Logique d'achat et d'épargne des aventuriers :** corriger le comportement d'achat des aventuriers qui dépensent tout leur or dans les objets de la forge (~15 po) et n'achètent jamais ni maison (~50 po) ni cheval. Trouver un équilibre d'épargne/priorité pour que l'équipement reste prioritaire au début, mais qu'ils finissent par économiser et acheter un cheval et une maison.
+
+### Ambiance sonore (Musique)
+- [ ] **Rotation de 3 musiques médiévales chill (Web Audio) :** conserver la mélodie actuelle au luth et ajouter **2 nouvelles mélodies** avec d'autres instruments médiévaux (ex. : flûte, harpe ou viole) en mode calme/chill. Faire alterner les 3 styles automatiquement toutes les **10 minutes**.
 
 ## 🔋 v2.9 « Longue veille » : Optimisation
 - [ ] **Réduction de la consommation de batterie :** mise en cache de la carte (sol, routes, village), rendu limité à environ 20 images/s, rafraîchissement du seul onglet affiché, fond noir pur en mode sombre (écran AMOLED).
@@ -61,3 +71,4 @@ Version actuelle du jeu : **v2.7b « Nouveau Monde : décors (2/2) »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
+- [ ] 
