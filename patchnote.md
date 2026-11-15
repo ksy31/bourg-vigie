@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.8b « Vie du village & Équilibre (2/2) »
+
+### Ajouté
+- **Sanctuaire : bénédiction.** Avant chaque départ en quête, l'aventurier passe au sanctuaire (1 à 2 min, avec file d'attente). Béni, il bénéficie de la réduction de mortalité (−8 % par niveau) pour son prochain combat seulement (✨ dans la liste).
+- **Deux nouvelles musiques** : une flûte et un violon, avec harpe, basse et nappe de cordes pour plus de profondeur. Elles alternent avec le luth toutes les 10 minutes de lecture (luth, flûte, violon, puis on recommence).
+- **Épargne selon le tempérament** : chaque aventurier garde de côté une part du prix de sa prochaine grosse dépense (maison ou cheval), plus ou moins grande selon son audace. L'équipement reste prioritaire tant qu'il est trop faible.
+
+### Corrigé
+- Le sanctuaire ne touche plus au temps de repos (introduit par erreur en v2.8a). Les anciennes sauvegardes sont converties.
+- Les sous-zones d'une zone ne dépassent plus celles de la zone suivante : par exemple, la Mine 3 était plus dure que la Montagne 1.
+- Les mêmes monstres ne reviennent plus d'une sous-zone à l'autre, de jour comme de nuit.
+
+### Modifié
+- **Protection des débutants supprimée** : les aventuriers peuvent mourir dès le jour 1.
+- **Difficulté des zones** (sous-zones faciles / moyennes / difficiles) : Forêt 3-4-5, Mine 5-7-9, Montagne 9-11-13, Ruines 13-15-17, Donjon 17-20-24, Volcan 24-29-35. Le plus dur d'une zone peut égaler le plus facile de la suivante. Une partie en cours prend ces valeurs au chargement.
+- **Simulations** (8 aventuriers, 12 jours) : avec le sanctuaire, environ 25 à 35 % de quêtes en moins, car chaque départ ajoute une visite. En contrepartie, 2 à 4 maisons sur 5 sont achetées contre 0 à 1 avant, et la bourse moyenne passe d'environ 15 à 35 or.
+- Version affichée dans les Options : v2.8b.
+
 ## v2.8a « Vie du village & Équilibre (1/2) »
 
 ### Ajouté

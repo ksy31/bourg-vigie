@@ -79,7 +79,7 @@ html,body{touch-action:manipulation}
 <button id="bB" style="grid-column:1/-1"></button>
 </div></div>
 <div class="tab" id="to">
-<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px"><button id="dg" aria-label="Développeur" style="min-height:30px;padding:2px 8px;background:none;color:var(--mut);border:1px solid var(--line);font-size:14px">⚙️</button><span style="color:var(--mut);font-size:12px">v2.8a</span></div></div>
+<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px"><button id="dg" aria-label="Développeur" style="min-height:30px;padding:2px 8px;background:none;color:var(--mut);border:1px solid var(--line);font-size:14px">⚙️</button><span style="color:var(--mut);font-size:12px">v2.8b</span></div></div>
 <div class="tab" id="th"><div id="ros"></div></div>
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 global (meilleur score par nom)</h3><div id="lb"></div></div>
 </main>
@@ -105,15 +105,15 @@ const gn=x=>SL[x.c].filter(k=>x.eq[k]).map(k=>`${pn(x,k)} ${x.eq[k]}`).join(', '
 const BZ={n:'Trône du Roi',x:54,y:42,d:0,boss:1,c:'#5c1a1f'};
 const ZB=[{n:'Forêt',d:4,c:'#4f7a46'},{n:'Mine',d:8,c:'#7b7f86'},{n:'Montagne',d:11,c:'#8f9bb0'},{n:'Ruines',d:13,c:'#8a6f55'},{n:'Donjon',d:20,c:'#5a3c63'},{n:'Volcan',d:26,c:'#b5452e'}];
 const BASEPOS=[[20,76],[80,72],[88,44],[28,40],[70,16],[28,12]];
-const ZV=[[['Clairière brumeuse',.75,'Renard enragé,Loup,Sanglier','Chouette spectrale,Loup noir,Ombre rôdeuse'],['Forêt profonde',1,'Loup,Bandit,Ours','Loup-garou,Dryade corrompue,Ombre sylvestre'],['Bois maudit',1.35,'Ours brun,Bandit de grand chemin,Esprit des bois','Loup-garou,Dryade corrompue,Arbre hanté']],
-[['Carrière abandonnée',.75,'Gobelin,Rat géant,Araignée','Chauve-souris,Gobelin chaman,Ver rampant'],['Mine de fer',1,'Gobelin,Araignée géante,Golem de roche','Chauve-souris géante,Ver des profondeurs,Golem noir'],['Mine profonde',1.35,'Golem de roche,Troll,Basilic','Spectre de mineur,Troll des ombres,Ver colossal']],
-[['Col venteux',.75,'Harpie,Bouquetin enragé,Loup des neiges','Aigle nocturne,Banshee,Loup spectral'],['Pic enneigé',1,'Yéti,Griffon,Harpie','Banshee,Wyverne,Yéti sombre'],['Cime des géants',1.35,'Griffon,Géant des pierres,Wyverne','Ogre lunaire,Wyverne,Géant des tempêtes']],
-[['Ruines oubliées',.75,'Squelette,Brigand,Rat spectral','Fantôme,Cultiste,Ombre'],['Cité en ruine',1,'Squelette,Spectre,Gargouille','Fantôme,Cultiste,Armure hantée'],['Cryptes royales',1.35,'Nécromancien,Gargouille,Gardien momifié','Liche mineure,Armure hantée,Spectre royal']],
-[['Cachots',.75,'Geôlier,Orc,Rat-garou','Succube,Spectre de prisonnier,Orc maudit'],['Donjon central',1,'Orc,Démon,Dragonnet','Succube,Chevalier maudit,Hydre'],['Citadelle noire',1.35,'Démon,Dragonnet,Seigneur liche','Chevalier maudit,Hydre,Archidémon']],
-[['Pentes fumantes',.75,'Salamandre,Lézard de feu,Élémentaire de braise','Spectre ardent,Chimère,Salamandre noire'],['Cratère',1,'Salamandre,Golem de lave,Élémentaire de feu','Spectre ardent,Chimère,Drake nocturne'],['Cœur du volcan',1.35,'Golem de lave,Élémentaire de feu,Dragon ancien','Drake nocturne,Titan de cendre,Dragon des cendres']]];
+const ZV=[[['Clairière brumeuse',3,'Renard enragé,Loup,Sanglier','Chouette spectrale,Loup noir,Ombre rôdeuse'],['Forêt profonde',4,'Braconnier,Bandit,Ours','Loup-garou,Dryade corrompue,Ombre sylvestre'],['Bois maudit',5,'Ours brun,Bandit de grand chemin,Esprit des bois','Meute spectrale,Sorcière des bois,Arbre hanté']],
+[['Carrière abandonnée',5,'Gobelin,Rat géant,Araignée','Chauve-souris,Gobelin chaman,Ver rampant'],['Mine de fer',7,'Kobold,Araignée géante,Golem de roche','Chauve-souris géante,Ver des profondeurs,Golem noir'],['Mine profonde',9,'Golem de cristal,Troll,Basilic','Spectre de mineur,Troll des ombres,Ver colossal']],
+[['Col venteux',9,'Harpie,Bouquetin enragé,Loup des neiges','Aigle nocturne,Banshee,Loup spectral'],['Pic enneigé',11,'Yéti,Harpie des cimes,Griffon','Spectre des neiges,Yéti sombre,Wyverne'],['Cime des géants',13,'Condor monstrueux,Géant des pierres,Chimère des cimes','Ogre lunaire,Wyverne spectrale,Géant des tempêtes']],
+[['Ruines oubliées',13,'Squelette,Brigand,Rat spectral','Fantôme,Cultiste,Ombre'],['Cité en ruine',15,'Squelette archer,Spectre,Gargouille','Âme en peine,Prêtre déchu,Armure hantée'],['Cryptes royales',17,'Nécromancien,Gargouille royale,Gardien momifié','Liche mineure,Garde royal hanté,Spectre royal']],
+[['Cachots',17,'Geôlier,Orc,Rat-garou','Succube,Spectre de prisonnier,Orc maudit'],['Donjon central',20,'Garde-chiourme,Démon mineur,Dragonnet','Incube,Chevalier maudit,Hydre'],['Citadelle noire',24,'Démon,Wyrm noir,Seigneur liche','Chevalier de la mort,Hydre à sept têtes,Archidémon']],
+[['Pentes fumantes',24,'Salamandre,Lézard de feu,Élémentaire de braise','Spectre ardent,Chimère,Salamandre noire'],['Cratère',29,'Salamandre géante,Golem de lave,Élémentaire de feu','Âme de magma,Chimère ardente,Drake nocturne'],['Cœur du volcan',35,'Golem d’obsidienne,Élémentaire de magma,Dragon ancien','Drake infernal,Titan de cendre,Dragon des cendres']]];
 let Z=[],ZA=[];
 function layout(){const out=[];BASEPOS.forEach(b=>{let p=null;for(let k=0;k<40&&!p;k++){const a=(Math.random()*2-1)*.25,c=Math.cos(a),s=Math.sin(a),vx=b[0]-T.x,vy=b[1]-T.y,q=[Math.min(86,Math.max(14,T.x+vx*c-vy*s)),Math.min(76,Math.max(16,T.y+vx*s+vy*c))];if(out.every(o=>Math.hypot(o[0]-q[0],o[1]-q[1])>24)&&Math.hypot(q[0]-BZ.x,q[1]-BZ.y)>25)p=q}out.push(p||b.slice())});return out}
-function buildZ(){Z=ZB.map((b,i)=>{const v=ZV[i][S.zv[i]];return{n:b.n,vi:S.zv[i],sn:v[0],x:S.zp[i][0],y:S.zp[i][1],d:Math.round(b.d*v[1]),c:b.c,e:v[2].split(',').map((m,j)=>[m,[.8,1.1,1.5][j]]),f:v[3].split(',').map((m,j)=>[m,[.9,1.2,1.6][j]])}});ZA=[...Z,BZ]}
+function buildZ(){Z=ZB.map((b,i)=>{const v=ZV[i][S.zv[i]];return{n:b.n,vi:S.zv[i],sn:v[0],x:S.zp[i][0],y:S.zp[i][1],d:v[1],c:b.c,e:v[2].split(',').map((m,j)=>[m,[.8,1.1,1.5][j]]),f:v[3].split(',').map((m,j)=>[m,[.9,1.2,1.6][j]])}});ZA=[...Z,BZ]}
 let P={glory:0,runs:0,g:0,p:0,s:0,h:0,lb:[]};
 try{Object.assign(P,JSON.parse(localStorage.getItem('bv')||'{}'))}catch(e){}
 P.lb=(P.lb||[]).filter(x=>x&&x.eq&&x.k!=null);
@@ -173,8 +173,8 @@ function gameOver(){S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textConten
 const spf=h=>(1+h.eq.b*.05)*(h.hs?Math.min(2.2,1.4+h.hs.sp*.06*(1+.1*S.stable)):1);
 function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*4){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
 function leave(h,z){h.z=z;const a=Math.random()*6.283,r=Math.sqrt(Math.random())*5.2;h.pt={x:z.x+Math.cos(a)*r,y:z.y+Math.sin(a)*r};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y));h.st='go'}
-const WALK=1.6,DUR={loot:[60,90],horse:[60,120],house:[60,120],forge:[60,120],tavern:[60,120],heal:[60,120]};
-const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',tavern:'à la taverne',heal:'soins au sanctuaire'};
+const WALK=1.6,DUR={loot:[60,90],horse:[60,120],house:[60,120],forge:[60,120],tavern:[60,120],bless:[60,120]};
+const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',tavern:'à la taverne',bless:'bénédiction au sanctuaire'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
 const door=it=>{const p=slot(it);return{x:T.x+p[0],y:T.y+p[1]+3.6}};
@@ -184,19 +184,21 @@ const hPrice=x=>Math.round(x.p*Math.max(.5,1-.04*nl('E')));
 const bestHorse=h=>S.horses.filter(x=>x.o==null).sort((a,b)=>b.sp-a.sp).find(x=>h.gold>=hPrice(x));
 const forgeP=h=>{const k=SL[h.c].reduce((a,b)=>h.eq[b]<h.eq[a]?b:a),t=Math.max(1,Math.floor(h.lv/2)+Math.floor(nl('F')/3));return{k,t,p:Math.round(t*14*Math.max(.4,1-.05*nl('F')))}};
 const tavP=()=>Math.max(3,Math.round(12*Math.max(.4,1-.05*nl('T'))));
+const goalP=h=>{const c=[],hs=S.hs.find(x=>x.o==null),hh=S.horses.filter(x=>x.o==null);if(!h.home&&hs)c.push(hs.p);if(!h.hs&&hh.length)c.push(Math.min(...hh.map(hPrice)));return c.length?Math.min(...c):0};
+const keepG=h=>{const g=goalP(h);if(!g)return 0;const f=forgeP(h),a=SL[h.c].reduce((q,k)=>q+h.eq[k],0)/SL[h.c].length;return a<.5*f.t?0:Math.round(g*(.5+.5*(1-h.bold)))};
 function decide(h){
  if(!h.hs&&bestHorse(h)){const it=pickB(NE.E);if(it)return{k:'horse',b:it.i}}
  const hs=S.hs.find(x=>x.o==null);
  if(!h.home&&hs&&h.gold>=hs.p){const it=S.pl.find(x=>x.h===hs);if(it)return{k:'house',b:it.i}}
- if(S.forge){const f=forgeP(h);if(h.eq[f.k]<f.t&&h.gold>=f.p){const it=pickB(NE.F);if(it)return{k:'forge',b:it.i}}}
- if(S.tavern&&!h.buff&&h.gold>=tavP()){const it=pickB(NE.T);if(it)return{k:'tavern',b:it.i}}
+ if(S.forge){const f=forgeP(h);if(h.eq[f.k]<f.t&&h.gold-f.p>=keepG(h)){const it=pickB(NE.F);if(it)return{k:'forge',b:it.i}}}
+ if(S.tavern&&!h.buff&&h.gold-tavP()>=keepG(h)){const it=pickB(NE.T);if(it)return{k:'tavern',b:it.i}}
  return null}
 function taskOk(h,tk){
  if(tk.k==='horse')return !h.hs&&!!bestHorse(h);
  if(tk.k==='house'){const hs=(itB(tk.b)||{}).h;return !h.home&&!!hs&&hs.o==null&&h.gold>=hs.p}
- if(tk.k==='forge'){if(!S.forge)return false;const f=forgeP(h);return h.eq[f.k]<f.t&&h.gold>=f.p}
- if(tk.k==='tavern')return !!S.tavern&&!h.buff&&h.gold>=tavP();
- if(tk.k==='heal')return !!S.spa;
+ if(tk.k==='forge'){if(!S.forge)return false;const f=forgeP(h);return h.eq[f.k]<f.t&&h.gold-f.p>=keepG(h)}
+ if(tk.k==='tavern')return !!S.tavern&&!h.buff&&h.gold-tavP()>=keepG(h);
+ if(tk.k==='bless')return !!S.spa&&!h.bless;
  return true}
 function applyTask(h,tk){
  if(tk.k==='loot'){
@@ -212,12 +214,12 @@ function applyTask(h,tk){
  else if(tk.k==='house'){const hs=itB(tk.b).h;h.gold-=hs.p;S.g+=hs.p;hs.o=h.id;h.home=hs;log(`${h.name} achète une maison (${hs.p} or).`,'ok')}
  else if(tk.k==='forge'){const f=forgeP(h);h.gold-=f.p;S.g+=f.p;h.eq[f.k]=f.t;npcx('F');log(`${h.name} achète ${pn(h,f.k)} ${f.t} chez le forgeron (${f.p} or).`)}
  else if(tk.k==='tavern'){const p=tavP();h.gold-=p;S.g+=p;h.buff=1.08+.02*nl('T');npcx('T')}
- else if(tk.k==='heal'){h.hurt=0;npcx('S')}
+ else if(tk.k==='bless'){h.bless=1;npcx('S')}
 }
 function goBack(h){
  h.st='back';h.dec=0;h.tk=null;h.tl=[];
- const m=pickB(NE.V),s=pickB(NE.S);
- if(h.loot&&m)h.tl.push({k:'loot',b:m.i});else if(h.hurt&&S.spa&&s)h.tl.push({k:'heal',b:s.i})
+ const m=pickB(NE.V);
+ if(h.loot&&m)h.tl.push({k:'loot',b:m.i})
 }
 function townNext(h){
  h.st='town';
@@ -241,14 +243,14 @@ function townTick(h,dt){
   const i=h.tk.b;
   if(!S.hero.some(q=>q!==h&&q.st==='town'&&q.sub==='do'&&q.tk.b===i)){
    const w=S.hero.filter(q=>q.st==='town'&&q.sub==='wait'&&q.tk.b===i).sort((a,b)=>a.wt-b.wt||a.id-b.id)[0];
-   if(w===h){const D=DUR[h.tk.k],p=door(itB(i));h.sub='do';h.t=taskOk(h,h.tk)?R(D[0],D[1]):0;h.x=p.x;h.y=p.y}
+   if(w===h){const D=DUR[h.tk.k]||[60,120],p=door(itB(i));h.sub='do';h.t=taskOk(h,h.tk)?R(D[0],D[1]):0;h.x=p.x;h.y=p.y}
   }
- }else if(h.sub==='do'){h.t-=dt;if(h.t<=0){applyTask(h,h.tk);townNext(h)}}
+ }else if(h.sub==='do'){h.t-=dt;if(h.t<=0){applyTask(h,h.tk);if(h.tk.k==='bless'){h.tk=null;h.sub=null;leave(h,pick(h))}else townNext(h)}}
 }
 const SK='bvs';
 function saveG(m){try{S.sat=Date.now();S.logs=logs.slice(0,20);localStorage.setItem(SK,JSON.stringify(S));if(m===true)toast('Sauvegarde réussie ✓')}catch(e){if(m===true)toast('Échec de la sauvegarde')}}
 function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
-function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';(s.lb||[]).forEach(lbAdd);s.lb=[];save();s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){s.npc.V={n:rn([],s),lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}s.pl.forEach(it=>{if(it.e==='♨️')it.e=NE.S});{const v=s.pl.find(it=>it.e===NE.V),a=s.pl.find(it=>it.i===0);if(v&&a&&a!==v){a.i=v.i;v.i=0}}S=s;buildZ();logs=(s.logs||[]).slice(0,20);s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y};h.tl=h.tl||[];if(h.st==='rest'){const b=base(h);h.x=b.x;h.y=b.y}if(h.st==='back'&&h.dec===undefined)goBack(h)})}catch(e){}}
+function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;s.vn=s.vn||'Vigie';(s.lb||[]).forEach(lbAdd);s.lb=[];save();s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){s.npc.V={n:rn([],s),lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}s.pl.forEach(it=>{if(it.e==='♨️')it.e=NE.S});{const v=s.pl.find(it=>it.e===NE.V),a=s.pl.find(it=>it.i===0);if(v&&a&&a!==v){a.i=v.i;v.i=0}}S=s;buildZ();logs=(s.logs||[]).slice(0,20);s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y};h.tl=(h.tl||[]).filter(x=>x.k!=='heal');if(h.tk&&h.tk.k==='heal'){h.tk=null;if(h.st==='town')h.sub='home'}if(h.st==='rest'){const b=base(h);h.x=b.x;h.y=b.y}if(h.st==='back'&&h.dec===undefined)goBack(h)})}catch(e){}}
 let wl=null;
 async function wake(){try{if(wl)return;wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null})}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')wake()});
@@ -331,7 +333,7 @@ function resolve(h){
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2)));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');h.won=e.n;goBack(h);if(e.boss)victory(h);
- }else if((e.boss||(power(h)/e.d<1.3&&S.day>2))&&Math.random()<(e.boss?.85:c.die*(e.el?.5:1)*(1-Math.min(.5,(h.eq.a+h.eq.s)*.06))*Math.max(.2,1-.08*S.spa-.02*nl('S')))){
+ }else if((e.boss||power(h)/e.d<1.3)&&Math.random()<(e.boss?.85:c.die*(e.el?.5:1)*(1-Math.min(.5,(h.eq.a+h.eq.s)*.06))*Math.max(.2,1-(h.bless?.08*S.spa+.02*nl('S'):0)))){
   if(h.home)h.home.o=null;if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});save();S.marks.push({x:h.x,y:h.y,t:S.t});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');
@@ -343,14 +345,14 @@ function resolve(h){
 function tick(dt){
  S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}
  for(const h of S.hero.slice()){
-  if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){leave(h,pick(h))}}
+  if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
   else if(h.st==='town')townTick(h,dt);
   else if(h.st==='go'||h.st==='back'){
    const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));
    const dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=h.v*dt*spf(h);
    if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.st==='go')arrive(h);else townNext(h)}
    else{h.x+=dx/d*sp;h.y+=dy/d*sp}
-  }else if(h.st==='fight'){h.t-=dt;if(h.t<=0){resolve(h);h.buff=0}}
+  }else if(h.st==='fight'){h.t-=dt;if(h.t<=0){resolve(h);h.buff=0;h.bless=0}}
  }
 }
 function ui0(){
@@ -362,7 +364,7 @@ function ui0(){
  const bh=bestRest();$('bB').innerHTML=bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`;$('bB').disabled=!bh||S.hero.some(x=>x.z===BZ&&x.st!=='rest');
  $('lb').innerHTML=P.lb.length?P.lb.map((x,i)=>`<div class="chip">${i+1}. <b>${x.n}</b> ${CI[x.c]} ${CL[x.c].n} niv. ${x.lv}<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ${x.d} j · tué par ${x.by}<br>${gn(x)||'sans équip.'}</i></div>`).join(''):'<p>Personne n’est encore mort.</p>';
  const L={rest:'repos',go:'en route',fight:'combat',back:'retour'};
- $('ros').innerHTML=S.hero.map(h=>`<span class="chip"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''} · ${h.st==='town'?TS(h):L[h.st]}${showT&&h.st!=='rest'&&!(h.st==='town'&&h.sub!=='do')?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc"><b>${n.n}</b> ${NT[k]} niv. ${n.lv}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'');
+ $('ros').innerHTML=S.hero.map(h=>`<span class="chip"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''}${h.bless?' · ✨':''} · ${h.st==='town'?TS(h):L[h.st]}${showT&&h.st!=='rest'&&!(h.st==='town'&&h.sub!=='do')?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc"><b>${n.n}</b> ${NT[k]} niv. ${n.lv}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'');
 }
 const cv=$('cv'),cx=cv.getContext('2d');
 let W=360,H=432,sc=3.6;
@@ -544,9 +546,35 @@ function musicStart(){
   const C=new (window.AudioContext||window.webkitAudioContext)(),bus=C.createGain(),d=C.createDelay(1),fb=C.createGain(),wet=C.createGain();
   bus.gain.value=.2;d.delayTime.value=.34;fb.gain.value=.3;wet.gain.value=.3;
   bus.connect(C.destination);bus.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(C.destination);
-  const pluck=(s,t,dur,g)=>{const f=293.66*Math.pow(2,s/12),o=C.createOscillator(),o2=C.createOscillator(),g2=C.createGain(),e=C.createGain(),lp=C.createBiquadFilter();o.type='triangle';o2.type='sine';o.frequency.value=f;o2.frequency.value=f*2;g2.gain.value=.3;lp.type='lowpass';lp.frequency.value=Math.min(4000,f*5);e.gain.setValueAtTime(.0001,t);e.gain.linearRampToValueAtTime(g,t+.01);e.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(e);e.connect(bus);o.start(t);o2.start(t);o.stop(t+dur+.05);o2.stop(t+dur+.05)};
-  MU.ctx=C;MU.i=0;MU.t=C.currentTime+.3;
-  MU.timer=setInterval(()=>{while(MU.t<C.currentTime+1){const bar=Math.floor(MU.i/8)%16,e=MU.i%8,m=(bar<8?MA:MB)[bar%8][e];if(m!=null)pluck(m,MU.t,1.3,.5);if(e===0)pluck(MR[bar%8],MU.t,1.8,.45);if(e===4)pluck(MR[bar%8]+7,MU.t,1.5,.3);MU.t+=.4545;MU.i++}},250);
+  const nf=s=>293.66*Math.pow(2,s/12),go=(a,t,dd)=>a.forEach(x=>{x.start(t);x.stop(t+dd+.1)});
+  const env=(e,t,a,dd,v)=>{e.gain.setValueAtTime(.0001,t);e.gain.linearRampToValueAtTime(v,t+a);e.gain.setValueAtTime(v,t+Math.max(a,dd-.15));e.gain.exponentialRampToValueAtTime(.0001,t+dd)};
+  const pluck=(s,t,dur,g)=>{const f=nf(s),o=C.createOscillator(),o2=C.createOscillator(),g2=C.createGain(),e=C.createGain(),lp=C.createBiquadFilter();o.type='triangle';o2.type='sine';o.frequency.value=f;o2.frequency.value=f*2;g2.gain.value=.3;lp.type='lowpass';lp.frequency.value=Math.min(4000,f*5);e.gain.setValueAtTime(.0001,t);e.gain.linearRampToValueAtTime(g,t+.01);e.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(e);e.connect(bus);go([o,o2],t,dur)};
+  const nb=C.createBuffer(1,C.sampleRate,C.sampleRate),nd=nb.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+  const breath=(f,t)=>{const q=C.createBufferSource(),b=C.createBiquadFilter(),e=C.createGain();q.buffer=nb;b.type='bandpass';b.frequency.value=Math.min(6000,f*2);b.Q.value=1.2;q.connect(b);b.connect(e);e.connect(bus);e.gain.setValueAtTime(.0001,t);e.gain.linearRampToValueAtTime(.05,t+.04);e.gain.exponentialRampToValueAtTime(.0001,t+.2);q.start(t);q.stop(t+.25)};
+  const flute=(s,t,dd)=>{const f=nf(s),o=C.createOscillator(),o2=C.createOscillator(),l=C.createOscillator(),lg=C.createGain(),g2=C.createGain(),e=C.createGain(),lp=C.createBiquadFilter();o.type='sine';o2.type='triangle';o.frequency.value=f;o2.frequency.value=f*2;g2.gain.value=.06;l.frequency.value=5.2;lg.gain.value=f*.005;l.connect(lg);lg.connect(o.frequency);lp.type='lowpass';lp.frequency.value=3200;o.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(e);e.connect(bus);env(e,t,.07,dd,.42);go([o,o2,l],t,dd);breath(f,t)};
+  const violin=(s,t,dd)=>{const f=nf(s),o=C.createOscillator(),o2=C.createOscillator(),l=C.createOscillator(),lg=C.createGain(),e=C.createGain(),lp=C.createBiquadFilter();o.type='sawtooth';o2.type='sawtooth';o.frequency.value=f;o2.frequency.value=f*1.005;lp.type='lowpass';lp.frequency.value=Math.min(3400,f*4.5);lp.Q.value=.8;l.frequency.value=5.6;lg.gain.setValueAtTime(0,t);lg.gain.linearRampToValueAtTime(f*.009,t+.35);l.connect(lg);lg.connect(o.frequency);lg.connect(o2.frequency);o.connect(lp);o2.connect(lp);lp.connect(e);e.connect(bus);env(e,t,.12,dd,.14);go([o,o2,l],t,dd)};
+  const pad=(s,t,dd,v)=>{const f=nf(s),o=C.createOscillator(),o2=C.createOscillator(),e=C.createGain(),lp=C.createBiquadFilter();o.type='sawtooth';o2.type='sawtooth';o.frequency.value=f;o2.frequency.value=f*1.003;lp.type='lowpass';lp.frequency.value=650;o.connect(lp);o2.connect(lp);lp.connect(e);e.connect(bus);env(e,t,.6,dd,v);go([o,o2],t,dd)};
+  const N=null,X='r';
+  const trk=(k,st,fn,L,Ch)=>({st,bar:(bi,t)=>{
+   const m=L[bi],c=Ch[bi];
+   for(let e=0;e<8;e++){const s=m[e];if(s==null||s===X)continue;let j=e+1;while(j<8&&m[j]==null)j++;fn(s+k,t+e*st,(j-e)*st+.05)}
+   pluck(c[0]-12+k,t,1.8,.4);pluck(c[0]-5+k,t+4*st,1.5,.28);
+   const a=[c[0],c[2],c[1]+12,c[0]+12],P=[0,1,2,3,2,1,2,1];for(let e=0;e<8;e++)pluck(a[P[e]]+k,t+e*st,1.1,.15);
+   c.forEach(x=>pad(x+k,t,8*st,.05))}});
+  const F=[0,4,7],Dm=[-3,0,4],Bb=[-7,-3,0],Cc=[-5,-1,2],Am=[-8,-5,-1];
+  const fl=trk(3,.52,flute,[
+   [12,N,16,N,19,N,16,N],[16,N,14,N,12,N,9,N],[17,N,14,N,12,N,14,N],[19,N,16,N,14,N,11,N],[12,N,16,N,21,N,19,N],[19,N,16,N,12,N,16,N],[17,N,21,N,19,N,17,N],[19,N,16,N,14,N,X,N],
+   [16,N,17,19,21,N,19,N],[21,N,19,17,16,N,12,N],[12,14,16,N,19,N,16,N],[14,N,16,14,12,N,11,N],[9,N,12,16,17,N,16,N],[14,N,17,N,21,N,19,N],[19,N,16,N,14,N,11,N],[12,N,N,N,N,N,X,N]],
+   [F,Dm,Bb,Cc,F,Am,Bb,Cc,Dm,Bb,F,Cc,Dm,Bb,Cc,F]);
+  const A=[0,3,7],Fv=[-4,0,3],Cv=[3,7,10],G=[-2,2,5],D=[-7,-4,0],E=[-5,-1,2];
+  const vi=trk(-5,.48,violin,[
+   [12,N,N,N,15,N,19,N],[20,N,N,N,19,N,17,N],[22,N,N,N,19,N,15,N],[14,N,17,N,22,N,17,N],[19,N,N,N,24,N,22,N],[17,N,20,N,24,N,20,N],[23,N,26,N,23,N,19,N],[24,N,N,N,19,N,X,N],
+   [19,N,24,N,22,19,17,N],[22,N,17,N,14,N,17,N],[20,N,24,N,20,N,17,N],[19,N,23,N,26,N,23,N],[24,N,19,N,15,N,19,N],[24,N,20,N,17,N,20,N],[23,N,19,N,23,N,26,N],[24,N,N,N,N,N,N,N]],
+   [A,Fv,Cv,G,A,D,E,A,A,G,Fv,E,A,D,E,A]);
+  const lu={st:.4545,bar:(bi,t)=>{const m=(bi<8?MA:MB)[bi%8];for(let e=0;e<8;e++){if(m[e]!=null)pluck(m[e],t+e*.4545,1.3,.5);if(e===0)pluck(MR[bi%8],t,1.8,.45);if(e===4)pluck(MR[bi%8]+7,t+e*.4545,1.5,.3)}}};
+  const TK=[lu,fl,vi];
+  MU.ctx=C;MU.t=C.currentTime+.3;MU.t0=MU.t;MU.bi=0;MU.k=-1;
+  MU.timer=setInterval(()=>{while(MU.t<C.currentTime+1.2){const k=Math.floor((MU.t-MU.t0)/600)%3;if(k!==MU.k){MU.k=k;MU.bi=0}const q=TK[k];q.bar(MU.bi%16,MU.t);MU.bi++;MU.t+=8*q.st}},250);
   C.resume()
  }catch(e){MU.ctx=null}
 }
