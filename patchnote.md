@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.8a « Vie du village & Équilibre (1/2) »
+
+### Ajouté
+- **Village agrandi** : bâtiments plus espacés et redessinés (toits, portes, fenêtres, cheminées avec fumée, drapeau sur la Mairie, auvent rayé pour le Marché). La **Mairie est au centre**.
+- **Éclairage ciblé** : la nuit, lumières sur le périmètre du village et une devant chaque entrée. Le long des chemins, les lampadaires sont décalés à gauche ou à droite du tracé (position fixée au chargement).
+- **Déplacements dans le village** : chaque action se fait dans le bon bâtiment (butin à la Mairie, achats à la forge, à la taverne, à l'écurie ou à la maison, soins au sanctuaire), puis retour au repos dans sa maison ou à l'Auberge. Au retour avec butin, la Mairie passe en premier.
+- **Durée des actions** : 1 à 2 minutes réelles par action (1 à 1 min 30 pour le dépôt à la Mairie).
+- **File d'attente** : si un bâtiment est occupé, les aventuriers attendent leur tour devant l'entrée. Leur état est visible dans l'onglet des aventuriers.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Temps de trajet** : le lieu le plus éloigné prend environ 5 minutes à l'aller sans monture (les bottes l'accélèrent un peu).
+- **Cheval** : trajets plus courts de 37 % (cheval 3) à 54 % (cheval 12), au lieu d'un gain faible.
+- **Sanctuaire** : un aventurier blessé y passe et n'a plus le repos rallongé.
+- Le repos démarre à l'arrivée à la maison ou à l'Auberge. Avec 8 aventuriers, mes simulations montrent environ 15 à 30 % d'or gagné en moins, car le temps passé au village compte ; le rééquilibrage arrive avec la v2.8b.
+- La carte est un peu plus haute pour loger le village agrandi.
+- Les anciennes sauvegardes sont converties automatiquement (Mairie au centre, aventuriers remis à leur place).
+- Version affichée dans les Options : v2.8a.
+
 ## v2.7b « Nouveau Monde : décors (2/2) »
 
 ### Ajouté
