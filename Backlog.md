@@ -49,15 +49,23 @@ Version actuelle du jeu : **v2.8b « Vie du village & Équilibre (2/2) »**
 - [x] **Avantage du cheval :** une fois acheté, le cheval doit réduire considérablement le temps de trajet sur la carte.
 
 ### v2.8b « Vie du village & Équilibre (2/2) »
-### Rééquilibrage (Combats, Difficulté & Achats)
 - [x] **Suppression totale de la protection débutants :** retirer complètement la protection des niveaux 1 et 2 dans les 2 premiers jours (les aventuriers peuvent mourir dès le jour 1).
 - [x] **Restaurer l'équilibrage des lieux et sous-zones :** vérifier et corriger l'équilibrage des zones et sous-zones qui semble avoir été cassé lors de la suppression de l'affichage du « danger » en v2.7 (garder l'affichage sans texte de danger, mais rétablir la vraie progression de difficulté entre les lieux et sous-zones).
 - [x] **Logique d'achat et d'épargne des aventuriers :** corriger le comportement d'achat des aventuriers qui dépensent tout leur or dans les objets de la forge (~15 po) et n'achètent jamais ni maison (~50 po) ni cheval. Trouver un équilibre d'épargne/priorité pour que l'équipement reste prioritaire au début, mais qu'ils finissent par économiser et acheter un cheval et une maison.
-
-### Ambiance sonore (Musique)
 - [x] **Rotation de 3 musiques médiévales chill (Web Audio) :** conserver la mélodie actuelle au luth et ajouter **2 nouvelles mélodies** avec d'autres instruments médiévaux (ex. : flûte, harpe ou viole) en mode calme/chill. Faire alterner les 3 styles automatiquement toutes les **10 minutes**.
 
-## 🔋 v2.9 « Longue veille » : Optimisation
+## 🗺️ v2.9 « Héros & Terres lointaines » (prochain)
+
+### v2.9a : Grande carte & Décor du village
+- [ ] **Agrandir la carte (×3 à ×4) :** multiplier la taille de la carte par 3 ou 4. En vue par défaut, afficher la carte en entier (dézoomée pour tout voir d'un coup) tout en permettant de zoomer librement pour admirer les détails.
+- [ ] **Refonte graphique de la zone du village :** remplacer le rond uni du village par un vrai décor de bourgade médiévale cohérent avec le reste de la carte (sol en terre battue/pavés, places, petits murets/palissades ouverts aux chemins, détails comme un puits, des caisses/tonneaux et de l'herbe autour des bâtiments).
+
+### v2.9b : Personnages détaillés, Genre des prénoms & Animations
+- [ ] **Genre des prénoms (Menu Développeur) :** ajouter la possibilité de définir chaque prénom comme **masculin (M)** ou **féminin (F)** dans le menu développeur (et pour les noms inventés générés automatiquement).
+- [ ] **Vrais personnages avec signes distinctifs :** remplacer les pions actuels par de vrais petits personnages dessinés avec une apparence adaptée à leur **genre (M/F)** et des **signes distinctifs par classe** (ex. : épée/bouclier pour guerrier, chapeau pointu/bâton pour mage, arc/capuche pour archer, dagues pour voleur, etc.), ainsi qu'une monture visible s'ils possèdent un cheval.
+- [ ] **Animations de marche et de combat :** ajouter des animations simples aux personnages lorsqu'ils **marchent** (balancement des jambes/pas) et lorsqu'ils **se battent** (coup d'épée, projectile ou étincelles de combat dans la zone).
+
+## 🔋 v2.10 « Longue veille » : Optimisation
 - [ ] **Réduction de la consommation de batterie :** mise en cache de la carte (sol, routes, village), rendu limité à environ 20 images/s, rafraîchissement du seul onglet affiché, fond noir pur en mode sombre (écran AMOLED).
 
 ## 📱 Guide APK
@@ -70,4 +78,3 @@ Version actuelle du jeu : **v2.8b « Vie du village & Équilibre (2/2) »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
-- [ ] 
