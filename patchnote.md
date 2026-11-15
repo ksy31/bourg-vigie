@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9a « Grande carte & Décor du village (1/2) »
+
+### Ajouté
+- **Carte ×3 en largeur et en hauteur** (9 fois la surface) : les zones et les chemins sont répartis sur toute la carte, avec le village au centre-bas et la même progression de difficulté.
+- **Vue d'ensemble par défaut** : toute la carte est visible d'un coup. Le zoom libre va jusqu'au niveau de détail maximal d'avant. Le double clic ramène à la vue d'ensemble.
+- **Refonte du village** : sol en terre battue, pavés devant chaque entrée et grande place pavée devant la Mairie, palissades de bois et petits murets de pierre ouverts aux chemins (piliers aux entrées), puits (quand la place le permet), tonneaux et caisses près des bâtiments, herbe et fleurs autour des bâtiments et le long de l'enceinte. Le décor du village est mis en cache.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Durées de trajet inchangées** : les distances sont ×3 mais la vitesse aussi (le lieu le plus éloigné reste à environ 5 minutes sans monture). Le village garde sa taille, les bâtiments rentrent sans agrandissement.
+- Zones, personnages et textes gardent leur taille d'origine : ils paraissent donc plus petits dans la vue d'ensemble.
+- Les sauvegardes v2.8b sont converties au chargement (zones, positions des aventuriers, aventuriers en route, croix de mort).
+- **Simulations** (4 parties, 8 aventuriers, 12 jours, ancienne contre nouvelle version) : environ 113 contre 115 quêtes, 3,5 contre 4,5 morts, trajet moyen 99 s des deux côtés. Pas de changement d'équilibre notable.
+- Version affichée dans les Options : v2.9a.
+
 ## v2.8b « Vie du village & Équilibre (2/2) »
 
 ### Ajouté

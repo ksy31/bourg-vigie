@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.8b « Vie du village & Équilibre (2/2) »**
+Version actuelle du jeu : **v2.9a « Grande carte & Décor du village (1/2) »**
 
 ## ✅ Déjà intégré
 
@@ -54,11 +54,11 @@ Version actuelle du jeu : **v2.8b « Vie du village & Équilibre (2/2) »**
 - [x] **Logique d'achat et d'épargne des aventuriers :** corriger le comportement d'achat des aventuriers qui dépensent tout leur or dans les objets de la forge (~15 po) et n'achètent jamais ni maison (~50 po) ni cheval. Trouver un équilibre d'épargne/priorité pour que l'équipement reste prioritaire au début, mais qu'ils finissent par économiser et acheter un cheval et une maison.
 - [x] **Rotation de 3 musiques médiévales chill (Web Audio) :** conserver la mélodie actuelle au luth et ajouter **2 nouvelles mélodies** avec d'autres instruments médiévaux (ex. : flûte, harpe ou viole) en mode calme/chill. Faire alterner les 3 styles automatiquement toutes les **10 minutes**.
 
-## 🗺️ v2.9 « Héros & Terres lointaines » (prochain)
+### v2.9a « Grande carte & Décor du village (1/2) »
+- [x] **Agrandir la carte (×3) :** carte ×3 en largeur et en hauteur, vue par défaut dézoomée pour tout voir, zoom libre conservé. Durées de trajet inchangées.
+- [x] **Refonte graphique de la zone du village :** terre battue et pavés, places, palissades et murets ouverts aux chemins, puits, caisses/tonneaux, herbe autour des bâtiments.
 
-### v2.9a : Grande carte & Décor du village
-- [ ] **Agrandir la carte (×3 à ×4) :** multiplier la taille de la carte par 3 ou 4. En vue par défaut, afficher la carte en entier (dézoomée pour tout voir d'un coup) tout en permettant de zoomer librement pour admirer les détails.
-- [ ] **Refonte graphique de la zone du village :** remplacer le rond uni du village par un vrai décor de bourgade médiévale cohérent avec le reste de la carte (sol en terre battue/pavés, places, petits murets/palissades ouverts aux chemins, détails comme un puits, des caisses/tonneaux et de l'herbe autour des bâtiments).
+## 🗺️ v2.9b « Héros & Terres lointaines » (prochain)
 
 ### v2.9b : Personnages détaillés, Genre des prénoms & Animations
 - [ ] **Genre des prénoms (Menu Développeur) :** ajouter la possibilité de définir chaque prénom comme **masculin (M)** ou **féminin (F)** dans le menu développeur (et pour les noms inventés générés automatiquement).
