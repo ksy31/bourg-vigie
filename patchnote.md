@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9b « Héros & Terres lointaines (2/2) »
+
+### Ajouté
+- **Vrais personnages** à la place des pions : silhouettes masculines et féminines (cheveux, peau et tenue variés) avec signes distinctifs par classe : épée et bouclier (Guerrier), dagues et capuche sombre (Voleur), chapeau pointu et bâton (Mage), arc, carquois et capuche verte (Rôdeur). Un cheval est dessiné sous le héros qui en possède un. La taille est calée sur les bâtiments.
+- **Animations** : pas et balancement à la marche (les personnages se tournent dans le sens du déplacement), coups d'épée et de dague, flèches, boules magiques et étincelles en combat.
+- **PNJ dessinés** : Aubergiste, Forgeron, Tavernier, Guérisseur, Marchand, Palefrenier et Maire ont chacun leur personnage et leur accessoire.
+- **Genre des prénoms** : dans le menu Développeur, liste déroulante (— / M / F) pour chaque prénom. « — » donne un genre au hasard. Les noms inventés ont un genre au hasard. Le réglage est inclus dans l'export/import.
+- **Routes courbes** : chaque route serpente entre le village et sa zone, et les aventuriers la suivent.
+
+### Corrigé
+- Les aventuriers restent dans l'image de la zone : ils se placent sur le terrain dessiné de chaque zone (sous-bois de la Forêt, devant l'entrée de la Mine, etc.) et non plus autour du centre.
+
+### Modifié
+- **Zones agrandies** (×2). La Forêt est plus étendue et compte environ 3 fois plus d'arbres. Les routes finissent devant la zone. Nom, pastille et crânes sont repositionnés.
+- **Lumières** : halos plus grands (lampadaires, enceinte du village, entrées, aventuriers) et toujours visibles en vue d'ensemble. **Environ 3 fois moins de lampadaires** sur les routes.
+- **Trajets un peu plus longs** : les aventuriers suivent les courbes de la route. Simulation sur 4 parties de 12 jours : aller moyen 106 s avant, 114 s maintenant (+8 %), quêtes 114,5 contre 113,8, morts 4,5 contre 3,5, or 1640 contre 1809. Pas de changement d'équilibre notable.
+- Les sauvegardes v2.9a sont reprises : les genres sont tirés au hasard (aventuriers et PNJ), et les aventuriers déjà en route finissent leur trajet en ligne droite.
+- Version affichée dans les Options : v2.9b.
+
 ## v2.9a « Grande carte & Décor du village (1/2) »
 
 ### Ajouté

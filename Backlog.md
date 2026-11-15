@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9a « Grande carte & Décor du village (1/2) »**
+Version actuelle du jeu : **v2.9b « Héros & Terres lointaines (2/2) »**
 
 ## ✅ Déjà intégré
 
@@ -58,14 +58,16 @@ Version actuelle du jeu : **v2.9a « Grande carte & Décor du village (1/2) »**
 - [x] **Agrandir la carte (×3) :** carte ×3 en largeur et en hauteur, vue par défaut dézoomée pour tout voir, zoom libre conservé. Durées de trajet inchangées.
 - [x] **Refonte graphique de la zone du village :** terre battue et pavés, places, palissades et murets ouverts aux chemins, puits, caisses/tonneaux, herbe autour des bâtiments.
 
-## 🗺️ v2.9b « Héros & Terres lointaines » (prochain)
+### v2.9b « Héros & Terres lointaines (2/2) »
+- [x] **Genre des prénoms (Menu Développeur) :** liste déroulante (— / M / F) par prénom ; noms inventés et héros existants au hasard.
+- [x] **Vrais personnages avec signes distinctifs :** silhouettes M/F, signes par classe, cheval visible, taille calée sur les bâtiments.
+- [x] **Animations de marche et de combat :** pas, coups d'épée/dagues, flèches, boules magiques, étincelles.
+- [x] **PNJ dessinés :** un personnage et un accessoire par PNJ.
+- [x] **Routes courbes :** les aventuriers suivent les courbes (trajets un peu plus longs).
+- [x] **Lumières :** halos agrandis, environ 3 fois moins de lampadaires sur les routes.
+- [x] **Zones agrandies (×2) :** les aventuriers restent dans l'image de la zone ; Forêt plus étendue.
 
-### v2.9b : Personnages détaillés, Genre des prénoms & Animations
-- [ ] **Genre des prénoms (Menu Développeur) :** ajouter la possibilité de définir chaque prénom comme **masculin (M)** ou **féminin (F)** dans le menu développeur (et pour les noms inventés générés automatiquement).
-- [ ] **Vrais personnages avec signes distinctifs :** remplacer les pions actuels par de vrais petits personnages dessinés avec une apparence adaptée à leur **genre (M/F)** et des **signes distinctifs par classe** (ex. : épée/bouclier pour guerrier, chapeau pointu/bâton pour mage, arc/capuche pour archer, dagues pour voleur, etc.), ainsi qu'une monture visible s'ils possèdent un cheval.
-- [ ] **Animations de marche et de combat :** ajouter des animations simples aux personnages lorsqu'ils **marchent** (balancement des jambes/pas) et lorsqu'ils **se battent** (coup d'épée, projectile ou étincelles de combat dans la zone).
-
-## 🔋 v2.10 « Longue veille » : Optimisation
+## 🔋 v2.10 « Longue veille » : Optimisation (prochain)
 - [ ] **Réduction de la consommation de batterie :** mise en cache de la carte (sol, routes, village), rendu limité à environ 20 images/s, rafraîchissement du seul onglet affiché, fond noir pur en mode sombre (écran AMOLED).
 
 ## 📱 Guide APK
