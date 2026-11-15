@@ -1,5 +1,32 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.7a « Nouveau Monde : décors (1/2) »
+
+### Ajouté
+- **Sol vivant** : fond de carte enrichi (touffes d'herbe, petites fleurs, cailloux, reliefs doux), dessiné une seule fois puis mis en cache pour économiser la batterie.
+- **Vrais chemins** : routes de terre légèrement courbes, aux bords irréguliers, avec cailloux et herbe en bordure.
+- **Ombres portées** sous les bâtiments et les aventuriers.
+- La nuit, les lumières suivent désormais les courbes des chemins.
+
+### Corrigé
+- Les noms de zones tout en haut de la carte ne sont plus coupés (les zones ne peuvent plus être placées trop haut).
+
+### Modifié
+- Version affichée dans les Options : v2.7a.
+- La suite du décor (zones illustrées, arbres et rochers) arrive avec la v2.7b.
+
+## v2.6b « Chroniques (2/2) »
+
+### Ajouté
+- **Roue crantée ⚙️** discrète en bas à gauche des Options, ouvrant le menu Développeur (d'autres options viendront).
+- **Gestion des noms** : liste modifiable (un nom par ligne, ajout, modification, suppression), sauvegardée dans le navigateur, avec retour à la liste par défaut. Aucune mise à jour du jeu nécessaire.
+- **Noms inventés** : quand la liste est épuisée, des noms sont générés et affichés en *italique* (console, liste des aventuriers, PNJ, classement). Pas de nombre minimum de noms.
+- **Export / import de sauvegarde** : code texte (partie, classement global et liste de noms) à copier ou coller.
+- **Outil de test** : +500 or, bois et pierre.
+
+### Modifié
+- Version affichée dans les Options : v2.6b.
+
 ## v2.6a « Chroniques (1/2) »
 
 ### Ajouté

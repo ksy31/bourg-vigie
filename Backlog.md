@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.6a « Chroniques (1/2) »**
+Version actuelle du jeu : **v2.7a « Nouveau Monde : décors (1/2) »**
 
 ## ✅ Déjà intégré
 
@@ -31,23 +31,23 @@ Version actuelle du jeu : **v2.6a « Chroniques (1/2) »**
 - [x] **Historique de la console :** 20 dernières lignes sauvegardées ; message d'accueil uniquement au début d'une nouvelle partie.
 - [x] **Top 10 global :** un classement pour toutes les parties, un seul score par nom (monstres tués, or gagné, niveau, jours).
 
-## 🎨 v2.5.2 et v2.5.3 « Nouveau Monde » : Refonte graphique 2D
+### v2.6b « Chroniques (2/2) »
+- [x] **Menu Développeur (roue crantée) :** gestion des noms, export/import de sauvegarde, ajout de ressources de test (d'autres options seront ajoutées plus tard).
+- [x] **Gestion dynamique des noms :** liste modifiable sans mise à jour ; noms inventés en *italique* quand la liste est épuisée.
 
-### v2.5.2 : Refonte graphique de la carte & décors (finir l'effet "Paint")
-- [ ] **Sol et nature vivante :** enrichir le fond de carte avec des détails fixes (touffes d'herbe, petites fleurs, cailloux, relief doux) et ajouter des **ombres portées** sous tous les éléments (bâtiments, arbres, personnages). Mettre en cache le décor statique pour économiser la batterie.
+## 🎨 v2.7 et v2.8 « Nouveau Monde » : Refonte graphique 2D
+
+### v2.7 (a/b) : Refonte graphique de la carte & décors (finir l'effet "Paint")
+- [x] **Sol et nature vivante (ombres des arbres : voir v2.7b) :** enrichir le fond de carte avec des détails fixes (touffes d'herbe, petites fleurs, cailloux, relief doux) et ajouter des **ombres portées** sous tous les éléments (bâtiments, arbres, personnages). Mettre en cache le décor statique pour économiser la batterie.
 - [ ] **Zones illustrées (sans texte de danger) :** supprimer l'affichage textuel/numérique de la notion de « danger » et remplacer les ronds de couleur par de vrais décors dessinés correspondant au lieu (ex. : bosquet de **vrais arbres** détaillés pour la forêt, rochers en relief pour la montagne, pierres brisées pour les ruines, etc.) accompagnés d'une icône claire.
-- [ ] **Vrais chemins texturés :** remplacer les simples traits par des chemins de terre ou de pavés détaillés (bords irréguliers, petits cailloux, herbe en bordure).
+- [x] **Vrais chemins texturés :** remplacer les simples traits par des chemins de terre ou de pavés détaillés (bords irréguliers, petits cailloux, herbe en bordure).
 
-### v2.5.3 : Village, Éclairage & Déplacements
+### v2.8 : Village, Éclairage & Déplacements
 - [ ] **Agrandir et réorganiser le village :** agrandir la zone du village, espacer davantage les bâtiments entre eux, redessiner les bâtiments avec plus de détails (toits, portes, cheminées) et placer la **Mairie au centre**.
 - [ ] **Éclairage ciblé et naturel :** ne placer les lumières du village qu'aux extrémités (périmètre extérieur) et une seule devant chaque entrée de bâtiment. Le long des chemins, décaler les lampadaires aléatoirement à gauche ou à droite du tracé (position fixée une fois au chargement).
 - [ ] **Trajets des aventuriers dans le village :** lors d'un retour avec récompense, faire déplacer visuellement l'aventurier jusqu'à la **Mairie** (au centre) pour déposer son butin, puis jusqu'à l'**Auberge** pour se reposer.
 
-## 📜 v2.6b « Chroniques (2/2) » : Panneau Développeur et Noms
-- [ ] **Menu Développeur (roue crantée) :** roue crantée discrète donnant accès aux options développeur (d'autres options seront ajoutées plus tard). Contenu de départ : gestion des noms, export/import de sauvegarde, ajout de ressources de test.
-- [ ] **Gestion dynamique des noms :** liste de tous les noms possibles, avec ajout, modification et suppression sans mise à jour du jeu (champ pour coller une liste, un nom par ligne). Quand la liste est épuisée, des noms inventés sont générés et affichés en *italique* (jeu, classement, PNJ), donc pas de nombre minimum.
-
-## 🔋 v2.7 « Longue veille » : Optimisation
+## 🔋 v2.9 « Longue veille » : Optimisation
 - [ ] **Réduction de la consommation de batterie :** mise en cache de la carte (sol, routes, village), rendu limité à environ 20 images/s, rafraîchissement du seul onglet affiché, fond noir pur en mode sombre (écran AMOLED).
 
 ## 📱 Guide APK
