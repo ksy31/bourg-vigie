@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.7b « Nouveau Monde : décors (2/2) »
+
+### Ajouté
+- **Zones illustrées** : plus de ronds de couleur. Forêt (arbres détaillés), Mine (colline et entrée boisée), Montagne (pics enneigés), Ruines (colonnes brisées), Donjon (donjon et tour), Volcan (cratère, lave, fumée) et le Trône du Roi (forteresse sombre).
+- **Variantes visibles** : chaque sous-zone change d'aspect selon sa difficulté (plus sombre et plus fournie quand elle est dangereuse).
+- **Difficulté en icônes** : 💀 (1 à 3 selon la difficulté) à la place du texte « danger », et une icône de type de zone sur chaque lieu.
+
+### Modifié
+- **Mortalité** : les aventuriers de niveau 1 et 2 ne sont plus protégés de la mort, sauf pendant les 2 premiers jours de la partie. Dans mes simulations avec 8 aventuriers, on passe d'environ 1 mort tous les 4 jours à environ 1 mort tous les 2 jours, sans game over précoce.
+- Les zones sont plus espacées entre elles pour éviter que leurs noms se chevauchent.
+- Version affichée dans les Options : v2.7b.
+
 ## v2.7a « Nouveau Monde : décors (1/2) »
 
 ### Ajouté
