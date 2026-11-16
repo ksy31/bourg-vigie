@@ -72,20 +72,32 @@ Version actuelle du jeu : **v2.9.1 « Correctifs & Interface »**
 - [x] **Rythme et visuel au village :** réduire la durée d'action du **Sanctuaire** à **30 secondes** maximum, et appliquer le même effet de **semi-transparence** aux aventuriers lorsqu'ils se reposent (à l'Auberge **ou dans leur maison**) que lorsqu'ils effectuent un achat.
 - [x] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
 - [x] **Menu Développeur :** bouton « Réinitialisation complète » ajouté à ta demande (efface partie, gloire, bonus et Top 10).
+## 🧩 v2.9.2 « Architecture modulaire » : Découpage des fichiers (en cours)
+- [ ] **Séparation en 10 fichiers distincts :** découper le fichier monolithique en 10 fichiers logiques reliés dans `index.html` (4 lots prévus, sans modification de gameplay ni de graphismes) afin de faciliter les mises à jour et d'économiser les tokens.
 
-## ⚔️ v2.9.2 « Bon sens & Terres mortelles » : IA et danger (prochain)
+## ⚔️ v2.9.3 « Bon sens & Terres mortelles » : IA et danger
 - [ ] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
 - [ ] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
 
-## 📈 v2.9.3 « Montée en puissance » : Progression XP Héros & PNJ
+## 📈 v2.9.4 « Montée en puissance » : Progression XP, Zones & PNJ
 - [ ] **Accélérer la progression des survivants :** augmenter légèrement le gain d'XP pour les aventuriers qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin de rendre atteignable le **niveau 50 minimum** requis pour le boss final.
+- [ ] **Redimensionner les paliers de niveau des zones :** rééchelonner la difficulté et les niveaux recommandés de toutes les zones pour accompagner la nouvelle courbe d'XP (ex. : placer le Volcan autour des **niveaux 30 à 40**) afin d'éviter que le jeu ne devienne trop facile en milieu de partie.
 - [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils atteignent environ **70 % à 80 % de leur niveau maximum** sur une run classique (~100 jours), au lieu d'être au maximum trop tôt.
 
-## 👑 v2.9.4 « L'Épreuve du Roi Démon » : Calibrage final
+## 👑 v2.9.5 « L'Épreuve du Roi Démon » : Calibrage final
 - [ ] **Objectif final et taux de réussite exigeant :** calibrer la difficulté globale (mortalité, économie, boss final) pour qu'une run moyenne dure autour de **100 jours en jeu** (plus courte si les héros enchaînent les coups d'éclat, plus longue si les morts s'enchaînent), exige un aventurier **niveau 50 minimum** pour vaincre le **Roi Démon**, et offre un jeu dur avec de fréquents Game Over (taux de réussite visé : **5 % à 10 %**).
 
-## 🏞️ v2.9.5 « Terres sauvages & Rivières » : Paysages de la grande carte
-- [ ] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) pour bien habiller la grande carte ×3, tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
+## 🏷️ v2.9.6 « Étiquettes & Symboles » : Lisibilité et UI
+- [ ] **Nom et niveau affichés en permanence :** afficher constamment le nom et le niveau au-dessus de tous les personnages (aventuriers et PNJ) sur la carte et au village, sans avoir besoin de cliquer dessus.
+- [ ] **Symboles de genre :** remplacer les lettres **M** et **F** par les symboles **♂** et **♀** dans l'interface et le Menu Développeur.
+
+## 🏨 v2.9.7 « Grande Auberge & Veille Nocturne » : Village et lumières
+- [ ] **Agrandissement de l'Auberge :** redessiner l'Auberge avec un style hôtel à plusieurs étages, et masquer complètement les aventuriers lorsqu'ils s'y reposent (ils ne doivent plus apparaître à l'extérieur ou en transparence).
+- [ ] **Refonte de l'éclairage nocturne :** supprimer le rond jaune au centre des lampadaires, et reporter cet effet lumineux central uniquement sur les **aventuriers** (pas les PNJ) lorsqu'il fait nuit.
+
+## 🏞️ v2.9.8 « Terres sauvages & Rivières » : Carte, chemins et paysages
+- [ ] **Ajustement de l'échelle et des chemins :** réduire légèrement la taille globale de la carte tout en agrandissant davantage les zones d'environnement, et faire en sorte que les chemins ne se croisent jamais.
+- [ ] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
 - [ ] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
 
 ## 🔋 v2.10.0 « Longue veille » : Optimisation
@@ -101,4 +113,3 @@ Version actuelle du jeu : **v2.9.1 « Correctifs & Interface »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
-- [ ] 
