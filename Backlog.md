@@ -53,7 +53,7 @@ Version actuelle du jeu : **v2.9b « Héros & Terres lointaines (2/2) »**
 - [x] **Restaurer l'équilibrage des lieux et sous-zones :** vérifier et corriger l'équilibrage des zones et sous-zones qui semble avoir été cassé lors de la suppression de l'affichage du « danger » en v2.7 (garder l'affichage sans texte de danger, mais rétablir la vraie progression de difficulté entre les lieux et sous-zones).
 - [x] **Logique d'achat et d'épargne des aventuriers :** corriger le comportement d'achat des aventuriers qui dépensent tout leur or dans les objets de la forge (~15 po) et n'achètent jamais ni maison (~50 po) ni cheval. Trouver un équilibre d'épargne/priorité pour que l'équipement reste prioritaire au début, mais qu'ils finissent par économiser et acheter un cheval et une maison.
 - [x] **Rotation de 3 musiques médiévales chill (Web Audio) :** conserver la mélodie actuelle au luth et ajouter **2 nouvelles mélodies** avec d'autres instruments médiévaux (ex. : flûte, harpe ou viole) en mode calme/chill. Faire alterner les 3 styles automatiquement toutes les **10 minutes**.
-      
+
 ### v2.9a « Grande carte & Décor du village (1/2) »
 - [x] **Agrandir la carte (×3) :** carte ×3 en largeur et en hauteur, vue par défaut dézoomée pour tout voir, zoom libre conservé. Durées de trajet inchangées.
 - [x] **Refonte graphique de la zone du village :** terre battue et pavés, places, palissades et murets ouverts aux chemins, puits, caisses/tonneaux, herbe autour des bâtiments.
@@ -67,20 +67,18 @@ Version actuelle du jeu : **v2.9b « Héros & Terres lointaines (2/2) »**
 - [x] **Lumières :** halos agrandis, environ 3 fois moins de lampadaires sur les routes.
 - [x] **Zones agrandies (×2) :** les aventuriers restent dans l'image de la zone ; Forêt plus étendue.
 
-## ⚔️ v2.9.1 « Épreuve du Roi Démon » : Équilibrage, Bugs & Interface (prochain)
+## 🛠️ v2.9.1 « Correctifs & Interface » : Bugs, Village & UI (prochain)
+- [ ] **Unicité des noms par partie (Bug) :** interdire qu'un nom (de la liste ou inventé en *italique*) déjà tiré durant une run puisse être réutilisé plus tard dans la même partie (même après la mort de l'aventurier).
+- [ ] **Rythme et visuel au village :** réduire la durée d'action du **Sanctuaire** à **30 secondes** maximum, et appliquer le même effet de **semi-transparence** aux aventuriers lorsqu'ils se reposent (à l'Auberge **ou dans leur maison**) que lorsqu'ils effectuent un achat.
+- [ ] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
 
-### Équilibrage & Difficulté
+## ⚔️ v2.9.2 « Épreuve du Roi Démon » : Équilibrage et progression
 - [ ] **Libre arbitre cohérent et débuts impitoyables :** remplacer le choix purement aléatoire des destinations par un libre arbitre cohérent basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau/équipement, tout en gardant une possibilité de prise de risque vers une zone un peu plus dure). Rétablir la vraie dangerosité des zones avancées (un niveau 3 qui s'aventure au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Les premiers niveaux doivent être les plus durs et impitoyables.
 - [ ] **Rythme de progression des aventuriers :** accélérer légèrement le gain d'XP pour ceux qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin d'atteindre le **niveau 50 minimum** requis pour le boss final.
 - [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils atteignent environ **70 % à 80 % de leur niveau maximum** sur une run classique (~100 jours), au lieu d'être au maximum trop tôt.
 - [ ] **Objectif final et taux de réussite exigeant :** calibrer la difficulté globale (mortalité, économie, boss final) pour qu'une run moyenne dure autour de **100 jours en jeu** (plus courte si les héros enchaînent les coups d'éclat, plus longue si les morts s'enchaînent), exige un aventurier **niveau 50 minimum** pour vaincre le **Roi Démon**, et offre un jeu dur avec de fréquents Game Over (taux de réussite visé : **5 % à 10 %**).
 
-### Bugs, Village & Interface
-- [ ] **Unicité des noms par partie (Bug) :** interdire qu'un nom (de la liste ou inventé en *italique*) déjà tiré durant une run puisse être réutilisé plus tard dans la même partie (même après la mort de l'aventurier).
-- [ ] **Rythme et visuel au village :** réduire la durée d'action du **Sanctuaire** à **30 secondes** maximum, et appliquer le même effet de **semi-transparence** aux aventuriers lorsqu'ils se reposent (à l'Auberge **ou dans leur maison**) que lorsqu'ils effectuent un achat.
-- [ ] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
-
-## 🏞️ v2.9.2 « Terres sauvages & Rivières » : Paysages de la grande carte
+## 🏞️ v2.9.3 « Terres sauvages & Rivières » : Paysages de la grande carte
 - [ ] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) pour bien habiller la grande carte ×3, tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
 - [ ] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
 
