@@ -73,13 +73,18 @@ Version actuelle du jeu : **v2.9.1 « Correctifs & Interface »**
 - [x] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
 - [x] **Menu Développeur :** bouton « Réinitialisation complète » ajouté à ta demande (efface partie, gloire, bonus et Top 10).
 
-## ⚔️ v2.9.2 « Épreuve du Roi Démon » : Équilibrage et progression (prochain)
-- [ ] **Libre arbitre cohérent et débuts impitoyables :** remplacer le choix purement aléatoire des destinations par un libre arbitre cohérent basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau/équipement, tout en gardant une possibilité de prise de risque vers une zone un peu plus dure). Rétablir la vraie dangerosité des zones avancées (un niveau 3 qui s'aventure au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Les premiers niveaux doivent être les plus durs et impitoyables.
-- [ ] **Rythme de progression des aventuriers :** accélérer légèrement le gain d'XP pour ceux qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin d'atteindre le **niveau 50 minimum** requis pour le boss final.
+## ⚔️ v2.9.2 « Bon sens & Terres mortelles » : IA et danger (prochain)
+- [ ] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
+- [ ] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
+
+## 📈 v2.9.3 « Montée en puissance » : Progression XP Héros & PNJ
+- [ ] **Accélérer la progression des survivants :** augmenter légèrement le gain d'XP pour les aventuriers qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin de rendre atteignable le **niveau 50 minimum** requis pour le boss final.
 - [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils atteignent environ **70 % à 80 % de leur niveau maximum** sur une run classique (~100 jours), au lieu d'être au maximum trop tôt.
+
+## 👑 v2.9.4 « L'Épreuve du Roi Démon » : Calibrage final
 - [ ] **Objectif final et taux de réussite exigeant :** calibrer la difficulté globale (mortalité, économie, boss final) pour qu'une run moyenne dure autour de **100 jours en jeu** (plus courte si les héros enchaînent les coups d'éclat, plus longue si les morts s'enchaînent), exige un aventurier **niveau 50 minimum** pour vaincre le **Roi Démon**, et offre un jeu dur avec de fréquents Game Over (taux de réussite visé : **5 % à 10 %**).
 
-## 🏞️ v2.9.3 « Terres sauvages & Rivières » : Paysages de la grande carte
+## 🏞️ v2.9.5 « Terres sauvages & Rivières » : Paysages de la grande carte
 - [ ] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) pour bien habiller la grande carte ×3, tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
 - [ ] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
 
