@@ -68,7 +68,7 @@ html,body{touch-action:manipulation}
 </head>
 <body>
 <main>
-<h1><span id="vt">Vigie</span> <small id="day"></small><button id="mu" aria-label="Musique">🔊</button></h1>
+<h1><span id="vt">Vigie</span> <small id="day"></small></h1>
 <div class="res"><div id="g"><b>0</b>or</div><div id="w"><b>0</b>bois</div><div id="s"><b>0</b>pierre</div></div>
 <div class="tab on" id="tv"><canvas id="cv"></canvas>
 <label style="display:block;margin:8px 0;font-size:15px"><input type="checkbox" id="tt"> Afficher le temps de trajet restant</label>
@@ -81,7 +81,7 @@ html,body{touch-action:manipulation}
 <button id="bB" style="grid-column:1/-1"></button>
 </div></div>
 <div class="tab" id="to">
-<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <small id="sv"></small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px"><button id="dg" aria-label="Développeur" style="min-height:30px;padding:2px 8px;background:none;color:var(--mut);border:1px solid var(--line);font-size:14px">⚙️</button><span style="color:var(--mut);font-size:12px">v2.9b</span></div></div>
+<button id="sb">Sauvegarder</button> <button id="rb">Nouvelle partie</button> <button id="mu" aria-label="Musique"></button> <small id="sv"></small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px"><button id="dg" aria-label="Développeur" style="min-height:30px;padding:2px 8px;background:none;color:var(--mut);border:1px solid var(--line);font-size:14px">⚙️</button><span style="color:var(--mut);font-size:12px">v2.9.1</span></div></div>
 <div class="tab" id="th"><div id="ros"></div></div>
 <div class="tab" id="tl"><h3 style="margin:4px 0">Top 10 global (meilleur score par nom)</h3><div id="lb"></div></div>
 </main>
@@ -91,6 +91,7 @@ html,body{touch-action:manipulation}
 <h3>Genre des prénoms</h3><small>— = au hasard</small><div id="dgl"></div>
 <h3>Sauvegarde</h3><textarea id="dt" rows="3" placeholder="Code de sauvegarde (export / import)"></textarea><br>
 <button id="dex">Exporter</button><button id="dim">Importer</button>
+<h3>Classement et réinitialisation</h3><button id="dlb">Réinitialiser le Top 10</button> <button id="dfr">Réinitialisation complète</button>
 <h3>Test</h3><button id="dr1">+500 or, bois, pierre</button>
 <h3></h3><button id="dcl" style="width:100%">Fermer</button></div></div>
 <div id="toast"></div>
@@ -155,10 +156,11 @@ const NAMES0=NAMES.slice();
 try{const j=JSON.parse(localStorage.getItem('bvn')||'null');if(Array.isArray(j))NAMES=j.filter(x=>typeof x==='string')}catch(e){}
 const SYL=['ka','ro','mi','el','dan','vi','tor','la','ny','sa','bre','gor','ai','lun','mar','thy','ze','fen','ori','ca','dra','lis','mon','tha'];
 const fmt=s=>s.replace(/\u2060([^\u2061]*)\u2061/g,'<i>$1</i>'),sn=s=>s.replace(/[\u2060\u2061]/g,'');
-function rn(ex,st){const used=new Set(ex);if(st){st.hero.forEach(q=>used.add(q.name));Object.values(st.npc||{}).forEach(x=>used.add(x.n))}
+function rn(ex,st){const r=rn0(ex,st);if(st)(st.used=st.used||[]).push(r);return r}
+function rn0(ex,st){const used=new Set(ex);if(st){st.hero.forEach(q=>used.add(q.name));Object.values(st.npc||{}).forEach(x=>used.add(x.n));(st.used||[]).forEach(x=>used.add(x))}
  const f=NAMES.filter(n=>!used.has(n));if(f.length)return f[Math.floor(Math.random()*f.length)];
  for(let k=0;k<60;k++){let s='';const n=2+Math.floor(Math.random()*2);for(let i=0;i<n;i++)s+=SYL[Math.floor(Math.random()*SYL.length)];s=s[0].toUpperCase()+s.slice(1);const m='\u2060'+s+'\u2061';if(!used.has(m)&&!NAMES.includes(s))return m}
- return '\u2060Anonyme'+Math.floor(Math.random()*1e4)+'\u2061'}
+ let q=1,m;do{m='\u2060Anonyme'+q+'\u2061';q++}while(used.has(m));return m}
 function ui(){ui0();$('ros').innerHTML=fmt($('ros').innerHTML);$('lb').innerHTML=fmt($('lb').innerHTML)}
 let NG={};try{NG=JSON.parse(localStorage.getItem('bvg')||'{}')||{}}catch(e){}
 const rg=n=>NG[sn(n)]||(Math.random()<.5?'M':'F'),gd=(x,n)=>NG[sn(n)]||x.g||'M';
@@ -166,7 +168,8 @@ function mg(s){(s.hero||[]).forEach(h=>{if(!h.g)h.g=rg(h.name)});for(const k in 
 function exportCode(){return btoa(unescape(encodeURIComponent(JSON.stringify({v:1,S:Object.assign({},S,{logs:logs.slice(0,20)}),P,N:NAMES,G:NG}))))}
 function importCode(c){const o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(!o||!o.S||!Array.isArray(o.S.hero)||!Array.isArray(o.S.pl))throw 0;localStorage.setItem(SK,JSON.stringify(o.S));if(o.P)localStorage.setItem('bv',JSON.stringify(o.P));if(Array.isArray(o.N))localStorage.setItem('bvn',JSON.stringify(o.N));if(o.G&&typeof o.G==='object')localStorage.setItem('bvg',JSON.stringify(o.G))}
 const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];
-const fresh=()=>({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:2,zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:layout(),ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()});
+const fu=o=>{o.used=[o.npc.A.n,o.npc.V.n];return o};
+const fresh=()=>fu({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:2,zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:layout(),ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()});
 let S=fresh(),showT=false;
 const rname=()=>rn([],S);
 const rem=h=>{if(h.st==='fight')return h.t;if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h))};
@@ -179,7 +182,7 @@ function gameOver(){S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textConten
 const spf=h=>(1+h.eq.b*.05)*(h.hs?Math.min(2.2,1.4+h.hs.sp*.06*(1+.1*S.stable)):1);
 function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*4){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
 function leave(h,z){h.z=z;const q=ZR[z.n]||ZR['Trône du Roi'],a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);h.wp=h.gw.map(p=>({x:p.x,y:p.y}));h.st='go'}
-const WALK=1.6,DUR={loot:[60,90],horse:[60,120],house:[60,120],forge:[60,120],tavern:[60,120],bless:[60,120]};
+const WALK=1.6,DUR={loot:[60,90],horse:[60,120],house:[60,120],forge:[60,120],tavern:[60,120],bless:[15,30]};
 const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',tavern:'à la taverne',bless:'bénédiction au sanctuaire'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
@@ -258,7 +261,7 @@ function saveG(m){try{S.sat=Date.now();S.logs=logs.slice(0,20);localStorage.setI
 function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
 function mig(s){const M=3;if(s.zp)s.zp=s.zp.map(p=>[p[0]*M,p[1]*M]);(s.marks||[]).forEach(m=>{m.x*=M;m.y*=M});
  (s.hero||[]).forEach(h=>{if(h.st==='town'||h.st==='rest'){h.x+=T.x-50;h.y+=T.y-102}else{h.x*=M;h.y*=M;if(h.pt){h.pt.x*=M;h.pt.y*=M}if(h.v)h.v*=M}});s.mv=2}
-function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;if(!s.mv)mig(s);s.vn=s.vn||'Vigie';(s.lb||[]).forEach(lbAdd);s.lb=[];save();s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){s.npc.V={n:rn([],s),lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}s.pl.forEach(it=>{if(it.e==='♨️')it.e=NE.S});{const v=s.pl.find(it=>it.e===NE.V),a=s.pl.find(it=>it.i===0);if(v&&a&&a!==v){a.i=v.i;v.i=0}}S=s;mg(s);buildZ();logs=(s.logs||[]).slice(0,20);s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y};h.tl=(h.tl||[]).filter(x=>x.k!=='heal');if(h.tk&&h.tk.k==='heal'){h.tk=null;if(h.st==='town')h.sub='home'}if(h.st==='rest'){const b=base(h);h.x=b.x;h.y=b.y}if(h.st==='back'&&h.dec===undefined)goBack(h)})}catch(e){}}
+function loadG(){try{const j=localStorage.getItem(SK);if(!j)return;const s=JSON.parse(j);s.used=s.used||[];s.hero.forEach(h=>s.used.push(h.name));Object.values(s.npc||{}).forEach(x=>s.used.push(x.n));let k=0;s.pl.forEach(it=>{if(it.h)it.h=s.hs[k++]});s.alert=null;s.speed=1;if(!s.mv)mig(s);s.vn=s.vn||'Vigie';(s.lb||[]).forEach(lbAdd);s.lb=[];save();s.zv=s.zv||[1,1,1,1,1,1];s.zp=s.zp||BASEPOS.map(q=>q.slice());if(!s.npc.V){s.npc.V={n:rn([],s),lv:1,xp:0};s.pl.push({e:NE.V,i:s.pl.length})}s.pl.forEach(it=>{if(it.e==='♨️')it.e=NE.S});{const v=s.pl.find(it=>it.e===NE.V),a=s.pl.find(it=>it.i===0);if(v&&a&&a!==v){a.i=v.i;v.i=0}}S=s;mg(s);buildZ();logs=(s.logs||[]).slice(0,20);s.hero.forEach(h=>{h.home=s.hs.find(x=>x.o===h.id)||null;h.hs=s.horses.find(x=>x.o===h.id)||null;h.z=h.z?ZA.find(x=>x.n===h.z.n)||null:null;h.last=h.last?ZA.find(x=>x.n===h.last.n)||null:null;h.kills=h.kills||0;h.earned=h.earned||0;if(!h.pt&&h.z)h.pt={x:h.z.x,y:h.z.y};h.tl=(h.tl||[]).filter(x=>x.k!=='heal');if(h.tk&&h.tk.k==='heal'){h.tk=null;if(h.st==='town')h.sub='home'}if(h.st==='rest'){const b=base(h);h.x=b.x;h.y=b.y}if(h.st==='back'&&h.dec===undefined)goBack(h)})}catch(e){}}
 let wl=null;
 async function wake(){try{if(wl)return;wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null})}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')wake()});
@@ -365,7 +368,7 @@ function tick(dt){
 }
 function ui0(){
  $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
- $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ${S.hero.length} aventurier${S.hero.length>1?'s':''} · ★${P.glory}`;
+ $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ★${P.glory}`;
  $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
  for(const id in BD){const b=BD[id],c=b.c(S[b.k]||0);$('b'+id).innerHTML=`${b.n} niv. ${(S[b.k]||0)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g}
  
@@ -625,7 +628,7 @@ function draw(){
  }
  drawTown();
  for(const h of [...S.hero].sort((a,b)=>a.y-b.y)){
-  const x=h.x*sc+((h.id%3)-1)*sc*1.5,y=h.y*sc+((h.id%2)-.5)*sc*2,sl=h.st==='town'&&h.sub==='do';if(sl)cx.globalAlpha=.5;
+  const x=h.x*sc+((h.id%3)-1)*sc*1.5,y=h.y*sc+((h.id%2)-.5)*sc*2,sl=(h.st==='town'&&h.sub==='do')||h.st==='rest';if(sl)cx.globalAlpha=.5;
   const w=mvOf(h.id,x,y),fg=h.st==='fight',top=h.hs?6.6:5.2;
   if(fg){cx.fillStyle='rgba(192,57,43,.55)';cx.beginPath();cx.arc(x,y+sc*.8,sc*3.6+Math.sin(S.t*14)*2,0,7);cx.fill();cx.fillStyle='#1d2326';cx.font=`700 ${sc*2.8}px Alegreya,serif`;cx.fillText(h.en.n,x,y-sc*top)}
   person(x,y,{g:gd(h,h.name),k:h.c,col:h.col,id:h.id,f:w.f,ph:w.ph,mv:w.mv&&!sl,fight:fg,hs:h.hs});
@@ -702,8 +705,9 @@ function musicStart(){
   C.resume()
  }catch(e){MU.ctx=null}
 }
-function musicToggle(){MU.mute=!MU.mute;try{localStorage.setItem('bvm',MU.mute?'1':'0')}catch(e){}$('mu').textContent=MU.mute?'🔇':'🔊';if(MU.mute){if(MU.ctx)MU.ctx.suspend()}else if(MU.ctx)MU.ctx.resume();else musicStart()}
-$('mu').textContent=MU.mute?'🔇':'🔊';$('mu').onclick=musicToggle;
+const muL=()=>{$('mu').textContent=MU.mute?'🔇 Musique coupée':'🔊 Musique'};
+function musicToggle(){MU.mute=!MU.mute;try{localStorage.setItem('bvm',MU.mute?'1':'0')}catch(e){}muL();if(MU.mute){if(MU.ctx)MU.ctx.suspend()}else if(MU.ctx)MU.ctx.resume();else musicStart()}
+muL();$('mu').onclick=musicToggle;
 document.addEventListener('pointerup',musicStart);
 document.addEventListener('visibilitychange',()=>{if(!MU.ctx)return;if(document.hidden||MU.mute)MU.ctx.suspend();else MU.ctx.resume()});
 function dgl(){const d=$('dgl');d.innerHTML=NAMES.map((n,i)=>`<div class="gr"><span>${n.replace(/[<&]/g,'')}</span><select data-i="${i}"><option value="">—</option><option value="M"${NG[n]==='M'?' selected':''}>M</option><option value="F"${NG[n]==='F'?' selected':''}>F</option></select></div>`).join('');d.querySelectorAll('select').forEach(e=>e.onchange=()=>{const n=NAMES[+e.dataset.i];if(e.value)NG[n]=e.value;else delete NG[n];try{localStorage.setItem('bvg',JSON.stringify(NG))}catch(x){}})}
@@ -712,6 +716,8 @@ $('dns').onclick=()=>{NAMES=$('dn').value.split('\n').map(s=>s.trim()).filter((s
 $('dnr').onclick=()=>{NAMES=NAMES0.slice();try{localStorage.removeItem('bvn')}catch(e){}$('dn').value=NAMES.join('\n');$('dc').textContent=NAMES.length+' noms';dgl();toast('Liste par défaut')};
 $('dex').onclick=()=>{const c=exportCode();$('dt').value=c;try{navigator.clipboard.writeText(c)}catch(e){}toast('Code exporté')};
 $('dim').onclick=()=>{try{importCode($('dt').value);location.reload()}catch(e){toast('Code invalide')}};
+$('dlb').onclick=()=>{if(confirm('Effacer le Top 10 ?')){P.lb=[];save();ui();toast('Top 10 réinitialisé')}};
+$('dfr').onclick=()=>{if(confirm('Tout effacer : partie, gloire, bonus permanents et Top 10 ?')){try{localStorage.removeItem('bv');localStorage.removeItem(SK)}catch(e){}location.reload()}};
 $('dr1').onclick=()=>{S.g+=500;S.w+=500;S.s+=500;ui();toast('+500 or, bois, pierre')};
 let last=performance.now(),acc=0;
 function loop(now){

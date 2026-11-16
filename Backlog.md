@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9b « Héros & Terres lointaines (2/2) »**
+Version actuelle du jeu : **v2.9.1 « Correctifs & Interface »**
 
 ## ✅ Déjà intégré
 
@@ -67,12 +67,13 @@ Version actuelle du jeu : **v2.9b « Héros & Terres lointaines (2/2) »**
 - [x] **Lumières :** halos agrandis, environ 3 fois moins de lampadaires sur les routes.
 - [x] **Zones agrandies (×2) :** les aventuriers restent dans l'image de la zone ; Forêt plus étendue.
 
-## 🛠️ v2.9.1 « Correctifs & Interface » : Bugs, Village & UI (prochain)
-- [ ] **Unicité des noms par partie (Bug) :** interdire qu'un nom (de la liste ou inventé en *italique*) déjà tiré durant une run puisse être réutilisé plus tard dans la même partie (même après la mort de l'aventurier).
-- [ ] **Rythme et visuel au village :** réduire la durée d'action du **Sanctuaire** à **30 secondes** maximum, et appliquer le même effet de **semi-transparence** aux aventuriers lorsqu'ils se reposent (à l'Auberge **ou dans leur maison**) que lorsqu'ils effectuent un achat.
-- [ ] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
+### v2.9.1 « Correctifs & Interface » : Bugs, Village & UI 
+- [x] **Unicité des noms par partie (Bug) :** interdire qu'un nom (de la liste ou inventé en *italique*) déjà tiré durant une run puisse être réutilisé plus tard dans la même partie (même après la mort de l'aventurier).
+- [x] **Rythme et visuel au village :** réduire la durée d'action du **Sanctuaire** à **30 secondes** maximum, et appliquer le même effet de **semi-transparence** aux aventuriers lorsqu'ils se reposent (à l'Auberge **ou dans leur maison**) que lorsqu'ils effectuent un achat.
+- [x] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
+- [x] **Menu Développeur :** bouton « Réinitialisation complète » ajouté à ta demande (efface partie, gloire, bonus et Top 10).
 
-## ⚔️ v2.9.2 « Épreuve du Roi Démon » : Équilibrage et progression
+## ⚔️ v2.9.2 « Épreuve du Roi Démon » : Équilibrage et progression (prochain)
 - [ ] **Libre arbitre cohérent et débuts impitoyables :** remplacer le choix purement aléatoire des destinations par un libre arbitre cohérent basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau/équipement, tout en gardant une possibilité de prise de risque vers une zone un peu plus dure). Rétablir la vraie dangerosité des zones avancées (un niveau 3 qui s'aventure au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Les premiers niveaux doivent être les plus durs et impitoyables.
 - [ ] **Rythme de progression des aventuriers :** accélérer légèrement le gain d'XP pour ceux qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin d'atteindre le **niveau 50 minimum** requis pour le boss final.
 - [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils atteignent environ **70 % à 80 % de leur niveau maximum** sur une run classique (~100 jours), au lieu d'être au maximum trop tôt.

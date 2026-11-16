@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.1 « Correctifs & Interface »
+
+Version affichée dans les Options : **v2.9.1**
+
+### Ajouté
+- **Menu Développeur :** bouton « Réinitialiser le Top 10 » (avec confirmation ; gloire et bonus permanents conservés) et bouton « Réinitialisation complète » (avec confirmation : efface la partie, la gloire, les bonus permanents et le Top 10 ; noms, genres et réglage de la musique conservés).
+
+### Corrigé
+- **Noms uniques par partie :** un nom déjà tiré durant une run (liste ou inventé) n'est plus réutilisé, même après la mort de l'aventurier. Les anciennes sauvegardes reprennent avec les noms des aventuriers et PNJ présents.
+
+### Modifié
+- **Sanctuaire :** l'action dure 30 secondes maximum (15 à 30 s au lieu de 60 à 120 s).
+- **Repos :** les aventuriers deviennent semi-transparents quand ils se reposent (Auberge ou maison), comme lors d'un achat.
+- **Interface :** le nombre d'aventuriers n'est plus affiché dans la barre du haut ; le bouton musique (🔊/🔇) est déplacé dans les Options.
+
 ## v2.9b « Héros & Terres lointaines (2/2) »
 
 ### Ajouté
