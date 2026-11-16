@@ -1,0 +1,65 @@
+function layout(){const out=[];BASEPOS.forEach(b=>{let p=null;for(let k=0;k<40&&!p;k++){const a=(Math.random()*2-1)*.25,c=Math.cos(a),s=Math.sin(a),vx=b[0]-T.x,vy=b[1]-T.y,q=[Math.min(258,Math.max(42,T.x+vx*c-vy*s)),Math.min(228,Math.max(48,T.y+vx*s+vy*c))];if(out.every(o=>Math.hypot(o[0]-q[0],o[1]-q[1])>72)&&Math.hypot(q[0]-BZ.x,q[1]-BZ.y)>75)p=q}out.push(p||b.slice())});return out}
+function buildZ(){Z=ZB.map((b,i)=>{const v=ZV[i][S.zv[i]];return{n:b.n,vi:S.zv[i],sn:v[0],x:S.zp[i][0],y:S.zp[i][1],d:v[1],c:b.c,e:v[2].split(',').map((m,j)=>[m,[.8,1.1,1.5][j]]),f:v[3].split(',').map((m,j)=>[m,[.9,1.2,1.6][j]])}});ZA=[...Z,BZ];ZA.forEach((z,i)=>{RD[z.n]=roadOf(z,i)})}
+let P={glory:0,runs:0,g:0,p:0,s:0,h:0,lb:[]};
+try{Object.assign(P,JSON.parse(localStorage.getItem('bv')||'{}'))}catch(e){}
+P.lb=(P.lb||[]).filter(x=>x&&x.eq&&x.k!=null);
+const save=()=>{try{localStorage.setItem('bv',JSON.stringify(P))}catch(e){}};
+const U={g:{n:'Fortune',t:'+15 % d’or'},p:{n:'Vaillance',t:'+6 % de puissance'},s:{n:'Héritage',t:'+40 or au départ'},h:{n:'Vigueur',t:'−8 % de repos'}};
+const bossD=()=>100*(1+.35*P.runs);
+const tt=D=>63.6+Math.max(0,D-38)*4.35;
+const BD={
+ E:{n:'Écurie',t:'+1 cheval',k:'stable',c:l=>({w:35+l*30,s:15+l*15,g:50+l*60})},
+ H:{n:'Maison',t:'+1 place, à vendre',k:'houses',c:l=>({w:20+l*15,s:8+l*8,g:0})},
+ F:{n:'Forge',t:'+puissance',k:'forge',c:l=>({w:25+l*25,s:25+l*25,g:30+l*40})},
+ T:{n:'Taverne',t:'repos −12 %',k:'tavern',c:l=>({w:30+l*25,s:10+l*12,g:40+l*50})},
+ S:{n:'Sanctuaire',t:'morts −8 %',k:'spa',c:l=>({w:20+l*20,s:30+l*25,g:60+l*70})},
+ M:{n:'Marché',t:'or +10 %',k:'market',c:l=>({w:40+l*30,s:20+l*20,g:50+l*60})}};
+const cs=c=>[c.w&&c.w+' bois',c.s&&c.s+' pierre',c.g&&c.g+' or'].filter(Boolean).join(', ');
+const bestRest=()=>S.hero.filter(h=>h.st==='rest').sort((a,b)=>power(b)-power(a))[0];
+function sendBoss(){const h=bestRest();if(!h)return;leave(h,BZ);log(`${h.name} part affronter le Roi Démon…`,'bad');ui()}
+function victory(h){
+ const gain=2+Math.floor(S.hero.length/3);
+ P.glory+=gain;P.runs++;save();S.speed=0;
+ $('pvt').textContent=`${h.name} a terrassé le Roi Démon ! +${gain} Gloire`;
+ shop();$('pn').textContent='Nouvelle run';$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;
+}
+function shop(){
+ $('pg').textContent=`Gloire : ${P.glory} · bonus permanents`;
+ $('pu').innerHTML=Object.entries(U).map(([k,u])=>`<button data-u="${k}" ${P.glory<P[k]+1?'disabled':''}>${u.n} (niv. ${P[k]})<small>${u.t} · ${P[k]+1} Gloire</small></button>`).join('');
+ $('pu').querySelectorAll('button').forEach(b=>b.onclick=()=>{const k=b.dataset.u;if(P.glory>=P[k]+1){P.glory-=P[k]+1;P[k]++;save();shop()}});
+}
+function newRun(){
+ clearInterval(gameOver.t);S=fresh();buildZ();S.vn=($('vn').value.trim()||'Vigie').slice(0,20);logs=[];$('pn').textContent='Nouvelle run';$('pc').hidden=true;$('pv').hidden=true;
+  ui();log('Nouvelle partie : recrute tes premiers aventuriers, ils partiront seuls en quête.','ok');
+}
+const T={x:150,y:306},MS=3,ZS=2,RD={},ZR={'Forêt':[0,1,9,5],'Mine':[0,4.8,6,1.5],'Montagne':[0,4.2,7.5,1.5],'Ruines':[0,3.8,7,1.6],'Donjon':[0,5,6,1.3],'Volcan':[0,4.8,6.5,1.3],'Trône du Roi':[0,5,5,1.3]},ZT={'Forêt':11,'Mine':6.5,'Montagne':9.5,'Ruines':7.5,'Donjon':11,'Volcan':15.5,'Trône du Roi':12.5};
+let NAMES=['KaoTiem', 'Nathalie', 'Lilian', 'Lena', 'Anne', 'Chani', 'Momo', 'NayTiem', 'David', 'Julie', 'Didier', 'Karine', 'Julien-F', 'SanTiem', 'Marie-Laure', 'Karian', 'Marine', 'Cléo', 'Alicia', 'Liam', 'SouTiem', 'Jenny', 'Tommy', 'Willy', 'Meily', 'Claude', 'Cécile', 'Claire', 'Laure', 'KaoTon', 'Ludivine', 'Axel', 'Aurore', 'Ambre', 'SainPou', 'Mike', 'Sébastien', 'KaoPou', 'Carla', 'Loann', 'Enzo', 'Noëlla', 'NayPou', 'Christel', 'Maëlys', 'Thibault', 'FamPou', 'Alexandre', 'Lucas', 'Patrick', 'SouPou', 'Leila', 'Lay', 'Arnaud', 'Léa', 'Khe', 'Carlos', 'Mélinda', 'Nathan', 'Ou', 'MeyTsoy', 'NayTsoy', 'Mathieu', 'Emy', 'Élodie', 'Tristan', 'Fred', 'Pa', 'Raphaëlle', 'Camille', 'Julien', 'Sy', 'Émilie', 'Inès', 'Arthur', 'José', 'Angélique', 'Laurie', 'Eva', 'Lucas-G', 'Maël', 'Clara', 'Naomie', 'Baptiste', 'Chloé', 'Marvin'];
+const NAMES0=NAMES.slice();
+try{const j=JSON.parse(localStorage.getItem('bvn')||'null');if(Array.isArray(j))NAMES=j.filter(x=>typeof x==='string')}catch(e){}
+const SYL=['ka','ro','mi','el','dan','vi','tor','la','ny','sa','bre','gor','ai','lun','mar','thy','ze','fen','ori','ca','dra','lis','mon','tha'];
+const fmt=s=>s.replace(/\u2060([^\u2061]*)\u2061/g,'<i>$1</i>'),sn=s=>s.replace(/[\u2060\u2061]/g,'');
+function rn(ex,st){const r=rn0(ex,st);if(st)(st.used=st.used||[]).push(r);return r}
+function rn0(ex,st){const used=new Set(ex);if(st){st.hero.forEach(q=>used.add(q.name));Object.values(st.npc||{}).forEach(x=>used.add(x.n));(st.used||[]).forEach(x=>used.add(x))}
+ const f=NAMES.filter(n=>!used.has(n));if(f.length)return f[Math.floor(Math.random()*f.length)];
+ for(let k=0;k<60;k++){let s='';const n=2+Math.floor(Math.random()*2);for(let i=0;i<n;i++)s+=SYL[Math.floor(Math.random()*SYL.length)];s=s[0].toUpperCase()+s.slice(1);const m='\u2060'+s+'\u2061';if(!used.has(m)&&!NAMES.includes(s))return m}
+ let q=1,m;do{m='\u2060Anonyme'+q+'\u2061';q++}while(used.has(m));return m}
+function ui(){ui0();$('ros').innerHTML=fmt($('ros').innerHTML);$('lb').innerHTML=fmt($('lb').innerHTML)}
+let NG={};try{NG=JSON.parse(localStorage.getItem('bvg')||'{}')||{}}catch(e){}
+const rg=n=>NG[sn(n)]||(Math.random()<.5?'M':'F'),gd=(x,n)=>NG[sn(n)]||x.g||'M';
+function mg(s){(s.hero||[]).forEach(h=>{if(!h.g)h.g=rg(h.name)});for(const k in s.npc||{})if(!s.npc[k].g)s.npc[k].g=rg(s.npc[k].n)}
+function exportCode(){return btoa(unescape(encodeURIComponent(JSON.stringify({v:1,S:Object.assign({},S,{logs:logs.slice(0,20)}),P,N:NAMES,G:NG}))))}
+function importCode(c){const o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(!o||!o.S||!Array.isArray(o.S.hero)||!Array.isArray(o.S.pl))throw 0;localStorage.setItem(SK,JSON.stringify(o.S));if(o.P)localStorage.setItem('bv',JSON.stringify(o.P));if(Array.isArray(o.N))localStorage.setItem('bvn',JSON.stringify(o.N));if(o.G&&typeof o.G==='object')localStorage.setItem('bvg',JSON.stringify(o.G))}
+const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];
+const fu=o=>{o.used=[o.npc.A.n,o.npc.V.n];return o};
+const fresh=()=>fu({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,market:0,hero:[],t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:2,zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:layout(),ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()});
+let S=fresh(),showT=false;
+const rname=()=>rn([],S);
+const rem=h=>{if(h.st==='fight')return h.t;if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h))};
+const fm=s=>{s=Math.ceil(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const nl=k=>S.npc[k]?S.npc[k].lv:0;
+const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);
+const isNight=()=>{const x=hr();return x>=21||x<4};
+const dk=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24;if(x>=21||x<4)return 1;if(x>=20)return x-20;if(x<5)return 5-x;return 0};
+function gameOver(){S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
+const spf=h=>(1+h.eq.b*.05)*(h.hs?Math.min(2.2,1.4+h.hs.sp*.06*(1+.1*S.stable)):1);
+function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*4){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
