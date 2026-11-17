@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.3 « Bon sens & Terres mortelles »**
+Version actuelle du jeu : **v2.9.4 « Montée en puissance »**
 
 ## ✅ Déjà intégré
 
@@ -80,13 +80,13 @@ Version actuelle du jeu : **v2.9.3 « Bon sens & Terres mortelles »**
 - [x] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
 - [x] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
 
-## 📈 v2.9.4 « Montée en puissance » (prochain) : Progression XP, Zones & Butins
-- [ ] **Rythme de progression des survivants :** calibrer le gain d'XP pour qu'un aventurier qui survit puisse atteindre le **niveau 50 en 20 à 30 jours en jeu** environ, la sélection naturelle (malchance ou excès d'audace) éliminant la majorité des candidats en chemin.
-- [ ] **Échelonnement strict des zones jusqu'au niveau 50 :** redimensionner les paliers de niveau de toutes les zones pour que chaque zone soit nettement plus forte que la précédente (en comparant leurs sous-zones moyennes / n°2), jusqu'à atteindre environ le **niveau 50 dans la dernière zone**.
-- [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils progressent sur plusieurs dizaines d'aventuriers et n'atteignent pas leur niveau maximum trop tôt.
-- [ ] **Réduire les gains de bois :** diminuer légèrement la quantité de bois obtenue dans les butins afin d'équilibrer la progression des constructions du village.
+### v2.9.4 « Montée en puissance » : Progression XP, Zones & Butins
+- [x] **Rythme de progression des survivants :** calibrer le gain d'XP pour qu'un aventurier qui survit puisse atteindre le **niveau 50 en 20 à 30 jours en jeu** environ, la sélection naturelle (malchance ou excès d'audace) éliminant la majorité des candidats en chemin.
+- [x] **Échelonnement strict des zones jusqu'au niveau 50 :** redimensionner les paliers de niveau de toutes les zones pour que chaque zone soit nettement plus forte que la précédente (en comparant leurs sous-zones moyennes / n°2), jusqu'à atteindre environ le **niveau 50 dans la dernière zone**.
+- [x] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils progressent sur plusieurs dizaines d'aventuriers et n'atteignent pas leur niveau maximum trop tôt.
+- [x] **Réduire les gains de bois :** diminuer légèrement la quantité de bois obtenue dans les butins afin d'équilibrer la progression des constructions du village.
 
-## 👑 v2.9.5 « L'Épreuve du Roi Démon » : Sélection naturelle & Soutien du village
+## 👑 v2.9.5 « L'Épreuve du Roi Démon » (prochain) : Sélection naturelle & Soutien du village
 - [ ] **Rôle amplificateur du village et combat final :** calibrer l'impact du village (équipement, bénédictions, repos) de sorte que n'importe quel aventurier ait théoriquement sa chance sur une série aléatoire très favorable, mais que les améliorations du village augmentent fortement ses probabilités de survie. Exiger environ le **niveau 50** pour avoir une vraie chance de vaincre le **Roi Démon** (taux de réussite global exigeant : **5 % à 10 %**).
 
 ## 🏷️ v2.9.6 « Étiquettes & Symboles » : Lisibilité et UI

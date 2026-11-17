@@ -6,6 +6,7 @@ const SL={G:['w','a','b','s'],V:['w','a','b'],M:['w','a','b'],R:['w','a','b']};
 const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
 const ic=(h,k)=>k==='w'?IC.w[h.c]:IC[k];
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
+const XK=.6,xpNeed=l=>Math.max(2,Math.round(XK*3*Math.exp(.0829*(l-1))));
 const PB=1.5,RISK=[.08,.1],OVK=[[.5,.8],[.8,.6]];
 const ovk=r=>{for(const [t,p] of OVK)if(r<t)return p;return 0};
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
@@ -44,7 +45,7 @@ function pick(h){
   if(z===h.last)w*=.25;
   if((z.n==='Forêt'||z.n==='Marais')&&S.w<40)w*=2;
   if((z.n==='Mine'||z.n==='Montagne')&&S.s<40)w*=2;
-  if(z.d>=13&&S.g<80)w*=1.5;
+  if(z.d>=71&&S.g<80)w*=1.5;
   c.push([z,w]);tot+=w;
  }
  if(!c.length)return Z[0];
@@ -74,7 +75,7 @@ function resolve(h){
   if(z.n==='Cimetière'){h.loot.g=R(16,26);h.loot.s=R(2,4);if(Math.random()<.4)h.loot.gear=1}
   if(z.n==='Volcan'){h.loot.g=R(35,60);h.loot.w=4;h.loot.s=4;if(Math.random()<.6)h.loot.gear=1}
   const rl=power(h)/e.d,lk=rl<.8?Math.min(3,.8/rl):1,k=(e.el?2:.7+.3*e.m)*lk,l=h.loot;
-  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.1*S.market+.02*nl('M')+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1));l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
+  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.1*S.market+.02*nl('M')+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1)*.75);l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2)));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');h.won=e.n;goBack(h);if(e.boss)victory(h);

@@ -33,7 +33,7 @@ function applyTask(h,tk){
   let m=`${h.name} bat ${h.won} : +${l.g} or (${pg} à sa bourse)`+(l.w?`, ${l.w} bois`:'')+(l.s?`, ${l.s} pierre`:'');
   if(l.gear)m+=' · '+giveGear(h);
   log(m+'.');
-  while(h.xp>=h.lv*h.lv*8){h.xp-=h.lv*h.lv*8;h.lv++;log(`${h.name} passe niveau ${h.lv}.`,'ok')}
+  while(h.xp>=xpNeed(h.lv)){h.xp-=xpNeed(h.lv);h.lv++;log(`${h.name} passe niveau ${h.lv}.`,'ok')}
   h.loot=null;return}
  if(!taskOk(h,tk))return;
  if(tk.k==='horse'){const x=bestHorse(h),p=hPrice(x);h.gold-=p;S.g+=p;x.o=h.id;h.hs=x;npcx('E');log(`${h.name} achète un cheval ${x.sp} (${p} or).`,'ok')}

@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.4 « Montée en puissance »
+
+Version affichée dans les Options : **v2.9.4**
+
+### Ajouté
+- **Courbe d'XP jusqu'au niveau 50 :** le seuil de niveau suit désormais l'échelle des monstres (de 3 XP au niveau 1 à environ 170 au niveau 50). Un aventurier qui survit atteint le niveau 50 en 20 à 30 jours de jeu environ ; la sélection naturelle élimine la majorité des autres.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Zones jusqu'au niveau 50 :** les 18 sous-zones montent régulièrement (×1,27 par sous-zone). Forêt 3-4-5 (inchangée), Mine 6-8-10, Montagne 13-16-20, Ruines 26-33-42, Donjon 53-67-85, Volcan 108-137-174. Chaque zone est nettement plus forte que la précédente.
+- **Choix de zone :** le bonus « manque d'or » (aventuriers attirés par les zones riches) ne s'applique plus qu'à partir des Ruines (seuil de difficulté 13 → 71, pour garder le même sens).
+- **PNJ plus lents :** un PNJ monte d'un niveau tous les `niveau × 20` retours utiles (au lieu de `niveau × 4`). Leur niveau actuel est conservé.
+- **Bois :** −25 % sur tous les butins de bois.
+- **Équipement trouvé :** inchangé, il suit la force du monstre vaincu.
+- **Simulations** (25 jours, 3 parties, 8 aventuriers, ancien → nouveau) : meilleur niveau 2-3 → 50 / 41 / 32 (le niveau 50 est atteint au jour 26 dans une partie) ; quêtes 72 / 67 / 124 → 134 / 110 / 85 ; morts 17 / 14 / 14 → 19 / 17 / 16 ; or gagné 308 / 269 / 742 → 1353 / 1070 / 628 ; bois par quête 2,4 → 1,3. En mode test « aventuriers immortels » : meilleurs niveaux 61 / 49 / 46 au jour 25, médiane autour de 38-45.
+- Non simulé : une partie complète avec un joueur réel, et l'équilibre or / bâtiments sur plus de 25 jours.
+- Pas de migration : aucun champ de sauvegarde modifié. Une ancienne sauvegarde se charge et se joue normalement (testé).
+- Cache du service worker passé à `bv-v21`. Version affichée dans les Options : v2.9.4.
+
 ## v2.9.3 « Bon sens & Terres mortelles »
 
 Version affichée dans les Options : **v2.9.3**

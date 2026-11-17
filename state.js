@@ -62,4 +62,4 @@ const isNight=()=>{const x=hr();return x>=21||x<4};
 const dk=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24;if(x>=21||x<4)return 1;if(x>=20)return x-20;if(x<5)return 5-x;return 0};
 function gameOver(){S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
 const spf=h=>(1+h.eq.b*.05)*(h.hs?Math.min(2.2,1.4+h.hs.sp*.06*(1+.1*S.stable)):1);
-function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*4){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
+function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*20){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok')}}
