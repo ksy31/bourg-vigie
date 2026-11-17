@@ -6,9 +6,8 @@ const SL={G:['w','a','b','s'],V:['w','a','b'],M:['w','a','b'],R:['w','a','b']};
 const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
 const ic=(h,k)=>k==='w'?IC.w[h.c]:IC[k];
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
-const XK=.6,xpNeed=l=>Math.max(2,Math.round(XK*3*Math.exp(.0829*(l-1))));
-const PB=1.5,RISK=[.08,.1],OVK=[[.5,.8],[.8,.6]];
-const ovk=r=>{for(const [t,p] of OVK)if(r<t)return p;return 0};
+const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
+const PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2;
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
@@ -36,7 +35,7 @@ function build(id){
  log(`${b.n} niveau ${l+1} construit : ${b.t}.`,'ok');ui();
 }
 function pick(h){
- const th=.9-h.bold*.4;
+ const th=TH0-h.bold*TH1;
  let c=[],tot=0,md=0,hard=null;
  for(const z of Z)if(win(h,dz(z))>=th)md=Math.max(md,z.d);
  for(const z of Z){
@@ -45,11 +44,11 @@ function pick(h){
   if(z===h.last)w*=.25;
   if((z.n==='Forêt'||z.n==='Marais')&&S.w<40)w*=2;
   if((z.n==='Mine'||z.n==='Montagne')&&S.s<40)w*=2;
-  if(z.d>=71&&S.g<80)w*=1.5;
+  if(z.d>=24&&S.g<80)w*=1.5;
   c.push([z,w]);tot+=w;
  }
  if(!c.length)return Z[0];
- if(hard&&Math.random()<RISK[0]+RISK[1]*h.bold)return hard;
+ if(hard&&Math.random()<RK0+RK1*h.bold)return hard;
  let r=Math.random()*tot;
  for(const [z,w] of c){r-=w;if(r<=0)return z}
  return c[0][0];
@@ -64,7 +63,8 @@ function arrive(h){
 function resolve(h){
  const z=h.z,e=h.en,c=CL[h.c];
  h.last=z;
- if(Math.random()<win(h,e.d)){
+ const w=win(h,e.d),sv=e.boss?.05:Math.min(.4,(1-c.die)*FLEE*(e.el?2:1)*(1+Math.min(.5,(h.eq.a+h.eq.s)*.06))+(h.bless?.02*S.spa+.01*nl('S'):0)),pd=Math.max(DFLOOR,(1-w)*(1-sv)),pw=Math.min(w,1-pd),rr=Math.random();
+ if(rr<pw){
   h.loot={g:0,w:0,s:0,gear:0};
   if(z.n==='Forêt'){h.loot.w=R(3,6);h.loot.g=R(2,6)}
   if(z.n==='Mine'){h.loot.s=R(3,6);h.loot.g=R(6,12)}
@@ -77,9 +77,9 @@ function resolve(h){
   const rl=power(h)/e.d,lk=rl<.8?Math.min(3,.8/rl):1,k=(e.el?2:.7+.3*e.m)*lk,l=h.loot;
   l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.1*S.market+.02*nl('M')+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1)*.75);l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
-  h.xp+=Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2)));
+  h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');h.won=e.n;goBack(h);if(e.boss)victory(h);
- }else if((e.boss||power(h)/e.d<1.3)&&Math.random()<(e.boss?.85:Math.max(c.die*(e.el?.5:1)*(1-Math.min(.5,(h.eq.a+h.eq.s)*.06))*Math.max(.2,1-(h.bless?.08*S.spa+.02*nl('S'):0)),ovk(power(h)/e.d)))){
+ }else if(rr<pw+pd){
   if(h.home)h.home.o=null;if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});save();S.marks.push({x:h.x,y:h.y,t:S.t});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');

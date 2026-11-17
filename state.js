@@ -5,7 +5,7 @@ try{Object.assign(P,JSON.parse(localStorage.getItem('bv')||'{}'))}catch(e){}
 P.lb=(P.lb||[]).filter(x=>x&&x.eq&&x.k!=null);
 const save=()=>{try{localStorage.setItem('bv',JSON.stringify(P))}catch(e){}};
 const U={g:{n:'Fortune',t:'+15 % d’or'},p:{n:'Vaillance',t:'+6 % de puissance'},s:{n:'Héritage',t:'+40 or au départ'},h:{n:'Vigueur',t:'−8 % de repos'}};
-const bossD=()=>100*(1+.35*P.runs);
+const BOSS0=300,bossD=()=>BOSS0*(1+.35*P.runs);
 const tt=D=>63.6+Math.max(0,D-38)*4.35;
 const BD={
  E:{n:'Écurie',t:'+1 cheval',k:'stable',c:l=>({w:35+l*30,s:15+l*15,g:50+l*60})},

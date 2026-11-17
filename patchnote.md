@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.5 « Survie impitoyable & Roi Démon »
+
+Version affichée dans les Options : **v2.9.5**
+
+### Ajouté
+- **Courbe d'XP sans plafond de niveau :** seuil de niveau quasi exponentiel (4 XP au niveau 1, 126 au niveau 10, 358 au niveau 20, puis ×1,4 par niveau : 2 877 au niveau 25, 21 766 au niveau 30). Battre un monstre faible rapporte peu ; un gain d'XP ne peut jamais faire passer plusieurs niveaux d'un coup.
+- **Plancher de mortalité à 7 % :** même très supérieur à son adversaire, un aventurier risque la mort à chaque combat (constante `DFLOOR`).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Monde fixe :** la force des monstres ne monte plus avec les jours (`dz` ne dépend plus du jour). Seuls le village et ses PNJ changent les chances de survie.
+- **Fuite très rare :** une défaite mène à la mort dans la grande majorité des cas. Chance de fuite blessé (constante `FLEE`) : Guerrier ≈ 12 %, Voleur ≈ 10 %, Rôdeur ≈ 9 %, Mage ≈ 3 %, augmentée par l'armure et le bouclier (jusqu'à +50 %) et par la bénédiction du Sanctuaire. Contre le Roi Démon : 5 %. Il n'y a plus de cas où la défaite est toujours une fuite.
+- **Zones recalibrées (sous-zones facile-moyenne-difficile) :** Forêt 2-3-4, Mine 6-8-10, Montagne 13-16-20 (inchangée), Ruines 24-30-38, Donjon 42-52-65, Volcan 68-85-105 (au lieu de 26-33-42 / 53-67-85 / 108-137-174). Une partie en cours prend ces valeurs au chargement.
+- **Roi Démon :** puissance de base 300 (`BOSS0`, +35 % par victoire comme avant). Un Guerrier niveau 20 équipé niveau 8 partout a environ 10 % de victoire en combat ; niveau 25 équipé niveau 12, environ 20 %.
+- **Aventuriers plus prudents** (nécessaire avec la mortalité actuelle) : seuil de victoire attendu 92 % − 20 % × audace (avant 90 % − 40 %), prise de risque 3 à 7 % des départs (avant 8 à 18 %). Le bonus « manque d'or » vise désormais les Ruines (difficulté ≥ 24).
+- **Simulations** (25 jours, 5 parties, 8 aventuriers, ancien → nouveau) : meilleur niveau 38-46 → 4-6 ; quêtes 139-182 → 98-149 ; morts 14-23 → 11-21 ; or gagné 1022-2249 → 530-887 ; game over 1 → 0 à 3 par partie. Le niveau 20 n'est pas atteint en 25 jours : avec 7 % de mort minimale par combat, il faut une chance exceptionnelle.
+- Non simulé : une partie complète avec un joueur réel, la victoire sur le Roi Démon sur une longue partie (le 5-10 % global n'est pas mesuré, seulement le taux par combat ci-dessus).
+- Pas de migration : aucun champ de sauvegarde modifié. Une sauvegarde 2.9.4 se charge et se joue (testé) ; ses aventuriers gardent leur niveau mais affrontent des zones plus mortelles et montent plus lentement.
+- Cache du service worker passé à `bv-v22`. Version affichée dans les Options : v2.9.5.
+
 ## v2.9.4 « Montée en puissance »
 
 Version affichée dans les Options : **v2.9.4**
