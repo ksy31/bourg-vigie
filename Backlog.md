@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.1 « Correctifs & Interface »**
+Version actuelle du jeu : **v2.9.2 « Architecture modulaire »**
 
 ## ✅ Déjà intégré
 
@@ -72,10 +72,11 @@ Version actuelle du jeu : **v2.9.1 « Correctifs & Interface »**
 - [x] **Rythme et visuel au village :** réduire la durée d'action du **Sanctuaire** à **30 secondes** maximum, et appliquer le même effet de **semi-transparence** aux aventuriers lorsqu'ils se reposent (à l'Auberge **ou dans leur maison**) que lorsqu'ils effectuent un achat.
 - [x] **Nettoyage de l'interface et Menu Développeur :** retirer l'affichage du nombre d'aventuriers dans la barre du haut, déplacer le bouton muet (`🔊`/`🔇`) dans les **Options**, et ajouter un bouton dans le **Menu Développeur** pour réinitialiser le classement Top 10.
 - [x] **Menu Développeur :** bouton « Réinitialisation complète » ajouté à ta demande (efface partie, gloire, bonus et Top 10).
-## 🧩 v2.9.2 « Architecture modulaire » : Découpage des fichiers (en cours)
-- [ ] **Séparation en 10 fichiers distincts :** découper le fichier monolithique en 10 fichiers logiques reliés dans `index.html` (4 lots prévus, sans modification de gameplay ni de graphismes) afin de faciliter les mises à jour et d'économiser les tokens.
 
-## ⚔️ v2.9.3 « Bon sens & Terres mortelles » : IA et danger
+### v2.9.2 « Architecture modulaire » : Découpage des fichiers
+- [x] **Séparation en 10 fichiers distincts :** le fichier monolithique est découpé en 10 fichiers logiques reliés dans `index.html` (`data.js`, `state.js`, `village.js`, `save.js`, `combat.js`, `ui.js`, `map.js`, `audio.js`, `dev.js`, `main.js`), sans modification de gameplay ni de graphismes, afin de faciliter les mises à jour et d'économiser les tokens.
+
+## ⚔️ v2.9.3 « Bon sens & Terres mortelles » (prochain) : IA et danger
 - [ ] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
 - [ ] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
 

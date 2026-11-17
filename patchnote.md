@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.2 « Architecture modulaire »
+
+Version affichée dans les Options : **v2.9.2**
+
+### Ajouté
+- Aucun ajout de gameplay ni de graphismes dans cette release.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Architecture :** le jeu est découpé en 10 fichiers JavaScript reliés dans `index.html`, dans cet ordre impératif : `data.js`, `state.js`, `village.js`, `save.js`, `combat.js`, `ui.js`, `map.js`, `audio.js`, `dev.js`, `main.js`. Les scripts restent classiques et partagent la même portée globale. Les mises à jour seront plus faciles et moins coûteuses en tokens.
+- Gameplay, graphismes et sauvegardes inchangés : aucune migration nécessaire.
+- Cache du service worker passé à `bv-v19` (liste complète des fichiers).
+- Version affichée dans les Options : v2.9.2.
+
 ## v2.9.1 « Correctifs & Interface »
 
 Version affichée dans les Options : **v2.9.1**
