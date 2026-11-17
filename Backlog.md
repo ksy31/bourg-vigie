@@ -80,13 +80,14 @@ Version actuelle du jeu : **v2.9.3 « Bon sens & Terres mortelles »**
 - [x] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
 - [x] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
 
-## 📈 v2.9.4 « Montée en puissance » (prochain) : Progression XP, Zones & PNJ
-- [ ] **Accélérer la progression des survivants :** augmenter légèrement le gain d'XP pour les aventuriers qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin de rendre atteignable le **niveau 50 minimum** requis pour le boss final.
-- [ ] **Redimensionner les paliers de niveau des zones :** rééchelonner la difficulté et les niveaux recommandés de toutes les zones pour accompagner la nouvelle courbe d'XP (ex. : placer le Volcan autour des **niveaux 30 à 40**) afin d'éviter que le jeu ne devienne trop facile en milieu de partie.
-- [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils atteignent environ **70 % à 80 % de leur niveau maximum** sur une run classique (~100 jours), au lieu d'être au maximum trop tôt.
+## 📈 v2.9.4 « Montée en puissance » (prochain) : Progression XP, Zones & Butins
+- [ ] **Rythme de progression des survivants :** calibrer le gain d'XP pour qu'un aventurier qui survit puisse atteindre le **niveau 50 en 20 à 30 jours en jeu** environ, la sélection naturelle (malchance ou excès d'audace) éliminant la majorité des candidats en chemin.
+- [ ] **Échelonnement strict des zones jusqu'au niveau 50 :** redimensionner les paliers de niveau de toutes les zones pour que chaque zone soit nettement plus forte que la précédente (en comparant leurs sous-zones moyennes / n°2), jusqu'à atteindre environ le **niveau 50 dans la dernière zone**.
+- [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils progressent sur plusieurs dizaines d'aventuriers et n'atteignent pas leur niveau maximum trop tôt.
+- [ ] **Réduire les gains de bois :** diminuer légèrement la quantité de bois obtenue dans les butins afin d'équilibrer la progression des constructions du village.
 
-## 👑 v2.9.5 « L'Épreuve du Roi Démon » : Calibrage final
-- [ ] **Objectif final et taux de réussite exigeant :** calibrer la difficulté globale (mortalité, économie, boss final) pour qu'une run moyenne dure autour de **100 jours en jeu** (plus courte si les héros enchaînent les coups d'éclat, plus longue si les morts s'enchaînent), exige un aventurier **niveau 50 minimum** pour vaincre le **Roi Démon**, et offre un jeu dur avec de fréquents Game Over (taux de réussite visé : **5 % à 10 %**).
+## 👑 v2.9.5 « L'Épreuve du Roi Démon » : Sélection naturelle & Soutien du village
+- [ ] **Rôle amplificateur du village et combat final :** calibrer l'impact du village (équipement, bénédictions, repos) de sorte que n'importe quel aventurier ait théoriquement sa chance sur une série aléatoire très favorable, mais que les améliorations du village augmentent fortement ses probabilités de survie. Exiger environ le **niveau 50** pour avoir une vraie chance de vaincre le **Roi Démon** (taux de réussite global exigeant : **5 % à 10 %**).
 
 ## 🏷️ v2.9.6 « Étiquettes & Symboles » : Lisibilité et UI
 - [ ] **Nom et niveau affichés en permanence :** afficher constamment le nom et le niveau au-dessus de tous les personnages (aventuriers et PNJ) sur la carte et au village, sans avoir besoin de cliquer dessus.
@@ -114,3 +115,4 @@ Version actuelle du jeu : **v2.9.3 « Bon sens & Terres mortelles »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
+- [ ] 
