@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.3 « Bon sens & Terres mortelles »
+
+Version affichée dans les Options : **v2.9.3**
+
+### Ajouté
+- **Destinations de bon sens :** parmi les zones que l'aventurier juge sûres (filtre de victoire conservé, selon son audace), il préfère les plus difficiles qu'il peut affronter, tout en gardant un peu de variété (besoin de bois ou de pierre, évitement de la dernière zone).
+- **Prise de risque :** environ 8 à 18 % des départs (selon l'audace) visent la zone juste au-dessus de ce qu'il juge sûr.
+- **Butin de coup de chance :** vaincre un monstre nettement plus fort que soi multiplie le butin (or, bois, pierre) jusqu'à ×3.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Mortalité en cas de défaite :** si l'adversaire est très supérieur (puissance de l'aventurier sous 50 % de la sienne), la mort est de 80 % ; entre 50 et 80 %, de 60 %. L'armure et le bouclier n'y changent rien. Au-delà, la règle précédente s'applique.
+- **Débuts plus durs :** la puissance de base d'un aventurier baisse (4 → 1,5), ce qui pèse surtout aux premiers niveaux.
+- Pas de migration : aucun champ de sauvegarde modifié.
+- **Simulations de combats isolés** (jour 1, 20 000 combats par ligne, ancien → nouveau) : niv. 1 Guerrier en Forêt, mort 3 % → 16 % ; niv. 1 Guerrier en Mine, mort 13 % → 44 % ; niv. 3 Guerrier sans équipement au Volcan, mort 34 % → 73 %, or par victoire 47 → 104. Niveaux 5 et plus bien équipés dans une zone adaptée : inchangés. Au jour 20, les niveaux 1 sont plus touchés (Forêt 24 %, Mine 60 %) à cause de la montée de difficulté par jour.
+- Non simulé : une partie complète (économie, quêtes par jour, nombre de morts par jour).
+- Cache du service worker passé à `bv-v20`. Version affichée dans les Options : v2.9.3.
+
 ## v2.9.2 « Architecture modulaire »
 
 Version affichée dans les Options : **v2.9.2**

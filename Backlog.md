@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.2 « Architecture modulaire »**
+Version actuelle du jeu : **v2.9.3 « Bon sens & Terres mortelles »**
 
 ## ✅ Déjà intégré
 
@@ -76,11 +76,11 @@ Version actuelle du jeu : **v2.9.2 « Architecture modulaire »**
 ### v2.9.2 « Architecture modulaire » : Découpage des fichiers
 - [x] **Séparation en 10 fichiers distincts :** le fichier monolithique est découpé en 10 fichiers logiques reliés dans `index.html` (`data.js`, `state.js`, `village.js`, `save.js`, `combat.js`, `ui.js`, `map.js`, `audio.js`, `dev.js`, `main.js`), sans modification de gameplay ni de graphismes, afin de faciliter les mises à jour et d'économiser les tokens.
 
-## ⚔️ v2.9.3 « Bon sens & Terres mortelles » (prochain) : IA et danger
-- [ ] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
-- [ ] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
+### v2.9.3 « Bon sens & Terres mortelles » : IA et danger
+- [x] **Libre arbitre cohérent des destinations :** remplacer le choix purement aléatoire des destinations par un choix basé sur le bon sens (les aventuriers privilégient les zones adaptées à leur niveau et équipement, tout en gardant une légère prise de risque vers une zone un peu plus dure).
+- [x] **Dangerosité réelle et débuts impitoyables :** rétablir la vraie dangerosité des zones avancées (un niveau 3 au Volcan ou un niveau 1 en zone 2 a de très fortes chances de mourir, sauf énorme coup de chance qui rapporte alors gros). Rendre les premiers niveaux particulièrement durs et impitoyables.
 
-## 📈 v2.9.4 « Montée en puissance » : Progression XP, Zones & PNJ
+## 📈 v2.9.4 « Montée en puissance » (prochain) : Progression XP, Zones & PNJ
 - [ ] **Accélérer la progression des survivants :** augmenter légèrement le gain d'XP pour les aventuriers qui survivent (éviter qu'un héros soit encore niveau 4 au jour 15 ; viser environ niveau 7-8 au jour 15) afin de rendre atteignable le **niveau 50 minimum** requis pour le boss final.
 - [ ] **Redimensionner les paliers de niveau des zones :** rééchelonner la difficulté et les niveaux recommandés de toutes les zones pour accompagner la nouvelle courbe d'XP (ex. : placer le Volcan autour des **niveaux 30 à 40**) afin d'éviter que le jeu ne devienne trop facile en milieu de partie.
 - [ ] **Ralentir la montée des PNJ :** réduire fortement la vitesse de progression des PNJ (Maire, Forgeron, etc.) afin qu'ils atteignent environ **70 % à 80 % de leur niveau maximum** sur une run classique (~100 jours), au lieu d'être au maximum trop tôt.
