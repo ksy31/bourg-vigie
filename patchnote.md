@@ -1,5 +1,28 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.6 « Lisibilité, Auberge & Veille Nocturne »
+
+Version affichée dans les Options : **v2.9.6**
+
+### Ajouté
+- **Étiquettes permanentes :** nom et niveau (« Nom · niv. 5 ») au-dessus de tous les aventuriers et PNJ, sans clic. Taille fixe à l'écran quel que soit le zoom, contour sombre, italique pour les noms inventés. En combat, elles passent au-dessus du nom du monstre.
+- **Suivi d'un aventurier :** un tap sur un aventurier centre la caméra sur lui et le suit (zoom minimum 1,2). Le suivi s'arrête en faisant glisser la carte, en tapant ailleurs ou en double-tapant.
+- **Grande Auberge :** bâtiment redessiné en hôtel à 3 étages (rangées de fenêtres, cheminée, porte voûtée, enseigne), un peu plus large que les autres.
+- **Aventuriers visibles la nuit :** halo et point lumineux jaune au centre de chaque aventurier (pas des PNJ).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Infobulle au tap supprimée** (remplacée par le suivi).
+- **Repos à l'Auberge :** l'aventurier sans maison disparaît complètement de la carte (étiquette comprise). En repos dans sa maison, il reste semi-transparent, avec étiquette.
+- **Lampadaires :** le point jaune central est supprimé ; il reste le halo doux.
+- **Genre ♂ / ♀ :** ces symboles remplacent M / F dans le menu Développeur et dans les données. Les anciennes valeurs sont converties au chargement (sauvegarde de partie, genres enregistrés, import de code).
+- Le puits et les décors du village tiennent compte de la taille de l'Auberge (leur position peut légèrement changer).
+- Pas de migration de champs hors genres. Une sauvegarde 2.9.5 se charge et se joue (testé).
+- Non vérifié : le rendu sur ton écran. En vue d'ensemble, les étiquettes se chevauchent quand plusieurs aventuriers sont au village (captures de contrôle seulement).
+- Cache du service worker passé à `bv-v23`. Version affichée dans les Options : v2.9.6.
+
 ## v2.9.5 « Survie impitoyable & Roi Démon »
 
 Version affichée dans les Options : **v2.9.5**

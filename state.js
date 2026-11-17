@@ -45,8 +45,9 @@ function rn0(ex,st){const used=new Set(ex);if(st){st.hero.forEach(q=>used.add(q.
  let q=1,m;do{m='\u2060Anonyme'+q+'\u2061';q++}while(used.has(m));return m}
 function ui(){ui0();$('ros').innerHTML=fmt($('ros').innerHTML);$('lb').innerHTML=fmt($('lb').innerHTML)}
 let NG={};try{NG=JSON.parse(localStorage.getItem('bvg')||'{}')||{}}catch(e){}
-const rg=n=>NG[sn(n)]||(Math.random()<.5?'M':'F'),gd=(x,n)=>NG[sn(n)]||x.g||'M';
-function mg(s){(s.hero||[]).forEach(h=>{if(!h.g)h.g=rg(h.name)});for(const k in s.npc||{})if(!s.npc[k].g)s.npc[k].g=rg(s.npc[k].n)}
+const gc=v=>v==='M'?'♂':v==='F'?'♀':v;for(const k in NG)NG[k]=gc(NG[k]);
+const rg=n=>NG[sn(n)]||(Math.random()<.5?'♂':'♀'),gd=(x,n)=>NG[sn(n)]||gc(x.g)||'♂';
+function mg(s){(s.hero||[]).forEach(h=>{h.g=h.g?gc(h.g):rg(h.name)});for(const k in s.npc||{})s.npc[k].g=s.npc[k].g?gc(s.npc[k].g):rg(s.npc[k].n)}
 function exportCode(){return btoa(unescape(encodeURIComponent(JSON.stringify({v:1,S:Object.assign({},S,{logs:logs.slice(0,20)}),P,N:NAMES,G:NG}))))}
 function importCode(c){const o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(!o||!o.S||!Array.isArray(o.S.hero)||!Array.isArray(o.S.pl))throw 0;localStorage.setItem(SK,JSON.stringify(o.S));if(o.P)localStorage.setItem('bv',JSON.stringify(o.P));if(Array.isArray(o.N))localStorage.setItem('bvn',JSON.stringify(o.N));if(o.G&&typeof o.G==='object')localStorage.setItem('bvg',JSON.stringify(o.G))}
 const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];

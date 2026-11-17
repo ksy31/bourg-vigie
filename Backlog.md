@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.4 « Montée en puissance »**
+Version actuelle du jeu : **v2.9.6 « Lisibilité, Auberge & Veille Nocturne »**
 
 ## ✅ Déjà intégré
 
@@ -91,12 +91,13 @@ Version actuelle du jeu : **v2.9.4 « Montée en puissance »**
 - [x] **Monde fixe, fuite rare et mortalité assumée :** supprimer la montée en difficulté des monstres au fil des jours (un aventurier du Jour 1 et du Jour 50 affrontent exactement les mêmes dangers ; seul le développement du village et de ses PNJ augmente les chances de survie). Rendre la fuite très rare (victoire ou mort dans la majorité des cas) et maintenir un risque réel de mourir même à haut niveau — **enchaîner un grand nombre de Game Over est totalement normal et voulu** dans cette boucle de sélection naturelle.
 - [x] **Échelonnement des 6 zones et Roi Démon :** calibrer les 6 zones de la plus accessible à la **Zone 6** (antichambre ultime préparant au combat final). Calibrer le **Roi Démon** autour d'un vétéran bien équipé (environ **niveau 20+**) avec un taux de réussite global exigeant (**5 % à 10 %**).
 
-## 🏨 v2.9.6 « Lisibilité, Auberge & Veille Nocturne » (prochain) : UI, Village et lumières
-- [ ] **Étiquettes permanentes et symboles de genre :** afficher constamment le nom et le niveau au-dessus de tous les personnages (aventuriers et PNJ) sans clic, et remplacer les lettres **M** et **F** par les symboles **♂** et **♀** dans l'interface et le Menu Développeur.
-- [ ] **Grande Auberge et repos masqué :** redessiner l'Auberge avec un style hôtel à plusieurs étages, et masquer complètement les aventuriers lorsqu'ils s'y reposent (ni à l'extérieur ni en transparence).
-- [ ] **Refonte de l'éclairage nocturne :** supprimer le rond jaune au centre des lampadaires et reporter cet effet lumineux central uniquement sur les **aventuriers** (pas les PNJ) lorsqu'il fait nuit.
+### v2.9.6 « Lisibilité, Auberge & Veille Nocturne » : UI, Village et lumières
+- [x] **Étiquettes permanentes et symboles de genre :** afficher constamment le nom et le niveau au-dessus de tous les personnages (aventuriers et PNJ) sans clic, et remplacer les lettres **M** et **F** par les symboles **♂** et **♀** dans l'interface et le Menu Développeur.
+- [x] **Grande Auberge et repos masqué :** redessiner l'Auberge avec un style hôtel à plusieurs étages, et masquer complètement les aventuriers lorsqu'ils s'y reposent (ni à l'extérieur ni en transparence).
+- [x] **Refonte de l'éclairage nocturne :** supprimer le rond jaune au centre des lampadaires et reporter cet effet lumineux central uniquement sur les **aventuriers** (pas les PNJ) lorsqu'il fait nuit.
+- [x] **Demandes ajoutées :** infobulle au tap supprimée, un tap sur un aventurier le suit ; genres convertis en ♂ / ♀ dans les données (migration automatique).
 
-## 🏞️ v2.9.7 « Terres sauvages & Rivières » : Carte, chemins et paysages
+## 🏞️ v2.9.7 « Terres sauvages & Rivières » (prochain) : Carte, chemins et paysages
 - [ ] **Ajustement de l'échelle et des chemins :** réduire légèrement la taille globale de la carte tout en agrandissant davantage les zones d'environnement, et faire en sorte que les chemins ne se croisent jamais.
 - [ ] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
 - [ ] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
