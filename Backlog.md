@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.8 « Bugs, Équilibrage & Lisibilité »**
+Version actuelle du jeu : **v2.9.9 « Village organique & Évolution visuelle »**
 
 ## ✅ Déjà intégré
 
@@ -108,11 +108,11 @@ Version actuelle du jeu : **v2.9.8 « Bugs, Équilibrage & Lisibilité »**
 - [x] **Danger nocturne accru et baisse du drop de bois :** renforcer nettement la puissance des monstres la nuit pour que s'aventurer de nuit soit un vrai risque mortel, et réduire encore un peu la quantité de **bois** obtenue dans les butins.
 - [x] **Symbole de difficulté des zones et nom sur les tombes :** remplacer les crânes de difficulté des zones par un autre symbole (ex. : flammes **🔥** ou étoiles **★**) placé **juste sous le nom de la zone**, et afficher le **nom de l'aventurier mort** à côté du crâne sur la carte.
 
-## 🏘️ v2.9.9 « Village organique & Évolution visuelle » (prochain) : Architecture du village
-- [ ] **Disposition naturelle et chemins internes :** espacer davantage les bâtiments sans les aligner en grille stricte, et tracer de vrais petits chemins reliant les bâtiments entre eux.
-- [ ] **Évolution visuelle et frontières du village :** créer une vraie différence graphique visible sur chaque bâtiment au fil de ses améliorations, et adapter les clôtures du village à son rang (aucune rambarde en hameau, barrières en bois en village, fortifications plus solides ensuite).
+## 🏘️ v2.9.9 « Village organique & Évolution visuelle » : Architecture du village
+- [x] **Disposition naturelle et chemins internes (les aventuriers y marchent) :** espacer davantage les bâtiments sans les aligner en grille stricte, et tracer de vrais petits chemins reliant les bâtiments entre eux.
+- [x] **Évolution visuelle (selon le niveau du PNJ) et frontières du village :** créer une vraie différence graphique visible sur chaque bâtiment au fil de ses améliorations, et adapter les clôtures du village à son rang (aucune rambarde en hameau, barrières en bois en village, fortifications plus solides ensuite).
 
-## 🔋 v3.0.0 « Économie d'énergie & Écran noir » : Optimisation (1/2)
+## 🔋 v3.0.0 « Économie d'énergie & Écran noir » (prochain) : Optimisation (1/2)
 - [ ] **Économie d'énergie intelligente (sans brider la fluidité) :** conserver un rendu fluide quand la carte est affichée, suspendre le dessin sur les onglets masqués, passer l'interface sombre en noir pur (**AMOLED**) et ajouter un **bouton « Mode Veille (Écran noir) »** qui affiche un voile noir complet pour économiser la batterie tout en laissant tourner la simulation (un tap pour réveiller l'écran).
 
 ## 🧭 v3.0.1 « Confort, Suivi & Écran Options » : Ergonomie & UI

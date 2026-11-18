@@ -1,4 +1,4 @@
-function leave(h,z){h.z=z;const q=ZR[z.n]||ZR['Trône du Roi'],a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);h.wp=h.gw.map(p=>({x:p.x,y:p.y}));h.st='go'}
+function leave(h,z){h.z=z;const q=ZR[z.n]||ZR['Trône du Roi'],a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);{const en=ventry(z);h.wp=(en?vpath(h,en):[]).concat(h.gw.map(p=>({x:p.x,y:p.y})))}h.st='go'}
 const WALK=1.6,DUR={loot:[60,90],horse:[60,120],house:[60,120],forge:[60,120],tavern:[60,120],bless:[15,30]};
 const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',tavern:'à la taverne',bless:'bénédiction au sanctuaire'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
@@ -45,7 +45,8 @@ function applyTask(h,tk){
 function goBack(h){
  h.st='back';h.dec=0;h.tk=null;h.tl=[];h.wp=(h.gw||[]).slice().reverse().map(p=>({x:p.x,y:p.y}));
  const m=pickB(NE.V);
- if(h.loot&&m)h.tl.push({k:'loot',b:m.i})
+ if(h.loot&&m)h.tl.push({k:'loot',b:m.i});
+ {const en=h.z&&h.gw&&h.gw.length&&ventry(h.z);if(en)h.wp=h.wp.concat(vpath(en,h.tl.length?door(itB(h.tl[0].b)):base(h)))}
 }
 function townNext(h){
  h.st='town';
@@ -60,10 +61,12 @@ function startRest(h){
 }
 function townTick(h,dt){
  if(h.sub==='walk'||h.sub==='home'){
-  const tg=h.sub==='home'?base(h):door(itB(h.tk.b)),dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=WALK*dt;
+  const fin=h.sub==='home'?base(h):door(itB(h.tk.b)),vk=h.sub==='home'?'h':'b'+h.tk.b;if(h.vk!==vk){h.vk=vk;h.vw=vpath(h,fin)}
+  const vl=!!(h.vw&&h.vw.length),tg=vl?h.vw[0]:fin,dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=WALK*dt;
   if(d<=sp){h.x=tg.x;h.y=tg.y;
-   if(h.sub==='home')startRest(h);
-   else{const n=busy(h.tk.b);h.sub='wait';h.wt=S.t;if(n)h.x+=(n%2?-1:1)*(1.6+1.3*Math.floor((n-1)/2))}
+   if(vl)h.vw.shift();
+   else if(h.sub==='home'){h.vk=null;startRest(h)}
+   else{h.vk=null;const n=busy(h.tk.b);h.sub='wait';h.wt=S.t;if(n)h.x+=(n%2?-1:1)*(1.6+1.3*Math.floor((n-1)/2))}
   }else{h.x+=dx/d*sp;h.y+=dy/d*sp}
  }else if(h.sub==='wait'){
   const i=h.tk.b;

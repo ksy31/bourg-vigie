@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.9 « Village organique & Évolution visuelle »
+
+Version affichée dans les Options : **v2.9.9**
+
+### Ajouté
+- **Chemins internes :** de vrais petits chemins de terre relient la Mairie, chaque bâtiment et chaque route d'entrée du village. Ils contournent les bâtiments et sont recalculés quand on construit.
+- **Les aventuriers marchent sur ces chemins** (départ en quête, retour, déplacements entre bâtiments, retour au repos), au lieu de lignes droites.
+- **Évolution visuelle selon le niveau du PNJ** (3 paliers : niv. 1-2, 3-5, 6 et plus). Palier 2 : soubassement en pierre et faîtage clair ; Marché : étal garni ; Écurie : botte de foin ; Sanctuaire : croix au sommet du clocher. Palier 3 : en plus, boule dorée sur le toit, lanternes à la porte, jardinières aux fenêtres ; Mairie : horloge ; Marché : fanion doré ; Sanctuaire : croix dorée. L'Auberge et les maisons ne changent pas.
+- **Clôtures selon le rang du village :** Hameau (moins de 4 bâtiments) aucune ; Village (moins de 9) barrières en bois ; Bourg (moins de 16) mur de pierre ; Cité muraille haute avec créneaux et tours. Les ouvertures aux routes sont conservées (tours de garde à l'entrée pour la Cité).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Disposition moins régulière :** emplacements écartés de ×1,25 et décalés de façon fixe par bâtiment (environ ±1,2 en largeur, ±1 en hauteur ; la Mairie reste au centre). L'amplitude est limitée pour qu'aucun bâtiment ne se chevauche (vérifié). Le village est donc un peu plus grand.
+- **Le puits** évite les chemins.
+- **Équilibre** (20 jours, 3 parties, 8 aventuriers renouvelés, ancien → nouveau) : quêtes 212-227 → 196-208 (environ −8 %, trajets internes plus longs), morts 28-38 → 24-42 (inchangé). Le temps de marche dans le village (constante `WALK` dans village.js) est le réglage à ajuster si c'est trop lent.
+- Pas de migration de champs ; les trajets en cours se recalculent. Une sauvegarde 2.9.8 se charge et se joue (testé). Les aventuriers en action au village peuvent se replacer légèrement au chargement (les bâtiments ont bougé).
+- Non vérifié : le rendu sur ton téléphone et la fluidité (captures PC contrôlées pour les 4 rangs). Calcul du réseau de chemins : quelques ms, une seule fois par construction.
+- Cache du service worker passé à `bv-v26`. Version affichée dans les Options : v2.9.9.
+
 ## v2.9.8 « Bugs, Équilibrage & Lisibilité »
 
 Version affichée dans les Options : **v2.9.8**
