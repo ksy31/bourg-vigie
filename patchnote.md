@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.0 « Économie d'énergie & Écran noir »
+
+Version affichée dans les Options : **v3.0.0**
+
+### Ajouté
+- **Mode Veille (écran noir) :** petite icône 🌑 en haut à droite de la Carte. Elle affiche un voile noir complet ; la simulation continue (sauvegarde auto, musique et écran allumé inclus). Le texte « Touche pour réveiller » s'efface au bout de 3 s. Un tap réveille (ignoré pendant 0,4 s après l'activation).
+- **Réveil automatique** à la victoire sur le Roi Démon et au game over (pas pour une simple mort).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Thème sombre AMOLED :** fond noir pur (`#000`), cartes `#0b0f10`, bordures `#2a3236`. Thème clair et carte inchangés.
+- **Moins de dessin :** la carte n'est redessinée que sur l'onglet Carte, et plus du tout en Veille. En Veille, l'interface n'est plus rafraîchie non plus ; elle se met à jour au réveil. La simulation, elle, tourne toujours.
+- Pas de migration, gameplay et équilibre inchangés (simulation 20 jours : mêmes ordres de grandeur). Une sauvegarde 2.9.9 se charge et se joue (testé).
+- Testé (Node) : aucun dessin sur un onglet masqué ni en Veille, simulation qui continue en Veille, réveil à la victoire et au game over.
+- Non vérifié : la consommation de batterie réelle, le rendu AMOLED et le tap de réveil sur ton téléphone.
+- Cache du service worker passé à `bv-v27`. Version affichée dans les Options : v3.0.0.
+
 ## v2.9.9 « Village organique & Évolution visuelle »
 
 Version affichée dans les Options : **v2.9.9**

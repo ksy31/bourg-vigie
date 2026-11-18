@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.9 « Village organique & Évolution visuelle »**
+Version actuelle du jeu : **v3.0.0 « Économie d'énergie & Écran noir »**
 
 ## ✅ Déjà intégré
 
@@ -112,10 +112,10 @@ Version actuelle du jeu : **v2.9.9 « Village organique & Évolution visuelle »
 - [x] **Disposition naturelle et chemins internes (les aventuriers y marchent) :** espacer davantage les bâtiments sans les aligner en grille stricte, et tracer de vrais petits chemins reliant les bâtiments entre eux.
 - [x] **Évolution visuelle (selon le niveau du PNJ) et frontières du village :** créer une vraie différence graphique visible sur chaque bâtiment au fil de ses améliorations, et adapter les clôtures du village à son rang (aucune rambarde en hameau, barrières en bois en village, fortifications plus solides ensuite).
 
-## 🔋 v3.0.0 « Économie d'énergie & Écran noir » (prochain) : Optimisation (1/2)
-- [ ] **Économie d'énergie intelligente (sans brider la fluidité) :** conserver un rendu fluide quand la carte est affichée, suspendre le dessin sur les onglets masqués, passer l'interface sombre en noir pur (**AMOLED**) et ajouter un **bouton « Mode Veille (Écran noir) »** qui affiche un voile noir complet pour économiser la batterie tout en laissant tourner la simulation (un tap pour réveiller l'écran).
+## 🔋 v3.0.0 « Économie d'énergie & Écran noir » : Optimisation (1/2)
+- [x] **Économie d'énergie intelligente (sans brider la fluidité) :** conserver un rendu fluide quand la carte est affichée, suspendre le dessin sur les onglets masqués, passer l'interface sombre en noir pur (**AMOLED**) et ajouter un **bouton « Mode Veille (Écran noir) »** qui affiche un voile noir complet pour économiser la batterie tout en laissant tourner la simulation (un tap pour réveiller l'écran).
 
-## 🧭 v3.0.1 « Confort, Suivi & Écran Options » : Ergonomie & UI
+## 🧭 v3.0.1 « Confort, Suivi & Écran Options » (prochain) : Ergonomie & UI
 - [ ] **Suivi caméra et taille fixe des noms :** cliquer sur un nom dans l'onglet Aventuriers ouvre la Carte en suivi caméra sur lui ; garder une taille de texte fixe pour les noms et niveaux quel que soit le zoom.
 - [ ] **Réorganisation de l'écran Options :** ajouter une option dédiée pour **désactiver la musique**, placer les **2 boutons** en bas, suivis du timer de **dernière sauvegarde**, et tout en bas à droite la **roue crantée** suivie du **numéro de version**.
 
