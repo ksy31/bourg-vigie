@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.6 « Lisibilité, Auberge & Veille Nocturne »**
+Version actuelle du jeu : **v2.9.7 « Terres sauvages & Rivières »**
 
 ## ✅ Déjà intégré
 
@@ -97,12 +97,13 @@ Version actuelle du jeu : **v2.9.6 « Lisibilité, Auberge & Veille Nocturne »*
 - [x] **Refonte de l'éclairage nocturne :** supprimer le rond jaune au centre des lampadaires et reporter cet effet lumineux central uniquement sur les **aventuriers** (pas les PNJ) lorsqu'il fait nuit.
 - [x] **Demandes ajoutées :** infobulle au tap supprimée, un tap sur un aventurier le suit ; genres convertis en ♂ / ♀ dans les données (migration automatique).
 
-## 🏞️ v2.9.7 « Terres sauvages & Rivières » (prochain) : Carte, chemins et paysages
-- [ ] **Ajustement de l'échelle et des chemins :** réduire légèrement la taille globale de la carte tout en agrandissant davantage les zones d'environnement, et faire en sorte que les chemins ne se croisent jamais.
-- [ ] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
-- [ ] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
+### v2.9.7 « Terres sauvages & Rivières » : Carte, chemins et paysages
+- [x] **Ajustement de l'échelle et des chemins :** réduire légèrement la taille globale de la carte tout en agrandissant davantage les zones d'environnement, et faire en sorte que les chemins ne se croisent jamais.
+- [x] **Remplissage cohérent des grandes zones :** étendre naturellement les zones naturelles (forêts denses composées de dizaines voire centaines d'arbres, larges massifs montagneux) tout en conservant une échelle réaliste et proportionnée pour les structures bâties (châteaux, ruines).
+- [x] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
+- [x] **Précisions validées :** carte ×2,5, Ruines agrandies aussi, 2 rivières (la seconde peut rejoindre la première), ponts purement visuels.
 
-## 🔋 v2.10.0 « Longue veille » : Optimisation
+## 🔋 v2.10.0 « Longue veille » (prochain) : Optimisation
 - [ ] **Réduction de la consommation de batterie :** mise en cache de la carte (sol, routes, village), rendu limité à environ 20 images/s, rafraîchissement du seul onglet affiché, fond noir pur en mode sombre (écran AMOLED).
 
 ## 📱 Guide APK

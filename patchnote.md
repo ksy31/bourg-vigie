@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.7 « Terres sauvages & Rivières »
+
+Version affichée dans les Options : **v2.9.7**
+
+### Ajouté
+- **Deux rivières** qui naissent dans la Montagne et serpentent vers le bord de la carte, en contournant le village et les zones. La seconde peut rejoindre la première. Leur tracé dépend de la position des zones, donc différent à chaque partie.
+- **Ponts de bois** à chaque endroit où un chemin traverse l'eau (purement visuel : les durées de trajet ne changent pas).
+- **Grandes zones naturelles :** Forêt de 150 à 200 arbres, massif de 9 pics avec sapins au pied, Mine avec trois collines et un champ de rochers, Ruines étendues (15 colonnes, murs bas, arches, mousse), Volcan avec deux cônes secondaires, mares de lave et rochers. La taille des arbres, colonnes et bâtiments ne change pas.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Carte plus petite :** ×2,5 au lieu de ×3 (le village garde sa taille). Les durées de trajet sont inchangées (le Volcan reste à environ 5 min).
+- **Chemins qui ne se croisent jamais** (hors de l'enceinte du village) : ils sont tracés en courbes, avec repli en lignes droites si aucune solution n'existe. Contrôle sur 300 parties : 0 croisement. Un chemin peut encore passer sur le bord du décor d'une autre zone (visuel seulement).
+- **Placement des zones :** il tient compte de leur taille (distance minimale entre zones, marges de la carte).
+- Le puits et les routes se recalculent avec la nouvelle carte. Rivières : 2 sur 2 dans 100 % des parties testées (300) ; ponts : de 0 à 10 selon la partie.
+- **Migration :** positions des zones, aventuriers, croix de mort et trajets en cours converties au chargement (nouvelle version de sauvegarde). Les aventuriers en route finissent leur trajet en ligne droite. Une sauvegarde 2.9.6 se charge et se joue (testé). Les zones d'une ancienne partie sont plus grandes sur la même disposition : de légers chevauchements sont possibles (une nouvelle partie évite ce cas).
+- Non vérifié : fluidité et batterie sur ton téléphone (v2.10.0). Génération du décor en test PC : 0,3 à 0,7 s, une seule fois par partie ou changement de taille d'écran.
+- Cache du service worker passé à `bv-v24`. Version affichée dans les Options : v2.9.7.
+
 ## v2.9.6 « Lisibilité, Auberge & Veille Nocturne »
 
 Version affichée dans les Options : **v2.9.6**
