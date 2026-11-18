@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v2.9.7 « Terres sauvages & Rivières »**
+Version actuelle du jeu : **v2.9.8 « Bugs, Équilibrage & Lisibilité »**
 
 ## ✅ Déjà intégré
 
@@ -103,12 +103,12 @@ Version actuelle du jeu : **v2.9.7 « Terres sauvages & Rivières »**
 - [x] **Rivières et ponts :** générer une ou plusieurs rivières prenant leur source dans les montagnes et serpentant sur la carte, avec la création automatique de **ponts** à chaque endroit où un chemin traverse l'eau.
 - [x] **Précisions validées :** carte ×2,5, Ruines agrandies aussi, 2 rivières (la seconde peut rejoindre la première), ponts purement visuels.
 
-## 🏆 v2.9.8 « Bugs, Équilibrage & Lisibilité » (prochain) : Correctifs essentiels
-- [ ] **Correction de la Gloire et de l'étoile de prestige :** limiter le gain à **1 seul point de Gloire** maximum par victoire sur le Roi Démon (1 amélioration débloquée par run) et corriger la mise à jour visuelle de l'étoile de prestige.
-- [ ] **Danger nocturne accru et baisse du drop de bois :** renforcer nettement la puissance des monstres la nuit pour que s'aventurer de nuit soit un vrai risque mortel, et réduire encore un peu la quantité de **bois** obtenue dans les butins.
-- [ ] **Symbole de difficulté des zones et nom sur les tombes :** remplacer les crânes de difficulté des zones par un autre symbole (ex. : flammes **🔥** ou étoiles **★**) placé **juste sous le nom de la zone**, et afficher le **nom de l'aventurier mort** à côté du crâne sur la carte.
+## 🏆 v2.9.8 « Bugs, Équilibrage & Lisibilité » : Correctifs essentiels
+- [x] **Correction de la Gloire et de l'étoile de prestige :** limiter le gain à **1 seul point de Gloire** maximum par victoire sur le Roi Démon (1 amélioration débloquée par run) et corriger la mise à jour visuelle de l'étoile de prestige.
+- [x] **Danger nocturne accru et baisse du drop de bois :** renforcer nettement la puissance des monstres la nuit pour que s'aventurer de nuit soit un vrai risque mortel, et réduire encore un peu la quantité de **bois** obtenue dans les butins.
+- [x] **Symbole de difficulté des zones et nom sur les tombes :** remplacer les crânes de difficulté des zones par un autre symbole (ex. : flammes **🔥** ou étoiles **★**) placé **juste sous le nom de la zone**, et afficher le **nom de l'aventurier mort** à côté du crâne sur la carte.
 
-## 🏘️ v2.9.9 « Village organique & Évolution visuelle » : Architecture du village
+## 🏘️ v2.9.9 « Village organique & Évolution visuelle » (prochain) : Architecture du village
 - [ ] **Disposition naturelle et chemins internes :** espacer davantage les bâtiments sans les aligner en grille stricte, et tracer de vrais petits chemins reliant les bâtiments entre eux.
 - [ ] **Évolution visuelle et frontières du village :** créer une vraie différence graphique visible sur chaque bâtiment au fil de ses améliorations, et adapter les clôtures du village à son rang (aucune rambarde en hameau, barrières en bois en village, fortifications plus solides ensuite).
 

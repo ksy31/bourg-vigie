@@ -1,6 +1,6 @@
 function ui0(){
  $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
- $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ★${P.glory}`;
+ $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ★${P.runs}`;
  $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
  for(const id in BD){const b=BD[id],c=b.c(S[b.k]||0);$('b'+id).innerHTML=`${b.n} niv. ${(S[b.k]||0)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g}
  

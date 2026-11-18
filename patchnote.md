@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v2.9.8 « Bugs, Équilibrage & Lisibilité »
+
+Version affichée dans les Options : **v2.9.8**
+
+### Ajouté
+- **Nom sur les tombes :** le nom du mort s'affiche sous le 💀 sur la carte (italique pour les noms inventés, taille fixe à l'écran, même durée que la croix).
+- **Adaptation à la nuit :** le choix de zone (`pick`) tient compte du malus nocturne (constante `NM`) : de nuit, les aventuriers évitent les zones qu'ils ne jugent plus sûres.
+
+### Corrigé
+- **Étoile de prestige :** elle affichait la Gloire non dépensée (revenue à 0 dès l'achat d'un bonus). Elle affiche maintenant le nombre de victoires sur le Roi Démon (★1 après la première) et se rafraîchit dès la victoire.
+
+### Modifié
+- **Gloire :** 1 point par victoire sur le Roi Démon (avant : 2 + 1 par tranche de 3 aventuriers).
+- **Nuit plus dangereuse :** puissance des monstres ×1,6 la nuit (avant ×1,25), constante `NM` dans combat.js.
+- **Bois :** butin ×0,6 (avant ×0,75), constante `WOOD`.
+- **Difficulté des zones :** 🔥 (1 à 3) à la place des 💀, placé juste sous le nom de la zone. Le Roi Démon garde 👑, aussi sous son nom.
+- **Simulations** (20 jours, 4 parties, 8 aventuriers renouvelés, ancien → nouveau) : morts 25-64 → 29-96 (très variable, environ +60 % en moyenne) ; bois gagné environ 616 → 559 par partie (comparaison faussée par les morts plus nombreuses).
+- Pas de migration : les anciennes croix de mort sans nom s'affichent sans étiquette. Une sauvegarde 2.9.7 se charge et se joue (testé).
+- Non vérifié : le rendu visuel sur ton écran (placement du 🔥 et des noms de tombes), aucune capture générée.
+- Cache du service worker passé à `bv-v25`. Version affichée dans les Options : v2.9.8.
+
 ## v2.9.7 « Terres sauvages & Rivières »
 
 Version affichée dans les Options : **v2.9.7**

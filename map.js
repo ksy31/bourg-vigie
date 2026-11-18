@@ -328,7 +328,7 @@ function draw(){
  const ZI={'Forêt':'🌲','Mine':'⛏️','Montagne':'🏔️','Ruines':'🏚️','Donjon':'🏰','Volcan':'🌋'};
  for(const z of ZA){
   const q=ZR[z.n]||ZR['Trône du Roi'],ly=(z.y-(ZT[z.n]+1.8)*ZS)*sc,t=z.sn||z.n;cx.font=`700 ${sc*3.4}px Alegreya,serif`;cx.lineJoin='round';cx.lineWidth=sc*.9;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(t,z.x*sc,ly);cx.fillStyle='#fff';cx.fillText(t,z.x*sc,ly);const tw=cx.measureText(t).width;
-  cx.font=`${sc*3}px serif`;cx.fillText(z.boss?'👑':'💀'.repeat(z.vi+1),z.x*sc,(z.y+(q[1]+q[3]+2.6)*ZS)*sc);
+  cx.font=`${sc*3}px serif`;cx.fillText(z.boss?'👑':'🔥'.repeat(z.vi+1),z.x*sc,ly+sc*3.6);
   const bx=z.x*sc-tw/2-sc*3.4,by=ly-sc*1.1;cx.fillStyle='rgba(20,28,22,.72)';cx.beginPath();cx.arc(bx,by,sc*2.7,0,7);cx.fill();cx.fillStyle='#fff';cx.font=`${sc*3}px serif`;cx.fillText(z.boss?'👹':(ZI[z.n]||'⚔️'),bx,by+sc*1)
  }
  drawTown();
@@ -349,7 +349,7 @@ function draw(){
   for(const it of S.pl){const p=slot(it);dot((T.x+p[0]+2)*sc,(T.y+p[1]+3)*sc,sc*.55,sc*4.5)}
   for(const q of S.hero){if(hidn(q))continue;const x=q.x*sc+((q.id%3)-1)*sc*1.5,y=q.y*sc+((q.id%2)-.5)*sc*2,hh=Math.max(sc*11,10/cam.z);cx.globalAlpha=.55*K;cx.drawImage(GLOW,x-hh,y-hh,2*hh,2*hh);cx.globalAlpha=K;cx.fillStyle='#ffd37a';cx.beginPath();cx.arc(x,y-sc*1.2,Math.max(sc*.55,1.6/cam.z),0,7);cx.fill()}
   }}
- for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);cx.globalAlpha=1}
+ for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);if(m.n){const fs=11/cam.z;cx.font=(/\u2060/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineJoin='round';cx.lineWidth=3/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';const tx=sn(m.n),ty=m.y*sc+sc*2+fs*1.1;cx.strokeText(tx,m.x*sc,ty);cx.fillStyle='#fff';cx.fillText(tx,m.x*sc,ty)}cx.globalAlpha=1}
  {cx.globalAlpha=1;cx.textAlign='center';cx.lineJoin='round';const fs=12/cam.z,lab=(t,i,x,y)=>{cx.font=(i?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineWidth=3/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(t,x,y);cx.fillStyle='#fff';cx.fillText(t,x,y)};
   for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it)continue;const p=slot(it),n=S.npc[k];lab(`${sn(n.n)} · niv. ${n.lv}`,/\u2060/.test(n.n),(T.x+p[0]+(k==='V'?5.6:4.8))*sc,(T.y+p[1]+1.1)*sc-sc*4.2-3/cam.z)}
   for(const h of S.hero){if(hidn(h))continue;lab(`${sn(h.name)} · niv. ${h.lv}`,/\u2060/.test(h.name),h.x*sc+((h.id%3)-1)*sc*1.5,h.y*sc+((h.id%2)-.5)*sc*2-sc*(h.hs?6.6:5.2)-(h.st==='fight'?sc*3.2:0)-3/cam.z)}}

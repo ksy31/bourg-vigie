@@ -18,8 +18,8 @@ const cs=c=>[c.w&&c.w+' bois',c.s&&c.s+' pierre',c.g&&c.g+' or'].filter(Boolean)
 const bestRest=()=>S.hero.filter(h=>h.st==='rest').sort((a,b)=>power(b)-power(a))[0];
 function sendBoss(){const h=bestRest();if(!h)return;leave(h,BZ);log(`${h.name} part affronter le Roi Démon…`,'bad');ui()}
 function victory(h){
- const gain=2+Math.floor(S.hero.length/3);
- P.glory+=gain;P.runs++;save();S.speed=0;
+ const gain=1;
+ P.glory+=gain;P.runs++;save();S.speed=0;ui();
  $('pvt').textContent=`${h.name} a terrassé le Roi Démon ! +${gain} Gloire`;
  shop();$('pn').textContent='Nouvelle run';$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;
 }
