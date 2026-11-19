@@ -7,7 +7,7 @@ const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
 const ic=(h,k)=>k==='w'?IC.w[h.c]:IC[k];
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
 const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
-const PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.6;
+const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.6;
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
@@ -58,7 +58,7 @@ function arrive(h){
  if(z.boss)h.en={n:'Roi Démon',d:bossD(),m:3,boss:1};
  else if(h.lv>=5&&Math.random()<.02){h.en={n:'Champion légendaire',d:power(h)*1.2,m:2.2,el:1};log(`Un champion légendaire surgit face à ${h.name} !`,'bad')}
  else{const nt=isNight(),L=nt?z.f:z.e,e=L[R(0,L.length-1)];h.en={n:e[0],d:dz(z)*e[1]*(nt?NM:1),m:e[1],nt}}
- h.st='fight';h.t=z.boss?60:25+R(0,20);log(`⚔️ ${h.name} affronte ${h.en.n} (${z.n || 'Roi'})`);
+ h.st='fight';h.t=z.boss?R(BT0,BT1):Math.round(R(CB0,CB1)*(.9+CBK*h.en.m));log(`⚔️ ${h.name} affronte ${h.en.n} (${z.n || 'Roi'})`);
 }
 function resolve(h){
  const z=h.z,e=h.en,c=CL[h.c];

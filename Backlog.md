@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.1 « Confort, Suivi & Écran Options »**
+Version actuelle du jeu : **v3.0.2 « Rythme des actions & PNJ vivants »**
 
 ## ✅ Déjà intégré
 
@@ -119,11 +119,11 @@ Version actuelle du jeu : **v3.0.1 « Confort, Suivi & Écran Options »**
 - [x] **Suivi caméra et taille fixe des noms :** cliquer sur un nom dans l'onglet Aventuriers ouvre la Carte en suivi caméra sur lui ; garder une taille de texte fixe pour les noms et niveaux quel que soit le zoom.
 - [x] **Réorganisation de l'écran Options :** ajouter une option dédiée pour **désactiver la musique**, placer les **2 boutons** en bas, suivis du timer de **dernière sauvegarde**, et tout en bas à droite la **roue crantée** suivie du **numéro de version**.
 
-## ⚔️ v3.0.2 « Rythme des actions & PNJ vivants » (prochain) : Gameplay & Animations
-- [ ] **Durée des combats et actions au village :** allonger légèrement la durée des combats selon la difficulté du monstre, réduire légèrement le temps d'action à la **Mairie**, et ajouter **20 à 30 secondes** à l'**Auberge** (enregistrement et attribution de chambre par l'aubergiste).
-- [ ] **Animations d'action des PNJ :** ajouter une animation visuelle sur chaque PNJ lorsqu'il agit (accueil, commerce, soin, construction).
+## ⚔️ v3.0.2 « Rythme des actions & PNJ vivants » : Gameplay & Animations
+- [x] **Durée des combats et actions au village :** allonger légèrement la durée des combats selon la difficulté du monstre, réduire légèrement le temps d'action à la **Mairie**, et ajouter **20 à 30 secondes** à l'**Auberge** (enregistrement et attribution de chambre par l'aubergiste).
+- [x] **Animations d'action des PNJ :** ajouter une animation visuelle sur chaque PNJ lorsqu'il agit (accueil, commerce, soin, construction).
 
-## 🏗️ v3.0.3 « Chantiers & Bâtisseurs » : Constructions vivantes
+## 🏗️ v3.0.3 « Chantiers & Bâtisseurs » (prochain) : Constructions vivantes
 - [ ] **Construction progressive des nouveaux bâtiments :** hors des 2 bâtiments de départ, chaque nouvelle construction dure **1 à 2 jours** en jeu avec étapes visuelles (**10 %, 25 %, 50 %, 75 %, 100 %**), réalisée par les **aventuriers au repos** au village.
 - [ ] **Travaux d'amélioration par les PNJ :** toute évolution d'un bâtiment existant passe par une phase de reconstruction durant laquelle les **interactions sont coupées**, effectuée directement par le **PNJ du bâtiment**.
 

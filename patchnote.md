@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.2 « Rythme des actions & PNJ vivants »
+
+Version affichée dans les Options : **v3.0.2**
+
+### Ajouté
+- **Enregistrement à l'Auberge :** un aventurier sans maison passe d'abord 20 à 30 s à l'Auberge (file d'attente comme ailleurs, visible et semi-transparent devant la porte), puis disparaît et commence son repos. Cette durée n'est pas comptée dans le repos. Avec une maison : rien ne change.
+- **Animations des PNJ pendant leur action :** Aubergiste (salut du bras), Forgeron (coups de marteau et étincelles), Tavernier (chope levée), Guérisseur (lueur et étincelles autour de la croix), Palefrenier (fourche), Maire (balancement et lueur du médaillon pendant le dépôt du butin). Le Marchand s'anime aussi pendant les dépôts de butin (choix de ma part, à confirmer). Rien ne tourne en Veille (pas de dessin).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Combats plus longs :** 30 à 45 s multipliées par (0,9 + 0,3 × force du monstre), soit environ 34 à 62 s selon le monstre. **Roi Démon : 2 à 3 min** (avant 1 min). Constantes `CB0`, `CB1`, `CBK`, `BT0`, `BT1` dans combat.js.
+- **Mairie :** dépôt de butin 30 à 45 s (avant 60 à 90 s), constante `DUR.loot` dans village.js. Auberge : `DUR.inn`.
+- **Équilibre** (15 jours, 14 parties, 8 aventuriers renouvelés, ancien → nouveau) : victoires 161 → 184 (environ +14 %), morts 38 → 51, or gagné 940 → 1118 (environ +19 %). La Mairie plus rapide compense plus que les combats longs et l'Auberge ne coûtent. Pour revenir en arrière : remonter `DUR.loot`.
+- Pas de migration : une sauvegarde 3.0.1 se charge et se joue (testé). Les combats en cours gardent leur ancienne durée.
+- Non vérifié : le rendu des animations sur ton téléphone (aucune capture dédiée, seulement un test de dessin sans erreur).
+- Cache du service worker passé à `bv-v29`. Version affichée dans les Options : v3.0.2.
+
 ## v3.0.1 « Confort, Suivi & Écran Options »
 
 Version affichée dans les Options : **v3.0.1**
