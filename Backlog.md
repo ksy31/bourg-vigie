@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.3 « Chantiers & Bâtisseurs »**
+Version actuelle du jeu : **v3.0.4 « Notifications, Lumières & Cache final »**
 
 ## ✅ Déjà intégré
 
@@ -127,11 +127,11 @@ Version actuelle du jeu : **v3.0.3 « Chantiers & Bâtisseurs »**
 - [x] **Construction progressive des nouveaux bâtiments :** hors des 2 bâtiments de départ, chaque nouvelle construction dure **1 à 2 jours** en jeu avec étapes visuelles (**10 %, 25 %, 50 %, 75 %, 100 %**), réalisée par les **aventuriers au repos** au village.
 - [x] **Travaux d'amélioration par les PNJ :** toute évolution d'un bâtiment existant passe par une phase de reconstruction durant laquelle les **interactions sont coupées**, effectuée directement par le **PNJ du bâtiment**.
 
-## ✨ v3.0.4 « Notifications, Lumières & Cache final » (prochain) : Finitions & Optimisation (2/2)
-- [ ] **Notification de combat et message de mort :** remplacer « vs » par l'icône des épées (**⚔️**), afficher le résultat pendant quelques secondes (**écriture verte** si gagné, **écriture rouge** si mort) et **rallonger le message de mort**.
-- [ ] **Équilibrage des lumières et cache final du décor :** réduire la luminosité centrale des lampadaires, intensifier la lumière portée par les **aventuriers** la nuit, rendre le **petit rond jaune du butin porté par l'aventurier** lumineux, et mettre en cache le décor statique généré de la carte et du village.
+## ✨ v3.0.4 « Notifications, Lumières & Cache final » : Finitions & Optimisation (2/2)
+- [x] **Notification de combat et message de mort :** remplacer « vs » par l'icône des épées (**⚔️**), afficher le résultat pendant quelques secondes (**écriture verte** si gagné, **écriture rouge** si mort) et **rallonger le message de mort**.
+- [x] **Équilibrage des lumières et cache final du décor :** réduire la luminosité centrale des lampadaires, intensifier la lumière portée par les **aventuriers** la nuit, rendre le **petit rond jaune du butin porté par l'aventurier** lumineux, et mettre en cache le décor statique généré de la carte et du village.
 
-## 👹 v3.0.5 « Bestiaire illustré » : Monstres modélisés
+## 👹 v3.0.5 « Bestiaire illustré » (prochain) : Monstres modélisés
 - [ ] **Modélisation graphique des monstres :** dessiner les monstres sur la carte dans le même style détaillé que les aventuriers (silhouettes, postures et détails propres à chaque créature).
 
 ## 📱 Guide APK

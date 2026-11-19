@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.4 « Notifications, Lumières & Cache final »
+
+Version affichée dans les Options : **v3.0.4**
+
+### Ajouté
+- **Résultat des combats :** dans l'encadré en haut à gauche, « vs » devient ⚔️ (« Nom ⚔️ Monstre »). Chaque combat terminé reste 5 s en dessous : vert « ✔ Nom a vaincu Monstre », rouge « 💀 Nom est mort face à Monstre », blanc pour une fuite (ajout de ma part). L'encadré s'adapte à la longueur du texte (5 lignes maximum).
+- **Cache des bâtiments du village :** bâtiments, chantiers et accessoires sont dessinés une seule fois puis redessinés seulement quand un bâtiment, son palier, une étape de chantier, une rénovation ou la couleur d'une maison change. Les personnages et PNJ restent animés par-dessus.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Bannière de mort :** affichée 12 s (avant 7 s), texte inchangé.
+- **Lumières :** lueur des lampadaires à 60 % de l'ancienne (même rayon) ; lueur des aventuriers la nuit plus forte (90 % au lieu de 55 %), plus large, avec un point central plus gros ; le rond jaune du butin est dessiné après l'obscurité, plus clair, avec une petite lueur (inchangé le jour).
+- **Temps de dessin** (test Node, village de 10 bâtiments, 300 images) : 4,9 ms → 3,2 ms par image (environ −35 %). Le sol de la carte et du village était déjà en cache ; il est toujours recalculé à chaque lancement (0,3 à 0,7 s), je ne le garde pas entre deux lancements (trop lourd pour le stockage du navigateur).
+- Pas de migration, gameplay inchangé. Une sauvegarde 3.0.3 se charge et se joue (testé).
+- Non vérifié : la consommation de batterie et le rendu des lumières sur ton téléphone (le rond jaune du butin est difficile à voir sur ma capture de test).
+- Cache du service worker passé à `bv-v31`. Version affichée dans les Options : v3.0.4.
+
 ## v3.0.3 « Chantiers & Bâtisseurs »
 
 Version affichée dans les Options : **v3.0.3**
