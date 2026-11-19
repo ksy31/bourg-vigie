@@ -5,7 +5,7 @@ const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'?TL[h.tk.k]:h.sub===
 const itB=i=>S.pl.find(x=>x.i===i);
 const door=it=>{const p=slot(it);return{x:T.x+p[0],y:T.y+p[1]+3.6}};
 const busy=i=>S.hero.filter(q=>q.st==='town'&&q.tk&&q.tk.b===i&&(q.sub==='wait'||q.sub==='do')).length;
-const pickB=e=>S.pl.filter(x=>x.e===e).sort((a,b)=>busy(a.i)-busy(b.i)||a.i-b.i)[0];
+const pickB=e=>S.pl.filter(x=>x.e===e&&!x.cn&&!x.rb).sort((a,b)=>busy(a.i)-busy(b.i)||a.i-b.i)[0];
 const hPrice=x=>Math.round(x.p*Math.max(.5,1-.04*nl('E')));
 const bestHorse=h=>S.horses.filter(x=>x.o==null).sort((a,b)=>b.sp-a.sp).find(x=>h.gold>=hPrice(x));
 const forgeP=h=>{const k=SL[h.c].reduce((a,b)=>h.eq[b]<h.eq[a]?b:a),t=Math.max(1,Math.floor(h.lv/2)+Math.floor(nl('F')/3));return{k,t,p:Math.round(t*14*Math.max(.4,1-.05*nl('F')))}};
@@ -76,3 +76,17 @@ function townTick(h,dt){
   }
  }else if(h.sub==='do'){h.t-=dt;if(h.t<=0){applyTask(h,h.tk);if(h.tk.k==='bless'){h.tk=null;h.sub=null;leave(h,pick(h))}else if(h.tk.k==='inn'){h.tk=null;startRest(h)}else townNext(h)}}
 }
+
+const BMAX=3;
+function bAssign(){const m=new Map(),sites=S.pl.filter(x=>x.cn);if(!sites.length)return m;const rs=S.hero.filter(h=>h.st==='rest').sort((a,b)=>a.id-b.id);let k=0;for(const it of sites)for(let j=0;j<BMAX&&k<rs.length;j++)m.set(rs[k++].id,{it,j});return m}
+function bTick(dt){if(!S.pl.some(x=>x.cn||x.rb))return;const on=new Set();bAssign().forEach(v=>on.add(v.it));
+ for(const it of S.pl.filter(x=>x.cn||x.rb)){if(it.cn){if(on.has(it)){it.cn.t+=dt;if(it.cn.t>=it.cn.T)bDone(it)}}else{it.rb.t+=dt;if(it.rb.t>=it.rb.T)rDone(it)}}}
+function bDone(it){const c=it.cn,b=BD[c.id];it.cn=null;S.cp=S.cp||{};S.cp[b.k]=Math.max(0,(S.cp[b.k]||0)-1);S[b.k]=(S[b.k]||0)+1;
+ if(c.id==='H'){const hh={o:null,p:c.hp};S.hs.splice(S.pl.slice(0,S.pl.indexOf(it)).filter(x=>x.h).length,0,hh);it.h=hh}
+ if(c.id!=='H'&&!S.npc[c.id]){const n0=rname();S.npc[c.id]={n:n0,g:rg(n0),lv:1,xp:0}}
+ if(c.id==='E'){const n=c.l+1;for(let i=0;i<n+1;i++){const sp=Math.min(12,R(n,3+2*n)+Math.floor(nl('E')/2));S.horses.push({sp,p:Math.round(sp*9*(.7+Math.random()*.6)),o:null})}}
+ log(`${b.n} niveau ${c.l+1} terminé : ${b.t}.`,'ok');ui()}
+function rebuild(k){let n=0;S.pl.forEach(it=>{if(it.e!==NE[k]||it.cn||it.rb)return;it.rb={t:0,T:R(300,600)};n++;
+ S.hero.forEach(h=>{if(h.st==='town'&&h.tk&&h.tk.b===it.i&&h.sub!=='do'){h.vk=null;h.tk=null;townNext(h)}})});
+ if(n)log(`${NT[k]} : travaux de rénovation, le bâtiment est fermé.`,'ok')}
+function rDone(it){it.rb=null;log(`${NT[NK[it.e]]||'Bâtiment'} : rénovation terminée.`,'ok');ui()}

@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.3 « Chantiers & Bâtisseurs »
+
+Version affichée dans les Options : **v3.0.3**
+
+### Ajouté
+- **Construction progressive :** chaque nouveau bâtiment (hors Mairie et Auberge de départ) est un chantier de 1 à 2 jours de jeu (durée tirée au hasard). Les ressources sont payées au clic ; les effets (bonus, PNJ, chevaux, maison à vendre) n'arrivent qu'à la fin. Le bâtiment est inutilisable pendant les travaux. Le prix du suivant tient compte des chantiers en cours, et plusieurs chantiers peuvent tourner en parallèle.
+- **Bâtisseurs :** un chantier n'avance que si au moins un aventurier est au repos au village (maison ou Auberge). Jusqu'à 3 aventuriers au repos par chantier apparaissent sur place, un marteau à la main ; plus de monde n'accélère pas. Sans personne au repos, le chantier s'arrête.
+- **Étapes visuelles :** le bâtiment se monte de bas en haut à 10, 25, 50 et 75 %, avec échafaudage et pile de planches, puis apparaît terminé à 100 %. Un « 🔨 % » à taille fixe s'affiche au-dessus.
+- **Rénovation par le PNJ :** quand le PNJ d'un bâtiment passe niveau 3 puis niveau 6 (le moment où l'apparence change, Mairie comprise, pas l'Auberge), tous les bâtiments de ce type sont rénovés pendant 5 à 10 min réelles, gratuitement. Ils sont fermés (échafaudage, PNJ au marteau, « 🔨 % »), gardent l'ancien aspect puis prennent le nouveau. Un aventurier déjà en action finit ; ceux qui marchent ou attendent abandonnent leur tâche ; personne ne choisit ce bâtiment. Mairie fermée : le butin est déposé directement au repos.
+- Messages dans la console au début et à la fin d'un chantier ou d'une rénovation.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Construction :** `build()` lance maintenant un chantier ; les effets sont appliqués par `bDone()` (village.js). Constantes : durée `R(900,1800)` dans `build` (combat.js), `BMAX` (bâtisseurs par chantier) et `R(300,600)` (rénovation) dans village.js.
+- Les bâtiments déjà construits sont considérés terminés. Une sauvegarde 3.0.2 se charge et se joue (testé) ; nouveau champ `S.cp` (chantiers en cours par type) créé au chargement.
+- Testé (Node, 20 jours, 7 bâtiments lancés) : 7 chantiers terminés, 3 rénovations lancées et terminées, rechargement en plein chantier, maisons correctement liées après chargement, chantier à l'arrêt sans aventurier au repos. Capture de contrôle : échafaudages, bâtisseurs et pourcentages.
+- Non vérifié : le rendu sur ton téléphone (les emojis 🔨 n'étaient pas affichés dans ma capture de test) et l'équilibre à long terme (les bâtiments arrivent 1 à 2 jours plus tard qu'avant).
+- Cache du service worker passé à `bv-v30`. Version affichée dans les Options : v3.0.3.
+
 ## v3.0.2 « Rythme des actions & PNJ vivants »
 
 Version affichée dans les Options : **v3.0.2**

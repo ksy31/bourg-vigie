@@ -25,14 +25,13 @@ function recruit(){
  const h={id:S.n++,name:rname(),c:Object.keys(CL)[R(0,3)],eq:{w:0,a:0,b:0,s:0},lv:1,xp:0,gold:0,kills:0,earned:0,hurt:0,bd:S.day,born:S.day-R(18,35)*365,home:null,hs:null,buff:0,bold:Math.random(),col:COL[R(0,COL.length-1)],...base({home:null}),st:'rest',t:1,z:null,last:null,en:null,loot:null};
  h.g=rg(h.name);S.hero.push(h);log(`${h.name} rejoint la ville (${CL[h.c].n}).`,'ok');ui();
 }
+const lvl=b=>(S[b.k]||0)+((S.cp||{})[b.k]||0);
 function build(id){
- const b=BD[id],l=S[b.k]||0,c=b.c(l);
+ const b=BD[id],l=lvl(b),c=b.c(l);
  if(S.w<c.w||S.s<c.s||S.g<c.g)return;
- S.w-=c.w;S.s-=c.s;S.g-=c.g;S[b.k]=l+1;
- const hh=id==='H'?{o:null,p:50+l*15}:null;S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:hh});if(hh)S.hs.push(hh);
- if(id!=='H'&&!S.npc[id]){const n0=rname();S.npc[id]={n:n0,g:rg(n0),lv:1,xp:0}}
- if(id==='E'){const n=l+1;for(let i=0;i<n+1;i++){const sp=Math.min(12,R(n,3+2*n)+Math.floor(nl('E')/2));S.horses.push({sp,p:Math.round(sp*9*(.7+Math.random()*.6)),o:null})}}
- log(`${b.n} niveau ${l+1} construit : ${b.t}.`,'ok');ui();
+ S.w-=c.w;S.s-=c.s;S.g-=c.g;S.cp=S.cp||{};S.cp[b.k]=(S.cp[b.k]||0)+1;
+ S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:null,cn:{id,l,t:0,T:R(900,1800),hp:50+l*15}});
+ log(`Chantier lancé : ${b.n} niveau ${l+1} (1 à 2 jours, des aventuriers au repos y travaillent).`,'ok');ui();
 }
 function pick(h){
  const th=TH0-h.bold*TH1,nm=isNight()?NM:1;
@@ -89,7 +88,7 @@ function resolve(h){
  }
 }
 function tick(dt){
- S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}
+ S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}bTick(dt);
  for(const h of S.hero.slice()){
   if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
   else if(h.st==='town')townTick(h,dt);

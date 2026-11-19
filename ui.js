@@ -3,7 +3,7 @@ function ui0(){
  $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
  $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h · ★${P.runs}`;
  $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
- for(const id in BD){const b=BD[id],c=b.c(S[b.k]||0);$('b'+id).innerHTML=`${b.n} niv. ${(S[b.k]||0)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g}
+ for(const id in BD){const b=BD[id],c=b.c(lvl(b));$('b'+id).innerHTML=`${b.n} niv. ${lvl(b)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g}
  
  const bh=bestRest();$('bB').innerHTML=bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`;$('bB').disabled=!bh||S.hero.some(x=>x.z===BZ&&x.st!=='rest');
  setH('lb',P.lb.length?P.lb.map((x,i)=>`<div class="chip">${i+1}. <b>${x.n}</b> ${CI[x.c]} ${CL[x.c].n} niv. ${x.lv}<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ${x.d} j · tué par ${x.by}<br>${gn(x)||'sans équip.'}</i></div>`).join(''):'<p>Personne n’est encore mort.</p>');
