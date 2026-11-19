@@ -144,4 +144,4 @@ Version actuelle du jeu : **v3.0.4 « Notifications, Lumières & Cache final »*
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
-      
+      +
