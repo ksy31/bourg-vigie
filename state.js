@@ -43,7 +43,7 @@ function rn0(ex,st){const used=new Set(ex);if(st){st.hero.forEach(q=>used.add(q.
  const f=NAMES.filter(n=>!used.has(n));if(f.length)return f[Math.floor(Math.random()*f.length)];
  for(let k=0;k<60;k++){let s='';const n=2+Math.floor(Math.random()*2);for(let i=0;i<n;i++)s+=SYL[Math.floor(Math.random()*SYL.length)];s=s[0].toUpperCase()+s.slice(1);const m='\u2060'+s+'\u2061';if(!used.has(m)&&!NAMES.includes(s))return m}
  let q=1,m;do{m='\u2060Anonyme'+q+'\u2061';q++}while(used.has(m));return m}
-function ui(){ui0();$('ros').innerHTML=fmt($('ros').innerHTML);$('lb').innerHTML=fmt($('lb').innerHTML)}
+function ui(){ui0()}
 let NG={};try{NG=JSON.parse(localStorage.getItem('bvg')||'{}')||{}}catch(e){}
 const gc=v=>v==='M'?'♂':v==='F'?'♀':v;for(const k in NG)NG[k]=gc(NG[k]);
 const rg=n=>NG[sn(n)]||(Math.random()<.5?'♂':'♀'),gd=(x,n)=>NG[sn(n)]||gc(x.g)||'♂';

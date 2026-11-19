@@ -40,7 +40,7 @@ function musicStart(){
   C.resume()
  }catch(e){MU.ctx=null}
 }
-const muL=()=>{$('mu').textContent=MU.mute?'🔇 Musique coupée':'🔊 Musique'};
+const muL=()=>{$('mu').textContent=MU.mute?'🔇':'🔊'};
 function musicToggle(){MU.mute=!MU.mute;try{localStorage.setItem('bvm',MU.mute?'1':'0')}catch(e){}muL();if(MU.mute){if(MU.ctx)MU.ctx.suspend()}else if(MU.ctx)MU.ctx.resume();else musicStart()}
 muL();$('mu').onclick=musicToggle;
 document.addEventListener('pointerup',musicStart);

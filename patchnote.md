@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.1 « Confort, Suivi & Écran Options »
+
+Version affichée dans les Options : **v3.0.1**
+
+### Ajouté
+- **Suivi depuis la liste :** un tap sur un aventurier dans l'onglet Aventuriers ouvre la Carte et le suit (zoom minimum 1,2). Un tap ailleurs arrête le suivi. Pour un aventurier qui se repose à l'Auberge, la caméra se centre sur l'Auberge.
+
+### Corrigé
+- **Noms superposés :** étiquettes un peu plus petites (taille toujours fixe à l'écran) et décalées vers le haut quand elles se chevauchent. Le nom du monstre en combat a aussi une taille fixe et passe dans le même système.
+- **Liste des aventuriers :** elle n'est plus réécrite à chaque rafraîchissement si rien n'a changé (sinon un tap pouvait être perdu).
+
+### Modifié
+- **Écran Options :** la musique est une simple icône 🔊/🔇 en haut (même mémoire `bvm`). Sauvegarder et Nouvelle partie sont en bas, suivis du timer de dernière sauvegarde, puis la roue ⚙️ et le numéro de version en bas à droite, au-dessus de la barre de navigation.
+- Pas de migration, gameplay inchangé. Une sauvegarde 3.0.0 se charge et se joue (testé en Node).
+- Non vérifié : le placement exact du bas de l'écran Options et le tap sur ton téléphone (la hauteur est calculée avec `100dvh - 200px`, à ajuster dans style.css si ça flotte).
+- Cache du service worker passé à `bv-v28`. Version affichée dans les Options : v3.0.1.
+
 ## v3.0.0 « Économie d'énergie & Écran noir »
 
 Version affichée dans les Options : **v3.0.0**

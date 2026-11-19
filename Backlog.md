@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.0 « Économie d'énergie & Écran noir »**
+Version actuelle du jeu : **v3.0.1 « Confort, Suivi & Écran Options »**
 
 ## ✅ Déjà intégré
 
@@ -115,11 +115,11 @@ Version actuelle du jeu : **v3.0.0 « Économie d'énergie & Écran noir »**
 ## 🔋 v3.0.0 « Économie d'énergie & Écran noir » : Optimisation (1/2)
 - [x] **Économie d'énergie intelligente (sans brider la fluidité) :** conserver un rendu fluide quand la carte est affichée, suspendre le dessin sur les onglets masqués, passer l'interface sombre en noir pur (**AMOLED**) et ajouter un **bouton « Mode Veille (Écran noir) »** qui affiche un voile noir complet pour économiser la batterie tout en laissant tourner la simulation (un tap pour réveiller l'écran).
 
-## 🧭 v3.0.1 « Confort, Suivi & Écran Options » (prochain) : Ergonomie & UI
-- [ ] **Suivi caméra et taille fixe des noms :** cliquer sur un nom dans l'onglet Aventuriers ouvre la Carte en suivi caméra sur lui ; garder une taille de texte fixe pour les noms et niveaux quel que soit le zoom.
-- [ ] **Réorganisation de l'écran Options :** ajouter une option dédiée pour **désactiver la musique**, placer les **2 boutons** en bas, suivis du timer de **dernière sauvegarde**, et tout en bas à droite la **roue crantée** suivie du **numéro de version**.
+## 🧭 v3.0.1 « Confort, Suivi & Écran Options » : Ergonomie & UI
+- [x] **Suivi caméra et taille fixe des noms :** cliquer sur un nom dans l'onglet Aventuriers ouvre la Carte en suivi caméra sur lui ; garder une taille de texte fixe pour les noms et niveaux quel que soit le zoom.
+- [x] **Réorganisation de l'écran Options :** ajouter une option dédiée pour **désactiver la musique**, placer les **2 boutons** en bas, suivis du timer de **dernière sauvegarde**, et tout en bas à droite la **roue crantée** suivie du **numéro de version**.
 
-## ⚔️ v3.0.2 « Rythme des actions & PNJ vivants » : Gameplay & Animations
+## ⚔️ v3.0.2 « Rythme des actions & PNJ vivants » (prochain) : Gameplay & Animations
 - [ ] **Durée des combats et actions au village :** allonger légèrement la durée des combats selon la difficulté du monstre, réduire légèrement le temps d'action à la **Mairie**, et ajouter **20 à 30 secondes** à l'**Auberge** (enregistrement et attribution de chambre par l'aubergiste).
 - [ ] **Animations d'action des PNJ :** ajouter une animation visuelle sur chaque PNJ lorsqu'il agit (accueil, commerce, soin, construction).
 

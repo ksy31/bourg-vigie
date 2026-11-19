@@ -386,7 +386,7 @@ function draw(){
  for(const h of [...S.hero].sort((a,b)=>a.y-b.y)){if(hidn(h))continue;
   const x=h.x*sc+((h.id%3)-1)*sc*1.5,y=h.y*sc+((h.id%2)-.5)*sc*2,sl=(h.st==='town'&&h.sub==='do')||h.st==='rest';if(sl)cx.globalAlpha=.5;
   const w=mvOf(h.id,x,y),fg=h.st==='fight',top=h.hs?6.6:5.2;
-  if(fg){cx.fillStyle='rgba(192,57,43,.55)';cx.beginPath();cx.arc(x,y+sc*.8,sc*3.6+Math.sin(S.t*14)*2,0,7);cx.fill();cx.fillStyle='#1d2326';cx.font=`700 ${sc*2.8}px Alegreya,serif`;cx.fillText(h.en.n,x,y-sc*top)}
+  if(fg){cx.fillStyle='rgba(192,57,43,.55)';cx.beginPath();cx.arc(x,y+sc*.8,sc*3.6+Math.sin(S.t*14)*2,0,7);cx.fill();}
   person(x,y,{g:gd(h,h.name),k:h.c,col:h.col,id:h.id,f:w.f,ph:w.ph,mv:w.mv&&!sl,fight:fg,hs:h.hs});
   if(showT&&(h.st==='go'||h.st==='back'||(h.st==='town'&&h.sub==='do'))){cx.fillStyle='#1d2326';cx.font=`700 ${sc*2.6}px Alegreya,serif`;cx.fillText(fm(rem(h)),x,y-sc*(top-1))}
   if(h.loot&&(h.st==='back'||h.st==='town')){cx.fillStyle='#e2b43c';cx.beginPath();cx.arc(x+sc*1.8,y-sc*1.8,sc*.9,0,7);cx.fill()}cx.globalAlpha=1;
@@ -401,9 +401,10 @@ function draw(){
   for(const q of S.hero){if(hidn(q))continue;const x=q.x*sc+((q.id%3)-1)*sc*1.5,y=q.y*sc+((q.id%2)-.5)*sc*2,hh=Math.max(sc*11,10/cam.z);cx.globalAlpha=.55*K;cx.drawImage(GLOW,x-hh,y-hh,2*hh,2*hh);cx.globalAlpha=K;cx.fillStyle='#ffd37a';cx.beginPath();cx.arc(x,y-sc*1.2,Math.max(sc*.55,1.6/cam.z),0,7);cx.fill()}
   }}
  for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);if(m.n){const fs=11/cam.z;cx.font=(/\u2060/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineJoin='round';cx.lineWidth=3/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';const tx=sn(m.n),ty=m.y*sc+sc*2+fs*1.1;cx.strokeText(tx,m.x*sc,ty);cx.fillStyle='#fff';cx.fillText(tx,m.x*sc,ty)}cx.globalAlpha=1}
- {cx.globalAlpha=1;cx.textAlign='center';cx.lineJoin='round';const fs=12/cam.z,lab=(t,i,x,y)=>{cx.font=(i?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineWidth=3/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(t,x,y);cx.fillStyle='#fff';cx.fillText(t,x,y)};
+ {cx.globalAlpha=1;cx.textAlign='center';cx.lineJoin='round';const fs=10/cam.z,LB=[],lab=(t,i,x,y)=>LB.push({t,i,x,y});
   for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it)continue;const p=slot(it),n=S.npc[k];lab(`${sn(n.n)} · niv. ${n.lv}`,/\u2060/.test(n.n),(T.x+p[0]+(k==='V'?5.6:4.8))*sc,(T.y+p[1]+1.1)*sc-sc*4.2-3/cam.z)}
-  for(const h of S.hero){if(hidn(h))continue;lab(`${sn(h.name)} · niv. ${h.lv}`,/\u2060/.test(h.name),h.x*sc+((h.id%3)-1)*sc*1.5,h.y*sc+((h.id%2)-.5)*sc*2-sc*(h.hs?6.6:5.2)-(h.st==='fight'?sc*3.2:0)-3/cam.z)}}
+  for(const h of S.hero){if(hidn(h))continue;lab(`${sn(h.name)} · niv. ${h.lv}`,/\u2060/.test(h.name),h.x*sc+((h.id%3)-1)*sc*1.5,h.y*sc+((h.id%2)-.5)*sc*2-sc*(h.hs?6.6:5.2)-3/cam.z);if(h.st==='fight')lab(h.en.n,0,h.x*sc+((h.id%3)-1)*sc*1.5,h.y*sc+((h.id%2)-.5)*sc*2-sc*(h.hs?6.6:5.2)-3/cam.z+fs*1.15)}
+  const PL=[];LB.sort((a,b)=>a.y-b.y);for(const l of LB){cx.font=(l.i?'italic ':'')+`700 ${fs}px Alegreya,serif`;l.w=cx.measureText(l.t).width+2/cam.z;for(let k=0;k<12&&PL.some(p=>Math.abs(p.x-l.x)<(p.w+l.w)/2&&Math.abs(p.y-l.y)<fs*1.05);k++)l.y-=fs*1.05;PL.push(l);cx.lineWidth=2.5/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(l.t,l.x,l.y);cx.fillStyle='#fff';cx.fillText(l.t,l.x,l.y)}}
  cx.restore();
  {const f=S.hero.filter(h=>h.st==='fight').slice(0,5);if(f.length){const fs=sc*2.9,lh=fs*1.4;cx.fillStyle='rgba(20,24,26,.8)';cx.beginPath();cx.roundRect(6,6,W*.66,lh*(f.length+1)+8,8);cx.fill();cx.textAlign='left';cx.fillStyle='#e2b43c';cx.font=`700 ${fs}px Alegreya,serif`;cx.fillText('Combats en cours',12,6+lh);cx.fillStyle='#fff';cx.font=`${fs}px Alegreya,serif`;f.forEach((h,i)=>{cx.font=(/\u2060/.test(h.name)?'italic ':'')+`${fs}px Alegreya,serif`;cx.fillText(sn(`${h.name} vs ${h.en.n}`),12,6+lh*(i+2))});cx.textAlign='center'}}
  if(S.alert&&performance.now()-S.alert.at<7000){cx.fillStyle='rgba(192,57,43,.95)';cx.beginPath();cx.roundRect(6,H-sc*9-6,W-12,sc*9,8);cx.fill();cx.fillStyle='#fff';cx.font=`700 ${sc*3.6}px Alegreya,serif`;cx.fillText(sn(S.alert.txt),W/2,H-sc*9-6+sc*5.6)}
