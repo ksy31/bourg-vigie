@@ -15,10 +15,10 @@ Version affichée dans les Options : **v3.0.6**
 
 ### Modifié
 - Non dessinés pour l'instant (inchangés) : tout nom contenant « spectr » ou « garou », Champion légendaire, Roi Démon et les autres créatures (3.0.7 et 3.0.8). Le monstre disparaît dès la fin du combat.
-- Code dans `map.js` : `mkind` (nom → famille), `monster` (dessin), appelés dans `draw`. Le nom du monstre reste affiché sous celui du héros.
+- Nouveau fichier `monsters.js` (chargé après `map.js`) : `mkind` (nom → famille), `monster` (dessin), appelés depuis `draw` dans `map.js`. Le nom du monstre reste affiché sous celui du héros.
 - Gameplay et équilibre inchangés (rendu uniquement). Pas de migration : une sauvegarde 3.0.5 se charge et se joue (testé). Test Node : 3 parties de 20 jours avec dessin des combats, sans erreur ; cas nuit + cheval testé.
 - Non vérifié : le rendu et la fluidité sur ton téléphone (captures PC seulement), l'effet sur la batterie.
-- Cache du service worker passé à `bv-v33`. Version affichée dans les Options : v3.0.6.
+- Cache du service worker passé à `bv-v33` (liste mise à jour avec `monsters.js`). Version affichée dans les Options : v3.0.6.
 
 ## v3.0.5 « Correctif cache & mises à jour »
 
