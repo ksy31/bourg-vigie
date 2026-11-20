@@ -130,12 +130,19 @@ Version actuelle du jeu : **v3.0.5 « Correctif cache & mises à jour »**
 ## ✨ v3.0.4 « Notifications, Lumières & Cache final » : Finitions & Optimisation (2/2)
 - [x] **Notification de combat et message de mort :** remplacer « vs » par l'icône des épées (**⚔️**), afficher le résultat pendant quelques secondes (**écriture verte** si gagné, **écriture rouge** si mort) et **rallonger le message de mort**.
 - [x] **Équilibrage des lumières et cache final du décor :** réduire la luminosité centrale des lampadaires, intensifier la lumière portée par les **aventuriers** la nuit, rendre le **petit rond jaune du butin porté par l'aventurier** lumineux, et mettre en cache le décor statique généré de la carte et du village.
-
+      
 ## 🛠️ v3.0.5 « Correctif cache & mises à jour » : Service worker
 - [x] **Mises à jour qui s'appliquent vraiment :** la v3.0.4 restait invisible sur téléphone (ancienne version 3.0.3 affichée). Service worker corrigé : installation sans cache HTTP, réseau d'abord (cache en secours hors ligne).
 
-## 👹 v3.0.6 « Bestiaire illustré » (prochain) : Monstres modélisés
-- [ ] **Modélisation graphique des monstres :** dessiner les monstres sur la carte dans le même style détaillé que les aventuriers (silhouettes, postures et détails propres à chaque créature).
+## 🐺 v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands » (prochain)
+- [ ] **Système de variantes et faune commune (5 modèles) :** variation automatique de couleur et d'échelle par monstre + modélisation détaillée dans le style des aventuriers pour les **quadrupèdes** (loup, renard, sanglier), **ours**, **rat**, **araignée** et **humanoïdes** (bandit, brigand, geôlier, cultiste).
+
+## 🦇 v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants »
+- [ ] **Créatures des terres sauvages et ruines (5 modèles) :** modélisation graphique des **peaux-vertes** (gobelin, kobold, orc), **volants** (chauve-souris, harpie, aigle, condor), **morts-vivants** (squelette, spectre, fantôme, liche), **plantes et esprits** (dryade, arbre) et **ver**.
+
+## 🐉 v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss »
+- [ ] **Créatures majeures et Roi Démon (6 modèles) :** modélisation graphique des **trolls**, **golems et géants**, **élémentaires et salamandres**, **dragons/drakes/wyrms**, **démons** et modèle unique dédié au **Roi Démon**.
+
 
 ## 📱 Guide APK
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
