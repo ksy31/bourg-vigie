@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.4 « Notifications, Lumières & Cache final »**
+Version actuelle du jeu : **v3.0.5 « Correctif cache & mises à jour »**
 
 ## ✅ Déjà intégré
 
@@ -131,7 +131,10 @@ Version actuelle du jeu : **v3.0.4 « Notifications, Lumières & Cache final »*
 - [x] **Notification de combat et message de mort :** remplacer « vs » par l'icône des épées (**⚔️**), afficher le résultat pendant quelques secondes (**écriture verte** si gagné, **écriture rouge** si mort) et **rallonger le message de mort**.
 - [x] **Équilibrage des lumières et cache final du décor :** réduire la luminosité centrale des lampadaires, intensifier la lumière portée par les **aventuriers** la nuit, rendre le **petit rond jaune du butin porté par l'aventurier** lumineux, et mettre en cache le décor statique généré de la carte et du village.
 
-## 👹 v3.0.5 « Bestiaire illustré » (prochain) : Monstres modélisés
+## 🛠️ v3.0.5 « Correctif cache & mises à jour » : Service worker
+- [x] **Mises à jour qui s'appliquent vraiment :** la v3.0.4 restait invisible sur téléphone (ancienne version 3.0.3 affichée). Service worker corrigé : installation sans cache HTTP, réseau d'abord (cache en secours hors ligne).
+
+## 👹 v3.0.6 « Bestiaire illustré » (prochain) : Monstres modélisés
 - [ ] **Modélisation graphique des monstres :** dessiner les monstres sur la carte dans le même style détaillé que les aventuriers (silhouettes, postures et détails propres à chaque créature).
 
 ## 📱 Guide APK

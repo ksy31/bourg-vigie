@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.5 « Correctif cache & mises à jour »
+
+Version affichée dans les Options : **v3.0.5**
+
+### Ajouté
+- Aucun ajout de gameplay dans cette release (contient tout le contenu de la v3.0.4).
+
+### Corrigé
+- **Version 3.0.4 jamais affichée sur téléphone :** le service worker pouvait stocker d'anciens fichiers (cache HTTP de GitHub Pages) sous le nom `bv-v31`, puis servir ce cache en priorité sans jamais se réinstaller (sw.js identique). Installation désormais forcée sans cache HTTP (`cache:'reload'`), et le jeu est chargé réseau d'abord (le cache ne sert qu'hors ligne). Les prochaines mises à jour s'appliqueront dès le rechargement.
+
+### Modifié
+- Cache du service worker passé à `bv-v32` ; le nouveau service worker prend le contrôle immédiatement. Version affichée dans les Options : v3.0.5. Le bestiaire illustré passe en v3.0.6.
+- Pas de migration, gameplay inchangé.
+- Non vérifié : le comportement réel sur ton téléphone (je n'y ai pas accès).
+
 ## v3.0.4 « Notifications, Lumières & Cache final »
 
 Version affichée dans les Options : **v3.0.4**
