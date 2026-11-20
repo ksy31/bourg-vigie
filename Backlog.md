@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands »**
+Version actuelle du jeu : **v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants »**
 
 ## ✅ Déjà intégré
 
@@ -137,10 +137,10 @@ Version actuelle du jeu : **v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigan
 ## ✅ v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands »
 - [x] **Système de variantes et faune commune (5 modèles) :** variation automatique de couleur et d'échelle par monstre + modélisation détaillée dans le style des aventuriers pour les **quadrupèdes** (loup, renard, sanglier, bouquetin), **ours**, **rat**, **araignée** et **humanoïdes** (bandit, brigand, braconnier, geôlier, cultiste, garde-chiourme). Monstre dessiné à droite du héros, détails et taille selon la force du monstre, traits lumineux la nuit.
 
-## 🦇 v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants » (prochain)
-- [ ] **Créatures des terres sauvages et ruines (5 modèles) :** modélisation graphique des **peaux-vertes** (gobelin, kobold, orc), **volants** (chauve-souris, harpie, aigle, condor), **morts-vivants** (squelette, spectre, fantôme, liche), **plantes et esprits** (dryade, arbre) et **ver**.
+## ✅ v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants »
+- [x] **Créatures des terres sauvages et ruines (5 modèles) :** modélisation graphique des **peaux-vertes** (gobelin, kobold, orc), **volants** (chauve-souris, harpie, aigle, condor), **morts-vivants** (squelette, spectre, fantôme, liche), **plantes et esprits** (dryade, arbre) et **ver**.
 
-## 🐉 v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss »
+## 🐉 v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss » (prochain)
 - [ ] **Créatures majeures et Roi Démon (6 modèles) :** modélisation graphique des **trolls**, **golems et géants**, **élémentaires et salamandres**, **dragons/drakes/wyrms**, **démons** et modèle unique dédié au **Roi Démon**.
 
 
@@ -148,6 +148,7 @@ Version actuelle du jeu : **v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigan
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
+- [ ] **Rattrapage du bestiaire (après la 3.0.8) :** monstres encore non dessinés (loups-garous, rats-garous, noms « spectral », Âme en peine, Banshee, Ombre, Gargouille, Griffon, Wyverne, Chimère, Nécromancien, Gardien momifié, etc.).
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
 - [ ] **Widget / arrière-plan :** impossible en web (le jeu se fige écran éteint). Demanderait une réécriture en Android natif (Kotlin) avec service permanent. Non retenu pour l'instant.
 

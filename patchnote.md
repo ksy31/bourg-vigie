@@ -1,5 +1,28 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants »
+
+Version affichée dans les Options : **v3.0.7**
+
+### Ajouté
+- **5 nouvelles familles de monstres dessinées en combat** (même style et mêmes variantes que la 3.0.6 : taille et teinte selon la force `e.d`, cicatrices, crocs, épaulières ou plastron aux seuils, yeux et traits lumineux la nuit) :
+  - **Peaux-vertes :** Gobelin, Gobelin chaman (bâton et coiffe), Kobold (queue, cornes, lance), Orc, Orc maudit (peau bleutée, yeux rouges).
+  - **Volants :** Chauve-souris (et géante), Harpie (et des cimes, plumage bleuté), Aigle nocturne, Condor monstrueux. Ils flottent au-dessus du sol avec battement d'ailes et ombre au sol.
+  - **Morts-vivants :** Squelette, Squelette archer (arc et flèche), Spectre (teintes ardent / des neiges, couronne pour le royal), Fantôme, Liche mineure, Seigneur liche (cape). Spectres, fantômes et esprits sont semi-transparents.
+  - **Plantes et esprits :** Dryade corrompue, Arbre hanté (bras animés, yeux orangés), Esprit des bois.
+  - **Ver :** Ver rampant, Ver des profondeurs, Ver colossal (dorsale hérissée selon la force).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- `monsters.js` uniquement : `mkind` reconnaît les nouveaux noms et le filtre « spectr » devient « spectral » (les « Spectre… » sont dessinés ; Loup spectral, Rat spectral, Chouette spectrale, Meute spectrale, Wyverne spectrale et les « -garou » restent non dessinés).
+- Toujours non dessinés (rattrapage prévu à la fin) : Âme en peine, Banshee, Ombre, Gargouille, Griffon, Wyverne, Chimère, Nécromancien, Gardien momifié, etc., Champion légendaire et Roi Démon (3.0.8).
+- Gameplay et équilibre inchangés (rendu uniquement). Pas de migration : une sauvegarde 3.0.6 se charge et se joue (testé).
+- Test Node : 20 jours de jeu avec dessin régulier des combats (900 images), sauvegarde puis rechargement, chargement d'une sauvegarde 3.0.6 : 0 erreur. Captures de contrôle PC générées (jour et nuit) pour les 25 noms.
+- Non vérifié : le rendu et la fluidité sur ton téléphone, l'effet sur la batterie.
+- Cache du service worker passé à `bv-v34`. Version affichée dans les Options : v3.0.7.
+
 ## v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands »
 
 Version affichée dans les Options : **v3.0.6**
