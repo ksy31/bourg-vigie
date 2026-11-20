@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands »
+
+Version affichée dans les Options : **v3.0.6**
+
+### Ajouté
+- **Monstres dessinés en combat**, à droite du héros (à cheval aussi), face à lui. Le héros se tourne vers eux pendant le combat. Léger balancement, avance et recul au rythme des coups du héros.
+- **7 familles dans le style des aventuriers :** quadrupèdes (Loup, Renard, Sanglier, Bouquetin ; Loup noir et Loup des neiges changent de pelage), Ours, Rat géant, Araignée, humanoïdes (Bandit, Brigand, Braconnier avec arc, Geôlier avec trousseau, Cultiste avec bâton, Garde-chiourme casqué).
+- **Variantes selon la force du monstre (`e.d`) :** plus il est fort, plus il est grand (environ ×0,85 à ×1,25) et plus sa teinte est sombre ; à partir de certains seuils : cicatrices, épaulières, plastron, crocs, griffes, dorsale hérissée. Teinte et taille légèrement différentes d'un combat à l'autre (calculées sans nouveau champ de sauvegarde).
+- **Nuit :** les monstres de nuit ont des yeux et des traits lumineux (cyan), dessinés par-dessus l'obscurité.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- Non dessinés pour l'instant (inchangés) : tout nom contenant « spectr » ou « garou », Champion légendaire, Roi Démon et les autres créatures (3.0.7 et 3.0.8). Le monstre disparaît dès la fin du combat.
+- Code dans `map.js` : `mkind` (nom → famille), `monster` (dessin), appelés dans `draw`. Le nom du monstre reste affiché sous celui du héros.
+- Gameplay et équilibre inchangés (rendu uniquement). Pas de migration : une sauvegarde 3.0.5 se charge et se joue (testé). Test Node : 3 parties de 20 jours avec dessin des combats, sans erreur ; cas nuit + cheval testé.
+- Non vérifié : le rendu et la fluidité sur ton téléphone (captures PC seulement), l'effet sur la batterie.
+- Cache du service worker passé à `bv-v33`. Version affichée dans les Options : v3.0.6.
+
 ## v3.0.5 « Correctif cache & mises à jour »
 
 Version affichée dans les Options : **v3.0.5**

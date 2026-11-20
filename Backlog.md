@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.5 « Correctif cache & mises à jour »**
+Version actuelle du jeu : **v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands »**
 
 ## ✅ Déjà intégré
 
@@ -134,10 +134,10 @@ Version actuelle du jeu : **v3.0.5 « Correctif cache & mises à jour »**
 ## 🛠️ v3.0.5 « Correctif cache & mises à jour » : Service worker
 - [x] **Mises à jour qui s'appliquent vraiment :** la v3.0.4 restait invisible sur téléphone (ancienne version 3.0.3 affichée). Service worker corrigé : installation sans cache HTTP, réseau d'abord (cache en secours hors ligne).
 
-## 🐺 v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands » (prochain)
-- [ ] **Système de variantes et faune commune (5 modèles) :** variation automatique de couleur et d'échelle par monstre + modélisation détaillée dans le style des aventuriers pour les **quadrupèdes** (loup, renard, sanglier), **ours**, **rat**, **araignée** et **humanoïdes** (bandit, brigand, geôlier, cultiste).
+## ✅ v3.0.6 « Bestiaire illustré (1/3) : Faune & Brigands »
+- [x] **Système de variantes et faune commune (5 modèles) :** variation automatique de couleur et d'échelle par monstre + modélisation détaillée dans le style des aventuriers pour les **quadrupèdes** (loup, renard, sanglier, bouquetin), **ours**, **rat**, **araignée** et **humanoïdes** (bandit, brigand, braconnier, geôlier, cultiste, garde-chiourme). Monstre dessiné à droite du héros, détails et taille selon la force du monstre, traits lumineux la nuit.
 
-## 🦇 v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants »
+## 🦇 v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants » (prochain)
 - [ ] **Créatures des terres sauvages et ruines (5 modèles) :** modélisation graphique des **peaux-vertes** (gobelin, kobold, orc), **volants** (chauve-souris, harpie, aigle, condor), **morts-vivants** (squelette, spectre, fantôme, liche), **plantes et esprits** (dryade, arbre) et **ver**.
 
 ## 🐉 v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss »
