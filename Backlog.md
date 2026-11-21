@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.9 « Rattrapage du bestiaire »**
+Version actuelle du jeu : **v3.1.0 « Finitions UI, PNJ & Ressources »**
 
 ## ✅ Déjà intégré
 
@@ -147,12 +147,12 @@ Version actuelle du jeu : **v3.0.9 « Rattrapage du bestiaire »**
 ## ✅ v3.0.9 « Rattrapage du bestiaire »
 - [x] **Monstres encore non dessinés :** loups-garous, rats-garous, noms « spectral », Âme en peine, Banshee, Ombre, Gargouille, Griffon, Wyverne, Chimère, Hydre, Basilic, Nécromancien, Gardien momifié, Titan de cendre, Âme de magma, Chevalier maudit / de la mort, Ogre lunaire, Champion légendaire, etc.
 
-## 🔧 v3.1.0 « Finitions UI, PNJ & Ressources » (prochain)
-- [ ] **Correction de l'animation des PNJ :** corriger le mouvement du bras lors des animations d'action afin qu'il reste bien attaché au corps.
-- [ ] **Disposition de l'écran Options :** remonter les 2 boutons et le timer de dernière sauvegarde, et placer la roue crantée juste au-dessus du numéro de version en bas à droite.
-- [ ] **Rééquilibrage bois et pierre :** réduire encore la quantité de **bois** obtenue dans les butins, et ajouter un **faible taux de drop de pierre** dès la première zone.
+## ✅ v3.1.0 « Finitions UI, PNJ & Ressources »
+- [x] **Correction de l'animation des PNJ :** le bras pivote autour de l'épaule et les objets tenus suivent la main.
+- [x] **Disposition de l'écran Options :** boutons et timer sous l'icône 🔊, roue crantée au-dessus du numéro de version en bas à droite.
+- [x] **Rééquilibrage bois et pierre :** bois ×0,45 ; 10 % de chance de 1 à 2 pierres par victoire en Forêt.
 
-## 🛣️ v3.1.1 « Routes & Ponts de la carte »
+## 🛣️ v3.1.1 « Routes & Ponts de la carte » (prochain)
 - [ ] **Chemins fusionnés et correction des ponts :** faire en sorte que les chemins de la carte puissent se regrouper puis se séparer proprement au lieu de se superposer, et corriger les erreurs de génération/placement des **ponts**.
 
 ## 🏘️ v3.1.2 « Allées du village »

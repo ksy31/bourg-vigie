@@ -8,7 +8,7 @@ const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
 const ic=(h,k)=>k==='w'?IC.w[h.c]:IC[k];
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
 const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
-const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.6;
+const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
@@ -66,7 +66,7 @@ function resolve(h){
  const w=win(h,e.d),sv=e.boss?.05:Math.min(.4,(1-c.die)*FLEE*(e.el?2:1)*(1+Math.min(.5,(h.eq.a+h.eq.s)*.06))+(h.bless?.02*S.spa+.01*nl('S'):0)),pd=Math.max(DFLOOR,(1-w)*(1-sv)),pw=Math.min(w,1-pd),rr=Math.random();
  if(rr<pw){
   h.loot={g:0,w:0,s:0,gear:0};
-  if(z.n==='Forêt'){h.loot.w=R(3,6);h.loot.g=R(2,6)}
+  if(z.n==='Forêt'){h.loot.w=R(3,6);h.loot.g=R(2,6);if(Math.random()<.1)h.loot.s=R(1,2)}
   if(z.n==='Mine'){h.loot.s=R(3,6);h.loot.g=R(6,12)}
   if(z.n==='Ruines'){h.loot.g=R(10,18);h.loot.s=R(1,3);if(Math.random()<.35)h.loot.gear=1}
   if(z.n==='Donjon'){h.loot.g=R(25,45);h.loot.w=3;h.loot.s=3;if(Math.random()<.6)h.loot.gear=1}

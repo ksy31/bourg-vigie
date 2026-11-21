@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.0 « Finitions UI, PNJ & Ressources »
+
+Version affichée dans les Options : **v3.1.0**
+
+### Ajouté
+- **Pierre dès la Forêt :** 10 % de chance de gagner 1 à 2 pierres par victoire en Forêt (tirage avant les multiplicateurs : Rôdeur, nuit, coup de chance). Les autres zones sont inchangées.
+
+### Corrigé
+- **Bras des PNJ :** pendant les animations d'action, le bras pivote maintenant autour de l'épaule au lieu de se décoller du corps. La chope du Tavernier, le marteau du Forgeron (et des rénovations), la fourche du Palefrenier et le sac du Marchand suivent la main.
+- **Écran Options :** les 2 boutons et le timer de sauvegarde sont remontés juste sous l'icône 🔊 ; la roue ⚙️ est empilée au-dessus du numéro de version, en bas à droite.
+
+### Modifié
+- **Bois :** butin ×0,45 (avant ×0,6), constante `WOOD` dans combat.js.
+- **Équilibre** (80 parties, 15 jours, 8 aventuriers, ancien → nouveau) : bois gagné environ 49 → 33 par partie, pierre 12 → 15 ; quêtes 20 → 18 et or 115 → 106 : dans le bruit de la simulation (même version avec 0 % de pierre : 17 quêtes, 106 or). Morts inchangées (3,7 → 3,4).
+- Pas de migration : une sauvegarde 3.0.9 se charge et se joue (testé).
+- Non vérifié : le rendu de l'écran Options sur ton téléphone (modifié dans index.html et style.css, pas de capture), la fluidité. Capture PC des bras vérifiée (Aubergiste, Tavernier, Forgeron, Palefrenier).
+- Cache du service worker passé à `bv-v37`. Version affichée dans les Options : v3.1.0.
+
 ## v3.0.9 « Rattrapage du bestiaire »
 
 Version affichée dans les Options : **v3.0.9**

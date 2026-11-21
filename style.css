@@ -56,5 +56,5 @@ html,body{touch-action:manipulation}
 #sl{position:fixed;inset:0;background:#000;z-index:20;display:flex;align-items:center;justify-content:center;color:#6b767b;font-size:14px}
 #sl[hidden]{display:none}
 #slt{transition:opacity 1s}#slt.off{opacity:0}
-#to.on{display:flex;flex-direction:column;min-height:calc(100dvh - 200px)}#ob{margin-top:auto}.hc{cursor:pointer}
+#to.on{display:flex;flex-direction:column;min-height:calc(100dvh - 200px)}#ob{margin-top:10px}#ov{margin-top:auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}.hc{cursor:pointer}
 #mu{min-height:32px;padding:2px 10px;font-size:16px;background:var(--card);color:var(--fg);border:1px solid var(--line);flex:none}
