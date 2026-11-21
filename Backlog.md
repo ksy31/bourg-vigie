@@ -158,7 +158,11 @@ Version actuelle du jeu : **v3.1.2 « Allées du village »**
 ## ✅ v3.1.2 « Allées du village »
 - [x] **Refonte des chemins internes du village :** liaisons entre bâtiments voisins (boucles), anneau intérieur interrompu, tracé plus doux.
 
-## 🌦️ v3.1.3 « Météo dynamique » (prochain)
+## 🛠️ v3.1.3 « Correctif Chantiers, Icône & Chemins » (prochain)
+- [ ] **Affectation unique aux chantiers (hors repos) :** assigner **un seul aventurier** à la construction d'un bâtiment en tant qu'action dédiée (qui ne compte pas comme du repos à l'Auberge), afin d'éviter la téléportation des aventuriers au repos et l'abandon brutal du chantier.
+- [ ] **Icône d'armure et jonction des chemins :** remplacer l'icône de l'armure (actuellement proche d'une veste de chantier) par une armure médiévale, et supprimer l'effet de superposition visuel à l'embranchement des routes.
+
+## 🌦️ v3.1.4 « Météo dynamique »
 - [ ] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
 
 ## 📱 Guide APK
@@ -171,4 +175,4 @@ Version actuelle du jeu : **v3.1.2 « Allées du village »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
-      
+- [ ] 
