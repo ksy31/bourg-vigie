@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss »**
+Version actuelle du jeu : **v3.0.9 « Rattrapage du bestiaire »**
 
 ## ✅ Déjà intégré
 
@@ -144,8 +144,8 @@ Version actuelle du jeu : **v3.0.8 « Bestiaire illustré (3/3) : Colosses, Drag
 - [x] **Créatures majeures et Roi Démon (6 modèles) :** modélisation graphique des **trolls**, **golems et géants**, **élémentaires et salamandres**, **dragons/drakes/wyrms**, **démons** et modèle unique dédié au **Roi Démon**.
 
 
-## 🐲 v3.0.9 « Rattrapage du bestiaire » (prochain)
-- [ ] **Monstres encore non dessinés :** loups-garous, rats-garous, noms « spectral », Âme en peine, Banshee, Ombre, Gargouille, Griffon, Wyverne, Chimère, Hydre, Basilic, Nécromancien, Gardien momifié, Titan de cendre, Âme de magma, Chevalier maudit / de la mort, Ogre lunaire, Champion légendaire, etc.
+## ✅ v3.0.9 « Rattrapage du bestiaire »
+- [x] **Monstres encore non dessinés :** loups-garous, rats-garous, noms « spectral », Âme en peine, Banshee, Ombre, Gargouille, Griffon, Wyverne, Chimère, Hydre, Basilic, Nécromancien, Gardien momifié, Titan de cendre, Âme de magma, Chevalier maudit / de la mort, Ogre lunaire, Champion légendaire, etc.
 
 ## 📱 Guide APK
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.

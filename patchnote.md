@@ -1,5 +1,30 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.9 « Rattrapage du bestiaire »
+
+Version affichée dans les Options : **v3.0.9**
+
+### Ajouté
+- **Les 35 monstres restants sont dessinés en combat** (même style et mêmes variantes que 3.0.6 à 3.0.8) :
+  - **Ombres et âmes :** Ombre, Ombre rôdeuse, Ombre sylvestre (feuillage) ; Âme en peine (chaîne), Banshee (cheveux, bouche ouverte), Âme de magma.
+  - **Spectraux :** Loup, Rat, Meute, Chouette et Wyverne spectraux reprennent le modèle de base, teinté de bleu et semi-transparent (la chouette utilise le modèle d'oiseau).
+  - **Garous :** Loup-garou, Rat-garou (plus petit, queue rose).
+  - **Yétis :** Yéti, Yéti sombre. **Ailés :** Griffon, Wyverne, Gargouille, Gargouille royale (couronne).
+  - **Chimères :** Chimère, des cimes (givre), ardente (souffle de flammes). **Reptiles :** Basilic (crête, regard vert), Hydre (3 têtes), Hydre à sept têtes.
+  - **Armures :** Chevalier maudit, Chevalier de la mort (cape), Armure hantée, Garde royal hanté, Gardien momifié (bandelettes).
+  - **Mages :** Nécromancien, Prêtre déchu, Sorcière des bois ; **grands :** Ogre lunaire, Titan de cendre (fissures de braise, plus grand).
+- **Champion légendaire :** humanoïde en armure toute dorée (plumet, bouclier, épée, aura dorée et étincelles).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- `monsters.js` uniquement (`mkind` : le filtre « spectral / garou » est remplacé par les vrais modèles ; `monster` : teinte spectrale, tailles et décalage des gros monstres).
+- Tous les noms de monstres du jeu ont maintenant un dessin. Gameplay et équilibre inchangés (rendu uniquement). Pas de migration : une sauvegarde 3.0.8 (ou 3.0.7) se charge et se joue (testé avec une sauvegarde 3.0.7).
+- Test Node : 20 jours de jeu avec dessin régulier (7 200 images), les 38 cas (tous les noms de zones jour et nuit, Champion, Roi Démon) dessinés un par un, sauvegarde puis rechargement : 0 erreur. Captures de contrôle PC générées pour les 36 nouveaux noms.
+- Non vérifié : le rendu et la fluidité sur ton téléphone, l'effet sur la batterie, le rendu de la nuit sur les nouveaux modèles (capture nuit générée mais non relue en détail).
+- Cache du service worker passé à `bv-v36`. Version affichée dans les Options : v3.0.9.
+
 ## v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss »
 
 Version affichée dans les Options : **v3.0.8**
