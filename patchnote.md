@@ -1,5 +1,29 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.0.8 « Bestiaire illustré (3/3) : Colosses, Dragons & Boss »
+
+Version affichée dans les Options : **v3.0.8**
+
+### Ajouté
+- **6 nouveaux modèles dessinés en combat** (même style et mêmes variantes que 3.0.6/3.0.7 : taille et teinte selon la force `e.d`, détails aux seuils, yeux et traits lumineux cyan la nuit) :
+  - **Trolls :** Troll (gourdin), Troll des ombres (peau violacée).
+  - **Golems et géants :** Golem de roche / de cristal (pointes) / noir / de lave (fissures) / d'obsidienne ; Géant des pierres (rocher), Géant des tempêtes (éclair).
+  - **Élémentaires et salamandres :** Salamandre, Salamandre géante, Salamandre noire, Lézard de feu ; Élémentaire de braise / de feu (flammes) / de magma (croûte et lave).
+  - **Dragons :** Dragonnet, Wyrm noir (sans ailes), Drake nocturne / infernal, Dragon ancien, Dragon des cendres. Souffle de flammes semi-transparent pour infernal, ancien et cendres.
+  - **Démons :** Démon, Démon mineur (petit, trident), Archidémon (grand, quatre cornes), Succube, Incube.
+  - **Roi Démon :** modèle unique, nettement plus grand (cornes, couronne, grandes ailes, épée, aura rouge pulsante).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- `monsters.js` uniquement : `mkind` reconnaît les nouveaux noms ; les gros monstres sont décalés vers la droite pour ne pas recouvrir le héros (`monster`).
+- Toujours non dessinés (rattrapage prévu) : Chimère, Griffon, Wyverne, Hydre, Basilic, Titan de cendre, Âme de magma, Chevalier maudit / de la mort, Ogre lunaire, Âme en peine, Banshee, Ombre, Gargouille, Nécromancien, Gardien momifié, noms « spectral » et « -garou », Champion légendaire, etc.
+- Gameplay et équilibre inchangés (rendu uniquement). Pas de migration : une sauvegarde 3.0.7 se charge et se joue (testé).
+- Test Node : 20 jours de jeu avec dessin régulier (7 200 images), les 36 noms des zones (jour et nuit) plus le Roi Démon dessinés un par un, sauvegarde puis rechargement, chargement d'une sauvegarde 3.0.7 : 0 erreur. Captures de contrôle PC (jour et nuit) vérifiées.
+- Non vérifié : le rendu et la fluidité sur ton téléphone, l'effet sur la batterie, et le cadrage du Roi Démon à l'écran (il est grand).
+- Cache du service worker passé à `bv-v35`. Version affichée dans les Options : v3.0.8.
+
 ## v3.0.7 « Bestiaire illustré (2/3) : Peaux-vertes, Volants & Morts-vivants »
 
 Version affichée dans les Options : **v3.0.7**
