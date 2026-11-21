@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.3 « Correctif Chantiers, Icône & Chemins »
+
+Version affichée dans les Options : **v3.1.3**
+
+### Ajouté
+- **Bâtisseur dédié :** chaque chantier est confié à **un seul aventurier**. Quand un aventurier finit son repos et qu'un chantier n'a pas de bâtisseur, il y va au lieu de partir en quête : il marche jusqu'au chantier (par les allées), y travaille au marteau jusqu'à la fin, puis rentre se reposer. Il n'est plus « au repos » pendant ce temps (il apparaît dans la liste : « au chantier »).
+- **Icône d'armure dessinée** (plastron avec épaulières, SVG intégré) dans la liste des aventuriers, à la place de 🦺.
+
+### Corrigé
+- **Téléportation et abandon des chantiers :** plus d'aventuriers au repos affichés sur le chantier, donc plus de départ en quête en plein travail ni de chantier qui s'arrête brutalement.
+- **Embranchement des routes :** le contour sombre de la branche ne se superpose plus à la route commune ; tous les contours sont dessinés d'abord, puis les fonds, puis les détails.
+
+### Modifié
+- Message de lancement d'un chantier : « un aventurier y travaille ». `BMAX` supprimée ; `bAssign` (village.js) ne désigne plus que les bâtisseurs arrivés sur place.
+- Fichiers : `village.js` (`needB`, `bAssign`, `bDone`, `townTick`), `combat.js` (`tick`, `IC.a`), `map.js` (`buildGround`), `save.js` (garde au chargement).
+- **Migration :** nouvel état d'aventurier `tk.k='build'` créé en cours de partie, rien à convertir. Une sauvegarde 3.1.2 avec 5 chantiers en cours se charge et se joue (testé). Garde au chargement : un bâtisseur dont le chantier n'existe plus rentre chez lui.
+- **Équilibre** (6 parties, 15 jours, 8 aventuriers, 5 chantiers, ancien → nouveau) : quêtes 236 → 227, or 1334 → 1572, morts 53 → 39, chantiers terminés 5 → 5 : dans le bruit de la simulation. Un chantier occupe un aventurier de plus qu'avant pendant 1 à 2 jours ; durée des chantiers inchangée (`R(900,1800)`).
+- Testé (Node) : jamais plus d'un bâtisseur par chantier, aucun saut de position, aucun bâtisseur bloqué, rechargement en plein chantier. Captures PC de l'embranchement et de l'icône vérifiées.
+- Non vérifié : le rendu sur ton téléphone (taille de l'icône dans la liste, embranchement), la fluidité. Avec peu d'aventuriers et beaucoup de chantiers, presque tous peuvent devenir bâtisseurs (pas de plafond ajouté).
+- Cache du service worker passé à `bv-v40`. Version affichée dans les Options : v3.1.3.
+
 ## v3.1.2 « Allées du village »
 
 Version affichée dans les Options : **v3.1.2**

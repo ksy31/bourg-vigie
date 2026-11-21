@@ -2,7 +2,7 @@ const CR=[],crp=(t,c)=>{CR.push({t,c,at:performance.now()});if(CR.length>8)CR.sh
 const cap=()=>1+P.h+2*S.inn+S.houses;
 const rcost=()=>20+S.hero.length*8;
 const PN={w:{G:'Épée',V:'Dague',M:'Bâton',R:'Arc'},a:'Armure',b:'Bottes',s:'Bouclier'};
-const IC={w:{G:'⚔️',V:'🗡️',M:'🪄',R:'🏹'},a:'🦺',b:'👢',s:'🛡️'};
+const IC={w:{G:'⚔️',V:'🗡️',M:'🪄',R:'🏹'},a:'<svg viewBox="0 0 16 16" width="1em" height="1em" style="vertical-align:-.15em" aria-hidden="true"><path d="M4.4 3.4Q8 5.6 11.6 3.4L12.2 8Q12.2 10.6 11 11.8L12.2 14.4H3.8L5 11.8Q3.8 10.6 3.8 8Z" fill="#b4bdc7" stroke="#2f3640" stroke-width=".9" stroke-linejoin="round"/><ellipse cx="3.1" cy="4.4" rx="2.2" ry="1.8" fill="#8c97a3" stroke="#2f3640" stroke-width=".9" stroke-linejoin="round"/><ellipse cx="12.9" cy="4.4" rx="2.2" ry="1.8" fill="#8c97a3" stroke="#2f3640" stroke-width=".9" stroke-linejoin="round"/><path d="M8 5.6V12.2M4.9 8.3Q8 10 11.1 8.3M5 12.3H11" stroke="#eef2f6" stroke-width=".7" fill="none"/></svg>',b:'👢',s:'🛡️'};
 const SL={G:['w','a','b','s'],V:['w','a','b'],M:['w','a','b'],R:['w','a','b']};
 const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
 const ic=(h,k)=>k==='w'?IC.w[h.c]:IC[k];
@@ -32,7 +32,7 @@ function build(id){
  if(S.w<c.w||S.s<c.s||S.g<c.g)return;
  S.w-=c.w;S.s-=c.s;S.g-=c.g;S.cp=S.cp||{};S.cp[b.k]=(S.cp[b.k]||0)+1;
  S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:null,cn:{id,l,t:0,T:R(900,1800),hp:50+l*15}});
- log(`Chantier lancé : ${b.n} niveau ${l+1} (1 à 2 jours, des aventuriers au repos y travaillent).`,'ok');ui();
+ log(`Chantier lancé : ${b.n} niveau ${l+1} (1 à 2 jours, un aventurier y travaille).`,'ok');ui();
 }
 function pick(h){
  const th=TH0-h.bold*TH1,nm=isNight()?NM:1;
@@ -91,7 +91,7 @@ function resolve(h){
 function tick(dt){
  S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}bTick(dt);
  for(const h of S.hero.slice()){
-  if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
+  if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const bs=needB();if(bs){h.tk={k:'build',b:bs.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
   else if(h.st==='town')townTick(h,dt);
   else if(h.st==='go'||h.st==='back'){
    const tg=h.wp&&h.wp.length?h.wp[0]:(h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h)));
