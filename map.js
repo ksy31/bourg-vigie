@@ -19,7 +19,7 @@ const VN={k:'',g:null};
 function vnet(){const k=S.pl.map(i=>i.i+i.e).join(',')+JSON.stringify(S.zp);if(VN.k===k)return VN.g;VN.k=k;try{VN.g=buildNet()}catch(e){VN.g=null}return VN.g}
 function buildNet(){
  const {u,rx,ry}=vdim(),x0=Math.floor(T.x-rx-6),y0=Math.floor(T.y-ry-6),NX=Math.ceil(2*rx+12)+2,NY=Math.ceil(2*ry+12)+2,N=NX*NY,blk=new Uint8Array(N),Rr=rng(7700),nz=new Float32Array(N);
- for(let k=0;k<N;k++)nz[k]=Rr()*.6;
+ const p1=Rr()*6.28,p2=Rr()*6.28;for(let k=0;k<N;k++){const i=k%NX,j=(k/NX)|0;nz[k]=.5*(.5+.5*Math.sin(i*.28+p1)*Math.cos(j*.24+p2))+Rr()*.12}
  const nodes=[];
  for(const [p,e,it] of u.slice().sort((a,b)=>a[2].i-b[2].i)){const k=NK[e]||'H',hw=(k==='V'?4.2:k==='E'?3.8:k==='A'?4.4:3.2)+.9,tp=k==='A'?7.4:4.6,bx=T.x+p[0],by=T.y+p[1];
   for(let j=Math.floor(by-tp-y0);j<=Math.ceil(by+2.9-y0);j++)for(let i=Math.floor(bx-hw-x0);i<=Math.ceil(bx+hw-x0);i++){const x=x0+i,y=y0+j;if(x>=bx-hw&&x<=bx+hw&&y>=by-tp&&y<=by+2.9&&i>=0&&j>=0&&i<NX&&j<NY)blk[j*NX+i]=1}
@@ -32,11 +32,25 @@ function buildNet(){
  for(const id of ord){const c=cs[id];if(path[c])continue;
   const r=dij(NX,NY,c,q=>path[q]===1,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.25:1));
   if(!r)continue;r.forEach(q=>{path[q]=1});lines.push(r.map(q=>[x0+q%NX,y0+((q/NX)|0)]));if(nodes[id][2]===2)ent[nodes[id][3]]={x:x0+r[0]%NX,y:y0+((r[0]/NX)|0)}}
+ const bn=[];nodes.forEach((n,i)=>{if(n[2]===1)bn.push(i)});
+ for(const a of bn){let bi=-1,bd=1e9;for(const b of bn){if(b===a)continue;const d=Math.hypot(nodes[a][0]-nodes[b][0],nodes[a][1]-nodes[b][1]);if(d<bd){bd=d;bi=b}}
+  if(bi<0||bd>18)continue;const ca=cs[a],cb=cs[bi];if(!path[ca]||!path[cb])continue;
+  const nr=dij(NX,NY,ca,q=>q===cb,q=>path[q],()=>1);if(nr&&nr.length<bd*1.5+4)continue;
+  const r=dij(NX,NY,ca,q=>q===cb,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.7:1));
+  if(!r)continue;r.forEach(q=>{if(!path[q])path[q]=1});lines.push(r.map(q=>[x0+q%NX,y0+((q/NX)|0)]))}
+ {const rr=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),fx=(rx-3.4)/rx,fy=(ry-3.2)/ry,sg=[],near=(x,y)=>nodes.some(n=>Math.hypot(n[0]-x,n[1]-y)<(n[2]===1?10:13)),M=Math.max(60,Math.round(Math.PI*(rx+ry))),ph=Rr()*6.28;let cur=[];
+  for(let s=0;s<=M;s++){const t=s/M*6.2832,r=rr(t)*(1+.015*Math.sin(2*t+ph)),x=T.x+Math.cos(t)*rx*fx*r,y=T.y+Math.sin(t)*ry*fy*r,i=Math.round(x-x0),j=Math.round(y-y0);
+   if(i>=0&&j>=0&&i<NX&&j<NY&&!blk[j*NX+i]&&near(x,y)){const c=j*NX+i,l=cur.length?cur[cur.length-1]:-1;if(l<0)cur.push(c);else if(c!==l){let a=l%NX,b=(l/NX)|0;const ti=c%NX,tj=(c/NX)|0;while(a!==ti||b!==tj){a+=Math.sign(ti-a);b+=Math.sign(tj-b);cur.push(b*NX+a)}}}
+   else{if(cur.length>3)sg.push(cur);cur=[]}}
+  if(cur.length>3)sg.push(cur);
+  for(const S of sg){if(S.some(q=>blk[q]))continue;S.forEach(q=>{if(!path[q])path[q]=2});lines.push(S.map(q=>[x0+q%NX,y0+((q/NX)|0)]));
+   const r=dij(NX,NY,S[S.length>>1],q=>path[q]===1,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.25:1));
+   if(r){r.forEach(q=>{if(!path[q])path[q]=1});lines.push(r.map(q=>[x0+q%NX,y0+((q/NX)|0)]))}}}
  for(const id in nodes)if(nodes[id][2]===2&&!ent[nodes[id][3]])ent[nodes[id][3]]={x:x0+cs[id]%NX,y:y0+((cs[id]/NX)|0)};
  const cl=[],pts=[];for(let q=0;q<N;q++)if(path[q]){cl.push(q);pts.push([x0+q%NX,y0+((q/NX)|0)])}
  return{x0,y0,NX,NY,path,cl,pts,lines,ent,blk}}
 function drawNet(g,n,s){g.lineCap='round';g.lineJoin='round';
- for(const L of n.lines){if(L.length<2)continue;const P=L.filter((q,k)=>k%2===0||k===L.length-1);
+ for(const L of n.lines){if(L.length<2)continue;const Q=L.map((q,k)=>k&&k<L.length-1?[(L[k-1][0]+2*q[0]+L[k+1][0])/4,(L[k-1][1]+2*q[1]+L[k+1][1])/4]:q),P=Q.filter((q,k)=>k%2===0||k===L.length-1);
   for(const [w,c] of [[2.7,'rgba(95,85,65,.6)'],[2.1,'#b09b68'],[.8,'rgba(240,230,196,.55)']]){g.strokeStyle=c;g.lineWidth=w*s*.9;g.beginPath();g.moveTo(P[0][0]*s,P[0][1]*s);
    for(let k=1;k<P.length-1;k++)g.quadraticCurveTo(P[k][0]*s,P[k][1]*s,(P[k][0]+P[k+1][0])/2*s,(P[k][1]+P[k+1][1])/2*s);
    g.lineTo(P[P.length-1][0]*s,P[P.length-1][1]*s);g.stroke()}}

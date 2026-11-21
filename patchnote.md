@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.2 « Allées du village »
+
+Version affichée dans les Options : **v3.1.2**
+
+### Ajouté
+- **Liaisons entre bâtiments voisins :** chaque bâtiment est relié à son voisin le plus proche (18 unités maximum) quand le chemin existant entre eux est un long détour. Cela crée des boucles et des allées entre les bâtiments.
+- **Anneau intérieur :** une allée en boucle à l'intérieur de l'enceinte, interrompue aux endroits sans bâtiment ni route proches. Ses tronçons sont reliés au réseau.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Tracé plus naturel :** bruit de coût lissé à basse fréquence (courbes douces au lieu de marches en diagonale) et lissage léger des lignes à l'affichage. Largeur et couleur inchangées.
+- `map.js` uniquement (`buildNet`, `drawNet`). Les aventuriers marchent sur ces allées (boucles comprises).
+- **Équilibre** (40 parties, 15 jours, 8 aventuriers, ancien → nouveau) : quêtes 18 → 17, or 103 → 97, morts 3,5 → 3,5, dans le bruit de la simulation. Si les trajets au village te semblent trop longs ou trop courts, la constante à ajuster est `WALK` (village.js).
+- **Calcul du réseau** (village de 24 bâtiments) : 37 ms → 78 ms, une seule fois à chaque construction.
+- Pas de migration : le réseau est recalculé. Une sauvegarde 3.1.1 avec 4 aventuriers en route se charge et se joue (testé). Les aventuriers en action au village peuvent se replacer légèrement.
+- Non vérifié : le rendu sur ton téléphone (captures PC d'un village de 9 bâtiments seulement ; village de 16 bâtiments généré sans erreur mais non relu en détail), la fluidité.
+- Cache du service worker passé à `bv-v39`. Version affichée dans les Options : v3.1.2.
+
 ## v3.1.1 « Routes & Ponts de la carte »
 
 Version affichée dans les Options : **v3.1.1**

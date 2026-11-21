@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.1 « Routes & Ponts de la carte »**
+Version actuelle du jeu : **v3.1.2 « Allées du village »**
 
 ## ✅ Déjà intégré
 
@@ -155,10 +155,10 @@ Version actuelle du jeu : **v3.1.1 « Routes & Ponts de la carte »**
 ## ✅ v3.1.1 « Routes & Ponts de la carte »
 - [x] **Chemins fusionnés et correction des ponts :** les chemins de zones voisines partagent un tronc commun puis se séparent sans jamais se croiser ; les ponts couvrent tout le tronçon de chemin dans l'eau (cas du chemin qui longe la rivière).
 
-## 🏘️ v3.1.2 « Allées du village » (prochain)
-- [ ] **Refonte des chemins internes du village :** retravailler le tracé des allées du village pour qu'elles soient plus naturelles et réparties un peu partout autour et entre les bâtiments.
+## ✅ v3.1.2 « Allées du village »
+- [x] **Refonte des chemins internes du village :** liaisons entre bâtiments voisins (boucles), anneau intérieur interrompu, tracé plus doux.
 
-## 🌦️ v3.1.3 « Météo dynamique »
+## 🌦️ v3.1.3 « Météo dynamique » (prochain)
 - [ ] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
 
 ## 📱 Guide APK
