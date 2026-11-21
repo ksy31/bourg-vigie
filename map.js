@@ -183,9 +183,17 @@ function person(x,y,o){
  cx.restore()}
 const segX=(a,b,c,d)=>{const r=(b[0]-a[0])*(d[1]-c[1])-(b[1]-a[1])*(d[0]-c[0]);if(!r)return false;const t=((c[0]-a[0])*(d[1]-c[1])-(c[1]-a[1])*(d[0]-c[0]))/r,u=((c[0]-a[0])*(b[1]-a[1])-(c[1]-a[1])*(b[0]-a[0]))/r;return t>0&&t<1&&u>0&&u<1};
 const zob=zz=>{const w=ZR[zz.n]||ZR['Trône du Roi'],t=ZT[zz.n]||12.5;return{x:zz.x+w[0]*ZS,y:zz.y+(w[1]-t*.25)*ZS,rx:w[2]*ZS*1.15+4,ry:(t*.5+w[3]+2)*ZS}};
+function mergeAt(i,prev,mode,ex,ey){if(mode===-1||!prev.length)return null;
+ const a0=Math.atan2(ey-T.y,ex-T.x),L=Math.hypot(ex-T.x,ey-T.y);let bj=null,bd=.61;
+ for(const o of prev){const e=o[o.length-1],g=Math.atan2(e[1]-T.y,e[0]-T.x),d=Math.abs(Math.atan2(Math.sin(g-a0),Math.cos(g-a0)));if(d<bd){bd=d;bj=o}}
+ if(!bj)return null;
+ const Rr=rng(5500+i*53+(mode||0)*31);let k=Math.floor(bj.length*(.4+.2*Rr()));
+ while(k>40&&Math.hypot(bj[k][0]-T.x,bj[k][1]-T.y)>.7*L)k--;
+ if(k<=40||Math.hypot(bj[k][0]-T.x,bj[k][1]-T.y)<40)return null;
+ return{o:bj,k,p:bj[k]}}
 function roadOf(z,i,prev,mode){prev=prev||[];
- const q=ZR[z.n]||ZR['Trône du Roi'],ex=z.x+q[0]*ZS,ey=z.y+(q[1]+q[3]*.3)*ZS,dx=ex-T.x,dy=ey-T.y,L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
- const mk=(o1,o2)=>{const P=[[T.x,T.y],[T.x+dx*.33+nx*o1,T.y+dy*.33+ny*o1],[T.x+dx*.66+nx*o2,T.y+dy*.66+ny*o2],[ex,ey]],bz=t=>{const v=1-t;return[v*v*v*P[0][0]+3*v*v*t*P[1][0]+3*v*t*t*P[2][0]+t*t*t*P[3][0],v*v*v*P[0][1]+3*v*v*t*P[1][1]+3*v*t*t*P[2][1]+t*t*t*P[3][1]]};
+ const q=ZR[z.n]||ZR['Trône du Roi'],ex=z.x+q[0]*ZS,ey=z.y+(q[1]+q[3]*.3)*ZS,mg=mergeAt(i,prev,mode,ex,ey),S0=mg?mg.p:[T.x,T.y],dx=ex-S0[0],dy=ey-S0[1],L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
+ const mk=(o1,o2)=>{const P=[[S0[0],S0[1]],[S0[0]+dx*.33+nx*o1,S0[1]+dy*.33+ny*o1],[S0[0]+dx*.66+nx*o2,S0[1]+dy*.66+ny*o2],[ex,ey]],bz=t=>{const v=1-t;return[v*v*v*P[0][0]+3*v*v*t*P[1][0]+3*v*t*t*P[2][0]+t*t*t*P[3][0],v*v*v*P[0][1]+3*v*v*t*P[1][1]+3*v*t*t*P[2][1]+t*t*t*P[3][1]]};
   const fine=[];for(let k=0;k<=600;k++)fine.push(bz(k/600));
   const out=[fine[0]];let acc=0,nxt=.83;for(let k=1;k<fine.length;k++){const a=fine[k-1],b=fine[k],d=Math.hypot(b[0]-a[0],b[1]-a[1]);acc+=d;while(acc>=nxt){const f=1-(acc-nxt)/(d||1);out.push([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]);nxt+=.83}}
   out.push(fine[600]);return out};
@@ -199,7 +207,7 @@ function roadOf(z,i,prev,mode){prev=prev||[];
   return sc2};
  let best=null,bs=1e9;
  for(let k=0;k<60&&bs>0;k++){const Rr=rng(6100+i*37+k*1009+(mode||0)*7919),s=Rr()<.5?-1:1,m=k<8?1:1.2+k*.03,c=mk(s*(.08+Rr()*.12)*L*m,(k%2?-s:s)*(.04+Rr()*.18)*L*m),v=score(c);if(v>=0&&v<bs){bs=v;best=c}}
- return best||mk(0,0)}
+ const r=best||mk(0,0);if(mg){const o=mg.o.slice(0,mg.k).concat(r);o.sh=mg.k;return o}return r}
 function roadsCross(R){const far=p=>Math.hypot(p[0]-T.x,p[1]-T.y)>32;for(let i=0;i<R.length;i++)for(let j=i+1;j<R.length;j++){const a=R[i],b=R[j];for(let p=1;p<a.length;p++)if(far(a[p])&&far(a[p-1]))for(let q=1;q<b.length;q++)if(segX(a[p-1],a[p],b[q-1],b[q]))return true}return false}
 let RIV=[],BRG=[];
 const rvW=t=>2.4+2.2*t;
@@ -234,11 +242,13 @@ function buildRivers(){
    if(q.length>=(at<5?12:6))r=q}
   if(r)RIV.push(r)}
  for(const z of ZA){const d=RD[z.n];if(!d)continue;
-  for(const r of RIV)for(let a=1;a<d.length;a++){let hit=-1;for(let b=1;b<r.length;b++)if(segX(d[a-1],d[a],r[b-1],r[b])){hit=b;break}
-   if(hit<0)continue;const A=d[a-1],B=d[a],C=r[hit-1],D=r[hit],t=((C[0]-A[0])*(D[1]-C[1])-(C[1]-A[1])*(D[0]-C[0]))/((B[0]-A[0])*(D[1]-C[1])-(B[1]-A[1])*(D[0]-C[0])),px=A[0]+(B[0]-A[0])*t,py=A[1]+(B[1]-A[1])*t;
-   if(BRG.some(q=>Math.hypot(q.x-px,q.y-py)<9))continue;
-   const P0=d[Math.max(0,a-3)],P1=d[Math.min(d.length-1,a+3)],ra=Math.atan2(P1[1]-P0[1],P1[0]-P0[0]),Q0=r[Math.max(0,hit-2)],Q1=r[Math.min(r.length-1,hit+2)],va=Math.atan2(Q1[1]-Q0[1],Q1[0]-Q0[0]),w=rvW(hit/r.length),sn2=Math.max(.45,Math.abs(Math.sin(ra-va)));
-   BRG.push({x:px,y:py,a:ra,l:Math.min(16,w/sn2+4)})}}}
+  const bp=(a,b)=>{const A=d[a],B=d[b],x=(A[0]+B[0])/2,y=(A[1]+B[1])/2;if(BRG.some(q=>Math.hypot(q.x-x,q.y-y)<3.2))return;BRG.push({x,y,a:Math.atan2(B[1]-A[1],B[0]-A[0]),l:Math.max(6,Math.hypot(B[0]-A[0],B[1]-A[1])+1.6)})};
+  const wt=d.map(p=>nearRiver(p[0],p[1],1));let k=0;
+  while(k<d.length){if(!wt[k]){k++;continue}
+   let e=k,g=0;for(let j=k+1;j<d.length&&g<=3;j++){if(wt[j]){e=j;g=0}else g++}
+   const i0=Math.max(0,k-3),i1=Math.min(d.length-1,e+3),ch=Math.hypot(d[i1][0]-d[i0][0],d[i1][1]-d[i0][1]);
+   if(i1-i0<=16&&(i1-i0)*.83<=ch*1.15)bp(i0,i1);else for(let a=i0;a<i1;a+=8)bp(a,Math.min(i1,a+8));
+   k=e+1}}}
 function drawRivers(g){for(const r of RIV){const n=r.length,st=(w,c,al)=>{g.strokeStyle=c;g.globalAlpha=al;g.lineCap='round';g.lineJoin='round';for(let k=1;k<n;k++){g.lineWidth=rvW(k/n)*w*sc;g.beginPath();g.moveTo(r[k-1][0]*sc,r[k-1][1]*sc);g.lineTo(r[k][0]*sc,r[k][1]*sc);g.stroke()}g.globalAlpha=1};
   st(1.6,'#cdbd8f',.9);st(1.12,'#3f7fa8',1);st(.6,'#6aa6c9',.65);
   g.strokeStyle='rgba(255,255,255,.55)';g.lineWidth=Math.max(.8,sc*.14);for(let k=4;k<n-1;k+=5){const a=r[k],b=r[k+1],dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy)||1;g.beginPath();g.moveTo(a[0]*sc-dx/l*sc*.6,a[1]*sc-dy/l*sc*.6);g.lineTo(a[0]*sc+dx/l*sc*.6,a[1]*sc+dy/l*sc*.6);g.stroke()}}}
@@ -322,11 +332,11 @@ function buildGround(){
  for(let i=0;i<70*MS*MS;i++){const x=R()*WW,y=R()*WH;g.fillStyle=R()<.5?'#8d8f86':'#a6a79c';g.beginPath();g.ellipse(x,y,sc*(.35+R()*.4),sc*(.22+R()*.2),0,0,7);g.fill()}
  drawRivers(g);ROAD=[];ROADL=[];const RL=rng(777);const wet=(x,y)=>nearRiver(x,y,.3);
  ZA.forEach(z=>{
-  const pts=RD[z.n];
-  ROAD.push(pts);for(let k=14;k<pts.length-4;k+=22){const a=pts[k-1],b=pts[k+1],tx=b[0]-a[0],ty=b[1]-a[1],l=Math.hypot(tx,ty)||1,sd=RL()<.5?-1:1;ROADL.push([pts[k][0]-ty/l*2.8*sd,pts[k][1]+tx/l*2.8*sd])}
-  for(const [x,y] of pts){if(wet(x,y))continue;g.fillStyle='#6b5838';g.beginPath();g.arc(x*sc,y*sc,sc*(1.85+R()*.45),0,7);g.fill()}
-  for(const [x,y] of pts){if(wet(x,y))continue;g.fillStyle='#b99c6b';g.beginPath();g.arc(x*sc,y*sc,sc*(1.35+R()*.3),0,7);g.fill()}
-  pts.forEach(([x,y],k)=>{if(wet(x,y))return;
+  const pts=RD[z.n],sh=pts.sh||0;
+  ROAD.push(pts);for(let k=Math.max(14,sh);k<pts.length-4;k+=22){const a=pts[k-1],b=pts[k+1],tx=b[0]-a[0],ty=b[1]-a[1],l=Math.hypot(tx,ty)||1,sd=RL()<.5?-1:1;ROADL.push([pts[k][0]-ty/l*2.8*sd,pts[k][1]+tx/l*2.8*sd])}
+  for(let k=sh;k<pts.length;k++){const [x,y]=pts[k];if(wet(x,y))continue;g.fillStyle='#6b5838';g.beginPath();g.arc(x*sc,y*sc,sc*(1.85+R()*.45),0,7);g.fill()}
+  for(let k=sh;k<pts.length;k++){const [x,y]=pts[k];if(wet(x,y))continue;g.fillStyle='#b99c6b';g.beginPath();g.arc(x*sc,y*sc,sc*(1.35+R()*.3),0,7);g.fill()}
+  pts.forEach(([x,y],k)=>{if(k<sh||wet(x,y))return;
    if(k%2===0){g.fillStyle='rgba(224,205,150,.55)';g.beginPath();g.arc(x*sc,y*sc,sc*(.55+R()*.25),0,7);g.fill()}
    if(k%5===0){const s=R()<.5?-1:1;g.fillStyle='#7d786b';g.beginPath();g.ellipse((x+s*(.5+R()*.8))*sc,(y+(R()-.5)*1.6)*sc,sc*.32,sc*.2,0,0,7);g.fill()}
    if(k%4===0){const s=R()<.5?-1:1;tuft(g,(x+s*(2.1+R()*.6))*sc,(y+R()*1.2)*sc,sc*(.8+R()*.5),'#5f8450')}})

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.0 « Finitions UI, PNJ & Ressources »**
+Version actuelle du jeu : **v3.1.1 « Routes & Ponts de la carte »**
 
 ## ✅ Déjà intégré
 
@@ -152,10 +152,10 @@ Version actuelle du jeu : **v3.1.0 « Finitions UI, PNJ & Ressources »**
 - [x] **Disposition de l'écran Options :** boutons et timer sous l'icône 🔊, roue crantée au-dessus du numéro de version en bas à droite.
 - [x] **Rééquilibrage bois et pierre :** bois ×0,45 ; 10 % de chance de 1 à 2 pierres par victoire en Forêt.
 
-## 🛣️ v3.1.1 « Routes & Ponts de la carte » (prochain)
-- [ ] **Chemins fusionnés et correction des ponts :** faire en sorte que les chemins de la carte puissent se regrouper puis se séparer proprement au lieu de se superposer, et corriger les erreurs de génération/placement des **ponts**.
+## ✅ v3.1.1 « Routes & Ponts de la carte »
+- [x] **Chemins fusionnés et correction des ponts :** les chemins de zones voisines partagent un tronc commun puis se séparent sans jamais se croiser ; les ponts couvrent tout le tronçon de chemin dans l'eau (cas du chemin qui longe la rivière).
 
-## 🏘️ v3.1.2 « Allées du village »
+## 🏘️ v3.1.2 « Allées du village » (prochain)
 - [ ] **Refonte des chemins internes du village :** retravailler le tracé des allées du village pour qu'elles soient plus naturelles et réparties un peu partout autour et entre les bâtiments.
 
 ## 🌦️ v3.1.3 « Météo dynamique »

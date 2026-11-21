@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.1 « Routes & Ponts de la carte »
+
+Version affichée dans les Options : **v3.1.1**
+
+### Ajouté
+- **Chemins fusionnés :** quand deux zones sont dans la même direction depuis le village (écart d'angle d'environ 35° ou moins), leur chemin partage un tronc commun, puis se sépare à un point de bifurcation (40 à 60 % de la longueur du chemin déjà tracé). Le tronc commun n'est dessiné qu'une fois (cailloux, herbe, lampadaires). Les chemins ne se croisent toujours jamais.
+
+### Corrigé
+- **Ponts :** quand un chemin longeait la rivière, le pont n'était posé qu'en un seul point et la route était coupée. Les ponts couvrent maintenant tout le tronçon de chemin dans l'eau (3 points de marge de chaque côté), orientés dans le sens du chemin ; un tronçon long ou courbe est couvert par plusieurs ponts bout à bout. Un seul pont par endroit (pas de doublon sur un tronc commun).
+
+### Modifié
+- `map.js` : `mergeAt` (nouveau), `roadOf`, dessin des routes dans `buildGround`, ponts dans `buildRivers`. `state.js` : `fresh()` en version de sauvegarde 4. `save.js` : migration `repath`.
+- **Migration :** les chemins sont recalculés à partir des zones, donc leur forme change sur une ancienne partie. Les aventuriers en route reprennent le nouveau tracé au chargement (point le plus proche). Pas de nouveau champ de sauvegarde. Une sauvegarde 3.1.0 avec 4 aventuriers en route se charge et se joue (testé).
+- **Tests de génération** (40 cartes, ancien → nouveau) : 0 croisement dans les deux cas ; 4,9 chemins fusionnés par carte ; points de chemin dans l'eau non couverts par un pont : 264 sur 1 464 → 4 sur 2 084 ; ponts par carte : 3,9 → 6,7 (tronçons longs découpés).
+- **Équilibre** (40 parties, 15 jours, 8 aventuriers, ancien → nouveau) : quêtes 17 → 18, or 100 → 103, morts 3,5 → 3,5. Inchangé.
+- Non vérifié : le rendu sur ton téléphone (capture PC d'une carte seulement), le calcul sur 300 cartes (trop long pour mon environnement, 40 cartes testées), et un chemin qui frôle encore le décor d'une autre zone (visuel).
+- Cache du service worker passé à `bv-v38`. Version affichée dans les Options : v3.1.1.
+
 ## v3.1.0 « Finitions UI, PNJ & Ressources »
 
 Version affichée dans les Options : **v3.1.0**
