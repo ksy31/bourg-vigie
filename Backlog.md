@@ -147,6 +147,20 @@ Version actuelle du jeu : **v3.0.9 « Rattrapage du bestiaire »**
 ## ✅ v3.0.9 « Rattrapage du bestiaire »
 - [x] **Monstres encore non dessinés :** loups-garous, rats-garous, noms « spectral », Âme en peine, Banshee, Ombre, Gargouille, Griffon, Wyverne, Chimère, Hydre, Basilic, Nécromancien, Gardien momifié, Titan de cendre, Âme de magma, Chevalier maudit / de la mort, Ogre lunaire, Champion légendaire, etc.
 
+## 🔧 v3.1.0 « Finitions UI, PNJ & Ressources » (prochain)
+- [ ] **Correction de l'animation des PNJ :** corriger le mouvement du bras lors des animations d'action afin qu'il reste bien attaché au corps.
+- [ ] **Disposition de l'écran Options :** remonter les 2 boutons et le timer de dernière sauvegarde, et placer la roue crantée juste au-dessus du numéro de version en bas à droite.
+- [ ] **Rééquilibrage bois et pierre :** réduire encore la quantité de **bois** obtenue dans les butins, et ajouter un **faible taux de drop de pierre** dès la première zone.
+
+## 🛣️ v3.1.1 « Routes & Ponts de la carte »
+- [ ] **Chemins fusionnés et correction des ponts :** faire en sorte que les chemins de la carte puissent se regrouper puis se séparer proprement au lieu de se superposer, et corriger les erreurs de génération/placement des **ponts**.
+
+## 🏘️ v3.1.2 « Allées du village »
+- [ ] **Refonte des chemins internes du village :** retravailler le tracé des allées du village pour qu'elles soient plus naturelles et réparties un peu partout autour et entre les bâtiments.
+
+## 🌦️ v3.1.3 « Météo dynamique »
+- [ ] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
+
 ## 📱 Guide APK
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
