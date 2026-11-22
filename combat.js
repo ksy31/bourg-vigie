@@ -31,7 +31,7 @@ function build(id){
  const b=BD[id],l=lvl(b),c=b.c(l);
  if(S.w<c.w||S.s<c.s||S.g<c.g)return;
  S.w-=c.w;S.s-=c.s;S.g-=c.g;S.cp=S.cp||{};S.cp[b.k]=(S.cp[b.k]||0)+1;
- S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:null,cn:{id,l,t:0,T:R(900,1800),hp:50+l*15}});
+ S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:null,cn:{id,l,t:0,T:R(900,1800),hp:50}});
  log(`Chantier lancé : ${b.n} niveau ${l+1} (1 à 2 jours, un aventurier y travaille).`,'ok');ui();
 }
 function pick(h){
@@ -80,7 +80,7 @@ function resolve(h){
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;goBack(h);if(e.boss)victory(h);
  }else if(rr<pw+pd){
-  if(h.home)h.home.o=null;if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
+  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');
   ui();

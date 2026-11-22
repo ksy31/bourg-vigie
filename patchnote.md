@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.7 « Forge, Écurie & Maisons »
+
+Version affichée dans les Options : **v3.1.7**
+
+### Ajouté
+- **Héritage des maisons :** quand le propriétaire meurt, sa maison revient en vente avec 10 % de réduction par mort, cumulés, plafonnés à −50 % (50 → 45 → 40 → 35 → 30 → 25 or). Champ `dn` (nombre de morts) sur chaque maison, créé tout seul.
+
+### Corrigé
+- **Maisons jamais achetées :** le cheval passait avant la maison, et l'objectif d'épargne visait le moins cher des deux. La maison passe maintenant avant le cheval et devient l'objectif d'épargne d'un aventurier sans maison quand une est en vente.
+
+### Modifié
+- **Forge :** le palier d'équipement acheté par le niveau du héros (niv. ÷ 2) est plafonné à 2 × niveau de la Forge ; le bonus du Forgeron (+1 palier par 3 niveaux) s'ajoute par-dessus et la réduction de prix est inchangée. Constante `FGT` (village.js). Le bouton Forge indique « paliers d'équipement ».
+- **Écurie :** chevaux illimités. Il y en a toujours 3 en vente (stock reconstitué à chaque achat et à la construction, `restock`, village.js). Vitesse d'un nouveau cheval = 2 + niveau du Palefrenier + 0 à 2 (plafond 12). Les chevaux déjà en vente gardent leur vitesse. Le bouton Écurie indique « chevaux plus rapides » (le bonus de l'Écurie sur la vitesse est inchangé).
+- **Maisons :** prix fixe de 50 or (avant 50 + 15 par niveau). Le coût de construction de la Maison est inchangé. Chaque Maison construite ajoute toujours une maison en vente.
+- **Équilibre** (3 × 20 parties, 15 jours, 8 aventuriers max., bâtiments construits automatiquement, 3.1.6 → 3.1.7) : maisons achetées par partie 0,4-0,6 → 0,5-1,4 (environ ×2), chevaux 3,4-4,1 → 1,6-4,0, achats à la forge 2,4-3,0 → 1,0-2,5, victoires 139-161 → 95-148, or gagné 1596-1894 → 1021-1765, morts 19 → 15-19,5. Un lot sur trois est nettement plus bas (peu d'aventuriers survivants) : c'est surtout du bruit. Pour pousser les achats de maison : la part de butin versée à la bourse (`.3` dans `applyTask`, village.js) ou l'épargne (`keepG`).
+- **Migration (save.js) :** les maisons en vente passent à 50 or ; une Écurie existante complète son stock à 3 chevaux. Une sauvegarde 3.1.6 se charge et se joue (testé).
+- Testé (Node) : parties de 20 jours avec dessin, sauvegarde puis rechargement, sauvegarde 3.1.6 avec Écurie et maison à 95 or, chaîne d'héritage de 6 morts (45, 40, 35, 30, 25, 25).
+- Non vérifié : l'équilibre ressenti sur de longues parties (achats de maison et paliers de Forge plafonnés pour les hauts niveaux), l'affichage des nouveaux textes de boutons sur ton téléphone.
+- Fichiers : `village.js`, `combat.js`, `state.js`, `save.js`, `index.html`. Cache du service worker passé à `bv-v44`. Version affichée dans les Options : v3.1.7.
+
 ## v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire »
 
 Version affichée dans les Options : **v3.1.6**

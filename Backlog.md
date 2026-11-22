@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire »**
+Version actuelle du jeu : **v3.1.7 « Forge, Écurie & Maisons »**
 
 ## ✅ Déjà intégré
 
@@ -174,11 +174,11 @@ Version actuelle du jeu : **v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire 
 - [x] **Suppression du Marché et ajustement de l'Auberge :** retirer le bâtiment et le PNJ du Marché (doublon avec la Mairie) ; garder l'Auberge non améliorable tout en faisant progresser l'Aubergiste via les nuits passées (rythme calibré sur l'équilibrage actuel).
 - [x] **Standardisation du Sanctuaire :** aligner la montée en niveau de la Prêtresse sur les autres PNJ via les soins et bénédictions accordés (rythme calibré sur l'équilibrage actuel), en augmentant l'efficacité des soins et le **taux de réussite de la bénédiction** (sans coût ni changement de durée).
 
-## ⚒️ v3.1.7 « Forge, Écurie & Maisons » (prochain)
-- [ ] **Forge et Écurie :** lier le déblocage des paliers d'équipement à l'amélioration de la Forge (avec bonus de qualité et réduction du prix selon le niveau du Forgeron) ; proposer des chevaux illimités à l'Écurie dont le niveau correspond au niveau du Palefrenier (progression des PNJ calibrée sur le rythme actuel).
-- [ ] **Maisons et héritage :** ajouter une nouvelle maison constructible par amélioration, ajuster la priorité d'épargne des aventuriers pour qu'ils achètent enfin une maison, et permettre l'héritage à prix réduit en cas de décès du propriétaire dans la même partie.
+## ✅ v3.1.7 « Forge, Écurie & Maisons »
+- [x] **Forge et Écurie :** lier le déblocage des paliers d'équipement à l'amélioration de la Forge (avec bonus de qualité et réduction du prix selon le niveau du Forgeron) ; proposer des chevaux illimités à l'Écurie dont le niveau correspond au niveau du Palefrenier (progression des PNJ calibrée sur le rythme actuel).
+- [x] **Maisons et héritage :** ajouter une nouvelle maison constructible par amélioration, ajuster la priorité d'épargne des aventuriers pour qu'ils achètent enfin une maison, et permettre l'héritage à prix réduit en cas de décès du propriétaire dans la même partie.
 
-## 🍺 v3.1.8 « Taverne : Primes & Contrats »
+## 🍺 v3.1.8 « Taverne : Primes & Contrats » (prochain)
 - [ ] **Contrats de primes renouvelés tous les 2 jours :** remplacer le fonctionnement de la Taverne par des primes aléatoires sur certains monstres (1 lot renouvelé tous les 2 jours), versant un bonus d'or directement à l'aventurier vainqueur, avec affichage de la prime en cours dans la liste des aventuriers et hausse du nombre de contrats et des primes selon le niveau du Tavernier (calibré sur le rythme actuel).
 
 ## 🛡️ v3.1.9 « Armurerie de Guilde (Arsenal) »

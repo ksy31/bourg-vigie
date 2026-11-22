@@ -8,9 +8,9 @@ const U={g:{n:'Fortune',t:'+15 % d’or'},p:{n:'Vaillance',t:'+6 % de puissance'
 const BOSS0=300,bossD=()=>BOSS0*(1+.35*P.runs);
 const tt=D=>63.6+Math.max(0,D-38)*4.35;
 const BD={
- E:{n:'Écurie',t:'+1 cheval',k:'stable',c:l=>({w:35+l*30,s:15+l*15,g:50+l*60})},
+ E:{n:'Écurie',t:'chevaux plus rapides',k:'stable',c:l=>({w:35+l*30,s:15+l*15,g:50+l*60})},
  H:{n:'Maison',t:'+1 place, à vendre',k:'houses',c:l=>({w:20+l*15,s:8+l*8,g:0})},
- F:{n:'Forge',t:'+puissance',k:'forge',c:l=>({w:25+l*25,s:25+l*25,g:30+l*40})},
+ F:{n:'Forge',t:'+puissance, paliers d’équipement',k:'forge',c:l=>({w:25+l*25,s:25+l*25,g:30+l*40})},
  T:{n:'Taverne',t:'repos −12 %',k:'tavern',c:l=>({w:30+l*25,s:10+l*12,g:40+l*50})},
  S:{n:'Sanctuaire',t:'morts −8 %',k:'spa',c:l=>({w:20+l*20,s:30+l*25,g:60+l*70})},
 };
