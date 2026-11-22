@@ -181,9 +181,44 @@ Version actuelle du jeu : **v3.1.8 « Taverne : Primes & Contrats »**
 ## ✅ v3.1.8 « Taverne : Primes & Contrats »
 - [x] **Contrats de primes renouvelés tous les 2 jours :** remplacer le fonctionnement de la Taverne par des primes aléatoires sur certains monstres (1 lot renouvelé tous les 2 jours), versant un bonus d'or directement à l'aventurier vainqueur, avec affichage de la prime en cours dans la liste des aventuriers et hausse du nombre de contrats et des primes selon le niveau du Tavernier (calibré sur le rythme actuel).
 
-## 🛡️ v3.1.9 « Armurerie de Guilde (Arsenal) » (prochain)
-- [ ] **Nouveau bâtiment de récupération d'équipement :** ajouter l'Armurerie de Guilde (coffre commun limité à la partie en cours, sans effet inter-runs) ayant une chance de récupérer l'équipement d'un aventurier mort au combat pour les suivants, avec améliorations du bâtiment (stockage/taux) et montée de niveau de l'Intendant (calibrée sur le rythme actuel).
-- [ ] 
+## 🛠️ v3.1.9 « Correctif Sanctuaire & Top 10 » (prochain)
+- [ ] **Empêcher le dédoublement du Sanctuaire :** corriger le bug lors de l'amélioration du Sanctuaire qui crée un second bâtiment sans Prêtresse au lieu de faire évoluer le Sanctuaire existant (et nettoyer le doublon sur les sauvegardes affectées).
+- [ ] **Affichage du cheval dans le Top 10 :** afficher l'icône/indication du cheval sur les aventuriers qui en possèdent un dans le classement Top 10.
+
+## 🛡️ v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »
+- [ ] **Ajout du bâtiment et récupération au décès :** intégrer l'Armurerie de Guilde (dessin, améliorations et Intendant) et enregistrer l'équipement récupéré à la mort d'un aventurier dans le coffre commun de la partie (sans effet inter-runs).
+
+## 🛡️ v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »
+- [ ] **Équipement des suivants et progression de l'Intendant :** faire passer les nouveaux aventuriers à l'Armurerie pour s'équiper gratuitement depuis le coffre et activer la montée de niveau de l'Intendant (calibrée sur le rythme actuel).
+
+## 🚩 v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »
+- [ ] **Ajout du lieu et création des compagnies :** intégrer la Maison des Guildes (dessin, améliorations et Chancelier) et permettre aux aventuriers expérimentés de fonder ou rejoindre une guilde (nom et bannière).
+
+## 🚩 v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »
+- [ ] **Expéditions groupées et caisse commune :** activer les départs en groupe dans les zones classiques (Roi Démon toujours en solo), le partage d'or interne pour équiper les recrues et la montée de niveau du Chancelier (calibrée sur le rythme actuel).
+
+## 👑 v3.2.4 « Assaut préparé contre le Roi Démon »
+- [ ] **Sélection du meilleur champion et préparation complète :** modifier le bouton d'envoi au Roi Démon pour sélectionner automatiquement le **meilleur aventurier vivant** (quelle que soit son action en cours) et lui faire effectuer une séquence de préparation au village (retour, repos, soin/bénédiction au Sanctuaire, équipement à la Forge si besoin) avant de partir affronter le Roi Démon en duel.
+
+## 📱 v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »
+- [ ] **Affichage dynamique multi-écrans (Z Fold 3 plié/déplié) :** adapter automatiquement la mise en page de l'interface et la vue de la carte à toutes les largeurs et ratios d'écran en temps réel, sans blocage ni débordement sur écran étroit (Z Fold 3 plié) et avec recalcul fluide au dépliage.
+- [ ] **Mode Jour / Mode Nuit dans les Options :** ajouter un sélecteur de thème permettant de basculer entre le thème sombre AMOLED actuel (Nuit) et un thème clair (Jour) lisible en extérieur.
+- [ ] **Position provisoire du halo nocturne :** déplacer le point/halo lumineux nocturne de la tête vers le torse des aventuriers pour dégager leur visage (en attendant la torche tenue en main).
+
+## 🎨 v3.3.0 « Refonte graphique 2D (1/5) : Textures de sol & Relief »
+- [ ] **Textures procédurales en cache et occlusion ambiante :** enrichir le sol (herbe dense, pavés irréguliers du village, transitions douces entre biomes) via des textures mises en cache sur canvas hors-écran pour préserver la batterie, et ajouter une ombre douce au pied des bâtiments, murets et arbres (perspective 3/4 vue de haut avec façades et toits visibles).
+
+## 🎨 v3.3.1 « Refonte graphique 2D (2/5) : Torches & Lumières chaudes »
+- [ ] **Torches tenues en main et éclairage nocturne réaliste :** remplacer le point lumineux provisoire des aventuriers par une vraie torche tenue en main avec petite flamme animée, et utiliser des modes de fusion lumineux (`lighter`) pour que torches, fenêtres illuminées, foyer de la forge et lanternes projettent des halos ambrés chauds sur le décor dans une nuit bleu profond.
+
+## 🎨 v3.3.2 « Refonte graphique 2D (3/5) : Eau vivante & Reflets »
+- [ ] **Rivières animées et reflets célestes :** ajouter un courant léger à la surface des rivières bleu nuit avec de petits remous autour des ponts en bois, des berges ombrées et des reflets scintillants des étoiles, de la lune la nuit et du soleil le jour.
+
+## 🎨 v3.3.3 « Refonte graphique 2D (4/5) : Particules & Vie ambiante »
+- [ ] **Particules légères d'atmosphère :** ajouter des lucioles dorées la nuit près des forêts, de la fumée qui s'élève des cheminées actives du village, une fine brume matinale sur les rivières et des braises près du volcan (avec plafond de particules pour garder la fluidité sur mobile).
+
+## 🎨 v3.3.4 « Refonte graphique 2D (5/5) : Éclat des combats »
+- [ ] **Lumière dynamique et impact des combats :** faire en sorte que les sorts, étincelles et coups critiques éclairent brièvement le sol autour des combattants, accompagnés d'une légère secousse de caméra sur les gros coups et la mort des boss.
 
 ## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
@@ -195,4 +230,4 @@ Version actuelle du jeu : **v3.1.8 « Taverne : Primes & Contrats »**
 ## ❌ Abandonné
 - [x] ~~**Équilibrage général :** mis de côté pour le moment.~~
 - [x] ~~**Rattrapage hors-ligne :** non souhaité.~~
-- [ ] 
+      
