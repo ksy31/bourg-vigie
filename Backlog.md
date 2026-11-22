@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.9 « Correctif Sanctuaire & Top 10 »**
+Version actuelle du jeu : **v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »**
 
 ## ✅ Déjà intégré
 
@@ -185,10 +185,10 @@ Version actuelle du jeu : **v3.1.9 « Correctif Sanctuaire & Top 10 »**
 - [x] **Empêcher le dédoublement du Sanctuaire :** corriger le bug lors de l'amélioration du Sanctuaire qui crée un second bâtiment sans Prêtresse au lieu de faire évoluer le Sanctuaire existant (et nettoyer le doublon sur les sauvegardes affectées).
 - [x] **Affichage du cheval dans le Top 10 :** afficher l'icône/indication du cheval sur les aventuriers qui en possèdent un dans le classement Top 10.
 
-## 🛡️ v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre » (prochain)
-- [ ] **Ajout du bâtiment et récupération au décès :** intégrer l'Armurerie de Guilde (dessin, améliorations et Intendant) et enregistrer l'équipement récupéré à la mort d'un aventurier dans le coffre commun de la partie (sans effet inter-runs).
+## ✅ v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »
+- [x] **Ajout du bâtiment et récupération au décès :** intégrer l'Armurerie de Guilde (dessin, améliorations et Intendant) et enregistrer l'équipement récupéré à la mort d'un aventurier dans le coffre commun de la partie (sans effet inter-runs).
 
-## 🛡️ v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »
+## 🛡️ v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ » (prochain)
 - [ ] **Équipement des suivants et progression de l'Intendant :** faire passer les nouveaux aventuriers à l'Armurerie pour s'équiper gratuitement depuis le coffre et activer la montée de niveau de l'Intendant (calibrée sur le rythme actuel).
 
 ## 🚩 v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »

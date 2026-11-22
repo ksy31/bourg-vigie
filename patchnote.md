@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »
+
+Version affichée dans les Options : **v3.2.0**
+
+### Ajouté
+- **Armurerie (🛡️) :** nouveau bâtiment unique et améliorable (comme la Forge ou la Taverne), à construire depuis l'onglet Bâtir. Coût : `20+20×niv` bois, `30+25×niv` pierre, `60+70×niv` or (même ordre que le Sanctuaire). Chantier avec un aventurier bâtisseur, puis améliorations par fermeture de 1 à 2 jours, comme les autres bâtiments. Dessin : façade en pierre, toit bleu acier, écu sur le mur et râtelier de lances ; l'aspect évolue aux niveaux 3 et 6 de l'Intendant (fanion doré, lanternes), comme pour les autres bâtiments.
+- **Intendant :** PNJ de l'Armurerie (chapeau, trousseau de clés 🗝️), nom et genre tirés comme les autres PNJ. Il gagne 1 XP par pièce récupérée dans le coffre (20 × niveau XP par niveau) ; aucune autre source d'XP avant la 3.2.1. Aux niveaux 3 et 6, rénovation de 5 à 10 min (bâtiment fermé), comme les autres PNJ.
+- **Coffre commun (`S.chest`) :** à la mort d'un aventurier, une seule pièce d'équipement (tirée au hasard parmi celles qu'il porte, palier > 0, avec sa classe et son palier) a une chance d'être récupérée. Chance : 35 % au niveau 1 de l'Armurerie, +10 points par niveau, 90 % maximum (constantes `ARC0`, `ARC1`, `ARCM`, combat.js). Coffre illimité, propre à la partie (rien n'est conservé d'une run à l'autre). Message « 🛡️ L'Armurerie récupère Épée 3 de … » dans la console.
+- **Affichage du coffre :** sur la ligne de l'Intendant (onglet Aventuriers) : « 🗝️ Nom Intendant niv. 1 · 🛡️ Coffre : 3 pièces ».
+
+### Corrigé
+- Rien dans cette version.
+
+### Modifié
+- Sans Armurerie utilisable au moment de la mort (absente, en chantier, fermée pour amélioration ou rénovation), l'équipement est perdu, comme avant.
+- Les pièces du coffre ne sont pas encore distribuées (attribution aux recrues en 3.2.1). Aucun effet sur la puissance, l'or ou la mortalité : équilibre inchangé.
+- Anciennes sauvegardes : `loadG` (save.js) ajoute `chest` (vide) et `armory` (0). Pas de changement du numéro de version de sauvegarde.
+- Testé (Node) : 2 parties de 20 jours à graine identique, ancienne et nouvelle version, sans Armurerie : résultats identiques (or, bois, pierre, tués, morts). 3 parties de 20 jours avec Armurerie : 0 erreur, 0 à 4 pièces au coffre. Chances mesurées sur 4 000 morts simulées par niveau : 35 % (niv. 1), 46 % (niv. 2), 54 % (niv. 3), 75 % (niv. 5), 91 % (niv. 7), 89 % (niv. 12). Cas vérifiés : bâtiment absent, en chantier ou en amélioration (rien récupéré), une seule pièce par mort, héros sans équipement, pas de bouclier récupéré pour une classe sans bouclier, XP de l'Intendant, pastille du coffre, sauvegarde puis rechargement, sauvegarde 3.1.9 chargée puis Armurerie construite.
+- Non vérifié : le rendu sur ton téléphone (captures faites sur ordinateur : jour, nuit, chantier, niveaux 1 et 6 de l'Intendant).
+- Fichiers : `data.js`, `state.js`, `combat.js`, `ui.js`, `map.js`, `save.js`, `index.html`, `sw.js`. Cache du service worker passé à `bv-v47`. Version affichée dans les Options : v3.2.0.
+
 ## v3.1.9 « Correctif Sanctuaire & Top 10 »
 
 Version affichée dans les Options : **v3.1.9**

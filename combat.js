@@ -10,6 +10,10 @@ const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
 const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
 const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
+const ARC0=.35,ARC1=.1,ARCM=.9;
+function armRec(h){const it=bItem('I');if(!it||it.cn||it.rb)return;const sl=SL[h.c].filter(k=>h.eq[k]>0);if(!sl.length)return;
+ const p=Math.min(ARCM,ARC0+ARC1*(Math.max(1,S.armory||1)-1));if(Math.random()>=p)return;
+ const k=sl[R(0,sl.length-1)];(S.chest=S.chest||[]).push({k,c:h.c,t:h.eq[k]});npcx('I');log(`🛡️ L’Armurerie récupère ${pn(h,k)} ${h.eq[k]} de ${h.name}.`,'ok')}
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
  if(t>h.eq[k]){h.eq[k]=t;return `équipe ${pn(h,k)} ${t}`}
@@ -85,7 +89,7 @@ function resolve(h){
  }else if(rr<pw+pd){
   if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
-  log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');
+  log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');armRec(h);
   ui();
  }else{
   h.loot=null;h.hurt=1;goBack(h);log(`${h.name} fuit devant ${e.n}, blessé·e.`);crp(`${h.name} fuit devant ${e.n}`,'#fff');
