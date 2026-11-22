@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.3 « Correctif Chantiers, Icône & Chemins »**
+Version actuelle du jeu : **v3.1.4 « Météo dynamique »**
 
 ## ✅ Déjà intégré
 
@@ -162,10 +162,10 @@ Version actuelle du jeu : **v3.1.3 « Correctif Chantiers, Icône & Chemins »**
 - [x] **Affectation unique aux chantiers (hors repos) :** assigner **un seul aventurier** à la construction d'un bâtiment en tant qu'action dédiée (qui ne compte pas comme du repos à l'Auberge), afin d'éviter la téléportation des aventuriers au repos et l'abandon brutal du chantier.
 - [x] **Icône d'armure et jonction des chemins :** remplacer l'icône de l'armure (actuellement proche d'une veste de chantier) par une armure médiévale, et supprimer l'effet de superposition visuel à l'embranchement des routes.
 
-## 🌦️ v3.1.4 « Météo dynamique » (prochain)
-- [ ] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
+## ✅ v3.1.4 « Météo dynamique »
+- [x] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
 
-## 📱 Guide APK
+## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard

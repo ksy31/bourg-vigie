@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.4 « Météo dynamique »
+
+Version affichée dans les Options : **v3.1.4**
+
+### Ajouté
+- **Météo aléatoire :** dégagé (météo de base, environ 60 % du temps), nuageux, pluie, brouillard, orage (rare). Chaque météo dure 4 à 6 h de jeu (environ 2 min 30 à 3 min 45 réelles) ; le temps peut rester dégagé plusieurs périodes de suite.
+- **Transition d'1 h de jeu** entre deux météos (comme l'aube et le crépuscule) : voile, pluie et éclairs montent et descendent progressivement.
+- **Effets sur la carte :** nuageux = voile gris ; pluie = traits obliques et voile ; orage = pluie dense, voile plus sombre et éclairs ; brouillard = voile clair. Aucun dessin en mode Veille.
+- **Icône dans la barre du haut,** après l'heure : « ☀️ Jour 3 · 14h ⛈️ · ★1 ». Ciel dégagé : ✨ (choix de ma part, pour ne pas doubler le ☀️/🌙) ; nuageux ☁️, pluie 🌧️, orage ⛈️, brouillard 🌫️. Pendant une transition, l'icône change à mi-chemin.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- Visuel uniquement : combats, trajets et butins inchangés. Fichiers : `state.js` (`wxTick`, `wxMix`, `wxIcon`, constantes `WXV` effets et `WXP` probabilités), `combat.js` (appel dans `tick`), `ui.js` (icône), `map.js` (`wxDraw`).
+- Réglages : durée `R(4,6)` dans `wxTick`, poids des météos dans `WXP`, intensité des voiles dans `WXV` (voile, pluie, brouillard, éclair).
+- **Sauvegarde :** nouveau champ `S.wx` (météo en cours). Une sauvegarde 3.1.3 n'en a pas : elle démarre en « dégagé » (testé, pas de migration à écrire).
+- Testé (Node, 20 jours, 2 parties) : périodes stables de 4,0 à 6,0 h, transitions de 1,00 h, dégagé 61-65 %, sauvegarde puis rechargement identiques, chargement d'une sauvegarde 3.1.3 en cours de chantier. Captures PC des 5 météos, d'un éclair et d'une transition pluie > orage vérifiées.
+- Non vérifié : le rendu et la fluidité sur ton téléphone, l'effet sur la batterie (pluie ≈ 170 traits par image au maximum), la lisibilité de la pluie sur écran réel (les traits sont fins).
+- Cache du service worker passé à `bv-v41`. Version affichée dans les Options : v3.1.4.
+
 ## v3.1.3 « Correctif Chantiers, Icône & Chemins »
 
 Version affichée dans les Options : **v3.1.3**

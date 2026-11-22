@@ -62,5 +62,12 @@ const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);
 const isNight=()=>{const x=hr();return x>=21||x<4};
 const dk=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24;if(x>=21||x<4)return 1;if(x>=20)return x-20;if(x<5)return 5-x;return 0};
 function gameOver(){sleepOff();S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
+const WXI={clear:'✨',cloud:'☁️',rain:'🌧️',storm:'⛈️',fog:'🌫️'},WXV={clear:[0,0,0,0],cloud:[.14,0,0,0],rain:[.2,.55,0,0],storm:[.36,1,0,1],fog:[.05,0,1,0]},WXP=[['clear',60],['cloud',16],['rain',12],['fog',8],['storm',4]];
+function wxPick(){let r=Math.random()*100;for(const [k,w] of WXP){r-=w;if(r<=0)return k}return'clear'}
+function wxTick(){const h=S.dl/24;let w=S.wx;if(!w||!WXV[w.c])w=S.wx={c:'clear',x:null,at:S.t+R(4,6)*h};
+ if(!w.x&&S.t>=w.at)w.x=wxPick();
+ if(w.x&&S.t>=w.at+h){w.c=w.x;w.x=null;w.at=S.t+R(4,6)*h}}
+function wxMix(){const w=S.wx;if(!w||!WXV[w.c])return WXV.clear;const a=WXV[w.c];if(!w.x||!WXV[w.x])return a;const k=Math.min(1,Math.max(0,(S.t-w.at)/(S.dl/24))),b=WXV[w.x];return a.map((v,i)=>v+(b[i]-v)*k)}
+const wxIcon=()=>{const w=S.wx;if(!w||!WXI[w.c])return WXI.clear;return WXI[w.x&&WXI[w.x]&&(S.t-w.at)/(S.dl/24)>=.5?w.x:w.c]};
 const spf=h=>(1+h.eq.b*.05)*(h.hs?Math.min(2.2,1.4+h.hs.sp*.06*(1+.1*S.stable)):1);
 function npcx(k){const n=S.npc[k];if(!n)return;n.xp++;if(n.xp>=n.lv*20){n.xp=0;n.lv++;log(`${NT[k]} ${n.n} passe niveau ${n.lv}.`,'ok');if(k!=='A'&&(n.lv===3||n.lv===6))rebuild(k)}}

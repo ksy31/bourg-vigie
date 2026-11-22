@@ -452,10 +452,18 @@ function draw(){
   for(const it of S.pl){const c=it.cn||it.rb;if(!c)continue;const p=slot(it);lab('🔨 '+Math.min(99,Math.floor(c.t/c.T*100))+' %',0,(T.x+p[0])*sc,(T.y+p[1])*sc-sc*(BTOP[NK[it.e]||'H']+1.2)-3/cam.z)}
   const PL=[];LB.sort((a,b)=>a.y-b.y);for(const l of LB){cx.font=(l.i?'italic ':'')+`700 ${fs}px Alegreya,serif`;l.w=cx.measureText(l.t).width+2/cam.z;for(let k=0;k<12&&PL.some(p=>Math.abs(p.x-l.x)<(p.w+l.w)/2&&Math.abs(p.y-l.y)<fs*1.05);k++)l.y-=fs*1.05;PL.push(l);cx.lineWidth=2.5/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(l.t,l.x,l.y);cx.fillStyle='#fff';cx.fillText(l.t,l.x,l.y)}}
  cx.restore();
- {const now=performance.now(),rs=CR.filter(r=>now-r.at<5000).reverse(),f=S.hero.filter(h=>h.st==='fight').slice(0,3),L=[...f.map(h=>({t:`${h.name} ⚔️ ${h.en.n}`,c:'#fff'})),...rs].slice(0,5);
+ wxDraw();{const now=performance.now(),rs=CR.filter(r=>now-r.at<5000).reverse(),f=S.hero.filter(h=>h.st==='fight').slice(0,3),L=[...f.map(h=>({t:`${h.name} ⚔️ ${h.en.n}`,c:'#fff'})),...rs].slice(0,5);
  if(L.length){const fs=sc*2.9,lh=fs*1.4;cx.font=`${fs}px Alegreya,serif`;const mw=Math.max(...L.map(l=>cx.measureText(sn(l.t)).width))+14,pw=Math.min(W-12,Math.max(W*.5,mw));cx.fillStyle='rgba(20,24,26,.8)';cx.beginPath();cx.roundRect(6,6,pw,lh*(L.length+1)+8,8);cx.fill();cx.textAlign='left';cx.fillStyle='#e2b43c';cx.font=`700 ${fs}px Alegreya,serif`;cx.fillText(f.length?'Combats en cours':'Combats',12,6+lh);L.forEach((l,i)=>{cx.fillStyle=l.c;cx.font=(/\u2060/.test(l.t)?'italic ':'')+`${fs}px Alegreya,serif`;cx.fillText(sn(l.t),12,6+lh*(i+2))});cx.textAlign='center'}}
  if(S.alert&&performance.now()-S.alert.at<12000){cx.fillStyle='rgba(192,57,43,.95)';cx.beginPath();cx.roundRect(6,H-sc*9-6,W-12,sc*9,8);cx.fill();cx.fillStyle='#fff';cx.font=`700 ${sc*3.6}px Alegreya,serif`;cx.fillText(sn(S.alert.txt),W/2,H-sc*9-6+sc*5.6)}
 }
+function wxDraw(){const v=wxMix(),vl=v[0],rn=v[1],fg=v[2],th=v[3];if(vl+rn+fg+th<.01)return;
+ const t=performance.now()/1000,g=cx;
+ if(vl>.005){g.fillStyle=`rgba(62,74,92,${vl})`;g.fillRect(0,0,W,H)}
+ if(fg>.005){g.fillStyle=`rgba(226,231,233,${.34*fg})`;g.fillRect(0,0,W,H)}
+ if(rn>.01){const n=Math.round(170*rn),sp=th>.5?1.5:1.1;g.strokeStyle='rgba(196,214,238,.5)';g.lineWidth=Math.max(1,sc*.18);g.lineCap='round';g.beginPath();
+  for(let i=0;i<n;i++){const q=(jt(i,9)+t*(.9+.5*jt(i,3))*sp)%1,len=sc*3.2*(.7+.6*jt(i,3)),x=((jt(i,5)*W*1.3-q*H*.2)%W+W)%W,y=q*H;g.moveTo(x,y);g.lineTo(x-len*.25,y+len)}
+  g.stroke()}
+ if(th>.3){const T=9,s=Math.floor(t/T),r=jt(s,17);if(r<.8){const d=t-(s*T+r*T*.8);if(d>=0&&d<.5){const a=d<.12?1:d<.2?.25:d<.3?.9:1-(d-.3)/.2;g.fillStyle=`rgba(240,245,255,${.55*a*th})`;g.fillRect(0,0,W,H)}}}}
 const ZMIN=1/MS,cam={x:0,y:0,z:ZMIN},pt=new Map();let pd=0;
 function clampCam(){cam.z=Math.min(3,Math.max(ZMIN,cam.z));const a=W-W*MS*cam.z,b=H-H*MS*cam.z;cam.x=Math.min(Math.max(0,a)+W*.1,Math.max(Math.min(0,a)-W*.1,cam.x));cam.y=Math.min(Math.max(0,b)+H*.1,Math.max(Math.min(0,b)-H*.1,cam.y))}
 function zoomAt(px,py,f){const nz=Math.min(3,Math.max(ZMIN,cam.z*f)),k=nz/cam.z;cam.x=px-(px-cam.x)*k;cam.y=py-(py-cam.y)*k;cam.z=nz;clampCam()}
