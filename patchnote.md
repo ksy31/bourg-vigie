@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.6 « Bouton plein écran »
+
+Version affichée dans les Options : **v3.2.6**
+
+### Ajouté
+- **Bouton plein écran (⛶) :** dans l'onglet Options, à côté du bouton musique et du bouton thème. Il masque la barre d'état du téléphone (et la barre du navigateur sur PC) ; un second appui revient à l'affichage normal (icône 🗗). Il faut le retoucher à chaque lancement du jeu (le navigateur l'exige). Le bouton est caché si le navigateur ne permet pas le plein écran (par exemple iPhone). La carte se recalcule toute seule (v3.2.5).
+
+### Modifié
+- Aucun changement de jeu ni d'équilibre. `manifest.webmanifest` n'est pas modifié.
+- Testé (Node, API simulée) : bouton affiché ou caché selon le support, entrée et sortie du plein écran, icône mise à jour par l'événement, refus du navigateur sans erreur, équivalence avec la 3.2.5 sur 2 parties de 20 jours, 0 erreur.
+- Non vérifié : le comportement réel sur ton téléphone (barre d'état bien masquée, éventuel message système à l'entrée).
+- Fichiers : `index.html`, `style.css`, `save.js`, `main.js`, `sw.js`. Cache du service worker passé à `bv-v53`. Version affichée dans les Options : v3.2.6.
+
 ## v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »
 
 Version affichée dans les Options : **v3.2.5**

@@ -10,7 +10,7 @@ function loop(now){
  acc+=dt;if(acc>.3){acc=0;if(!SLP)ui();if(!S.over&&!S.hero.length&&S.g<rcost())gameOver()}
  if(!SLP&&curTab==='tv')draw();requestAnimationFrame(loop);
 }
-thApply();$('thm').onclick=thToggle;$('bR').onclick=recruit;for(const id in BD)$('b'+id).onclick=()=>build(id);$('bB').onclick=sendBoss;$('pn').onclick=newRun;$('tt').onchange=()=>{showT=$('tt').checked;ui()};
+thApply();$('thm').onclick=thToggle;fsApply();$('fsb').onclick=fsToggle;document.addEventListener('fullscreenchange',fsApply);document.addEventListener('webkitfullscreenchange',fsApply);$('bR').onclick=recruit;for(const id in BD)$('b'+id).onclick=()=>build(id);$('bB').onclick=sendBoss;$('pn').onclick=newRun;$('tt').onchange=()=>{showT=$('tt').checked;ui()};
 $('sb').onclick=()=>saveG(true);$('rb').onclick=()=>{$('pvt').textContent='Nouvelle partie';$('pg').textContent='La partie en cours sera effacée. Nom du village :';$('pu').innerHTML='';$('pn').textContent='Commencer';$('vn').value=S.vn;$('pc').hidden=false;$('pv').hidden=false};$('pc').onclick=()=>{$('pc').hidden=true;$('pv').hidden=true};
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{curTab=b.dataset.t;document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.id===b.dataset.t));if(b.dataset.t==='tv')fit()});
 function folStep(d){const L=S.hero;if(!L.length)return;let i=L.findIndex(x=>x.id===fol);i=i<0?(d>0?0:L.length-1):(i+d+L.length)%L.length;fol=L[i].id;if(cam.z<1.2)cam.z=1.2}

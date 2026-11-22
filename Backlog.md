@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »**
+Version actuelle du jeu : **v3.2.6 « Bouton plein écran »**
 
 ## ✅ Déjà intégré
 
@@ -204,6 +204,9 @@ Version actuelle du jeu : **v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Ha
 - [x] **Affichage dynamique multi-écrans (Z Fold 3 plié/déplié) :** adapter automatiquement la mise en page de l'interface et la vue de la carte à toutes les largeurs et ratios d'écran en temps réel, sans blocage ni débordement sur écran étroit (Z Fold 3 plié) et avec recalcul fluide au dépliage.
 - [x] **Mode Jour / Mode Nuit dans les Options :** ajouter un sélecteur de thème permettant de basculer entre le thème sombre AMOLED actuel (Nuit) et un thème clair (Jour) lisible en extérieur.
 - [x] **Position provisoire du halo nocturne :** déplacer le point/halo lumineux nocturne de la tête vers le torse des aventuriers pour dégager leur visage (en attendant la torche tenue en main).
+
+## ✅ v3.2.6 « Bouton plein écran »
+- [x] **Bouton plein écran :** bouton ⛶ dans les Options, à côté de 🔊 et 🌙, pour masquer la barre d'état (à retoucher à chaque lancement ; masqué si le navigateur ne le permet pas).
 
 ## 🎨 v3.3.0 « Refonte graphique 2D (1/5) : Textures de sol & Relief » (prochain)
 - [ ] **Textures procédurales en cache et occlusion ambiante :** enrichir le sol (herbe dense, pavés irréguliers du village, transitions douces entre biomes) via des textures mises en cache sur canvas hors-écran pour préserver la batterie, et ajouter une ombre douce au pied des bâtiments, murets et arbres (perspective 3/4 vue de haut avec façades et toits visibles).
