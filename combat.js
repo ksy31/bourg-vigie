@@ -63,7 +63,7 @@ function arrive(h){
 function resolve(h){
  const z=h.z,e=h.en,c=CL[h.c];
  h.last=z;
- const w=win(h,e.d),sv=e.boss?.05:Math.min(.4,(1-c.die)*FLEE*(e.el?2:1)*(1+Math.min(.5,(h.eq.a+h.eq.s)*.06))+(h.bless?.02*S.spa+.01*nl('S'):0)),pd=Math.max(DFLOOR,(1-w)*(1-sv)),pw=Math.min(w,1-pd),rr=Math.random();
+ const w=win(h,e.d),sv=e.boss?.05:Math.min(.4,(1-c.die)*FLEE*(e.el?2:1)*(1+Math.min(.5,(h.eq.a+h.eq.s)*.06))+(h.bless?.04*S.spa+.02*nl('S'):0)),pd=Math.max(DFLOOR,(1-w)*(1-sv)),pw=Math.min(w,1-pd),rr=Math.random();
  if(rr<pw){
   h.loot={g:0,w:0,s:0,gear:0};
   if(z.n==='Forêt'){h.loot.w=R(3,6);h.loot.g=R(2,6);if(Math.random()<.1)h.loot.s=R(1,2)}
@@ -75,7 +75,7 @@ function resolve(h){
   if(z.n==='Cimetière'){h.loot.g=R(16,26);h.loot.s=R(2,4);if(Math.random()<.4)h.loot.gear=1}
   if(z.n==='Volcan'){h.loot.g=R(35,60);h.loot.w=4;h.loot.s=4;if(Math.random()<.6)h.loot.gear=1}
   const rl=power(h)/e.d,lk=rl<.8?Math.min(3,.8/rl):1,k=(e.el?2:.7+.3*e.m)*lk,l=h.loot;
-  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.1*S.market+.02*nl('M')+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
+  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;goBack(h);if(e.boss)victory(h);
@@ -89,7 +89,7 @@ function resolve(h){
  }
 }
 function tick(dt){
- S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}wxTick();bTick(dt);
+ S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);
  for(const h of S.hero.slice()){
   if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const bs=needB();if(bs){h.tk={k:'build',b:bs.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
   else if(h.st==='town')townTick(h,dt);

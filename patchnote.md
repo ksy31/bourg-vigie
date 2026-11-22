@@ -1,5 +1,26 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire »
+
+Version affichée dans les Options : **v3.1.6**
+
+### Ajouté
+- **Échec de bénédiction :** la bénédiction du Sanctuaire peut échouer (message « la bénédiction échoue » dans la console, pas de ✨). Chance de réussite = 55 % + 4 % par niveau de Sanctuaire + 3 % par niveau de Guérisseur, plafonnée à 95 % (ex. 62 % avec Sanctuaire 1 et Guérisseur 1). Constantes `BL0`, `BL1`, `BL2` (village.js). Le Guérisseur gagne son XP à chaque tentative, réussie ou non.
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Marché supprimé :** bâtiment, bouton, PNJ Marchand et bonus d'or (+10 % par niveau) retirés. Il reste le +1 % par niveau de Maire.
+- **Aubergiste :** il ne gagne plus d'XP à chaque début de repos. À chaque aube (4h), chaque aventurier au repos (maison ou Auberge) lui rapporte 3 XP (constante `AUB`, village.js). Champ de sauvegarde `S.aw` (dernier jour compté, créé tout seul).
+- **Bénédiction réussie plus efficace :** réduction de mortalité en cas de défaite doublée (0,04 par niveau de Sanctuaire au lieu de 0,02, et 0,02 par niveau de Guérisseur au lieu de 0,01). Coût et durée inchangés.
+- **Migration (`mig5`, save.js) :** une sauvegarde avec Marché perd le bâtiment (chantier compris) et le Marchand. Les ressources payées sont remboursées (message dans la console) et les emplacements des bâtiments suivants sont renumérotés : le village se réorganise légèrement. Les aventuriers qui allaient vers un bâtiment décalé sont redirigés.
+- **Équilibre** (3 × 20 parties, 15 jours, 8 aventuriers max., bâtiments construits automatiquement, ancien → nouveau) : victoires 98-144 → 126-143, or gagné 1234-2362 → 1441-1785, morts 17-18 → 19-20, niveau d'Aubergiste 7,6-11,2 → 10,3-11,2. La dispersion entre lots dépasse l'écart : c'est dans le bruit. Environ 13 bénédictions ratées par partie. Si l'or te semble trop bas sans Marché, relève le bonus de Maire (`.01*nl('V')` dans `resolve`, combat.js).
+- `map.js` non modifié : le dessin du Marché et du Marchand n'est plus utilisé (code mort conservé). Fichiers : `data.js`, `state.js`, `village.js`, `combat.js`, `save.js`, `index.html`.
+- Testé (Node) : parties de 15 jours, sauvegarde puis rechargement, sauvegarde 3.1.5 avec Marché en chantier, avec Marché terminé et aventurier au chantier : 0 erreur, numéros de bâtiments sans doublon, remboursement exact.
+- Non vérifié : le rendu du village réorganisé sur ton téléphone (pas de capture), l'équilibre ressenti de la bénédiction sur de longues parties.
+- Cache du service worker passé à `bv-v43`. Version affichée dans les Options : v3.1.6.
+
 ## v3.1.5 « Lisibilité, Caméra & Lumières nocturnes »
 
 Version affichée dans les Options : **v3.1.5**
