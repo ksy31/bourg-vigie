@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.4 « Météo dynamique »**
+Version actuelle du jeu : **v3.1.5 « Lisibilité, Caméra & Lumières nocturnes »**
 
 ## ✅ Déjà intégré
 
@@ -165,11 +165,12 @@ Version actuelle du jeu : **v3.1.4 « Météo dynamique »**
 ## ✅ v3.1.4 « Météo dynamique »
 - [x] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
 
-- [ ] ## 👁️ v3.1.5 « Lisibilité, Caméra & Lumières nocturnes » (prochain)
-- [ ] **Noms des PNJ en violet, météo claire et halo nocturne :** afficher les noms des PNJ en violet, garder un **soleil** comme icône pour la météo claire, et réduire la taille ainsi que l'opacité du rond jaune nocturne sur la tête des aventuriers afin qu'ils restent bien visibles la nuit.
-- [ ] **Suivi caméra rapide et étoiles de bénédiction :** ajouter 2 boutons près de la carte pour verrouiller le suivi sur **l'aventurier suivant** ou **précédent**, et afficher de petites **étoiles autour de l'aventurier** ayant reçu une bénédiction.
+## ✅ v3.1.5 « Lisibilité, Caméra & Lumières nocturnes »
+- [x] **Noms des PNJ en violet, météo claire et halo nocturne :** afficher les noms des PNJ en violet, garder un **soleil** comme icône pour la météo claire, et réduire la taille ainsi que l'opacité du rond jaune nocturne sur la tête des aventuriers afin qu'ils restent bien visibles la nuit.
+- [x] **Suivi caméra rapide et étoiles de bénédiction :** ajouter 2 boutons près de la carte pour verrouiller le suivi sur **l'aventurier suivant** ou **précédent**, et afficher de petites **étoiles autour de l'aventurier** ayant reçu une bénédiction.
+- [x] **Demande ajoutée :** encadré des combats et bandeau de mort affichés 25 s (avant 5 s et 12 s).
 
-## 🏛️ v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire »
+## 🏛️ v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire » (prochain)
 - [ ] **Suppression du Marché et ajustement de l'Auberge :** retirer le bâtiment et le PNJ du Marché (doublon avec la Mairie) ; garder l'Auberge non améliorable tout en faisant progresser l'Aubergiste via les nuits passées (rythme calibré sur l'équilibrage actuel).
 - [ ] **Standardisation du Sanctuaire :** aligner la montée en niveau de la Prêtresse sur les autres PNJ via les soins et bénédictions accordés (rythme calibré sur l'équilibrage actuel), en augmentant l'efficacité des soins et le **taux de réussite de la bénédiction** (sans coût ni changement de durée).
 

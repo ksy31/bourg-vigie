@@ -58,3 +58,4 @@ html,body{touch-action:manipulation}
 #slt{transition:opacity 1s}#slt.off{opacity:0}
 #to.on{display:flex;flex-direction:column;min-height:calc(100dvh - 200px)}#ob{margin-top:10px}#ov{margin-top:auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}.hc{cursor:pointer}
 #mu{min-height:32px;padding:2px 10px;font-size:16px;background:var(--card);color:var(--fg);border:1px solid var(--line);flex:none}
+#fb{display:flex;align-items:center;gap:6px;margin:8px 0}#fb label{flex:1;font-size:15px}#fb button{flex:none;width:40px;min-height:36px;padding:0;background:var(--card);color:var(--fg);border:1px solid var(--line)}

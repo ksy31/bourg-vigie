@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.5 « Lisibilité, Caméra & Lumières nocturnes »
+
+Version affichée dans les Options : **v3.1.5**
+
+### Ajouté
+- **Boutons ◀ ▶ :** à côté de la case « temps de trajet », ils font suivre l'aventurier précédent / suivant (ordre de la liste, en boucle). Sans suivi en cours, ▶ prend le premier et ◀ le dernier. Zoom minimum 1,2 comme au tap. Un aventurier à l'Auberge est suivi via la caméra centrée sur l'Auberge.
+- **Étoiles de bénédiction :** 3 petites étoiles dorées tournent autour d'un aventurier béni, jusqu'à son prochain combat (aussi visibles la nuit).
+
+### Corrigé
+- Aucun correctif dans cette release.
+
+### Modifié
+- **Noms des PNJ en violet** sur la carte (étiquettes uniquement ; la liste l'était déjà).
+- **Météo claire :** icône ☀️ (avant ✨).
+- **Point jaune nocturne des aventuriers :** rayon réduit d'environ 45 % et opacité à 55 % ; le halo autour d'eux est inchangé.
+- **Durées d'affichage (demande ajoutée) :** résultats de combat sous l'encadré 25 s (avant 5 s), bandeau de mort 25 s (avant 12 s). L'encadré reste limité à 5 lignes : avec beaucoup de combats simultanés, les plus anciens résultats sont masqués avant la fin des 25 s.
+- Fichiers : `map.js` (`bstars`, `draw`), `state.js` (`WXI`), `index.html`, `style.css`, `main.js` (`folStep`).
+- Pas de migration, gameplay et équilibre inchangés (rendu et interface uniquement). Une sauvegarde 3.1.4 se charge et se joue (testé).
+- Testé (Node, 20 jours, dessin régulier, sauvegarde puis rechargement, chargement d'une sauvegarde 3.1.4, boutons ◀ ▶ en boucle) : 0 erreur. Captures PC jour et nuit vérifiées (noms violets, étoiles, point nocturne).
+- Non vérifié : le rendu sur ton téléphone (largeur de la ligne case + boutons sur écran plié, le texte de la case peut passer sur 2 lignes), la lisibilité des étoiles sur écran réel.
+- Cache du service worker passé à `bv-v42`. Version affichée dans les Options : v3.1.5.
+
 ## v3.1.4 « Météo dynamique »
 
 Version affichée dans les Options : **v3.1.4**
