@@ -1,4 +1,7 @@
 const SK='bvs';
+const TH={m:(()=>{try{return localStorage.getItem('bvth')==='j'?'j':'n'}catch(e){return'n'}})()};
+function thApply(){document.documentElement.setAttribute('data-theme',TH.m==='j'?'light':'dark');const b=$('thm');if(b)b.textContent=TH.m==='j'?'☀️':'🌙';const mt=document.querySelector('meta[name="theme-color"]');if(mt)mt.setAttribute('content',TH.m==='j'?'#f1efe9':'#2f5d50')}
+function thToggle(){TH.m=TH.m==='j'?'n':'j';try{localStorage.setItem('bvth',TH.m)}catch(e){}thApply()}
 function saveG(m){try{S.sat=Date.now();S.logs=logs.slice(0,20);localStorage.setItem(SK,JSON.stringify(S));if(m===true)toast('Sauvegarde réussie ✓')}catch(e){if(m===true)toast('Échec de la sauvegarde')}}
 function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
 function mig(s){const M=3;if(s.zp)s.zp=s.zp.map(p=>[p[0]*M,p[1]*M]);(s.marks||[]).forEach(m=>{m.x*=M;m.y*=M});

@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »
+
+Version affichée dans les Options : **v3.2.5**
+
+### Ajouté
+- **Thème Jour/Nuit :** nouveau bouton 🌙/☀️ dans l'onglet Options, à côté du bouton musique. Nuit = thème sombre AMOLED (par défaut, même si le téléphone est en mode clair), Jour = thème clair lisible en extérieur. Réglage mémorisé dans `localStorage` (`bvth`), commun à toutes les parties, absent de la sauvegarde de partie. La couleur de la barre du navigateur suit le thème. La carte garde son propre cycle jour/nuit.
+- **Affichage adaptatif :** la carte recalcule sa taille à chaque changement de fenêtre, d'orientation ou de zone visible (dépliage du Z Fold, redimensionnement PC), sans à-coup : la caméra garde le même point de vue.
+
+### Modifié
+- **Mise en page en colonne unique plus large :** largeur maximale 720 px (480 avant). La carte est limitée par la hauteur visible de l'écran (le ratio du monde, 1,3, est conservé) : elle ne déborde plus sur écran bas, paysage ou fenêtre PC, et reste centrée. Le bouton veille 🌑 suit le coin de la carte.
+- **Halo nocturne :** le point lumineux des aventuriers passe de la tête au torse (le visage est dégagé). Taille et couleur inchangées.
+- Équilibre inchangé : 2 parties de 20 jours à graine identique, avec la 3.2.4 : résultats identiques. Sauvegarde 3.2.4 chargée en 3.2.5, 10 jours de jeu : 0 erreur.
+- Testé (Node) : tailles de carte pour écran plié (340 px de large utile : carte 340 × 442), déplié, PC et petit écran ; caméra conservée au redimensionnement ; bascule et rechargement du thème ; capture de nuit avant/après (halo sur le torse).
+- Non vérifié : le rendu réel sur ton téléphone et sur PC (le thème Jour complet, le comportement exact au dépliage), car je n'ai testé qu'avec des écrans simulés.
+- Fichiers : `index.html`, `style.css`, `save.js`, `map.js`, `main.js`, `sw.js`. Cache du service worker passé à `bv-v52`. Version affichée dans les Options : v3.2.5.
+
 ## v3.2.4 « Assaut préparé contre le Roi Démon »
 
 Version affichée dans les Options : **v3.2.4**

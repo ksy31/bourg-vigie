@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.4 « Assaut préparé contre le Roi Démon »**
+Version actuelle du jeu : **v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »**
 
 ## ✅ Déjà intégré
 
@@ -200,12 +200,12 @@ Version actuelle du jeu : **v3.2.4 « Assaut préparé contre le Roi Démon »**
 ## ✅ v3.2.4 « Assaut préparé contre le Roi Démon »
 - [x] **Sélection du meilleur champion et préparation complète :** modifier le bouton d'envoi au Roi Démon pour sélectionner automatiquement le **meilleur aventurier vivant** (quelle que soit son action en cours) et lui faire effectuer une séquence de préparation au village (retour, repos, soin/bénédiction au Sanctuaire, équipement à la Forge si besoin) avant de partir affronter le Roi Démon en duel.
 
-## 📱 v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo » (prochain)
-- [ ] **Affichage dynamique multi-écrans (Z Fold 3 plié/déplié) :** adapter automatiquement la mise en page de l'interface et la vue de la carte à toutes les largeurs et ratios d'écran en temps réel, sans blocage ni débordement sur écran étroit (Z Fold 3 plié) et avec recalcul fluide au dépliage.
-- [ ] **Mode Jour / Mode Nuit dans les Options :** ajouter un sélecteur de thème permettant de basculer entre le thème sombre AMOLED actuel (Nuit) et un thème clair (Jour) lisible en extérieur.
-- [ ] **Position provisoire du halo nocturne :** déplacer le point/halo lumineux nocturne de la tête vers le torse des aventuriers pour dégager leur visage (en attendant la torche tenue en main).
+## ✅ v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »
+- [x] **Affichage dynamique multi-écrans (Z Fold 3 plié/déplié) :** adapter automatiquement la mise en page de l'interface et la vue de la carte à toutes les largeurs et ratios d'écran en temps réel, sans blocage ni débordement sur écran étroit (Z Fold 3 plié) et avec recalcul fluide au dépliage.
+- [x] **Mode Jour / Mode Nuit dans les Options :** ajouter un sélecteur de thème permettant de basculer entre le thème sombre AMOLED actuel (Nuit) et un thème clair (Jour) lisible en extérieur.
+- [x] **Position provisoire du halo nocturne :** déplacer le point/halo lumineux nocturne de la tête vers le torse des aventuriers pour dégager leur visage (en attendant la torche tenue en main).
 
-## 🎨 v3.3.0 « Refonte graphique 2D (1/5) : Textures de sol & Relief »
+## 🎨 v3.3.0 « Refonte graphique 2D (1/5) : Textures de sol & Relief » (prochain)
 - [ ] **Textures procédurales en cache et occlusion ambiante :** enrichir le sol (herbe dense, pavés irréguliers du village, transitions douces entre biomes) via des textures mises en cache sur canvas hors-écran pour préserver la batterie, et ajouter une ombre douce au pied des bâtiments, murets et arbres (perspective 3/4 vue de haut avec façades et toits visibles).
 
 ## 🎨 v3.3.1 « Refonte graphique 2D (2/5) : Torches & Lumières chaudes »

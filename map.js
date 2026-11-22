@@ -1,8 +1,11 @@
 const cv=$('cv');let cx=cv.getContext('2d');const cx0=cx;
 let W=360,H=432,sc=3.6;
 function fit(){
+ const p=cv.parentElement,pw=p&&p.clientWidth;if(!pw)return;const vh=(window.visualViewport&&visualViewport.height)||window.innerHeight||800,w=Math.max(240,Math.min(pw,(vh-150)/1.3));
+ cv.style.width=w+'px';cv.style.margin='0 auto';{const sl=$('slp');if(sl)sl.style.right=((pw-w)/2+6)+'px'}
  const r=cv.getBoundingClientRect(),dpr=window.devicePixelRatio||1;if(!r.width)return;
- W=r.width;H=W*1.3;cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);sc=W/100;
+ const k=W>0&&Math.abs(r.width-W)>.5?r.width/W:1;cam.x*=k;cam.y*=k;
+ W=r.width;H=W*1.3;cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);sc=W/100;clampCam();
 }
 const SLOTS=(()=>{const a=[];for(let dx=-30;dx<=30;dx+=10)for(const dy of[-19,-9.5,0,9.5,19])if(!(Math.abs(dx)===30&&Math.abs(dy)===19))a.push([dx,dy]);return a.sort((p,q)=>(p[0]/1.6)**2+p[1]**2-((q[0]/1.6)**2+q[1]**2)||p[0]-q[0])})();
 const jt=(i,n)=>{const s=Math.sin(i*127.1+n*311.7)*43758.5453;return s-Math.floor(s)};
@@ -453,7 +456,7 @@ function draw(){
   const nn=Math.max(8,Math.round(Math.PI*Math.sqrt(2*(VR.rx**2+VR.ry**2))/11));
   for(let i=0;i<nn;i++){const a=i/nn*6.283+.2;dot((T.x+VR.rx*Math.cos(a))*sc,(T.y+VR.ry*Math.sin(a))*sc,sc*.6,sc*5.5)}
   for(const it of S.pl){const p=slot(it);dot((T.x+p[0]+2)*sc,(T.y+p[1]+3)*sc,sc*.55,sc*4.5)}
-  for(const q of S.hero){const bm=BM.get(q.id);if(hidn(q)&&!bm)continue;const bp=bm?bpos(q,bm):null,x=bp?bp[0]:q.x*sc+((q.id%3)-1)*sc*1.5,y=bp?bp[1]:q.y*sc+((q.id%2)-.5)*sc*2,hh=Math.max(sc*13,12/cam.z);cx.globalAlpha=.9*K;cx.drawImage(GLOW,x-hh,y-hh,2*hh,2*hh);cx.globalAlpha=.55*K;cx.fillStyle='#ffd37a';cx.beginPath();cx.arc(x,y-sc*1.2,Math.max(sc*.45,1.4/cam.z),0,7);cx.fill();if(q.bless){cx.globalAlpha=K;bstars(x,y)}
+  for(const q of S.hero){const bm=BM.get(q.id);if(hidn(q)&&!bm)continue;const bp=bm?bpos(q,bm):null,x=bp?bp[0]:q.x*sc+((q.id%3)-1)*sc*1.5,y=bp?bp[1]:q.y*sc+((q.id%2)-.5)*sc*2,hh=Math.max(sc*13,12/cam.z);cx.globalAlpha=.9*K;cx.drawImage(GLOW,x-hh,y-hh,2*hh,2*hh);cx.globalAlpha=.55*K;cx.fillStyle='#ffd37a';cx.beginPath();cx.arc(x,y-sc*.1,Math.max(sc*.45,1.4/cam.z),0,7);cx.fill();if(q.bless){cx.globalAlpha=K;bstars(x,y)}
    if(q.loot&&(q.st==='back'||q.st==='town')){const lx=x+sc*1.8,ly=y-sc*1.8,lr=Math.max(sc*3.2,8/cam.z);cx.globalAlpha=.8*K;cx.drawImage(GLOW,lx-lr,ly-lr,2*lr,2*lr);cx.globalAlpha=K;cx.fillStyle='#ffe066';cx.beginPath();cx.arc(lx,ly,sc*.9,0,7);cx.fill()}}
   }}
  for(const q of S.hero){if(q.st!=='fight'||!q.en||!q.en.nt)continue;const mk=mkind(q.en.n);if(mk)monster(q.x*sc+((q.id%3)-1)*sc*1.5+sc*(q.hs?7.5:6.2),q.y*sc+((q.id%2)-.5)*sc*2,q,mk,'g')}
