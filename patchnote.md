@@ -1,5 +1,30 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »
+
+Version affichée dans les Options : **v3.2.2**
+
+### Ajouté
+- **Maison des Guildes (⚜️) :** nouveau bâtiment unique et améliorable, à construire depuis l'onglet Bâtir. Coût : `30+25×niv` bois, `30+30×niv` pierre, `80+80×niv` or. Chantier avec un aventurier bâtisseur, puis améliorations par fermeture de 1 à 2 jours, comme les autres bâtiments. Dessin : façade claire, toit pourpre, fanion doré sur le toit et grande bannière pourpre sur un mât ; aspect amélioré aux niveaux 3 et 6 du Chancelier.
+- **Chancelier :** PNJ de la Maison des Guildes (robe pourpre, chapeau, parchemin 📜), nom et genre tirés comme les autres PNJ. Pas encore de source d'XP (elle arrive en 3.2.3 avec sa montée de niveau). Aux niveaux 3 et 6 : rénovation de 5 à 10 min, comme les autres PNJ.
+- **Guildes (`S.guilds`) :** un aventurier de niveau 5 ou plus (`GMIN`, village.js) sans guilde peut en rejoindre ou en fonder une. Il ne va à la Maison que s'il y a un intérêt : une guilde avec de la place (5 membres maximum, `GSZ`) ou une place de guilde libre. Cette visite est décidée après ses autres achats au village (maison, cheval, forge), une seule fois par retour de quête et tant qu'il n'a pas de guilde. Durée sur place : 20 à 30 s avec file d'attente.
+- **Nombre de guildes :** niveau 1 de la Maison = 2 guildes, +1 par niveau, 6 au maximum (`GMAXN`).
+- **Choix de la guilde :** il rejoint d'abord la guilde active qui a le plus de membres et de la place, sinon une guilde en sommeil (qu'il relance), sinon il en fonde une nouvelle (gratuit pour l'instant).
+- **Nom et bannière :** générés automatiquement parmi 10 modèles (nom, emblème, couleur), par exemple « Les Loups Noirs 🐺 ». Messages « 🐺 Nom fonde la guilde « … » », « rejoint la guilde », « relance la guilde ».
+- **Guilde en sommeil :** quand le dernier membre meurt, la guilde n'est pas supprimée : elle garde son nom, son emblème et sa place, et attend un aventurier de niveau 5 qui la relance.
+- **Affichage :** emblème et nom de la guilde sur la ligne de chaque membre (onglet Aventuriers) ; sur la ligne du Chancelier : « 📜 Nom Chancelier niv. 1 · ⚜️ Guildes : 2/3 (1 en sommeil) ».
+
+### Corrigé
+- Rien dans cette version.
+
+### Modifié
+- Pas d'effet de gameplay en dehors de la visite à la Maison (déplacement et 20 à 30 s, une seule fois par aventurier, tant qu'il n'est pas en guilde) : les départs en groupe et la caisse commune arrivent en 3.2.3.
+- Anciennes sauvegardes : `loadG` (save.js) ajoute `guilds` (vide) et `guildh` (0). Le champ `gu` des aventuriers est absent des anciens (= sans guilde). Les données de guildes sont propres à la partie.
+- Équilibre : sans Maison des Guildes, parties de 20 jours à graine identique identiques à la 3.2.1 (or, bois, pierre, tués, morts). Dans 3 parties automatiques de 25 jours, un seul aventurier atteint le niveau 5 (1 guilde fondée au jour 10) : le niveau 5 est donc long à atteindre avec ce joueur automatique. Constantes à ajuster : `GMIN`, `GSZ`, `GMAXN` (village.js).
+- Testé (Node) : niveau 4 sans visite, fondation au niveau 5, adhésion à la guilde la plus remplie, guilde pleine (5) puis seconde guilde, plafond atteint sans visite, plafonds niveau 1 / 2 / 5 / 6 (2 / 3 / 6 / 6), guilde en sommeil conservée puis relancée avant toute fondation, Maison fermée sans visite, aventurier déjà en guilde sans visite, pastilles d'affichage, noms uniques, sauvegarde puis rechargement, sauvegarde 3.2.1 (Armurerie et coffre) chargée puis 12 jours avec Maison, 0 erreur.
+- Non vérifié : le rendu sur ton téléphone (captures faites sur ordinateur : jour, niveaux 1 et 6 du Chancelier, chantier, nuit).
+- Fichiers : `data.js`, `state.js`, `village.js`, `save.js`, `ui.js`, `map.js`, `index.html`, `sw.js`. Cache du service worker passé à `bv-v49`. Version affichée dans les Options : v3.2.2.
+
 ## v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »
 
 Version affichée dans les Options : **v3.2.1**

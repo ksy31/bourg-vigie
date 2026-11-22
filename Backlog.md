@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »**
+Version actuelle du jeu : **v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »**
 
 ## ✅ Déjà intégré
 
@@ -191,10 +191,10 @@ Version actuelle du jeu : **v3.2.1 « Armurerie de Guilde (2/2) : Attribution & 
 ## ✅ v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »
 - [x] **Équipement des suivants et progression de l'Intendant :** faire passer les nouveaux aventuriers à l'Armurerie pour s'équiper gratuitement depuis le coffre et activer la montée de niveau de l'Intendant (calibrée sur le rythme actuel).
 
-## 🚩 v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation » (prochain)
-- [ ] **Ajout du lieu et création des compagnies :** intégrer la Maison des Guildes (dessin, améliorations et Chancelier) et permettre aux aventuriers expérimentés de fonder ou rejoindre une guilde (nom et bannière).
+## ✅ v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »
+- [x] **Ajout du lieu et création des compagnies :** intégrer la Maison des Guildes (dessin, améliorations et Chancelier) et permettre aux aventuriers expérimentés de fonder ou rejoindre une guilde (nom et bannière).
 
-## 🚩 v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »
+## 🚩 v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes » (prochain)
 - [ ] **Expéditions groupées et caisse commune :** activer les départs en groupe dans les zones classiques (Roi Démon toujours en solo), le partage d'or interne pour équiper les recrues et la montée de niveau du Chancelier (calibrée sur le rythme actuel).
 
 ## 👑 v3.2.4 « Assaut préparé contre le Roi Démon »

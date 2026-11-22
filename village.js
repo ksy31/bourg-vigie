@@ -1,7 +1,7 @@
 function leave(h,z){h.z=z;const q=ZR[z.n]||ZR['Trône du Roi'],a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);{const en=ventry(z);h.wp=(en?vpath(h,en):[]).concat(h.gw.map(p=>({x:p.x,y:p.y})))}h.st='go'}
 const PRM=.8,PRL=.04,PRMIN=2,TVX=2,FGT=2,AUB=3,BL0=.55,BL1=.04,BL2=.03,blP=()=>Math.min(.95,BL0+BL1*S.spa+BL2*nl('S'));
-const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30],armory:[20,30]};
-const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie'};
+const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30],armory:[20,30],guild:[20,30]};
+const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie',guild:'à la Maison des Guildes'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'||h.sub==='bld'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
 const door=it=>{const p=slot(it);return{x:T.x+p[0],y:T.y+p[1]+3.6}};
@@ -16,11 +16,17 @@ const ACAP=3,AXR=4,AXD=8;
 const armPick=h=>{const out=[],cap=ACAP*((S.npc.I||{}).lv||1);for(const k of SL[h.c]){let bi=-1;(S.chest||[]).forEach((x,i)=>{if(x.k!==k||(k==='w'&&x.c!==h.c)||x.t>cap||x.t<=h.eq[k])return;if(bi<0||x.t>S.chest[bi].t)bi=i});if(bi>=0)out.push({k,i:bi})}return out};
 const armTask=h=>{const it=pickB(NE.I);return it&&armPick(h).length?{k:'armory',b:it.i}:null};
 function goOut(h){const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null}else leave(h,pick(h))}
+const GMIN=5,GSZ=5,GMAXN=6;
+const GN=[['Les Lames Grises','⚔️','#7b8794'],['Les Loups Noirs','🐺','#3a3a4a'],['Les Faucons d’Argent','🦅','#aab4c0'],['Les Ours de Fer','🐻','#8a5a3a'],['Les Renards Rouges','🦊','#c0482f'],['Les Veilleurs de l’Aube','🌙','#5a5fa8'],['La Compagnie de la Flamme','🔥','#d9822b'],['L’Ordre du Chêne','🌲','#3f7a46'],['Les Sentinelles du Nord','❄️','#6fa8c7'],['Les Dragons Ardents','🐉','#8a2f6a']];
+const gmax=()=>Math.min(GMAXN,(S.guildh||0)>0?(S.guildh||0)+1:0),gmem=g=>S.hero.filter(h=>h.gu===g.id).length;
+const gTarget=()=>{const L=(S.guilds||[]).filter(g=>gmem(g)<GSZ),A=L.filter(g=>gmem(g)>0).sort((a,b)=>gmem(b)-gmem(a));return A[0]||L[0]||null};
+const guOk=h=>h.lv>=GMIN&&!h.gu&&!!pickB(NE.C)&&(!!gTarget()||(S.guilds||[]).length<gmax());
 function decide(h){
  const hs=S.hs.find(x=>x.o==null);
  if(!h.home&&hs&&h.gold>=hs.p){const it=S.pl.find(x=>x.h===hs);if(it)return{k:'house',b:it.i}}
  if(!h.hs&&bestHorse(h)){const it=pickB(NE.E);if(it)return{k:'horse',b:it.i}}
  if(S.forge){const f=forgeP(h);if(h.eq[f.k]<f.t&&h.gold-f.p>=keepG(h)){const it=pickB(NE.F);if(it)return{k:'forge',b:it.i}}}
+ if(guOk(h)){const it=pickB(NE.C);if(it)return{k:'guild',b:it.i}}
   return null}
 function taskOk(h,tk){
  if(tk.k==='horse')return !h.hs&&!!bestHorse(h);
@@ -28,6 +34,7 @@ function taskOk(h,tk){
  if(tk.k==='forge'){if(!S.forge)return false;const f=forgeP(h);return h.eq[f.k]<f.t&&h.gold-f.p>=keepG(h)}
   if(tk.k==='bless')return !!S.spa&&!h.bless;
  if(tk.k==='armory')return armPick(h).length>0;
+ if(tk.k==='guild')return guOk(h);
  return true}
 function applyTask(h,tk){
  if(tk.k==='loot'){
@@ -47,6 +54,9 @@ function applyTask(h,tk){
  else if(tk.k==='armory'){const pk=armPick(h),tx=pk.map(p=>`${pn(h,p.k)} ${S.chest[p.i].t}`);pk.forEach(p=>{h.eq[p.k]=S.chest[p.i].t});
   pk.map(p=>p.i).sort((a,b)=>b-a).forEach(i=>S.chest.splice(i,1));for(let j=0;j<pk.length*AXD;j++)npcx('I');
   log(`🛡️ ${h.name} s’équipe à l’Armurerie : ${tx.join(', ')}.`,'ok')}
+ else if(tk.k==='guild'){const g=gTarget();
+  if(g){const z=!gmem(g);h.gu=g.id;log(`${g.e} ${h.name} ${z?'relance':'rejoint'} la guilde « ${g.n} ».`,'ok')}
+  else{const u=GN.filter(x=>!S.guilds.some(q=>q.n===x[0])),b=u[R(0,u.length-1)]||GN[0],id=1+S.guilds.reduce((m,q)=>Math.max(m,q.id),0),ng={id,n:b[0],e:b[1],c:b[2]};S.guilds.push(ng);h.gu=id;log(`${ng.e} ${h.name} fonde la guilde « ${ng.n} ».`,'ok')}}
 }
 function goBack(h){
  h.st='back';h.dec=0;h.tk=null;h.tl=[];h.wp=(h.gw||[]).slice().reverse().map(p=>({x:p.x,y:p.y}));
