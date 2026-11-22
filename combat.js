@@ -78,7 +78,7 @@ function resolve(h){
   l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
-  h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;goBack(h);if(e.boss)victory(h);
+  h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}goBack(h);if(e.boss)victory(h);
  }else if(rr<pw+pd){
   if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
@@ -89,7 +89,7 @@ function resolve(h){
  }
 }
 function tick(dt){
- S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);
+ S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(S.tavern&&S.day>=(S.pd||0))newPr();if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);
  for(const h of S.hero.slice()){
   if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const bs=needB();if(bs){h.tk={k:'build',b:bs.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
   else if(h.st==='town')townTick(h,dt);

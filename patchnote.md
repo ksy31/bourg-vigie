@@ -1,5 +1,29 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.8 « Taverne : Primes & Contrats »
+
+Version affichée dans les Options : **v3.1.8**
+
+### Ajouté
+- **Primes sur les monstres :** la Taverne propose des contrats « monstre → or ». Le niveau de la Taverne débloque les zones : niveau 1 = Forêt, niveau 2 = + Mine, … niveau 6 = + Volcan (tirage favorisant les zones hautes). Monstres de jour (70 %) ou de nuit (30 %) de la sous-zone de la partie ; ni Roi Démon ni Champion légendaire.
+- **Renouvellement :** un nouveau lot tous les 2 jours (au changement de jour) ; les primes non réclamées sont perdues. Nombre de contrats : 1 + 1 par tranche de 3 niveaux de Tavernier, 4 maximum.
+- **Montant :** force du monstre × 0,8, +4 % par niveau de Tavernier, 2 or minimum (constantes `PRM`, `PRL`, `PRMIN`, village.js). Niveau 1 : quelques pièces, sans effet sur l'économie.
+- **Versement :** la prime est réservée au premier aventurier qui bat le monstre ; il passe 25 à 35 s à la Taverne (file d'attente comme ailleurs, après la Mairie) pour la toucher dans sa bourse, pas dans la caisse du village. Message « 🎯 … touche la prime » dans la console. Sans Taverne disponible (chantier, rénovation), la prime est versée directement.
+- **Affichage :** pastille violette « 🎯 Primes : Loup (Forêt) 3 or · … » dans l'onglet Aventuriers.
+- **Tavernier :** 2 XP par prime versée (`TVX`).
+- Champs de sauvegarde `S.pr` (contrats), `S.pd` (jour du prochain lot), `h.prime` (prime en attente de paiement), créés tout seuls.
+
+### Corrigé
+- Aucun correctif dans cette release. (Les notes 3.1.6 et 3.1.7 décrivaient mal mes simulations : c'étaient 3 villages sur 20 tranches de 15 jours consécutives, pas 60 parties neuves. Les comparaisons restent valables, la description est corrigée.)
+
+### Modifié
+- **Ancien fonctionnement supprimé :** plus de repas 🍖 (achat, +8 % de puissance) ni de repos −12 % par niveau de Taverne. Les aventuriers ne changent pas leur choix de zone à cause des primes (bonus de chance pure ; une IA qui en tient compte pourrait lire `S.pr` dans `pick`, combat.js).
+- **Équilibre** (ancien → nouveau). Parties neuves, 3 × 20 parties de 15 jours : or gagné 303-387 → 250-384, victoires 50-65 → 41-64, morts 11-12 → 11-12 ; 0,8-1,3 prime réclamée par partie (environ 3 or). Village avancé, 2 villages × 20 tranches de 15 jours : or 1328-1338 → 1095-1490, victoires 119-142 → 127-132, morts 18-19 → 16-17 ; 3,4-6,3 primes par tranche (28-66 or, soit 2 à 5 % de l'or) ; niveau de Tavernier 3,0-4,0 → 2,6-3,4. La suppression du repos −12 % ne se voit pas dans le bruit. Pour des primes plus généreuses : `PRM` ; pour un Tavernier plus rapide : `TVX`.
+- **Migration (save.js) :** les repas en cours (tâche « taverne », 🍖) sont annulés ; le premier lot de primes est créé au chargement si une Taverne existe. Une sauvegarde 3.1.7 se charge et se joue (testé).
+- Testé (Node) : parties de 20 jours avec dessin, sauvegarde puis rechargement, passage de 25 à 35 s à la Taverne vérifié, sauvegarde 3.1.7 avec repas en cours.
+- Non vérifié : le rendu de la pastille et la lisibilité de la ligne sur ton téléphone, le ressenti des montants sur de longues parties.
+- Fichiers : `village.js`, `combat.js`, `state.js`, `save.js`, `ui.js`, `index.html`. Cache du service worker passé à `bv-v45`. Version affichée dans les Options : v3.1.8.
+
 ## v3.1.7 « Forge, Écurie & Maisons »
 
 Version affichée dans les Options : **v3.1.7**
@@ -14,7 +38,7 @@ Version affichée dans les Options : **v3.1.7**
 - **Forge :** le palier d'équipement acheté par le niveau du héros (niv. ÷ 2) est plafonné à 2 × niveau de la Forge ; le bonus du Forgeron (+1 palier par 3 niveaux) s'ajoute par-dessus et la réduction de prix est inchangée. Constante `FGT` (village.js). Le bouton Forge indique « paliers d'équipement ».
 - **Écurie :** chevaux illimités. Il y en a toujours 3 en vente (stock reconstitué à chaque achat et à la construction, `restock`, village.js). Vitesse d'un nouveau cheval = 2 + niveau du Palefrenier + 0 à 2 (plafond 12). Les chevaux déjà en vente gardent leur vitesse. Le bouton Écurie indique « chevaux plus rapides » (le bonus de l'Écurie sur la vitesse est inchangé).
 - **Maisons :** prix fixe de 50 or (avant 50 + 15 par niveau). Le coût de construction de la Maison est inchangé. Chaque Maison construite ajoute toujours une maison en vente.
-- **Équilibre** (3 × 20 parties, 15 jours, 8 aventuriers max., bâtiments construits automatiquement, 3.1.6 → 3.1.7) : maisons achetées par partie 0,4-0,6 → 0,5-1,4 (environ ×2), chevaux 3,4-4,1 → 1,6-4,0, achats à la forge 2,4-3,0 → 1,0-2,5, victoires 139-161 → 95-148, or gagné 1596-1894 → 1021-1765, morts 19 → 15-19,5. Un lot sur trois est nettement plus bas (peu d'aventuriers survivants) : c'est surtout du bruit. Pour pousser les achats de maison : la part de butin versée à la bourse (`.3` dans `applyTask`, village.js) ou l'épargne (`keepG`).
+- **Équilibre** (3 villages simulés, chacun sur 20 tranches consécutives de 15 jours sans repartir de zéro, 8 aventuriers max., bâtiments construits automatiquement, 3.1.6 → 3.1.7) : maisons achetées par partie 0,4-0,6 → 0,5-1,4 (environ ×2), chevaux 3,4-4,1 → 1,6-4,0, achats à la forge 2,4-3,0 → 1,0-2,5, victoires 139-161 → 95-148, or gagné 1596-1894 → 1021-1765, morts 19 → 15-19,5. Un lot sur trois est nettement plus bas (peu d'aventuriers survivants) : c'est surtout du bruit. Pour pousser les achats de maison : la part de butin versée à la bourse (`.3` dans `applyTask`, village.js) ou l'épargne (`keepG`).
 - **Migration (save.js) :** les maisons en vente passent à 50 or ; une Écurie existante complète son stock à 3 chevaux. Une sauvegarde 3.1.6 se charge et se joue (testé).
 - Testé (Node) : parties de 20 jours avec dessin, sauvegarde puis rechargement, sauvegarde 3.1.6 avec Écurie et maison à 95 or, chaîne d'héritage de 6 morts (45, 40, 35, 30, 25, 25).
 - Non vérifié : l'équilibre ressenti sur de longues parties (achats de maison et paliers de Forge plafonnés pour les hauts niveaux), l'affichage des nouveaux textes de boutons sur ton téléphone.
@@ -35,7 +59,7 @@ Version affichée dans les Options : **v3.1.6**
 - **Aubergiste :** il ne gagne plus d'XP à chaque début de repos. À chaque aube (4h), chaque aventurier au repos (maison ou Auberge) lui rapporte 3 XP (constante `AUB`, village.js). Champ de sauvegarde `S.aw` (dernier jour compté, créé tout seul).
 - **Bénédiction réussie plus efficace :** réduction de mortalité en cas de défaite doublée (0,04 par niveau de Sanctuaire au lieu de 0,02, et 0,02 par niveau de Guérisseur au lieu de 0,01). Coût et durée inchangés.
 - **Migration (`mig5`, save.js) :** une sauvegarde avec Marché perd le bâtiment (chantier compris) et le Marchand. Les ressources payées sont remboursées (message dans la console) et les emplacements des bâtiments suivants sont renumérotés : le village se réorganise légèrement. Les aventuriers qui allaient vers un bâtiment décalé sont redirigés.
-- **Équilibre** (3 × 20 parties, 15 jours, 8 aventuriers max., bâtiments construits automatiquement, ancien → nouveau) : victoires 98-144 → 126-143, or gagné 1234-2362 → 1441-1785, morts 17-18 → 19-20, niveau d'Aubergiste 7,6-11,2 → 10,3-11,2. La dispersion entre lots dépasse l'écart : c'est dans le bruit. Environ 13 bénédictions ratées par partie. Si l'or te semble trop bas sans Marché, relève le bonus de Maire (`.01*nl('V')` dans `resolve`, combat.js).
+- **Équilibre** (3 villages simulés, chacun sur 20 tranches consécutives de 15 jours sans repartir de zéro, 8 aventuriers max., bâtiments construits automatiquement, ancien → nouveau) : victoires 98-144 → 126-143, or gagné 1234-2362 → 1441-1785, morts 17-18 → 19-20, niveau d'Aubergiste 7,6-11,2 → 10,3-11,2. La dispersion entre lots dépasse l'écart : c'est dans le bruit. Environ 13 bénédictions ratées par partie. Si l'or te semble trop bas sans Marché, relève le bonus de Maire (`.01*nl('V')` dans `resolve`, combat.js).
 - `map.js` non modifié : le dessin du Marché et du Marchand n'est plus utilisé (code mort conservé). Fichiers : `data.js`, `state.js`, `village.js`, `combat.js`, `save.js`, `index.html`.
 - Testé (Node) : parties de 15 jours, sauvegarde puis rechargement, sauvegarde 3.1.5 avec Marché en chantier, avec Marché terminé et aventurier au chantier : 0 erreur, numéros de bâtiments sans doublon, remboursement exact.
 - Non vérifié : le rendu du village réorganisé sur ton téléphone (pas de capture), l'équilibre ressenti de la bénédiction sur de longues parties.

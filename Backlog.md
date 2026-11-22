@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.1.7 « Forge, Écurie & Maisons »**
+Version actuelle du jeu : **v3.1.8 « Taverne : Primes & Contrats »**
 
 ## ✅ Déjà intégré
 
@@ -178,10 +178,10 @@ Version actuelle du jeu : **v3.1.7 « Forge, Écurie & Maisons »**
 - [x] **Forge et Écurie :** lier le déblocage des paliers d'équipement à l'amélioration de la Forge (avec bonus de qualité et réduction du prix selon le niveau du Forgeron) ; proposer des chevaux illimités à l'Écurie dont le niveau correspond au niveau du Palefrenier (progression des PNJ calibrée sur le rythme actuel).
 - [x] **Maisons et héritage :** ajouter une nouvelle maison constructible par amélioration, ajuster la priorité d'épargne des aventuriers pour qu'ils achètent enfin une maison, et permettre l'héritage à prix réduit en cas de décès du propriétaire dans la même partie.
 
-## 🍺 v3.1.8 « Taverne : Primes & Contrats » (prochain)
-- [ ] **Contrats de primes renouvelés tous les 2 jours :** remplacer le fonctionnement de la Taverne par des primes aléatoires sur certains monstres (1 lot renouvelé tous les 2 jours), versant un bonus d'or directement à l'aventurier vainqueur, avec affichage de la prime en cours dans la liste des aventuriers et hausse du nombre de contrats et des primes selon le niveau du Tavernier (calibré sur le rythme actuel).
+## ✅ v3.1.8 « Taverne : Primes & Contrats »
+- [x] **Contrats de primes renouvelés tous les 2 jours :** remplacer le fonctionnement de la Taverne par des primes aléatoires sur certains monstres (1 lot renouvelé tous les 2 jours), versant un bonus d'or directement à l'aventurier vainqueur, avec affichage de la prime en cours dans la liste des aventuriers et hausse du nombre de contrats et des primes selon le niveau du Tavernier (calibré sur le rythme actuel).
 
-## 🛡️ v3.1.9 « Armurerie de Guilde (Arsenal) »
+## 🛡️ v3.1.9 « Armurerie de Guilde (Arsenal) » (prochain)
 - [ ] **Nouveau bâtiment de récupération d'équipement :** ajouter l'Armurerie de Guilde (coffre commun limité à la partie en cours, sans effet inter-runs) ayant une chance de récupérer l'équipement d'un aventurier mort au combat pour les suivants, avec améliorations du bâtiment (stockage/taux) et montée de niveau de l'Intendant (calibrée sur le rythme actuel).
 - [ ] 
 
