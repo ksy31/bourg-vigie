@@ -1,5 +1,31 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »
+
+Version affichée dans les Options : **v3.2.3**
+
+### Ajouté
+- **Expéditions de groupe :** quand un membre d'une guilde active part en quête, les compagnons de sa guilde déjà prêts à partir (repos presque terminé, `GRDY` = 30 s, pas en attente de l'Armurerie, pas de nuit sauf audacieux) partent avec lui, sans attente, dans la limite de l'effectif de la guilde. Message « 🐺 Les Loups Noirs (3) part en expédition : Forêt. ». Toutes les zones classiques sont concernées ; le Roi Démon (`sendBoss`) reste toujours solo.
+- **Combat de groupe :** le groupe choisit sa zone avec sa puissance totale et arrive ensemble (les premiers arrivés passent à l'état « en position » en attendant les autres), puis combat d'un seul bloc contre un seul ennemi. Puissance du groupe = somme des puissances × (1 + 5 % par compagnon en plus) (`GB`). Victoire : pour tous. Sinon : chaque membre risque la mort avec sa chance habituelle (Sanctuaire compris) ou fuit blessé, individuellement.
+- **Butin de groupe :** or, bois et pierre partagés à parts égales ; XP complète pour chaque membre ; une seule pièce d'équipement possible par victoire (tirée au sort parmi les membres) ; prime de monstre au chef.
+- **Caisse commune :** chaque membre verse 10 % de l'or gagné en quête (`GTAX`), prélevé sur sa propre bourse (le village garde ses 70 %). La caisse paie l'achat Forge des recrues de la guilde (niveau inférieur à 5), tant qu'elle a de l'or et que la guilde est active ; le message d'achat indique la part payée par la caisse. Les recrues sans guilde n'ont pas cet avantage (l'Armurerie reste ouverte à toutes les recrues).
+- **Recrutement de guilde :** un nouvel aventurier rejoint automatiquement la guilde active la plus remplie qui a de la place. Les aventuriers de niveau 5 sans guilde peuvent toujours passer à la Maison (rejoindre, ou fonder s'il reste une place de guilde).
+- **XP du Chancelier :** +10 par fondation, +5 par adhésion (visite ou recrue), +3 par départ en groupe (`AXF`, `AXJ`, `AXG`), avec les seuils des autres PNJ (20 × niveau). Aux niveaux 3 et 6 : rénovation de 5 à 10 min, comme les autres PNJ.
+- **Affichage :** sur la ligne d'un membre : guilde, 👑 pour le chef, 💤 si elle est en sommeil, « en groupe avec X, Y » pendant l'expédition, état « en position ». Sur la ligne du Chancelier : « ⚜️ Guildes : 2/3 (1 en sommeil) · 👥 4 max · 💰 Caisses : 45 or ».
+
+### Corrigé
+- **Effectif des guildes (règle 3.2.2 mal comprise) :** l'effectif maximum d'une guilde dépend du niveau du Chancelier : 2 au niveau 1, +1 par niveau, 6 au maximum (`GSZ0`, `GSZM`). Le niveau de la Maison des Guildes fixe le nombre de guildes : niveau 1 = 1 guilde, +1 par niveau, sans plafond (`gmax`).
+- **Sommeil et dissolution (règle 3.2.2 mal comprise) :** une guilde a un chef (le fondateur, de niveau 5 minimum). Quand le chef meurt, un membre de niveau 5 ou plus prend la tête ; s'il n'y en a pas mais qu'il reste des membres, la guilde passe en sommeil. Elle renaît dès qu'un de ses membres atteint le niveau 5. Plus aucun membre : la guilde est dissoute. Le recrutement est fermé pendant le sommeil. Une guilde en sommeil occupe toujours une place de guilde.
+
+### Modifié
+- Anciennes sauvegardes : les guildes 3.2.2 (sans chef) reçoivent leur chef (membre de plus haut niveau, s'il est niveau 5 ou plus, sinon sommeil) sans message, et les guildes vides sont dissoutes (avec un message). Les nouveaux champs (`o`, `sl`, `f` des guildes ; `gp`, `gl` des aventuriers ; `gpn` de la partie) sont facultatifs ; aucune migration dans `loadG`.
+- La visite à la Maison ne permet plus de « relancer » une guilde en sommeil (la règle de renaissance passe par le niveau 5 d'un membre).
+- Équilibre : sans guilde, parties de 20 jours à graine identique identiques à la 3.2.2 (or, bois, pierre, tués, morts). Scénario guilde (4 aventuriers de niveau 6, 6 graines, 15 jours), solo contre guilde : quêtes par jour (toutes personnes confondues) 7,0 contre 6,2 (Chancelier niveau 3, groupes de 4 maximum) et 7,1 (niveau 1, groupes de 2 maximum) ; morts 15,7 contre 13,0 et 16,0 ; or du village 201 contre 266 et 126 ; départs en groupe 10,5 et 7,5, de taille moyenne 2,3 et 2,2 (les compagnons sont rarement prêts en même temps). Résultats très variables d'une graine à l'autre (6 parties seulement). Constantes à ajuster : `GB` (bonus de groupe), `GRDY` (fenêtre de départ commun, plus grande = groupes plus gros), `GTAX` (caisse) ; `AXF`, `AXJ`, `AXG` (XP du Chancelier) ; `GMIN`, `GSZ0`, `GSZM` (village.js).
+- Calibrage du Chancelier : sur 15 jours dans le même scénario, environ 86 XP en moyenne, contre 81 (Aubergiste) et 97 (Maire) : même rythme que les PNJ existants.
+- Testé (Node) : effectif et nombre de guildes par niveau, fondation (chef et XP), inscription automatique des recrues (guilde pleine, places gagnées par le Chancelier), succession du chef, sommeil, recrutement fermé pendant le sommeil, renaissance au niveau 5, dissolution, compagnons prêts ou non, arrivée synchronisée, combat commun, groupe fort ou écrasé (morts et fuites individuelles, victoire tout ou rien), Roi Démon solo, prélèvement de la caisse, achat Forge payé par la caisse, aide réservée aux recrues de guilde active, sauvegarde puis rechargement en plein groupe, sauvegarde 3.2.2 avec guildes sans chef, dessin avec des aventuriers « en position » et en combat, 0 erreur.
+- Non vérifié : le rendu sur ton téléphone ; et la lisibilité de la console pendant un combat de groupe (un message de victoire ou de défaite par membre).
+- Fichiers : `village.js`, `combat.js`, `ui.js`, `index.html`, `sw.js`. Cache du service worker passé à `bv-v50`. Version affichée dans les Options : v3.2.3.
+
 ## v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »
 
 Version affichée dans les Options : **v3.2.2**

@@ -1,6 +1,6 @@
 const cof=()=>{const n=(S.chest||[]).length;return ` · 🛡️ Coffre : ${n} pièce${n>1?'s':''}`};
-const gtag=h=>{const g=(S.guilds||[]).find(x=>x.id===h.gu);return g?` · ${g.e} ${g.n}`:''};
-const gcf=()=>{const g=S.guilds||[],z=g.filter(x=>!S.hero.some(h=>h.gu===x.id)).length;return ` · ⚜️ Guildes : ${g.length}/${gmax()}`+(z?` (${z} en sommeil)`:'')};
+const gtag=h=>{const g=(S.guilds||[]).find(x=>x.id===h.gu);if(!g)return '';const w=h.gp?S.hero.filter(x=>x.gp===h.gp&&x!==h).map(x=>x.name):[];return ` · ${g.e} ${g.n}${h.id===g.o?' 👑':''}${g.sl?' 💤':''}${w.length?' · en groupe avec '+w.join(', '):''}`};
+const gcf=()=>{const g=S.guilds||[],z=g.filter(x=>x.sl).length,c=g.reduce((s,x)=>s+(x.f||0),0);return ` · ⚜️ Guildes : ${g.length}/${gmax()}`+(z?` (${z} en sommeil)`:'')+` · 👥 ${gsz()} max · 💰 Caisses : ${c} or`};
 const setH=(id,s)=>{const e=$(id);if(e._h!==s){e._h=s;e.innerHTML=fmt(s)}};
 function ui0(){
  $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
@@ -10,6 +10,6 @@ function ui0(){
  
  const bh=bestRest();$('bB').innerHTML=bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`;$('bB').disabled=!bh||S.hero.some(x=>x.z===BZ&&x.st!=='rest');
  setH('lb',P.lb.length?P.lb.map((x,i)=>`<div class="chip">${i+1}. <b>${x.n}</b> ${CI[x.c]} ${CL[x.c].n} niv. ${x.lv}${x.hs?' · 🐎'+x.hs:''}<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ${x.d} j · tué par ${x.by}<br>${gn(x)||'sans équip.'}</i></div>`).join(''):'<p>Personne n’est encore mort.</p>');
- const L={rest:'repos',go:'en route',fight:'combat',back:'retour'};
+ const L={rest:'repos',go:'en route',wait:'en position',fight:'combat',back:'retour'};
  setH('ros',S.hero.map(h=>`<span class="chip hc" data-h="${h.id}"><b style="color:${h.col}">${CI[h.c]}</b> <b>${h.name}</b> ${CL[h.c].n} niv. ${h.lv} · âge ${S.day-h.bd+1} j<br><i>⚔${h.kills} tués · 💰${h.gold} (${h.earned} gagnés)${h.home?' · 🏠':''}${h.gu?gtag(h):''}${h.hs?' · 🐎'+h.hs.sp:''} · ${gs(h)||'sans équip.'}${h.buff?' · 🍖':''}${h.bless?' · ✨':''} · ${h.st==='town'?TS(h):L[h.st]}${showT&&h.st!=='rest'&&!(h.st==='town'&&h.sub!=='do')?' '+fm(rem(h)):''}</i></span>`).join('')+Object.entries(S.npc).map(([k,n])=>`<span class="chip npc">${k==='I'?NI+' ':k==='C'?NC+' ':''}<b>${n.n}</b> ${NT[k]} niv. ${n.lv}${k==='I'?cof():k==='C'?gcf():''}</span>`).join('')+(S.horses.length?`<span class="chip npc">🐎 À vendre : ${S.horses.filter(x=>x.o==null).map(x=>x.sp+' ('+x.p+' or)').join(' · ')}</span>`:'')+(S.pr&&S.pr.l.length?`<span class="chip npc">🎯 Primes : ${S.pr.l.map(x=>x.n+' ('+x.z+') '+x.g+' or').join(' · ')}</span>`:''));
 }

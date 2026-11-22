@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »**
+Version actuelle du jeu : **v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »**
 
 ## ✅ Déjà intégré
 
@@ -194,10 +194,10 @@ Version actuelle du jeu : **v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fon
 ## ✅ v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »
 - [x] **Ajout du lieu et création des compagnies :** intégrer la Maison des Guildes (dessin, améliorations et Chancelier) et permettre aux aventuriers expérimentés de fonder ou rejoindre une guilde (nom et bannière).
 
-## 🚩 v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes » (prochain)
-- [ ] **Expéditions groupées et caisse commune :** activer les départs en groupe dans les zones classiques (Roi Démon toujours en solo), le partage d'or interne pour équiper les recrues et la montée de niveau du Chancelier (calibrée sur le rythme actuel).
+## ✅ v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »
+- [x] **Expéditions groupées et caisse commune :** activer les départs en groupe dans les zones classiques (Roi Démon toujours en solo), le partage d'or interne pour équiper les recrues et la montée de niveau du Chancelier (calibrée sur le rythme actuel).
 
-## 👑 v3.2.4 « Assaut préparé contre le Roi Démon »
+## 👑 v3.2.4 « Assaut préparé contre le Roi Démon » (prochain)
 - [ ] **Sélection du meilleur champion et préparation complète :** modifier le bouton d'envoi au Roi Démon pour sélectionner automatiquement le **meilleur aventurier vivant** (quelle que soit son action en cours) et lui faire effectuer une séquence de préparation au village (retour, repos, soin/bénédiction au Sanctuaire, équipement à la Forge si besoin) avant de partir affronter le Roi Démon en duel.
 
 ## 📱 v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »
