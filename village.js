@@ -1,7 +1,7 @@
 function leave(h,z){h.z=z;const q=ZR[z.n]||ZR['Trône du Roi'],a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);{const en=ventry(z);h.wp=(en?vpath(h,en):[]).concat(h.gw.map(p=>({x:p.x,y:p.y})))}h.st='go'}
 const PRM=.8,PRL=.04,PRMIN=2,TVX=2,FGT=2,AUB=3,BL0=.55,BL1=.04,BL2=.03,blP=()=>Math.min(.95,BL0+BL1*S.spa+BL2*nl('S'));
-const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30]};
-const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier'};
+const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30],armory:[20,30]};
+const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'||h.sub==='bld'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
 const door=it=>{const p=slot(it);return{x:T.x+p[0],y:T.y+p[1]+3.6}};
@@ -12,6 +12,10 @@ const bestHorse=h=>S.horses.filter(x=>x.o==null).sort((a,b)=>b.sp-a.sp).find(x=>
 const forgeP=h=>{const k=SL[h.c].reduce((a,b)=>h.eq[b]<h.eq[a]?b:a),t=Math.max(1,Math.min(Math.floor(h.lv/2),FGT*S.forge)+Math.floor(nl('F')/3));return{k,t,p:Math.round(t*14*Math.max(.4,1-.05*nl('F')))}};
 const goalP=h=>{const c=[],hs=S.hs.find(x=>x.o==null),hh=S.horses.filter(x=>x.o==null);if(!h.home&&hs)return hs.p;if(!h.hs&&hh.length)c.push(Math.min(...hh.map(hPrice)));return c.length?Math.min(...c):0};
 const keepG=h=>{const g=goalP(h);if(!g)return 0;const f=forgeP(h),a=SL[h.c].reduce((q,k)=>q+h.eq[k],0)/SL[h.c].length;return a<.5*f.t?0:Math.round(g*(.5+.5*(1-h.bold)))};
+const ACAP=3,AXR=4,AXD=8;
+const armPick=h=>{const out=[],cap=ACAP*((S.npc.I||{}).lv||1);for(const k of SL[h.c]){let bi=-1;(S.chest||[]).forEach((x,i)=>{if(x.k!==k||(k==='w'&&x.c!==h.c)||x.t>cap||x.t<=h.eq[k])return;if(bi<0||x.t>S.chest[bi].t)bi=i});if(bi>=0)out.push({k,i:bi})}return out};
+const armTask=h=>{const it=pickB(NE.I);return it&&armPick(h).length?{k:'armory',b:it.i}:null};
+function goOut(h){const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null}else leave(h,pick(h))}
 function decide(h){
  const hs=S.hs.find(x=>x.o==null);
  if(!h.home&&hs&&h.gold>=hs.p){const it=S.pl.find(x=>x.h===hs);if(it)return{k:'house',b:it.i}}
@@ -23,6 +27,7 @@ function taskOk(h,tk){
  if(tk.k==='house'){const hs=(itB(tk.b)||{}).h;return !h.home&&!!hs&&hs.o==null&&h.gold>=hs.p}
  if(tk.k==='forge'){if(!S.forge)return false;const f=forgeP(h);return h.eq[f.k]<f.t&&h.gold-f.p>=keepG(h)}
   if(tk.k==='bless')return !!S.spa&&!h.bless;
+ if(tk.k==='armory')return armPick(h).length>0;
  return true}
 function applyTask(h,tk){
  if(tk.k==='loot'){
@@ -39,6 +44,9 @@ function applyTask(h,tk){
  else if(tk.k==='forge'){const f=forgeP(h);h.gold-=f.p;S.g+=f.p;h.eq[f.k]=f.t;npcx('F');log(`${h.name} achète ${pn(h,f.k)} ${f.t} chez le forgeron (${f.p} or).`)}
  else if(tk.k==='prime'){if(h.prime){const p=h.prime;h.gold+=p.g;h.earned+=p.g;h.prime=null;for(let i=0;i<TVX;i++)npcx('T');log(`🎯 ${h.name} touche la prime sur ${p.n} : +${p.g} or.`,'ok')}}
  else if(tk.k==='bless'){npcx('S');if(Math.random()<blP())h.bless=1;else log(`${h.name} : la bénédiction échoue.`)}
+ else if(tk.k==='armory'){const pk=armPick(h),tx=pk.map(p=>`${pn(h,p.k)} ${S.chest[p.i].t}`);pk.forEach(p=>{h.eq[p.k]=S.chest[p.i].t});
+  pk.map(p=>p.i).sort((a,b)=>b-a).forEach(i=>S.chest.splice(i,1));for(let j=0;j<pk.length*AXD;j++)npcx('I');
+  log(`🛡️ ${h.name} s’équipe à l’Armurerie : ${tx.join(', ')}.`,'ok')}
 }
 function goBack(h){
  h.st='back';h.dec=0;h.tk=null;h.tl=[];h.wp=(h.gw||[]).slice().reverse().map(p=>({x:p.x,y:p.y}));
@@ -73,7 +81,7 @@ function townTick(h,dt){
    const w=S.hero.filter(q=>q.st==='town'&&q.sub==='wait'&&q.tk.b===i).sort((a,b)=>a.wt-b.wt||a.id-b.id)[0];
    if(w===h){const D=DUR[h.tk.k]||[60,120],p=door(itB(i));h.sub='do';h.t=taskOk(h,h.tk)?R(D[0],D[1]):0;h.x=p.x;h.y=p.y}
   }
- }else if(h.sub==='do'){h.t-=dt;if(h.t<=0){applyTask(h,h.tk);if(h.tk.k==='bless'){h.tk=null;h.sub=null;leave(h,pick(h))}else if(h.tk.k==='inn'){h.tk=null;startRest(h)}else townNext(h)}}
+ }else if(h.sub==='do'){h.t-=dt;if(h.t<=0){applyTask(h,h.tk);if(h.tk.k==='armory'){h.tk=null;h.sub=null;goOut(h)}else if(h.tk.k==='bless'){h.tk=null;h.sub=null;leave(h,pick(h))}else if(h.tk.k==='inn'){h.tk=null;startRest(h)}else townNext(h)}}
 }
 
 const needB=()=>S.pl.find(x=>x.cn&&!S.hero.some(q=>q.st==='town'&&q.tk&&q.tk.k==='build'&&q.tk.b===x.i));

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »**
+Version actuelle du jeu : **v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »**
 
 ## ✅ Déjà intégré
 
@@ -188,10 +188,10 @@ Version actuelle du jeu : **v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Co
 ## ✅ v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »
 - [x] **Ajout du bâtiment et récupération au décès :** intégrer l'Armurerie de Guilde (dessin, améliorations et Intendant) et enregistrer l'équipement récupéré à la mort d'un aventurier dans le coffre commun de la partie (sans effet inter-runs).
 
-## 🛡️ v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ » (prochain)
-- [ ] **Équipement des suivants et progression de l'Intendant :** faire passer les nouveaux aventuriers à l'Armurerie pour s'équiper gratuitement depuis le coffre et activer la montée de niveau de l'Intendant (calibrée sur le rythme actuel).
+## ✅ v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »
+- [x] **Équipement des suivants et progression de l'Intendant :** faire passer les nouveaux aventuriers à l'Armurerie pour s'équiper gratuitement depuis le coffre et activer la montée de niveau de l'Intendant (calibrée sur le rythme actuel).
 
-## 🚩 v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation »
+## 🚩 v3.2.2 « Maison des Guildes (1/2) : Bâtiment & Fondation » (prochain)
 - [ ] **Ajout du lieu et création des compagnies :** intégrer la Maison des Guildes (dessin, améliorations et Chancelier) et permettre aux aventuriers expérimentés de fonder ou rejoindre une guilde (nom et bannière).
 
 ## 🚩 v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »

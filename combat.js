@@ -13,7 +13,7 @@ const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
 const ARC0=.35,ARC1=.1,ARCM=.9;
 function armRec(h){const it=bItem('I');if(!it||it.cn||it.rb)return;const sl=SL[h.c].filter(k=>h.eq[k]>0);if(!sl.length)return;
  const p=Math.min(ARCM,ARC0+ARC1*(Math.max(1,S.armory||1)-1));if(Math.random()>=p)return;
- const k=sl[R(0,sl.length-1)];(S.chest=S.chest||[]).push({k,c:h.c,t:h.eq[k]});npcx('I');log(`🛡️ L’Armurerie récupère ${pn(h,k)} ${h.eq[k]} de ${h.name}.`,'ok')}
+ const k=sl[R(0,sl.length-1)];(S.chest=S.chest||[]).push({k,c:h.c,t:h.eq[k]});for(let i=0;i<AXR;i++)npcx('I');log(`🛡️ L’Armurerie récupère ${pn(h,k)} ${h.eq[k]} de ${h.name}.`,'ok')}
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
  if(t>h.eq[k]){h.eq[k]=t;return `équipe ${pn(h,k)} ${t}`}
@@ -27,7 +27,7 @@ function renderLog(){$('log').innerHTML=logs.map(l=>`<p class="${l.c||''}">${l.t
 function recruit(){
  if(S.g<rcost())return;
  S.g-=rcost();
- const h={id:S.n++,name:rname(),c:Object.keys(CL)[R(0,3)],eq:{w:0,a:0,b:0,s:0},lv:1,xp:0,gold:0,kills:0,earned:0,hurt:0,bd:S.day,born:S.day-R(18,35)*365,home:null,hs:null,buff:0,bold:Math.random(),col:COL[R(0,COL.length-1)],...base({home:null}),st:'rest',t:1,z:null,last:null,en:null,loot:null};
+ const h={id:S.n++,name:rname(),c:Object.keys(CL)[R(0,3)],eq:{w:0,a:0,b:0,s:0},lv:1,xp:0,gold:0,kills:0,earned:0,hurt:0,bd:S.day,born:S.day-R(18,35)*365,home:null,hs:null,buff:0,bold:Math.random(),col:COL[R(0,COL.length-1)],...base({home:null}),st:'rest',t:1,z:null,last:null,en:null,loot:null,arm:1};
  h.g=rg(h.name);S.hero.push(h);log(`${h.name} rejoint la ville (${CL[h.c].n}).`,'ok');ui();
 }
 const lvl=b=>(S[b.k]||0)+((S.cp||{})[b.k]||0);
@@ -98,7 +98,7 @@ function resolve(h){
 function tick(dt){
  S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(S.tavern&&S.day>=(S.pd||0))newPr();if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);
  for(const h of S.hero.slice()){
-  if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const bs=needB();if(bs){h.tk={k:'build',b:bs.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
+  if(h.st==='rest'){h.t-=dt;if(h.t<=0&&(!isNight()||h.bold>.55)){const bs=needB();if(bs){h.tk={k:'build',b:bs.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const ar=h.arm?armTask(h):null;h.arm=0;if(ar){h.tk=ar;h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else leave(h,pick(h))}}
   else if(h.st==='town')townTick(h,dt);
   else if(h.st==='go'||h.st==='back'){
    const tg=h.wp&&h.wp.length?h.wp[0]:(h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h)));

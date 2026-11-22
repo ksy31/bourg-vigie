@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.1 « Armurerie de Guilde (2/2) : Attribution & PNJ »
+
+Version affichée dans les Options : **v3.2.1**
+
+### Ajouté
+- **Équipement des recrues :** un nouvel aventurier passe à l'Armurerie, une seule fois, avant sa première quête (après un éventuel chantier). Il y prend gratuitement des pièces du coffre, séjourne 20 à 30 s avec file d'attente comme dans les autres bâtiments, puis enchaîne comme avant (bénédiction du Sanctuaire si possible, sinon départ en quête). Message « 🛡️ Nom s'équipe à l'Armurerie : Épée 3, Bottes 2. ». Libellé de l'onglet Aventuriers : « à l'Armurerie ».
+- **Choix des pièces :** pour chaque emplacement de sa classe (arme de sa classe, armure, bottes, bouclier pour le Guerrier), la pièce la plus forte que le niveau de l'Intendant autorise ; si la meilleure est trop forte, celle juste en dessous, et ainsi de suite ; jamais une pièce moins bonne que celle qu'il porte déjà. Les pièces prises quittent le coffre.
+- **Plafond selon le niveau de l'Intendant :** palier maximum distribuable = 3 × niveau de l'Intendant (constante `ACAP`, village.js). Les pièces plus fortes restent dans le coffre en attendant qu'il monte de niveau.
+- **Progression de l'Intendant :** 4 XP par pièce récupérée à la mort d'un aventurier (`AXR`) et 8 XP par pièce distribuée à une recrue (`AXD`), avec les seuils des autres PNJ (20 × niveau). Aux niveaux 3 et 6 : aspect amélioré et rénovation de 5 à 10 min (bâtiment fermé), comme les autres PNJ.
+
+### Corrigé
+- Rien dans cette version.
+
+### Modifié
+- Aventuriers existants et sauvegardes 3.2.0 : seules les recrues créées à partir de cette version passent à l'Armurerie (champ `arm`, absent des anciens aventuriers = pas de visite). Aucune migration nécessaire, le coffre et les niveaux sont conservés.
+- Armurerie absente, en chantier ou fermée, ou rien d'utilisable dans le coffre : la recrue part comme avant et le coffre reste intact.
+- Équilibre : sans Armurerie, parties de 20 jours à graine identique identiques à la 3.2.0 (or, bois, pierre, tués, morts). Les pièces du coffre sont gratuites : elles remplacent des achats à la Forge pour les recrues, à surveiller.
+- Calibrage de l'Intendant (6 parties de 25 jours avec un joueur automatique qui ne construit que l'Armurerie) : niveau 2 au jour 7 et au jour 16 pour 2 parties, 16 XP sur 20 à la fin pour 2 autres, 0 à 4 XP pour les 2 dernières (peu de pièces équipées à la mort). Constantes à ajuster : `AXR`, `AXD`, `ACAP` (village.js) et `ARC0`, `ARC1`, `ARCM` (combat.js).
+- Testé (Node) : choix des pièces (plafond, classe, « en dessous », pas meilleur que le sien, Voleur sans bouclier), parcours complet d'une recrue (visite, équipement, départ en quête, une seule visite), Armurerie fermée, coffre vide, ancien aventurier sans champ `arm`, sauvegarde puis rechargement en plein trajet, sauvegarde 3.2.0 avec coffre chargée puis 10 jours de jeu, 0 erreur.
+- Non vérifié : le rendu sur ton téléphone (aucun changement de dessin dans cette version, seulement l'animation de l'Intendant quand une recrue s'équipe).
+- Fichiers : `village.js`, `combat.js`, `index.html`, `sw.js`. Cache du service worker passé à `bv-v48`. Version affichée dans les Options : v3.2.1.
+
 ## v3.2.0 « Armurerie de Guilde (1/2) : Bâtiment & Coffre »
 
 Version affichée dans les Options : **v3.2.0**
