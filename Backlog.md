@@ -165,6 +165,25 @@ Version actuelle du jeu : **v3.1.4 « Météo dynamique »**
 ## ✅ v3.1.4 « Météo dynamique »
 - [x] **Météo aléatoire et indicateur :** ajouter une météo dynamique et aléatoire (effets visuels sur la carte) avec une icône visible dans la barre du haut à côté de l'heure.
 
+- [ ] ## 👁️ v3.1.5 « Lisibilité, Caméra & Lumières nocturnes » (prochain)
+- [ ] **Noms des PNJ en violet, météo claire et halo nocturne :** afficher les noms des PNJ en violet, garder un **soleil** comme icône pour la météo claire, et réduire la taille ainsi que l'opacité du rond jaune nocturne sur la tête des aventuriers afin qu'ils restent bien visibles la nuit.
+- [ ] **Suivi caméra rapide et étoiles de bénédiction :** ajouter 2 boutons près de la carte pour verrouiller le suivi sur **l'aventurier suivant** ou **précédent**, et afficher de petites **étoiles autour de l'aventurier** ayant reçu une bénédiction.
+
+## 🏛️ v3.1.6 « Village : Nettoyage, Auberge & Sanctuaire »
+- [ ] **Suppression du Marché et ajustement de l'Auberge :** retirer le bâtiment et le PNJ du Marché (doublon avec la Mairie) ; garder l'Auberge non améliorable tout en faisant progresser l'Aubergiste via les nuits passées (rythme calibré sur l'équilibrage actuel).
+- [ ] **Standardisation du Sanctuaire :** aligner la montée en niveau de la Prêtresse sur les autres PNJ via les soins et bénédictions accordés (rythme calibré sur l'équilibrage actuel), en augmentant l'efficacité des soins et le **taux de réussite de la bénédiction** (sans coût ni changement de durée).
+
+## ⚒️ v3.1.7 « Forge, Écurie & Maisons »
+- [ ] **Forge et Écurie :** lier le déblocage des paliers d'équipement à l'amélioration de la Forge (avec bonus de qualité et réduction du prix selon le niveau du Forgeron) ; proposer des chevaux illimités à l'Écurie dont le niveau correspond au niveau du Palefrenier (progression des PNJ calibrée sur le rythme actuel).
+- [ ] **Maisons et héritage :** ajouter une nouvelle maison constructible par amélioration, ajuster la priorité d'épargne des aventuriers pour qu'ils achètent enfin une maison, et permettre l'héritage à prix réduit en cas de décès du propriétaire dans la même partie.
+
+## 🍺 v3.1.8 « Taverne : Primes & Contrats »
+- [ ] **Contrats de primes renouvelés tous les 2 jours :** remplacer le fonctionnement de la Taverne par des primes aléatoires sur certains monstres (1 lot renouvelé tous les 2 jours), versant un bonus d'or directement à l'aventurier vainqueur, avec affichage de la prime en cours dans la liste des aventuriers et hausse du nombre de contrats et des primes selon le niveau du Tavernier (calibré sur le rythme actuel).
+
+## 🛡️ v3.1.9 « Armurerie de Guilde (Arsenal) »
+- [ ] **Nouveau bâtiment de récupération d'équipement :** ajouter l'Armurerie de Guilde (coffre commun limité à la partie en cours, sans effet inter-runs) ayant une chance de récupérer l'équipement d'un aventurier mort au combat pour les suivants, avec améliorations du bâtiment (stockage/taux) et montée de niveau de l'Intendant (calibrée sur le rythme actuel).
+- [ ] 
+
 ## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
