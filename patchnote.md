@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.1.9 « Correctif Sanctuaire & Top 10 »
+
+Version affichée dans les Options : **v3.1.9**
+
+### Ajouté
+- **Cheval dans le Top 10 :** un aventurier mort avec un cheval affiche « 🐎 » et la vitesse (ex. 🐎7) après son niveau. Champ `hs` (vitesse du cheval) ajouté à l'entrée du classement ; les anciennes entrées n'ont pas l'info et n'affichent rien.
+
+### Corrigé
+- **Doublon du Sanctuaire (et Forge, Taverne, Écurie) :** améliorer un bâtiment en créait un second, sans PNJ. Désormais l'amélioration ferme le bâtiment existant (échafaudage, « 🔨 % », aspect actuel, comme une rénovation) pendant 1 à 2 jours de jeu (`R(900,1800)` dans `build`, combat.js), sans aventurier bâtisseur nécessaire, puis son niveau monte. Les ressources sont payées au lancement ; le bouton est grisé tant que le bâtiment est en travaux. La Maison reste multiple (un nouveau chantier par achat).
+- **Nettoyage des sauvegardes (`mig6`, save.js) :** pour chaque type avec un doublon, les bâtiments en trop (les plus récents) sont supprimés, leur niveau est retiré et leur coût remboursé (message dans la console), comme `mig5`. Numéros de bâtiments recompactés, aventuriers concernés redirigés.
+
+### Modifié
+- Les aventuriers qui allaient vers un bâtiment qui passe en travaux abandonnent cette tâche (file d'attente comprise) ; un aventurier déjà en action termine.
+- Gameplay et équilibre inchangés en dehors de ce correctif : avant, le niveau supérieur apparaissait dans un second bâtiment ; maintenant le bâtiment est fermé pendant les travaux.
+- Testé (Node) : 3 parties de 20 jours avec dessin régulier, 0 erreur, 0 doublon, sauvegarde puis rechargement (aussi en pleine amélioration), sauvegarde 3.1.8 avec Sanctuaire et Forge en double (remboursement 200 or, 90 bois, 105 pierre, niveaux 2 → 1, amélioration ensuite correcte), mort d'un héros monté dans le Top 10.
+- Non vérifié : le rendu du bâtiment en travaux et du Top 10 sur ton téléphone (pas de capture).
+- Fichiers : `combat.js`, `village.js`, `save.js`, `ui.js`, `index.html`. Cache du service worker passé à `bv-v46`. Version affichée dans les Options : v3.1.9.
+
 ## v3.1.8 « Taverne : Primes & Contrats »
 
 Version affichée dans les Options : **v3.1.8**

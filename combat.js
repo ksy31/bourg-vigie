@@ -27,12 +27,15 @@ function recruit(){
  h.g=rg(h.name);S.hero.push(h);log(`${h.name} rejoint la ville (${CL[h.c].n}).`,'ok');ui();
 }
 const lvl=b=>(S[b.k]||0)+((S.cp||{})[b.k]||0);
+const bItem=id=>id==='H'?null:S.pl.find(x=>x.e===NE[id]),bBusy=id=>{const x=bItem(id);return !!x&&!!(x.cn||x.rb)};
 function build(id){
- const b=BD[id],l=lvl(b),c=b.c(l);
- if(S.w<c.w||S.s<c.s||S.g<c.g)return;
+ const b=BD[id],l=lvl(b),c=b.c(l),ex=bItem(id);
+ if(bBusy(id)||S.w<c.w||S.s<c.s||S.g<c.g)return;
  S.w-=c.w;S.s-=c.s;S.g-=c.g;S.cp=S.cp||{};S.cp[b.k]=(S.cp[b.k]||0)+1;
- S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:null,cn:{id,l,t:0,T:R(900,1800),hp:50}});
- log(`Chantier lancé : ${b.n} niveau ${l+1} (1 à 2 jours, un aventurier y travaille).`,'ok');ui();
+ if(ex){ex.rb={t:0,T:R(900,1800),up:{id,l}};closeB(ex);log(`Amélioration lancée : ${b.n} niveau ${l+1} (1 à 2 jours, bâtiment fermé).`,'ok')}
+ else{S.pl.push({e:id==='H'?'':NE[id],i:S.pl.length,h:null,cn:{id,l,t:0,T:R(900,1800),hp:50}});
+ log(`Chantier lancé : ${b.n} niveau ${l+1} (1 à 2 jours, un aventurier y travaille).`,'ok')}
+ ui();
 }
 function pick(h){
  const th=TH0-h.bold*TH1,nm=isNight()?NM:1;
@@ -80,7 +83,7 @@ function resolve(h){
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
   h.kills++;log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}goBack(h);if(e.boss)victory(h);
  }else if(rr<pw+pd){
-  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq}});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
+  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');
   ui();

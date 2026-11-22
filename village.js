@@ -94,4 +94,7 @@ function bDone(it){const c=it.cn,b=BD[c.id];it.cn=null;S.hero.forEach(h=>{if(h.s
 function rebuild(k){let n=0;S.pl.forEach(it=>{if(it.e!==NE[k]||it.cn||it.rb)return;it.rb={t:0,T:R(300,600)};n++;
  S.hero.forEach(h=>{if(h.st==='town'&&h.tk&&h.tk.b===it.i&&h.sub!=='do'){h.vk=null;h.tk=null;townNext(h)}})});
  if(n)log(`${NT[k]} : travaux de rénovation, le bâtiment est fermé.`,'ok')}
-function rDone(it){it.rb=null;log(`${NT[NK[it.e]]||'Bâtiment'} : rénovation terminée.`,'ok');ui()}
+function closeB(it){S.hero.forEach(h=>{if(h.st!=='town')return;h.tl=(h.tl||[]).filter(x=>x.b!==it.i);if(h.tk&&h.tk.b===it.i&&h.sub!=='do'){h.vk=null;h.tk=null;townNext(h)}})}
+function rDone(it){const u=it.rb.up;it.rb=null;
+ if(u){const b=BD[u.id];S.cp=S.cp||{};S.cp[b.k]=Math.max(0,(S.cp[b.k]||0)-1);S[b.k]=(S[b.k]||0)+1;if(u.id==='E')restock();log(`${b.n} niveau ${u.l+1} terminé : ${b.t}.`,'ok')}
+ else log(`${NT[NK[it.e]]||'Bâtiment'} : rénovation terminée.`,'ok');ui()}
