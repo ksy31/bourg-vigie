@@ -17,8 +17,11 @@ const BD={
  C:{n:'Maison des Guildes',t:'fonder et rejoindre une guilde',k:'guildh',c:l=>({w:30+l*25,s:30+l*30,g:80+l*80})},
 };
 const cs=c=>[c.w&&c.w+' bois',c.s&&c.s+' pierre',c.g&&c.g+' or'].filter(Boolean).join(', ');
-const bestRest=()=>S.hero.filter(h=>h.st==='rest').sort((a,b)=>power(b)-power(a))[0];
-function sendBoss(){const h=bestRest();if(!h)return;leave(h,BZ);log(`${h.name} part affronter le Roi Démon…`,'bad');ui()}
+const bestChamp=()=>S.hero.filter(h=>h.z!==BZ||h.st==='rest').sort((a,b)=>power(b)-power(a))[0];
+const kgBusy=()=>S.hero.some(x=>x.kg||(x.z===BZ&&x.st!=='rest'));
+function sendBoss(){if(kgBusy())return;const h=bestChamp();if(!h)return;h.kg=1;h.kb=0;
+ if(h.st==='town'&&h.sub==='bld'){h.tk=null;h.vk=null;h.vw=null;h.sub='home'}
+ log(`⚔️ ${h.name} se prépare à affronter le Roi Démon…`,'bad');ui()}
 function victory(h){sleepOff();
  const gain=1;
  P.glory+=gain;P.runs++;save();S.speed=0;ui();

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »**
+Version actuelle du jeu : **v3.2.4 « Assaut préparé contre le Roi Démon »**
 
 ## ✅ Déjà intégré
 
@@ -197,10 +197,10 @@ Version actuelle du jeu : **v3.2.3 « Maison des Guildes (2/2) : Entraide & Grou
 ## ✅ v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »
 - [x] **Expéditions groupées et caisse commune :** activer les départs en groupe dans les zones classiques (Roi Démon toujours en solo), le partage d'or interne pour équiper les recrues et la montée de niveau du Chancelier (calibrée sur le rythme actuel).
 
-## 👑 v3.2.4 « Assaut préparé contre le Roi Démon » (prochain)
-- [ ] **Sélection du meilleur champion et préparation complète :** modifier le bouton d'envoi au Roi Démon pour sélectionner automatiquement le **meilleur aventurier vivant** (quelle que soit son action en cours) et lui faire effectuer une séquence de préparation au village (retour, repos, soin/bénédiction au Sanctuaire, équipement à la Forge si besoin) avant de partir affronter le Roi Démon en duel.
+## ✅ v3.2.4 « Assaut préparé contre le Roi Démon »
+- [x] **Sélection du meilleur champion et préparation complète :** modifier le bouton d'envoi au Roi Démon pour sélectionner automatiquement le **meilleur aventurier vivant** (quelle que soit son action en cours) et lui faire effectuer une séquence de préparation au village (retour, repos, soin/bénédiction au Sanctuaire, équipement à la Forge si besoin) avant de partir affronter le Roi Démon en duel.
 
-## 📱 v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo »
+## 📱 v3.2.5 « Affichage adaptatif, Thème Jour/Nuit & Halo » (prochain)
 - [ ] **Affichage dynamique multi-écrans (Z Fold 3 plié/déplié) :** adapter automatiquement la mise en page de l'interface et la vue de la carte à toutes les largeurs et ratios d'écran en temps réel, sans blocage ni débordement sur écran étroit (Z Fold 3 plié) et avec recalcul fluide au dépliage.
 - [ ] **Mode Jour / Mode Nuit dans les Options :** ajouter un sélecteur de thème permettant de basculer entre le thème sombre AMOLED actuel (Nuit) et un thème clair (Jour) lisible en extérieur.
 - [ ] **Position provisoire du halo nocturne :** déplacer le point/halo lumineux nocturne de la tête vers le torse des aventuriers pour dégager leur visage (en attendant la torche tenue en main).

@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.2.4 « Assaut préparé contre le Roi Démon »
+
+Version affichée dans les Options : **v3.2.4**
+
+### Ajouté
+- **Champion du Roi Démon :** le bouton « Défier le Roi Démon » choisit le **meilleur aventurier vivant** (puissance la plus élevée), quelle que soit son action en cours. Il ne part plus directement : il doit d'abord se préparer. Une fois choisi, le bouton est grisé et affiche « X se prépare » ; on ne peut ni annuler ni changer de champion. Le champion est signalé « ⚔️ champion » dans la liste des aventuriers.
+- **Séquence de préparation :** retour au village (il termine d'abord le combat en cours, dépose son butin à la Mairie), repos complet, puis Armurerie (si une pièce l'intéresse), Forge (il y dépense tout son or, plusieurs achats si besoin, sans garder d'épargne pour la maison ou le cheval), une bénédiction au Sanctuaire (une seule tentative), puis départ en duel. Sans Forge ni Sanctuaire construits, il saute l'étape.
+- Le champion part même la nuit. La puissance du Roi Démon ne dépend pas du jour ou de la nuit (inchangé).
+
+### Modifié
+- Le champion ne sert pas de compagnon aux expéditions de guilde pendant sa préparation. S'il est déjà en expédition de groupe, il finit ce combat avec son groupe, puis rentre.
+- Anciennes sauvegardes : nouveaux champs facultatifs sur l'aventurier (`kg`, `kb`), aucune migration dans `loadG`.
+- Équilibre inchangé hors Roi Démon : 3 parties de 20 jours, graines identiques, avec la 3.2.3 : résultats identiques (or, bois, pierre, tués, niveaux).
+- Testé (Node) : champion pris en pleine quête ou combat, au repos, au village ; départ de nuit ; sans Forge ni Sanctuaire ; second appui ignoré ; sauvegarde puis rechargement en pleine préparation (il repart au Roi) ; sauvegarde 3.2.3 chargée en 3.2.4 puis 10 jours de jeu ; 0 erreur.
+- Non vérifié : l'affichage du bouton et de l'étiquette « ⚔️ champion » sur ton téléphone, et le rendu visuel (aucun changement de dessin).
+- Fichiers : `state.js`, `village.js`, `combat.js`, `ui.js`, `index.html`, `sw.js`. Cache du service worker passé à `bv-v51`. Version affichée dans les Options : v3.2.4.
+
 ## v3.2.3 « Maison des Guildes (2/2) : Entraide & Groupes »
 
 Version affichée dans les Options : **v3.2.3**
