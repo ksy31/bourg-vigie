@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.1 « Carte agrandie et contrôles 3D »**
+Version actuelle du jeu : **v3.3.2 « Refonte WebGL (2/4) : Biomes et bâtiments au niveau de la démo »**
 
 ## ✅ Déjà intégré
 
@@ -222,15 +222,15 @@ Version actuelle du jeu : **v3.3.1 « Carte agrandie et contrôles 3D »**
 - [x] **Carte beaucoup plus grande :** carte ×2,4 et zones ×2,5, village non rétréci et plus aéré (bâtiments espacés de 20 % de plus). Durées de trajet inchangées. Anciennes sauvegardes converties automatiquement.
 - [x] **Contrôles 3D comme en 2D :** la carte suit le doigt au glissement, le pincement zoome sous les doigts, rotation de la caméra bloquée pour l'instant.
 
-## 🎨 v3.3.2 « Refonte WebGL (2/4) : Biomes et bâtiments au niveau de la démo » (prochain)
-- [ ] **Biomes détaillés comme dans la démo :** forêts, mines, montagnes, ruines, donjon, volcan et Trône du Roi avec textures, volumes et lumières de la démo validée.
-- [ ] **Bâtiments détaillés comme dans la démo :** maisons, auberge, forge, taverne, sanctuaire, écurie, mairie avec textures, fenêtres et toits de la démo.
+## ✅ v3.3.2 « Refonte WebGL (2/4) : Biomes et bâtiments au niveau de la démo »
+- [x] **Biomes détaillés comme dans la démo :** forêts, mines, montagnes, ruines, donjon, volcan et Trône du Roi avec textures, volumes et lumières de la démo validée. Rivières, routes et ponts en 3D inclus (le jeu n'a pas de lacs).
+- [x] **Bâtiments détaillés comme dans la démo :** maisons, auberge, forge, taverne, sanctuaire, écurie, mairie (et intendant, chancelier) avec textures, fenêtres et toits de la démo.
 
-## 🎨 v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit »
+## 🎨 v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit » (prochain)
 - [ ] **PNJ du village en 3D** (aubergiste, forgeron, maire, etc.) avec leurs noms.
 - [ ] **Monstres en 3D dans les combats.**
 - [ ] **Météo 3D :** pluie, brouillard, nuages et éclairs dans la scène.
-- [ ] **Nuit :** fenêtres éclairées, torches tenues en main, halos chauds.
+- [ ] **Nuit :** torches tenues en main, halos chauds (les fenêtres éclairées sont déjà faites en v3.3.2).
 - [ ] **Village :** enceinte et puits selon la taille du village.
 
 ## 🎨 v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »
@@ -238,7 +238,7 @@ Version actuelle du jeu : **v3.3.1 « Carte agrandie et contrôles 3D »**
 - [ ] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [ ] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
 
-## 📱 Guide APK (prochain)
+## 📱 Guide APK
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard

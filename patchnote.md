@@ -1,5 +1,28 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.2 « Biomes et bâtiments au niveau de la démo »
+
+Version affichée dans les Options : **v3.3.2**
+
+### Ajouté
+- **Textures procédurales** (pierre, briques, enduit, tuiles, bois, pavés) générées en code, sans image externe ; une seule texture par matière, tous les objets d'une matière fusionnés en un maillage.
+- **Forêts et pins :** chênes en 3 teintes (dont quelques arbres d'automne) aux feuillages bruités et dégradés, pins, pins enneigés en montagne, buissons, rochers.
+- **Montagne :** pics rocheux irréguliers à sommet enneigé.
+- **Mine :** entrée en pierre et bois avec galerie sombre, rails, wagonnet chargé, tonneaux, lanterne, falaise de rochers.
+- **Ruines :** dalles moussues, deux rangées de colonnes (entières ou brisées, tambours au sol), linteau, murs en ruine, tour éventrée, gravats.
+- **Donjon et Trône du Roi :** châteaux fermés (murailles, créneaux, 4 tours à toit conique, porte à herse, tours de porte, donjon central, drapeau). Trône du Roi : petit, pierre sombre, toits violets, fenêtres violettes.
+- **Volcan :** cratère de lave et coulées lumineuses.
+- **Rivières animées** (ruban d'eau qui défile), **routes pavées** et **ponts en bois** avec garde-corps et culées de pierre.
+- **Bâtiments du village :** toits à deux pans en tuiles, murs en pierre, enduit à colombages ou planches, cheminées, portes, fenêtres à volets. Maisons (toit à la couleur de l'aventurier), auberge et taverne (enseigne, tonneaux), forge (braises, enclume), sanctuaire (clocher et croix), écurie (foin, enclos), mairie (tour d'horloge, drapeau), intendant (bannière), chancelier (tourelle).
+- **Fenêtres allumées la nuit** (et horloge de la mairie).
+
+### Corrigé
+- Aucun correctif dans cette version.
+
+### Modifié
+- `gl.js` uniquement : décor des zones, village, rivières, routes et ponts réécrits. Arbres, rochers et buissons répartis en cellules de 200 pour que seuls ceux visibles soient dessinés.
+- Aucun changement de jeu, d'équilibre ni de sauvegarde (anciennes sauvegardes chargées telles quelles).
+
 ## v3.3.1 « Carte agrandie et contrôles 3D »
 
 Version affichée dans les Options : **v3.3.1**
