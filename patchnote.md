@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit »
+
+Version affichée dans les Options : **v3.3.3**
+
+### Ajouté
+- **PNJ en 3D** près de leur bâtiment, avec tenue de métier, animation légère (forgeron qui martèle, etc.) et nom + niveau affichés.
+- **Torches murales** de chaque côté de la porte des bâtiments à PNJ, avec halo vacillant la nuit.
+- **Monstres en 3D** dans les combats : toutes les familles (loups, araignées, gobelins, squelettes, spectres, dragons, démons, arbres…) et boss, en volumes stylisés de taille variable.
+- **Météo 3D :** pluie dont les gouttes tombent et éclaboussent sur la carte, nuages, ciel assombri, brouillard réel, **orage avec éclairs** (foudre et flash de lumière). La météo 2D reste en repli.
+- **Torche en main** des aventuriers la nuit, avec halo chaud.
+- **Puits** dès 4 bâtiments, **palissade en bois** dès 8, **muraille de pierre** dès 12, avec une porte sur chaque route.
+
+### Modifié
+- Le halo des aventuriers est déplacé sur leur torche.
+
+### Corrigé
+- Les noms (PNJ, aventuriers, zones) et les panneaux 2D s'affichent de nouveau par-dessus la vue 3D.
+
 ## v3.3.2 « Biomes et bâtiments au niveau de la démo »
 
 Version affichée dans les Options : **v3.3.2**

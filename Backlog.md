@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.2 « Refonte WebGL (2/4) : Biomes et bâtiments au niveau de la démo »**
+Version actuelle du jeu : **v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit »**
 
 ## ✅ Déjà intégré
 
@@ -226,14 +226,14 @@ Version actuelle du jeu : **v3.3.2 « Refonte WebGL (2/4) : Biomes et bâtiments
 - [x] **Biomes détaillés comme dans la démo :** forêts, mines, montagnes, ruines, donjon, volcan et Trône du Roi avec textures, volumes et lumières de la démo validée. Rivières, routes et ponts en 3D inclus (le jeu n'a pas de lacs).
 - [x] **Bâtiments détaillés comme dans la démo :** maisons, auberge, forge, taverne, sanctuaire, écurie, mairie (et intendant, chancelier) avec textures, fenêtres et toits de la démo.
 
-## 🎨 v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit » (prochain)
-- [ ] **PNJ du village en 3D** (aubergiste, forgeron, maire, etc.) avec leurs noms.
-- [ ] **Monstres en 3D dans les combats.**
-- [ ] **Météo 3D :** pluie, brouillard, nuages et éclairs dans la scène.
-- [ ] **Nuit :** torches tenues en main, halos chauds (les fenêtres éclairées sont déjà faites en v3.3.2).
-- [ ] **Village :** enceinte et puits selon la taille du village.
+## ✅ v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit »
+- [x] **PNJ du village en 3D** (aubergiste, forgeron, maire, etc.) avec leurs noms.
+- [x] **Monstres en 3D dans les combats.**
+- [x] **Météo 3D :** pluie, brouillard, nuages et éclairs dans la scène.
+- [x] **Nuit :** torches tenues en main, halos chauds (les fenêtres éclairées sont déjà faites en v3.3.2).
+- [x] **Village :** enceinte et puits selon la taille du village.
 
-## 🎨 v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »
+## 🎨 v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation » (prochain)
 - [ ] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [ ] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [ ] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
