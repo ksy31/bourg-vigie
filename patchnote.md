@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.0 « Refonte WebGL (1/3) : Carte, village et héros en 3D »
+
+Version affichée dans les Options : **v3.3.0**
+
+### Ajouté
+- **Carte en 3D (WebGL) :** terrain en relief, routes, rivières et ponts construits depuis les vraies données de la partie ; décor 3D pour chaque zone (forêt, mine, montagne, ruines, donjon, volcan) et châteaux pour le Donjon et le Trône du Roi.
+- **Village en 3D :** bâtiments, chantiers avec échafaudage, taille selon le niveau des PNJ.
+- **Aventuriers en 3D :** 4 classes × 2 genres, avec marche, combat, cheval, bénédiction et butin.
+- **Caméra :** 1 doigt pour se déplacer, 2 doigts pour tourner et zoomer, tap sur un aventurier pour le suivre, double tap pour la vue d'ensemble.
+- **Option 2D / 3D** dans les Options. Si WebGL est indisponible, le jeu reste en 2D automatiquement.
+- Nouveaux fichiers : `three.min.js` (bibliothèque Three.js embarquée) et `gl.js`.
+
+### Modifié
+- Aucun changement d'équilibre ni de sauvegarde : le rendu seul change. Le 2D est inchangé.
+- Pas encore en 3D (prévu en 3.3.1) : PNJ du village, monstres en combat, météo et nuit détaillées. La météo reste le calque d'écran habituel.
+- `sw.js` : cache `bv-v54`, liste de fichiers complétée. `manifest.webmanifest` n'est pas modifié.
+- Testé (Node, API simulée) : démarrage, simulation de 20 jours, sauvegarde et rechargement, chargement d'une sauvegarde de la 3.2.6, repli 2D quand WebGL échoue, 0 erreur. Testé en navigateur (rendu logiciel) : captures de la carte, du village, des aventuriers, du jour et de la nuit.
+- Non vérifié ici : les fps et la batterie sur Z Fold 3, et le sens de rotation à deux doigts.
+
 ## v3.2.6 « Bouton plein écran »
 
 Version affichée dans les Options : **v3.2.6**

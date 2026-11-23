@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.2.6 « Bouton plein écran »**
+Version actuelle du jeu : **v3.3.0 « Refonte WebGL (1/3) : Carte, village et héros en 3D »**
 
 ## ✅ Déjà intégré
 
@@ -208,25 +208,32 @@ Version actuelle du jeu : **v3.2.6 « Bouton plein écran »**
 ## ✅ v3.2.6 « Bouton plein écran »
 - [x] **Bouton plein écran :** bouton ⛶ dans les Options, à côté de 🔊 et 🌙, pour masquer la barre d'état (à retoucher à chaque lancement ; masqué si le navigateur ne le permet pas).
 
-## 🎨 v3.3.0 « Refonte graphique 2D (1/5) : Textures de sol & Relief » (prochain)
-- [ ] **Textures procédurales en cache et occlusion ambiante :** enrichir le sol (herbe dense, pavés irréguliers du village, transitions douces entre biomes) via des textures mises en cache sur canvas hors-écran pour préserver la batterie, et ajouter une ombre douce au pied des bâtiments, murets et arbres (perspective 3/4 vue de haut avec façades et toits visibles).
+## ✅ v3.3.0 « Refonte WebGL (1/3) : Carte, village et héros en 3D »
+- [x] **Moteur 3D WebGL (Three.js embarqué) :** `three.min.js` + `gl.js` (chargé après `map.js`), sans image externe. Le rendu 2D reste en repli automatique si WebGL est indisponible.
+- [x] **Option 2D / 3D :** bouton 🧊 3D / 🖼️ 2D dans les Options (clé locale `bvr`, aucune modification de la sauvegarde).
+- [x] **Terrain en relief, zones, routes, rivières et ponts :** construits depuis les vraies données du jeu (positions des zones, routes, rivières) ; décor 3D par zone (forêt, mine, montagne, ruines, donjon, volcan, Trône du Roi).
+- [x] **Village en 3D :** un bâtiment par construction du village, chantiers avec échafaudage et hauteur progressive, taille selon le niveau du PNJ.
+- [x] **Aventuriers en 3D :** 4 classes × 2 genres, marche, combat, cheval, bénédiction et butin ; noms, temps de trajet, 💀 et panneaux de combat conservés.
+- [x] **Caméra :** 1 doigt = se déplacer, 2 doigts = tourner et zoomer, tap sur un aventurier = le suivre, ◀ ▶ inchangés, double tap = vue d'ensemble.
+- [x] **Jour/nuit et météo :** lumière et ciel suivent l'heure du jeu ; la météo reste le calque d'écran existant.
+- [x] **Veille :** aucun rendu 3D en mode veille (inchangé).
 
-## 🎨 v3.3.1 « Refonte graphique 2D (2/5) : Torches & Lumières chaudes »
-- [ ] **Torches tenues en main et éclairage nocturne réaliste :** remplacer le point lumineux provisoire des aventuriers par une vraie torche tenue en main avec petite flamme animée, et utiliser des modes de fusion lumineux (`lighter`) pour que torches, fenêtres illuminées, foyer de la forge et lanternes projettent des halos ambrés chauds sur le décor dans une nuit bleu profond.
+## 🎨 v3.3.1 « Refonte WebGL (2/3) : PNJ, monstres, météo et nuit » (prochain)
+- [ ] **PNJ du village en 3D** (aubergiste, forgeron, maire, etc.) avec leurs noms.
+- [ ] **Monstres en 3D dans les combats.**
+- [ ] **Météo 3D :** pluie, brouillard, nuages et éclairs dans la scène.
+- [ ] **Nuit :** fenêtres éclairées, torches tenues en main, halos chauds.
+- [ ] **Village :** enceinte et puits selon la taille du village.
 
-## 🎨 v3.3.2 « Refonte graphique 2D (3/5) : Eau vivante & Reflets »
-- [ ] **Rivières animées et reflets célestes :** ajouter un courant léger à la surface des rivières bleu nuit avec de petits remous autour des ponts en bois, des berges ombrées et des reflets scintillants des étoiles, de la lune la nuit et du soleil le jour.
-
-## 🎨 v3.3.3 « Refonte graphique 2D (4/5) : Particules & Vie ambiante »
-- [ ] **Particules légères d'atmosphère :** ajouter des lucioles dorées la nuit près des forêts, de la fumée qui s'élève des cheminées actives du village, une fine brume matinale sur les rivières et des braises près du volcan (avec plafond de particules pour garder la fluidité sur mobile).
-
-## 🎨 v3.3.4 « Refonte graphique 2D (5/5) : Éclat des combats »
-- [ ] **Lumière dynamique et impact des combats :** faire en sorte que les sorts, étincelles et coups critiques éclairent brièvement le sol autour des combattants, accompagnés d'une légère secousse de caméra sur les gros coups et la mort des boss.
+## 🎨 v3.3.2 « Refonte WebGL (3/3) : Finitions et optimisation »
+- [ ] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
+- [ ] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 
 ## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
+- [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
 - [ ] **Widget / arrière-plan :** impossible en web (le jeu se fige écran éteint). Demanderait une réécriture en Android natif (Kotlin) avec service permanent. Non retenu pour l'instant.
 
