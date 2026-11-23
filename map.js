@@ -9,7 +9,7 @@ function fit(){
 }
 const SLOTS=(()=>{const a=[];for(let dx=-30;dx<=30;dx+=10)for(const dy of[-19,-9.5,0,9.5,19])if(!(Math.abs(dx)===30&&Math.abs(dy)===19))a.push([dx,dy]);return a.sort((p,q)=>(p[0]/1.6)**2+p[1]**2-((q[0]/1.6)**2+q[1]**2)||p[0]-q[0])})();
 const jt=(i,n)=>{const s=Math.sin(i*127.1+n*311.7)*43758.5453;return s-Math.floor(s)};
-const slot=it=>{const k=Math.floor(it.i/SLOTS.length),p=SLOTS[it.i%SLOTS.length],q=it.i?1:0;return[p[0]*1.25+k*4+q*(jt(it.i,1)-.5)*2.4,p[1]*1.25+k*4+q*(jt(it.i,2)-.5)*2]};
+const slot=it=>{const k=Math.floor(it.i/SLOTS.length),p=SLOTS[it.i%SLOTS.length],q=it.i?1:0;return[p[0]*1.5+k*4+q*(jt(it.i,1)-.5)*2.4,p[1]*1.5+k*4+q*(jt(it.i,2)-.5)*2]};
 const tr=k=>{const n=S.npc[k];if(!n||k==='A')return 0;return n.lv>=6?2:n.lv>=3?1:0};
 function vdim(){const u=S.pl.map(it=>[slot(it),it.e,it]);let rx=14,ry=11;for(const [p] of u){rx=Math.max(rx,Math.abs(p[0])+9);ry=Math.max(ry,Math.abs(p[1])+8)}const kk=Math.max(0,...u.map(([p])=>Math.hypot(p[0]/rx,p[1]/ry)));if(kk>.9){rx*=kk/.9;ry*=kk/.9}return{u,rx,ry}}
 function dij(NX,NY,src,goal,ok,cost){const N=NX*NY,dist=new Float64Array(N).fill(1e9),prv=new Int32Array(N).fill(-1),h=[[0,src]];dist[src]=0;
@@ -243,7 +243,7 @@ function nearRiver(x,y,m){for(const r of RIV)for(let k=0;k<r.length;k++)if(Math.
 function buildRivers(){
  RIV=[];BRG=[];
  const WX=100*MS,WY=130*MS,M=ZA.find(z=>z.n==='Montagne');if(!M)return;
- const obs=ZA.filter(z=>z!==M).map(zob);obs.push({x:T.x,y:T.y,rx:52,ry:44});
+ const obs=ZA.filter(z=>z!==M).map(zob);obs.push({x:T.x,y:T.y,rx:72,ry:62});
  const G=4,NX=Math.ceil(WX/G)+1,NY=Math.ceil(WY/G)+1,blk=new Uint8Array(NX*NY),near=new Uint8Array(NX*NY);
  for(let j=0;j<NY;j++)for(let i=0;i<NX;i++)if(obs.some(o=>((i*G-o.x)/(o.rx*1.06))**2+((j*G-o.y)/(o.ry*1.06))**2<1))blk[j*NX+i]=1;
  const path=(Rr,s0,usedNear,minLen)=>{const noise=new Float32Array(NX*NY);for(let k=0;k<noise.length;k++)noise[k]=Rr()*.9;
@@ -351,7 +351,7 @@ const rng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.i
 const GC={c:null,k:''};let ROAD=[],ROADL=[];
 function tuft(g,x,y,s,col){g.strokeStyle=col;g.lineWidth=Math.max(.7,s*.18);g.beginPath();g.moveTo(x,y);g.lineTo(x-s*.5,y-s);g.moveTo(x,y);g.lineTo(x+s*.1,y-s*1.2);g.moveTo(x,y);g.lineTo(x+s*.55,y-s*.9);g.stroke()}
 function buildGround(){
- const WW=W*MS,WH=H*MS,CS=Math.min(2,4096/Math.max(WW,WH)),c=GC.c||(GC.c=document.createElement('canvas'));c.width=Math.round(WW*CS);c.height=Math.round(WH*CS);
+ const WW=W*MS,WH=H*MS,CS=Math.min(2,4096/Math.max(WW,WH),Math.sqrt(8e6/(WW*WH))),c=GC.c||(GC.c=document.createElement('canvas'));c.width=Math.round(WW*CS);c.height=Math.round(WH*CS);
  const g=c.getContext('2d');g.setTransform(CS,0,0,CS,0,0);const R=rng(1234);
  const gr=g.createLinearGradient(0,0,0,WH);gr.addColorStop(0,'#86a772');gr.addColorStop(1,'#9bba84');g.fillStyle=gr;g.fillRect(0,0,WW,WH);
  for(let i=0;i<24*MS*MS;i++){const x=R()*WW,y=R()*WH,r=(14+R()*26)*sc,lt=R()<.5,q=g.createRadialGradient(x,y,0,x,y,r);q.addColorStop(0,lt?'rgba(255,255,210,.12)':'rgba(25,55,30,.12)');q.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=q;g.fillRect(x-r,y-r,2*r,2*r)}

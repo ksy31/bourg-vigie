@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.1 « Carte agrandie et contrôles 3D »
+
+Version affichée dans les Options : **v3.3.1**
+
+### Ajouté
+- **Contrôles 3D comme en 2D :** la carte suit le doigt au glissement (le point touché reste sous le doigt) et le pincement zoome autour des doigts.
+
+### Modifié
+- **Carte beaucoup plus grande :** `MS` 2,5 → 6 (carte ×2,4) et `ZS` 2 → 5 (zones ×2,5), positions de base et du Trône du Roi mises à l'échelle (`state.js`, `data.js`). Le village garde sa taille et ses bâtiments, mais ses emplacements sont espacés de 20 % (1,25 → 1,5 dans `slot`, `map.js`) pour être moins dense. Les durées de trajet ne changent pas (elles sont calculées sur la distance divisée par `MS`).
+- **Anciennes sauvegardes :** conversion automatique (`migMap` dans `save.js`) des zones, croix de mort et aventuriers ; version de sauvegarde 5.
+- **Rotation de la caméra bloquée** pour l'instant (elle gênait le zoom). Elle revient en 3.3.4 si elle ne gêne plus.
+- Rivières : zone d'exclusion autour du village agrandie. Décor 3D des zones adapté à leur nouvelle taille.
+- Mode 2D : la carte étant plus grande, la texture du sol est calculée à plus faible résolution (plafond de 8 millions de pixels) pour rester légère.
+- Les biomes et bâtiments 3D sont encore simples : le niveau de détail de la démo arrive en 3.3.2.
+- `sw.js` : cache `bv-v55`. `three.min.js` et `manifest.webmanifest` ne changent pas.
+- Équilibre : sur 5 parties de 20 jours par version (4 aventuriers, or illimité), départs en quête 98 en moyenne avant, 113 après (écart entre parties très fort, de 55 à 151) : pas de baisse mesurable. Aucune constante à ajuster.
+- Testé (Node, API simulée) : 300 placements de zones sans repli ni chevauchement (écart minimal 6,1), démarrage, 20 jours, sauvegarde et rechargement, chargement d'une sauvegarde de la 3.2.6 (durées restantes quasi identiques), repli 2D, 0 erreur. Testé en navigateur (rendu logiciel) : le point sous le doigt reste sous le doigt au glissement et au pincement (écart 0), captures de la carte et du mode 2D.
+- Non vérifié ici : le ressenti tactile réel, les fps et la batterie sur Z Fold 3.
+
 ## v3.3.0 « Refonte WebGL (1/3) : Carte, village et héros en 3D »
 
 Version affichée dans les Options : **v3.3.0**
