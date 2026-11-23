@@ -19,7 +19,7 @@ function dij(NX,NY,src,goal,ok,cost){const N=NX*NY,dist=new Float64Array(N).fill
   const ci=c%NX,cj=(c/NX)|0;for(let dj=-1;dj<=1;dj++)for(let di=-1;di<=1;di++){if(!di&&!dj)continue;const a=ci+di,b=cj+dj;if(a<0||b<0||a>=NX||b>=NY)continue;const n=b*NX+a;if(!ok(n))continue;const nd=d+cost(n,di&&dj);if(nd<dist[n]){dist[n]=nd;prv[n]=c;push([nd,n])}}}
  return null}
 const VN={k:'',g:null};
-function vnet(){const k=S.pl.map(i=>i.i+i.e).join(',')+JSON.stringify(S.zp);if(VN.k===k)return VN.g;VN.k=k;try{VN.g=buildNet()}catch(e){VN.g=null}return VN.g}
+function vnet(){const k=S.pl.map(i=>i.i+i.e).join(',')+JSON.stringify(S.zp)+T.x+','+T.y+','+BZ.x+','+BZ.y;if(VN.k===k)return VN.g;VN.k=k;try{VN.g=buildNet()}catch(e){VN.g=null}return VN.g}
 function buildNet(){
  const {u,rx,ry}=vdim(),x0=Math.floor(T.x-rx-6),y0=Math.floor(T.y-ry-6),NX=Math.ceil(2*rx+12)+2,NY=Math.ceil(2*ry+12)+2,N=NX*NY,blk=new Uint8Array(N),Rr=rng(7700),nz=new Float32Array(N);
  const p1=Rr()*6.28,p2=Rr()*6.28;for(let k=0;k<N;k++){const i=k%NX,j=(k/NX)|0;nz[k]=.5*(.5+.5*Math.sin(i*.28+p1)*Math.cos(j*.24+p2))+Rr()*.12}
@@ -345,7 +345,7 @@ function buildVillage(u,rx,ry,x0,y0,w,h,CS){
  for(let k=0;k<n;k+=1){const a=pts[k],o=Math.hypot(a[0]-T.x,a[1]-T.y);if(gp[k]||inGap(a[0],a[1],4.5))continue;const dx=(a[0]-T.x)/o,dy=(a[1]-T.y)/o,d=1.2+R()*2;tuft(g,(a[0]+dx*d)*s,(a[1]+dy*d)*s,s*(.8+R()*.5),R()<.5?'#5f8450':'#a9c98f')}
 }
 function villageGround(u,rx,ry){
- const k=[W,rx.toFixed(1),ry.toFixed(1),u.map(a=>a[2].i+a[1]).join(','),JSON.stringify(S.zp)].join('|'),pad=8,x0=(T.x-rx-pad)*sc,y0=(T.y-ry-pad)*sc,w=(2*rx+2*pad)*sc,h=(2*ry+2*pad)*sc,CS=Math.min(3,2400/Math.max(w,h));
+ const k=[W,rx.toFixed(1),ry.toFixed(1),u.map(a=>a[2].i+a[1]).join(','),JSON.stringify(S.zp)+T.x+','+T.y].join('|'),pad=8,x0=(T.x-rx-pad)*sc,y0=(T.y-ry-pad)*sc,w=(2*rx+2*pad)*sc,h=(2*ry+2*pad)*sc,CS=Math.min(3,2400/Math.max(w,h));
  if(VC.k!==k){VC.k=k;buildVillage(u,rx,ry,x0,y0,w,h,CS)}
  cx.drawImage(VC.c,x0,y0,w,h)}
 const rng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
@@ -433,7 +433,7 @@ function draw(){
  const BM=bAssign();
  if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const bm=BM.get(q.id),bp=bm?bpos(q,bm):[q.x*sc+((q.id%3)-1)*sc*1.5,q.y*sc+((q.id%2)-.5)*sc*2];cam.x=W/2-bp[0]*cam.z;cam.y=H/2-bp[1]*cam.z;clampCam()}else fol=null}
  cx.save();cx.translate(cam.x,cam.y);cx.scale(cam.z,cam.z);cx.fillStyle='#8fae7a';cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4));
- if(W>0){const k=W+JSON.stringify(S.zp)+S.zv.join('');if(GC.k!==k){GC.k=k;buildGround()}cx.drawImage(GC.c,0,0,W*MS,H*MS)}
+ if(W>0){const k=W+JSON.stringify(S.zp)+T.x+','+T.y+BZ.x+','+BZ.y+S.zv.join('');if(GC.k!==k){GC.k=k;buildGround()}cx.drawImage(GC.c,0,0,W*MS,H*MS)}
  cx.textAlign='center';
  const ZI={'Forêt':'🌲','Mine':'⛏️','Montagne':'🏔️','Ruines':'🏚️','Donjon':'🏰','Volcan':'🌋'};
  for(const z of ZA){

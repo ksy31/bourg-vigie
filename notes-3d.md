@@ -1,6 +1,6 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 23/11/2026 : version livrée **v3.3.9 « Cycle solaire 3D & Paysages naturels »** (cache `bv-v63`). Prochain point du Backlog : guide APK (PWABuilder). Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 23/11/2026 : version livrée **v3.4.0 « Génération aléatoire de la carte »** (cache `bv-v64`). Prochain point du Backlog : guide APK (PWABuilder). Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).
@@ -8,6 +8,7 @@
 - 3.3.7 : étoiles de bénédiction 3D (`o.bs`, texture `starTex`), taches de lumière au sol des torches hors village (`WGM`/`WGD`), bouton `#slp` avec `z-index:3` (le canvas `cv` a `z-index:1` dès que la 3D est initialisée), fonds/nuit 2D en `W*(MS+4)` (le monde fait MS×W, ZMIN=1/MS).
 - 3.3.8 : icônes de toit 3D (`RQ` rempli par `building`, `roofIcons`/`roofTex` : plan collé sur la pente sud du toit, incrustation claire + ombre) et 2D (`engr` dans `bld`) ; monstres 3D pour tous les combats (`updMon`) ; marteau des PNJ en travaux (`arms[1].hg`, `npcAct(k)===2`) ; lampadaire de bâtiment à gauche (`lamp(W,x-w/2-1.1,…)`).
 - 3.3.9 : cycle solaire dans `updLight` (soleil `r=(x-5)/16π`, lune `o=((x+3)%24)/8π`, palette `PL` recalée : aube 5h, coucher 20h, nuit 21h30) ; rivières 3D ×1,45 + berges peintes dans `paintGround` (`bk`) ; ponts ×1,4 ; biomes adoucis ; buissons/rochers de plaine (`qd` selon la qualité) ; `vprops` (tonneaux/caisses du village).
+- 3.4.0 : carte aléatoire. `genMap()` (state.js) tire `T` (village) et `BZ` puis place chaque zone à sa distance de base (calculée depuis `T0`/`BZ0`/`BASEPOS`, angle libre, bords et non-chevauchement), et ne retient la disposition que si `mapOk` trouve des routes courbes sans croisement (cache `MC` réutilisé par `buildZ`, sinon coût doublé ≈ 0,7 s). `T` et `BZ` sont mutables ; `S.tp`/`S.bp` sauvegardés ; `loadG` remet `T0`/`BZ0` si absents (anciennes parties). Les caches 2D/3D incluent T/BZ ; `gl.js` recentre la caméra quand T change (`K.tkey`). Au premier démarrage sans sauvegarde, `main.js` refait `fresh()` car `roadOf` n'existe pas encore pendant `state.js`.
 - `state.js` : `ZR['Forêt']` = [0,1.7,22,8.5] (forêt agrandie en 3.3.5 ; rayon = ZR[2]×ZS+4).
 - `three.min.js`, `map.js` (2D en repli ; garde `vnet/drawNet`). Ordre des scripts : data, state, village, save, combat, ui, three.min, map, monsters, gl, audio, dev, main.
 - Options : 🧊/🖼️ (`r3`), ⚙️ Qualité (`qb`, clé `bvq`). Menu Développeur : « Compteur fps (3D) » (`dfps`).

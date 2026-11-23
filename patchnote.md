@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.0 « Génération aléatoire de la carte »
+
+Version affichée dans les Options : **v3.4.0**
+
+### Ajouté
+- **Carte aléatoire à chaque nouvelle partie :** le village peut se trouver n'importe où sur la carte (haut, bas, gauche, droite, centre) et les six zones plus le Trône du Roi sont replacés autour, chacune à un angle libre.
+- **Temps de trajet inchangés :** chaque zone garde exactement sa distance au village, donc les mêmes durées de trajet et le même ordre de distance qu'avant.
+- **Routes courbes d'abord :** une disposition n'est retenue que si toutes les routes se tracent en courbes sans se croiser ; sinon une autre disposition est tirée.
+- **Sauvegarde :** la position du village et du Trône du Roi est enregistrée avec la partie (`tp`, `bp`).
+
+### Modifié
+- Rivières, ponts, bande de forêt, caches 2D/3D et caméra 3D (recentrée sur le village) suivent la nouvelle disposition.
+- Les parties déjà sauvegardées gardent leur carte actuelle (village en bas) ; la nouvelle carte s'applique à la prochaine partie (après victoire, game over ou « Nouvelle run »).
+
 ## v3.3.9 « Cycle solaire 3D & Paysages naturels »
 
 Version affichée dans les Options : **v3.3.9**

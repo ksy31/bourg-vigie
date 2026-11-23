@@ -1,5 +1,16 @@
 function layout(){const out=[],WX=100*MS;ZB.forEach((zb,i)=>{const b=BASEPOS[i],r=ZRD(zb.n),y0=(ZT[zb.n]+3)*ZS;let p=null;for(let k=0;k<60&&!p;k++){const a=(Math.random()*2-1)*.25,c=Math.cos(a),s=Math.sin(a),vx=b[0]-T.x,vy=b[1]-T.y,q=[Math.min(WX-r-6,Math.max(r+6,T.x+vx*c-vy*s)),Math.min(456,Math.max(y0,T.y+vx*s+vy*c))];if(out.every((o,j)=>Math.hypot(o[0]-q[0],o[1]-q[1])>r+ZRD(ZB[j].n)+6)&&Math.hypot(q[0]-BZ.x,q[1]-BZ.y)>r+ZRD(BZ.n)+10&&Math.hypot(q[0]-T.x,q[1]-T.y)>r+50)p=q}out.push(p||b.slice())});return out}
-function buildZ(){Z=ZB.map((b,i)=>{const v=ZV[i][S.zv[i]];return{n:b.n,vi:S.zv[i],sn:v[0],x:S.zp[i][0],y:S.zp[i][1],d:v[1],c:b.c,e:v[2].split(',').map((m,j)=>[m,[.8,1.1,1.5][j]]),f:v[3].split(',').map((m,j)=>[m,[.9,1.2,1.6][j]])}});ZA=[...Z,BZ];const gen=f=>{const pv=[];ZA.forEach((z,i)=>{RD[z.n]=roadOf(z,i,pv,f);pv.push(RD[z.n])});return pv};let ok=0;for(let k=0;k<14&&!ok;k++)ok=!roadsCross(gen(k));if(!ok)gen(-1);buildRivers()}
+const T0={x:300,y:612},BZ0={x:BZ.x,y:BZ.y};let MC=null;
+function mapOk(zp){const sv=ZA;try{ZA=[...ZB.map((b,i)=>({n:b.n,x:zp[i][0],y:zp[i][1]})),BZ];const gen=f=>{const pv=[];ZA.forEach((z,i)=>{pv.push(roadOf(z,i,pv,f))});return pv};for(let k=0;k<14;k++){const pv=gen(k);if(!roadsCross(pv)){MC={k:JSON.stringify(zp)+T.x+T.y+BZ.x+BZ.y,pv};return true}}return false}finally{ZA=sv}}
+function genMap(){const WX=100*MS,WY=130*MS,ent=[...ZB.map((b,i)=>[b.n,Math.hypot(BASEPOS[i][0]-T0.x,BASEPOS[i][1]-T0.y)]),[BZ.n,Math.hypot(BZ0.x-T0.x,BZ0.y-T0.y)]];
+ for(let a=0;a<500;a++){const tx=Math.round(110+Math.random()*380),ty=Math.round(100+Math.random()*600),pl=[];let ok=true;
+  for(const [n,d] of ent){const r=ZRD(n),y0=(ZT[n]+3)*ZS,y1=WY-((ZR[n]||ZR['Trône du Roi'])[3]+4)*ZS;let p=null;
+   for(let k=0;k<40&&!p;k++){const an=Math.random()*6.2832,x=Math.round((tx+d*Math.cos(an))*10)/10,y=Math.round((ty+d*Math.sin(an))*10)/10;if(x<r+6||x>WX-r-6||y<y0||y>y1)continue;if(pl.every(o=>Math.hypot(o.x-x,o.y-y)>r+o.r+8))p={x,y,r}}
+   if(!p){ok=false;break}pl.push(p)}
+  if(!ok)continue;
+  const zp=pl.slice(0,6).map(p=>[p.x,p.y]),b=pl[6];T.x=tx;T.y=ty;BZ.x=b.x;BZ.y=b.y;
+  if(typeof roadOf!=='function'||mapOk(zp))return zp}
+ T.x=T0.x;T.y=T0.y;BZ.x=BZ0.x;BZ.y=BZ0.y;return BASEPOS.map(q=>q.slice())}
+function buildZ(){Z=ZB.map((b,i)=>{const v=ZV[i][S.zv[i]];return{n:b.n,vi:S.zv[i],sn:v[0],x:S.zp[i][0],y:S.zp[i][1],d:v[1],c:b.c,e:v[2].split(',').map((m,j)=>[m,[.8,1.1,1.5][j]]),f:v[3].split(',').map((m,j)=>[m,[.9,1.2,1.6][j]])}});ZA=[...Z,BZ];const gen=f=>{const pv=[];ZA.forEach((z,i)=>{RD[z.n]=roadOf(z,i,pv,f);pv.push(RD[z.n])});return pv};const ck=JSON.stringify(S.zp)+T.x+T.y+BZ.x+BZ.y;if(MC&&MC.k===ck)ZA.forEach((z,i)=>{RD[z.n]=MC.pv[i]});else{let ok=0;for(let k=0;k<14&&!ok;k++)ok=!roadsCross(gen(k));if(!ok)gen(-1)}MC=null;buildRivers()}
 let P={glory:0,runs:0,g:0,p:0,s:0,h:0,lb:[]};
 try{Object.assign(P,JSON.parse(localStorage.getItem('bv')||'{}'))}catch(e){}
 P.lb=(P.lb||[]).filter(x=>x&&x.eq&&x.k!=null);
@@ -57,7 +68,7 @@ function exportCode(){return btoa(unescape(encodeURIComponent(JSON.stringify({v:
 function importCode(c){const o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(!o||!o.S||!Array.isArray(o.S.hero)||!Array.isArray(o.S.pl))throw 0;localStorage.setItem(SK,JSON.stringify(o.S));if(o.P)localStorage.setItem('bv',JSON.stringify(o.P));if(Array.isArray(o.N))localStorage.setItem('bvn',JSON.stringify(o.N));if(o.G&&typeof o.G==='object')localStorage.setItem('bvg',JSON.stringify(o.G))}
 const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];
 const fu=o=>{o.used=[o.npc.A.n,o.npc.V.n];return o};
-const fresh=()=>fu({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,armory:0,chest:[],guildh:0,guilds:[],hero:[],cp:{},t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:5,zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:layout(),ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()});
+const fresh=()=>fu({g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,armory:0,chest:[],guildh:0,guilds:[],hero:[],cp:{},t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:5,zv:ZB.map(()=>Math.floor(Math.random()*3)),zp:genMap(),tp:[T.x,T.y],bp:[BZ.x,BZ.y],ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()});
 let S=fresh(),showT=false;
 const rname=()=>rn([],S);
 const rem=h=>{if(h.st==='fight')return h.t;if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h))};
