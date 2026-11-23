@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »**
+Version actuelle du jeu : **v3.3.5 « Rattrapage de la démo »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,13 @@ Version actuelle du jeu : **v3.3.4 « Refonte WebGL (4/4) : Finitions et optimis
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.3.5 « Rattrapage de la démo »
+- [x] **Éclairage :** soleil, lune, ciel et palette de la démo.
+- [x] **Lampadaires** sur le contour du village et aux entrées des bâtiments.
+- [x] **Volcan** de la démo (cône, cratère, veines de lave).
+- [x] **Forêt** agrandie (zone de jeu) et dense.
+- [x] **Contour de la carte** en forêt dense.
 
 ## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.

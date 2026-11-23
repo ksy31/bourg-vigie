@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.5 « Rattrapage de la démo »
+
+Version affichée dans les Options : **v3.3.5**
+
+### Ajouté
+- **Éclairage de la démo :** soleil chaud avec ombres marquées (angle selon l'heure), lumière d'appoint, lune bleutée la nuit, palette de couleurs par heure (aube, midi, crépuscule, nuit), ciel dégradé avec disque solaire, lune et étoiles.
+- **Étalonnage** (teinte chaude/froide et vignettage) et **éclat lumineux** plus fort la nuit, en qualité Haute.
+- **Lampadaires** sur le contour du village et à l'entrée des bâtiments (pas sur les chemins), avec halo et tache de lumière au sol la nuit.
+- **Volcan de la démo :** cône plus haut et plus raide, cratère, veines de lave lumineuses sur les pentes, lueur du cratère.
+- **Contour de la carte :** bande de forêt dense tout autour et sol étendu au-delà du bord, plus de bord net.
+
+### Modifié
+- **Forêt agrandie** (zone de jeu et décor) et beaucoup plus dense, arbres plus grands. Les parties en cours gardent leurs positions de zones.
+- Torches de porte : tache de lumière au sol.
+
 ## v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »
 
 Version affichée dans les Options : **v3.3.4**
