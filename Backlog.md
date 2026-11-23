@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.4 « Lumières vivantes & sol du village »**
+Version actuelle du jeu : **v3.4.5 « PNJ, torches et couleurs »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,13 @@ Version actuelle du jeu : **v3.4.4 « Lumières vivantes & sol du village »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.4.5 « PNJ, torches et couleurs »
+- [x] **PNJ devant la porte, aventuriers face à eux :** chaque PNJ se tient devant la porte de son bâtiment ; les aventuriers s'arrêtent juste devant lui, face à lui, sans décalage aléatoire (file d'attente de part et d'autre), sans traverser le bâtiment.
+- [x] **Torche en forêt jour et nuit** (portée inchangée) ; torche déjà éteinte au village (3.4.1).
+- [x] **Sac à dos jaune et plus lumineux,** à très faible portée.
+- [x] **Couleur de l'aventurier sur le personnage 3D** (écharpe et cape) pour les différencier.
+- Déjà livrés avant : yeux néon des monstres (3.4.1), vraies ombres dynamiques (3.4.2, 7 lumières en 3.4.4), architecture des bâtiments et ombres de contact (3.4.3).
 
 ## ✅ v3.4.4 « Lumières vivantes & sol du village »
 - [x] **Allumage progressif des lumières :** lampadaires, torches et fenêtres s'allument de 19h à 21h (crépuscule) et s'éteignent de 4h à 6h (aube), en 2D et en 3D.

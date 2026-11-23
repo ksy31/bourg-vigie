@@ -4,7 +4,7 @@ const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge
 const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie',guild:'à la Maison des Guildes'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'||h.sub==='bld'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
-const door=it=>{const p=slot(it);return{x:T.x+p[0],y:T.y+p[1]+3.6}};
+const door=it=>{const p=slot(it),k=NK[it.e]||'H';return{x:T.x+p[0],y:T.y+p[1]+(k==='A'?6.6:5.4)/2+2.4}};
 const busy=i=>S.hero.filter(q=>q.st==='town'&&q.tk&&q.tk.b===i&&(q.sub==='wait'||q.sub==='do')).length;
 const pickB=e=>S.pl.filter(x=>x.e===e&&!x.cn&&!x.rb).sort((a,b)=>busy(a.i)-busy(b.i)||a.i-b.i)[0];
 const hPrice=x=>Math.round(x.p*Math.max(.5,1-.04*nl('E')));

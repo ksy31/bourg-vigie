@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.5 « PNJ, torches et couleurs »
+
+Version affichée dans les Options : **v3.4.5**
+
+### Ajouté
+- **Couleur de l'aventurier sur son personnage 3D :** écharpe et cape à sa couleur (celle de sa fiche), pour reconnaître chacun d'un coup d'œil (la capuche du Voleur reprend aussi cette couleur).
+- **Torche allumée en forêt, de jour comme de nuit** (même portée qu'avant), avec un fondu en entrant et en sortant de la forêt.
+
+### Corrigé
+- **Arrêt des aventuriers devant les PNJ :** le point d'arrêt était au centre du bâtiment et un décalage aléatoire les déplaçait encore. Ils s'arrêtent maintenant juste devant le PNJ, face à lui, sans décalage ; les suivants attendent de part et d'autre.
+
+### Modifié
+- **PNJ du village :** placés juste devant la porte de leur bâtiment (au lieu du côté), avec leur torche.
+- **Sac à dos de butin :** jaune, plus lumineux, halo à très faible portée.
+- Pas de changement 2D pour la torche de forêt et la couleur des personnages (3D seulement). Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.4.4 « Lumières vivantes & sol du village »
 
 Version affichée dans les Options : **v3.4.4**
