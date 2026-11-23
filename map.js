@@ -295,6 +295,61 @@ function cobble(g,x,y,rx,ry,R){const s=sc,C=['#a39e8e','#b3ae9d','#98937f','#aca
  g.fillStyle='rgba(95,85,65,.55)';g.beginPath();g.ellipse(x,y,rx,ry,0,0,7);g.fill();
  for(let j=-n;j<=n;j++){const yy=y+j*s*.9,hf=rx*Math.sqrt(Math.max(0,1-((yy-y)/ry)**2));
   for(let xx=x-hf+((j&1)?s*.7:0);xx<x+hf-s*1.2;xx+=s*1.4){g.fillStyle=C[Math.floor(R()*4)];g.beginPath();g.roundRect(xx,yy-s*.38,s*1.2,s*.76,s*.25);g.fill()}}}
+// ===== v3.5.0 : sols du village (terre battue et pavés), partagés par la 2D et la 3D =====
+// g : contexte ; s : pixels par unité du monde ; les coordonnées passées sont en unités du monde ; R : générateur aléatoire
+const VJT='#4f4a42';
+function vgRR(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);g.closePath()}
+function vgDirt(g,x0,y0,x1,y1,s,R){
+ const A=(x1-x0)*(y1-y0),X=x0*s,Y=y0*s,W=(x1-x0)*s,H=(y1-y0)*s;
+ g.fillStyle='#b8a47b';g.fillRect(X,Y,W,H);
+ for(const [dv,al,r0,r1] of [[22,.5,2,6],[4,.34,.4,1.3]])for(let i=0,N=Math.round(A/dv);i<N;i++){const x=X+R()*W,y=Y+R()*H,r=(r0+R()*(r1-r0))*s,k=R(),c=k<.4?'128,96,58':k<.75?'226,208,164':'104,82,50',q=g.createRadialGradient(x,y,0,x,y,r);q.addColorStop(0,'rgba('+c+','+al+')');q.addColorStop(1,'rgba('+c+',0)');g.fillStyle=q;g.fillRect(x-r,y-r,2*r,2*r)}
+ const P=['#9c8660','#a8926a','#c9b78d','#d6c7a0','#8a7550','#b5a074'];
+ for(let i=0,N=Math.round(A*16);i<N;i++){g.fillStyle=P[(R()*6)|0];const w=(.04+R()*.07)*s;g.fillRect(X+R()*W,Y+R()*H,w,w*(.6+R()*.6))}
+ for(let i=0,N=Math.round(A*.9);i<N;i++){const x=X+R()*W,y=Y+R()*H,r=(.06+R()*.16)*s,t=R();
+  g.fillStyle='rgba(60,45,25,.32)';g.beginPath();g.ellipse(x+r*.35,y+r*.4,r*1.05,r*.7,0,0,7);g.fill();
+  g.fillStyle=t<.5?'#9a9484':t<.8?'#b3a68a':'#7d786c';g.beginPath();g.ellipse(x,y,r,r*.7,R()*3,0,7);g.fill();
+  g.fillStyle='rgba(255,250,230,.35)';g.beginPath();g.ellipse(x-r*.25,y-r*.25,r*.45,r*.28,0,0,7);g.fill()}
+ g.lineCap='round';
+ for(let i=0,N=Math.round(A*.3);i<N;i++){const x=X+R()*W,y=Y+R()*H,l=(.15+R()*.3)*s;g.strokeStyle=R()<.5?'rgba(110,125,60,.55)':'rgba(190,170,110,.6)';g.lineWidth=Math.max(.6,.035*s);g.beginPath();g.moveTo(x,y);g.lineTo(x+(R()-.5)*l,y-l);g.stroke()}
+ for(let i=0,N=Math.round(A*.05);i<N;i++){let x=X+R()*W,y=Y+R()*H;g.strokeStyle='rgba(80,62,38,.35)';g.lineWidth=Math.max(.5,.03*s);g.beginPath();g.moveTo(x,y);for(let k=0;k<4;k++){x+=(R()-.4)*.5*s;y+=(R()-.5)*.35*s;g.lineTo(x,y)}g.stroke()}}
+function vgStone(g,x,y,w,h,a,R,s,dl){
+ const W=w*s,H=h*s,r=Math.min(W,H)*.3,l=44+R()*24+(dl||0),hu=34+R()*16,sa=4+R()*10;
+ g.save();g.translate(x*s,y*s);g.rotate(a);
+ vgRR(g,-W/2,-H/2,W,H,r);g.fillStyle='hsl('+hu.toFixed(0)+','+sa.toFixed(0)+'%,'+l.toFixed(0)+'%)';g.fill();
+ g.lineWidth=Math.max(.6,.07*s);g.lineJoin='round';g.lineCap='round';
+ g.strokeStyle='rgba(255,248,230,.3)';g.beginPath();g.moveTo(-W/2+r,-H/2+.5);g.lineTo(W/2-r,-H/2+.5);g.moveTo(-W/2+.5,-H/2+r);g.lineTo(-W/2+.5,H/2-r);g.stroke();
+ g.strokeStyle='rgba(30,25,18,.34)';g.beginPath();g.moveTo(-W/2+r,H/2-.5);g.lineTo(W/2-r,H/2-.5);g.moveTo(W/2-.5,-H/2+r);g.lineTo(W/2-.5,H/2-r);g.stroke();
+ for(let i=0,n=1+((R()*3)|0);i<n;i++){g.fillStyle=R()<.5?'rgba(40,32,22,.14)':'rgba(255,245,220,.14)';g.beginPath();g.ellipse((R()-.5)*W*.6,(R()-.5)*H*.6,W*(.1+R()*.15),H*(.1+R()*.15),R()*3,0,7);g.fill()}
+ g.restore()}
+function vgCobbleFill(g,x0,y0,x1,y1,s,R,ok){
+ const rh=.48;
+ for(let y=y0;y<y1+rh;y+=rh){let x=x0-R()*.6;
+  while(x<x1+.9){const w=.5+R()*.45,cx_=x+w/2,cy_=y+rh/2+(R()-.5)*.04;
+   if(!ok||ok(cx_,cy_))vgStone(g,cx_,cy_,w-.07,rh*(.84+R()*.08),(R()-.5)*.1,R,s);x+=w}}}
+function vgMoss(g,x0,y0,x1,y1,s,R,ok){
+ for(let i=0,N=Math.round((x1-x0)*(y1-y0)/7);i<N;i++){const x=x0+R()*(x1-x0),y=y0+R()*(y1-y0);if(ok&&!ok(x,y))continue;const r=(.15+R()*.3)*s,q=g.createRadialGradient(x*s,y*s,0,x*s,y*s,r);q.addColorStop(0,'rgba(88,120,56,.42)');q.addColorStop(1,'rgba(88,120,56,0)');g.fillStyle=q;g.fillRect(x*s-r,y*s-r,2*r,2*r)}}
+function paveVillage(g,vd,R,s){const {u}=vd,rc=[],m=1,pr=[13,9];
+ for(const [p,e] of u){const k=NK[e]||'H';rc.push({x:T.x+p[0],y:T.y+p[1],w:2*BHW(k)+(k==='A'?.8:0),d:k==='A'?6.6:5.4})}
+ const hit=(a,b,r)=>{const x0=r.x-r.w/2-m,x1=r.x+r.w/2+m,y0=r.y-r.d/2-m,y1=r.y+r.d/2+m,dx=b[0]-a[0],dy=b[1]-a[1];let t0=0,t1=1;for(const [d,q,lo,hi] of [[dx,a[0],x0,x1],[dy,a[1],y0,y1]]){if(Math.abs(d)<1e-9){if(q<lo||q>hi)return false}else{let s1=(lo-q)/d,s2=(hi-q)/d;if(s1>s2){const t=s1;s1=s2;s2=t}t0=Math.max(t0,s1);t1=Math.min(t1,s2);if(t0>t1)return false}}return true};
+ const route=(a,b,dp)=>{const h=rc.find(r=>hit(a,b,r));if(!h||dp<=0)return[a,b];let best=null,bc=1e9;for(const sx of[-1,1])for(const sy of[-1,1]){const c=[h.x+sx*(h.w/2+m+.7),h.y+sy*(h.d/2+m+.7)],cost=Math.hypot(c[0]-a[0],c[1]-a[1])+Math.hypot(c[0]-b[0],c[1]-b[1])+(rc.some(r=>hit(a,c,r))||rc.some(r=>hit(c,b,r))?500:0);if(cost<bc){bc=cost;best=c}}return route(a,best,dp-1).concat(route(best,b,dp-1).slice(1))};
+ const nrm=a=>((a[0]-T.x)/pr[0])**2+((a[1]-T.y)/pr[1])**2,pe=a=>{const vx=(a[0]-T.x)/pr[0],vy=(a[1]-T.y)/pr[1],l=Math.hypot(vx,vy)||1;return[T.x+vx/l*pr[0]*.85,T.y+vy/l*pr[1]*.85]};
+ const pzp=(f,t)=>{const r=f*(1+.02*Math.sin(4*t+.7));return[(T.x+Math.cos(t)*pr[0]*r)*s,(T.y+Math.sin(t)*pr[1]*r)*s]};
+ const pz=f=>{g.beginPath();for(let i=0;i<=60;i++){const [x,y]=pzp(f,i/60*6.2832);i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
+ // allées : ombre de bordure, joints, puis pavés alignés
+ const pv=(pts,w)=>{g.lineCap='round';g.lineJoin='round';const path=()=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0]*s,p[1]*s):g.moveTo(p[0]*s,p[1]*s))};
+  path();g.strokeStyle='rgba(60,44,26,.34)';g.lineWidth=(w+.9)*s;g.stroke();path();g.strokeStyle=VJT;g.lineWidth=(w+.1)*s;g.stroke();
+  for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<.01)continue;const ux=(b[0]-a[0])/L,uy=(b[1]-a[1])/L,ang=Math.atan2(uy,ux);let row=0;
+   for(let o=-w/2+.23;o<w/2-.1;o+=.46,row++){let t=(row&1)?-.3:-.05;while(t<L+.3){const sw=.5+R()*.4,c=t+sw/2;if(c>=-.2&&c<=L+.2)vgStone(g,a[0]+ux*c-uy*o,a[1]+uy*c+ux*o,sw-.07,.38,ang+(R()-.5)*.08,R,s);t+=sw}}}};
+ // place : ombre, joints, pavés, mousse, bordure de grosses pierres
+ pz(1.07);g.fillStyle='rgba(60,44,26,.36)';g.fill();pz(1.01);g.fillStyle=VJT;g.fill();
+ g.save();pz(1);g.clip();
+ const inP=(x,y)=>((x-T.x)/pr[0])**2+((y-T.y)/pr[1])**2<1.1;
+ vgCobbleFill(g,T.x-pr[0]-1,T.y-pr[1]-1,T.x+pr[0]+1,T.y+pr[1]+1,s,R,inP);
+ vgMoss(g,T.x-pr[0],T.y-pr[1],T.x+pr[0],T.y+pr[1],s,R,inP);
+ g.restore();
+ for(let t=0;t<6.2832;){const [x,y]=pzp(.985,t),[x2,y2]=pzp(.985,t+.01),ang=Math.atan2(y2-y,x2-x);vgStone(g,x/s,y/s,.95,.6,ang,R,s,-9);t+=.95/Math.hypot(pr[0]*Math.sin(t),pr[1]*Math.cos(t))}
+ for(const r of rc){const s0=[r.x,r.y+r.d/2+1.2];pv([[r.x,r.y+r.d/2-.2],s0],2.2);if(nrm(s0)>.9)pv(route(s0,pe(s0),3),2.2)}
+ for(const z of ZA){const p=RD[z.n];if(!p)continue;for(let k=p.sh||0;k<p.length;k++){const q=p[k];if(((q[0]-T.x)/vd.rx)**2+((q[1]-T.y)/vd.ry)**2>=.9){const dx=q[0]-T.x,dy=q[1]-T.y,l=Math.hypot(dx,dy)||1,a=[q[0]+dx/l*1.5,q[1]+dy/l*1.5];pv(route(a,pe(a),3),2.4);break}}}}
 function well(g,x,y){const u=sc;
  g.fillStyle='rgba(20,30,10,.25)';g.beginPath();g.ellipse(x+u*.5,y+u*1.5,u*2.4,u*.8,0,0,7);g.fill();
  g.strokeStyle='rgba(29,35,38,.6)';g.lineWidth=1;g.fillStyle='#a8a395';g.fillRect(x-1.7*u,y,3.4*u,1.2*u);g.beginPath();g.ellipse(x,y+1.2*u,1.7*u,.8*u,0,0,Math.PI);g.fill();
@@ -314,12 +369,10 @@ function buildVillage(u,rx,ry,x0,y0,w,h,CS){
  const cr=ZA.map(z=>{const d=RD[z.n];for(const p of d)if(((p[0]-T.x)/rx)**2+((p[1]-T.y)/ry)**2>.94)return p;return d[d.length-1]});
  const inGap=(x,y,m)=>cr.some(p=>Math.hypot(x-p[0],y-p[1])<m);
  blob(1.1);g.fillStyle='rgba(120,110,70,.28)';g.fill();
- blob(1);g.fillStyle='#c9b88c';g.fill();
+ blob(1);g.fillStyle='#b8a47b';g.fill();
  g.save();blob(1);g.clip();
- for(let i=0;i<14;i++){const a=R()*6.283,r=Math.sqrt(R())*.9,q=(4+R()*7)*s;g.fillStyle=R()<.5?'rgba(150,125,80,.16)':'rgba(240,225,180,.2)';g.beginPath();g.ellipse(px+Math.cos(a)*rx*r*s,py+Math.sin(a)*ry*r*s,q,q*.6,0,0,7);g.fill()}
- for(let i=0,N=Math.round(rx*ry*.5);i<N;i++){const a=R()*6.283,r=Math.sqrt(R());g.fillStyle=R()<.5?'rgba(110,90,55,.35)':'rgba(235,220,175,.5)';g.fillRect(px+Math.cos(a)*rx*r*s,py+Math.sin(a)*ry*r*s,s*.22,s*.16)}
- const net=vnet();if(net)drawNet(g,net,s);
- for(const [p,e,it] of u){const m=it.i===0;cobble(g,(T.x+p[0])*s,(T.y+p[1]+3.4+(m?1:0))*s,(m?12:4.6)*s,(m?4.6:1.9)*s,R)}
+ vgDirt(g,T.x-rx*1.1,T.y-ry*1.1,T.x+rx*1.1,T.y+ry*1.1,s,R);
+ const net=vnet(); try{paveVillage(g,{u,rx,ry},R,s)}catch(_){}
  g.restore();
  blob(1);g.strokeStyle='rgba(70,58,35,.5)';g.lineWidth=1.2;g.stroke();
  VC.pr=[];
@@ -450,7 +503,7 @@ function draw(){
   if(showT&&(h.st==='go'||h.st==='back'||(h.st==='town'&&h.sub==='do'))){cx.fillStyle='#1d2326';cx.font=`700 ${sc*2.6}px Alegreya,serif`;cx.fillText(fm(rem(h)),x,y-sc*(top-1))}
   if(h.loot&&(h.st==='back'||h.st==='town')){cx.fillStyle='#e2b43c';cx.beginPath();cx.arc(x+sc*1.8,y-sc*1.8,sc*.9,0,7);cx.fill()}cx.globalAlpha=1;
  }
- {const K=dk();if(K>0){cx.fillStyle=`rgba(3,5,20,${.66*K})`;cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4));cx.fillStyle='#ffd37a';
+ {const K0=dk(),K=dkl();if(K0>0||K>0){if(K0>0){cx.fillStyle=`rgba(3,5,20,${.66*K0})`;cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4))}cx.fillStyle='#ffd37a';
   const dot=(x,y,r,Rh,s)=>{cx.globalAlpha=.6*K;const q=Math.max(Rh,9/cam.z);cx.drawImage(GLOW,x-q,y-q,2*q,2*q);cx.fillStyle='#ffd37a';cx.beginPath();if(s){cx.fillStyle='#ffd37a';cx.beginPath();cx.arc(x,y,Math.max(r,1.6/cam.z),0,7);cx.fill()}};
   const inV=(x,y)=>((x-T.x)/VR.rx)**2+((y-T.y)/VR.ry)**2<1.1;
   for(const [x,y] of ROADL)if(!inV(x,y))dot(x*sc,y*sc,sc*.55,sc*5);

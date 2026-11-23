@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.3 « Architecture maquette & ombres de contact »**
+Version actuelle du jeu : **v3.4.4 « Lumières vivantes & sol du village »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,11 @@ Version actuelle du jeu : **v3.4.3 « Architecture maquette & ombres de contact 
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.4.4 « Lumières vivantes & sol du village »
+- [x] **Allumage progressif des lumières :** lampadaires, torches et fenêtres s'allument de 19h à 21h (crépuscule) et s'éteignent de 4h à 6h (aube), en 2D et en 3D.
+- [x] **7 vraies lumières avec ombres (3D, qualité Haute) :** au lieu de 2, les 7 sources les plus proches de la caméra éclairent et projettent des ombres.
+- [x] **Nouveau sol du village (2D et 3D) :** terre battue détaillée (grain, cailloux, herbes sèches, fissures) et pavés individuels (joints, biseaux, mousse, bordure de place) ; en 3D, sol en relief (bump map) qui accroche la lumière des torches.
 
 ## ✅ v3.4.3 « Architecture maquette & ombres de contact »
 - [x] **Bâtiments enrichis :** débords de toit, colombages, volets, jardinières, auvents, corniches (petits volumes).

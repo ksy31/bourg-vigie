@@ -77,6 +77,8 @@ const nl=k=>S.npc[k]?S.npc[k].lv:0;
 const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);
 const isNight=()=>{const x=hr();return x>=21||x<4};
 const dk=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24;if(x>=21||x<4)return 1;if(x>=20)return x-20;if(x<5)return 5-x;return 0};
+// v3.5.0 : intensité des lumières (lampadaires, torches, fenêtres) : allumage progressif 19h-21h, extinction progressive 4h-6h
+const dkl=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24,e=t=>t*t*(3-2*t);if(x>=21||x<4)return 1;if(x>=19)return e((x-19)/2);if(x<6)return e((6-x)/2);return 0};
 function gameOver(){sleepOff();S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
 const WXI={clear:'☀️',cloud:'☁️',rain:'🌧️',storm:'⛈️',fog:'🌫️'},WXV={clear:[0,0,0,0],cloud:[.14,0,0,0],rain:[.2,.55,0,0],storm:[.36,1,0,1],fog:[.05,0,1,0]},WXP=[['clear',60],['cloud',16],['rain',12],['fog',8],['storm',4]];
 function wxPick(){let r=Math.random()*100;for(const [k,w] of WXP){r-=w;if(r<=0)return k}return'clear'}

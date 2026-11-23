@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.4 « Lumières vivantes & sol du village »
+
+Version affichée dans les Options : **v3.4.4**
+
+### Ajouté
+- **Allumage progressif (2D et 3D) :** lampadaires, torches, torches des aventuriers et des PNJ, fenêtres : allumage de 19h à 21h (crépuscule), extinction de 4h à 6h (aube), avec une courbe douce.
+- **7 vraies lumières avec ombres (3D, qualité Haute, de nuit) :** les 7 torches ou lampadaires les plus proches de la caméra sont de vraies lumières ponctuelles avec ombres portées (2 avant). Le nombre est limité automatiquement selon les capacités du téléphone, et baissé si le jeu passe sous 30 images/s.
+- **Nouveau sol du village (2D et 3D) :** terre battue détaillée (grain, plaques de teinte, cailloux, brins d'herbe sèche, fissures) et pavés individuels (taille et teinte variées, biseaux, joints sombres, mousse), place avec bordure de grosses pierres, allées pavées alignées. En 3D, le sol du village est une couche en haute résolution avec relief (bump map) : les pavés accrochent la lumière des torches.
+
+### Modifié
+- Les nouvelles lumières avec ombres sont rafraîchies à tour de rôle (une par image paire) ; une lumière qui vient de changer de source est rafraîchie en priorité.
+- La nuit 2D (voile sombre) et le cycle du soleil 3D gardent leurs horaires (20h-21h / 4h-5h) ; seules les lumières ont la nouvelle rampe.
+- Anciennes sauvegardes : aucune donnée modifiée, aucune migration nécessaire.
+
 ## v3.4.3 « Architecture maquette & ombres de contact »
 
 Version affichée dans les Options : **v3.4.3**
