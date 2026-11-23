@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.5 « Rattrapage de la démo »**
+Version actuelle du jeu : **v3.3.6 « Retours de test »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,14 @@ Version actuelle du jeu : **v3.3.5 « Rattrapage de la démo »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.3.6 « Retours de test »
+- [x] **Rond de transparence** dans les arbres autour de chaque aventurier hors du village.
+- [x] **Torches** le long des chemins hors village et dans chaque zone.
+- [x] **Chemins du village** refaits : place et allées pavées.
+- [x] **Rotation à deux doigts** : seuil de 30°.
+- [x] **« En repos »** affiché au-dessus de l'auberge quand on suit un aventurier au repos.
+- [x] **Sac à dos brillant** pour le butin.
 
 ## ✅ v3.3.5 « Rattrapage de la démo »
 - [x] **Éclairage :** soleil, lune, ciel et palette de la démo.

@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.6 « Retours de test »
+
+Version affichée dans les Options : **v3.3.6**
+
+### Ajouté
+- **Rond de transparence :** en 3D, les arbres (et rochers) qui masquent un aventurier hors du village, en déplacement ou en combat, deviennent transparents sur un rond au bord adouci. Le rond suit le zoom.
+- **Torches hors village :** poteaux-torches le long des chemins (environ tous les 60 unités, côtés alternés) et 4 à 5 torches placées au hasard dans chaque zone. Visibles de jour, allumées avec halo la nuit.
+- **Sac à dos brillant** sur le dos des aventuriers qui rapportent du butin.
+- **« En repos » :** quand la caméra suit un aventurier en repos à l'auberge, son nom s'affiche au-dessus de la porte de l'auberge avec « en repos » en dessous.
+
+### Modifié
+- **Chemins du village (3D) :** nouvelle place pavée gris au centre, allées pavées de chaque porte de bâtiment à la place et de chaque entrée du village à la place. Les anciennes boucles sont supprimées. Les routes extérieures en terre se raccordent aux entrées.
+- **Rotation à deux doigts :** il faut maintenant environ 30° (au lieu d'environ 13°) avant que la rotation s'enclenche.
+
 ## v3.3.5 « Rattrapage de la démo »
 
 Version affichée dans les Options : **v3.3.5**
