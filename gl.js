@@ -485,7 +485,8 @@ function heroFor(h){let o=HM.get(h.id);const fem=gd(h,h.name)==='♀',hs=!!h.hs,
   const gl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffd37a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));const tg=new TH.Group();new Acc().add(cyl(.02,.026,.36),'#5a3a22',0,.1,0,{shade:0}).add(cyl(.03,.02,.06),'#2a1e14',0,.3,0,{shade:0}).mesh(tg,0);const fl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff9a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true}));fl.scale.set(.2,.26,1);fl.position.y=.36;tg.add(fl);gl.material.color.set('#ffb35a');gl.scale.set(1.5,1.5,1);gl.position.y=.38;tg.add(gl);tg.position.set(0,-.27,.04);tg.rotation.x=-.3;m.userData.arms[1].el.add(tg);tg.visible=false;
   const rg=new TH.Mesh(new TH.RingGeometry(.55,.75,28),new TH.MeshBasicMaterial({color:'#c0392b',transparent:true,opacity:.7,side:TH.DoubleSide,depthWrite:false}));rg.rotation.x=-Math.PI/2;rg.position.y=.03;rg.visible=false;g.add(rg);
   const lt=new TH.Group();new Acc().add(box(.34,.4,.16),'#7a4a24',0,0,0,{shade:0}).add(box(.37,.12,.19),'#a8703a',0,.2,0,{shade:0}).add(box(.08,.1,.02),'#ffd35a',0,.1,.09,{shade:0}).add(cyl(.065,.065,.4),'#6a7a4a',0,.33,0,{rz:PI/2,shade:0}).mesh(lt,0);const lg=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffe58a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:.6}));lg.scale.set(.55,.55,1);lt.add(lg);lt.position.set(0,hs?1.45:.95,-.22);lt.visible=false;g.add(lt);const bs=new TH.Group();for(let i=0;i<3;i++){const st=new TH.Sprite(new TH.SpriteMaterial({map:starTex(),color:'#ffe082',transparent:true,depthTest:false,depthWrite:false}));st.renderOrder=6;st.scale.set(.34,.34,1);bs.add(st)}bs.visible=false;g.add(bs);
-  g.scale.setScalar(HS);heroG.add(g);o={g,m,tg,fl,cls:h.c,fem,hs,gl,rg,lt,bs,ry:0,mv:0,ph:Math.random()*6,x:0,z:0,init:0};HM.set(h.id,o)}
+  const gd=new TH.Mesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false}));gd.scale.set(8,1,8);gd.position.y=.05;gd.renderOrder=1;gd.visible=false;g.add(gd);
+  g.scale.setScalar(HS);heroG.add(g);o={g,m,tg,fl,gd,cls:h.c,fem,hs,gl,rg,lt,bs,ry:0,mv:0,ph:Math.random()*6,x:0,z:0,init:0};HM.set(h.id,o)}
  return o}
 function hpos(h,BM){const bm=BM.get(h.id);if(bm){const p=bpos(h,bm);return[p[0]/sc,p[1]/sc]}return[h.x+((h.id%3)-1)*1.5,h.y+((h.id%2)-.5)*2]}
 function updHeroes(dt,tm){
@@ -499,7 +500,8 @@ function updHeroes(dt,tm){
   if(fg){const u=o.m.userData;u.arms[1].sh.rotation.x=-1.1+Math.sin(tm*13)*.7;u.arms[1].el.rotation.x=-.5}
   o.rg.visible=fg;if(fg){o.rg.scale.setScalar(1+Math.sin(tm*14)*.12)}
   o.bs.visible=!!h.bless;if(h.bless){for(let i=0;i<3;i++){const a=tm*1.6+i*2.094,s=o.bs.children[i];s.position.set(Math.cos(a)*.8,(hs?1.45:.95)+Math.sin(tm*2+i*2)*.12,Math.sin(a)*.8);s.scale.setScalar(.3+.08*Math.sin(tm*5+i*2))}}o.lt.visible=!!(h.loot&&(h.st==='back'||h.st==='town'));if(o.lt.visible){const sg=o.lt.children[o.lt.children.length-1];if(sg&&sg.material)sg.material.opacity=.5+.3*Math.sin(tm*5+h.id)}
-  o.gl.material.opacity=kd*.85;o.gl.visible=kd>0.01;o.tg.visible=kd>.12;if(o.tg.visible){const f=.85+.15*Math.sin(tm*12+h.id*3);o.fl.scale.set(.2*f,.27*f,1);o.gl.scale.setScalar(1.4+.2*f)}
+  const vq=((x-T.x)/VR.rx)**2+((z-T.y)/VR.ry)**2,tf=1-Math.min(1,Math.max(0,(1.25-vq)/.3));
+  o.gl.material.opacity=kd*.85*tf;o.gl.visible=kd>0.01&&tf>.01;o.tg.visible=kd>.12&&tf>.02;const gOn=kd>.01&&tf>.01;o.gd.visible=gOn;if(gOn)o.gd.material.opacity=kd*.42*tf*(.9+.1*Math.sin(tm*9+h.id));if(o.tg.visible){const f=.85+.15*Math.sin(tm*12+h.id*3);o.fl.scale.set(.2*f,.27*f,1);o.gl.scale.setScalar((1.4+.2*f)*1.55)}
   o.g.visible=true}
  for(const [id,o] of HM)if(!seen.has(id)){if(!S.hero.some(q=>q.id===id)){heroG.remove(o.g);disp(o.g);HM.delete(id)}else o.g.visible=false}
  return BM}
@@ -579,6 +581,11 @@ function torchSprites(){while(torchG.children.length){const c=torchG.children.po
  TQ.forEach((p,i)=>{const s=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));s.position.set(p[0],p[1],p[2]);s.scale.set(5,5,1);s.userData.i=i;s.userData.sz=p[3]||5;torchG.add(s)});
  if(GQ.length){if(!GM)GM=new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false});
   const m=new TH.InstancedMesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),GM,GQ.length),o=new TH.Object3D();GQ.forEach((q,i)=>{o.position.set(q[0],H3(q[0],q[1])+.12,q[1]);o.scale.set(q[2]*2,1,q[2]*2);o.updateMatrix();m.setMatrixAt(i,o.matrix)});m.frustumCulled=false;m.renderOrder=1;torchG.add(m);GD=m}}
+function mkNpcTorch(){const g=new TH.Group();new Acc().add(cyl(.025,.03,.5),'#5a3a22',0,.25,0,{shade:0}).add(cyl(.04,.025,.07),'#2a1e14',0,.5,0,{shade:0}).mesh(g,0);
+ const fl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff9a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true}));fl.scale.set(.2,.27,1);fl.position.y=.56;g.add(fl);
+ const gl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffb35a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));gl.scale.set(1.7,1.7,1);gl.position.y=.58;g.add(gl);
+ const gd=new TH.Mesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false}));gd.scale.set(6,1,6);gd.position.y=.05;gd.renderOrder=1;g.add(gd);
+ g.position.set(.75,0,.35);return{g,fl,gl,gd}}
 function torchUpd(tm){const kd=dk(),on=Math.min(1,kd*1.2);for(const s of torchG.children){if(!s.isSprite)continue;const f=.8+.2*Math.sin(tm*11+s.userData.i*2.3)*Math.sin(tm*7.3+s.userData.i);s.material.opacity=on*f;s.visible=kd>.02;s.scale.setScalar(s.userData.sz*(.9+.12*f))}if(GM){GM.opacity=on*.34;if(GD)GD.visible=kd>.02}if(WPT){WPT.material.opacity=on*(.85+.1*Math.sin(tm*9));WPT.visible=kd>.02}if(WGM){WGM.opacity=on*.5;if(WGD)WGD.visible=kd>.02}}
 // ===== puits et enceinte =====
 function wellV(W,u){let best=null,bs=-1e9;for(let px=-11;px<=11;px+=1.5)for(let pz=-9;pz<=9;pz+=1.5){const x=T.x+px,z=T.y+pz;let m=1e9;for(const [p,e] of u){const k=NK[e]||'H',bx=T.x+p[0],bz=T.y+p[1],w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,dx=Math.max(Math.abs(x-bx)-w/2,0),dz=Math.max(Math.abs(z-bz)-d/2,0);m=Math.min(m,Math.hypot(dx,dz))}
@@ -629,19 +636,21 @@ function npcPos(k,it){const kk=NK[it.e]||'H',p=slot(it),w=2*BHW(kk)+(kk==='A'?.8
 function updNpc(dt,tm){const seen=new Set();
  for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it||it.cn||!NPV[k])continue;const n=S.npc[k],fem=gd(n,n.n)==='♀',id=hid(n.n);seen.add(k);let o=NPG.get(k);
   if(o&&(o.fem!==fem||o.id!==id)){npcG.remove(o.g);disp(o.g);NPG.delete(k);o=null}
-  if(!o){const m=buildNpc(k,fem?1:0,id),g=new TH.Group();g.add(m);g.scale.setScalar(HS);npcG.add(g);o={g,m,fem,id};NPG.set(k,o)}
-  const [x,z]=npcPos(k,it),u=o.m.userData,a=npcAct(k);o.g.position.set(x,H3(x,z),z);o.g.rotation.y=Math.sin(tm*.4+id)*.25+.15;
+  if(!o){const m=buildNpc(k,fem?1:0,id),g=new TH.Group();g.add(m);g.scale.setScalar(HS);const nt=mkNpcTorch();g.add(nt.g);npcG.add(g);o={g,m,fem,id,nt};NPG.set(k,o)}
+  const [x,z]=npcPos(k,it),u=o.m.userData,a=npcAct(k);o.g.position.set(x,H3(x,z),z);o.g.rotation.y=Math.sin(tm*.4+id)*.25+.15;{const kd=dk(),f=.85+.15*Math.sin(tm*12+id*3),n=o.nt;n.g.visible=kd>.01;if(n.g.visible){n.fl.scale.set(.2*f,.27*f,1);n.gl.material.opacity=Math.min(1,kd*1.2)*.85;n.gl.scale.setScalar(1.5+.2*f);n.gd.material.opacity=Math.min(1,kd*1.2)*.4*(.9+.1*f)}}
   u.T.scale.y=1+Math.sin(tm*2+id)*.012;u.T.rotation.z=Math.sin(tm*1.3+id)*.015;
   const ar=u.arms[1];if(ar.hg)ar.hg.visible=a===2;if(a>0&&(k==='F'||a===2))ar.sh.rotation.x=-1.1+Math.sin(tm*8)*.55;else if(a>0)ar.sh.rotation.x=-.5+Math.sin(tm*4+id)*.25;else ar.sh.rotation.x=-.12+Math.sin(tm*1.5+id)*.04;ar.el.rotation.x=a>0?-.5:-.15}
  for(const [k,o] of NPG)if(!seen.has(k)){npcG.remove(o.g);disp(o.g);NPG.delete(k)}}
 // ===== monstres 3D (silhouettes par famille) =====
 const GHM=MAT.clone();GHM.transparent=true;GHM.opacity=.62;GHM.depthWrite=false;
 const SZ={wolf:1,fox:.8,boar:1.05,goat:1,bear:1.3,rat:.6,spider:.7,jailer:1.12,goblin:.78,kobold:.72,orc:1.15,bat:.7,harpy:1,eagle:1,condor:1.15,skel:1,spectre:1.05,ghost:1,lich:1.1,dryad:1.05,tree:1.45,wisp:.85,worm:1.1,troll:1.35,golem:1.3,giant:1.7,salam:1,elem:1.2,dragon:1.15,demon:1.35,dking:1.9,shade:1.1,soul:1.05,were:1.1,yeti:1.45,griffon:1.2,garg:1.1,chimera:1.3,basil:1.05,hydra:1.4,knight:1.15,caster:1,champ:1.35};
+let NMN=0,NEY=0;const NEON='#8fe9ff';
+function nEyes(P,pts,sz){NEY=1;for(const p of pts){const s=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:NEON,blending:TH.AdditiveBlending,depthWrite:false,transparent:true,fog:false}));s.scale.set(sz,sz,1);s.position.set(p[0],p[1],p[2]);P.add(s)}}
 function monH(c,d,o){const g=new TH.Group(),b=o.bulk||1,sk=o.sk||'#9a8a6a',R=new TH.Group();g.add(R);
  const lg=new Acc();for(const s of[-1,1])lg.add(cap(.09*b,.34),d,s*.1*b,.34,0).add(sph(.1*b),d,s*.1*b,.06,.05,{sy:.7,sz:1.4});lg.mesh(R,.012);
  const T3=new TH.Group();T3.position.set(0,.55,0);R.add(T3);const t=new Acc();t.add(cap(.22*b,.34),c,0,.3,0,{sz:.88}).add(sph(.2*b),dkc(c,.15),0,.02,0,{sy:.7});
  if(o.armor)for(const s of[-1,1])t.add(sph(.11*b),d,s*.27*b,.56,0,{sy:.7});if(o.robe)t.add(new TH.CylinderGeometry(.22*b,.42*b,.74,18),c,0,-.22,0);
- t.mesh(T3,.012);const hh=new Acc(),hy=.88,hr=.18*(o.head||1),ey=o.eye||'#ffd04a';
+ t.mesh(T3,.012);const hh=new Acc(),hy=.88,hr=.18*(o.head||1),ey=NMN?NEON:(o.eye||'#ffd04a');if(NMN){nEyes(T3,[[.07,hy+.02,hr*.88+.02],[-.07,hy+.02,hr*.88+.02]],.2*Math.max(1,b*.8));new Acc().add(box(.34*b,.035,.03),NEON,0,.27,.2*b,{shade:0}).add(box(.03,.3*b,.03),NEON,0,.4,.215*b,{shade:0}).mesh(T3,0)}
  hh.add(sph(hr),sk,0,hy,0,{sx:.95}).add(sph(.03),ey,.07,hy+.02,hr*.88,{shade:0}).add(sph(.03),ey,-.07,hy+.02,hr*.88,{shade:0});
  if(o.helm)hh.add(sph(hr*1.1,0,6.2832,0,1.8),d,0,hy+.02,0,{shade:.1});if(o.hood)hh.add(sph(hr*1.22,0,6.2832,0,1.75),dkc(c,.2),0,hy+.02,-.03,{shade:.1});
  if(o.ears)for(const s of[-1,1])hh.add(cone(.05,.22),sk,s*hr*1.05,hy+.02,0,{rz:-s*1.3,shade:0});
@@ -658,7 +667,8 @@ function monH(c,d,o){const g=new TH.Group(),b=o.bulk||1,sk=o.sk||'#9a8a6a',R=new
  return{g,anim:(t,a)=>{ra.rotation.x=-.9+Math.sin(t*9)*.9;T3.rotation.x=Math.sin(t*3)*.03},wide:b,fly:0}}
 function monQ(c,d,o){const g=new TH.Group(),b=o.bulk||1,L=o.len||.7,r=.2*b,a=new Acc();
  a.add(cap(r,L),c,0,.5*b,0,{rx:PI/2,shade:.1}).add(sph(.15*b),c,0,.62*b,L/2+r*.9).add(cone(.075*b,.22*b),d,0,.58*b,L/2+r*.9+.18*b,{rx:PI/2,shade:0});
- for(const s of[-1,1]){a.add(cone(.05*b,.16*b),c,s*.08*b,.8*b,L/2+r*.75,{shade:0});a.add(sph(.025),o.eye||'#ffd04a',s*.07*b,.67*b,L/2+r*1.3,{shade:0})}
+ for(const s of[-1,1]){a.add(cone(.05*b,.16*b),c,s*.08*b,.8*b,L/2+r*.75,{shade:0});a.add(sph(.025),NMN?NEON:(o.eye||'#ffd04a'),s*.07*b,.67*b,L/2+r*1.3,{shade:0})}
+ if(NMN){nEyes(g,[[.07*b,.67*b,L/2+r*1.3+.02],[-.07*b,.67*b,L/2+r*1.3+.02]],.2*Math.max(1,b*.8));a.add(box(.035,.035,L*.95),NEON,0,.71*b,0,{shade:0})}
  a.add(cap(.05*b,.4*b),c,0,.6*b,-L/2-r*.7,{rx:-.8,shade:0});if(o.tail)a.add(cap(.045*b,.5*b),d,0,.62*b,-L/2-r*1.2,{rx:-1.1,shade:0});
  for(const sx of[-1,1])for(const sz of[-1,1])a.add(cap(.055*b,.28*b),d,sx*.12*b,.22*b,sz*L*.36);
  if(o.horns)for(const s of[-1,1])a.add(cone(.04*b,.3*b),'#e8dcc0',s*.09*b,.82*b,L/2+r*.6,{rz:-s*.5,shade:0});
@@ -695,8 +705,9 @@ const MON={wolf:['q','#7a7a82','#4f4f58',{len:.8,mane:1}],fox:['q','#c8742a','#e
  dryad:['h','#4a8a4a','#2a5a2a',{sk:'#8ac08a',robe:1,crown:'leaf'}],bandit:['h','#6a5a40','#3a2f22',{w:'sword',hood:1}],brigand:['h','#7a4a3a','#3a2a22',{w:'club'}],cultist:['h','#5a2a6a','#2a1a3a',{robe:1,hood:1,w:'staff'}],guard:['h','#6a7a9a','#3a4a68',{armor:1,helm:1,w:'sword'}],poacher:['h','#6a7a4a','#3a4a28',{w:'sword',hood:1}],jailer:['h','#5a5a62','#2a2a32',{bulk:1.2,w:'club',helm:1}],
  goblin:['h','#6a9a4a','#4a3a22',{sk:'#7aaa52',ears:1,bulk:.8,w:'sword'}],kobold:['h','#b07a4a','#6a4a2a',{sk:'#c08a50',bulk:.75,ears:1,w:'club'}],orc:['h','#4a7a3a','#4a3a2a',{sk:'#5a8a42',bulk:1.25,tusks:1,w:'axe',armor:1}],troll:['h','#6a7a5a','#4a3a2a',{sk:'#7a8a6a',bulk:1.5,w:'club',head:1.1}],giant:['h','#b08a6a','#6a4a30',{sk:'#d4a67a',bulk:1.6,w:'club'}],
  knight:['h','#9aa4b4','#5a6272',{armor:1,helm:1,w:'sword',bulk:1.1}],champ:['h','#c8a040','#6a5020',{armor:1,helm:1,crown:'plume',w:'sword',bulk:1.2}],caster:['h','#4a3a7a','#2a1a4a',{robe:1,hood:1,w:'staff'}],lich:['h','#3a2a4a','#1a102a',{robe:1,sk:'#e8e4d0',crown:'crown',w:'staff',eye:'#7fe0ff'}],skel:['h','#e8e4d0','#b8b4a0',{sk:'#e8e4d0',w:'sword',bulk:.8,eye:'#ff4a3a'}],golem:['h','#8a8a82','#5a5a54',{bulk:1.6,head:.9,eye:'#ffb040',armor:1}],dking:['h','#3a1a4a','#1a0a2a',{bulk:1.3,armor:1,crown:'crown',w:'sword',eye:'#ff4a3a',horns:1}],demon:['h','#8a2a2a','#4a1a1a',{sk:'#b03a3a',horns:1,eye:'#ffd04a',bulk:1.1,w:'axe'}],yeti:['h','#e8eef4','#b8c4d0',{sk:'#d8e2ec',bulk:1.5}]};
-function monBuild(mk,h){const e=h.en,E=MON[mk]||['h','#7a6a5a','#3a2f22',{}],f={h:monH,q:monQ,w:monW,c:monC,s:monS,t:monT}[E[0]],b=E[0]==='t'?monT():f(E[1],E[2],E[3]||{}),nm=e.n.toLowerCase(),
+function monBuild(mk,h){const e=h.en,E=MON[mk]||['h','#7a6a5a','#3a2f22',{}],f={h:monH,q:monQ,w:monW,c:monC,s:monS,t:monT}[E[0]],b=(NMN=!!e.nt,NEY=0,E[0]==='t'?monT():f(E[1],E[2],E[3]||{})),nm=e.n.toLowerCase(),
   ql=Math.max(0,Math.min(1,(Math.log((e.d||1)+1)-.7)/3.5)),km=mk==='dragon'?(/^dragonnet/.test(nm)?.8:/^drake/.test(nm)?1:/^wyrm/.test(nm)?1.1:/^wyvern/.test(nm)?.95:1.4):mk==='demon'?(/mineur/.test(nm)?.65:/^archi/.test(nm)?1.35:/succube|incube/.test(nm)?.85:1):mk==='salam'?(/g[ée]ante/.test(nm)?1.35:1):1;
+ if(NMN&&!NEY){const bb=new TH.Box3().setFromObject(b.g),w=(bb.max.x-bb.min.x)*.14;nEyes(b.g,[[w,bb.min.y+(bb.max.y-bb.min.y)*.72,bb.max.z*.9],[-w,bb.min.y+(bb.max.y-bb.min.y)*.72,bb.max.z*.9]],.2)}NMN=0;
  b.S0=(SZ[mk]||1)*km*(.85+.4*ql)*(.95+.1*jt(hid(e.n)+h.id*7,2));b.g.scale.setScalar(HS*b.S0);b.g.userData.mk=mk;return b}
 const MN=new Map();let monG=null;
 function updMon(dt,tm,BM){const seen=new Set();

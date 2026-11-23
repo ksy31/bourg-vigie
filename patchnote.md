@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.1 « Torches des PNJ & yeux néon »
+
+Version affichée dans les Options : **v3.4.1**
+
+### Ajouté
+- **Torche à côté de chaque PNJ du village (3D) :** flamme, halo et tache de lumière au sol, allumées la nuit (20h-5h, progressivement) pour éclairer le PNJ.
+- **Yeux et traits bleu néon sur les monstres de nuit (3D) :** yeux lumineux et liseré néon (ventre/dos) sur les monstres nocturnes, comme en 2D.
+- **Tache de lumière au sol sous la torche des aventuriers** quand ils sont dehors la nuit.
+
+### Modifié
+- **Torche des aventuriers :** s'éteint progressivement en entrant dans le village et se rallume en sortant ; dehors, son halo est environ 1,5 fois plus grand et éclaire le sol autour d'eux.
+- Les ombres dynamiques (3.4.2) et l'architecture maquette avec ombres de contact (3.4.3) viennent dans les versions suivantes.
+
 ## v3.4.0 « Génération aléatoire de la carte »
 
 Version affichée dans les Options : **v3.4.0**
