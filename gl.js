@@ -219,7 +219,7 @@ function acc2(){return new Acc()}
 function meshOf(a,par){const g=TH.mergeGeometries(a.g,false),m=new TH.Mesh(g,DM);m.castShadow=true;m.receiveShadow=true;par.add(m);return m}
 function inst(par,geo,mat,list,shadow){if(!list.length)return;const m=new TH.InstancedMesh(geo,mat,list.length),o=new TH.Object3D(),c=new TH.Color();
  list.forEach((q,i)=>{o.position.set(q.x,q.y,q.z);o.rotation.set(0,q.r||0,0);o.scale.set(q.sx||q.s||1,q.sy||q.s||1,q.sz||q.s||1);o.updateMatrix();m.setMatrixAt(i,o.matrix);c.set(q.c||'#ffffff');m.setColorAt(i,c)});
- m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;m.castShadow=!!shadow;m.receiveShadow=true;par.add(m)}
+ m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;m.castShadow=!!shadow;if(shadow)SHM.push(m);m.receiveShadow=true;par.add(m)}
 const MI=new TH.MeshStandardMaterial({roughness:.85,metalness:0,flatShading:true});
 // ---------- textures procédurales et accumulateur texturé (v3.3.2) ----------
 const TSZ={stone:3.4,brick:2.6,plaster:4.4,tile:2.4,wood:2.6,cobble:3.2},TXM={};
@@ -341,9 +341,9 @@ function waterMat(){if(WMAT)return WMAT;const S=128,c=document.createElement('ca
  return WMAT=new TH.MeshStandardMaterial({map:WTEX,color:'#3f98bf',transparent:true,opacity:.84,roughness:.15,metalness:.05,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2})}
 function buildWorld(){
  clearG(worldG);const R=rg3(777),W=new TA(),L={oa:[],ob:[],oc:[],pn:[],ps:[],rk:[],bu:[]},vc=(a,b)=>new Col().setScalar(a+R()*b);
- const tree=(x,z,s,kind)=>{const t=kind||(R()<.5?'oa':'ob'),q={x,y:H3(x,z)-.2,z,s,c:vc(.86,.28),r:R()*6};(R()<.04&&(t==='oa'||t==='ob')?L.oc:L[t]).push(q)};
+ const tree=(x,z,s,kind)=>{const t=kind||(R()<.5?'oa':'ob'),q={x,y:H3(x,z)-.2,z,s,c:vc(.86,.28),r:R()*6};(R()<.04&&(t==='oa'||t==='ob')?L.oc:L[t]).push(q);TPOS.push(q)};
  const rock=(x,y,sx,sy,sz,c)=>L.rk.push({x,y:H3(x,y)-.15,z:y,sx,sy,sz,r:R()*6,c:new Col(c)});
- tRoad=[];for(const z of ZA){const p=RD[z.n];if(p)for(let k=0;k<p.length;k+=3)tRoad.push(p[k])}
+ SHM=[];TPOS=[];tRoad=[];for(const z of ZA){const p=RD[z.n];if(p)for(let k=0;k<p.length;k+=3)tRoad.push(p[k])}
  const vd=vdim(),TP=outTorchPts(vd),clear=(x,y,m)=>{if(((x-T.x)/(vd.rx+m))**2+((y-T.y)/(vd.ry+m))**2<1)return false;for(const p of tRoad)if(Math.abs(p[0]-x)<m&&Math.abs(p[1]-y)<m&&Math.hypot(p[0]-x,p[1]-y)<m)return false;if(nearRiver(x,y,m))return false;for(const q of TP)if(Math.hypot(q[0]-x,q[1]-y)<m+1.2)return false;return true};
  const inZone=(x,y)=>{for(const z of ZA)if(Math.hypot(x-z.x,y-z.y)<ZRD(z.n)+3)return true;return false};
  for(let i=0,n=0;i<4000&&n<480;i++){const x=6+R()*(WXd-12),y=6+R()*(WYd-12);if(inZone(x,y)||!clear(x,y,5))continue;tree(x,y,1.1+R()*1.1,R()<.2?'pn':null);n++}
@@ -397,7 +397,7 @@ function buildWorld(){
  W.frame(0,0,0,1);
  for(const z of ZA){const pts=RD[z.n];if(!pts)continue;let seg=[];const fl=()=>{if(seg.length>2)W.raw('cobble',ribbon(seg,()=>2.4,.08,3.2,'#cdb384'));seg=[]};
   for(let k=pts.sh||0;k<pts.length;k+=2){const p=pts[k];if(nearRiver(p[0],p[1],.3)||((p[0]-T.x)/vd.rx)**2+((p[1]-T.y)/vd.ry)**2<1.02){fl();continue}seg.push([p[0],p[1]])}fl()}
- {const wq=[];for(const [x,z] of TP){const y0=H3(x,z);W.add('wood',cy2(.07,.1,2.3,6),'#4a3322',x,y0+1.1,z,{shade:0});W.add('wood',box(.34,.12,.34),'#2a1e14',x,y0+2.3,z,{shade:0});W.add('lava',box(.22,.3,.22),'#fff',x,y0+2.55,z,{shade:0});wq.push(x,y0+2.8,z)}
+ {TPG=TP;const wq=[];for(const [x,z] of TP){const y0=H3(x,z);W.add('wood',cy2(.07,.1,2.3,6),'#4a3322',x,y0+1.1,z,{shade:0});W.add('wood',box(.34,.12,.34),'#2a1e14',x,y0+2.3,z,{shade:0});W.add('lava',box(.22,.3,.22),'#fff',x,y0+2.55,z,{shade:0});wq.push(x,y0+2.8,z)}
   WGD=null;if(TP.length){if(!WGM)WGM=new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false});const m=new TH.InstancedMesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),WGM,TP.length),o=new TH.Object3D();TP.forEach((q,i)=>{o.position.set(q[0],H3(q[0],q[1])+.15,q[1]);o.scale.set(20,1,20);o.updateMatrix();m.setMatrixAt(i,o.matrix)});m.frustumCulled=false;m.renderOrder=1;worldG.add(m);WGD=m}
   WPT=null;if(wq.length){const gm=new TH.BufferGeometry();gm.setAttribute('position',new TH.Float32BufferAttribute(wq,3));WPT=new TH.Points(gm,new TH.PointsMaterial({map:glowTex(),color:'#ff9a40',size:8,sizeAttenuation:true,blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,fog:false}));WPT.frustumCulled=false;WPT.renderOrder=2;worldG.add(WPT)}}
  // ponts
@@ -587,6 +587,31 @@ function mkNpcTorch(){const g=new TH.Group();new Acc().add(cyl(.025,.03,.5),'#5a
  const gd=new TH.Mesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false}));gd.scale.set(6,1,6);gd.position.y=.05;gd.renderOrder=1;g.add(gd);
  g.position.set(.75,0,.35);return{g,fl,gl,gd}}
 function torchUpd(tm){const kd=dk(),on=Math.min(1,kd*1.2);for(const s of torchG.children){if(!s.isSprite)continue;const f=.8+.2*Math.sin(tm*11+s.userData.i*2.3)*Math.sin(tm*7.3+s.userData.i);s.material.opacity=on*f;s.visible=kd>.02;s.scale.setScalar(s.userData.sz*(.9+.12*f))}if(GM){GM.opacity=on*.34;if(GD)GD.visible=kd>.02}if(WPT){WPT.material.opacity=on*(.85+.1*Math.sin(tm*9));WPT.visible=kd>.02}if(WGM){WGM.opacity=on*.5;if(WGD)WGD.visible=kd>.02}}
+// ===== v3.4.2 : vraies ombres dynamiques (lumières ponctuelles) =====
+const PLN=2,PLR=30,PLI=48;let PLS=null,PLX=null,TPOS=[],TPG=[],SHM=[],fcn=0,plOn=false;const PV=new TH.Vector3();
+function plInit(){PLS=[];for(let i=0;i<PLN;i++){const l=new TH.PointLight('#ffa050',0,PLR,2);l.castShadow=true;l.shadow.mapSize.set(256,256);l.shadow.camera.near=.5;l.shadow.camera.far=PLR;l.shadow.bias=-.004;l.shadow.normalBias=.12;l.shadow.autoUpdate=false;l.visible=false;scn.add(l);PLS.push({l,k:0,key:'',pend:null,out:false})}
+ const g=TH.mergeGeometries([nonIdx(new TH.CylinderGeometry(.22,.3,2.4,5).translate(0,1.2,0)),nonIdx(new TH.IcosahedronGeometry(1.5,0).translate(0,3.5,0))],false);
+ PLX=new TH.InstancedMesh(g,new TH.MeshBasicMaterial({colorWrite:false,depthWrite:false}),64);PLX.count=0;PLX.frustumCulled=false;PLX.castShadow=false;scn.add(PLX);sun.shadow.autoUpdate=false}
+function plCand(){const C=[];TQ.forEach((q,i)=>C.push({k:'t'+i,x:q[0],y:q[1],z:q[2]}));TPG.forEach((q,i)=>C.push({k:'o'+i,x:q[0],y:H3(q[0],q[1])+2.8,z:q[1]}));
+ for(const [k,o] of NPG)if(o.nt&&o.nt.g.visible){o.nt.g.getWorldPosition(PV);C.push({k:'n'+k,x:PV.x,y:PV.y+1.7,z:PV.z})}
+ for(const [id,o] of HM)if(o.tg.visible&&o.g.visible){o.tg.getWorldPosition(PV);C.push({k:'h'+id,x:PV.x,y:PV.y+.8,z:PV.z})}return C}
+function plPos(c,P){if(c[0]==='h'){const o=HM.get(+c.slice(1));if(o&&o.tg.visible){o.tg.getWorldPosition(PV);P.set(PV.x,PV.y+.8,PV.z)}}}
+function plProx(){let n=0;const o=new TH.Object3D(),L=PLS.filter(s=>s.k>.02);if(L.length){const c=TPOS.filter(q=>L.some(s=>(q.x-s.l.position.x)**2+(q.z-s.l.position.z)**2<PLR*PLR)).sort((a,b)=>{const d=q=>Math.min(...L.map(s=>(q.x-s.l.position.x)**2+(q.z-s.l.position.z)**2));return d(a)-d(b)}).slice(0,64);
+  c.forEach(q=>{o.position.set(q.x,q.y,q.z);o.scale.setScalar(q.s);o.updateMatrix();PLX.setMatrixAt(n++,o.matrix)})}PLX.count=n;PLX.instanceMatrix.needsUpdate=true}
+function plUpd(dt,kd){if(!PLS)return;const on=K.ql===2&&kd>.08&&K.dist<260;
+ if(!K.pcd&&K.ql===2){K.pcd=1;PLS.forEach(s=>s.l.visible=true);try{ren.compile(scn,cam3)}catch(e){}PLS.forEach(s=>s.l.visible=plOn)}
+ if(on!==plOn){plOn=on;PLS.forEach(s=>{s.l.visible=on;if(!on){s.k=0;s.key='';s.pend=null;s.out=false}});if(!on){PLX.count=0;return}}
+ if(!on)return;
+ if(fcn%5===0){const act=new Set(PLS.map(s=>s.key)),C=plCand(),fx=K.tx,fz=K.tz,lim=(K.dist*.9+40)**2;C.forEach(c=>{c.d=((c.x-fx)**2+(c.z-fz)**2)*(act.has(c.k)?.45:1)});C.sort((a,b)=>a.d-b.d);
+  const R=[];for(const c of C){if(c.d>lim)break;if(R.every(r=>(r.x-c.x)**2+(r.z-c.z)**2>64))R.push(c);if(R.length>=PLN)break}
+  const keys=R.map(r=>r.k);PLS.forEach(s=>{s.out=!!s.key&&!keys.includes(s.key)});
+  const free=R.filter(r=>!PLS.some(s=>s.key===r.k||(s.pend&&s.pend.k===r.k)));
+  PLS.forEach(s=>{if((!s.key||s.out)&&!s.pend&&free.length)s.pend=free.shift()});
+  PLS.forEach(s=>{const c=R.find(r=>r.k===s.key);if(c)s.l.position.set(c.x,c.y,c.z)})}
+ const I=PLI*Math.min(1,kd*1.2);
+ PLS.forEach((s,i)=>{if(s.out||!s.key){s.k=Math.max(0,s.k-dt*5);if(s.k<=.01&&s.pend){s.key=s.pend.k;s.l.position.set(s.pend.x,s.pend.y,s.pend.z);s.pend=null;s.out=false;s.k=0}}else s.k=Math.min(1,s.k+dt*5);
+  if(s.key)plPos(s.key,s.l.position);s.l.intensity=s.k*I*(.93+.07*Math.sin(fcn*.7+i*2))});
+ if(fcn%15===0)plProx()}
 // ===== puits et enceinte =====
 function wellV(W,u){let best=null,bs=-1e9;for(let px=-11;px<=11;px+=1.5)for(let pz=-9;pz<=9;pz+=1.5){const x=T.x+px,z=T.y+pz;let m=1e9;for(const [p,e] of u){const k=NK[e]||'H',bx=T.x+p[0],bz=T.y+p[1],w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,dx=Math.max(Math.abs(x-bx)-w/2,0),dz=Math.max(Math.abs(z-bz)-d/2,0);m=Math.min(m,Math.hypot(dx,dz))}
   const sc=Math.min(m,6)-Math.hypot(px,pz)*.05;if(sc>bs&&!nearRiver(x,z,3)){bs=sc;best=[x,z]}}
@@ -814,7 +839,7 @@ function init(){
   cam3=new TH.PerspectiveCamera(34,W/H,5,3200);
   hemi=new TH.HemisphereLight('#d7e8ff','#6a7a50',1);scn.add(hemi);
   sun=new TH.DirectionalLight('#fff2d6',2.4);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-95,right:95,top:95,bottom:-95,near:1,far:700});sun.shadow.bias=-.0006;sun.shadow.normalBias=.35;scn.add(sun,sun.target);fill=new TH.DirectionalLight('#ffeacc',.7);scn.add(fill,fill.target);skyInit();
-  worldG=new TH.Group();villG=new TH.Group();heroG=new TH.Group();scn.add(worldG,villG,heroG);npcG=new TH.Group();monG=new TH.Group();torchG=new TH.Group();scn.add(npcG,monG,torchG);
+  worldG=new TH.Group();villG=new TH.Group();heroG=new TH.Group();scn.add(worldG,villG,heroG);npcG=new TH.Group();monG=new TH.Group();torchG=new TH.Group();scn.add(npcG,monG,torchG);plInit();
   bindInput();ren.info.autoReset=false;K.ok=true;applyQ()}catch(e){K.fail=true;K.ok=false;try{if(glc&&glc.parentElement)glc.parentElement.removeChild(glc)}catch(_){}}
  return K.ok}
 function resize(){if(!K.ok)return;const r=cv.getBoundingClientRect();if(!r.width)return;glc.style.width=r.width+'px';glc.style.height=(r.width*1.3)+'px';glc.style.left=(cv.offsetLeft+1)+'px';glc.style.top=(cv.offsetTop+1)+'px';ren.setSize(r.width,r.width*1.3,false);cam3.aspect=1/1.3;cam3.updateProjectionMatrix()}
@@ -828,10 +853,11 @@ function frame(){
  if(gk!==gKey){gKey=gk;if(K.tkey!==T.x+','+T.y){K.tkey=T.x+','+T.y;K.tx=T.x;K.tz=T.y-70;fol=null}try{paintGround();buildTerrain();buildWorld()}catch(e){K.err=e}}
  const vk=S.pl.map(i=>i.i+i.e+(i.cn?'c'+bstg(i):(i.rb?'r':'t')+tr(NK[i.e]||'H'))+((i.h&&i.h.o!=null&&(S.hero.find(q=>q.id===i.h.o)||{}).col)||'')).join(',');
  if(vk!==vKey){vKey=vk;try{buildVillageMesh()}catch(e){K.err=e}}
- const BM=updHeroes(dt,tm);try{updNpc(dt,tm);updMon(dt,tm,BM);wxUpd(dt,tm);torchUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{holeUpd(BM)}catch(e){K.err=e}
+ const BM=updHeroes(dt,tm);try{updNpc(dt,tm);updMon(dt,tm,BM);wxUpd(dt,tm);torchUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dk())}catch(e){K.err=e}try{holeUpd(BM)}catch(e){K.err=e}
  if(WTEX)WTEX.offset.x=-(tm*.12)%1;
- par^=1;ren.shadowMap.autoUpdate=false;ren.shadowMap.needsUpdate=!!par;
+ fcn++;ren.shadowMap.autoUpdate=false;const sunF=!(fcn&1);sun.shadow.needsUpdate=sunF;let ptF=false;if(plOn&&!sunF){const s=PLS[(fcn>>1)%PLN];if(s.k>.02){s.l.shadow.needsUpdate=true;ptF=true}}ren.shadowMap.needsUpdate=sunF||ptF;if(ptF){SHM.forEach(m=>{m.castShadow=false});PLX.castShadow=true}
  ren.info.reset();if(K.ql===2&&!PP.fail){try{ppRender()}catch(e){PP.fail=1;K.err=e;ren.setRenderTarget(null);ren.render(scn,cam3)}}else ren.render(scn,cam3);
+ if(ptF){SHM.forEach(m=>{m.castShadow=true});PLX.castShadow=false}
  // résolution adaptative
  K.ft.push(dt);if(K.ft.length>50){const a=K.ft.reduce((s,v)=>s+v,0)/K.ft.length;K.ft=[];K.fps=1/a;qAuto(a);
   if(a>1/38&&K.pr>1){K.pr=Math.max(1,K.pr-.25);ren.setPixelRatio(K.pr);resize()}else if(a<1/55&&K.pr<K.prMax){K.pr=Math.min(K.prMax,K.pr+.25);ren.setPixelRatio(K.pr);resize()}}

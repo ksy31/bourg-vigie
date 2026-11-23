@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.2 « Ombres dynamiques »
+
+Version affichée dans les Options : **v3.4.2**
+
+### Ajouté
+- **Vraies lumières et ombres de torches (3D, qualité Haute, de nuit) :** deux lumières ponctuelles réelles, placées sur les torches ou lampadaires les plus proches de la caméra (torches des aventuriers, des PNJ, des portes, lampadaires et torches des chemins). Elles éclairent le sol, les murs et les personnages et projettent des ombres portées (personnages, bâtiments, arbres proches).
+- Les lumières changent de source en fondu quand la caméra se déplace ; les ombres des torches sont recalculées une image sur deux environ.
+
+### Modifié
+- **Coût maîtrisé :** les arbres ne sont pas tous redessinés pour ces ombres : de simples silhouettes d'arbres proches (64 au plus) servent de bloqueurs. Le calcul des ombres du soleil et celui des torches alternent d'une image à l'autre.
+- Qualité Moyenne et Basse : pas de lumières à ombres (halos et taches de lumière inchangés). Désactivées aussi de jour et quand la caméra est très éloignée.
+
 ## v3.4.1 « Torches des PNJ & yeux néon »
 
 Version affichée dans les Options : **v3.4.1**
