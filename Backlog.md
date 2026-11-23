@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.2 « Ombres dynamiques »**
+Version actuelle du jeu : **v3.4.3 « Architecture maquette & ombres de contact »**
 
 ## ✅ Déjà intégré
 
@@ -238,6 +238,10 @@ Version actuelle du jeu : **v3.4.2 « Ombres dynamiques »**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
 
+## ✅ v3.4.3 « Architecture maquette & ombres de contact »
+- [x] **Bâtiments enrichis :** débords de toit, colombages, volets, jardinières, auvents, corniches (petits volumes).
+- [x] **Ombres de contact douces** sous bâtiments, arbres, rochers, personnages et monstres ; correctif du rendu 3D de jour (3.4.2).
+
 ## ✅ v3.4.2 « Ombres dynamiques »
 - [x] **Vraies ombres dynamiques** par 2 lumières ponctuelles (torches et lampadaires les plus proches de la caméra, qualité Haute, de nuit) ; arbres proches via silhouettes ; yeux néon déjà faits en 3.4.1.
 
@@ -278,11 +282,7 @@ Version actuelle du jeu : **v3.4.2 « Ombres dynamiques »**
 - [x] **Forêt** agrandie (zone de jeu) et dense.
 - [x] **Contour de la carte** en forêt dense.
 
-## v3.4.3 « Architecture maquette & ombres de contact » (prochain)
-- [ ] **Bâtiments enrichis :** débords de toit (géométrie), colombages et détails de façade (textures).
-- [ ] **Ombres de contact douces** sous bâtiments, arbres, rochers (peintes dans le sol) et personnages (tache mobile).
-
-## 📱 Guide APK
+## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard

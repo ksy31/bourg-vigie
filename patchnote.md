@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.3 « Architecture maquette & ombres de contact »
+
+Version affichée dans les Options : **v3.4.3**
+
+### Ajouté
+- **Bâtiments enrichis (3D) :** bords de toit renforcés (planches d'avant-toit, queues de chevrons, planches de rive sur les pignons), colombages apparents sur les maisons enduites (poteaux, croix de Saint-André au dos, traverse), volets et jardinières fleuries sous les fenêtres de façade, petit auvent au-dessus des portes, corniche et bandeau en pierre sur les bâtiments de pierre.
+- **Ombres de contact douces (3D) :** sous chaque bâtiment et étal, chaque arbre et chaque rocher (plans sombres flous regroupés en un seul dessin par catégorie), et une tache mobile sous chaque aventurier, PNJ et monstre au sol.
+
+### Corrigé
+- **Rendu 3D de jour (bug de la 3.4.2) :** le planning des ombres sautait la toute première image, ce qui pouvait laisser la 3D vide ou noire au démarrage de jour (erreurs WebGL « shadow sampler »). Corrigé : l'ombre du soleil est calculée dès la première image. **À installer même si tu as déjà publié la 3.4.2.**
+
+### Modifié
+- Les détails d'architecture sont de petits volumes (quelques boîtes par bâtiment) plutôt que des textures, pour rester simples et sûrs : coût en triangles négligeable.
+
 ## v3.4.2 « Ombres dynamiques »
 
 Version affichée dans les Options : **v3.4.2**
