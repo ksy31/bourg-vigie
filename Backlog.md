@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.7 « Veille et lumières »**
+Version actuelle du jeu : **v3.3.8 « Lisibilité du village & Combats visibles »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,11 @@ Version actuelle du jeu : **v3.3.7 « Veille et lumières »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.3.8 « Lisibilité du village & Combats visibles »
+- [x] **Lampadaires décalés** : celui de droite passe à gauche de l'entrée ; violet des noms de PNJ plus clair.
+- [x] **Icônes distinctives gravées sur les toits** (2D et 3D).
+- [x] **Monstres en combat** visibles en 3D (de jour comme de nuit) et **marteau** des PNJ en travaux (3D).
 
 ## ✅ v3.3.7 « Veille et lumières »
 - [x] **Mode veille** : bouton visible et cliquable en 2D et en 3D.

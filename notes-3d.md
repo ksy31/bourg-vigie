@@ -1,11 +1,12 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 23/11/2026 : version livrée **v3.3.7 « Veille et lumières »** (cache `bv-v61`). Prochain point du Backlog : guide APK (PWABuilder). Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 23/11/2026 : version livrée **v3.3.8 « Lisibilité du village & Combats visibles »** (cache `bv-v62`). Prochain point du Backlog : guide APK (PWABuilder). Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).
 - Ajouts 3.3.6 dans `gl.js` : `paveVillage` (place et allées pavées peintes dans le sol, appelée par `paintGround`), `outTorchPts` (positions des torches hors village, graine fixe 4242) et points lumineux `WPT` (un seul objet `Points`, animé par `torchUpd`), rond de transparence (`holeUpd` + `MV.onBeforeCompile` : tramage écran sur les arbres et rochers devant les aventuriers, 8 aventuriers max), sac à dos `o.lt` (groupe + halo, affiché si `h.loot` en état back/town), étiquette « en repos » dans `overlay` (utilise `fol` de map.js).
 - 3.3.7 : étoiles de bénédiction 3D (`o.bs`, texture `starTex`), taches de lumière au sol des torches hors village (`WGM`/`WGD`), bouton `#slp` avec `z-index:3` (le canvas `cv` a `z-index:1` dès que la 3D est initialisée), fonds/nuit 2D en `W*(MS+4)` (le monde fait MS×W, ZMIN=1/MS).
+- 3.3.8 : icônes de toit 3D (`RQ` rempli par `building`, `roofIcons`/`roofTex` : plan collé sur la pente sud du toit, incrustation claire + ombre) et 2D (`engr` dans `bld`) ; monstres 3D pour tous les combats (`updMon`) ; marteau des PNJ en travaux (`arms[1].hg`, `npcAct(k)===2`) ; lampadaire de bâtiment à gauche (`lamp(W,x-w/2-1.1,…)`).
 - `state.js` : `ZR['Forêt']` = [0,1.7,22,8.5] (forêt agrandie en 3.3.5 ; rayon = ZR[2]×ZS+4).
 - `three.min.js`, `map.js` (2D en repli ; garde `vnet/drawNet`). Ordre des scripts : data, state, village, save, combat, ui, three.min, map, monsters, gl, audio, dev, main.
 - Options : 🧊/🖼️ (`r3`), ⚙️ Qualité (`qb`, clé `bvq`). Menu Développeur : « Compteur fps (3D) » (`dfps`).

@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.8 « Lisibilité du village & Combats visibles »
+
+Version affichée dans les Options : **v3.3.8**
+
+### Ajouté
+- **Icônes gravées sur les toits** (2D et 3D) : chaque bâtiment porte l'icône de son rôle, en incrustation claire sur le toit (lit pour l'auberge, chope pour la taverne, marteau pour la forge, etc. ; maison pour les habitations).
+- **Marteau en 3D :** pendant l'amélioration d'un bâtiment, son PNJ tient un marteau et frappe (déjà le cas en 2D).
+
+### Corrigé
+- **Monstres en 3D :** ils n'apparaissaient que pour les combats de nuit. Ils s'affichent maintenant face à l'aventurier pendant tout combat, de jour comme de nuit.
+
+### Modifié
+- **Lampadaires des bâtiments :** celui qui était à droite du bâtiment passe à gauche, pour ne plus masquer le PNJ (les 2 torches de la porte ne bougent pas).
+- **Noms des PNJ :** violet plus clair (2D et 3D).
+
 ## v3.3.7 « Veille et lumières »
 
 Version affichée dans les Options : **v3.3.7**

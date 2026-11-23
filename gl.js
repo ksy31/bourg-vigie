@@ -315,7 +315,7 @@ function castleG(W,G,x,z,u,wall,roof,dk){
  W.add('wood',cy2(.06*u,.06*u,3*u,6),'#4a3a2a',x,yb+kh+3.4*u+1.2*u,kz,{shade:0});const fg=new TH.PlaneGeometry(2.2*u,1.2*u,4,1);W.add('flat',fg,dk?'#6a3aa8':roof,x+1.1*u,yb+kh+3.4*u+2.2*u,kz,{shade:0});
  return yb}
 const MV=new TH.MeshStandardMaterial({vertexColors:true,roughness:1,flatShading:true});
-let TG=null,WMAT=null,WTEX=null,WPT=null,WGM=null,WGD=null;
+let TG=null,WMAT=null,WTEX=null,WPT=null,WGM=null,WGD=null,RQ=[];
 function outTorchPts(vd){const r=rg3(4242),P=[];
  for(const z of ZA){const pts=RD[z.n];if(!pts)continue;let acc=0,side=1;for(let k=(pts.sh||0)+1;k<pts.length;k++){const a=pts[k-1],b=pts[k];acc+=Math.hypot(b[0]-a[0],b[1]-a[1]);
   if(((b[0]-T.x)/vd.rx)**2+((b[1]-T.y)/vd.ry)**2<1.3){acc=0;continue}
@@ -421,7 +421,7 @@ function building(W,k,x,y0,z,w,d,hh,roof,tier,full){
  if(wk==='plaster'){for(const sx of[-1,1])for(const sz of[-1,1])W.add('wood',box(.34,hh,.34),'#5a3d26',x+sx*w/2,yb+hh/2,z+sz*D,{shade:.04});
   for(const q of[fz,bz])W.add('wood',box(w+.1,.3,.22),'#5a3d26',x,top-.15,q,{shade:0});if(hh>4.2)W.add('wood',box(w+.1,.26,.22),'#5a3d26',x,yb+hh*.52,fz,{shade:0})}
  else if(st)for(const sx of[-1,1])for(const sz of[-1,1])W.add('stone',box(.5,hh,.5),'#d9d3c5',x+sx*w/2,yb+hh/2,z+sz*D,{shade:.04});
- W.add('tile',gableG(w+1.1,d+1.1,rh),roof,x,top,z,{shade:.06});
+ W.add('tile',gableG(w+1.1,d+1.1,rh),roof,x,top,z,{shade:.06});RQ.push([k,x+(k==='S'||k==='V'?w*.3:0),top,z,w,D,rh]);
  for(const s of[-1,1])W.add(wk==='stone'?'stone':wk,endG(d,rh),wc,x+s*w/2,top,z,{shade:.06});
  W.add('wood',box(w+1.2,.16,.34),dkc(roof,.35),x,top+rh+.04,z,{shade:0});
  if('HATFIC'.includes(k)){const ch=rh+(k==='F'?2.6:1.5);W.add('stone',box(.95,ch,.95),'#8a847a',x-w*.28,top-.2+ch/2,z-D*.18,{shade:.04});W.add('stone',box(1.2,.2,1.2),'#6f6a62',x-w*.28,top-.2+ch,z-D*.18,{shade:0});SQ.push([x-w*.28,top-.2+ch+.2,z-D*.18]);if(k==='F')W.add('lava',box(.5,.1,.5),'#fff',x-w*.28,top-.2+ch+.12,z-D*.18,{shade:0})}
@@ -446,17 +446,20 @@ function building(W,k,x,y0,z,w,d,hh,roof,tier,full){
  if(k==='I'){W.add('flat',box(1.3,1.7,.08),'#2f4f8a',x+w*.3,yb+hh*.5,fz+.06,{shade:0});W.add('flat',box(.2,1.4,.05),'#e8e8f0',x+w*.3,yb+hh*.5,fz+.1,{shade:0});W.add('flat',box(.9,.2,.05),'#e8e8f0',x+w*.3,yb+hh*.5+.3,fz+.1,{shade:0})}
  if(k==='C'){const tx=x+w/2,tz=z-D*.1,th=hh+2.4;W.add('stone',cy2(1.1,1.2,th,14),'#d9d3c5',tx,yb+th/2,tz,{cyl:[1.15,th],shade:.06});W.add('tile',new TH.ConeGeometry(1.6,3,14),roof,tx,yb+th+1.4,tz,{cyl:[1.6,3.2],shade:.1});
   W.add('flat',box(.9,1.5,.06),'#7a2f3a',x-w*.3,yb+hh*.5,fz+.06,{shade:0});W.add('flat',box(.3,.5,.05),'#d4b04a',x-w*.3,yb+hh*.5+.1,fz+.1,{shade:0})}}
+const RIT={},RIC={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',E:'🐴',V:'🏛️',I:'🛡️',C:'⚜️',H:'🏠'};
+function roofTex(ch){if(RIT[ch])return RIT[ch];const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');const tn=(col)=>{const q=document.createElement('canvas');q.width=q.height=128;const h=q.getContext('2d');h.font='88px serif';h.textAlign='center';h.textBaseline='middle';h.fillText(ch,64,64);h.globalCompositeOperation='source-in';h.fillStyle=col;h.fillRect(0,0,128,128);return q};g.drawImage(tn('#140b06'),3,4);g.drawImage(tn('#f3e2b4'),0,0);return RIT[ch]=new TH.CanvasTexture(c)}
+function roofIcons(){for(const [k,x,top,z,w,D,rh] of RQ){const ch=RIC[k]||RIC.H,E=D+.55,L=Math.hypot(E,rh),al=Math.atan2(rh,E),s=Math.min(w*.5,L*.7,3.2),m=new TH.Mesh(new TH.PlaneGeometry(s,s),new TH.MeshLambertMaterial({map:roofTex(ch),transparent:true,opacity:.92,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2}));m.position.set(x,top+rh*.5+Math.cos(al)*.06,z+E*.5+Math.sin(al)*.06);m.rotation.x=-(PI/2-al);villG.add(m)}}
 function buildVillageMesh(){
- clearG(villG);TQ=[];SQ=[];GQ=[];const W=new TA(),vd=vdim(),{u}=vd;
+ clearG(villG);TQ=[];SQ=[];GQ=[];RQ=[];const W=new TA(),vd=vdim(),{u}=vd;
  for(const [p,e,it] of u){const k=NK[e]||'H',x=T.x+p[0],z=T.y+p[1],y0=H3(x,z),w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,tier=Math.max(0,tr(k)-(it.rb?1:0));
   const rc=(it.h&&it.h.o!=null&&(S.hero.find(q=>q.id===it.h.o)||{}).col)||'#8b4a3a';
   let f=1;if(it.cn)f=Math.max(0,bstg(it));
   const hh0=(BTOP[k]||6.7)*.5+tier*.45,roof=k==='H'?rc:ROOF[k]||'#8b4a3a';
   if(it.cn&&f<=0)W.add('stone',box(w,.35,d),'#8f8a7d',x,y0+.18,z,{shade:0});
-  else{const full=!it.cn||f>=.75;if(k==='M')stall(W,x,y0,z,w,d,roof);else{building(W,k,x,y0,z,w,d,it.cn?hh0*Math.max(.3,f):hh0,roof,tier,full);if(full)lamp(W,x+w/2+1.1,z+d/2+1.4)}}
+  else{const full=!it.cn||f>=.75;if(k==='M')stall(W,x,y0,z,w,d,roof);else{building(W,k,x,y0,z,w,d,it.cn?hh0*Math.max(.3,f):hh0,roof,tier,full);if(full)lamp(W,x-w/2-1.1,z+d/2+1.4)}}
   if(it.cn||it.rb){const sh=(BTOP[k]||6.7)*.85,hw=w/2+.7;for(const sx of[-1,1])for(const sz of[-1,1])W.add('wood',box(.28,sh,.28),'#9a7a4a',x+sx*hw,y0+sh/2,z+sz*(d/2+.7),{shade:0});
    for(let q=1;q<=3;q++)W.add('wood',box(w+1.6,.2,.28),'#b08850',x,y0+q*sh/3.4,z+d/2+.7,{shade:0})}}
- if(S.pl.length>=4)wellV(W,u);if(S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);W.build(villG);if(torchG)torchSprites()}
+ if(S.pl.length>=4)wellV(W,u);if(S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);W.build(villG);roofIcons();if(torchG)torchSprites()}
 // ---------- héros ----------
 function mkHorse(c){const a=new Acc();const hb=c||'#8a5a3a';
  a.add(new TH.CapsuleGeometry(.2,.62,6,12),hb,0,.62,0,{rx:Math.PI/2,sx:1.05,sy:1,shade:.1});
@@ -610,7 +613,7 @@ function buildNpc(r,fem,id){const v=NPV[r],c=v.c,hairC=PCOL.hr[(id*3+1)%6],skin=
   const el=new TH.Group();el.position.set(0,-.3,0);sh.add(el);const a=new Acc().add(cap(.062,.16),c,0,-.13,0).add(sph(.07),skin,0,-.29,.01,{shade:0});
   if(s===1){const x=v.x;if(x==='mug')a.add(cyl(.06,.055,.11),'#c9a24a',0,-.3,.08,{shade:0});if(x==='hammer')a.add(cyl(.02,.02,.46),'#6b4a2a',0,-.3,.05,{rx:PI/2,shade:0}).add(box(.1,.1,.18),'#555a66',0,-.3,.28,{shade:0});
    if(x==='fork')a.add(cyl(.018,.018,1.1),'#6b4a2a',0,-.1,.05,{shade:0}).add(box(.2,.03,.03),'#9a9aa2',0,.42,.05,{shade:0});if(x==='scroll')a.add(cyl(.04,.04,.2),'#f1ece0',0,-.3,.08,{rz:PI/2,shade:0});if(x==='keys')a.add(tor(.05,.012),'#d4b04a',0,-.34,.06,{shade:0})}
-  a.mesh(el);arms.push({sh,el})}
+  a.mesh(el);let hg=null;if(s===1&&r!=='F'){hg=new TH.Group();new Acc().add(cyl(.02,.02,.46),'#6b4a2a',0,-.3,.05,{rx:PI/2,shade:0}).add(box(.1,.1,.18),'#555a66',0,-.3,.28,{shade:0}).mesh(hg,0);hg.visible=false;el.add(hg)}arms.push({sh,el,hg})}
  R.userData={arms,T:T3,v};return R}
 function npcPos(k,it){const kk=NK[it.e]||'H',p=slot(it),w=2*BHW(kk)+(kk==='A'?.8:0),d=kk==='A'?6.6:5.4;return[T.x+p[0]+w/2+1.3,T.y+p[1]+d/2-.4]}
 function updNpc(dt,tm){const seen=new Set();
@@ -619,7 +622,7 @@ function updNpc(dt,tm){const seen=new Set();
   if(!o){const m=buildNpc(k,fem?1:0,id),g=new TH.Group();g.add(m);g.scale.setScalar(HS);npcG.add(g);o={g,m,fem,id};NPG.set(k,o)}
   const [x,z]=npcPos(k,it),u=o.m.userData,a=npcAct(k);o.g.position.set(x,H3(x,z),z);o.g.rotation.y=Math.sin(tm*.4+id)*.25+.15;
   u.T.scale.y=1+Math.sin(tm*2+id)*.012;u.T.rotation.z=Math.sin(tm*1.3+id)*.015;
-  const ar=u.arms[1];if(a>0&&k==='F')ar.sh.rotation.x=-1.1+Math.sin(tm*8)*.55;else if(a>0)ar.sh.rotation.x=-.5+Math.sin(tm*4+id)*.25;else ar.sh.rotation.x=-.12+Math.sin(tm*1.5+id)*.04;ar.el.rotation.x=a>0?-.5:-.15}
+  const ar=u.arms[1];if(ar.hg)ar.hg.visible=a===2;if(a>0&&(k==='F'||a===2))ar.sh.rotation.x=-1.1+Math.sin(tm*8)*.55;else if(a>0)ar.sh.rotation.x=-.5+Math.sin(tm*4+id)*.25;else ar.sh.rotation.x=-.12+Math.sin(tm*1.5+id)*.04;ar.el.rotation.x=a>0?-.5:-.15}
  for(const [k,o] of NPG)if(!seen.has(k)){npcG.remove(o.g);disp(o.g);NPG.delete(k)}}
 // ===== monstres 3D (silhouettes par famille) =====
 const GHM=MAT.clone();GHM.transparent=true;GHM.opacity=.62;GHM.depthWrite=false;
@@ -687,7 +690,7 @@ function monBuild(mk,h){const e=h.en,E=MON[mk]||['h','#7a6a5a','#3a2f22',{}],f={
  b.S0=(SZ[mk]||1)*km*(.85+.4*ql)*(.95+.1*jt(hid(e.n)+h.id*7,2));b.g.scale.setScalar(HS*b.S0);b.g.userData.mk=mk;return b}
 const MN=new Map();let monG=null;
 function updMon(dt,tm,BM){const seen=new Set();
- for(const h of S.hero){if(h.st!=='fight'||!h.en||!h.en.nt)continue;const mk=mkind(h.en.n);if(!mk)continue;seen.add(h.id);const key=mk+'|'+h.en.n;let o=MN.get(h.id);
+ for(const h of S.hero){if(h.st!=='fight'||!h.en)continue;const mk=mkind(h.en.n);if(!mk)continue;seen.add(h.id);const key=mk+'|'+h.en.n;let o=MN.get(h.id);
   if(o&&o.key!==key){monG.remove(o.g);disp(o.g);MN.delete(h.id);o=null}
   if(!o){const b=monBuild(mk,h);o={g:b.g,b,key,ph:Math.random()*6};monG.add(o.g);MN.set(h.id,o)}
   const [hx,hz]=hpos(h,BM),S0=o.b.S0,off=3.4+2.1*S0*Math.min(1.5,o.b.wide||1)+(h.hs?1.3:0),lg=Math.abs(Math.sin(tm*9))*1.1,x=hx+off-lg;
@@ -768,7 +771,7 @@ function overlay(BM){
   if(h.st==='fight'&&h.en)lab(h.en.n,0,[p[0],p[1]+fs*1.15],'#ffb3a8');
   if(showT&&(h.st==='go'||h.st==='back'||(h.st==='town'&&h.sub==='do')))lab(fm(rem(h)),0,[p[0],p[1]+(h.st==='fight'?fs*2.3:fs*1.15)],'#e6f1ff')}
  if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q&&hidn(q)&&!BM.get(q.id)){const ib=vdim().u.find(a=>a[1]===NE.A);if(ib){const x=T.x+ib[0][0],z=T.y+ib[0][1]+3.3,p=pj(x,H3(x,z)+3.6,z);if(p){lab(`${sn(q.name)} · niv. ${q.lv}`,/\u2060/.test(q.name),p,'#fff');lab('en repos',0,[p[0],p[1]+fs*1.15],'#b8e0ff')}}}}
- for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it||it.cn||!NPV[k])continue;const n=S.npc[k],[x,z]=npcPos(k,it),p=pj(x,H3(x,z)+HS*1.45,z);lab(`${sn(n.n)} · niv. ${n.lv}`,/\u2060/.test(n.n),p,'#c9a2ff')}
+ for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it||it.cn||!NPV[k])continue;const n=S.npc[k],[x,z]=npcPos(k,it),p=pj(x,H3(x,z)+HS*1.45,z);lab(`${sn(n.n)} · niv. ${n.lv}`,/\u2060/.test(n.n),p,'#e6d6ff')}
  for(const it of S.pl){const c=it.cn||it.rb;if(!c)continue;const p=slot(it),x=T.x+p[0],z=T.y+p[1],q=pj(x,H3(x,z)+(BTOP[NK[it.e]||'H']||6.7)+3,z);lab('🔨 '+Math.min(99,Math.floor(c.t/c.T*100))+' %',0,q,'#fff')}
  for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;const p=pj(m.x,H3(m.x,m.y)+1.5,m.y);if(!p)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font='20px serif';cx.fillText('💀',p[0],p[1]);if(m.n){cx.font=(/⁠/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineWidth=3;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(sn(m.n),p[0],p[1]+14);cx.fillStyle='#fff';cx.fillText(sn(m.n),p[0],p[1]+14)}cx.globalAlpha=1}
  const PL=[];LB.sort((a,b)=>a.y-b.y);for(const l of LB){cx.font=(l.i?'italic ':'')+`700 ${fs}px Alegreya,serif`;l.w=cx.measureText(l.t).width+4;for(let k=0;k<12&&PL.some(p=>Math.abs(p.x-l.x)<(p.w+l.w)/2&&Math.abs(p.y-l.y)<fs*1.05);k++)l.y-=fs*1.05;PL.push(l);cx.lineWidth=2.8;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(l.t,l.x,l.y);cx.fillStyle=l.c||'#fff';cx.fillText(l.t,l.x,l.y)}
