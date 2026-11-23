@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.5 « PNJ, torches et couleurs »**
+Version actuelle du jeu : **v3.4.6 « Sols détaillés, sac et couleurs »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,12 @@ Version actuelle du jeu : **v3.4.5 « PNJ, torches et couleurs »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.4.6 « Sols détaillés, sac et couleurs »
+- [x] **Pavé sur tout le village** (2D et 3D) : cobbles partout, bord usé, place centrale et allées conservées.
+- [x] **Même niveau de détail pour les autres sols (3D) :** herbe (brins, trèfles, fleurs), terre des routes et berges (grain, cailloux, fissures), roche (mine, montagne, volcan) et dalles (ruines, donjon, trône), en haute résolution et sans répétition visible de loin.
+- [x] **Sac à dos de butin plus visible :** jaune vif non éclairé (toujours lumineux), plus gros, qui flotte légèrement, étincelles qui montent, halo à faible portée.
+- [x] **Couleur d'aventurier sur l'armure, la cape et la pièce principale :** armure et casque du Guerrier, robe et chapeau du Mage, capuche, cape et tunique du Voleur, capuche et cape du Rôdeur.
 
 ## ✅ v3.4.5 « PNJ, torches et couleurs »
 - [x] **PNJ devant la porte, aventuriers face à eux :** chaque PNJ se tient devant la porte de son bâtiment ; les aventuriers s'arrêtent juste devant lui, face à lui, sans décalage aléatoire (file d'attente de part et d'autre), sans traverser le bâtiment.

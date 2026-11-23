@@ -340,6 +340,12 @@ function paveVillage(g,vd,R,s){const {u}=vd,rc=[],m=1,pr=[13,9];
   path();g.strokeStyle='rgba(60,44,26,.34)';g.lineWidth=(w+.9)*s;g.stroke();path();g.strokeStyle=VJT;g.lineWidth=(w+.1)*s;g.stroke();
   for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<.01)continue;const ux=(b[0]-a[0])/L,uy=(b[1]-a[1])/L,ang=Math.atan2(uy,ux);let row=0;
    for(let o=-w/2+.23;o<w/2-.1;o+=.46,row++){let t=(row&1)?-.3:-.05;while(t<L+.3){const sw=.5+R()*.4,c=t+sw/2;if(c>=-.2&&c<=L+.2)vgStone(g,a[0]+ux*c-uy*o,a[1]+uy*c+ux*o,sw-.07,.38,ang+(R()-.5)*.08,R,s);t+=sw}}}};
+ // pavage de tout le village (bord irrégulier et usé)
+ {const RX=vd.rx,RY=vd.ry,wob=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),bl=f=>{g.beginPath();for(let i=0;i<=96;i++){const t=i/96*6.2832,r=wob(t)*f,x=(T.x+Math.cos(t)*RX*r)*s,y=(T.y+Math.sin(t)*RY*r)*s;i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
+  bl(.99);g.fillStyle='rgba(60,44,26,.3)';g.fill();bl(.95);g.fillStyle=VJT;g.fill();
+  g.save();bl(.95);g.clip();
+  const inV=(x,y)=>{const a=Math.atan2((y-T.y)/RY,(x-T.x)/RX),r=Math.hypot((x-T.x)/RX,(y-T.y)/RY);return r<wob(a)*(.94-(r>.8?R()*.05:0))};
+  vgCobbleFill(g,T.x-RX-1,T.y-RY-1,T.x+RX+1,T.y+RY+1,s,R,inV);vgMoss(g,T.x-RX,T.y-RY,T.x+RX,T.y+RY,s,R,inV);g.restore()}
  // place : ombre, joints, pavés, mousse, bordure de grosses pierres
  pz(1.07);g.fillStyle='rgba(60,44,26,.36)';g.fill();pz(1.01);g.fillStyle=VJT;g.fill();
  g.save();pz(1);g.clip();

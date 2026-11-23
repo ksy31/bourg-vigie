@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.6 « Sols détaillés, sac et couleurs »
+
+Version affichée dans les Options : **v3.4.6**
+
+### Ajouté
+- **Pavé dans tout le village (2D et 3D) :** pavés individuels sur toute la surface, bord usé et irrégulier avec la terre, mousse ; la place centrale (bordure de grosses pierres) et les allées alignées restent.
+- **Détail haute résolution pour les autres sols (3D) :** quatre textures procédurales (herbe, terre, roche, dalles) mélangées selon le lieu : terre sur les routes et les berges, roche à la mine, la montagne et au volcan, dalles aux ruines, au donjon et au trône, herbe ailleurs. Détail net de près, sans répétition visible de loin.
+- **Étincelles dorées** qui montent autour du sac à dos de butin.
+
+### Modifié
+- **Sac à dos de butin :** jaune vif, non éclairé (toujours lumineux), plus gros, léger balancement, halo à faible portée.
+- **Couleur d'aventurier :** elle teint maintenant l'armure et le casque (Guerrier), la robe et le chapeau (Mage), la capuche, la cape et la tunique (Voleur), la capuche et la cape (Rôdeur). Elle remplace l'écharpe et la cape ajoutées en 3.4.5.
+- Le sol des autres lieux reste en 2D comme avant (détail ajouté en 3D uniquement). Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.4.5 « PNJ, torches et couleurs »
 
 Version affichée dans les Options : **v3.4.5**
