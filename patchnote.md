@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.9 « Cycle solaire 3D & Paysages naturels »
+
+Version affichée dans les Options : **v3.3.9**
+
+### Modifié
+- **Cycle horaire 3D aligné sur le jeu :** soleil levé de 5h à 21h (il se déplace, les ombres tournent), lever orangé vers 5h, plein jour jusqu'à environ 19h, coucher orangé de 20h à 21h, nuit de 21h à 4h, aube de 4h à 5h. La lune prend le relais de 21h à 5h.
+- **Lumières :** lampadaires, torches et fenêtres s'allument progressivement de 20h à 21h et s'éteignent de 4h à 5h.
+- **Rivières (3D) :** lit environ 1,5 fois plus large avec berges de terre et de sable en dégradé ; les ponts sont allongés en conséquence.
+- **Biomes (3D) :** transition du sol adoucie autour de chaque zone, avec un bord irrégulier.
+
+### Ajouté
+- **Plaines (3D) :** variations de teinte de l'herbe, buissons groupés et petits rochers (moins nombreux en qualité Moyenne et Basse).
+- **Village (3D) :** tonneaux et caisses près des bâtiments.
+
 ## v3.3.8 « Lisibilité du village & Combats visibles »
 
 Version affichée dans les Options : **v3.3.8**

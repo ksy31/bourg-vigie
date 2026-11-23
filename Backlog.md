@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.8 « Lisibilité du village & Combats visibles »**
+Version actuelle du jeu : **v3.3.9 « Cycle solaire 3D & Paysages naturels »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,10 @@ Version actuelle du jeu : **v3.3.8 « Lisibilité du village & Combats visibles 
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.3.9 « Cycle solaire 3D & Paysages naturels »
+- [x] **Cycle horaire exact en 3D** (soleil 5h-21h, ombres mobiles) et **allumage progressif des lumières** de 20h à 21h.
+- [x] **Rivières, berges et détails des plaines** (3D) : lit élargi, berges, transitions de sol adoucies, herbe, buissons, rochers, tonneaux et caisses au village.
 
 ## ✅ v3.3.8 « Lisibilité du village & Combats visibles »
 - [x] **Lampadaires décalés** : celui de droite passe à gauche de l'entrée ; violet des noms de PNJ plus clair.

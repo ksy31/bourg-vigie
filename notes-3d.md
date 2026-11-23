@@ -1,12 +1,13 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 23/11/2026 : version livrée **v3.3.8 « Lisibilité du village & Combats visibles »** (cache `bv-v62`). Prochain point du Backlog : guide APK (PWABuilder). Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 23/11/2026 : version livrée **v3.3.9 « Cycle solaire 3D & Paysages naturels »** (cache `bv-v63`). Prochain point du Backlog : guide APK (PWABuilder). Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).
 - Ajouts 3.3.6 dans `gl.js` : `paveVillage` (place et allées pavées peintes dans le sol, appelée par `paintGround`), `outTorchPts` (positions des torches hors village, graine fixe 4242) et points lumineux `WPT` (un seul objet `Points`, animé par `torchUpd`), rond de transparence (`holeUpd` + `MV.onBeforeCompile` : tramage écran sur les arbres et rochers devant les aventuriers, 8 aventuriers max), sac à dos `o.lt` (groupe + halo, affiché si `h.loot` en état back/town), étiquette « en repos » dans `overlay` (utilise `fol` de map.js).
 - 3.3.7 : étoiles de bénédiction 3D (`o.bs`, texture `starTex`), taches de lumière au sol des torches hors village (`WGM`/`WGD`), bouton `#slp` avec `z-index:3` (le canvas `cv` a `z-index:1` dès que la 3D est initialisée), fonds/nuit 2D en `W*(MS+4)` (le monde fait MS×W, ZMIN=1/MS).
 - 3.3.8 : icônes de toit 3D (`RQ` rempli par `building`, `roofIcons`/`roofTex` : plan collé sur la pente sud du toit, incrustation claire + ombre) et 2D (`engr` dans `bld`) ; monstres 3D pour tous les combats (`updMon`) ; marteau des PNJ en travaux (`arms[1].hg`, `npcAct(k)===2`) ; lampadaire de bâtiment à gauche (`lamp(W,x-w/2-1.1,…)`).
+- 3.3.9 : cycle solaire dans `updLight` (soleil `r=(x-5)/16π`, lune `o=((x+3)%24)/8π`, palette `PL` recalée : aube 5h, coucher 20h, nuit 21h30) ; rivières 3D ×1,45 + berges peintes dans `paintGround` (`bk`) ; ponts ×1,4 ; biomes adoucis ; buissons/rochers de plaine (`qd` selon la qualité) ; `vprops` (tonneaux/caisses du village).
 - `state.js` : `ZR['Forêt']` = [0,1.7,22,8.5] (forêt agrandie en 3.3.5 ; rayon = ZR[2]×ZS+4).
 - `three.min.js`, `map.js` (2D en repli ; garde `vnet/drawNet`). Ordre des scripts : data, state, village, save, combat, ui, three.min, map, monsters, gl, audio, dev, main.
 - Options : 🧊/🖼️ (`r3`), ⚙️ Qualité (`qb`, clé `bvq`). Menu Développeur : « Compteur fps (3D) » (`dfps`).
@@ -26,6 +27,7 @@
 - Carte : `MS=6`, `ZS=5`. Migration `migMap`, version de sauvegarde 5. Parties existantes : positions de zones inchangées (la forêt agrandie peut déborder un peu sur une zone voisine).
 
 ## Pièges techniques
+- Heure de jeu : `x=6+24*(S.t-S.ds)/S.dl` ; pour viser l'heure H dans un test, `S.t=S.ds+S.dl*((H+24-6)/24)`. `dk()` : 0 de 5h à 20h, rampe 20→21h, 1 de 21h à 4h, rampe 4→5h.
 - Tout élément posé au-dessus de la carte doit avoir un `z-index` > 1 (le canvas 2D `cv` est au-dessus de tout ce qui n'en a pas, même après retour en 2D).
 - Scripts classiques, `gl.js` en IIFE (`dk` du jeu déjà pris → `dkc`). Le canvas 3D est `position:absolute` : `cv` doit rester `position:relative; z-index:1`.
 - `three.min.js` : esbuild (`export * from 'three'; export {mergeGeometries} ...`, `--format=iife --global-name=THREE`).
