@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »
+
+Version affichée dans les Options : **v3.3.4**
+
+### Ajouté
+- **Flou de profondeur** (haut et bas de l'écran légèrement flous) et **éclat lumineux** sur fenêtres, torches, lave et éclairs, en qualité Haute.
+- **Lucioles** la nuit, uniquement autour des forêts (par temps sec).
+- **Fumée** des cheminées du village et du volcan.
+- **Qualité 3D** dans les Options (Auto / Haute / Moyenne / Basse) : ombres, flou, éclat, particules et résolution. En Auto, le jeu baisse la qualité tout seul si l'appareil rame.
+- **Rotation de la caméra à deux doigts** (le zoom garde la priorité : la rotation ne démarre que si les doigts tournent nettement). Double tap pour recentrer.
+- **Compteur fps / triangles** dans le menu Développeur (bouton « Compteur fps (3D) »), pour mesurer sur téléphone.
+
+### Modifié
+- **Le mode 2D est de nouveau le mode par défaut** (le bouton 🧊 / 🖼️ des Options bascule en 3D ; le choix déjà enregistré est conservé).
+- Résolution adaptative : plafond de résolution selon la qualité.
+
 ## v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit »
 
 Version affichée dans les Options : **v3.3.3**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, météo et nuit »**
+Version actuelle du jeu : **v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »**
 
 ## ✅ Déjà intégré
 
@@ -233,12 +233,12 @@ Version actuelle du jeu : **v3.3.3 « Refonte WebGL (3/4) : PNJ, monstres, mét�
 - [x] **Nuit :** torches tenues en main, halos chauds (les fenêtres éclairées sont déjà faites en v3.3.2).
 - [x] **Village :** enceinte et puits selon la taille du village.
 
-## 🎨 v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation » (prochain)
-- [ ] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
-- [ ] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
-- [ ] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+## ✅ v3.3.4 « Refonte WebGL (4/4) : Finitions et optimisation »
+- [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
+- [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
+- [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
 
-## 📱 Guide APK
+## 📱 Guide APK (prochain)
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
