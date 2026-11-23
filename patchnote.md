@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.3.7 « Veille et lumières »
+
+Version affichée dans les Options : **v3.3.7**
+
+### Ajouté
+- **Étoiles de bénédiction en 3D :** 3 étoiles dorées tournent autour de l'aventurier béni (elles remplacent le « ✦✦ » au-dessus du nom).
+- **Lumière au sol des torches hors village :** chaque torche des chemins et des zones éclaire maintenant le sol la nuit.
+
+### Corrigé
+- **Mode veille :** le bouton 🌑 était recouvert par la carte après l'activation de la 3D (invisible en 2D, sans effet en 3D). Il est de nouveau visible et cliquable dans les deux modes.
+- **Nuit en 2D :** au dézoom, la nuit et le fond ne couvraient qu'une partie de la carte (rectangles, jour sur les côtés). Ils couvrent maintenant toute la carte.
+
 ## v3.3.6 « Retours de test »
 
 Version affichée dans les Options : **v3.3.6**

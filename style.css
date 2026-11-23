@@ -52,7 +52,7 @@ html,body{touch-action:manipulation}
 #dv select{min-width:70px;font:inherit;font-size:15px;padding:3px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px}
 #dv button{margin:2px 2px 2px 0;padding:6px 10px;min-height:36px}
 #tv{position:relative}
-#slp{position:absolute;top:6px;right:6px;min-height:32px;width:36px;padding:0;font-size:17px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.25)}
+#slp{position:absolute;z-index:3;top:6px;right:6px;min-height:32px;width:36px;padding:0;font-size:17px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.25)}
 #sl{position:fixed;inset:0;background:#000;z-index:20;display:flex;align-items:center;justify-content:center;color:#6b767b;font-size:14px}
 #sl[hidden]{display:none}
 #slt{transition:opacity 1s}#slt.off{opacity:0}

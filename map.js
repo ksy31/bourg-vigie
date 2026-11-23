@@ -431,7 +431,7 @@ function bstars(x,y){const t=performance.now()/1000*.8,g=cx;g.fillStyle='#ffe082
 function draw(){
  const BM=bAssign();
  if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const bm=BM.get(q.id),bp=bm?bpos(q,bm):[q.x*sc+((q.id%3)-1)*sc*1.5,q.y*sc+((q.id%2)-.5)*sc*2];cam.x=W/2-bp[0]*cam.z;cam.y=H/2-bp[1]*cam.z;clampCam()}else fol=null}
- cx.save();cx.translate(cam.x,cam.y);cx.scale(cam.z,cam.z);cx.fillStyle='#8fae7a';cx.fillRect(-W*3,-H*3,W*7,H*7);
+ cx.save();cx.translate(cam.x,cam.y);cx.scale(cam.z,cam.z);cx.fillStyle='#8fae7a';cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4));
  if(W>0){const k=W+JSON.stringify(S.zp)+S.zv.join('');if(GC.k!==k){GC.k=k;buildGround()}cx.drawImage(GC.c,0,0,W*MS,H*MS)}
  cx.textAlign='center';
  const ZI={'Forêt':'🌲','Mine':'⛏️','Montagne':'🏔️','Ruines':'🏚️','Donjon':'🏰','Volcan':'🌋'};
@@ -449,7 +449,7 @@ function draw(){
   if(showT&&(h.st==='go'||h.st==='back'||(h.st==='town'&&h.sub==='do'))){cx.fillStyle='#1d2326';cx.font=`700 ${sc*2.6}px Alegreya,serif`;cx.fillText(fm(rem(h)),x,y-sc*(top-1))}
   if(h.loot&&(h.st==='back'||h.st==='town')){cx.fillStyle='#e2b43c';cx.beginPath();cx.arc(x+sc*1.8,y-sc*1.8,sc*.9,0,7);cx.fill()}cx.globalAlpha=1;
  }
- {const K=dk();if(K>0){cx.fillStyle=`rgba(3,5,20,${.66*K})`;cx.fillRect(-W*3,-H*3,W*7,H*7);cx.fillStyle='#ffd37a';
+ {const K=dk();if(K>0){cx.fillStyle=`rgba(3,5,20,${.66*K})`;cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4));cx.fillStyle='#ffd37a';
   const dot=(x,y,r,Rh,s)=>{cx.globalAlpha=.6*K;const q=Math.max(Rh,9/cam.z);cx.drawImage(GLOW,x-q,y-q,2*q,2*q);cx.fillStyle='#ffd37a';cx.beginPath();if(s){cx.fillStyle='#ffd37a';cx.beginPath();cx.arc(x,y,Math.max(r,1.6/cam.z),0,7);cx.fill()}};
   const inV=(x,y)=>((x-T.x)/VR.rx)**2+((y-T.y)/VR.ry)**2<1.1;
   for(const [x,y] of ROADL)if(!inV(x,y))dot(x*sc,y*sc,sc*.55,sc*5);
