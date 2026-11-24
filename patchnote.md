@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.1 « Refonte du monde (1/3) : arbres pixel-art »
+
+Version affichée dans les Options : **v3.6.1**
+
+### Ajouté
+- **Nouveaux arbres en 3D texturés pixel-art** : chêne, hêtre, chêne d'automne, bouleau, saule, pin, sapin enneigé, arbre mort et palmier. Plusieurs formes et teintes, tailles variées.
+- **Vent** : le feuillage se balance, davantage par temps nuageux, pluvieux ou orageux.
+- **Feuilles qui tombent** près de la caméra, sous les arbres à feuilles.
+- Saules près des rivières, sapins enneigés en Montagne, arbres morts en Ruines, Donjon et Volcan, quelques palmiers en Ruines.
+
+### Modifié
+- Buissons refaits dans le même style. Ombres des arbres découpées selon le feuillage.
+- Rochers inchangés (prévus en 3.6.2), aucune migration de sauvegarde.
+
 ## v3.6.0 « Correctifs : bâtiments, jour 5 h-21 h, bandeau fixe »
 
 Version affichée dans les Options : **v3.6.0**
