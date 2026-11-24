@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »
+
+Version affichée dans les Options : **v3.5.1**
+
+### Ajouté
+- **Moteur de sprites de monstres (mode 3D) :** générateur commun `pxSprite('m'+espèce)` piloté par la table `MON` (couleurs, corpulence, arme, armure, casque, capuche, oreilles, défenses). Images de face et de dos, repos, attaque ; contour sombre, 3 tons ; teinte légèrement mélangée à la couleur de la zone.
+- **15 humanoïdes en sprites :** gobelin, kobold, orc, bandit, brigand, braconnier, cultiste, garde, geôlier, chevalier, champion, lanceur de sorts, squelette, troll, géant. Les autres monstres restent en 3D jusqu'aux prochaines étapes.
+- **Nuit :** yeux et traits (ceinture, lame, orbe) bleu néon émissifs sur une couche lumineuse séparée.
+- **Cadavre :** le monstre vaincu s'effondre et reste couché environ 30 s, assombri.
+
+### Modifié
+- La taille des sprites part de celle des aventuriers, puis suit la taille de l'espèce, comme avant. Pas d'animation de marche ni d'impact. Mode 2D inchangé. Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.5.0 « PNJ en sprites »
 
 Version affichée dans les Options : **v3.5.0**

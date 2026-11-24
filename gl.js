@@ -711,7 +711,48 @@ function pxSprite(cls,fem,view,fr,o){
   if(r==='I'){part([E(11,2,37,17)],v.h);flat([R(11,13,37,15)],'#d4b04a')}
   if(r==='C'){part([R(15,-6,33,9)],v.h);flat([R(14,7,34,10)],GD)}};
  const NPF={};for(const r of 'AFTSEVIC')NPF['n'+r]=()=>NP(r);
- ({G,M,V,R:Rg,...NPF})[cls]();
+ const MP=k=>{const ME=MON[k],O=ME[3]||{},bk_=O.bulk||1,hw=Math.max(5,Math.min(13,Math.round(7+5*(bk_-1)))),NC=[143,233,255],neon=!!o.neon,eyc=neon?NC:rgb(O.eye||'#ffd04a'),
+  cc=TN(ME[1],.18),cd=TN(ME[2],.18),sk=O.sk?rgb(O.sk):[154,138,106],L0=24-hw,R0=24+hw,rob=!!O.robe,arm_=!!O.armor,sl=(O.sk&&!arm_&&!rob)?sk:cc,hs=O.head||1,
+  hand=sk,wc={sword:'#d8dee8',club:'#6b4a2a',axe:'#6b4a2a',staff:'#7a5230'},WD=O.w;
+  if(O.hood)part([E(11,4,37,34)],cd);
+  if(rob){legs(cd,cd,null,0,0,54);part([P([[L0-2,30],[R0+2,30],[R0+6,60],[L0-6,60]])],cc);flat([R(L0-6,57,R0+6,60)],cd)}
+  else{legs(cd,k==='skel'?cd:'#2b2118',null,0,0,46);part([P([[L0,30],[R0,30],[R0-1,50],[L0+1,50]])],cc)}
+  if(k==='skel'){flat([L([[L0+2,35],[R0-2,35]]),L([[L0+2,39],[R0-2,39]]),L([[L0+2,43],[R0-2,43]])],cd);if(!back)flat([R(23,32,25,48)],cd)}
+  if(arm_)part([E(L0-5,27,L0+5,36),E(R0-5,27,R0+5,36)],cc);
+  part([R(L0,43,R0,46)],cd);if(neon)flat([R(L0,44,R0,45)],NC);
+  part([R(L0-5,32,L0,44)],sl);part([E(L0-5,42,L0,48)],hand);
+  let hx,hy;
+  if(atk){part([P([[R0-1,34],[R0+4,32],[R0+10,20],[R0+5,17]])],sl);part([E(R0+5,18,R0+11,25)],hand);hx=R0+8;hy=21}
+  else{part([R(R0,32,R0+5,44)],sl);part([E(R0,42,R0+5,47)],hand);hx=R0+2;hy=45}
+  const ln=atk?.7:1;
+  if(WD==='sword'){part([R(hx-1,hy-Math.round(26*ln),hx+2,hy+2)],'#d8dee8');part([R(hx-4,hy+1,hx+5,hy+3)],'#7a5a30');if(neon)flat([R(hx,hy-Math.round(26*ln),hx+1,hy)],NC)}
+  else if(WD==='club'){part([R(hx-1,hy-14,hx+2,hy+4)],'#6b4a2a');part([E(hx-4,hy-23,hx+5,hy-10)],'#7a5a34');flat([R(hx-3,hy-20,hx-2,hy-18),R(hx+3,hy-17,hx+4,hy-15)],'#c8c8c8')}
+  else if(WD==='axe'){part([R(hx-1,hy-Math.round(20*ln),hx+2,hy+5)],'#6b4a2a');part([P([[hx+2,hy-Math.round(20*ln)],[hx+10,hy-Math.round(24*ln)],[hx+10,hy-10],[hx+2,hy-12]])],'#9aa0b0');if(neon)flat([R(hx+9,hy-Math.round(22*ln),hx+10,hy-10)],NC)}
+  else if(WD==='staff'){const t=Math.round(32*ln);part([R(hx-1,hy-t,hx+2,hy+14)],'#7a5230');if(neon)flat([E(hx-3,hy-t-6,hx+5,hy-t+2)],NC);else part([E(hx-3,hy-t-6,hx+5,hy-t+2)],mx(cc,[255,255,255],.55))}
+  if(!back){
+   part([E(24-9*hs,21-10*hs,24+9*hs,21+10*hs)],k==='skel'?[232,228,208]:sk);
+   if(O.ears)part([P([[16,18],[3,11],[15,25]]),P([[32,18],[45,11],[33,25]])],sk);
+   if(k==='skel')flat([R(18,18,23,24),R(25,18,30,24)],[20,12,24]);else flat([R(18,19,23,22),R(25,19,30,22)],[26,16,22]);
+   flat([R(20,20,22,22),R(27,20,29,22)],eyc);
+   if(k!=='skel')flat([L([[18,18],[23,20]]),L([[30,18],[25,20]])],[40,24,24]);
+   if(k==='troll')part([E(22,23,26,28)],mx(sk,[0,0,0],.2));
+   flat([R(21,27,27,28)],[40,20,20]);if(O.tusks)flat([R(19,25,21,28),R(27,25,29,28)],[240,236,220]);
+   if(k==='skel')flat([R(20,27,21,30),R(23,27,24,30),R(26,27,27,30)],[20,12,24]);
+   if(O.hood)part([P([[10,22],[10,9],[16,2],[32,2],[38,9],[38,22],[34,30],[30,16],[18,16],[14,30]])],cc);
+   if(O.helm){part([P([[13,19],[13,11],[18,5],[30,5],[35,11],[35,19],[31,17],[17,17]])],cc);if(k==='knight'||k==='champ')part([R(23,17,25,27)],cc)}
+   if(k==='champ')part([P([[24,6],[28,-2],[38,-4],[33,4]])],[200,50,50]);
+   if(k==='giant')part([P([[13,18],[11,9],[17,3],[24,1],[31,3],[37,9],[35,18],[30,13],[24,16],[18,13]])],cd);
+   if(k==='brigand')flat([R(14,13,34,16)],cd);
+   if(k==='orc')part([R(22,3,26,12)],cd)}
+  else{
+   part([E(14,10,34,31)],(O.hood||O.helm)?cc:k==='skel'?[232,228,208]:sk);
+   if(O.hood)part([E(11,4,37,34)],cc);
+   if(O.helm)part([E(12,5,36,28)],cc);
+   if(k==='giant'||k==='brigand'||k==='orc')part([E(14,6,34,22)],cd);
+   if(k==='champ')part([P([[24,6],[28,-2],[38,-4],[33,4]])],[200,50,50]);
+   if(O.ears)part([P([[16,18],[3,11],[15,25]]),P([[32,18],[45,11],[33,25]])],sk)}};
+ const MPF={};for(const k of ['goblin','kobold','orc','bandit','brigand','poacher','cultist','guard','jailer','knight','champ','caster','skel','troll','giant'])MPF['m'+k]=()=>MP(k);
+ ({G,M,V,R:Rg,...NPF,...MPF})[cls]();
  // contour sombre
  const out=new Uint8ClampedArray(W*H*4);
  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=y*W+x;let d=false;for(let dy=-1;dy<=1&&!d;dy++)for(let dx=-1;dx<=1;dx++){const X=x+dx,Y=y+dy;if(X>=0&&Y>=0&&X<W&&Y<H&&im[(Y*W+X)*4+3]){d=true;break}}
@@ -986,18 +1027,36 @@ const MON={wolf:['q','#7a7a82','#4f4f58',{len:.8,mane:1}],fox:['q','#c8742a','#e
  dryad:['h','#4a8a4a','#2a5a2a',{sk:'#8ac08a',robe:1,crown:'leaf'}],bandit:['h','#6a5a40','#3a2f22',{w:'sword',hood:1}],brigand:['h','#7a4a3a','#3a2a22',{w:'club'}],cultist:['h','#5a2a6a','#2a1a3a',{robe:1,hood:1,w:'staff'}],guard:['h','#6a7a9a','#3a4a68',{armor:1,helm:1,w:'sword'}],poacher:['h','#6a7a4a','#3a4a28',{w:'sword',hood:1}],jailer:['h','#5a5a62','#2a2a32',{bulk:1.2,w:'club',helm:1}],
  goblin:['h','#6a9a4a','#4a3a22',{sk:'#7aaa52',ears:1,bulk:.8,w:'sword'}],kobold:['h','#b07a4a','#6a4a2a',{sk:'#c08a50',bulk:.75,ears:1,w:'club'}],orc:['h','#4a7a3a','#4a3a2a',{sk:'#5a8a42',bulk:1.25,tusks:1,w:'axe',armor:1}],troll:['h','#6a7a5a','#4a3a2a',{sk:'#7a8a6a',bulk:1.5,w:'club',head:1.1}],giant:['h','#b08a6a','#6a4a30',{sk:'#d4a67a',bulk:1.6,w:'club'}],
  knight:['h','#9aa4b4','#5a6272',{armor:1,helm:1,w:'sword',bulk:1.1}],champ:['h','#c8a040','#6a5020',{armor:1,helm:1,crown:'plume',w:'sword',bulk:1.2}],caster:['h','#4a3a7a','#2a1a4a',{robe:1,hood:1,w:'staff'}],lich:['h','#3a2a4a','#1a102a',{robe:1,sk:'#e8e4d0',crown:'crown',w:'staff',eye:'#7fe0ff'}],skel:['h','#e8e4d0','#b8b4a0',{sk:'#e8e4d0',w:'sword',bulk:.8,eye:'#ff4a3a'}],golem:['h','#8a8a82','#5a5a54',{bulk:1.6,head:.9,eye:'#ffb040',armor:1}],dking:['h','#3a1a4a','#1a0a2a',{bulk:1.3,armor:1,crown:'crown',w:'sword',eye:'#ff4a3a',horns:1}],demon:['h','#8a2a2a','#4a1a1a',{sk:'#b03a3a',horns:1,eye:'#ffd04a',bulk:1.1,w:'axe'}],yeti:['h','#e8eef4','#b8c4d0',{sk:'#d8e2ec',bulk:1.5}]};
-function monBuild(mk,h){const e=h.en,E=MON[mk]||['h','#7a6a5a','#3a2f22',{}],f={h:monH,q:monQ,w:monW,c:monC,s:monS,t:monT}[E[0]],b=(NMN=!!e.nt,NEY=0,E[0]==='t'?monT():f(E[1],E[2],E[3]||{})),nm=e.n.toLowerCase(),
+
+const SPRM=new Set(['goblin','kobold','orc','bandit','brigand','poacher','cultist','guard','jailer','knight','champ','caster','skel','troll','giant']);
+function buildSprMon(mk,e,h){const F4=[['f','idle'],['f','atk'],['b','idle'],['b','atk']],col=(h.z&&h.z.c)||null,o={col,neon:!!e.nt,hair:'#000000',eye:'#ffd04a'},
+ cv=document.createElement('canvas');cv.width=PXW*4;cv.height=PXH;const cx=cv.getContext('2d'),cg=e.nt?document.createElement('canvas'):null,gx=cg?cg.getContext('2d'):null;if(cg){cg.width=PXW*4;cg.height=PXH}
+ F4.forEach(([v,fr],i)=>{const im=pxSprite('m'+mk,0,v,fr,o);cx.putImageData(new ImageData(im,PXW,PXH),i*PXW,0);
+  if(gx){const g2=new Uint8ClampedArray(im.length);for(let q=0;q<im.length;q+=4)if(im[q]===143&&im[q+1]===233&&im[q+2]===255&&im[q+3]){g2[q]=143;g2[q+1]=233;g2[q+2]=255;g2[q+3]=255}gx.putImageData(new ImageData(g2,PXW,PXH),i*PXW,0)}});
+ const mkT=c=>{const t=new TH.CanvasTexture(c);t.magFilter=t.minFilter=TH.NearestFilter;t.generateMipmaps=false;t.colorSpace=TH.SRGBColorSpace;t.repeat.set(1/4,1);return t};
+ const tex=mkT(cv),ph=PXSZ,u=ph/PXH,mat=new TH.MeshBasicMaterial({map:tex,alphaTest:.5,side:TH.DoubleSide});mat.userData.px=1;
+ const geo=new TH.PlaneGeometry(ph*PXW/PXH,ph).translate(0,ph/2-2*u,0),mesh=new TH.Mesh(geo,mat);mesh.castShadow=true;
+ const g=new TH.Group(),m=new TH.Group(),piv=new TH.Group();piv.add(mesh);m.add(piv);g.add(m);
+ let tg=null,gm=null;if(cg){tg=mkT(cg);gm=new TH.MeshBasicMaterial({map:tg,alphaTest:.5,side:TH.DoubleSide,fog:false,depthWrite:false,transparent:true,polygonOffset:true,polygonOffsetFactor:-2});gm.userData.px=1;const gs=new TH.Mesh(geo,gm);gs.position.z=.03;piv.add(gs)}
+ const b={g,S0:1,fly:0,wide:1,spr:1,dead:0};
+ b.anim=(t,lg)=>{const az=K.az||0,rel=-PI/2-az,bk=Math.cos(rel)<-.35,mx=Math.sin(rel)<-.35?-1:1,d=b.dead;m.rotation.y=az+PI/2;
+  const f=(bk?2:0)+(lg>.55&&d<=0?1:0);tex.offset.x=f/4;if(tg)tg.offset.x=f/4;
+  piv.rotation.x=-Math.atan2(cam3.position.y,Math.hypot(cam3.position.x-K.tx,cam3.position.z-K.tz))*.75;piv.rotation.z=-PI/2*d;piv.scale.set(mx,1+(d>0?0:Math.sin(t*2)*.012),1);
+  const l=Math.min(1.1,1-.5*dk())*(1-.45*d);mat.color.setRGB(l,l,l*1.06);if(gm){gm.color.setRGB(1,1,1);gm.opacity=1-.7*d}};
+ return b}
+function monBuild(mk,h){const e=h.en,E=MON[mk]||['h','#7a6a5a','#3a2f22',{}],f={h:monH,q:monQ,w:monW,c:monC,s:monS,t:monT}[E[0]],b=(NMN=!!e.nt,NEY=0,SPRM.has(mk)?buildSprMon(mk,e,h):E[0]==='t'?monT():f(E[1],E[2],E[3]||{})),nm=e.n.toLowerCase(),
   ql=Math.max(0,Math.min(1,(Math.log((e.d||1)+1)-.7)/3.5)),km=mk==='dragon'?(/^dragonnet/.test(nm)?.8:/^drake/.test(nm)?1:/^wyrm/.test(nm)?1.1:/^wyvern/.test(nm)?.95:1.4):mk==='demon'?(/mineur/.test(nm)?.65:/^archi/.test(nm)?1.35:/succube|incube/.test(nm)?.85:1):mk==='salam'?(/g[ée]ante/.test(nm)?1.35:1):1;
- if(!(b.fly>0))b.g.add(csChar((b.wide||1)*1.7));if(NMN&&!NEY){const bb=new TH.Box3().setFromObject(b.g),w=(bb.max.x-bb.min.x)*.14;nEyes(b.g,[[w,bb.min.y+(bb.max.y-bb.min.y)*.72,bb.max.z*.9],[-w,bb.min.y+(bb.max.y-bb.min.y)*.72,bb.max.z*.9]],.2)}NMN=0;
+ if(!(b.fly>0))b.g.add(csChar((b.wide||1)*1.7));if(NMN&&!NEY&&!b.spr){const bb=new TH.Box3().setFromObject(b.g),w=(bb.max.x-bb.min.x)*.14;nEyes(b.g,[[w,bb.min.y+(bb.max.y-bb.min.y)*.72,bb.max.z*.9],[-w,bb.min.y+(bb.max.y-bb.min.y)*.72,bb.max.z*.9]],.2)}NMN=0;
  b.S0=(SZ[mk]||1)*km*(.85+.4*ql)*(.95+.1*jt(hid(e.n)+h.id*7,2));b.g.scale.setScalar(HS*b.S0);b.g.userData.mk=mk;return b}
-const MN=new Map();let monG=null;
+const MN=new Map(),MCP=[];let monG=null;
 function updMon(dt,tm,BM){const seen=new Set();
  for(const h of S.hero){if(h.st!=='fight'||!h.en)continue;const mk=mkind(h.en.n);if(!mk)continue;seen.add(h.id);const key=mk+'|'+h.en.n;let o=MN.get(h.id);
   if(o&&o.key!==key){monG.remove(o.g);disp(o.g);MN.delete(h.id);o=null}
   if(!o){const b=monBuild(mk,h);o={g:b.g,b,key,ph:Math.random()*6};monG.add(o.g);MN.set(h.id,o)}
   const [hx,hz]=hpos(h,BM),S0=o.b.S0,off=3.4+2.1*S0*Math.min(1.5,o.b.wide||1)+(h.hs?1.3:0),lg=Math.abs(Math.sin(tm*9))*1.1,x=hx+off-lg;
   o.g.position.set(x,H3(x,hz)+o.b.fly*S0*HS*.45+Math.sin(tm*3+h.id)*.1,hz);o.g.rotation.y=-PI/2;o.b.anim(tm+o.ph,lg)}
- for(const [id,o] of MN)if(!seen.has(id)){monG.remove(o.g);disp(o.g);MN.delete(id)}}
+ for(const [id,o] of MN)if(!seen.has(id)){MN.delete(id);const hq=S.hero.find(q=>q.id===id);if(o.b.spr&&hq&&hq.loot){o.age=0;MCP.push(o)}else{monG.remove(o.g);disp(o.g)}}
+ for(let i=MCP.length-1;i>=0;i--){const o=MCP[i];o.age+=dt;o.b.dead=Math.min(1,o.age/.7);o.b.anim(tm+o.ph,0);if(o.age>30){monG.remove(o.g);disp(o.g);MCP.splice(i,1)}}}
 // ===== v3.3.4 : qualité, post-traitement, lucioles, fumée, rotation =====
 const PP={ok:0,fail:0,w:0,h:0};let SQ=[];
 function qload(){let q='auto';try{q=localStorage.getItem('bvq')||'auto'}catch(e){}if(!['auto','h','m','b'].includes(q))q='auto';K.q=q;K.ql=q==='m'?1:q==='b'?0:2;K.pf=K.ql===2?1:K.ql===1?.6:.3;

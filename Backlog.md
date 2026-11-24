@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.0 « PNJ en sprites »**
+Version actuelle du jeu : **v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »**
 
 ## ✅ Déjà intégré
 
@@ -329,12 +329,13 @@ Version actuelle du jeu : **v3.5.0 « PNJ en sprites »**
 - [x] Retirer `buildNpc` une fois les sprites validés.
 - [x] **Marteau de construction :** l'aventurier qui construit (et le PNJ qui améliore son bâtiment) se tourne vers le chantier et frappe avec un marteau pixel-art.
 
-## 👹 v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes » (prochain)
-- [ ] **Moteur de sprites de monstres :** générateur commun (grands formats possibles, 48×48 à 96×96 selon l'espèce, champ `span`), face/dos, repos, marche, attaque, touché, mort ; contour sombre, 3 tons, variantes de couleur par zone.
-- [ ] **Humanoïdes :** gobelin, kobold, orc, bandit, brigand, braconnier, cultiste, garde, geôlier, chevalier, champion, lanceur de sorts, squelette, troll, géant.
-- [ ] **Yeux et traits bleu néon la nuit** conservés sur les sprites (pixels émissifs).
+## ✅ v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »
+- [x] **Moteur de sprites de monstres :** générateur commun (grands formats possibles, 48×48 à 96×96 selon l'espèce, champ `span`), face/dos, repos, marche, attaque, touché, mort ; contour sombre, 3 tons, variantes de couleur par zone.
+- [x] **Humanoïdes :** gobelin, kobold, orc, bandit, brigand, braconnier, cultiste, garde, geôlier, chevalier, champion, lanceur de sorts, squelette, troll, géant.
+- [x] **Yeux et traits bleu néon la nuit** conservés sur les sprites (pixels émissifs).
+- [x] **Cadavre :** le monstre vaincu s'effondre et reste couché environ 30 s. Pas de marche, pas de flash ni d'animation d'impact (choix).
 
-## 🐺 v3.5.2 « Monstres en sprites (2/3) : bêtes »
+## 🐺 v3.5.2 « Monstres en sprites (2/3) : bêtes » (prochain)
 - [ ] Loup (meute), sanglier, ours, renard, rat, chauve-souris, araignée, aigle, chouette, condor, harpie, griffon, chèvre, yéti, loup-garou, ver, salamandre.
 - [ ] Animations de marche adaptées (quadrupèdes, vol) et d'attaque propres à chaque espèce.
 
