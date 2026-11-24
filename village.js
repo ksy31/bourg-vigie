@@ -1,7 +1,9 @@
 function leave(h,z){h.z=z;const q=zr(z.n),a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);{const en=ventry(z);h.wp=(en?vpath(h,en):[]).concat(h.gw.map(p=>({x:p.x,y:p.y})))}h.st='go'}
 const PRM=.8,PRL=.04,PRMIN=2,TVX=2,FGT=2,AUB=3,BL0=.55,BL1=.04,BL2=.03,blP=()=>Math.min(.95,BL0+BL1*S.spa+BL2*nl('S'));
-const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30],armory:[20,30],guild:[20,30]};
-const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie',guild:'à la Maison des Guildes'};
+// v3.7.1 : gemmes (GDROP = chance par victoire), coût par niveau de sort (GCOST), réussite de l'enchantement = EN0 + EN1 × niveau du bâtiment + EN2 × niveau de l'Enchanteur
+const GDROP=.04,GCOST=[1,2,3,4,5],EN0=.5,EN1=.04,EN2=.03,enP=()=>Math.min(.95,EN0+EN1*(S.ench||0)+EN2*nl('N')),enL=h=>{const L=Math.min(5,S.ench||0);return !h.sp&&L>0&&(h.gem||0)>=GCOST[L-1]?L:0};
+const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30],armory:[20,30],guild:[20,30],ench:[20,30]};
+const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie',guild:'à la Maison des Guildes',ench:'à l’Enchantement'};
 const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'||h.sub==='bld'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
 const door=it=>{const p=slot(it),k=NK[it.e]||'H';return{x:T.x+p[0],y:T.y+p[1]+(k==='A'?6.6:5.4)/2+2.4}};
@@ -51,6 +53,7 @@ function decide(h){
  if(!h.hs&&bestHorse(h)){const it=pickB(NE.E);if(it)return{k:'horse',b:it.i}}
  if(S.forge){const f=forgeP(h);if(h.eq[f.k]<f.t&&h.gold+fpay(h,f.p)-f.p>=keepG(h)){const it=pickB(NE.F);if(it)return{k:'forge',b:it.i}}}
  if(guOk(h)){const it=pickB(NE.C);if(it)return{k:'guild',b:it.i}}
+ if(enL(h)){const it=pickB(NE.N);if(it)return{k:'ench',b:it.i}}
   return null}
 function taskOk(h,tk){
  if(tk.k==='horse')return !h.hs&&!!bestHorse(h);
@@ -59,6 +62,7 @@ function taskOk(h,tk){
   if(tk.k==='bless')return !!S.spa&&!h.bless;
  if(tk.k==='armory')return armPick(h).length>0;
  if(tk.k==='guild')return guOk(h);
+ if(tk.k==='ench')return enL(h)>0;
  return true}
 function applyTask(h,tk){
  if(tk.k==='loot'){
@@ -75,6 +79,7 @@ function applyTask(h,tk){
  else if(tk.k==='forge'){const f=forgeP(h),fp=fpay(h,f.p);if(fp)recG(h).f-=fp;h.gold-=f.p-fp;S.g+=f.p;h.eq[f.k]=f.t;npcx('F');log(`${h.name} achète ${pn(h,f.k)} ${f.t} chez le forgeron (${f.p} or${fp?', dont '+fp+' payés par la caisse de guilde':''}).`)}
  else if(tk.k==='prime'){if(h.prime){const p=h.prime;h.gold+=p.g;h.earned+=p.g;h.prime=null;for(let i=0;i<TVX;i++)npcx('T');log(`🎯 ${h.name} touche la prime sur ${p.n} : +${p.g} or.`,'ok')}}
  else if(tk.k==='bless'){npcx('S');if(Math.random()<blP())h.bless=1;else log(`${h.name} : la bénédiction échoue.`)}
+ else if(tk.k==='ench'){const L=enL(h);if(L){const c=GCOST[L-1];npcx('N');h.gem-=c;if(Math.random()<enP()){h.sp=L;log(`✨ ${h.name} apprend un sort de niveau ${L} (${c} gemme${c>1?'s':''}).`,'ok')}else log(`${h.name} : l’enchantement échoue, ${c} gemme${c>1?'s':''} perdue${c>1?'s':''}.`,'bad')}}
  else if(tk.k==='armory'){const pk=armPick(h),tx=pk.map(p=>`${pn(h,p.k)} ${S.chest[p.i].t}`);pk.forEach(p=>{h.eq[p.k]=S.chest[p.i].t});
   pk.map(p=>p.i).sort((a,b)=>b-a).forEach(i=>S.chest.splice(i,1));for(let j=0;j<pk.length*AXD;j++)npcx('I');
   log(`🛡️ ${h.name} s’équipe à l’Armurerie : ${tx.join(', ')}.`,'ok')}

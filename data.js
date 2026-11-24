@@ -1,7 +1,7 @@
 const CL={G:{n:'Guerrier',p:1.15,die:.4,g:1,r:1,cost:20,t:'Solide : survit mieux aux défaites.'},V:{n:'Voleur',p:.95,die:.5,g:1.4,r:1,cost:25,t:'Rapporte 40 % d’or en plus.'},M:{n:'Mage',p:1.3,die:.85,g:1,r:1,cost:30,t:'Très puissant, mais fragile.'},R:{n:'Rôdeur',p:1,die:.55,g:1,r:1.5,cost:22,t:'Rapporte 50 % de ressources en plus.'}};
 const dz=z=>z.d;
-const NE={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',E:'🐴',V:'🏛️',I:'🛡️',C:'⚜️'};
-const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',E:'Palefrenier',V:'Maire',I:'Intendant',C:'Chancelier'};
+const NE={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',E:'🐴',V:'🏛️',I:'🛡️',C:'⚜️',N:'🔮'};
+const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',E:'Palefrenier',V:'Maire',I:'Intendant',C:'Chancelier',N:'Enchanteur'};
 const NI='🗝️',NC='📜';
 const CI={G:'■',V:'▲',M:'◆',R:'⬢'};
 const lbB=(a,b)=>a.k-b.k||a.g-b.g||a.lv-b.lv||a.d-b.d;

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.7.0 « Combats plus lents et 4 attaques par classe »**
+Version actuelle du jeu : **v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »**
 
 ## ✅ Déjà intégré
 
@@ -410,14 +410,13 @@ Version actuelle du jeu : **v3.7.0 « Combats plus lents et 4 attaques par class
 - [x] Animations de combat ralenties (×1,5) ; coups beaucoup moins fréquents (pause de 1,8 à 3,6 s, constantes `ASL` et `AGP` dans `gl.js`) ; le monstre riposte une fois par coup.
 - [x] 4 attaques de base par classe avec animations différentes, débloquées aux niveaux 1 / 5 / 10 / 20 (`HLV`), tirées au hasard parmi les débloquées, purement visuelles.
 
-## 🔜 v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) » (prochain)
-- [ ] **Gemmes :** butin très rare ramené d'expédition, stocké uniquement dans l'inventaire de l'aventurier (pas de stock au village).
-- [ ] **Nouveau bâtiment d'enchantement** tenu par un **Enchanteur** (PNJ) ; niveau du bâtiment 1 à 5 = niveau des sorts disponibles (sorts 1 à 5).
-- [ ] **Apprentissage :** l'aventurier paie en gemmes ; taux de réussite augmenté par le niveau de l'Enchanteur (comme la bénédiction) ; en cas d'échec, les gemmes sont perdues.
-- [ ] 1 sort maximum par aventurier ; le sort est perdu à la mort.
-- [ ] À préciser avant de coder : coût en gemmes par sort, taux de drop, quand l'aventurier va à l'enchantement, ce que devient la gemme à la mort.
+## ✅ v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »
+- [x] **Gemmes :** 4 % par victoire (`GDROP`), stockées uniquement dans l'inventaire de l'aventurier, perdues à sa mort.
+- [x] **Bâtiment d'enchantement** + **Enchanteur** ; niveau du bâtiment 1 à 5 = niveau de sort accessible.
+- [x] **Apprentissage :** coût en gemmes = niveau du sort (`GCOST` = 1 à 5) ; réussite 50 % + 4 %/niveau du bâtiment + 3 %/niveau de l'Enchanteur (`EN0`, `EN1`, `EN2`) ; échec = gemmes perdues.
+- [x] 1 sort maximum par aventurier, perdu à la mort ; pour l'instant le sort est un niveau sans effet (`h.sp`).
 
-## ⏳ v3.7.2 « 5 sorts par classe (2/2) »
+## 🔜 v3.7.2 « 5 sorts par classe (2/2) » (prochain)
 - [ ] 5 sorts par classe, lancés automatiquement en combat, avec animation et effet de jeu (liste à proposer et à valider avant de coder). Le soin du Mage (animation `heal`) existe déjà.
 
 ## ✅ v3.6.9 « Micro-ajustement de la piste »

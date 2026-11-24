@@ -665,7 +665,7 @@ function buildWorld(){
  csInst(worldG,TPOS.map(q=>[q.x,q.z,2.7*q.s,2.7*q.s]),false,.28);csInst(worldG,L.rk.map(q=>[q.x,q.z,2.6*q.sx,2.6*q.sz]),false,.4);
  const vz=ZA.find(z=>z.n==='Volcan');if(vz){const sp=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff7a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true}));sp.position.set(vz.x,H3(vz.x,vz.y)+2,vz.y);sp.scale.set(30,30,1);worldG.add(sp)}}
 // ---------- village ----------
-const WALL={A:'#e6d3a8',V:'#ece2c8',F:'#b9b2a4',T:'#d9b98f',S:'#efeae0',M:'#a8794a',E:'#a8794a',I:'#a9acb6',C:'#d9c9a3',H:'#d9b98f'},ROOF={A:'#9b4a2f',V:'#3f5f8a',F:'#55555e',T:'#7a3d2e',S:'#6c7fb5',M:'#c9a24a',E:'#6b4a2a',I:'#3f4e6b',C:'#7a2f3a',H:'#8b4a3a'};
+const WALL={A:'#e6d3a8',V:'#ece2c8',F:'#b9b2a4',T:'#d9b98f',S:'#efeae0',M:'#a8794a',E:'#a8794a',I:'#a9acb6',C:'#d9c9a3',N:'#cdc3e4',H:'#d9b98f'},ROOF={A:'#9b4a2f',V:'#3f5f8a',F:'#55555e',T:'#7a3d2e',S:'#6c7fb5',M:'#c9a24a',E:'#6b4a2a',I:'#3f4e6b',C:'#7a2f3a',N:'#4b3a86',H:'#8b4a3a'};
 // ===== v3.4.3 : détails d'architecture et ombres de contact =====
 function brace(W,x1,y1,x2,y2,z,dz){const L=Math.hypot(x2-x1,y2-y1);W.add('wood',box(L,.16,.1),'#5a3d26',(x1+x2)/2,(y1+y2)/2,z+dz*.05,{rz:Math.atan2(y2-y1,x2-x1),shade:0})}
 function bldDetail(W,k,x,z,w,D,hh,yb,top,rh,roof,wk){
@@ -734,11 +734,12 @@ function building(W,k,x,y0,z,w,d,hh,roof,tier,full){CQ.push([x,z,w+3.4,d+3.4]);
  if(k==='E'){for(const [hx,hz] of[[-w*.36,.9],[-w*.36+.8,1.3],[-w*.3,1.9]])W.add('flat',box(.9,.6,.9),'#d6b84a',x+hx,yb+.3,fz+hz,{ry:hx,shade:.02});
   W.add('wood',box(2,.4,.6),'#6b4a2a',x+w*.3,yb+.35,fz+1.1,{shade:0});W.add('wood',box(w*.9,.1,.1),'#5a3d26',x,yb+.9,fz+2.2,{shade:0});for(let q=-2;q<=2;q++)W.add('wood',box(.18,1.1,.18),'#5a3d26',x+q*w*.22,yb+.55,fz+2.2,{shade:0})}
  if(k==='I'){W.add('flat',box(1.3,1.7,.08),'#2f4f8a',x+w*.3,yb+hh*.5,fz+.06,{shade:0});W.add('flat',box(.2,1.4,.05),'#e8e8f0',x+w*.3,yb+hh*.5,fz+.1,{shade:0});W.add('flat',box(.9,.2,.05),'#e8e8f0',x+w*.3,yb+hh*.5+.3,fz+.1,{shade:0})}
+ if(k==='N'){W.add('stone',cy2(.5,.65,.9,10),'#8a857a',x+w*.3,yb+.45,fz+1.5,{cyl:[.6,.9],shade:.05});W.add('flat',new TH.SphereGeometry(.5,12,8),'#b48cff',x+w*.3,yb+1.4,fz+1.5,{shade:0});W.add('flat',new TH.SphereGeometry(.22,8,6),'#efe0ff',x+w*.3-.12,yb+1.5,fz+1.62,{shade:0});W.add('flat',box(.9,1.5,.06),'#4b3a86',x-w*.3,yb+hh*.5,fz+.06,{shade:0});W.add('flat',box(.3,.5,.05),'#cfa8ff',x-w*.3,yb+hh*.5+.1,fz+.1,{shade:0})}
  if(k==='C'){const tx=x+w/2,tz=z-D*.1,th=hh+2.4;W.add('stone',cy2(1.1,1.2,th,14),'#d9d3c5',tx,yb+th/2,tz,{cyl:[1.15,th],shade:.06});W.add('tile',new TH.ConeGeometry(1.6,3,14),roof,tx,yb+th+1.4,tz,{cyl:[1.6,3.2],shade:.1});
   W.add('flat',box(.9,1.5,.06),'#7a2f3a',x-w*.3,yb+hh*.5,fz+.06,{shade:0});W.add('flat',box(.3,.5,.05),'#d4b04a',x-w*.3,yb+hh*.5+.1,fz+.1,{shade:0})}}
 function vprops(W,k,x,z,w,d,i){if(k==='A'||k==='T')return;const a=(i*7+3)%5,px=x-w/2-.9,pz=z+d/2-.5,py=H3(px,pz);W.add('wood',cy2(.45,.5,1,10),'#7a5232',px,py+.5,pz,{cyl:[.45,1],shade:.05});W.add('wood',box(.85,.75,.85),'#9a7448',px+.15,py+.38,pz+.95,{ry:.4+a*.3,shade:.05});if(a%2===0)W.add('wood',box(.6,.55,.6),'#b08850',px+.1,py+1.02,pz+.95,{ry:.9,shade:.05});
  if(k==='H'||k==='E'||k==='C'){const qx=x+w/2+.2,qz=z-d/2-.9,qy=H3(qx,qz);W.add('wood',cy2(.45,.5,1,10),'#6a4a2c',qx,qy+.5,qz,{cyl:[.45,1],shade:.05})}}
-const RIT={},RIC={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',E:'🐴',V:'🏛️',I:'🛡️',C:'⚜️',H:'🏠'};
+const RIT={},RIC={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',E:'🐴',V:'🏛️',I:'🛡️',C:'⚜️',N:'🔮',H:'🏠'};
 function roofTex(ch){if(RIT[ch])return RIT[ch];const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');const tn=(col)=>{const q=document.createElement('canvas');q.width=q.height=128;const h=q.getContext('2d');h.font='88px serif';h.textAlign='center';h.textBaseline='middle';h.fillText(ch,64,64);h.globalCompositeOperation='source-in';h.fillStyle=col;h.fillRect(0,0,128,128);return q};g.drawImage(tn('#140b06'),3,4);g.drawImage(tn('#f3e2b4'),0,0);return RIT[ch]=new TH.CanvasTexture(c)}
 function roofIcons(){for(const [k,x,top,z,w,D,rh] of RQ){const ch=RIC[k]||RIC.H,E=D+.55,L=Math.hypot(E,rh),al=Math.atan2(rh,E),s=Math.min(w*.5,L*.7,3.2),m=new TH.Mesh(new TH.PlaneGeometry(s,s),new TH.MeshLambertMaterial({map:roofTex(ch),transparent:true,opacity:.92,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2}));m.position.set(x,top+rh*.5+Math.cos(al)*.06,z+E*.5+Math.sin(al)*.06);m.rotation.x=-(PI/2-al);villG.add(m)}}
 function buildVillageMesh(){
@@ -1003,7 +1004,7 @@ function pxSprite(cls,fem,view,fr,o){
   if(!back){face();part([P([[14,16],[34,16],[31,21],[28,17],[25,21],[22,17],[19,21]])],hc);part([R(12,13,16,fem?27:22),R(32,13,36,fem?27:22)],hc)}
   else part([E(12,6,36,30)],hc);
   part([P([[11,16],[37,16],[33,6],[24,1],[14,6]])],GR);part([R(11,13,37,17)],HB);part([P([[32,8],[45,0],[41,11]])],[208,64,64])};
- const NP=r=>{const v=NPV[r],c=v.c,act=fr==='act',rob=fem||r==='S'||r==='C'||r==='V',X=v.x,sl=c;
+ const NP=r=>{const v=NPV[r],c=v.c,act=fr==='act',rob=fem||r==='S'||r==='C'||r==='V'||r==='N',X=v.x,sl=c;
   part([E(12,6,36,fem?32:30)],hc);
   if(back&&fem)part([R(12,12,36,42)],hc);
   if(rob){legs('#2b2118','#2b2118',null,0,0,54);part([P([[14,30],[34,30],[39,60],[9,60]])],c);if(r==='S')flat([R(9,57,39,60)],[230,189,84])}
@@ -1013,6 +1014,7 @@ function pxSprite(cls,fem,view,fr,o){
    if(r==='A'||r==='T'){part([R(19,34,29,45)],'#f1ece0');part([R(18,45,30,58)],'#f1ece0')}
    if(r==='F')part([P([[18,32],[30,32],[33,58],[15,58]])],'#6b4a2a');
    if(r==='S'){flat([R(23,34,25,43),R(21,36,27,38)],GD)}
+    if(r==='N'){flat([R(21,36,27,38),R(23,34,25,40)],[190,150,255])}
    if(r==='V')flat([L([[17,31],[24,41],[31,31]],2)],GD);
    if(r==='I')part([E(15,44,20,50)],'#d4b04a');
    if(r==='C')flat([L([[16,31],[31,45]],2)],GD)}

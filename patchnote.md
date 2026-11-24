@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »
+
+Version affichée dans les Options : **v3.7.1**
+
+### Ajouté
+- **Gemmes 💎 :** 4 % de chance de trouver une gemme à chaque victoire. Elle reste dans l'inventaire de l'aventurier (pas de stock au village) et se perd avec lui s'il meurt. Affichée dans l'onglet Aventuriers.
+- **Bâtiment d'enchantement 🔮** (onglet Bâtir, mêmes coûts que la Maison des Guildes) avec son **Enchanteur** (PNJ qui monte de niveau en servant). Rendu 2D et 3D : toit violet, boule de cristal sur socle, bannière, icône sur le toit.
+- **Apprentissage :** le niveau du bâtiment donne le niveau de sort accessible (niveau 1 à 5). Un aventurier sans sort, qui a assez de gemmes (coût = niveau du sort : 1 à 5 gemmes), passe au bâtiment à son retour au village.
+- **Réussite :** 50 % + 4 % par niveau du bâtiment + 3 % par niveau de l'Enchanteur (plafond 95 %, comme la bénédiction). En cas d'échec, les gemmes sont perdues.
+- 1 sort maximum par aventurier ; il est perdu à sa mort. Pour l'instant le sort n'est qu'un niveau (✨ sort niv. N) sans effet : les 5 sorts par classe arrivent en 3.7.2.
+
+### Modifié
+- Sauvegardes : champ `ench` ajouté (0 par défaut) ; les anciennes parties se chargent sans changement.
+- Constantes d'équilibrage dans `village.js` : `GDROP`, `GCOST`, `EN0`, `EN1`, `EN2`.
+
 ## v3.7.0 « Combats plus lents et 4 attaques par classe »
 
 Version affichée dans les Options : **v3.7.0**

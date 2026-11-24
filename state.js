@@ -26,6 +26,7 @@ const BD={
  S:{n:'Sanctuaire',t:'morts −8 %',k:'spa',c:l=>({w:20+l*20,s:30+l*25,g:60+l*70})},
  I:{n:'Armurerie',t:'récupère l’équipement des morts',k:'armory',c:l=>({w:20+l*20,s:30+l*25,g:60+l*70})},
  C:{n:'Maison des Guildes',t:'fonder et rejoindre une guilde',k:'guildh',c:l=>({w:30+l*25,s:30+l*30,g:80+l*80})},
+ N:{n:'Enchantement',t:'sorts appris contre des gemmes',k:'ench',c:l=>({w:30+l*25,s:30+l*30,g:80+l*80})},
 };
 const cs=c=>[c.w&&c.w+' bois',c.s&&c.s+' pierre',c.g&&c.g+' or'].filter(Boolean).join(', ');
 const bestChamp=()=>S.hero.filter(h=>h.z!==BZ||h.st==='rest').sort((a,b)=>power(b)-power(a))[0];
@@ -72,7 +73,7 @@ function exportCode(){return btoa(unescape(encodeURIComponent(JSON.stringify({v:
 function importCode(c){const o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(!o||!o.S||!Array.isArray(o.S.hero)||!Array.isArray(o.S.pl))throw 0;localStorage.setItem(SK,JSON.stringify(o.S));if(o.P)localStorage.setItem('bv',JSON.stringify(o.P));if(Array.isArray(o.N))localStorage.setItem('bvn',JSON.stringify(o.N));if(o.G&&typeof o.G==='object')localStorage.setItem('bvg',JSON.stringify(o.G))}
 const COL=['#e07a5f','#f2cc8f','#81b29a','#8ecae6','#c8a2c8','#f4a261','#a7c957','#ff9fb2'];
 const fu=o=>{o.used=[o.npc.A.n,o.npc.V.n];return o};
-const fresh=()=>{const zv=ZB.map(()=>Math.floor(Math.random()*3));ZVC=zv;ZSON=true;return fu({zs:1,g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,armory:0,chest:[],guildh:0,guilds:[],hero:[],cp:{},t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:5,zv,zp:genMap(),tp:[T.x,T.y],bp:[BZ.x,BZ.y],ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()})};
+const fresh=()=>{const zv=ZB.map(()=>Math.floor(Math.random()*3));ZVC=zv;ZSON=true;return fu({zs:1,g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,armory:0,chest:[],guildh:0,ench:0,guilds:[],hero:[],cp:{},t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:5,zv,zp:genMap(),tp:[T.x,T.y],bp:[BZ.x,BZ.y],ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()})};
 let S=fresh(),showT=false;
 const rname=()=>rn([],S);
 const rem=h=>{if(h.st==='fight')return h.t;if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h))};
