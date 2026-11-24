@@ -1,5 +1,12 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.8 « Caméra plus basse »
+
+Version affichée dans les Options : **v3.4.8**
+
+### Modifié
+- **Caméra 3D plus proche du sol :** inclinaison par défaut ramenée de 54° à 43° au-dessus de l'horizon (les sprites des aventuriers s'inclinent avec elle). Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.4.7 « Aventuriers en pixel-art HD-2D »
 
 Version affichée dans les Options : **v3.4.7**

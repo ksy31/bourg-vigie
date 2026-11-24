@@ -143,7 +143,7 @@ function heroAnim(h,t,walk){const u=h.userData,s=walk?Math.sin(t*7):0,a=walk?.65
 
 // ===== Moteur 3D (WebGL) : terrain, routes, rivières, zones, village, héros =====
 const TH=THREE,WXd=100*MS,WYd=130*MS,HS=3,ZF=ZS/2,PXSZ=2.0;
-const K={on:false,ok:false,fail:false,dist:300,az:0,tilt:.95,tx:T.x,tz:T.y-70,pr:1,prMax:1.5,ft:[],lastFol:null};
+const K={on:false,ok:false,fail:false,dist:300,az:0,tilt:.75,tx:T.x,tz:T.y-70,pr:1,prMax:1.5,ft:[],lastFol:null};
 let ren,scn,cam3,glc,sun,hemi,terr,tex,gcv,worldG,villG,heroG,gKey='',vKey='',pKey='',vtKey='',tRoad=[],fpsT=0,fpsN=0,par=0;
 const HM=new Map(),FACE3=new Map(),V3a=new TH.Vector3();
 const rg3=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};

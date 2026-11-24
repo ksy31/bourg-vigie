@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.7 « Aventuriers en pixel-art HD-2D »**
+Version actuelle du jeu : **v3.4.8 « Caméra plus basse »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,9 @@ Version actuelle du jeu : **v3.4.7 « Aventuriers en pixel-art HD-2D »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.4.8 « Caméra plus basse »
+- [x] **Caméra 3D plus proche du sol :** inclinaison par défaut de 54° à 43° au-dessus de l'horizon.
 
 ## ✅ v3.4.7 « Aventuriers en pixel-art HD-2D »
 - [x] **Aventuriers en sprites pixel-art (3D) :** sprites chibi dessinés sur canevas (contour sombre, ombrage 3 tons), debout face à la caméra, ombre au sol, images de face, de dos, marche et attaque.
