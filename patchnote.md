@@ -1,5 +1,16 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.5 « Fouille accroupie »
+
+Version affichée dans les Options : **v3.8.5**
+
+### Ajouté
+- Pendant la fouille du butin (après les 5 s de pose de victoire), l'aventurier s'accroupit : le sprite s'abaisse (environ 72 % de sa hauteur) avec un léger balancement, puis se redresse en douceur à la fin de la fouille.
+
+### Modifié
+- L'accroupissement est un écrasement du sprite existant, pas un nouveau dessin. Il n'est pas appliqué aux aventuriers à cheval.
+- Aucun changement d'équilibrage ni de sauvegarde.
+
 ## v3.8.4 « Top 10 des villages »
 
 Version affichée dans les Options : **v3.8.4**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.4 « Top 10 des villages »**
+Version actuelle du jeu : **v3.8.5 « Fouille accroupie »**
 
 ## ✅ Déjà intégré
 
@@ -411,6 +411,9 @@ Version actuelle du jeu : **v3.8.4 « Top 10 des villages »**
 
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
+
+## ✅ v3.8.5 « Fouille accroupie »
+- [x] Aventurier accroupi pendant la fouille du butin (`o.cr`, `o.cz` dans `gl.js`).
 
 ## ✅ v3.8.4 « Top 10 des villages »
 - [x] Onglet Villages dans le Top 10 : classement par jours survécus, une entrée par partie terminée (`vlbRec`, `vlbAdd`, `P.vlb`), détails : victoire, tués, or, morts, bâtiments, meilleur aventurier.
