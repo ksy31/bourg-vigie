@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.3 « Refonte du monde (3/3) : herbe en 3D »**
+Version actuelle du jeu : **v3.6.4 « Correctifs : transparence, actualisation, menu Développeur, flou »**
 
 ## ✅ Déjà intégré
 
@@ -405,6 +405,12 @@ Version actuelle du jeu : **v3.6.3 « Refonte du monde (3/3) : herbe en 3D »**
 - [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
+
+## ✅ v3.6.4 « Correctifs : transparence, actualisation, menu Développeur, flou »
+- [x] Rond de transparence autour de l'aventurier : appliqué aussi à l'herbe, marge de profondeur réduite et rayon agrandi (environ 20 %).
+- [x] L'actualisation de la page en glissant vers le bas est désactivée.
+- [x] Menu Développeur : le bandeau fixe ne cache plus la première option.
+- [x] Zone de flou (haut et bas de l'écran) agrandie : elle commence plus tôt (0,10 au lieu de 0,20 de l'écran à partir du centre).
 
 ## 📱 Guide APK
 

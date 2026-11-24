@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.4 « Correctifs : transparence, actualisation, menu Développeur, flou »
+
+Version affichée dans les Options : **v3.6.4**
+
+### Corrigé
+- Le rond de transparence autour de l'aventurier s'applique maintenant aussi à l'herbe, coupe un peu plus de feuillage (marge de profondeur réduite) et son rayon est agrandi d'environ 20 %.
+- Faire glisser l'écran vers le bas n'actualise plus la page.
+- Menu Développeur : la première option n'est plus cachée par le bandeau du haut.
+
+### Modifié
+- La zone de flou en haut et en bas de l'écran est plus grande : le flou commence plus tôt.
+
 ## v3.6.3 « Refonte du monde (3/3) : herbe en 3D »
 
 Version affichée dans les Options : **v3.6.3**
