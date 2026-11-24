@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.7 « Équipements visibles (1/3) : système et paliers »
+
+Version affichée dans les Options : **v3.5.7**
+
+### Ajouté
+- **Armes visibles sur les aventuriers (mode 3D), 14 paliers par classe** : épée du Guerrier, dagues du Voleur, bâton du Mage, arc du Rôdeur. Chaque palier a sa matière (cuivre, bronze, acier, argent, fer noir, mithril, or, obsidienne, rubis, jade, cristal, os, orage, céleste) et sa forme (lames droites, en feuille, courbes, ondulées, dentelées, en éclair, en cristal ; têtes de bâton en boule, fourche, croissant, anneau, crosse, cristal, soleil, griffes, flamme, branche, prisme, crâne, éclair, étoile ; arcs plus ou moins courbes, cornes, ailettes, ornements).
+- L'arme suit toutes les poses : repos, attaques de classe, victoire.
+- **La couleur de l'aventurier reste visible sur l'arme** (enroulement de la poignée, gemme du pommeau, ruban du bâton, poignée de l'arc).
+- **Mini-image de l'arme** dans la fiche de l'aventurier et dans le journal (butin, forge, Armurerie, récupération sur un mort).
+
+### Modifié
+- Le sprite d'un aventurier est régénéré quand son niveau d'arme change (et seulement dans ce cas).
+- Niveau 0 : arme habituelle ; au-delà du palier 14, le palier 14 est conservé. Armure, bottes et bouclier : version 3.5.8. Mode 2D inchangé, aucune migration de sauvegarde.
+
 ## v3.5.6 « Ambiance sonore »
 
 Version affichée dans les Options : **v3.5.6**

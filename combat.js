@@ -5,7 +5,7 @@ const PN={w:{G:'Épée',V:'Dague',M:'Bâton',R:'Arc'},a:'Armure',b:'Bottes',s:'B
 const IC={w:{G:'⚔️',V:'🗡️',M:'🪄',R:'🏹'},a:'<svg viewBox="0 0 16 16" width="1em" height="1em" style="vertical-align:-.15em" aria-hidden="true"><path d="M4.4 3.4Q8 5.6 11.6 3.4L12.2 8Q12.2 10.6 11 11.8L12.2 14.4H3.8L5 11.8Q3.8 10.6 3.8 8Z" fill="#b4bdc7" stroke="#2f3640" stroke-width=".9" stroke-linejoin="round"/><ellipse cx="3.1" cy="4.4" rx="2.2" ry="1.8" fill="#8c97a3" stroke="#2f3640" stroke-width=".9" stroke-linejoin="round"/><ellipse cx="12.9" cy="4.4" rx="2.2" ry="1.8" fill="#8c97a3" stroke="#2f3640" stroke-width=".9" stroke-linejoin="round"/><path d="M8 5.6V12.2M4.9 8.3Q8 10 11.1 8.3M5 12.3H11" stroke="#eef2f6" stroke-width=".7" fill="none"/></svg>',b:'👢',s:'🛡️'};
 const SL={G:['w','a','b','s'],V:['w','a','b'],M:['w','a','b'],R:['w','a','b']};
 const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
-const ic=(h,k)=>k==='w'?IC.w[h.c]:IC[k];
+const ic=(h,k,t)=>k==='w'?((t&&window.wIcon&&wIcon(h.c,t))||IC.w[h.c]):IC[k],iw=(h,k,t)=>k==='w'?ic(h,k,t)+' ':'';
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
 const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
 const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
@@ -14,13 +14,13 @@ let GPW,RRF=null;
 const ARC0=.35,ARC1=.1,ARCM=.9;
 function armRec(h){const it=bItem('I');if(!it||it.cn||it.rb)return;const sl=SL[h.c].filter(k=>h.eq[k]>0);if(!sl.length)return;
  const p=Math.min(ARCM,ARC0+ARC1*(Math.max(1,S.armory||1)-1));if(Math.random()>=p)return;
- const k=sl[R(0,sl.length-1)];(S.chest=S.chest||[]).push({k,c:h.c,t:h.eq[k]});for(let i=0;i<AXR;i++)npcx('I');log(`🛡️ L’Armurerie récupère ${pn(h,k)} ${h.eq[k]} de ${h.name}.`,'ok')}
+ const k=sl[R(0,sl.length-1)];(S.chest=S.chest||[]).push({k,c:h.c,t:h.eq[k]});for(let i=0;i<AXR;i++)npcx('I');log(`🛡️ L’Armurerie récupère ${iw(h,k,h.eq[k])}${pn(h,k)} ${h.eq[k]} de ${h.name}.`,'ok')}
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
- if(t>h.eq[k]){h.eq[k]=t;return `équipe ${pn(h,k)} ${t}`}
- const g=t*5;S.g+=g;return `revend ${pn(h,k)} ${t} (+${g} or)`;
+ if(t>h.eq[k]){h.eq[k]=t;return `équipe ${iw(h,k,t)}${pn(h,k)} ${t}`}
+ const g=t*5;S.g+=g;return `revend ${iw(h,k,t)}${pn(h,k)} ${t} (+${g} or)`;
 }
-const gs=h=>SL[h.c].map(k=>h.eq[k]?`${ic(h,k)}${h.eq[k]}`:'').join(' ');
+const gs=h=>SL[h.c].map(k=>h.eq[k]?`${ic(h,k,h.eq[k])}${h.eq[k]}`:'').join(' ');
 const WP=[[0,.02],[.3,.05],[.5,.2],[.8,.45],[1,.7],[1.5,.85],[2,.92]];
 const win=(h,d,P)=>{const r=(P===undefined?power(h):P)/d;for(let i=1;i<WP.length;i++)if(r<=WP[i][0]){const a=WP[i-1],b=WP[i];return a[1]+(b[1]-a[1])*(r-a[0])/(b[0]-a[0])}return .92};
 function log(t,c){logs.unshift({t,c,ts:`[J${S.day} · ${hr()}h]`});logs=logs.slice(0,20);renderLog()}

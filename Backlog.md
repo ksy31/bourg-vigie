@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.6 « Ambiance sonore »**
+Version actuelle du jeu : **v3.5.7 « Équipements visibles (1/3) : système et paliers »**
 
 ## ✅ Déjà intégré
 
@@ -364,19 +364,20 @@ Version actuelle du jeu : **v3.5.6 « Ambiance sonore »**
 - [x] **Ambiances :** pluie, orage (tonnerre lié aux éclairs en 3D), vent, oiseaux le jour, grillons la nuit, cloche à l'aube et au crépuscule.
 - [x] **Deux boutons** : 🔊 musique et 🌦️ ambiances (`bvm`, `bva`).
 
-## 🗡️ v3.5.7 « Équipements visibles (1/3) : système et paliers » (prochain)
-- [ ] **Architecture :** l'équipement s'affiche sur le sprite de l'aventurier par calques (arme, armure, bottes, bouclier), régénérés uniquement quand `h.eq` change ; table des paliers (matériau, palette, forme par niveau).
-- [ ] **Armes, niveaux bas à moyens :** une arme différente par niveau et par classe, avec des formes et des matières variées et inventées (exemple Guerrier : épée en fer niveau 0, épée en cuivre niveau 1, puis bronze, acier, etc. ; bâton, dagues et arc équivalents).
-- [ ] Affichage cohérent dans la fiche de l'aventurier, le coffre de l'Armurerie et le butin.
+## ✅ v3.5.7 « Équipements visibles (1/3) : système et paliers »
+- [x] **Architecture :** l'arme s'affiche sur le sprite en toutes les poses (repos, attaques, victoire) ; le sprite est régénéré uniquement quand le niveau d'arme `h.eq.w` change ; tables `WPM` (14 matières), `WSW`, `WSD`, `WSS`, `WSB` (formes par palier). Armure, bottes et bouclier suivront en 3.5.8.
+- [x] **Armes, paliers 1 à 14** pour les 4 classes (épée, dagues, bâton, arc) : cuivre, bronze, acier, argent, fer noir, mithril, or, obsidienne, rubis, jade, cristal, os, orage, céleste, avec des formes différentes (feuille, courbe, ondulée, dentelée, éclair, cristal, têtes de bâton, arcs variés). Niveau 0 : arme actuelle ; au-delà de 14 : palier 14 jusqu'aux armes légendaires (3.5.9).
+- [x] **Couleur de l'aventurier : simple rappel** (enroulement de la poignée, gemme du pommeau, ruban du bâton, poignée de l'arc), choix valable pour 3.5.8 et 3.5.9.
+- [x] **Affichage :** mini-image pixel-art de l'arme dans la fiche de l'aventurier et dans le journal (butin, forge, Armurerie, récupération). Le coffre de l'Armurerie ne montre qu'un compteur, il n'y a pas de liste de pièces.
 
-## 🛡️ v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers »
-- [ ] Armure, bottes et bouclier (Guerrier) avec un design propre à chaque niveau (matière, couleur, ornements, formes inventées et variées, pas seulement un changement de teinte), en respectant le choix « rappel de couleur ou tout teinté » tranché en v3.5.7.
+## 🛡️ v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers » (prochain)
+- [ ] Armure, bottes et bouclier (Guerrier) avec un design propre à chaque niveau (matière, couleur, ornements, formes inventées et variées, pas seulement un changement de teinte), en respectant le choix « simple rappel de couleur » tranché en v3.5.7.
 - [ ] Tenues spécifiques par classe (robes du Mage, cuir du Voleur et du Rôdeur) qui évoluent aussi avec le niveau.
 
 ## ✨ v3.5.9 « Équipements visibles (3/3) : armes légendaires »
 - [ ] **Armes de haut niveau stylées, inventées par Claude** : prévoir plusieurs thèmes variés pour chaque palier élevé et chaque classe. **Obligatoires :** la lame de lumière façon laser (lame émissive, halo, traînée) et **tout l'ensemble démoniaque** (arme toute noire aux flammes noires qui s'en échappent, et ses équivalents bâton, dagues, arc). **À inventer en plus :** glace, foudre, lave, cristal, os et âmes, nature vivante, étoile, etc. La liste des thèmes inventés est proposée avant de dessiner.
 - [ ] **Armures, bottes et boucliers de haut niveau tout aussi spectaculaires** (pas seulement les armes), **avec obligatoirement la série démoniaque** (armure noire, flammes noires, cornes, etc.) ; en plus, thèmes inventés : aura, ornements animés, matières (écailles, cristal, flammes, ombre, lumière…), avec au moins un design distinct par palier et par classe.
-- [ ] **Couleur de l'aventurier sur l'équipement : à trancher au début de la release** (question à poser à l'utilisateur avant de dessiner) : soit un simple rappel (liserés, tissu, plumet, cape, gemmes à sa couleur, matière de l'équipement conservée), soit tout l'équipement teinté à sa couleur. Dans les deux cas, la couleur de l'aventurier doit rester reconnaissable d'un coup d'œil, y compris sur les pièces de haut niveau (démoniaque comprise).
+- [ ] **Couleur de l'aventurier sur l'équipement :** simple rappel (tranché en 3.5.7 : liserés, tissu, plumet, cape, gemmes à sa couleur, matière conservée). Elle doit rester reconnaissable d'un coup d'œil, y compris sur les pièces de haut niveau (démoniaque comprise).
 - [ ] Effets animés en pixels (particules, lueurs, traînées), reflets au sol la nuit.
 - [ ] Effets visibles de nuit et de jour, sans coût excessif en performances (nombre de particules limité).
 
