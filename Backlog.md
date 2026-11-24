@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.5 « Correctifs : rond de transparence et bâtiments »**
+Version actuelle du jeu : **v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »**
 
 ## ✅ Déjà intégré
 
@@ -405,6 +405,15 @@ Version actuelle du jeu : **v3.6.5 « Correctifs : rond de transparence et bâti
 - [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
+
+## ✅ v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »
+- [x] Meute : les 3 loups apparaissent côte à côte (placés selon l'angle de la caméra).
+- [x] Nouvelle partie : mairie et auberge s'affichent à la nouvelle position du village.
+- [x] Or / bois / pierre : grandes cases dans l'onglet Bâtir, ligne compacte dans le bandeau permanent ailleurs.
+- [x] Double tap sur la carte : le village est centré et zoomé (3D et 2D).
+- [x] Allées du village supprimées, seul le pavé reste.
+- [x] Aventuriers : suivent le chemin de terre de près (décalage latéral réduit, plus de points de passage).
+- [x] Herbe 3D : placée autour des chemins, presque aucune sur le chemin.
 
 ## ✅ v3.6.5 « Correctifs : rond de transparence et bâtiments »
 - [x] Rond de transparence : position calculée à l'écran (`gl_FragCoord`), il fonctionne enfin sur les grandes feuilles proches de la caméra (zoom maximal en forêt).

@@ -288,7 +288,7 @@ function drawBridges(g){const u=sc;for(const b of BRG){g.save();g.translate(b.x*
   g.fillStyle='#5a3a22';g.fillRect(-L/2,-Wd/2-.5*u,L,.55*u);g.fillRect(-L/2,Wd/2-.05*u,L,.55*u);
   for(const x of[-L/2,0,L/2])for(const y of[-Wd/2-.3*u,Wd/2+.3*u]){g.fillStyle='#4a2f1b';g.fillRect(x-.25*u,y-.5*u,.5*u,1*u)}
   g.restore()}}
-function roadWP(z){const d=RD[z.n];if(!d)return[];let i=0;while(i<d.length-1&&((d[i][0]-T.x)/VR.rx)**2+((d[i][1]-T.y)/VR.ry)**2<1.15)i++;const w=[];for(let k=i;k<d.length;k+=12)w.push(d[k]);const l=d[d.length-1];if(w[w.length-1]!==l)w.push(l);return w.map(p=>({x:Math.round(p[0]*10)/10,y:Math.round(p[1]*10)/10}))}
+function roadWP(z){const d=RD[z.n];if(!d)return[];let i=0;while(i<d.length-1&&((d[i][0]-T.x)/VR.rx)**2+((d[i][1]-T.y)/VR.ry)**2<1.15)i++;const w=[];for(let k=i;k<d.length;k+=3)w.push(d[k]);const l=d[d.length-1];if(w[w.length-1]!==l)w.push(l);return w.map(p=>({x:Math.round(p[0]*10)/10,y:Math.round(p[1]*10)/10}))}
 const plen=(h,tg)=>{let L=0,x=h.x,y=h.y;for(const w of h.wp||[]){L+=Math.hypot(w.x-x,w.y-y);x=w.x;y=w.y}return L+Math.hypot(tg.x-x,tg.y-y)};
 const VC={c:null,k:'',pr:[]};
 function cobble(g,x,y,rx,ry,R){const s=sc,C=['#a39e8e','#b3ae9d','#98937f','#aca694'],n=Math.floor(ry/(s*.9));
@@ -354,8 +354,7 @@ function paveVillage(g,vd,R,s){const {u}=vd,rc=[],m=1,pr=[13,9];
  vgMoss(g,T.x-pr[0],T.y-pr[1],T.x+pr[0],T.y+pr[1],s,R,inP);
  g.restore();
  for(let t=0;t<6.2832;){const [x,y]=pzp(.985,t),[x2,y2]=pzp(.985,t+.01),ang=Math.atan2(y2-y,x2-x);vgStone(g,x/s,y/s,.95,.6,ang,R,s,-9);t+=.95/Math.hypot(pr[0]*Math.sin(t),pr[1]*Math.cos(t))}
- for(const r of rc){const s0=[r.x,r.y+r.d/2+1.2];pv([[r.x,r.y+r.d/2-.2],s0],2.2);if(nrm(s0)>.9)pv(route(s0,pe(s0),3),2.2)}
- for(const z of ZA){const p=RD[z.n];if(!p)continue;for(let k=p.sh||0;k<p.length;k++){const q=p[k];if(((q[0]-T.x)/vd.rx)**2+((q[1]-T.y)/vd.ry)**2>=.9){const dx=q[0]-T.x,dy=q[1]-T.y,l=Math.hypot(dx,dy)||1,a=[q[0]+dx/l*1.5,q[1]+dy/l*1.5];pv(route(a,pe(a),3),2.4);break}}}}
+}
 function well(g,x,y){const u=sc;
  g.fillStyle='rgba(20,30,10,.25)';g.beginPath();g.ellipse(x+u*.5,y+u*1.5,u*2.4,u*.8,0,0,7);g.fill();
  g.strokeStyle='rgba(29,35,38,.6)';g.lineWidth=1;g.fillStyle='#a8a395';g.fillRect(x-1.7*u,y,3.4*u,1.2*u);g.beginPath();g.ellipse(x,y+1.2*u,1.7*u,.8*u,0,0,Math.PI);g.fill();
@@ -546,7 +545,7 @@ cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);pt.set(e
 cv.addEventListener('pointermove',e=>{if(!pt.has(e.pointerId))return;const o=pt.get(e.pointerId),n=[e.offsetX,e.offsetY];pt.set(e.pointerId,n);if(pt.size===1){cam.x+=n[0]-o[0];cam.y+=n[1]-o[1];clampCam()}else if(pt.size===2){const [a,b]=[...pt.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]);if(pd)zoomAt((a[0]+b[0])/2,(a[1]+b[1])/2,d/pd);pd=d}});
 const pup=e=>{pt.delete(e.pointerId);pd=0};cv.addEventListener('pointerup',pup);cv.addEventListener('pointercancel',pup);
 cv.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.15:.87)},{passive:false});
-cv.addEventListener('dblclick',()=>{fol=null;cam.x=cam.y=0;cam.z=ZMIN});
+cv.addEventListener('dblclick',()=>{fol=null;cam.z=1.6;cam.x=W/2-T.x*sc*cam.z;cam.y=H/2-T.y*sc*cam.z;clampCam()});
 let fol=null,tp=null;
 function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){if(hidn(q))continue;const d=Math.hypot(q.x+((q.id%3)-1)*1.5-mx,q.y+((q.id%2)-.5)*2-my);if(d<bd){bd=d;b=q}}if(b&&bd*sc*cam.z<26){fol=b.id;if(cam.z<1.2)cam.z=1.2}else fol=null}
 cv.addEventListener('pointerdown',e=>{tp=e.isPrimary&&pt.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null});

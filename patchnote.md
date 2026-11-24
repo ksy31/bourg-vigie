@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »
+
+Version affichée dans les Options : **v3.6.6**
+
+### Corrigé
+- Meute : les 3 loups apparaissent bien (côte à côte, face à la caméra).
+- Nouvelle partie : la mairie et l'auberge n'étaient pas redessinées à la nouvelle position du village.
+- Les aventuriers marchent sur le chemin de terre (décalage latéral et coupe des virages réduits).
+- Herbe 3D : elle entoure les chemins au lieu de les couvrir.
+
+### Modifié
+- Or / bois / pierre : grandes cases dans l'onglet Bâtir, ligne compacte dans le bandeau permanent sur les autres onglets.
+- Double tap sur la carte : centre et zoome sur le village.
+- Les allées du village sont supprimées : seul le pavé reste.
+
 ## v3.6.5 « Correctifs : rond de transparence et bâtiments »
 
 Version affichée dans les Options : **v3.6.5**

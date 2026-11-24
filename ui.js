@@ -3,7 +3,7 @@ const gtag=h=>{const g=(S.guilds||[]).find(x=>x.id===h.gu);if(!g)return '';const
 const gcf=()=>{const g=S.guilds||[],z=g.filter(x=>x.sl).length,c=g.reduce((s,x)=>s+(x.f||0),0);return ` · ⚜️ Guildes : ${g.length}/${gmax()}`+(z?` (${z} en sommeil)`:'')+` · 👥 ${gsz()} max · 💰 Caisses : ${c} or`};
 const setH=(id,s)=>{const e=$(id);if(e._h!==s){e._h=s;e.innerHTML=fmt(s)}};
 function ui0(){
- $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;
+ $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;$('rl').textContent=`💰 ${S.g} · 🪵 ${S.w} · 🪨 ${S.s}`;
  $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h ${wxIcon()} · ★${P.runs}`;
  $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
  for(const id in BD){const b=BD[id],c=b.c(lvl(b));$('b'+id).innerHTML=`${b.n} niv. ${lvl(b)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g||bBusy(id)}
