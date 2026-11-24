@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.7.2 « 5 sorts par classe (2/2) »**
+Version actuelle du jeu : **v3.7.3 « Une animation par sort »**
 
 ## ✅ Déjà intégré
 
@@ -415,6 +415,9 @@ Version actuelle du jeu : **v3.7.2 « 5 sorts par classe (2/2) »**
 - [x] **Bâtiment d'enchantement** + **Enchanteur** ; niveau du bâtiment 1 à 5 = niveau de sort accessible.
 - [x] **Apprentissage :** coût en gemmes = niveau du sort (`GCOST` = 1 à 5) ; réussite 50 % + 4 %/niveau du bâtiment + 3 %/niveau de l'Enchanteur (`EN0`, `EN1`, `EN2`) ; échec = gemmes perdues.
 - [x] 1 sort maximum par aventurier, perdu à la mort ; pour l'instant le sort est un niveau sans effet (`h.sp`).
+
+## ✅ v3.7.3 « Une animation par sort »
+- [x] Une animation 3D propre à chacun des 20 sorts, distincte des attaques de base (nouvelles textures : anneau, bulle, rocher, pièce, empreinte, flamme, bouclier, piège) ; l'Esquive fait reculer le héros.
 
 ## ✅ v3.7.2 « 5 sorts par classe (2/2) »
 - [x] 5 sorts par classe (table `SPD` dans `data.js`), un par niveau d'enchantement ; effets : puissance, risque de mort, or, ressources, fuites converties en victoires (Soin).

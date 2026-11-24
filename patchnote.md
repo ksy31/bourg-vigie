@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.7.3 « Une animation par sort »
+
+Version affichée dans les Options : **v3.7.3**
+
+### Modifié
+- Chacun des 20 sorts a maintenant sa propre animation 3D, différente des attaques de base (l'aura de classe reste en fond) :
+  - Guerrier : Cri de guerre (ondes de choc dorées), Peau de pierre (rochers en orbite et bulle grise), Frappe sismique (rochers qui jaillissent jusqu'au monstre), Rempart (grand bouclier), Fureur du titan (flammes rouges et anneaux).
+  - Mage : Éclair (étincelles électriques autour du héros), Bouclier arcanique (bulle bleue et étoiles en orbite), Soin (croix vertes), Rayon (colonne de lumière sur le monstre), Météores (boules de feu et impacts).
+  - Voleur : Poche percée (pièces qui jaillissent), Esquive (le héros recule avec des traînées de vent), Coup vicieux (double entaille rouge en croix), Pillage (pièces volées au monstre), Ombre fatale (anneau violet, entailles sombres et explosion d'ombre).
+  - Rôdeur : Flèche précise (réticule), Piste (empreintes lumineuses), Piège (mâchoires de piège au pied du monstre), Camouflage (feuilles en tourbillon et bulle verte), Pluie de flèches (flèches tombant du ciel).
+- Nouveaux éléments visuels : anneaux, bulles, rochers, pièces, empreintes, flammes, bouclier, piège.
+- Aucun changement d'équilibre.
+
 ## v3.7.2 « 5 sorts par classe (2/2) »
 
 Version affichée dans les Options : **v3.7.2**
