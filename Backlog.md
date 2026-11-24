@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »**
+Version actuelle du jeu : **v3.5.5 « Animations de combat pixel-art (2/2) : finitions »**
 
 ## ✅ Déjà intégré
 
@@ -353,13 +353,13 @@ Version actuelle du jeu : **v3.5.4 « Animations de combat pixel-art (1/2) : cou
 - [x] Dragons et golems nettement plus grands (`SZ`).
 - [x] Correctif : le zoom (pincement, molette) ne coupe plus le suivi d'un aventurier en 3D.
 
-## 💥 v3.5.5 « Animations de combat pixel-art (2/2) : finitions » (prochain)
-- [ ] **Lumière sur les gros coups** (flash local, sans chiffres de dégâts ni secousse de caméra : ni l'un ni l'autre ne sont voulus).
-- [ ] **Victoire, fuite, mort et soin** des aventuriers animés (pose de victoire, course, chute, effet de bénédiction en pixels).
-- [ ] **Boss :** introduction animée, phases visibles.
-- [ ] Remplacer l'ancien anneau rouge de combat par un effet pixel-art.
+## ✅ v3.5.5 « Animations de combat pixel-art (2/2) : finitions »
+- [ ] ~~Lumière sur les gros coups~~ : abandonnée (choix : aucune animation d'impact).
+- [x] **Victoire** (bras levé ~1,8 s à la sortie du combat avec butin), **fuite** (course penchée et plus rapide ~3 s), **mort** (chute au sol puis fondu ~3 s), **bénédiction** (étoiles pixel-art).
+- [x] **Boss :** l'animation d'entrée (surgit du sol, anneau de flammes) s'applique aussi aux champions légendaires, dragons, hydres, liches, géants et archidémons. Pas de phases (le combat n'en a pas).
+- [x] Ancien anneau rouge remplacé par un cercle pixel-art (poussière et étincelles, couleur de la classe).
 
-## 🗡️ v3.5.6 « Équipements visibles (1/3) : système et paliers »
+## 🗡️ v3.5.6 « Équipements visibles (1/3) : système et paliers » (prochain)
 - [ ] **Architecture :** l'équipement s'affiche sur le sprite de l'aventurier par calques (arme, armure, bottes, bouclier), régénérés uniquement quand `h.eq` change ; table des paliers (matériau, palette, forme par niveau).
 - [ ] **Armes, niveaux bas à moyens :** une arme différente par niveau et par classe, avec des formes et des matières variées et inventées (exemple Guerrier : épée en fer niveau 0, épée en cuivre niveau 1, puis bronze, acier, etc. ; bâton, dagues et arc équivalents).
 - [ ] Affichage cohérent dans la fiche de l'aventurier, le coffre de l'Armurerie et le butin.

@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.5 « Animations de combat pixel-art (2/2) : finitions »
+
+Version affichée dans les Options : **v3.5.5**
+
+### Ajouté
+- **Victoire :** l'aventurier lève le bras (avec son arme pour le Guerrier et le Voleur) pendant environ 1,8 s en sortant d'un combat gagné.
+- **Fuite :** il court penché en avant, plus vite, pendant environ 3 s.
+- **Mort :** l'aventurier tombe au sol, reste allongé, puis disparaît en fondu (environ 3 s).
+- **Bénédiction :** étoiles dorées pixel-art qui tournent autour de l'aventurier.
+- **Entrée animée** (surgit du sol, anneau de flammes) aussi pour les champions légendaires, dragons, hydres, liches, géants et archidémons.
+
+### Modifié
+- L'ancien anneau rouge de combat devient un cercle pixel-art de poussière et d'étincelles qui tourne, à la couleur de la classe.
+- Lumière sur les gros coups abandonnée, comme les animations d'impact. Mode 2D inchangé, aucune migration de sauvegarde.
+
 ## v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »
 
 Version affichée dans les Options : **v3.5.4**
