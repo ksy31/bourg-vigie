@@ -96,6 +96,14 @@ function resolve(h){
   h.loot=null;h.hurt=1;goBack(h);log(`${h.name} fuit devant ${e.n}, blessé·e.`);crp(`${h.name} fuit devant ${e.n}`,'#fff');
  }
 }
+function brects(){const r=[];for(const it of S.pl){const k=NK[it.e]||'H',p=slot(it);r.push({x:T.x+p[0],z:T.y+p[1],hw:BHW(k)+(k==='A'?.4:0)+.35,d:(k==='A'?6.6:5.4)/2+.3})}return r}
+function binR(R,x,y){for(const r of R)if(Math.abs(x-r.x)<r.hw&&Math.abs(y-r.z)<r.d)return r;return null}
+function bavoid(h,tg,nx,ny){if(typeof BHW!=='function'||!S.pl||!S.pl.length)return;const R=brects();if(binR(R,h.x,h.y)||binR(R,tg.x,tg.y))return;const r=binR(R,nx,ny);if(!r)return;
+ const m=.6,cs=[[r.x-r.hw-m,r.z-r.d-m],[r.x+r.hw+m,r.z-r.d-m],[r.x-r.hw-m,r.z+r.d+m],[r.x+r.hw+m,r.z+r.d+m]];let best=null,bs=1e9;
+ for(const c of cs){if(h.pc&&Math.hypot(c[0]-h.pc[0],c[1]-h.pc[1])<.1)continue;if(Math.hypot(c[0]-h.x,c[1]-h.y)<.3||binR(R,c[0],c[1]))continue;
+  let ok=1;for(let i=1;i<8;i++){if(binR(R,h.x+(c[0]-h.x)*i/8,h.y+(c[1]-h.y)*i/8)){ok=0;break}}if(!ok)continue;
+  const sc=Math.hypot(c[0]-h.x,c[1]-h.y)+Math.hypot(tg.x-c[0],tg.y-c[1]);if(sc<bs){bs=sc;best=c}}
+ if(best){h.pc=best;(h.wp=h.wp||[]).unshift({x:best[0],y:best[1]})}}
 function tick(dt){
  S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(S.tavern&&S.day>=(S.pd||0))newPr();if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);guFix();
  for(const h of S.hero.slice()){
@@ -104,8 +112,8 @@ function tick(dt){
   else if(h.st==='go'||h.st==='back'){
    const tg=h.wp&&h.wp.length?h.wp[0]:(h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h)));
    const dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=h.v*dt*spf(h);
-   if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.wp&&h.wp.length)h.wp.shift();else if(h.st==='go'){if(h.gp)h.st='wait';else arrive(h)}else townNext(h)}
-   else{h.x+=dx/d*sp;h.y+=dy/d*sp}
+   if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.wp&&h.wp.length)h.wp.shift();else if(h.pc=null,false){}else if(h.st==='go'){if(h.gp)h.st='wait';else arrive(h)}else townNext(h)}
+   else{const nx=h.x+dx/d*sp,ny=h.y+dy/d*sp;bavoid(h,tg,nx,ny);const t2=h.wp&&h.wp.length?h.wp[0]:tg,ex=t2.x-h.x,ey=t2.y-h.y,e=Math.hypot(ex,ey)||1;if(t2===tg){h.x=nx;h.y=ny}else{const q=Math.min(sp,e);h.x+=ex/e*q;h.y+=ey/e*q}}
   }else if(h.st==='wait'){if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'))garrive(h)}
   else if(h.st==='fight'){if(h.gp&&!h.gl)continue;h.t-=dt;if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
  }

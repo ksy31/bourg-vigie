@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.4 « Correctifs : transparence, actualisation, menu Développeur, flou »**
+Version actuelle du jeu : **v3.6.5 « Correctifs : rond de transparence et bâtiments »**
 
 ## ✅ Déjà intégré
 
@@ -405,6 +405,10 @@ Version actuelle du jeu : **v3.6.4 « Correctifs : transparence, actualisation, 
 - [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
+
+## ✅ v3.6.5 « Correctifs : rond de transparence et bâtiments »
+- [x] Rond de transparence : position calculée à l'écran (`gl_FragCoord`), il fonctionne enfin sur les grandes feuilles proches de la caméra (zoom maximal en forêt).
+- [x] Les aventuriers contournent les bâtiments en route (allers et retours) au lieu de les traverser.
 
 ## ✅ v3.6.4 « Correctifs : transparence, actualisation, menu Développeur, flou »
 - [x] Rond de transparence autour de l'aventurier : appliqué aussi à l'herbe, marge de profondeur réduite et rayon agrandi (environ 20 %).

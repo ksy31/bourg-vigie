@@ -1,5 +1,13 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.5 « Correctifs : rond de transparence et bâtiments »
+
+Version affichée dans les Options : **v3.6.5**
+
+### Corrigé
+- Le rond de transparence autour de l'aventurier fonctionne de nouveau sur les grandes feuilles proches de la caméra (le calcul se fait maintenant sur la position réelle à l'écran).
+- Les aventuriers ne traversent plus les bâtiments : ils les contournent par un coin pendant leurs trajets.
+
 ## v3.6.4 « Correctifs : transparence, actualisation, menu Développeur, flou »
 
 Version affichée dans les Options : **v3.6.4**

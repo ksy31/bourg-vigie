@@ -1,6 +1,6 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 24/11/2026 : version livrée **v3.6.4 « Correctifs »** (cache `bv-v88`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 24/11/2026 : version livrée **v3.6.5 « Correctifs : rond de transparence et bâtiments »** (cache `bv-v89`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).
@@ -52,6 +52,8 @@
 - Carte : `MS=6`, `ZS=5`. Migration `migMap`, version de sauvegarde 5. Parties existantes : positions de zones inchangées (la forêt agrandie peut déborder un peu sur une zone voisine).
 
 ## Pièges techniques
+- Rond de transparence (3.6.5) : la position écran vient de `gl_FragCoord*uRs` (`HRS`, mis à jour dans `holeUpd`), pas d'un varying NDC (mal interpolé sur les grands polygones).
+- Contournement des bâtiments (3.6.5) : `bavoid` dans `combat.js` insère un coin comme waypoint (`h.pc` = dernier coin, remis à null à l'arrivée). Rectangles `brects` identiques à `bpush`.
 - Heure de jeu : `x=6+24*(S.t-S.ds)/S.dl` ; pour viser l'heure H dans un test, `S.t=S.ds+S.dl*((H+24-6)/24)`. `dk()` : 0 de 5h à 20h, rampe 20→21h, 1 de 21h à 4h, rampe 4→5h.
 - Tout élément posé au-dessus de la carte doit avoir un `z-index` > 1 (le canvas 2D `cv` est au-dessus de tout ce qui n'en a pas, même après retour en 2D).
 - Scripts classiques, `gl.js` en IIFE (`dk` du jeu déjà pris → `dkc`). Le canvas 3D est `position:absolute` : `cv` doit rester `position:relative; z-index:1`.

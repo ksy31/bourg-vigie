@@ -400,10 +400,11 @@ function outTorchPts(vd){const r=rg3(4242),P=[];
  for(const z of ZA){const n=z.n==='Volcan'?4:5,R0=ZRD(z.n),a0=r()*6.28;for(let i=0;i<n;i++){const a=a0+i/n*6.283+(r()-.5)*.7,d=R0*(.42+r()*.4),x=z.x+Math.cos(a)*d,y=z.y+Math.sin(a)*d;if(!nearRiver(x,y,3))P.push([x,y])}}
  return P}
 const HU=Array.from({length:8},()=>new TH.Vector4(0,0,0,0)),HAS={value:1},HV=new TH.Vector3();
-MV.onBeforeCompile=sh=>{sh.uniforms.uH={value:HU};sh.uniforms.uAs=HAS;
+const HRS={value:new TH.Vector2(1,1)};
+MV.onBeforeCompile=sh=>{sh.uniforms.uH={value:HU};sh.uniforms.uAs=HAS;sh.uniforms.uRs=HRS;
  sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;').replace('#include <project_vertex>','#include <project_vertex>\nvec4 cp_=projectionMatrix*mvPosition;vNd=vec3(cp_.xy/cp_.w,-mvPosition.z);');
- sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;uniform vec4 uH[8];uniform float uAs;').replace('void main() {','void main() {\n for(int i=0;i<8;i++){vec4 h=uH[i];if(h.w>0.&&vNd.z<h.z-.6){float d=length((vNd.xy-h.xy)*vec2(uAs,1.));if(d<h.w){float a=smoothstep(.5,1.,d/h.w),b=fract(52.9829189*fract(dot(gl_FragCoord.xy,vec2(.06711056,.00583715))));if(a<b)discard;}}}\n')};
-function holeUpd(BM){cam3.updateMatrixWorld();const th=Math.tan(cam3.fov*PI/360);HAS.value=cam3.aspect;let n=0;
+ sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;uniform vec4 uH[8];uniform float uAs;uniform vec2 uRs;').replace('void main() {','void main() {\n for(int i=0;i<8;i++){vec4 h=uH[i];if(h.w>0.&&vNd.z<h.z-.6){float d=length((gl_FragCoord.xy*uRs*2.-1.-h.xy)*vec2(uAs,1.));if(d<h.w){float a=smoothstep(.5,1.,d/h.w),b=fract(52.9829189*fract(dot(gl_FragCoord.xy,vec2(.06711056,.00583715))));if(a<b)discard;}}}\n')};
+function holeUpd(BM){cam3.updateMatrixWorld();{const v=new TH.Vector2();ren.getDrawingBufferSize(v);HRS.value.set(1/Math.max(1,v.x),1/Math.max(1,v.y))}const th=Math.tan(cam3.fov*PI/360);HAS.value=cam3.aspect;let n=0;
  for(const h of S.hero){if(n>=8)break;if(h.st==='town'||h.st==='rest')continue;const [x,z]=hpos(h,BM);HV.set(x,H3(x,z)+HS*.7,z);const dep=-(HV.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(dep<1)continue;HV.project(cam3);if(Math.abs(HV.x)>1.4||Math.abs(HV.y)>1.4)continue;HU[n++].set(HV.x,HV.y,dep,Math.max(.05,(h.st==='fight'?10:7.8)/(dep*th)))}
  for(;n<8;n++)HU[n].w=0}
 // ===== v3.6.1 : arbres 3D texturés en pixel-art =====
