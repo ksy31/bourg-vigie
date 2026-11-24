@@ -1,6 +1,6 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 24/11/2026 : version livrée **v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »** (cache `bv-v90`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 24/11/2026 : version livrée **v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »** (cache `bv-v91`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).
@@ -52,6 +52,8 @@
 - Carte : `MS=6`, `ZS=5`. Migration `migMap`, version de sauvegarde 5. Parties existantes : positions de zones inchangées (la forêt agrandie peut déborder un peu sur une zone voisine).
 
 ## Pièges techniques
+- Taille des zones (3.6.7) : `zsc(n)` (state.js) = [.6,1,1.5][sous-zone] si `S.zs` ; `zr(n)`/`zt(n)` remplacent `ZR`/`ZT` pour placement, routes et départ en quête ; `ZRD` est mis à l'échelle. Ne pas lire `ZR[...]` directement pour la géométrie réelle. `fresh()` tire `zv` avant `genMap()`. Anciennes sauvegardes : `S.zs` absent → échelle 1.
+- Routes (3.6.7) : `paintRoads` (gl.js), largeur `rwv(k,ph)`, relief par dérivées écran de la couche rouge du splat dans `terrDetail`.
 - La clé de reconstruction du village 3D (`vk`) inclut `T.x,T.y` : une nouvelle partie déplace le village.
 - Rond de transparence (3.6.5) : la position écran vient de `gl_FragCoord*uRs` (`HRS`, mis à jour dans `holeUpd`), pas d'un varying NDC (mal interpolé sur les grands polygones).
 - Contournement des bâtiments (3.6.5) : `bavoid` dans `combat.js` insère un coin comme waypoint (`h.pc` = dernier coin, remis à null à l'arrivée). Rectangles `brects` identiques à `bpush`.

@@ -221,7 +221,7 @@ function mergeAt(i,prev,mode,ex,ey){if(mode===-1||!prev.length)return null;
  if(k<=40||Math.hypot(bj[k][0]-T.x,bj[k][1]-T.y)<40)return null;
  return{o:bj,k,p:bj[k]}}
 function roadOf(z,i,prev,mode){prev=prev||[];
- const q=ZR[z.n]||ZR['Trône du Roi'],ex=z.x+q[0]*ZS,ey=z.y+(q[1]+q[3]*.3)*ZS,mg=mergeAt(i,prev,mode,ex,ey),S0=mg?mg.p:[T.x,T.y],dx=ex-S0[0],dy=ey-S0[1],L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
+ const q=zr(z.n),ex=z.x+q[0]*ZS,ey=z.y+(q[1]+q[3]*.3)*ZS,mg=mergeAt(i,prev,mode,ex,ey),S0=mg?mg.p:[T.x,T.y],dx=ex-S0[0],dy=ey-S0[1],L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
  const mk=(o1,o2)=>{const P=[[S0[0],S0[1]],[S0[0]+dx*.33+nx*o1,S0[1]+dy*.33+ny*o1],[S0[0]+dx*.66+nx*o2,S0[1]+dy*.66+ny*o2],[ex,ey]],bz=t=>{const v=1-t;return[v*v*v*P[0][0]+3*v*v*t*P[1][0]+3*v*t*t*P[2][0]+t*t*t*P[3][0],v*v*v*P[0][1]+3*v*v*t*P[1][1]+3*v*t*t*P[2][1]+t*t*t*P[3][1]]};
   const fine=[];for(let k=0;k<=600;k++)fine.push(bz(k/600));
   const out=[fine[0]];let acc=0,nxt=.83;for(let k=1;k<fine.length;k++){const a=fine[k-1],b=fine[k],d=Math.hypot(b[0]-a[0],b[1]-a[1]);acc+=d;while(acc>=nxt){const f=1-(acc-nxt)/(d||1);out.push([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]);nxt+=.83}}

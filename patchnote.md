@@ -1,5 +1,14 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »
+
+Version affichée dans les Options : **v3.6.7**
+
+### Modifié
+- Chemins en terre refaits : largeur irrégulière, bords usés mêlés d'herbe, cailloux, flaques, racines près de la forêt, pavés seulement par plaques, léger creux en relief.
+- Taille des biomes selon la sous-zone : sous-zone 1 ×0,6, sous-zone 2 ×1, sous-zone 3 ×1,5 (toutes les zones, y compris le nombre d'arbres et de rochers). Les durées de trajet restent les mêmes.
+- Nouvelles parties seulement : les sauvegardes existantes gardent la taille actuelle de leurs zones.
+
 ## v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »
 
 Version affichée dans les Options : **v3.6.6**

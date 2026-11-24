@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »**
+Version actuelle du jeu : **v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »**
 
 ## ✅ Déjà intégré
 
@@ -405,6 +405,10 @@ Version actuelle du jeu : **v3.6.6 « Correctifs : meute, nouvelle partie, bande
 - [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
+
+## ✅ v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »
+- [x] Chemins en terre : largeur irrégulière, bords usés mêlés d'herbe, cailloux, flaques, racines près de la forêt, pavés par plaques seulement, léger creux en relief.
+- [x] Taille des biomes selon la sous-zone (×0,6 / ×1 / ×1,5) pour toutes les zones ; durées de trajet inchangées ; parties existantes inchangées.
 
 ## ✅ v3.6.6 « Correctifs : meute, nouvelle partie, bandeau, chemins »
 - [x] Meute : les 3 loups apparaissent côte à côte (placés selon l'angle de la caméra).
