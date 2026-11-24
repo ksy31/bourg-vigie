@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.9 « Réglages sprites et caméra »
+
+Version affichée dans les Options : **v3.4.9**
+
+### Corrigé
+- **Noms des aventuriers :** placés au-dessus de la tête du sprite (ils tombaient dans la tête).
+- **Torche tenue :** elle était déformée par l'animation des bras ; c'est maintenant une torche en pixel-art, fixe, à droite du personnage.
+- **Étiquettes :** « en repos » (aventurier à l'auberge), le nom de l'ennemi et le temps restant restent collés sous le nom de l'aventurier, même quand d'autres noms (aubergiste, PNJ) sont proches.
+
+### Modifié
+- **Caméra 3D plus basse :** inclinaison de 43° à 34° au-dessus de l'horizon.
+- **Sprites des aventuriers réduits d'environ 17 %** pour s'accorder avec les bâtiments.
+- Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.4.8 « Caméra plus basse »
 
 Version affichée dans les Options : **v3.4.8**

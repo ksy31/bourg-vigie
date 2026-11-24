@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.8 « Caméra plus basse »**
+Version actuelle du jeu : **v3.4.9 « Réglages sprites et caméra »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,12 @@ Version actuelle du jeu : **v3.4.8 « Caméra plus basse »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.4.9 « Réglages sprites et caméra »
+- [x] Caméra 3D encore plus basse (43° → 34°).
+- [x] Sprites des aventuriers réduits (~17 %) pour correspondre aux bâtiments ; noms placés au-dessus de la tête.
+- [x] Torche tenue en pixel-art, fixe (ne suit plus les bras), du côté droit du sprite.
+- [x] Étiquettes : « en repos », ennemi et temps restant restent collés sous le nom de l'aventurier, même si d'autres noms sont proches.
 
 ## ✅ v3.4.8 « Caméra plus basse »
 - [x] **Caméra 3D plus proche du sol :** inclinaison par défaut de 54° à 43° au-dessus de l'horizon.
