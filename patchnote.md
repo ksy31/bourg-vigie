@@ -1,5 +1,16 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.2 « Refonte du monde (2/3) : rochers pixel-art »
+
+Version affichée dans les Options : **v3.6.2**
+
+### Ajouté
+- **Nouveaux rochers en 3D texturés pixel-art** : granit gris avec mousse et touffes d'herbe au pied, roche de mine et de montagne à strates, roche volcanique noire à fissures orange, petits galets. Plusieurs formes, tailles et teintes.
+- Les fissures de la roche volcanique brillent davantage la nuit.
+
+### Modifié
+- Les rochers de la Mine et de la Montagne projettent des ombres. Aucune migration de sauvegarde.
+
 ## v3.6.1 « Refonte du monde (1/3) : arbres pixel-art »
 
 Version affichée dans les Options : **v3.6.1**

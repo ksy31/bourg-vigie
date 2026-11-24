@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.1 « Refonte du monde (1/3) : arbres pixel-art »**
+Version actuelle du jeu : **v3.6.2 « Refonte du monde (2/3) : rochers pixel-art »**
 
 ## ✅ Déjà intégré
 
@@ -395,10 +395,12 @@ Version actuelle du jeu : **v3.6.1 « Refonte du monde (1/3) : arbres pixel-art 
 - [x] Balancement au vent (plus fort par temps nuageux, pluvieux ou orageux), ombres projetées, feuilles qui tombent près de la caméra.
 - [x] Placement : saules près des rivières, sapins enneigés en Montagne, arbres morts en Ruines, Donjon et Volcan, quelques palmiers en Ruines.
 
-## 🪨 v3.6.2 « Refonte du monde (2/3) : rochers pixel-art réalistes » (prochain)
-- [ ] Rochers pixel-art réalistes (formes variées, mousse, éclats, selon le biome).
+## ✅ v3.6.2 « Refonte du monde (2/3) : rochers pixel-art »
+- [x] Rochers en modèles 3D texturés en pixel-art : granit gris moussu (3 formes, touffes d'herbe au pied sur 2), roche de mine et de montagne à strates (2 formes), roche volcanique à fissures orange (2 formes), galets.
+- [x] Fissures de la roche volcanique qui brillent davantage la nuit.
+- [x] Taille et teinte variables par rocher.
 
-## 🌱 v3.6.3 « Refonte du monde (3/3) : herbe en 3D »
+## 🌱 v3.6.3 « Refonte du monde (3/3) : herbe en 3D » (prochain)
 - [ ] Herbe représentée en 3D (touffes, brins animés par le vent), avec coût de performances limité.
 
 ## 📱 Guide APK
