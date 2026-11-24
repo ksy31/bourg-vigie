@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »
+
+Version affichée dans les Options : **v3.8.3**
+
+### Ajouté
+- **Bêtes :** Araignée géante (8 yeux et grands crochets), Chauve-souris géante (grandes oreilles et crocs), Ver colossal (gueule à deux rangs de dents et pointes sur la tête), Salamandre géante (flammes sur le dos).
+- **Esprits :** Banshee (longs cheveux et bouche ouverte), Ombre sylvestre (feuilles), Ombre rôdeuse (longues griffes et yeux supplémentaires), Élémentaire de feu (étincelles).
+- **Golem d'obsidienne :** cristaux violets plus grands sur les épaules et veines violettes sur le torse.
+- Fin de la série « monstres manquants » : plus aucun monstre ne partage un sprite identique avec un autre (hors Meute spectrale / Loup spectral, volontairement).
+
+### Modifié
+- Aucun changement d'équilibrage ni de sauvegarde.
+- Non vérifié : Chauve-souris géante, Ver colossal et Golem d'obsidienne (coupés dans mes captures), vue de dos et animations d'attaque.
+
 ## v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 
 Version affichée dans les Options : **v3.8.2**

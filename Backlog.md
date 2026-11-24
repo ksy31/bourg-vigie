@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »**
+Version actuelle du jeu : **v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »**
 
 ## ✅ Déjà intégré
 
@@ -412,8 +412,8 @@ Version actuelle du jeu : **v3.8.2 « Monstres : démons, géants, morts-vivants
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
 
-## 🔜 v3.8.3 « Monstres : bêtes, esprits, golems (4/4) » (prochain)
-- [ ] Silhouettes dédiées : araignées, chauves-souris, vers, salamandres, élémentaires, âmes/banshee/ombres, golems.
+## ✅ v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »
+- [x] Traits dédiés : Araignée, Chauve-souris, Ver, Salamandre, Banshee, Ombres, Élémentaire de feu, Golem d'obsidienne.
 
 ## ✅ v3.8.0 « Variantes de monstres (1/4) »
 - [x] Les variantes au sprite identique reçoivent teinte, yeux et/ou taille propres (`monVar` et `KMX` dans `gl.js`).
@@ -476,7 +476,7 @@ Version actuelle du jeu : **v3.8.2 « Monstres : démons, géants, morts-vivants
 
 ## ⏳ En attente / à étudier plus tard
 - [ ] **Top 10 des villages :** nouvel onglet dans le Top 10, à approfondir (critères du classement, données conservées, affichage).
-- [ ] **Monstres manquants :** voir v3.8.1 à v3.8.3 (silhouettes dédiées).
+- [x] **Monstres manquants :** fait en v3.8.0 à v3.8.3.
 - [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
