@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »**
+Version actuelle du jeu : **v3.6.8 « Nouvelle piste de terre »**
 
 ## ✅ Déjà intégré
 
@@ -405,6 +405,9 @@ Version actuelle du jeu : **v3.6.7 « Chemins retravaillés et biomes selon la s
 - [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
+
+## ✅ v3.6.8 « Nouvelle piste de terre »
+- [x] Ancienne texture pavée des routes supprimée, remplacée par une piste de terre en haute résolution : ornières, crête d'herbe, cailloux, flaques, fissures, bords effrités, largeur irrégulière, relief.
 
 ## ✅ v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »
 - [x] Chemins en terre : largeur irrégulière, bords usés mêlés d'herbe, cailloux, flaques, racines près de la forêt, pavés par plaques seulement, léger creux en relief.

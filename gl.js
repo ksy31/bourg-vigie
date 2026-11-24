@@ -239,14 +239,45 @@ function paintRoads(g,R,wet){
    g.fillStyle=R()<.5?'rgba(107,88,56,.55)':'rgba(124,104,64,.4)';g.beginPath();g.arc(x+nx*d*s,y+ny*d*s,.22+R()*.35,0,7);g.fill();
    if(R()<.55){const e=(1.1+R()*.6)*wv*s,gx=x+nx*e,gy=y+ny*e;g.strokeStyle=R()<.5?'#6f9360':'#8fb078';g.lineWidth=.14;g.beginPath();g.moveTo(gx,gy);g.lineTo(gx+(R()-.5)*.5,gy-.5-R()*.5);g.stroke()}}
   for(let k=sh;k<pts.length;k++){if(!ok(k))continue;const [x,y]=pts[k],wv=rwv(k,ph);g.fillStyle='#b99c6b';g.beginPath();g.arc(x,y,(1.35+R()*.3)*wv,0,7);g.fill();if(k%2===0){g.fillStyle='rgba(224,205,150,.55)';g.beginPath();g.arc(x,y,(.55+R()*.25)*wv,0,7);g.fill()}}
-  g.lineCap='round';
-  for(let k=sh+1;k<pts.length-1;k++){if(!ok(k))continue;const [x,y]=pts[k],wv=rwv(k,ph),[nx,ny]=nm(k);
-   for(let q=0;q<2;q++){const a=R()*6.283,d=R()*1.3*wv;g.fillStyle=['rgba(168,139,92,.55)','rgba(199,171,122,.5)','rgba(156,128,88,.5)'][(R()*3)|0];g.beginPath();g.arc(x+Math.cos(a)*d,y+Math.sin(a)*d,.15+R()*.3,0,7);g.fill()}
-   if(R()<.45){const a=R()*6.283,d=R()*1.5*wv,px=x+Math.cos(a)*d,py=y+Math.sin(a)*d,s=.1+R()*.22;g.fillStyle='rgba(50,40,28,.45)';g.beginPath();g.ellipse(px+.05,py+.06,s,s*.7,0,0,7);g.fill();g.fillStyle=['#8c8479','#a39a8c','#7a7268','#b4aa98'][(R()*4)|0];g.beginPath();g.ellipse(px,py,s,s*.7,R()*3,0,7);g.fill()}
-   if(R()<.012){const px=x+(R()-.5)*1.2,py=y+(R()-.5)*1.2,r=.8+R()*.8,an=Math.atan2(ny,nx);g.fillStyle='rgba(60,48,32,.55)';g.beginPath();g.ellipse(px,py,r*1.12,r*.62,an,0,7);g.fill();g.fillStyle='rgba(127,149,160,.8)';g.beginPath();g.ellipse(px,py,r,r*.52,an,0,7);g.fill();g.fillStyle='rgba(205,220,226,.55)';g.beginPath();g.ellipse(px-r*.18,py-r*.12,r*.5,r*.18,an,0,7);g.fill()}
-   const nf=zf&&Math.hypot(x-zf.x,y-zf.y)<rf;
-   if(R()<(nf?.03:.004)){g.strokeStyle='#4a3a26';for(let q=0;q<2;q++){g.lineWidth=.2+R()*.16;const o=(q-.5)*.9,jx=(R()-.5)*.8,jy=(R()-.5)*.8;g.beginPath();g.moveTo(x-nx*2.4+o*ny,y-ny*2.4-o*nx);g.quadraticCurveTo(x+jx,y+jy,x+nx*2.4+o*ny*.6,y+ny*2.4-o*nx*.6);g.stroke()}}}
  })}
+
+// ===== v3.6.8 : piste de terre texturée (haute résolution) =====
+let RDT=null;
+function roadTex(){
+ if(RDT)return RDT;
+ const Wd=512,Hd=256,mk=()=>{const c=document.createElement('canvas');c.width=Wd;c.height=Hd;return c},cc=mk(),cb=mk(),g=cc.getContext('2d'),h=cb.getContext('2d'),R=rg3(8128),TAU=6.2832;
+ const wr=(fn)=>{for(const ox of[-Wd,0,Wd])fn(ox)};
+ const edge=(x,s)=>{const t=x/Wd*TAU;return 9+5*Math.sin(t*3+s)+4*Math.sin(t*7+s*2.1)+2.5*Math.sin(t*17+s*.7)};
+ // masque
+ g.clearRect(0,0,Wd,Hd);h.fillStyle='#808080';h.fillRect(0,0,Wd,Hd);
+ g.save();g.beginPath();for(let x=0;x<=Wd;x+=2)g.lineTo(x,edge(x,0));for(let x=Wd;x>=0;x-=2)g.lineTo(x,Hd-edge(x,3.3));g.closePath();g.clip();
+ const gr=g.createLinearGradient(0,0,0,Hd);gr.addColorStop(0,'#6e5636');gr.addColorStop(.12,'#8c7148');gr.addColorStop(.3,'#a88a5c');gr.addColorStop(.5,'#c4a674');gr.addColorStop(.7,'#a88a5c');gr.addColorStop(.88,'#8c7148');gr.addColorStop(1,'#6e5636');g.fillStyle=gr;g.fillRect(0,0,Wd,Hd);
+ for(let i=0;i<2600;i++){const x=R()*Wd,y=R()*Hd,r=.8+R()*3.2;g.fillStyle=['rgba(120,92,58,.35)','rgba(205,180,132,.35)','rgba(90,68,42,.3)','rgba(170,142,98,.35)'][(R()*4)|0];wr(ox=>{g.beginPath();g.arc(x+ox,y,r,0,7);g.fill()})}
+ // ornières (deux sillons) et crête centrale
+ for(const [yc,w] of [[Hd*.31,15],[Hd*.69,15]]){const ph=R()*6;
+  for(let x=0;x<=Wd;x+=2){const y=yc+4*Math.sin(x/Wd*TAU*2+ph)+2*Math.sin(x/Wd*TAU*5+ph*2);g.fillStyle='rgba(70,52,30,.38)';g.fillRect(x,y-w/2,3,w);g.fillStyle='rgba(60,44,26,.3)';g.fillRect(x,y-w/4,3,w/2);h.fillStyle='rgb(76,76,76)';h.fillRect(x,y-w/2,3,w);h.fillStyle='rgb(58,58,58)';h.fillRect(x,y-w/4,3,w/2)}}
+ for(let x=0;x<Wd;x+=2){const y=Hd/2+3*Math.sin(x/Wd*TAU*3+1);h.fillStyle='rgb(150,150,150)';h.fillRect(x,y-9,3,18)}
+ // herbe sur la crête
+ for(let i=0;i<150;i++){const x=R()*Wd,y=Hd/2+(R()-.5)*16;g.strokeStyle=['#6f9360','#8fb078','#5f8350'][(R()*3)|0];g.lineWidth=1;wr(ox=>{g.beginPath();g.moveTo(x+ox,y);g.lineTo(x+ox+(R()-.5)*4,y-3-R()*5);g.stroke()})}
+ // fissures
+ g.strokeStyle='rgba(60,44,26,.5)';for(let i=0;i<22;i++){let x=R()*Wd,y=30+R()*(Hd-60);g.lineWidth=.8;g.beginPath();g.moveTo(x,y);for(let k=0;k<5;k++){x+=(R()-.3)*10;y+=(R()-.5)*8;g.lineTo(x,y)}g.stroke()}
+ // cailloux
+ for(let i=0;i<170;i++){const x=R()*Wd,y=14+R()*(Hd-28),s=2+R()*5.4,a=R()*3,l=128+R()*85,col=`rgb(${l+6},${l},${l-8})`;wr(ox=>{g.fillStyle='rgba(40,30,20,.5)';g.beginPath();g.ellipse(x+ox+1,y+1.4,s,s*.72,a,0,7);g.fill();g.fillStyle=col;g.beginPath();g.ellipse(x+ox,y,s,s*.72,a,0,7);g.fill();g.fillStyle='rgba(255,255,240,.28)';g.beginPath();g.ellipse(x+ox-s*.2,y-s*.25,s*.5,s*.28,a,0,7);g.fill();h.fillStyle='rgb(205,205,205)';h.beginPath();h.ellipse(x+ox,y,s,s*.72,a,0,7);h.fill()})}
+ // flaques dans les ornières
+ for(const [x,yc] of [[Wd*.22,Hd*.31],[Wd*.7,Hd*.69]]){const r=15+R()*8;wr(ox=>{g.fillStyle='rgba(60,46,30,.6)';g.beginPath();g.ellipse(x+ox,yc,r*1.1,r*.45,0,0,7);g.fill();g.fillStyle='rgba(122,146,158,.85)';g.beginPath();g.ellipse(x+ox,yc,r,r*.36,0,0,7);g.fill();g.fillStyle='rgba(210,224,230,.6)';g.beginPath();g.ellipse(x+ox-r*.2,yc-r*.08,r*.5,r*.12,0,0,7);g.fill();h.fillStyle='rgb(70,70,70)';h.beginPath();h.ellipse(x+ox,yc,r,r*.36,0,0,7);h.fill()})}
+ g.restore();
+ // bords usés : brins d'herbe et terre qui débordent
+ for(let i=0;i<260;i++){const x=R()*Wd,top=R()<.5,y=top?edge(x,0):Hd-edge(x,3.3),d=top?-1:1;g.strokeStyle=R()<.6?'#6f9360':'#8c7148';g.lineWidth=1.1;wr(ox=>{g.beginPath();g.moveTo(x+ox,y);g.lineTo(x+ox+(R()-.5)*6,y+d*(2+R()*5));g.stroke()})}
+ const T1=new TH.CanvasTexture(cc),T2=new TH.CanvasTexture(cb);for(const t of[T1,T2]){t.wrapS=TH.RepeatWrapping;t.wrapT=TH.ClampToEdgeWrapping;t.anisotropy=8}T1.colorSpace=TH.SRGBColorSpace;
+ return RDT={map:T1,bump:T2,mat:new TH.MeshStandardMaterial({map:T1,bumpMap:T2,bumpScale:2.2,alphaTest:.45,roughness:1,metalness:0,side:TH.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-3})}}
+function roadMesh(P,s0,ph){
+ const n=P.length,pos=[],uv=[],idx=[],TL=10;let len=0;
+ for(let k=0;k<n;k++){const a=P[Math.max(0,k-1)],b=P[Math.min(n-1,k+1)];let tx=b[0]-a[0],tz=b[1]-a[1];const L=Math.hypot(tx,tz)||1;tx/=L;tz/=L;const hw=Math.max(1.1,3.9*rwv(s0+2*k,ph)/2);
+  if(k)len+=Math.hypot(P[k][0]-P[k-1][0],P[k][1]-P[k-1][1]);
+  for(const s of[-1,1]){const px=P[k][0]-tz*hw*s,pz=P[k][1]+tx*hw*s;pos.push(px,H3(px,pz)+.1,pz);uv.push(len/TL,s>0?1:0)}}
+ for(let k=0;k<n-1;k++){const a=k*2;idx.push(a,a+1,a+2,a+1,a+3,a+2)}
+ const g=new TH.BufferGeometry();g.setAttribute('position',new TH.Float32BufferAttribute(pos,3));g.setAttribute('uv',new TH.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();
+ const m=new TH.Mesh(g,roadTex().mat);m.receiveShadow=true;worldG.add(m)}
 function paintGround(){
  const TS=2.5,w=Math.round(WXd*TS),h=Math.round(WYd*TS),c=gcv||(gcv=document.createElement('canvas'));c.width=w;c.height=h;
  const g=c.getContext('2d'),R=rg3(1234);
@@ -571,7 +602,7 @@ function buildWorld(){
  const rdist=(x,y)=>{let b=1e9;const cx=(x/4)|0,cy=(y/4)|0;for(let i=-1;i<=1;i++)for(let j=-1;j<=1;j++){const a=RG.get((cx+i)+','+(cy+j));if(a)for(const q of a){const d=Math.hypot(q[0]-x,q[1]-y);if(d<b)b=d}}return b};
  const tuft=(x,y,k,c,s)=>L[k].push({x,y:H3(x,y)-.05,z:y,s,r:R()*6,c}),gz=(x,y)=>{let b=null,bd=1e9;for(const z of ZA){const d=Math.hypot(x-z.x,y-z.y)-ZRD(z.n);if(d<bd){bd=d;b=z.n}}return bd<3?b:null};
  for(let i=0,n=0;i<40000&&n<9000;i++){let x,y;if(R()<.25&&tRoad.length){const p=tRoad[(R()*tRoad.length)|0],a0=R()*6.283,dd=2.2+R()*4;x=p[0]+Math.cos(a0)*dd;y=p[1]+Math.sin(a0)*dd}else{x=6+R()*(WXd-12);y=6+R()*(WYd-12)}
-  if(x<4||y<4||x>WXd-4||y>WYd-4||!clear(x,y,1.3))continue;if(rdist(x,y)<2.3&&R()>.06)continue;const zn=gz(x,y);if(zn&&zn!=='Forêt'&&zn!=='Montagne')continue;if(zn==='Montagne'&&R()<.6)continue;
+  if(x<4||y<4||x>WXd-4||y>WYd-4||!clear(x,y,1.3))continue;if(rdist(x,y)<2.6&&R()>.06)continue;const zn=gz(x,y);if(zn&&zn!=='Forêt'&&zn!=='Montagne')continue;if(zn==='Montagne'&&R()<.6)continue;
   let rd=1e9;for(const p of tRoad){const d=Math.abs(p[0]-x)+Math.abs(p[1]-y);if(d<rd)rd=d}
   const tint=zn==='Montagne'?new Col(.8,.86,.8):rd<9?new Col(1.12,1.04,.7):new Col(.9+R()*.2,1,.9+R()*.15);
   const k=1+((R()*3)|0);for(let j=0;j<k;j++){const bx=x+(R()-.5)*1.6,by=y+(R()-.5)*1.6;tuft(bx,by,'gt',tint,.8+R()*.7)}n++}
@@ -620,8 +651,8 @@ function buildWorld(){
  }
  // routes (pavées) : rubans posés sur le terrain
  W.frame(0,0,0,1);
- ZA.forEach((z,zi)=>{const pts=RD[z.n];if(!pts)return;const ph=zi*1.7+.4;let seg=[],s0=0;const fl=()=>{if(seg.length>2){const m=seg.length;W.raw('cobble',ribbon(seg,k=>Math.max(.2,1.9*rwv(s0+2*k,ph)*Math.min(1,Math.sin(Math.PI*(k+.5)/m)*2.4)),.08,3.2,'#cdb384'))}seg=[]};
-  for(let k=pts.sh||0;k<pts.length;k+=2){const p=pts[k],on=Math.sin(k*.045+ph*3)+.6*Math.sin(k*.11+ph)>.45;if(!on||nearRiver(p[0],p[1],.3)||((p[0]-T.x)/vd.rx)**2+((p[1]-T.y)/vd.ry)**2<1.02){fl();continue}if(!seg.length)s0=k;seg.push([p[0],p[1]])}fl()});
+ ZA.forEach((z,zi)=>{const pts=RD[z.n];if(!pts)return;const ph=zi*1.7+.4;let seg=[],s0=0;const fl=()=>{if(seg.length>2)roadMesh(seg,s0,ph);seg=[]};
+  for(let k=pts.sh||0;k<pts.length;k+=2){const p=pts[k];if(nearRiver(p[0],p[1],.3)||((p[0]-T.x)/vd.rx)**2+((p[1]-T.y)/vd.ry)**2<1.02){fl();continue}if(!seg.length)s0=k;seg.push([p[0],p[1]])}fl()});
  {TPG=TP;const wq=[];for(const [x,z] of TP){const y0=H3(x,z);W.add('wood',cy2(.07,.1,2.3,6),'#4a3322',x,y0+1.1,z,{shade:0});W.add('wood',box(.34,.12,.34),'#2a1e14',x,y0+2.3,z,{shade:0});W.add('lava',box(.22,.3,.22),'#fff',x,y0+2.55,z,{shade:0});wq.push(x,y0+2.8,z)}
   WGD=null;if(TP.length){if(!WGM)WGM=new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false});const m=new TH.InstancedMesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),WGM,TP.length),o=new TH.Object3D();TP.forEach((q,i)=>{o.position.set(q[0],H3(q[0],q[1])+.15,q[1]);o.scale.set(20,1,20);o.updateMatrix();m.setMatrixAt(i,o.matrix)});m.frustumCulled=false;m.renderOrder=1;worldG.add(m);WGD=m}
   WPT=null;if(wq.length){const gm=new TH.BufferGeometry();gm.setAttribute('position',new TH.Float32BufferAttribute(wq,3));WPT=new TH.Points(gm,new TH.PointsMaterial({map:glowTex(),color:'#ff9a40',size:8,sizeAttenuation:true,blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,fog:false}));WPT.frustumCulled=false;WPT.renderOrder=2;worldG.add(WPT)}}

@@ -1,5 +1,13 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.8 « Nouvelle piste de terre »
+
+Version affichée dans les Options : **v3.6.8**
+
+### Modifié
+- Les routes n'utilisent plus l'ancienne texture pavée : nouvelle piste de terre très détaillée (ornières avec flaques, crête d'herbe au milieu, cailloux, fissures, bords effrités, largeur irrégulière, léger relief).
+- L'herbe 3D reste un peu plus à l'écart de la piste.
+
 ## v3.6.7 « Chemins retravaillés et biomes selon la sous-zone »
 
 Version affichée dans les Options : **v3.6.7**
