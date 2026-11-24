@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.9 « Réglages sprites et caméra »**
+Version actuelle du jeu : **v3.5.0 « PNJ en sprites »**
 
 ## ✅ Déjà intégré
 
@@ -322,13 +322,14 @@ Version actuelle du jeu : **v3.4.9 « Réglages sprites et caméra »**
 - Équipement : `h.eq = {w,a,b,s}` (arme, armure, bottes, bouclier ; `SL` dans `combat.js` donne les emplacements par classe, le bouclier est réservé au Guerrier). Niveaux d'équipement et noms via `pn(h,k)` / `ic(h,k)` : vérifier le niveau maximum réel dans `combat.js` avant de dessiner les paliers.
 - Règles : attention aux performances mobile (mettre en cache les textures par clé de variante, ne régénérer que si la clé change) ; garder les anciennes sauvegardes compatibles ; chaque sprite doit rester lisible avec la couleur d'aventurier.
 
-## 🧙 v3.5.0 « PNJ en sprites » (prochain)
-- [ ] **Sprites des PNJ (hommes et femmes)** dans le même style que les aventuriers : un sprite par rôle de `NPV` (tenue et accessoire propres à chaque métier), version masculine et féminine, cheveux et yeux de couleur variable (selon le nom du PNJ), contour sombre, 3 tons.
-- [ ] **Intégration 3D :** face caméra, ombre au sol, torche pixel-art devant la porte (comme les aventuriers), orientés vers les aventuriers qui viennent les voir, nom au-dessus de la tête, taille cohérente avec les bâtiments.
-- [ ] **Animations simples :** respiration au repos, geste d'interaction quand un aventurier est devant eux.
-- [ ] Retirer `buildNpc` une fois les sprites validés.
+## ✅ v3.5.0 « PNJ en sprites »
+- [x] **Sprites des PNJ (hommes et femmes)** dans le même style que les aventuriers : un sprite par rôle de `NPV` (tenue et accessoire propres à chaque métier), version masculine et féminine, cheveux et yeux de couleur variable (selon le nom du PNJ), contour sombre, 3 tons.
+- [x] **Intégration 3D :** face caméra, ombre au sol, torche pixel-art devant la porte (comme les aventuriers), orientés vers les aventuriers qui viennent les voir, nom au-dessus de la tête, taille cohérente avec les bâtiments.
+- [x] **Animations simples :** respiration au repos, geste d'interaction quand un aventurier est devant eux.
+- [x] Retirer `buildNpc` une fois les sprites validés.
+- [x] **Marteau de construction :** l'aventurier qui construit (et le PNJ qui améliore son bâtiment) se tourne vers le chantier et frappe avec un marteau pixel-art.
 
-## 👹 v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »
+## 👹 v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes » (prochain)
 - [ ] **Moteur de sprites de monstres :** générateur commun (grands formats possibles, 48×48 à 96×96 selon l'espèce, champ `span`), face/dos, repos, marche, attaque, touché, mort ; contour sombre, 3 tons, variantes de couleur par zone.
 - [ ] **Humanoïdes :** gobelin, kobold, orc, bandit, brigand, braconnier, cultiste, garde, geôlier, chevalier, champion, lanceur de sorts, squelette, troll, géant.
 - [ ] **Yeux et traits bleu néon la nuit** conservés sur les sprites (pixels émissifs).

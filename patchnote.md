@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.0 « PNJ en sprites »
+
+Version affichée dans les Options : **v3.5.0**
+
+### Ajouté
+- **PNJ en sprites pixel-art (mode 3D) :** Aubergiste, Forgeron, Tavernier, Guérisseur, Palefrenier, Maire, Intendant et Chancelier, en version homme et femme, avec tenue, chapeau et accessoire propres à chaque métier (chope, marteau, croix, fourche, chaîne, clés, parchemin). Cheveux et yeux de couleur variable selon le nom du PNJ, contour sombre, 3 tons.
+- **Intégration :** face caméra (ou de dos), ombre au sol, torche pixel-art la nuit, ils se tournent vers l'aventurier qui vient les voir, respirent au repos et lèvent le bras quand un aventurier est devant eux.
+- **Marteau de construction :** l'aventurier qui construit un bâtiment se tourne vers le chantier et frappe avec un marteau pixel-art (nouvelles images sans arme pour les 4 classes) ; le PNJ dont le bâtiment est en amélioration fait de même, de dos face au bâtiment. Le Forgeron tape aussi au marteau quand il sert un client.
+
+### Modifié
+- Les PNJ se tiennent maintenant devant le bâtiment, à gauche de la porte (pour ne pas être cachés par l'aventurier ni traverser le mur) ; leur nom est un peu plus haut.
+- Ancien modèle 3D des PNJ (`buildNpc`) retiré. Mode 2D inchangé. Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.4.9 « Réglages sprites et caméra »
 
 Version affichée dans les Options : **v3.4.9**
