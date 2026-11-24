@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.7.4 « Victoire, butin et couleurs »
+
+Version affichée dans les Options : **v3.7.4**
+
+### Ajouté
+- **Fouille du butin :** après une victoire, l'aventurier reste sur place pour récupérer le butin sur le corps du monstre : 30 à 45 s selon la valeur du butin (or, bois, pierre, équipement). Des pièces volent du corps vers l'aventurier. Le corps reste visible pendant la fouille.
+
+### Modifié
+- **Animation de victoire :** la pose de victoire dure 5 s (au lieu de 1,8 s), avant la fouille. Au total, 36 à 50 s entre la victoire et le départ.
+- **Double tap sur la carte :** remet aussi la rotation (et l'inclinaison) de la caméra à zéro, en plus de centrer et zoomer sur le village.
+- **Couleurs des aventuriers plus vives :** palette de 8 couleurs saturées (rouge, jaune, vert, bleu, violet, orange, cyan, rose). Les aventuriers existants prennent automatiquement la couleur vive correspondante.
+- Équilibre : la fouille allonge chaque quête réussie (environ −10 % de victoires et −16 % d'or sur 15 jours de simulation). Constantes dans `combat.js` : `LTV` (victoire), `LT0` et `LT1` (durée de fouille), `LTR` (valeur de butin pour la durée maximale).
+
 ## v3.7.3 « Une animation par sort »
 
 Version affichée dans les Options : **v3.7.3**

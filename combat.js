@@ -11,6 +11,9 @@ const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(X
 const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1)*(h.st==='fight'&&h.spw?1+h.spw:1);
 let GPW,RRF=null;
+// v3.7.4 : après une victoire, pose de victoire (LTV s) puis fouille du corps (LT0 à LT1 s selon le butin, LTR = valeur de butin pour la durée maximale)
+const LTV=5,LT0=30,LT1=45,LTR=120,lootT=l=>Math.round(LT0+(LT1-LT0)*Math.min(1,(l.g+3*(l.w+l.s)+(l.gear?25:0))/LTR));
+function startLoot(h){h.st='loot';h.t=h.lt0=LTV+lootT(h.loot);h.dec=0;h.tk=null;h.tl=[]}
 function castSp(h){if(!h.sp||h.spc)return;const s=(SPD[h.c]||[])[h.sp-1];if(!s)return;const e=s[1];h.spc=1;h.spw=e.w||0;h.spd=e.d||0;h.spg=e.g||0;h.sps=e.r||0;h.spf=e.f||0;log(`✨ ${h.name} lance ${s[0]}.`,'ok')}
 const ARC0=.35,ARC1=.1,ARCM=.9;
 function armRec(h){const it=bItem('I');if(!it||it.cn||it.rb)return;const sl=SL[h.c].filter(k=>h.eq[k]>0);if(!sl.length)return;
@@ -87,7 +90,7 @@ function resolve(h){
   l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.01*nl('V')+(h.spg||0)))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(1+(h.sps||0))*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(1+(h.sps||0))*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
-  h.kills++;if(Math.random()<GDROP){h.gem=(h.gem||0)+1;log(`💎 ${h.name} trouve une gemme.`,'ok')}log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}goBack(h);if(e.boss)victory(h);
+  h.kills++;if(Math.random()<GDROP){h.gem=(h.gem||0)+1;log(`💎 ${h.name} trouve une gemme.`,'ok')}log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}if(e.boss){goBack(h);victory(h)}else startLoot(h);
  }else if(rr<pw+pd){
   if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
@@ -116,6 +119,7 @@ function tick(dt){
    if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.wp&&h.wp.length)h.wp.shift();else if(h.pc=null,false){}else if(h.st==='go'){if(h.gp)h.st='wait';else arrive(h)}else townNext(h)}
    else{const nx=h.x+dx/d*sp,ny=h.y+dy/d*sp;bavoid(h,tg,nx,ny);const t2=h.wp&&h.wp.length?h.wp[0]:tg,ex=t2.x-h.x,ey=t2.y-h.y,e=Math.hypot(ex,ey)||1;if(t2===tg){h.x=nx;h.y=ny}else{const q=Math.min(sp,e);h.x+=ex/e*q;h.y+=ey/e*q}}
   }else if(h.st==='wait'){if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'))garrive(h)}
+  else if(h.st==='loot'){h.t-=dt;if(h.t<=0)goBack(h)}
   else if(h.st==='fight'){if(h.gp&&!h.gl)continue;h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
  }
 }

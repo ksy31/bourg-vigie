@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.7.3 « Une animation par sort »**
+Version actuelle du jeu : **v3.7.4 « Victoire, butin et couleurs »**
 
 ## ✅ Déjà intégré
 
@@ -416,6 +416,11 @@ Version actuelle du jeu : **v3.7.3 « Une animation par sort »**
 - [x] **Apprentissage :** coût en gemmes = niveau du sort (`GCOST` = 1 à 5) ; réussite 50 % + 4 %/niveau du bâtiment + 3 %/niveau de l'Enchanteur (`EN0`, `EN1`, `EN2`) ; échec = gemmes perdues.
 - [x] 1 sort maximum par aventurier, perdu à la mort ; pour l'instant le sort est un niveau sans effet (`h.sp`).
 
+## ✅ v3.7.4 « Victoire, butin et couleurs »
+- [x] Pose de victoire de 5 s, puis fouille du butin sur le corps du monstre (30 à 45 s selon le butin), pièces animées.
+- [x] Double tap : réinitialise aussi la rotation de la caméra.
+- [x] Couleurs des aventuriers plus vives (migration automatique des héros existants).
+
 ## ✅ v3.7.3 « Une animation par sort »
 - [x] Une animation 3D propre à chacun des 20 sorts, distincte des attaques de base (nouvelles textures : anneau, bulle, rocher, pièce, empreinte, flamme, bouclier, piège) ; l'Esquive fait reculer le héros.
 
@@ -467,6 +472,8 @@ Version actuelle du jeu : **v3.7.3 « Une animation par sort »**
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
+- [ ] **Top 10 des villages :** nouvel onglet dans le Top 10, à approfondir (critères du classement, données conservées, affichage).
+- [ ] **Monstres manquants :** créer tous les monstres qui n'ont pas encore de sprite, à approfondir (liste à établir).
 - [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
