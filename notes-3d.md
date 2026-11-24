@@ -1,6 +1,6 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 24/11/2026 : version livrée **v3.6.8 « Nouvelle piste de terre »** (cache `bv-v92`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 24/11/2026 : version livrée **v3.6.9 « Micro-ajustement de la piste »** (cache `bv-v93`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).

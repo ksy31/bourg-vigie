@@ -1,5 +1,12 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.9 « Micro-ajustement de la piste »
+
+Version affichée dans les Options : **v3.6.9**
+
+### Modifié
+- Piste de terre : les deux traits noirs (ornières) sont retirés.
+
 ## v3.6.8 « Nouvelle piste de terre »
 
 Version affichée dans les Options : **v3.6.8**

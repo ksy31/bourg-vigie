@@ -253,10 +253,6 @@ function roadTex(){
  g.save();g.beginPath();for(let x=0;x<=Wd;x+=2)g.lineTo(x,edge(x,0));for(let x=Wd;x>=0;x-=2)g.lineTo(x,Hd-edge(x,3.3));g.closePath();g.clip();
  const gr=g.createLinearGradient(0,0,0,Hd);gr.addColorStop(0,'#6e5636');gr.addColorStop(.12,'#8c7148');gr.addColorStop(.3,'#a88a5c');gr.addColorStop(.5,'#c4a674');gr.addColorStop(.7,'#a88a5c');gr.addColorStop(.88,'#8c7148');gr.addColorStop(1,'#6e5636');g.fillStyle=gr;g.fillRect(0,0,Wd,Hd);
  for(let i=0;i<2600;i++){const x=R()*Wd,y=R()*Hd,r=.8+R()*3.2;g.fillStyle=['rgba(120,92,58,.35)','rgba(205,180,132,.35)','rgba(90,68,42,.3)','rgba(170,142,98,.35)'][(R()*4)|0];wr(ox=>{g.beginPath();g.arc(x+ox,y,r,0,7);g.fill()})}
- // ornières (deux sillons) et crête centrale
- for(const [yc,w] of [[Hd*.31,15],[Hd*.69,15]]){const ph=R()*6;
-  for(let x=0;x<=Wd;x+=2){const y=yc+4*Math.sin(x/Wd*TAU*2+ph)+2*Math.sin(x/Wd*TAU*5+ph*2);g.fillStyle='rgba(70,52,30,.38)';g.fillRect(x,y-w/2,3,w);g.fillStyle='rgba(60,44,26,.3)';g.fillRect(x,y-w/4,3,w/2);h.fillStyle='rgb(76,76,76)';h.fillRect(x,y-w/2,3,w);h.fillStyle='rgb(58,58,58)';h.fillRect(x,y-w/4,3,w/2)}}
- for(let x=0;x<Wd;x+=2){const y=Hd/2+3*Math.sin(x/Wd*TAU*3+1);h.fillStyle='rgb(150,150,150)';h.fillRect(x,y-9,3,18)}
  // herbe sur la crête
  for(let i=0;i<150;i++){const x=R()*Wd,y=Hd/2+(R()-.5)*16;g.strokeStyle=['#6f9360','#8fb078','#5f8350'][(R()*3)|0];g.lineWidth=1;wr(ox=>{g.beginPath();g.moveTo(x+ox,y);g.lineTo(x+ox+(R()-.5)*4,y-3-R()*5);g.stroke()})}
  // fissures
