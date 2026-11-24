@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.9 « Micro-ajustement de la piste »**
+Version actuelle du jeu : **v3.7.0 « Combats plus lents et 4 attaques par classe »**
 
 ## ✅ Déjà intégré
 
@@ -405,6 +405,20 @@ Version actuelle du jeu : **v3.6.9 « Micro-ajustement de la piste »**
 - [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
+
+## ✅ v3.7.0 « Combats plus lents et 4 attaques par classe »
+- [x] Animations de combat ralenties (×1,5) ; coups beaucoup moins fréquents (pause de 1,8 à 3,6 s, constantes `ASL` et `AGP` dans `gl.js`) ; le monstre riposte une fois par coup.
+- [x] 4 attaques de base par classe avec animations différentes, débloquées aux niveaux 1 / 5 / 10 / 20 (`HLV`), tirées au hasard parmi les débloquées, purement visuelles.
+
+## 🔜 v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) » (prochain)
+- [ ] **Gemmes :** butin très rare ramené d'expédition, stocké uniquement dans l'inventaire de l'aventurier (pas de stock au village).
+- [ ] **Nouveau bâtiment d'enchantement** tenu par un **Enchanteur** (PNJ) ; niveau du bâtiment 1 à 5 = niveau des sorts disponibles (sorts 1 à 5).
+- [ ] **Apprentissage :** l'aventurier paie en gemmes ; taux de réussite augmenté par le niveau de l'Enchanteur (comme la bénédiction) ; en cas d'échec, les gemmes sont perdues.
+- [ ] 1 sort maximum par aventurier ; le sort est perdu à la mort.
+- [ ] À préciser avant de coder : coût en gemmes par sort, taux de drop, quand l'aventurier va à l'enchantement, ce que devient la gemme à la mort.
+
+## ⏳ v3.7.2 « 5 sorts par classe (2/2) »
+- [ ] 5 sorts par classe, lancés automatiquement en combat, avec animation et effet de jeu (liste à proposer et à valider avant de coder). Le soin du Mage (animation `heal`) existe déjà.
 
 ## ✅ v3.6.9 « Micro-ajustement de la piste »
 - [x] Les deux traits noirs (ornières) de la piste sont retirés.

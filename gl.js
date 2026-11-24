@@ -1275,27 +1275,48 @@ function fxUpd(tm){for(let i=FXL.length-1;i>=0;i--){const f=FXL[i],p=(tm-f.t0)/f
 function fxAng(x,y,z,dx,dy,dz){V3a.set(x,y,z).project(cam3);const a=V3a.x,b=V3a.y;V3a.set(x+dx,y+dy,z+dz).project(cam3);return Math.atan2((V3a.y-b)*H,(V3a.x-a)*W)}
 function fxProj(k,a,b,t0,dur,sz,arc,trail){for(let j=0;j<=(trail||0);j++){const s=fxSp(k,sz[0],sz[1],a[0],a[1],a[2]);s.material.opacity=1-.3*j;if(j)s.scale.multiplyScalar(1-.12*j);
   fxAdd(s,t0+j*.03,dur,(p,s)=>{const x=a[0]+(b[0]-a[0])*p,y=a[1]+(b[1]-a[1])*p+Math.sin(p*PI)*arc,z=a[2]+(b[2]-a[2])*p;s.position.set(x,y,z);s.material.rotation=fxAng(x,y,z,b[0]-a[0],b[1]-a[1]+arc*PI*Math.cos(p*PI),b[2]-a[2])})}}
-function heroSp(h,sp,tm,x,y,z){const mo=MN.get(h.id),tx=mo?mo.g.position.x-(mo.b.S0||1)*1.2:x+5.5,gy=y+(h.hs?1.5:0);
+// ===== v3.7.0 : animations ralenties, coups espacés, 4 attaques par classe (paliers niv. 1/5/10/20) =====
+const ASL=1.5,AGP=[1.8,3.6],HLV=[1,5,10,20];
+function heroSp(h,sp,tm,x,y,z){const mo=MN.get(h.id),tx=mo?mo.g.position.x-(mo.b.S0||1)*1.2:x+5.5,gy=y+(h.hs?1.5:0),A=ASL;
  switch(sp[1]){
-  case 'arc':{const X=x+1.6,Y=gy+2.6,s=fxSp('arc',3.6,3.6,X,Y,z);fxAdd(s,tm,.3,(p,s)=>{s.material.rotation=fxAng(X,Y,z,1,0,0)-.6;s.material.opacity=1-p*p;const k=.75+.5*p;s.scale.set(3.6*k,3.6*k,1)});break}
-  case 'streak':{const X=x+2.8,Y=gy+1.9,s=fxSp('streak',5,.9,X,Y,z);fxAdd(s,tm,.24,(p,s)=>{s.material.rotation=fxAng(X,Y,z,1,0,0);s.material.opacity=1-p;s.scale.set(5*(.5+.5*p),.9*(1-.4*p),1)});break}
-  case 'orb':fxProj('orb',[x+1.5,gy+2.1,z],[tx,gy+2.1,z],tm,.4,[1.1,1.1],.3,3);break;
-  case 'bolt':{const s=fxSp('bolt1',2.2,8.4,tx,gy+4.2,z);fxAdd(s,tm,.34,(p,s)=>{s.material.map=fxTex(Math.floor(p*12)%2?'bolt2':'bolt1');s.material.opacity=p<.7?1:1-(p-.7)/.3});break}
-  case 'heal':for(let i=0;i<7;i++){const a=i*2.4,r=.9+.5*(i%3),s=fxSp('plus',.8,.8,x+Math.cos(a)*r,gy+.4,z+Math.sin(a)*r);fxAdd(s,tm+i*.1,.9,(p,s)=>{s.position.y=gy+.4+p*3.6;s.material.opacity=Math.min(1,(1-p)*2.2)})}break;
-  case 'dag':{const i=sp[2];fxProj('dag',[x+1.5,gy+1.9,z],[tx,gy+2+(i-1)*.5,z+(i-1)*.7],tm,.3,[1.5,.55],.2,1);break}
-  case 'arr':{const q=sp[2];fxProj('arr',[x+1.3,gy+1.9,z],[tx,gy+2.1,z],tm,q?.22:.3,q?[2.5,.65]:[1.9,.5],q?.1:.5,q?2:1);break}}}
-const HAT={G:[{d:1.15,fr:[[0,.42,6],[.42,.72,9]],sp:[[.42,'arc']],mv:[.42,.72,.9]},{d:1,fr:[[.3,.68,10]],sp:[[.3,'streak']],mv:[.3,.68,1.2]}],
- M:[{d:1.2,fr:[[.25,.7,9]],sp:[[.25,'orb']]},{d:1.4,fr:[[0,.3,6],[.3,.75,10]],sp:[[.3,'bolt']]},{d:1.6,fr:[[0,1.1,11]],sp:[[0,'heal']]}],
- V:[{d:1.1,fr:[[0,.3,6],[.3,.65,9]],sp:[[.3,'dag',0],[.38,'dag',1],[.46,'dag',2]]},{d:.9,fr:[[.05,.55,10]],sp:[],mv:[.05,.55,-.9,.25]}],
- R:[{d:1,fr:[[0,.2,6],[.2,.55,9]],sp:[[.2,'arr',0]]},{d:1.6,fr:[[0,.75,6],[.75,1,9]],sp:[[.75,'arr',1]]}]},
- HAP={G:[0,0,1],M:[0,0,1,1,2],V:[0,0,0,1],R:[0,1]};
+  case 'arc':{const sg=sp[2]?1:0,X=x+1.6+sg*.4,Y=gy+2.6-sg*.5,s=fxSp('arc',3.6,3.6,X,Y,z);fxAdd(s,tm,.3*A,(p,s)=>{s.material.rotation=fxAng(X,Y,z,1,0,0)-.6+sg*2.4;s.material.opacity=1-p*p;const k=.75+.5*p;s.scale.set(3.6*k,3.6*k,1)});break}
+  case 'streak':{const dy=sp[2]||0,X=x+2.8,Y=gy+1.9+dy*.5,s=fxSp('streak',5,.9,X,Y,z);fxAdd(s,tm,.24*A,(p,s)=>{s.material.rotation=fxAng(X,Y,z,1,0,0)+dy*.5;s.material.opacity=1-p;s.scale.set(5*(.5+.5*p),.9*(1-.4*p),1)});break}
+  case 'slam':{heroSp(h,[sp[0],'arc',0],tm,x,y,z);if(mo)fxDust(mo);break}
+  case 'orb':fxProj('orb',[x+1.5,gy+2.1,z],[tx,gy+2.1,z],tm,.4*A,[1.1,1.1],.3,3);break;
+  case 'bolt':{const s=fxSp('bolt1',2.2,8.4,tx,gy+4.2,z);fxAdd(s,tm,.34*A,(p,s)=>{s.material.map=fxTex(Math.floor(p*12)%2?'bolt2':'bolt1');s.material.opacity=p<.7?1:1-(p-.7)/.3});break}
+  case 'beam':{const X0=x+1.6,Y=gy+2.3,L=Math.max(2,tx-X0),mx=(X0+tx)/2,s=fxSp('streak',L,1.4,mx,Y,z),o2=fxSp('orb',2.2,2.2,tx,Y,z),d=.85*A;
+   fxAdd(s,tm,d,(p,s)=>{s.material.rotation=fxAng(mx,Y,z,1,0,0);s.material.opacity=p<.12?p/.12:p>.8?(1-p)/.2:1;s.scale.set(L,1.4*(.8+.2*Math.sin(p*40)),1)});
+   fxAdd(o2,tm,d,(p,s)=>{s.material.opacity=p<.12?p/.12:p>.8?(1-p)/.2:1;const k=2.2*(.8+.3*Math.sin(p*30));s.scale.set(k,k,1)});break}
+  case 'rain':{const i=sp[2],dx=((i*37)%5-2)*.9,dz=((i*53)%5-2)*.7;fxProj('orb',[tx+dx*.4,gy+10,z+dz*.5],[tx+dx*.2,gy+1.4,z+dz*.3],tm,.5*A,[1,1.3],0,2);break}
+  case 'heal':for(let i=0;i<7;i++){const a=i*2.4,r=.9+.5*(i%3),s=fxSp('plus',.8,.8,x+Math.cos(a)*r,gy+.4,z+Math.sin(a)*r);fxAdd(s,tm+i*.1*A,.9*A,(p,s)=>{s.position.y=gy+.4+p*3.6;s.material.opacity=Math.min(1,(1-p)*2.2)})}break;
+  case 'dag':{const i=sp[2];fxProj('dag',[x+1.5,gy+1.9,z],[tx,gy+2+(i-1)*.5,z+(i-1)*.7],tm,.3*A,[1.5,.55],.2,1);break}
+  case 'dagf':{const i=sp[2];fxProj('dag',[x+1.5,gy+2.1,z],[tx,gy+1.6+(i%2)*.6,z+(i-2)*.8],tm,.45*A,[1.5,.55],1.6,1);break}
+  case 'arr':{const q=sp[2];if(q>=2)fxProj('arr',[x+1.3,gy+2,z],[tx+(q-4)*.4,gy+1.6,z+(q-4)*.8],tm,.55*A,[1.9,.5],3.2,1);else fxProj('arr',[x+1.3,gy+1.9,z],[tx,gy+2.1,z],tm,(q?.22:.3)*A,q?[2.5,.65]:[1.9,.5],q?.1:.5,q?2:1);break}}}
+// 4 attaques par classe ; HLV = niveau minimal de chaque attaque ; durées d, images fr, effets sp, déplacement mv (en secondes avant ralentissement ASL)
+const HAT={G:[{d:1.15,fr:[[0,.42,6],[.42,.72,9]],sp:[[.42,'arc']],mv:[.42,.72,.9]},
+  {d:1,fr:[[.3,.68,10]],sp:[[.3,'streak']],mv:[.3,.68,1.2]},
+  {d:1.5,fr:[[0,.7,6],[.7,1.05,9]],sp:[[.7,'slam']],mv:[.15,.75,.5,1.2]},
+  {d:1.7,fr:[[0,.3,10],[.3,.6,9],[.6,.9,6],[.9,1.25,10]],sp:[[.3,'arc',0],[.6,'arc',1],[.9,'arc',0],[1.2,'streak']],mv:[.2,1.3,1.6]}],
+ M:[{d:1.2,fr:[[.25,.7,9]],sp:[[.25,'orb']]},
+  {d:1.4,fr:[[0,.3,6],[.3,.75,10]],sp:[[.3,'bolt']]},
+  {d:1.7,fr:[[0,.3,6],[.3,1.2,10]],sp:[[.3,'beam']]},
+  {d:1.9,fr:[[0,.35,11],[.35,1.3,6]],sp:[[.35,'rain',0],[.5,'rain',1],[.65,'rain',2],[.8,'rain',3],[.95,'rain',4]]}],
+ V:[{d:1.1,fr:[[0,.3,6],[.3,.65,9]],sp:[[.3,'dag',0],[.38,'dag',1],[.46,'dag',2]]},
+  {d:.9,fr:[[.05,.55,10]],sp:[],mv:[.05,.55,-.9,.25]},
+  {d:1.4,fr:[[0,.3,9],[.3,.6,6],[.6,.95,10]],sp:[[.3,'streak',1],[.65,'streak',-1]],mv:[.2,.9,1.4]},
+  {d:1.8,fr:[[0,.5,6],[.5,1.1,9]],sp:[[.5,'dagf',0],[.58,'dagf',1],[.66,'dagf',2],[.74,'dagf',3],[.82,'dagf',4]]}],
+ R:[{d:1,fr:[[0,.2,6],[.2,.55,9]],sp:[[.2,'arr',0]]},
+  {d:1.6,fr:[[0,.75,6],[.75,1,9]],sp:[[.75,'arr',1]]},
+  {d:1.5,fr:[[0,.2,6],[.2,.4,9],[.4,.55,6],[.55,.75,9],[.75,.9,6],[.9,1.1,9]],sp:[[.2,'arr',0],[.55,'arr',0],[.9,'arr',0]]},
+  {d:2,fr:[[0,.8,6],[.8,1.2,9]],sp:[[.8,'arr',2],[.85,'arr',3],[.9,'arr',4],[.95,'arr',5],[1,'arr',6]]}]};
+const HAU=lv=>{const r=[];for(let i=0;i<HLV.length;i++)if(lv>=HLV[i])r.push(i);return r};
 function thFx(o,h,tm,x,y,z){const ts=o.ths;if(!ts||!ts.length||tm-(o.pt||0)<.3||FXL.length>36)return;o.pt=tm;const c=(o.pc=(o.pc||0)+1),th=ts[c%ts.length],q=THP[th-1],cl=c&2?q.g:q.t,up=th===6?-1.2:th===2?0:1.4,s=fxSp('mote',.5,.5,x+(Math.random()-.5)*2.6,y+(h.hs?1.5:0)+.6+Math.random()*3.2,z+(Math.random()-.5)*2.6);s.material.color.setRGB(cl[0]/255,cl[1]/255,cl[2]/255);const y0=s.position.y;fxAdd(s,tm,.9,(p,s)=>{s.position.y=y0+up*p;s.material.opacity=1-p})}
 function heroFx(o,h,fg,tm,x,y,z){
  if(o.lf&&!fg){if(h.loot)o.vt=tm;else o.ft=tm}o.lf=fg;o.fr=!fg&&o.ft&&tm-o.ft<3&&!h.loot;
  if(!fg){o.af=o.vt&&tm-o.vt<1.8&&h.loot?12:0;o.at=null;return}
  const T=HAT[h.c];if(!T){o.af=0;return}
- let a=o.at;if(!a||tm-a.t0>=a.ty.d){const c=(o.an=(o.an||0)+1),pk=HAP[h.c],ty=T[pk[(h.id*7+c*5+((c*c)%3))%pk.length]];a=o.at={ty,t0:(a&&tm-a.t0<a.ty.d+.3)?a.t0+a.ty.d:tm,sp:0}}
- const p=tm-a.t0,ty=a.ty;let af=0;for(const f of ty.fr)if(p>=f[0]&&p<f[1])af=f[2];o.af=af;
+ let a=o.at;if(!a||tm-a.t0>=a.ty.d*ASL+a.gp){const c=(o.an=(o.an||0)+1),pk=HAU(h.lv|0);let k=pk[Math.floor(Math.random()*pk.length)];if(pk.length>1&&a&&a.k===k)k=pk[(pk.indexOf(k)+1+Math.floor(Math.random()*(pk.length-1)))%pk.length];const ty=T[k],gp=AGP[0]+Math.random()*(AGP[1]-AGP[0]),en=a?a.t0+a.ty.d*ASL+a.gp:0;a=o.at={ty,k,gp,t0:(a&&tm-en<.3)?en:tm,sp:0}}
+ const p=(tm-a.t0)/ASL,ty=a.ty;let af=0;for(const f of ty.fr)if(p>=f[0]&&p<f[1])af=f[2];o.af=af;
  for(let i=0;i<ty.sp.length;i++)if(!(a.sp&(1<<i))&&p>=ty.sp[i][0]){a.sp|=1<<i;heroSp(h,ty.sp[i],tm,x,y,z)}
  const e=ty.mv;if(e&&p>=e[0]&&p<e[1]){const q=Math.sin(PI*(p-e[0])/(e[1]-e[0]));o.g.position.x+=e[2]*q;if(e[3])o.g.position.y+=e[3]*q}}
 function fxDust(o){const g=o.g,sz=Math.max(1,Math.min(3.4,(o.b.S0||1)*(o.b.wide||1)*HS*.32)),tm=performance.now()/1000,bx=g.position.x,bz=g.position.z,by=H3(bx,bz);
@@ -1545,11 +1566,12 @@ function monBuild(mk,h){const e=h.en,b=buildSprMon(mk,e,h),nm=e.n.toLowerCase(),
  if(!(b.fly>0))b.g.add(csChar((b.wide||1)*1.7));
  b.S0=(SZ[mk]||1)*km*(.85+.4*ql)*(.95+.1*jt(hid(e.n)+h.id*7,2));b.g.scale.setScalar(HS*b.S0);b.g.userData.mk=mk;return b}
 const MN=new Map(),MCP=[];let monG=null;
+function mlg(h,tm){const o=HM.get(h.id),a=o&&o.at;if(!a)return 0;const q=tm-a.t0-a.ty.d*ASL*.8,L=.9*ASL;return q>0&&q<L?Math.sin(PI*q/L)*1.1:0}
 function updMon(dt,tm,BM){const seen=new Set();
  for(const h of S.hero){if(h.st!=='fight'||!h.en)continue;const mk=mkind(h.en.n);if(!mk||!SPR(mk))continue;seen.add(h.id);const key=mk+'|'+h.en.n;let o=MN.get(h.id);
   if(o&&o.key!==key){monG.remove(o.g);disp(o.g);MN.delete(h.id);o=null}
   if(!o){const b=monBuild(mk,h);o={g:b.g,b,key,ph:Math.random()*6};monG.add(o.g);MN.set(h.id,o)}
-  const [hx,hz]=hpos(h,BM),S0=o.b.S0,off=3.4+2.1*S0*Math.min(1.5,o.b.wide||1)+(h.hs?1.3:0),lg=Math.abs(Math.sin(tm*9))*1.1,x=hx+off-lg;
+  const [hx,hz]=hpos(h,BM),S0=o.b.S0,off=3.4+2.1*S0*Math.min(1.5,o.b.wide||1)+(h.hs?1.3:0),lg=mlg(h,tm),x=hx+off-lg;
   o.g.position.set(x,H3(x,hz)+o.b.fly*S0*HS*.45+Math.sin(tm*3+h.id)*.1,hz);o.g.rotation.y=-PI/2;o.b.anim(tm+o.ph,lg)}
  for(const [id,o] of MN)if(!seen.has(id)){MN.delete(id);const hq=S.hero.find(q=>q.id===id);if(o.b.spr&&hq&&hq.loot){o.age=0;MCP.push(o);if(!o.b.eth)fxDust(o)}else{monG.remove(o.g);disp(o.g)}}
  for(let i=MCP.length-1;i>=0;i--){const o=MCP[i];o.age+=dt;if(o.b.eth){o.b.fade=Math.min(1,o.age/2);o.b.anim(tm+o.ph,0);if(o.age>2){monG.remove(o.g);disp(o.g);MCP.splice(i,1)}continue}o.b.dead=Math.min(1,o.age/.7);if(o.b.fly>0){const gy=H3(o.g.position.x,o.g.position.z);o.g.position.y+=(gy-o.g.position.y)*Math.min(1,dt*6)}o.b.anim(tm+o.ph,0);if(o.age>30){monG.remove(o.g);disp(o.g);MCP.splice(i,1)}}}

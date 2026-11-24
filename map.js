@@ -190,7 +190,7 @@ function person(x,y,o){
  else if(k==='M'){cx.fillStyle='#4a3a8c';cx.beginPath();cx.ellipse(0,-1.75,1.05,.28,0,0,7);cx.fill();cx.stroke();tri([[-.72,-1.75],[.2,-3.25],[.72,-1.75]],'#5a46a8');ci(.15,-2.2,.1,'#ffe082')}
  else if(np){if(np.h){cx.fillStyle=np.h;cx.beginPath();cx.ellipse(0,-1.75,.95,.26,0,0,7);cx.fill();cx.stroke();if(o.r==='V')rc(-.5,-2.9,1.0,1.2,np.h,.1);else rc(-.55,-2.35,1.1,.65,np.h,.18)}else cap(hr,.76)}
  else{cx.fillStyle=hr;cx.beginPath();cx.arc(0,-1.25,.76,Math.PI*1.05,Math.PI*1.95);cx.closePath();cx.fill()}
- const sa=fg?Math.sin(t*9):(mv?sw*.15:0),blade=(a,b,L,ang,co)=>{cx.save();cx.translate(a,b);cx.rotate(ang);rc(-.09,-L,.18,L-.1,co||'#d7dde3',.05);rc(-.28,-.12,.56,.14,'#8a6a2a',.04);cx.restore()};
+ const sa=fg?Math.sin(t*3):(mv?sw*.15:0),blade=(a,b,L,ang,co)=>{cx.save();cx.translate(a,b);cx.rotate(ang);rc(-.09,-L,.18,L-.1,co||'#d7dde3',.05);rc(-.28,-.12,.56,.14,'#8a6a2a',.04);cx.restore()};
  if(o.bd&&!np){cx.save();cx.translate(1.0,.55);cx.rotate(-.5+Math.sin(t*6)*.8);ln(0,0,0,-1.6,'#6b4a2a',.15);rc(-.4,-1.95,.8,.45,'#888d96',.06);cx.restore()}
  else if(k==='G'){blade(1.0,.55,1.9,-.35-(fg?.6+sa*.9:sa),'#d7dde3');ci(-1.05,.2,.65,'#7c5a38');ci(-1.05,.2,.2,'#c9a85c')}
  else if(k==='V'){blade(1.0,.55,1.0,-.3-(fg?.5+sa*.8:sa),'#cfd6dc');blade(-1.0,.55,1.0,.3+(fg?.5-sa*.8:-sa),'#cfd6dc')}
@@ -207,7 +207,7 @@ function person(x,y,o){
   else if(x==='sack'){const b=0;if(ac)cx.translate(hd[0],hd[1]);ci(1.3,.75+b,.6,'#b59a6a');rc(1.0,.1+b,.6,.2,'#8a7448',.05)}
   else if(x==='fork'){if(ac)cx.translate(hd[0],hd[1]);if(ac){cx.translate(1.2,1.6);cx.rotate(Math.sin(t*4)*.25);cx.translate(-1.2,-1.6)}ln(1.2,1.6,1.2,-1.8,'#6b4a2a',.14);ln(1.0,-1.8,1.4,-1.8,'#888d96',.12);ln(1.0,-1.8,1.0,-1.3,'#888d96',.1);ln(1.4,-1.8,1.4,-1.3,'#888d96',.1)}
   else if(x==='chain'){if(ac)ci(0,.2,.3+.12*Math.sin(t*6),'rgba(255,224,130,.5)');cx.strokeStyle='#e2b43c';cx.lineWidth=.14;cx.beginPath();cx.arc(0,-.55,.7,.2,Math.PI-.2);cx.stroke();cx.strokeStyle='rgba(29,35,38,.75)';cx.lineWidth=.12;ci(0,.2,.18,'#e2b43c')}}
- if(fg){const a=Math.abs(Math.sin(t*9));if(k==='G'||k==='V'||hs){cx.strokeStyle=`rgba(255,255,255,${.35+.4*a})`;cx.lineWidth=.22;cx.beginPath();cx.arc(2.5,-.2,1.3,-1.1,1.1);cx.stroke()}
+ if(fg){const a=Math.abs(Math.sin(t*3));if(k==='G'||k==='V'||hs){cx.strokeStyle=`rgba(255,255,255,${.35+.4*a})`;cx.lineWidth=.22;cx.beginPath();cx.arc(2.5,-.2,1.3,-1.1,1.1);cx.stroke()}
   for(let i=0;i<3;i++){const q=t*7+i*2.1;cx.fillStyle=i%2?'#ffe082':'#fff3c4';cx.beginPath();cx.arc(3.1+Math.cos(q)*.6,-.2+Math.sin(q*1.3)*.7,.11,0,7);cx.fill()}}
  cx.restore()}
 const segX=(a,b,c,d)=>{const r=(b[0]-a[0])*(d[1]-c[1])-(b[1]-a[1])*(d[0]-c[0]);if(!r)return false;const t=((c[0]-a[0])*(d[1]-c[1])-(c[1]-a[1])*(d[0]-c[0]))/r,u=((c[0]-a[0])*(b[1]-a[1])-(c[1]-a[1])*(b[0]-a[0]))/r;return t>0&&t<1&&u>0&&u<1};

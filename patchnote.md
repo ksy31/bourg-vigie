@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.7.0 « Combats plus lents et 4 attaques par classe »
+
+Version affichée dans les Options : **v3.7.0**
+
+### Ajouté
+- 4 attaques de base par classe, chacune avec sa propre animation et ses effets, débloquées aux niveaux 1, 5, 10 et 20 (purement visuel, aucun effet sur l'équilibre).
+  - Guerrier : entaille, estoc, frappe plongeante (impact au sol), tourbillon.
+  - Mage : orbe, foudre, rayon continu, pluie d'éclats.
+  - Voleur : lancer de dagues, fente, double entaille, pluie de lames.
+  - Rôdeur : tir, tir chargé, tir rapide (3 flèches), volée de 5 flèches.
+- À chaque coup, l'aventurier tire au hasard une attaque parmi celles qu'il a débloquées (jamais deux fois la même d'affilée).
+
+### Modifié
+- Animations de combat ralenties (×1,5) : poses, effets, projectiles.
+- Coups beaucoup moins fréquents : 1,8 à 3,6 s de pause entre deux attaques de l'aventurier (avant : enchaînement continu).
+- Le monstre ne charge plus toutes les 0,35 s : il riposte une fois après chaque attaque de l'aventurier.
+- Mode 2D de repli : balancement de combat 3 fois plus lent.
+- Le sort de soin du Mage (ancienne 3e animation) n'est plus tiré en combat : il sera réutilisé comme sort.
+- La durée des combats, les gains et les morts ne changent pas.
+
 ## v3.6.9 « Micro-ajustement de la piste »
 
 Version affichée dans les Options : **v3.6.9**
