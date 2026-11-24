@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »**
+Version actuelle du jeu : **v3.5.2 « Monstres en sprites (2/3) : bêtes »**
 
 ## ✅ Déjà intégré
 
@@ -335,11 +335,12 @@ Version actuelle du jeu : **v3.5.1 « Monstres en sprites (1/3) : base et humano
 - [x] **Yeux et traits bleu néon la nuit** conservés sur les sprites (pixels émissifs).
 - [x] **Cadavre :** le monstre vaincu s'effondre et reste couché environ 30 s. Pas de marche, pas de flash ni d'animation d'impact (choix).
 
-## 🐺 v3.5.2 « Monstres en sprites (2/3) : bêtes » (prochain)
-- [ ] Loup (meute), sanglier, ours, renard, rat, chauve-souris, araignée, aigle, chouette, condor, harpie, griffon, chèvre, yéti, loup-garou, ver, salamandre.
-- [ ] Animations de marche adaptées (quadrupèdes, vol) et d'attaque propres à chaque espèce.
+## ✅ v3.5.2 « Monstres en sprites (2/3) : bêtes »
+- [x] Loup (meute), sanglier, ours, renard, rat, chauve-souris, araignée, aigle, chouette, condor, harpie, griffon, chèvre, yéti, loup-garou, ver, salamandre.
+- [x] Animations de marche adaptées (quadrupèdes, vol) et d'attaque propres à chaque espèce.
+- [x] Choix : bêtes en profil tournées vers l'aventurier, pas de marche (repos, attaque ; battement d'ailes pour les volants), meute spectrale = 3 loups, chouette à part, loup-garou et yéti debout, variantes de couleur par mots du nom.
 
-## 🐉 v3.5.3 « Monstres en sprites (3/3) : fantastiques et boss »
+## 🐉 v3.5.3 « Monstres en sprites (3/3) : fantastiques et boss » (prochain)
 - [ ] Fantôme, ombre, âme/banshee, spectre, liche, feu follet, élémentaire, golem, gargouille, arbre, dryade, chimère, hydre, basilic, dragon, démon, Roi Démon.
 - [ ] **Boss et grands monstres :** grands sprites, animation d'entrée, effets lumineux (lave, flammes, aura).
 - [ ] Retirer l'ancien code 3D des monstres (`monW`) une fois tout validé.

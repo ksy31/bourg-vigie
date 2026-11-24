@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.2 « Monstres en sprites (2/3) : bêtes »
+
+Version affichée dans les Options : **v3.5.2**
+
+### Ajouté
+- **Bêtes en sprites pixel-art (mode 3D) :** loup, renard, sanglier, bouquetin, ours, rat, salamandre/lézard de feu (quadrupèdes de profil, tournés vers l'aventurier), araignée, ver, chauve-souris, aigle, chouette, condor, harpie, griffon, plus le yéti et le loup-garou/rat-garou debout (face/dos, comme les humanoïdes).
+- **Tailles de toile variables** (de 56×40 à 96×72) avec la même taille de pixel que les aventuriers ; la taille finale suit toujours l'espèce et le niveau.
+- **Animations :** repos et attaque propres à chaque espèce (gueule ouverte et patte levée, souffle de la salamandre, pattes avant de l'araignée, ver qui se penche, piqué des oiseaux) ; battement d'ailes en boucle pour les volants. Pas de marche.
+- **Variantes selon le nom :** spectral (bleuté translucide), noir/noire/sombre/des profondeurs (assombri), des neiges (clair), brun, rat-garou (gris), yeux rouges pour « enragé ».
+- **Meute spectrale :** 3 loups spectraux côte à côte pour un seul combat.
+- **Nuit :** yeux et traits bleu néon sur la couche lumineuse, comme les humanoïdes.
+- **Cadavre :** 30 s au sol sur le flanc ; les volants tombent d'abord au sol.
+
+### Modifié
+- `pxSprite` accepte des dimensions de toile variables. Mode 2D inchangé. Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »
 
 Version affichée dans les Options : **v3.5.1**
