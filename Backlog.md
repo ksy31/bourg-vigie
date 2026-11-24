@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »**
+Version actuelle du jeu : **v3.8.4 « Top 10 des villages »**
 
 ## ✅ Déjà intégré
 
@@ -412,6 +412,10 @@ Version actuelle du jeu : **v3.8.3 « Monstres : bêtes, esprits, golems (4/4) �
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
 
+## ✅ v3.8.4 « Top 10 des villages »
+- [x] Onglet Villages dans le Top 10 : classement par jours survécus, une entrée par partie terminée (`vlbRec`, `vlbAdd`, `P.vlb`), détails : victoire, tués, or, morts, bâtiments, meilleur aventurier.
+- [x] Numéro à côté du nom quand plusieurs villages portent le même nom (ordre de création, `P.vc`).
+
 ## ✅ v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »
 - [x] Traits dédiés : Araignée, Chauve-souris, Ver, Salamandre, Banshee, Ombres, Élémentaire de feu, Golem d'obsidienne.
 
@@ -475,7 +479,7 @@ Version actuelle du jeu : **v3.8.3 « Monstres : bêtes, esprits, golems (4/4) �
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
-- [ ] **Top 10 des villages :** nouvel onglet dans le Top 10, à approfondir (critères du classement, données conservées, affichage).
+- [x] **Top 10 des villages :** fait en v3.8.4.
 - [x] **Monstres manquants :** fait en v3.8.0 à v3.8.3.
 - [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.

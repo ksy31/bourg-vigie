@@ -90,9 +90,9 @@ function resolve(h){
   l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.01*nl('V')+(h.spg||0)))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(1+(h.sps||0))*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(1+(h.sps||0))*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
-  h.kills++;if(Math.random()<GDROP){h.gem=(h.gem||0)+1;log(`💎 ${h.name} trouve une gemme.`,'ok')}log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}if(e.boss){goBack(h);victory(h)}else startLoot(h);
+  h.kills++;S.tk=(S.tk||0)+1;if(Math.random()<GDROP){h.gem=(h.gem||0)+1;log(`💎 ${h.name} trouve une gemme.`,'ok')}log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}if(e.boss){goBack(h);victory(h)}else startLoot(h);
  }else if(rr<pw+pd){
-  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
+  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;S.td=(S.td||0)+1;if(!S.bh||h.lv>S.bh.lv)S.bh={n:h.name,c:h.c,lv:h.lv};lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');armRec(h);
   ui();

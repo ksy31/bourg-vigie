@@ -67,7 +67,7 @@ function taskOk(h,tk){
 function applyTask(h,tk){
  if(tk.k==='loot'){
   if(!h.loot)return;
-  const l=h.loot,pg0=Math.round(l.g*.3),gg=h.gu?(S.guilds||[]).find(q=>q.id===h.gu):null,tx=gg?Math.min(pg0,Math.round(l.g*GTAX)):0,pg=pg0-tx;if(gg)gg.f=(gg.f||0)+tx;h.gold+=pg;h.earned+=l.g;S.g+=l.g-pg0;S.w+=l.w;S.s+=l.s;if(l.g+l.w+l.s>0)npcx('V');
+  const l=h.loot,pg0=Math.round(l.g*.3),gg=h.gu?(S.guilds||[]).find(q=>q.id===h.gu):null,tx=gg?Math.min(pg0,Math.round(l.g*GTAX)):0,pg=pg0-tx;if(gg)gg.f=(gg.f||0)+tx;h.gold+=pg;h.earned+=l.g;S.te=(S.te||0)+l.g;S.g+=l.g-pg0;S.w+=l.w;S.s+=l.s;if(l.g+l.w+l.s>0)npcx('V');
   let m=`${h.name} bat ${h.won} : +${l.g} or (${pg} à sa bourse${tx?', '+tx+' à la caisse':''})`+(l.w?`, ${l.w} bois`:'')+(l.s?`, ${l.s} pierre`:'');
   if(l.gear)m+=' · '+giveGear(h);
   log(m+'.');

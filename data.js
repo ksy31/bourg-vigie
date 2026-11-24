@@ -11,6 +11,7 @@ const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',E:'Palefreni
 const NI='🗝️',NC='📜';
 const CI={G:'■',V:'▲',M:'◆',R:'⬢'};
 const lbB=(a,b)=>a.k-b.k||a.g-b.g||a.lv-b.lv||a.d-b.d;
+function vlbAdd(e){if(!e||!e.id)return;const j=P.vlb.findIndex(x=>x.id===e.id);if(j<0)P.vlb.push(e);else P.vlb[j]=e;P.vlb.sort((a,b)=>b.d-a.d||b.k-a.k);P.vlb=P.vlb.slice(0,10)}
 function lbAdd(e){if(!e||e.k==null||!e.eq)return;const j=P.lb.findIndex(x=>x.n===e.n);if(j<0)P.lb.push(e);else if(lbB(e,P.lb[j])>0)P.lb[j]=e;P.lb.sort((a,b)=>lbB(b,a));P.lb=P.lb.slice(0,10)}
 const gn=x=>SL[x.c].filter(k=>x.eq[k]).map(k=>`${pn(x,k)} ${x.eq[k]}`).join(', ');
 const BZ={n:'Trône du Roi',x:324,y:252,d:0,boss:1,c:'#5c1a1f'};

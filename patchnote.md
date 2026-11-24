@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.4 « Top 10 des villages »
+
+Version affichée dans les Options : **v3.8.4**
+
+### Ajouté
+- **Onglet « Villages » dans le Top 10** (boutons Aventuriers / Villages en haut de l'onglet). Une partie y entre à sa fin (Game Over ou victoire sur le Roi Démon), classée par **jours survécus** (égalité : monstres tués).
+- Chaque village affiche : nom, victoire ou défaite, jours, monstres tués, or gagné, aventuriers morts, nombre de bâtiments et niveau maximal, meilleur aventurier (nom, classe, niveau).
+- Toutes les parties comptent. Quand plusieurs villages portent le même nom, un numéro s'affiche à côté (« Vigie 1 », « Vigie 2 »…), selon l'ordre de création des parties de ce nom ; il ne change plus, même si un village sort du Top 10. Un village seul sur son nom n'a pas de numéro.
+- Une même partie n'est comptée qu'une fois, même si tu fais « Continue » puis un nouveau Game Over (son entrée est mise à jour).
+- Le bouton « Effacer le Top 10 » du menu Développeur efface aussi le classement des villages et ses compteurs.
+
+### Modifié
+- Nouveaux compteurs de partie (`S.tk` monstres tués, `S.te` or gagné, `S.td` morts, `S.bh` meilleur aventurier mort, `S.rid` et `S.vnn` identifiant et numéro) ; les parties commencées avant la v3.8.4 repartent de zéro pour ces totaux. Aucune migration nécessaire.
+- Aucun changement d'équilibrage.
+
 ## v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »
 
 Version affichée dans les Options : **v3.8.3**

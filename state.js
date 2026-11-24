@@ -11,9 +11,9 @@ function genMap(){const WX=100*MS,WY=130*MS,ent=[...ZB.map((b,i)=>[b.n,Math.hypo
   if(typeof roadOf!=='function'||mapOk(zp))return zp}
  T.x=T0.x;T.y=T0.y;BZ.x=BZ0.x;BZ.y=BZ0.y;return BASEPOS.map(q=>q.slice())}
 function buildZ(){ZVC=S.zv;ZSON=!!S.zs;Z=ZB.map((b,i)=>{const v=ZV[i][S.zv[i]];return{n:b.n,vi:S.zv[i],sn:v[0],x:S.zp[i][0],y:S.zp[i][1],d:v[1],c:b.c,e:v[2].split(',').map((m,j)=>[m,[.8,1.1,1.5][j]]),f:v[3].split(',').map((m,j)=>[m,[.9,1.2,1.6][j]])}});ZA=[...Z,BZ];const gen=f=>{const pv=[];ZA.forEach((z,i)=>{RD[z.n]=roadOf(z,i,pv,f);pv.push(RD[z.n])});return pv};const ck=JSON.stringify(S.zp)+T.x+T.y+BZ.x+BZ.y;if(MC&&MC.k===ck)ZA.forEach((z,i)=>{RD[z.n]=MC.pv[i]});else{let ok=0;for(let k=0;k<14&&!ok;k++)ok=!roadsCross(gen(k));if(!ok)gen(-1)}MC=null;buildRivers()}
-let P={glory:0,runs:0,g:0,p:0,s:0,h:0,lb:[]};
+let P={glory:0,runs:0,g:0,p:0,s:0,h:0,lb:[],vlb:[]};
 try{Object.assign(P,JSON.parse(localStorage.getItem('bv')||'{}'))}catch(e){}
-P.lb=(P.lb||[]).filter(x=>x&&x.eq&&x.k!=null);
+P.lb=(P.lb||[]).filter(x=>x&&x.eq&&x.k!=null);P.vlb=(P.vlb||[]).filter(x=>x&&x.id&&x.d!=null);
 const save=()=>{try{localStorage.setItem('bv',JSON.stringify(P))}catch(e){}};
 const U={g:{n:'Fortune',t:'+15 % d’or'},p:{n:'Vaillance',t:'+6 % de puissance'},s:{n:'Héritage',t:'+40 or au départ'},h:{n:'Vigueur',t:'−8 % de repos'}};
 const BOSS0=300,bossD=()=>BOSS0*(1+.35*P.runs);
@@ -34,7 +34,10 @@ const kgBusy=()=>S.hero.some(x=>x.kg||(x.z===BZ&&x.st!=='rest'));
 function sendBoss(){if(kgBusy())return;const h=bestChamp();if(!h)return;h.kg=1;h.kb=0;
  if(h.st==='town'&&h.sub==='bld'){h.tk=null;h.vk=null;h.vw=null;h.sub='home'}
  log(`⚔️ ${h.name} se prépare à affronter le Roi Démon…`,'bad');ui()}
-function victory(h){sleepOff();
+function vlbRec(w){if(!S.rid)S.rid=Date.now().toString(36)+Math.random().toString(36).slice(2,6);let bh=S.bh||null;S.hero.forEach(h=>{if(!bh||h.lv>bh.lv)bh={n:h.name,c:h.c,lv:h.lv}});let nb=0,ml=0;for(const id in BD){const l=lvl(BD[id]);if(l>0)nb++;if(l>ml)ml=l}
+ if(!S.vnn){P.vc=P.vc||{};S.vnn=P.vc[S.vn]=(P.vc[S.vn]||0)+1}
+ vlbAdd({id:S.rid,n:S.vn,nn:S.vnn,d:S.day,w:w?1:0,k:S.tk||0,g:S.te||0,m:S.td||0,b:nb,bl:ml,bh});save()}
+function victory(h){sleepOff();vlbRec(1);
  const gain=1;
  P.glory+=gain;P.runs++;save();S.speed=0;ui();
  $('pvt').textContent=`${h.name} a terrassé le Roi Démon ! +${gain} Gloire`;
@@ -84,7 +87,7 @@ const isNight=()=>{const x=hr();return x>=21||x<5};
 const dk=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24;if(x>=21||x<5)return 1;if(x>=20)return x-20;if(x<6)return 6-x;return 0};
 // v3.5.0 : intensité des lumières (lampadaires, torches, fenêtres) : allumage progressif 19h-21h, extinction progressive 4h-6h
 const dkl=()=>{const x=(6+24*(S.t-S.ds)/S.dl)%24,e=t=>t*t*(3-2*t);if(x>=21||x<5)return 1;if(x>=19)return e((x-19)/2);if(x<6.5)return e((6.5-x)/1.5);return 0};
-function gameOver(){sleepOff();S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
+function gameOver(){sleepOff();vlbRec(0);S.over=1;S.speed=0;let n=10;const t=()=>{$('pvt').textContent=n>0?'You lose':'Game Over';$('pg').textContent=n>0?`Continue ? ${n}`:'Fin de partie.';$('pn').textContent=n>0?'Continue':'Recommencer'};t();$('pu').innerHTML=`<p style="margin:0">Tu as tenu ${S.day} jours.</p>`;$('vn').value=S.vn;$('pc').hidden=true;$('pv').hidden=false;clearInterval(gameOver.t);gameOver.t=setInterval(()=>{if(--n<=0)clearInterval(gameOver.t);t()},1000)}
 const WXI={clear:'☀️',cloud:'☁️',rain:'🌧️',storm:'⛈️',fog:'🌫️'},WXV={clear:[0,0,0,0],cloud:[.14,0,0,0],rain:[.2,.55,0,0],storm:[.36,1,0,1],fog:[.05,0,1,0]},WXP=[['clear',60],['cloud',16],['rain',12],['fog',8],['storm',4]];
 function wxPick(){let r=Math.random()*100;for(const [k,w] of WXP){r-=w;if(r<=0)return k}return'clear'}
 function wxTick(){const h=S.dl/24;let w=S.wx;if(!w||!WXV[w.c])w=S.wx={c:'clear',x:null,at:S.t+R(4,6)*h};

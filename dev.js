@@ -4,6 +4,6 @@ $('dns').onclick=()=>{NAMES=$('dn').value.split('\n').map(s=>s.trim()).filter((s
 $('dnr').onclick=()=>{NAMES=NAMES0.slice();try{localStorage.removeItem('bvn')}catch(e){}$('dn').value=NAMES.join('\n');$('dc').textContent=NAMES.length+' noms';dgl();toast('Liste par défaut')};
 $('dex').onclick=()=>{const c=exportCode();$('dt').value=c;try{navigator.clipboard.writeText(c)}catch(e){}toast('Code exporté')};
 $('dim').onclick=()=>{try{importCode($('dt').value);location.reload()}catch(e){toast('Code invalide')}};
-$('dlb').onclick=()=>{if(confirm('Effacer le Top 10 ?')){P.lb=[];save();ui();toast('Top 10 réinitialisé')}};
+$('dlb').onclick=()=>{if(confirm('Effacer le Top 10 ?')){P.lb=[];P.vlb=[];P.vc={};save();ui();toast('Top 10 réinitialisé')}};
 $('dfr').onclick=()=>{if(confirm('Tout effacer : partie, gloire, bonus permanents et Top 10 ?')){try{localStorage.removeItem('bv');localStorage.removeItem(SK)}catch(e){}location.reload()}};
 $('dr1').onclick=()=>{S.g+=500;S.w+=500;S.s+=500;ui();toast('+500 or, bois, pierre')};
