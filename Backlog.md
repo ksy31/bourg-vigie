@@ -314,7 +314,63 @@ Version actuelle du jeu : **v3.4.9 « Réglages sprites et caméra »**
 - [x] **Forêt** agrandie (zone de jeu) et dense.
 - [x] **Contour de la carte** en forêt dense.
 
-## 📱 Guide APK (prochain)
+## 🎨 Chantier « Pixel-art HD-2D » (suite de la v3.4.7)
+
+**Contexte technique (à lire avant de coder)**
+- Les aventuriers sont des sprites générés sur canevas : `pxSprite(cls,fem,vue,image,{col,hair,eye})` dans `gl.js` (RGBA 48×72, 3 tons auto, contour sombre), assemblés par `buildSprHero` en planche de 7 images (face, marche ×2, dos, dos marche ×2, attaque), une texture par héros (NearestFilter). `sprUpd` (fin de `updHeroes`) gère face caméra, face/dos, miroir, marche, attaque, luminosité de nuit. `PXSZ` = hauteur des sprites ; torche = `mkPxTorch`. Voir `notes-3d.md`.
+- Les PNJ (`buildNpc`, `NPV`) et les monstres (`monsters.js` : `mkind()` renvoie ~45 espèces ; `monW` dans `gl.js`) sont encore des modèles 3D. Le mode 2D (`map.js`) est inchangé.
+- Équipement : `h.eq = {w,a,b,s}` (arme, armure, bottes, bouclier ; `SL` dans `combat.js` donne les emplacements par classe, le bouclier est réservé au Guerrier). Niveaux d'équipement et noms via `pn(h,k)` / `ic(h,k)` : vérifier le niveau maximum réel dans `combat.js` avant de dessiner les paliers.
+- Règles : attention aux performances mobile (mettre en cache les textures par clé de variante, ne régénérer que si la clé change) ; garder les anciennes sauvegardes compatibles ; chaque sprite doit rester lisible avec la couleur d'aventurier.
+
+## 🧙 v3.5.0 « PNJ en sprites » (prochain)
+- [ ] **Sprites des PNJ (hommes et femmes)** dans le même style que les aventuriers : un sprite par rôle de `NPV` (tenue et accessoire propres à chaque métier), version masculine et féminine, cheveux et yeux de couleur variable (selon le nom du PNJ), contour sombre, 3 tons.
+- [ ] **Intégration 3D :** face caméra, ombre au sol, torche pixel-art devant la porte (comme les aventuriers), orientés vers les aventuriers qui viennent les voir, nom au-dessus de la tête, taille cohérente avec les bâtiments.
+- [ ] **Animations simples :** respiration au repos, geste d'interaction quand un aventurier est devant eux.
+- [ ] Retirer `buildNpc` une fois les sprites validés.
+
+## 👹 v3.5.1 « Monstres en sprites (1/3) : base et humanoïdes »
+- [ ] **Moteur de sprites de monstres :** générateur commun (grands formats possibles, 48×48 à 96×96 selon l'espèce, champ `span`), face/dos, repos, marche, attaque, touché, mort ; contour sombre, 3 tons, variantes de couleur par zone.
+- [ ] **Humanoïdes :** gobelin, kobold, orc, bandit, brigand, braconnier, cultiste, garde, geôlier, chevalier, champion, lanceur de sorts, squelette, troll, géant.
+- [ ] **Yeux et traits bleu néon la nuit** conservés sur les sprites (pixels émissifs).
+
+## 🐺 v3.5.2 « Monstres en sprites (2/3) : bêtes »
+- [ ] Loup (meute), sanglier, ours, renard, rat, chauve-souris, araignée, aigle, chouette, condor, harpie, griffon, chèvre, yéti, loup-garou, ver, salamandre.
+- [ ] Animations de marche adaptées (quadrupèdes, vol) et d'attaque propres à chaque espèce.
+
+## 🐉 v3.5.3 « Monstres en sprites (3/3) : fantastiques et boss »
+- [ ] Fantôme, ombre, âme/banshee, spectre, liche, feu follet, élémentaire, golem, gargouille, arbre, dryade, chimère, hydre, basilic, dragon, démon, Roi Démon.
+- [ ] **Boss et grands monstres :** grands sprites, animation d'entrée, effets lumineux (lave, flammes, aura).
+- [ ] Retirer l'ancien code 3D des monstres (`monW`) une fois tout validé.
+
+## ⚔️ v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »
+- [ ] **Attaques par classe :** Guerrier (arc de taille, coup d'estoc), Mage (projectile magique, éclair, soin), Voleur (rafale de dagues, esquive), Rôdeur (flèche qui vole, tir visé), chacune en images pixel-art.
+- [ ] **Réactions :** clignotement de touche, recul, étincelles d'impact en pixels, esquive, coup critique avec flash.
+- [ ] **Monstres :** attaque, touché et mort (disparition en pixels, poussière) selon l'espèce.
+
+## 💥 v3.5.5 « Animations de combat pixel-art (2/2) : finitions »
+- [ ] **Lumière sur les gros coups** (flash local, sans chiffres de dégâts ni secousse de caméra : ni l'un ni l'autre ne sont voulus).
+- [ ] **Victoire, fuite, mort et soin** des aventuriers animés (pose de victoire, course, chute, effet de bénédiction en pixels).
+- [ ] **Boss :** introduction animée, phases visibles.
+- [ ] Remplacer l'ancien anneau rouge de combat par un effet pixel-art.
+
+## 🗡️ v3.5.6 « Équipements visibles (1/3) : système et paliers »
+- [ ] **Architecture :** l'équipement s'affiche sur le sprite de l'aventurier par calques (arme, armure, bottes, bouclier), régénérés uniquement quand `h.eq` change ; table des paliers (matériau, palette, forme par niveau).
+- [ ] **Armes, niveaux bas à moyens :** une arme différente par niveau et par classe, avec des formes et des matières variées et inventées (exemple Guerrier : épée en fer niveau 0, épée en cuivre niveau 1, puis bronze, acier, etc. ; bâton, dagues et arc équivalents).
+- [ ] Affichage cohérent dans la fiche de l'aventurier, le coffre de l'Armurerie et le butin.
+
+## 🛡️ v3.5.7 « Équipements visibles (2/3) : armures, bottes, boucliers »
+- [ ] Armure, bottes et bouclier (Guerrier) avec un design propre à chaque niveau (matière, couleur, ornements, formes inventées et variées, pas seulement un changement de teinte), en respectant le choix « rappel de couleur ou tout teinté » tranché en v3.5.6.
+- [ ] Tenues spécifiques par classe (robes du Mage, cuir du Voleur et du Rôdeur) qui évoluent aussi avec le niveau.
+
+## ✨ v3.5.8 « Équipements visibles (3/3) : armes légendaires »
+- [ ] **Armes de haut niveau stylées, inventées par Claude** : prévoir plusieurs thèmes variés pour chaque palier élevé et chaque classe. **Obligatoires :** la lame de lumière façon laser (lame émissive, halo, traînée) et **tout l'ensemble démoniaque** (arme toute noire aux flammes noires qui s'en échappent, et ses équivalents bâton, dagues, arc). **À inventer en plus :** glace, foudre, lave, cristal, os et âmes, nature vivante, étoile, etc. La liste des thèmes inventés est proposée avant de dessiner.
+- [ ] **Armures, bottes et boucliers de haut niveau tout aussi spectaculaires** (pas seulement les armes), **avec obligatoirement la série démoniaque** (armure noire, flammes noires, cornes, etc.) ; en plus, thèmes inventés : aura, ornements animés, matières (écailles, cristal, flammes, ombre, lumière…), avec au moins un design distinct par palier et par classe.
+- [ ] **Couleur de l'aventurier sur l'équipement : à trancher au début de la release** (question à poser à l'utilisateur avant de dessiner) : soit un simple rappel (liserés, tissu, plumet, cape, gemmes à sa couleur, matière de l'équipement conservée), soit tout l'équipement teinté à sa couleur. Dans les deux cas, la couleur de l'aventurier doit rester reconnaissable d'un coup d'œil, y compris sur les pièces de haut niveau (démoniaque comprise).
+- [ ] Effets animés en pixels (particules, lueurs, traînées), reflets au sol la nuit.
+- [ ] Effets visibles de nuit et de jour, sans coût excessif en performances (nombre de particules limité).
+
+## 📱 Guide APK
+
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
