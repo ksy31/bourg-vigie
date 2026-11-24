@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.0 « Correctifs : bâtiments, jour 5 h-21 h, bandeau fixe »
+
+Version affichée dans les Options : **v3.6.0**
+
+### Corrigé
+- Les aventuriers traversaient les bâtiments du village : le décalage latéral appliqué à leur position est supprimé dans le village et ils sont repoussés hors des emprises des bâtiments.
+
+### Modifié
+- **Le jour va de 5 h à 21 h** (avant : 4 h à 21 h) pour les combats, les repos et les guildes. L'aube de 4 h à 5 h compte désormais comme nuit.
+- Ciel et lumières alignés : nuit complète avant 5 h, lever progressif jusqu'à 6 h 30, crépuscule terminé à 21 h.
+- Le bandeau du haut (village, jour, heure, météo, ressources) reste affiché en haut de l'écran quand on fait défiler.
+
 ## v3.5.9 « Équipements visibles (3/3) : équipements légendaires »
 
 Version affichée dans les Options : **v3.5.9**

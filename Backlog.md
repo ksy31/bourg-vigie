@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.9 « Équipements visibles (3/3) : équipements légendaires »**
+Version actuelle du jeu : **v3.6.0 « Correctifs : bâtiments, jour 5 h-21 h, bandeau fixe »**
 
 ## ✅ Déjà intégré
 
@@ -383,6 +383,20 @@ Version actuelle du jeu : **v3.5.9 « Équipements visibles (3/3) : équipements
 - [x] Particules animées limitées (une toutes les 0,3 s par héros, 36 au total) et reflet coloré au sol la nuit.
 - [x] Icônes de fiche et de journal à l'image du thème. Couleur de l'aventurier toujours en rappel (emblème).
 - Limite : fps sur téléphone non mesurés.
+
+## ✅ v3.6.0 « Correctifs : bâtiments, jour 5 h-21 h, bandeau fixe »
+- [x] Les aventuriers ne traversent plus les bâtiments du village (décalage latéral supprimé dans le village, sortie forcée des emprises).
+- [x] Jour de 5 h à 21 h pour les combats, repos et guildes ; ciel et lumières alignés (nuit noire jusqu'à 5 h, jour complet vers 6 h 30, nuit à 21 h).
+- [x] Bandeau du haut (village, jour, heure, météo, ressources) toujours visible quand on fait défiler l'écran.
+
+## 🌳 v3.6.1 « Refonte du monde (1/3) : arbres pixel-art réalistes » (prochain)
+- [ ] Arbres pixel-art réalistes (essences variées par biome, volumes, ombres, saisons de la météo).
+
+## 🪨 v3.6.2 « Refonte du monde (2/3) : rochers pixel-art réalistes »
+- [ ] Rochers pixel-art réalistes (formes variées, mousse, éclats, selon le biome).
+
+## 🌱 v3.6.3 « Refonte du monde (3/3) : herbe en 3D »
+- [ ] Herbe représentée en 3D (touffes, brins animés par le vent), avec coût de performances limité.
 
 ## 📱 Guide APK
 
