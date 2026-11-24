@@ -1074,7 +1074,7 @@ function wxUpd(dt,tm){
   const zs=Math.max(.7,K.dist/200);for(let i=0;i<SPN;i++){const q=WX.sp[i];q.a+=dt;const r=q.a<.32?(.5+q.a*8)*zs:0;UM.position.set(q.x,q.y,q.z);UM.scale.set(r||.0001,1,r||.0001);UM.updateMatrix();WX.spl.setMatrixAt(i,UM.matrix)}WX.spl.instanceMatrix.needsUpdate=true}
  const fade=Math.max(0,Math.min(1,(380-cam3.position.y)/160));
  WX.cl.forEach((s,i)=>{const d=s.userData;d.u+=dt*d.w;if(d.u>1)d.u-=2;const op=Math.min(.9,(i<4?.3:0)+vl*3)*(1-.8*kd)*fade;s.material.opacity=op;s.visible=op>.01;s.position.set(cx0+d.u*900,340,cz0+d.v*900);s.material.color.set(th>.3?'#69727f':vl>.15?'#b9c1cb':'#ffffff')});
- let fl=0;if(th>.3){const Tt=9,s=Math.floor(tm/Tt),r=jt(s,17);if(r<.8){const d=tm-(s*Tt+r*Tt*.8);if(d>=0&&d<.5){fl=(d<.12?1:d<.2?.25:d<.3?.9:1-(d-.3)/.2)*th;if(WX.bs!==s){WX.bs=s;boltGen(cx0+(jt(s,21)-.5)*hb*1.4,cz0+(jt(s,23)-.5)*hb*1.4)}}}}
+ let fl=0;if(th>.3){const Tt=9,s=Math.floor(tm/Tt),r=jt(s,17);if(r<.8){const d=tm-(s*Tt+r*Tt*.8);if(d>=0&&d<.5){fl=(d<.12?1:d<.2?.25:d<.3?.9:1-(d-.3)/.2)*th;if(WX.bs!==s){WX.bs=s;if(window.bvThunder)bvThunder(.5+jt(s,31)*2.5);boltGen(cx0+(jt(s,21)-.5)*hb*1.4,cz0+(jt(s,23)-.5)*hb*1.4)}}}}
  WX.fl=fl;WX.bolt.visible=fl>.2;WX.bg.visible=fl>.2;WX.bg.material.opacity=Math.min(1,fl)}
 // ===== torches : porte des bâtiments à PNJ (flammes + halos la nuit) =====
 let TQ=[],torchG=null;

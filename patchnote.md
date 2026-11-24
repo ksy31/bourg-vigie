@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.6 « Ambiance sonore »
+
+Version affichée dans les Options : **v3.5.6**
+
+### Ajouté
+- **5 musiques** au lieu de 3 : luth, flûte et violon retravaillés, plus une harpe douce pour la nuit et une flûte grave mystérieuse. Elles passent au hasard, sans jamais répéter la précédente, toutes les 7 minutes environ.
+- **Ambiances sonores**, discrètes : pluie (selon l'intensité), orage avec tonnerre (calé sur les éclairs en 3D), vent selon la météo, oiseaux le jour par beau temps, grillons la nuit, cloche lointaine à l'aube et au crépuscule.
+- **Deux boutons séparés** : 🔊 musique et 🌦️ ambiances (le choix est mémorisé).
+
+### Modifié
+- Les 3 musiques existantes varient d'un passage à l'autre (sections échangées, arpèges et petites ornementations) pour moins se répéter.
+- Le bouton musique coupe maintenant seulement la musique. Aucune migration de sauvegarde.
+
 ## v3.5.5 « Animations de combat pixel-art (2/2) : finitions »
 
 Version affichée dans les Options : **v3.5.5**
