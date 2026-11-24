@@ -482,7 +482,7 @@ const TXO={oa:{sd:11,tiles:['oa0','oa1'],bark:'bkOak',r0:.46,r1:.24,th:2.9,lean:
  bi:{sd:47,tiles:['bi0'],bark:'bkBirch',r0:.28,r1:.14,th:3.4,lean:.3,cy:4.4,cl:[[0,4.6,0,2.7],[-.7,3.9,.3,2.1],[.7,4,-.3,2.1],[.1,5.7,0,2],[0,4.8,-.9,2]]},
  oc:{sd:59,tiles:['oc0'],bark:'bkOak',r0:.46,r1:.24,th:2.9,lean:.25,cy:4,cl:[[0,4.1,0,3.7],[-1.25,3.5,.5,2.7],[1.2,3.6,-.5,2.7],[.2,5.1,.1,2.5],[-.4,4.2,-1.3,2.5],[.6,4,1.3,2.5]]}};
 // ===== v3.6.2 : rochers 3D texturés en pixel-art =====
-const RKN=['rgT','rgS','rmT','rmS','rvT','rvS','gt'],RKW=256,RKH=128;
+const RKN=['rgT','rgS','rmT','rmS','rvT','rvS','gt','gt2'],RKW=256,RKH=128;
 let RKT=null,RKE=null,RKM=null;
 function rkWr(A,ox,oy,x,y,c,a){const i=((oy+y)*RKW+ox+x)*4;A[i]=c[0];A[i+1]=c[1];A[i+2]=c[2];A[i+3]=a==null?255:a}
 function rkNoise(S,seed,sc){const R=rg3(seed),G=[],n=Math.ceil(S/sc)+2;for(let i=0;i<n*n;i++)G.push(R());return(x,y)=>{const fx=x/sc,fy=y/sc,ix=Math.floor(fx),iy=Math.floor(fy),tx=fx-ix,ty=fy-iy,a=G[iy*n+ix],b=G[iy*n+ix+1],c=G[(iy+1)*n+ix],d=G[(iy+1)*n+ix+1];return a+(b-a)*tx+(c-a)*ty+(a-b-c+d)*tx*ty}}
@@ -497,8 +497,8 @@ function rkTile(A,E,ox,oy,kind,seed){const S=64,R=rg3(seed),n1=rkNoise(S,seed+1,
   else{c=[0,0,0]}
   rkWr(A,ox,oy,x,y,c);rkWr(E,ox,oy,x,y,em||[0,0,0])}}
 function rkGrass(A,E,ox,oy,seed){const R=rg3(seed),g=[[30,64,28],[54,110,42],[96,160,56],[150,204,86]];for(let y=0;y<64;y++)for(let x=0;x<64;x++){rkWr(A,ox,oy,x,y,g[1],0);rkWr(E,ox,oy,x,y,[0,0,0],255)}
- for(let b=0;b<16;b++){const x0=3+b*3.8+R()*2,h=24+R()*34,lean=(R()-.5)*14;for(let y=0;y<h;y++){const t=y/h,xx=Math.round(x0+lean*t*t),w=t<.7?2:1;for(let k=0;k<w;k++)if(xx+k<64)rkWr(A,ox,oy,xx+k,63-y,t>.75?g[3]:k?g[2]:g[1])}}}
-function rkTex(){if(RKT)return RKT;const A=new Uint8Array(RKW*RKH*4),E=new Uint8Array(RKW*RKH*4);RKN.forEach((n,i)=>{const ox=(i%4)*64,oy=((i/4)|0)*64;if(n==='gt')rkGrass(A,E,ox,oy,77);else rkTile(A,E,ox,oy,n,200+i*13)});
+ for(let b=0;b<26;b++){const x0=2+b*2.3+R()*1.5,h=22+R()*38,lean=(R()-.5)*16;for(let y=0;y<h;y++){const t=y/h,xx=Math.round(x0+lean*t*t),w=t<.35?3:t<.75?2:1;for(let k=0;k<w;k++)if(xx+k<64)rkWr(A,ox,oy,xx+k,63-y,t>.75?g[3]:k?g[2]:g[1])}}}
+function rkTex(){if(RKT)return RKT;const A=new Uint8Array(RKW*RKH*4),E=new Uint8Array(RKW*RKH*4);RKN.forEach((n,i)=>{const ox=(i%4)*64,oy=((i/4)|0)*64;if(n==='gt')rkGrass(A,E,ox,oy,77);else if(n==='gt2')rkFern(A,E,ox,oy,91);else rkTile(A,E,ox,oy,n,200+i*13)});
  for(const[arr,nm]of[[A,'t'],[E,'e']]){}
  const mk=D=>{const t=new TH.DataTexture(D,RKW,RKH,TH.RGBAFormat);t.magFilter=TH.NearestFilter;t.minFilter=TH.LinearMipmapLinearFilter;t.generateMipmaps=true;t.colorSpace=TH.SRGBColorSpace;t.needsUpdate=true;return t};RKE=mk(E);return RKT=mk(A)}
 function rkMat(){if(RKM)return RKM;const m=new TH.MeshStandardMaterial({map:rkTex(),emissiveMap:RKE,emissive:new TH.Color('#ffffff'),emissiveIntensity:.2,alphaTest:.5,roughness:1,metalness:0,side:TH.DoubleSide});
@@ -516,8 +516,19 @@ function rkGeo(kind,v,tufts){const g=rkProj(rkShape(kind,40+v*9+(kind==='vo'?5:0
  if(tufts){const R=rg3(60+v);for(let i=0;i<4;i++){const a=i/4*6.283+R(),r=.8+R()*.3;P.push(rkCard('gt',.9,.7,[Math.cos(a)*r,.3,Math.sin(a)*r],a),rkCard('gt',.9,.7,[Math.cos(a)*r,.3,Math.sin(a)*r],a+1.571))}}
  return TH.mergeGeometries(P,false)}
 function rkPebbles(){const R=rg3(88),P=[];[[0,0,.55],[.8,.2,.38],[-.5,-.6,.3],[.2,.9,.24]].forEach(([x,z,r],i)=>{let g=new TH.IcosahedronGeometry(1,0);const p=g.attributes.position;for(let k=0;k<p.count;k++){const f=.85+R()*.3;p.setXYZ(k,p.getX(k)*f,p.getY(k)*f*.7,p.getZ(k)*f)}g.scale(r,r,r);g.translate(x,r*.45,z);g=g.toNonIndexed();g.computeVertexNormals();P.push(rkProj(g,'rgT','rgS'))});return TH.mergeGeometries(P,false)}
+// ===== v3.6.3 : herbe 3D (touffes pixel-art) =====
+let GRM_=null,GWC=-1;const GHP=Array.from({length:8},()=>new TH.Vector3(0,0,0));let GQL=-1;
+function rkFern(A,E,ox,oy,seed){const R=rg3(seed),g=[[20,52,30],[40,92,46],[74,136,62],[120,176,86]];for(let y=0;y<64;y++)for(let x=0;x<64;x++){rkWr(A,ox,oy,x,y,g[1],0);rkWr(E,ox,oy,x,y,[0,0,0],255)}
+ for(let f=0;f<7;f++){const a=-1.25+f*.42+(R()-.5)*.12,L=24+R()*30;for(let t=0;t<L;t+=.7){const x=32+Math.sin(a)*t*.9,y=63-Math.cos(a)*t,hw=Math.round(Math.sin(Math.PI*Math.min(1,t/L*1.2))*3.2*(1-t/L*.4));for(let k=-hw;k<=hw;k++){const xx=Math.round(x+k*Math.cos(a)),yy=Math.round(y+k*Math.sin(a)*.2);if(xx>=0&&xx<64&&yy>=0&&yy<64)rkWr(A,ox,oy,xx,yy,k===0?g[3]:(Math.abs(k)+((t/2)|0))%3===0?g[0]:g[1+(k+3)%3==2?1:0])}}}}
+function grTuft(tile,w,h){const P=[];for(let i=0;i<3;i++){const g=new TH.PlaneGeometry(w,h),u=rkUV(tile),uv=g.attributes.uv;for(let k=0;k<4;k++)uv.setXY(k,u[0]+uv.getX(k)*64/RKW,u[1]+(1-uv.getY(k))*64/RKH);g.rotateY(i*1.0472);g.translate(0,h/2,0);const n=g.attributes.normal;for(let k=0;k<4;k++)n.setXYZ(k,0,1,0);P.push(g.toNonIndexed())}return TH.mergeGeometries(P,false)}
+function grMat(){if(GRM_)return GRM_;const m=new TH.MeshStandardMaterial({map:rkTex(),alphaTest:.5,roughness:1,metalness:0,side:TH.DoubleSide});
+ m.onBeforeCompile=sh=>{sh.uniforms.uWt=TXU.t;sh.uniforms.uWw=TXU.w;sh.uniforms.uHP={value:GHP};
+  sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nuniform float uWt;uniform float uWw;uniform vec3 uHP[8];').replace('#include <begin_vertex>','#include <begin_vertex>\n{float ph_=instanceMatrix[3].x*.43+instanceMatrix[3].z*.37,hh_=position.y;float s_=sin(uWt*2.2+ph_)*.6+sin(uWt*4.1+ph_*1.9)*.25;transformed.x+=s_*uWw*hh_*hh_*.3;transformed.z+=cos(uWt*1.7+ph_*1.3)*uWw*hh_*hh_*.2;mat3 im_=mat3(instanceMatrix);float sq_=max(dot(im_[0],im_[0]),1e-4);for(int i=0;i<8;i++){vec3 h_=uHP[i];if(h_.z>0.){vec2 d_=instanceMatrix[3].xz-h_.xy;float l_=length(d_);if(l_<2.8){float k_=1.-l_/2.8;vec2 n_=d_/max(l_,.01);vec3 ld_=transpose(im_)*vec3(n_.x,0.,n_.y)/sq_;transformed.xz+=ld_.xz*k_*hh_*1.2;transformed.y*=1.-k_*.5;}}}}');
+  sh.fragmentShader=sh.fragmentShader.replace('#include <normal_fragment_begin>',TH.ShaderChunk.normal_fragment_begin.replace('gl_FrontFacing ? 1.0 : - 1.0','1.0'))};return GRM_=m}
+function grassQ(){const f=K.ql>=2?1:K.ql===1?.6:.25;GQL=K.ql;GWC=worldG.children.length;for(const m of worldG.children)if(m.isInstancedMesh&&m.material===GRM_){if(!m.userData.n)m.userData.n=m.count;m.count=Math.ceil(m.userData.n*f)}}
+function grassUpd(tm){if(GQL!==K.ql||GWC!==worldG.children.length)grassQ();let n=0;HM.forEach(o=>{if(n<8&&o.g&&o.g.visible)GHP[n++].set(o.x,o.z,1)});for(;n<8;n++)GHP[n].z=0}
 function rockUpd(){if(RKM)RKM.emissiveIntensity=.18+.82*dkl()}
-function tgeo(){return TG||(TG={oa0:txBroad(0,TXO.oa),oa1:txBroad(1,TXO.oa),ob0:txBroad(0,TXO.ob),ob1:txBroad(1,TXO.ob),oc0:txBroad(0,TXO.oc),bi0:txBroad(0,TXO.bi),wi0:txWillow(),pn0:txPineG(false,0),pn1:txPineG(false,1),ps0:txPineG(true,0),dd0:txDead(0),dd1:txDead(1),pm0:txPalm(),bu0:txBush(0),bu1:txBush(1),gr0:rkGeo('gr',0,false),gr1:rkGeo('gr',1,true),gr2:rkGeo('gr',2,true),mn0:rkGeo('mn',0,false),mn1:rkGeo('mn',1,false),vo0:rkGeo('vo',0,false),vo1:rkGeo('vo',1,false),pb0:rkPebbles()})}
+function tgeo(){return TG||(TG={oa0:txBroad(0,TXO.oa),oa1:txBroad(1,TXO.oa),ob0:txBroad(0,TXO.ob),ob1:txBroad(1,TXO.ob),oc0:txBroad(0,TXO.oc),bi0:txBroad(0,TXO.bi),wi0:txWillow(),pn0:txPineG(false,0),pn1:txPineG(false,1),ps0:txPineG(true,0),dd0:txDead(0),dd1:txDead(1),pm0:txPalm(),bu0:txBush(0),bu1:txBush(1),gr0:rkGeo('gr',0,false),gr1:rkGeo('gr',1,true),gr2:rkGeo('gr',2,true),mn0:rkGeo('mn',0,false),mn1:rkGeo('mn',1,false),vo0:rkGeo('vo',0,false),vo1:rkGeo('vo',1,false),pb0:rkPebbles(),gt:grTuft('gt',1.8,1.3),gf:grTuft('gt2',1.9,1.4)})}
 function windUpd(tm){TXU.t.value=tm;const w=wxMix();TXU.w.value=.3+.7*Math.min(1,w[0]*.5+w[1]*.8+w[3])}
 let LFT=0;function leafUpd(tm){if(tm-LFT<.45||FXL.length>40||!TPOS.length)return;LFT=tm;if(wxMix()[1]>.5)return;let q=null,n=0;for(const c of TPOS)if(c.k&&/^(oa|ob|oc|bi|wi)/.test(c.k)&&Math.abs(c.x-K.tx)<26&&Math.abs(c.z-K.tz)<26&&Math.random()*(++n)<1)q=c;if(!q)return;
  const cl=q.k==='oc'?[232,150,50]:q.k==='bi'?[190,214,100]:[110,170,70],s=fxSp('lf',.55,.4,q.x+(Math.random()-.5)*3*q.s,q.y+(2.6+Math.random()*2.2)*q.s,q.z+(Math.random()-.5)*3*q.s);s.material.depthTest=true;s.material.color.setRGB(cl[0]/255,cl[1]/255,cl[2]/255);
@@ -527,7 +538,7 @@ function waterMat(){if(WMAT)return WMAT;const S=128,c=document.createElement('ca
  WTEX=new TH.CanvasTexture(c);WTEX.wrapS=WTEX.wrapT=TH.RepeatWrapping;WTEX.colorSpace=TH.SRGBColorSpace;
  return WMAT=new TH.MeshStandardMaterial({map:WTEX,color:'#3f98bf',transparent:true,opacity:.84,roughness:.15,metalness:.05,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2})}
 function buildWorld(){
- clearG(worldG);const R=rg3(777),W=new TA(),L={oa0:[],oa1:[],ob0:[],ob1:[],oc0:[],bi0:[],wi0:[],pn0:[],pn1:[],ps0:[],dd0:[],dd1:[],pm0:[],rk:[],gr0:[],gr1:[],gr2:[],mn0:[],mn1:[],vo0:[],vo1:[],pb0:[],bu:[],bu0:[],bu1:[]},VN={oa:2,ob:2,oc:1,bi:1,wi:1,pn:2,ps:1,dd:2,pm:1},tc=()=>{const b=.86+R()*.28;return new Col(b*(1+(R()-.5)*.1),b,b*(1+(R()-.5)*.14))},vc=(a,b)=>new Col().setScalar(a+R()*b);
+ clearG(worldG);const R=rg3(777),W=new TA(),L={oa0:[],oa1:[],ob0:[],ob1:[],oc0:[],bi0:[],wi0:[],pn0:[],pn1:[],ps0:[],dd0:[],dd1:[],pm0:[],rk:[],gr0:[],gr1:[],gr2:[],mn0:[],mn1:[],vo0:[],vo1:[],pb0:[],gt:[],gf:[],bu:[],bu0:[],bu1:[]},VN={oa:2,ob:2,oc:1,bi:1,wi:1,pn:2,ps:1,dd:2,pm:1},tc=()=>{const b=.86+R()*.28;return new Col(b*(1+(R()-.5)*.1),b,b*(1+(R()-.5)*.14))},vc=(a,b)=>new Col().setScalar(a+R()*b);
  const tree=(x,z,s,kind)=>{let t=kind;if(!t){const r=R();t=nearRiver(x,z,12)&&r<.45?'wi':r<.42?'oa':r<.82?'ob':'bi'}if((t==='oa'||t==='ob')&&R()<.04)t='oc';const q={x,y:H3(x,z)-.2,z,s,sx:s*(.9+R()*.2),sy:s*(.9+R()*.25),sz:s*(.9+R()*.2),c:tc(),r:R()*6,k:t};L[t+(VN[t]>1&&R()<.5?1:0)].push(q);TPOS.push(q)};
  const rock=(x,y,sx,sy,sz,c)=>{const mn=/^(#a8a49c|#85817a|#9a968e|#7d7972|#9a9ca2)$/.test(c),vo=/^(#6f5a52|#8f6a58)$/.test(c),k=vo?'vo'+(R()<.5?1:0):mn?'mn'+(R()<.5?1:0):sx<.9?'pb0':'gr'+((R()*3)|0),q={x,y:H3(x,y)-.15,z:y,sx,sy,sz,r:R()*6,c:new Col(c).lerp(new Col('#ffffff'),.6)};L.rk.push(q);L[k].push(q)};
  SHM=[];TPOS=[];tRoad=[];for(const z of ZA){const p=RD[z.n];if(p)for(let k=0;k<p.length;k+=3)tRoad.push(p[k])}
@@ -539,6 +550,13 @@ function buildWorld(){
  {const qd=K.ql>=2?1:K.ql===1?.6:.3;
  for(let i=0,n=0;i<3000&&n<90*qd;i++){const x=6+R()*(WXd-12),y=6+R()*(WYd-12);if(inZone(x,y)||!clear(x,y,3))continue;const k=2+Math.floor(R()*3);for(let j=0;j<k;j++){const bx=x+(R()-.5)*5,by=y+(R()-.5)*5;if(clear(bx,by,1.5))L.bu.push({x:bx,y:H3(bx,by)-.05,z:by,s:.55+R()*.6,c:vc(.78,.4),r:R()*6})}n++}
  for(let i=0,n=0;i<3000&&n<130*qd;i++){const x=6+R()*(WXd-12),y=6+R()*(WYd-12);if(inZone(x,y)||!clear(x,y,2))continue;rock(x,y,.5+R()*.8,.4+R()*.5,.5+R()*.8,'#b7b8ad');n++}}
+ {const tuft=(x,y,k,c,s)=>L[k].push({x,y:H3(x,y)-.05,z:y,s,r:R()*6,c}),gz=(x,y)=>{let b=null,bd=1e9;for(const z of ZA){const d=Math.hypot(x-z.x,y-z.y)-ZRD(z.n);if(d<bd){bd=d;b=z.n}}return bd<3?b:null};
+ for(let i=0,n=0;i<40000&&n<9000;i++){let x,y;if(R()<.25&&tRoad.length){const p=tRoad[(R()*tRoad.length)|0];x=p[0]+(R()-.5)*7;y=p[1]+(R()-.5)*7}else{x=6+R()*(WXd-12);y=6+R()*(WYd-12)}
+  if(x<4||y<4||x>WXd-4||y>WYd-4||!clear(x,y,1.3))continue;const zn=gz(x,y);if(zn&&zn!=='Forêt'&&zn!=='Montagne')continue;if(zn==='Montagne'&&R()<.6)continue;
+  let rd=1e9;for(const p of tRoad){const d=Math.abs(p[0]-x)+Math.abs(p[1]-y);if(d<rd)rd=d}
+  const tint=zn==='Montagne'?new Col(.8,.86,.8):rd<9?new Col(1.12,1.04,.7):new Col(.9+R()*.2,1,.9+R()*.15);
+  const k=1+((R()*3)|0);for(let j=0;j<k;j++){const bx=x+(R()-.5)*1.6,by=y+(R()-.5)*1.6;tuft(bx,by,'gt',tint,.8+R()*.7)}n++}
+ const zf=ZA.find(z=>z.n==='Forêt');if(zf){const r0=ZRD(zf.n);for(let i=0,c=0;i<6000&&c<1300;i++){const an=R()*6.283,d=Math.sqrt(R())*r0*.97,x=zf.x+Math.cos(an)*d,y=zf.y+Math.sin(an)*d;if(!clear(x,y,1.4))continue;const dk=new Col(.62+R()*.2,.78+R()*.15,.66+R()*.15);tuft(x,y,R()<.6?'gf':'gt',dk,.9+R()*.7);c++}}}
  const edge=(x,y)=>Math.min(x,y,WXd-x,WYd-y),outT=(x,z)=>{const t=R()<.55?'pn':R()<.5?'oa':'ob',q={x,y:-1.9,z,s:1.7+R()*1.9,c:tc(),r:R()*6};L[t+(R()<.5?1:0)].push(q)};
  for(let i=0,n=0;i<14000&&n<520;i++){const x=R()*WXd,y=R()*WYd,e=edge(x,y);if(e>46||R()>.3+.7*(1-e/46))continue;if(inZone(x,y)||!clear(x,y,4))continue;tree(x,y,1.7+R()*1.9,R()<.55?'pn':null);n++}
  for(let i=0,n=0;i<9000&&n<420;i++){const x=-130+R()*(WXd+260),y=-130+R()*(WYd+260);if(x>-4&&x<WXd+4&&y>-4&&y<WYd+4)continue;outT(x,y);n++}
@@ -597,7 +615,7 @@ function buildWorld(){
  // rivières
  if(RIV.length){const wm=waterMat();for(const r of RIV){if(r.length<2)continue;const m=new TH.Mesh(ribbon(r.map(p=>[p[0],p[1]]),(k,n)=>rvW(k/n)*1.45,.17,5,'#ffffff'),wm);m.renderOrder=2;worldG.add(m)}}
  W.build(worldG);
- const G3=tgeo(),CS=200;L.bu.forEach((q,i)=>L[i&1?'bu1':'bu0'].push(q));for(const k of['oa0','oa1','ob0','ob1','oc0','bi0','wi0','pn0','pn1','ps0','dd0','dd1','pm0','bu0','bu1','gr0','gr1','gr2','mn0','mn1','vo0','vo1','pb0']){const cells={};for(const q of L[k]){const id=Math.floor(q.x/CS)+','+Math.floor(q.z/CS);(cells[id]=cells[id]||[]).push(q)}for(const id in cells)inst(worldG,G3[k],/^(gr|mn|vo|pb)/.test(k)?rkMat():txMat(),cells[id],!/^(bu|gr|pb)/.test(k))}
+ const G3=tgeo(),CS=200;L.bu.forEach((q,i)=>L[i&1?'bu1':'bu0'].push(q));for(const k of['oa0','oa1','ob0','ob1','oc0','bi0','wi0','pn0','pn1','ps0','dd0','dd1','pm0','bu0','bu1','gr0','gr1','gr2','mn0','mn1','vo0','vo1','pb0','gt','gf']){const cells={};for(const q of L[k]){const id=Math.floor(q.x/CS)+','+Math.floor(q.z/CS);(cells[id]=cells[id]||[]).push(q)}for(const id in cells)inst(worldG,G3[k],/^(gr|mn|vo|pb)/.test(k)?rkMat():/^g[tf]$/.test(k)?grMat():txMat(),cells[id],!/^(bu|gr|pb|gt|gf)/.test(k))}
  csInst(worldG,TPOS.map(q=>[q.x,q.z,2.7*q.s,2.7*q.s]),false,.28);csInst(worldG,L.rk.map(q=>[q.x,q.z,2.6*q.sx,2.6*q.sz]),false,.4);
  const vz=ZA.find(z=>z.n==='Volcan');if(vz){const sp=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff7a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true}));sp.position.set(vz.x,H3(vz.x,vz.y)+2,vz.y);sp.scale.set(30,30,1);worldG.add(sp)}}
 // ---------- village ----------
@@ -1599,7 +1617,7 @@ function frame(){
  if(gk!==gKey){gKey=gk;if(K.tkey!==T.x+','+T.y){K.tkey=T.x+','+T.y;K.tx=T.x;K.tz=T.y-70;fol=null}try{paintGround();buildTerrain();buildWorld()}catch(e){K.err=e}try{buildVillageGround()}catch(e){K.err=e}}
  const vk=S.pl.map(i=>i.i+i.e+(i.cn?'c'+bstg(i):(i.rb?'r':'t')+tr(NK[i.e]||'H'))+((i.h&&i.h.o!=null&&(S.hero.find(q=>q.id===i.h.o)||{}).col)||'')).join(',');
  if(vk!==vKey){vKey=vk;try{buildVillageMesh()}catch(e){K.err=e}}
- const BM=updHeroes(dt,tm);try{updNpc(dt,tm);updMon(dt,tm,BM);wxUpd(dt,tm);torchUpd(tm);windUpd(tm);rockUpd();leafUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dkl())}catch(e){K.err=e}try{holeUpd(BM)}catch(e){K.err=e}
+ const BM=updHeroes(dt,tm);try{updNpc(dt,tm);updMon(dt,tm,BM);wxUpd(dt,tm);torchUpd(tm);windUpd(tm);rockUpd();grassUpd(tm);leafUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dkl())}catch(e){K.err=e}try{holeUpd(BM)}catch(e){K.err=e}
  if(WTEX)WTEX.offset.x=-(tm*.12)%1;
  fcn++;ren.shadowMap.autoUpdate=false;const sunF=!!(fcn&1);sun.shadow.needsUpdate=sunF;let ptF=false;if(plOn&&!sunF){let s=PLS.find(q=>q.fresh&&q.k>.02);if(!s)for(let q=0;q<PLN;q++){const c=PLS[plRot=(plRot+1)%PLN];if(c.k>.02){s=c;break}}if(s){s.fresh=0;s.l.shadow.needsUpdate=true;ptF=true}}ren.shadowMap.needsUpdate=sunF||ptF;if(ptF){SHM.forEach(m=>{m.castShadow=false});PLX.castShadow=true}
  ren.info.reset();if(K.ql===2&&!PP.fail){try{ppRender()}catch(e){PP.fail=1;K.err=e;ren.setRenderTarget(null);ren.render(scn,cam3)}}else ren.render(scn,cam3);

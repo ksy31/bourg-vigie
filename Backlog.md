@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.6.2 « Refonte du monde (2/3) : rochers pixel-art »**
+Version actuelle du jeu : **v3.6.3 « Refonte du monde (3/3) : herbe en 3D »**
 
 ## ✅ Déjà intégré
 
@@ -400,8 +400,11 @@ Version actuelle du jeu : **v3.6.2 « Refonte du monde (2/3) : rochers pixel-art
 - [x] Fissures de la roche volcanique qui brillent davantage la nuit.
 - [x] Taille et teinte variables par rocher.
 
-## 🌱 v3.6.3 « Refonte du monde (3/3) : herbe en 3D » (prochain)
-- [ ] Herbe représentée en 3D (touffes, brins animés par le vent), avec coût de performances limité.
+## ✅ v3.6.3 « Refonte du monde (3/3) : herbe en 3D »
+- [x] Herbe en touffes pixel-art en cartes croisées (environ 19 000 touffes) : plaines et bords de chemins, sous-bois de la Forêt avec fougères, quelques touffes en Montagne.
+- [x] Balancement au vent, herbe qui se couche au passage des aventuriers (8 au plus).
+- [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
+- [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
 
 ## 📱 Guide APK
 

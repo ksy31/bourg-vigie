@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.6.3 « Refonte du monde (3/3) : herbe en 3D »
+
+Version affichée dans les Options : **v3.6.3**
+
+### Ajouté
+- **Herbe en 3D** : touffes pixel-art dans les plaines et le long des chemins, herbe et fougères dans le sous-bois de la Forêt, quelques touffes en Montagne.
+- L'herbe se balance au vent et se couche au passage des aventuriers.
+- Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
+
+### Modifié
+- La densité de l'herbe suit le bouton Qualité (100 %, 60 % ou 25 %). Aucune migration de sauvegarde.
+
 ## v3.6.2 « Refonte du monde (2/3) : rochers pixel-art »
 
 Version affichée dans les Options : **v3.6.2**
