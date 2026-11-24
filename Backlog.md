@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.2 « Monstres en sprites (2/3) : bêtes »**
+Version actuelle du jeu : **v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »**
 
 ## ✅ Déjà intégré
 
@@ -340,17 +340,20 @@ Version actuelle du jeu : **v3.5.2 « Monstres en sprites (2/3) : bêtes »**
 - [x] Animations de marche adaptées (quadrupèdes, vol) et d'attaque propres à chaque espèce.
 - [x] Choix : bêtes en profil tournées vers l'aventurier, pas de marche (repos, attaque ; battement d'ailes pour les volants), meute spectrale = 3 loups, chouette à part, loup-garou et yéti debout, variantes de couleur par mots du nom.
 
-## 🐉 v3.5.3 « Monstres en sprites (3/3) : fantastiques et boss » (prochain)
-- [ ] Fantôme, ombre, âme/banshee, spectre, liche, feu follet, élémentaire, golem, gargouille, arbre, dryade, chimère, hydre, basilic, dragon, démon, Roi Démon.
-- [ ] **Boss et grands monstres :** grands sprites, animation d'entrée, effets lumineux (lave, flammes, aura).
-- [ ] Retirer l'ancien code 3D des monstres (`monW`) une fois tout validé.
+## ✅ v3.5.3 « Monstres en sprites (3/3) : fantastiques et boss »
+- [x] Fantôme, ombre, âme/banshee, spectre, liche, feu follet, élémentaire, golem, gargouille, arbre, dryade, chimère, hydre, basilic, dragon, démon, Roi Démon.
+- [x] **Boss et grands monstres :** grands sprites, animation d'entrée, effets lumineux (lave, flammes, aura).
+- [x] Retirer l'ancien code 3D des monstres (`monW`) une fois tout validé.
+- [x] Choix : entrée animée pour le Roi Démon seulement (surgit du sol, anneau de flammes, aura rouge) ; êtres immatériels dissipés en fondu (~2 s), golem effondré, autres cadavres 30 s ; couche émissive de lave/flammes toujours allumée ; hydre à sept têtes = 5 têtes.
 
-## ⚔️ v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »
-- [ ] **Attaques par classe :** Guerrier (arc de taille, coup d'estoc), Mage (projectile magique, éclair, soin), Voleur (rafale de dagues, esquive), Rôdeur (flèche qui vole, tir visé), chacune en images pixel-art.
-- [ ] **Réactions :** clignotement de touche, recul, étincelles d'impact en pixels, esquive, coup critique avec flash.
-- [ ] **Monstres :** attaque, touché et mort (disparition en pixels, poussière) selon l'espèce.
+## ✅ v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »
+- [x] **Attaques par classe :** Guerrier (arc de taille avec fente, coup d'estoc avec trait), Mage (projectile magique, éclair, soin), Voleur (rafale de 3 dagues, esquive), Rôdeur (tir rapide, tir visé), en poses pixel-art et effets pixel-art.
+- [ ] ~~**Réactions** (clignotement, recul, étincelles, esquive sur coup, flash critique)~~ : abandonné, aucune animation d'impact voulue pour l'instant.
+- [x] **Monstres :** attaque (déjà en place), nuage de poussière à la mort ; pas d'animation de « touché » (choix). Le cadavre reste 30 s.
+- [x] Dragons et golems nettement plus grands (`SZ`).
+- [x] Correctif : le zoom (pincement, molette) ne coupe plus le suivi d'un aventurier en 3D.
 
-## 💥 v3.5.5 « Animations de combat pixel-art (2/2) : finitions »
+## 💥 v3.5.5 « Animations de combat pixel-art (2/2) : finitions » (prochain)
 - [ ] **Lumière sur les gros coups** (flash local, sans chiffres de dégâts ni secousse de caméra : ni l'un ni l'autre ne sont voulus).
 - [ ] **Victoire, fuite, mort et soin** des aventuriers animés (pose de victoire, course, chute, effet de bénédiction en pixels).
 - [ ] **Boss :** introduction animée, phases visibles.
@@ -377,6 +380,7 @@ Version actuelle du jeu : **v3.5.2 « Monstres en sprites (2/3) : bêtes »**
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
 ## ⏳ En attente / à étudier plus tard
+- [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
 - [ ] **Widget / arrière-plan :** impossible en web (le jeu se fige écran éteint). Demanderait une réécriture en Android natif (Kotlin) avec service permanent. Non retenu pour l'instant.

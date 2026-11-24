@@ -1,5 +1,39 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.4 « Animations de combat pixel-art (1/2) : coups et impacts »
+
+Version affichée dans les Options : **v3.5.4**
+
+### Ajouté
+- **Attaques variées par classe (mode 3D)**, qui s'enchaînent pendant un combat, avec de nouvelles poses pixel-art :
+  - Guerrier : arc de taille (avec un croissant lumineux) et coup d'estoc (trait lumineux), avec une petite avancée vers le monstre.
+  - Mage : projectile magique qui vole jusqu'au monstre, éclair qui tombe sur lui, sort de soin (croix vertes qui montent autour du mage).
+  - Voleur : rafale de 3 dagues lancées, et esquive (petit saut en arrière).
+  - Rôdeur : tir rapide et tir visé (visée plus longue, flèche plus rapide).
+- **Monstres :** nuage de poussière pixel-art quand un monstre tombe (les êtres immatériels gardent leur fondu).
+
+### Corrigé
+- Le zoom (pincement à deux doigts ou molette) ne fait plus perdre le suivi du personnage en 3D : on peut zoomer et tourner la caméra tout en le suivant ; un glissement à un doigt ou un double tap l'arrête toujours.
+
+### Modifié
+- Dragons (dragon, wyverne, wyrm) et golems nettement plus grands (constante `SZ`).
+- Aucune animation d'impact (recul, étincelles, flash) : choix conservé. Mode 2D inchangé, aucune migration de sauvegarde.
+
+## v3.5.3 « Monstres en sprites (3/3) : fantastiques et boss »
+
+Version affichée dans les Options : **v3.5.3**
+
+### Ajouté
+- **Tous les monstres restants en sprites pixel-art (mode 3D) :** démon (mineur, archidémon, succube, incube), Roi Démon, liche, golem (roche, cristal, lave, obsidienne, noir), gargouille, dryade (humanoïdes) ; fantôme, ombre, âme/banshee, spectre (ardent, royal, des neiges, de mineur, de prisonnier), feu follet, élémentaire ; arbre hanté ; hydre (3 têtes, 5 pour l'hydre à sept têtes) ; basilic ; chimère (ardente, des cimes ailée) ; dragons (dragon classique, wyverne bipède, wyrm serpentin) avec couleurs selon le nom (cendres, infernal, nocturne, noir, ancien, spectral).
+- **Grands formats :** toiles jusqu'à 128×96 (dragon), 96×88 (hydre, wyverne), 112×64 (wyrm) ; Roi Démon, démon et gargouille sur toile élargie avec ailes.
+- **Effets lumineux :** couche émissive de lave et de flammes (golem de lave, élémentaires, spectre ardent, âme de magma, dragons de feu, chimère ardente), toujours allumée et pulsante, en plus des traits néon de nuit.
+- **Roi Démon :** aura rouge sombre pulsante et animation d'entrée (il surgit du sol dans un anneau de flammes, environ 2 s).
+- **Fin de combat :** les êtres immatériels (fantôme, ombre, âme, spectre, feu follet, élémentaire) se dissipent en fondu d'environ 2 s ; le golem s'effondre ; les autres restent 30 s.
+
+### Modifié
+- **Ancien code 3D des monstres retiré** (`monH`, `monQ`, `monW`, `monC`, `monS`, `monT`, `nEyes`) ; la table `MON` reste (couleurs et options des sprites).
+- `pxSprite` accepte un décalage horizontal `XO`. Mode 2D inchangé. Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.5.2 « Monstres en sprites (2/3) : bêtes »
 
 Version affichée dans les Options : **v3.5.2**
