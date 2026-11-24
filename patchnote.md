@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
+
+Version affichée dans les Options : **v3.8.2**
+
+### Ajouté
+- **Démons :** Succube (cornes recourbées et fouet), Incube (cape bleue et épée), Démon mineur (fourche), Archidémon (couronne de flammes et grande hache). Le Démon reste la base.
+- **Géants :** Géant des pierres (rochers aux épaules), Ogre lunaire (un seul œil et gros gourdin), Géant des tempêtes (éclairs et lance), Titan de cendre (couronne de flammes et marteau).
+- **Morts-vivants :** Squelette archer (arc), Liche mineure (capuche simple), Seigneur liche (cape violette et orbe flottant).
+- Nouvelles armes de monstres : fouet, fourche, marteau.
+
+### Modifié
+- Aucun changement d'équilibrage ni de sauvegarde.
+- Non vérifié : l'œil unique de l'Ogre lunaire et les rochers du Géant des pierres (têtes de géants coupées dans mes captures), la vue de dos, et les armes en mouvement.
+
 ## v3.8.1 « Monstres : humanoïdes (2/4) »
 
 Version affichée dans les Options : **v3.8.1**
