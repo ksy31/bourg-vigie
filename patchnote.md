@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.0 « Variantes de monstres (1/4) »
+
+Version affichée dans les Options : **v3.8.0**
+
+### Ajouté
+- **Look propre aux variantes de monstres** qui partageaient exactement le même sprite que leur version de base (teinte, yeux et/ou taille) : Ombre sylvestre / rôdeuse, Bandit de grand chemin, Gobelin chaman, Araignée géante, Chauve-souris géante, Ver colossal, Golem d'obsidienne, Troll des ombres, Banshee, Ogre lunaire, Géant des tempêtes, Titan de cendre, Squelette archer, Armure hantée (translucide), Gardien momifié, Chevalier maudit, Chevalier de la mort, Liche mineure / Seigneur liche, Orc maudit, Succube, Incube, Démon mineur, Archidémon, Salamandre géante, Élémentaire de feu, Sorcière des bois, Prêtre déchu.
+- Seuls les noms ci-dessus changent d'aspect ; aucun nouveau sprite dessiné (prévu dans les releases suivantes).
+
+### Modifié
+- Taille propre aux variantes (géantes ×1,6, colossal ×1,55, Seigneur liche ×1,3, Ogre ×0,8, Titan ×1,25, etc.).
+- Aucun changement d'équilibrage ni de sauvegarde.
+- Reste identique par choix : Meute spectrale et Loup spectral (la meute affiche déjà trois loups).
+
 ## v3.7.4 « Victoire, butin et couleurs »
 
 Version affichée dans les Options : **v3.7.4**

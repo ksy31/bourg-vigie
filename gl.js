@@ -1575,7 +1575,7 @@ const SPRB={wolf:[64,48],fox:[56,40],boar:[64,48],goat:[64,52],bear:[80,64],rat:
 const FLYS=new Set(['eagle','owl','condor','bat','harpy','griffon','garg','ghost','shade','soul','spectre','wisp']),ETH=new Set(['ghost','shade','soul','spectre','wisp','elem']);
 const SPR=k=>SPRM.has(k)||!!SPRB[k]||k==='dragon';
 function monVar(n,kk){const v={};
- if(/ardent|braise|feu|magma|lave|cendres|infernal/.test(n)){v.fire=1;if(/cendres/.test(n))v.t=[95,85,80,.5];else if(/infernal/.test(n))v.t=[210,50,30,.5];else if(/magma|lave/.test(n))v.t=[50,32,28,.45]}
+ if(/ardent|braise|feu|magma|lave|cendres?|infernal/.test(n)){v.fire=1;if(/cendres?/.test(n))v.t=[95,85,80,.5];else if(/infernal/.test(n))v.t=[210,50,30,.5];else if(/magma|lave/.test(n))v.t=[50,32,28,.45]}
  else if(/spectr/.test(n)&&kk!=='spectre'){v.t=[160,200,255,.6];v.op=.68}
  else if(/neige/.test(n))v.t=[246,248,255,.6];
  else if(/noir|sombre|profondeurs|obsidienne/.test(n))v.t=[24,22,34,.5];
@@ -1587,7 +1587,27 @@ function monVar(n,kk){const v={};
  else if(/de mineur/.test(n))v.t=[150,115,85,.3];
  else if(/prisonnier/.test(n))v.t=[130,130,140,.3];
  else if(/ancien/.test(n))v.t=[170,125,50,.35];
- if(/lave/.test(n))v.lava=1;if(/royal/.test(n))v.crown=1;if(/cimes/.test(n))v.wings=1;if(/sept/.test(n))v.n=5;if(/enrag/.test(n))v.eye='#ff3a30';return v}
+ if(/lave/.test(n))v.lava=1;if(/royal/.test(n))v.crown=1;if(/cimes/.test(n))v.wings=1;if(/sept/.test(n))v.n=5;if(/enrag/.test(n))v.eye='#ff3a30';
+ const X=(re,o)=>{if(re.test(n))Object.assign(v,o)};
+ if(kk==='shade'){X(/sylvestre/,{t:[40,110,70,.5]});X(/r[ôo]deuse/,{t:[110,30,50,.45],eye:'#ff4a3a'})}
+ else if(kk==='bandit')X(/grand chemin/,{t:[150,45,40,.35]});
+ else if(kk==='goblin')X(/chaman/,{t:[140,60,190,.6],eye:'#c07fff'});
+ else if(kk==='spider')X(/g[ée]ante/,{t:[90,30,30,.4],eye:'#ff3a30'});
+ else if(kk==='bat')X(/g[ée]ante/,{t:[110,60,70,.4]});
+ else if(kk==='worm')X(/colossal/,{t:[110,70,50,.4]});
+ else if(kk==='golem')X(/obsidienne/,{t:[70,30,120,.55],crystal:1,eye:'#c07fff'});
+ else if(kk==='troll')X(/ombres/,{t:[45,45,95,.5],eye:'#ff4a3a'});
+ else if(kk==='soul')X(/banshee/,{t:[255,170,215,.45],eye:'#ff3a8a'});
+ else if(kk==='giant'){X(/ogre/,{t:[190,205,255,.4]});X(/temp[êe]tes/,{t:[70,110,175,.45],eye:'#9fe0ff'});X(/titan/,{t:[60,55,58,.65],eye:'#ff8a30'})}
+ else if(kk==='skel')X(/archer/,{t:[150,125,70,.4]});
+ else if(kk==='knight'){X(/hant[ée]e/,{t:[110,200,210,.5],op:.8,eye:'#7fe0ff'});X(/momifi/,{t:[200,175,110,.55]});X(/maudit/,{t:[60,30,70,.45],eye:'#ff3a30'});X(/mort/,{t:[24,22,34,.55],eye:'#7fe0ff'})}
+ else if(kk==='lich')X(/seigneur/,{t:[70,40,130,.45],eye:'#c07fff'});
+ else if(kk==='orc')X(/maudit/,{t:[60,30,70,.4],eye:'#ff3a30'});
+ else if(kk==='demon'){X(/succube/,{t:[215,60,130,.4]});X(/incube/,{t:[60,70,170,.4]});X(/mineur/,{t:[150,115,85,.3]});X(/^archi/,{t:[22,10,28,.55],eye:'#ff3a30'})}
+ else if(kk==='salam')X(/g[ée]ante/,{t:[235,175,60,.35]});
+ else if(kk==='elem')X(/feu/,{t:[255,235,80,.6]});
+ else if(kk==='caster'){X(/sorci/,{t:[70,125,70,.45],eye:'#9fff9f'});X(/d[ée]chu/,{t:[200,200,215,.45],eye:'#ff3a30'})}
+ return v}
 function buildSprMon(mk,e,h){const nm=e.n.toLowerCase();let kk=mk;if(/chouette/.test(nm))kk='owl';else if(mk==='dragon')kk=/^wyvern/.test(nm)?'wyvern':/^wyrm/.test(nm)?'wyrm':'dragon';
  const bd=SPRB[kk],xx=SPRX[kk],Wd=bd?bd[0]:xx?xx.W:PXW,Hd=bd?bd[1]:PXH,nf=bd?3:4,fly=FLYS.has(kk),eth=ETH.has(kk),pad=bd?1:2,vr=monVar(nm,kk),op=vr.op||(eth?(kk==='shade'?.85:.72):0),
  FR=bd?[['f','idle'],['f','atk'],['f','alt']]:[['f','idle'],['f','atk'],['b','idle'],['b','atk']],col=bd?null:(h.z&&h.z.c)||null,
@@ -1622,8 +1642,9 @@ function buildSprMon(mk,e,h){const nm=e.n.toLowerCase();let kk=mk;if(/chouette/.
   if(au){au.scale.setScalar(4.2*(1+.07*Math.sin(t*3)));au.material.opacity=(.4+.1*Math.sin(t*3))*(1-d)*en;au.visible=d<1}
   if(ring){ring.visible=en<1;if(ring.visible)ring.children.forEach((sp,i)=>{const a=i/8*6.283+t*1.5,r=1.4*(1-.25*en);sp.position.set(Math.cos(a)*r,.2+en*1.3*(((i%3)+1)/3),Math.sin(a)*r);sp.material.opacity=(1-en)*.9;sp.scale.setScalar(.7+.5*Math.sin(t*9+i))})}};
  return b}
+const KMX=(k,n)=>k==='spider'||k==='bat'?(/g[ée]ante/.test(n)?1.6:1):k==='worm'?(/colossal/.test(n)?1.55:1):k==='giant'?(/titan/.test(n)?1.25:/ogre/.test(n)?.8:/temp[êe]tes/.test(n)?1.12:1):k==='lich'?(/seigneur/.test(n)?1.3:.88):k==='troll'?(/ombres/.test(n)?1.12:1):k==='goblin'?(/chaman/.test(n)?.92:1):k==='bandit'?(/grand chemin/.test(n)?1.08:1):k==='orc'?(/maudit/.test(n)?1.1:1):k==='knight'?(/mort/.test(n)?1.12:/momifi/.test(n)?1.05:1):k==='skel'?(/archer/.test(n)?.95:1):1;
 function monBuild(mk,h){const e=h.en,b=buildSprMon(mk,e,h),nm=e.n.toLowerCase(),
-  ql=Math.max(0,Math.min(1,(Math.log((e.d||1)+1)-.7)/3.5)),km=mk==='dragon'?(/^dragonnet/.test(nm)?.8:/^drake/.test(nm)?1:/^wyrm/.test(nm)?1.1:/^wyvern/.test(nm)?.95:1.4):mk==='demon'?(/mineur/.test(nm)?.65:/^archi/.test(nm)?1.35:/succube|incube/.test(nm)?.85:1):mk==='salam'?(/g[ée]ante/.test(nm)?1.35:1):1;
+  ql=Math.max(0,Math.min(1,(Math.log((e.d||1)+1)-.7)/3.5)),km=mk==='dragon'?(/^dragonnet/.test(nm)?.8:/^drake/.test(nm)?1:/^wyrm/.test(nm)?1.1:/^wyvern/.test(nm)?.95:1.4):mk==='demon'?(/mineur/.test(nm)?.65:/^archi/.test(nm)?1.35:/succube|incube/.test(nm)?.85:1):mk==='salam'?(/g[ée]ante/.test(nm)?1.35:1):KMX(mk,nm);
  if(!(b.fly>0))b.g.add(csChar((b.wide||1)*1.7));
  b.S0=(SZ[mk]||1)*km*(.85+.4*ql)*(.95+.1*jt(hid(e.n)+h.id*7,2));b.g.scale.setScalar(HS*b.S0);b.g.userData.mk=mk;return b}
 const MN=new Map(),MCP=[];let monG=null;

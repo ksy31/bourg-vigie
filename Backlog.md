@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.7.4 « Victoire, butin et couleurs »**
+Version actuelle du jeu : **v3.8.0 « Variantes de monstres (1/4) »**
 
 ## ✅ Déjà intégré
 
@@ -406,6 +406,18 @@ Version actuelle du jeu : **v3.7.4 « Victoire, butin et couleurs »**
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
 
+## 🔜 v3.8.1 « Monstres : humanoïdes (2/4) » (prochain)
+- [ ] Silhouettes dédiées (à valider avant de coder) : chevaliers (4), mages (Nécromancien, Sorcière, Prêtre déchu), bandits, orcs, trolls.
+
+## 📋 v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
+- [ ] Silhouettes dédiées : démons (5), géants (4), squelettes, liches.
+
+## 📋 v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »
+- [ ] Silhouettes dédiées : araignées, chauves-souris, vers, salamandres, élémentaires, âmes/banshee/ombres, golems.
+
+## ✅ v3.8.0 « Variantes de monstres (1/4) »
+- [x] Les variantes au sprite identique reçoivent teinte, yeux et/ou taille propres (`monVar` et `KMX` dans `gl.js`).
+
 ## ✅ v3.7.0 « Combats plus lents et 4 attaques par classe »
 - [x] Animations de combat ralenties (×1,5) ; coups beaucoup moins fréquents (pause de 1,8 à 3,6 s, constantes `ASL` et `AGP` dans `gl.js`) ; le monstre riposte une fois par coup.
 - [x] 4 attaques de base par classe avec animations différentes, débloquées aux niveaux 1 / 5 / 10 / 20 (`HLV`), tirées au hasard parmi les débloquées, purement visuelles.
@@ -428,15 +440,6 @@ Version actuelle du jeu : **v3.7.4 « Victoire, butin et couleurs »**
 - [x] 5 sorts par classe (table `SPD` dans `data.js`), un par niveau d'enchantement ; effets : puissance, risque de mort, or, ressources, fuites converties en victoires (Soin).
 - [x] Lancement automatique une fois par combat, à mi-combat, avec journal et animation 3D (aura + effet propre).
 - [x] Nom et effet du sort affichés dans l'onglet Aventuriers.
-
-## ✅ v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »
-- [x] **Gemmes :** 4 % par victoire (`GDROP`), stockées uniquement dans l'inventaire de l'aventurier, perdues à sa mort.
-- [x] **Bâtiment d'enchantement** + **Enchanteur** ; niveau du bâtiment 1 à 5 = niveau de sort accessible.
-- [x] **Apprentissage :** coût en gemmes = niveau du sort (`GCOST` = 1 à 5) ; réussite 50 % + 4 %/niveau du bâtiment + 3 %/niveau de l'Enchanteur (`EN0`, `EN1`, `EN2`) ; échec = gemmes perdues.
-- [x] 1 sort maximum par aventurier, perdu à la mort ; pour l'instant le sort est un niveau sans effet (`h.sp`).
-
-## 🔜 v3.7.2 « 5 sorts par classe (2/2) » (prochain)
-- [ ] 5 sorts par classe, lancés automatiquement en combat, avec animation et effet de jeu (liste à proposer et à valider avant de coder). Le soin du Mage (animation `heal`) existe déjà.
 
 ## ✅ v3.6.9 « Micro-ajustement de la piste »
 - [x] Les deux traits noirs (ornières) de la piste sont retirés.
@@ -473,7 +476,7 @@ Version actuelle du jeu : **v3.7.4 « Victoire, butin et couleurs »**
 
 ## ⏳ En attente / à étudier plus tard
 - [ ] **Top 10 des villages :** nouvel onglet dans le Top 10, à approfondir (critères du classement, données conservées, affichage).
-- [ ] **Monstres manquants :** créer tous les monstres qui n'ont pas encore de sprite, à approfondir (liste à établir).
+- [ ] **Monstres manquants :** voir v3.8.1 à v3.8.3 (silhouettes dédiées).
 - [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
