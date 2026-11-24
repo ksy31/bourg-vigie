@@ -1312,13 +1312,23 @@ const HAT={G:[{d:1.15,fr:[[0,.42,6],[.42,.72,9]],sp:[[.42,'arc']],mv:[.42,.72,.9
   {d:1.5,fr:[[0,.2,6],[.2,.4,9],[.4,.55,6],[.55,.75,9],[.75,.9,6],[.9,1.1,9]],sp:[[.2,'arr',0],[.55,'arr',0],[.9,'arr',0]]},
   {d:2,fr:[[0,.8,6],[.8,1.2,9]],sp:[[.8,'arr',2],[.85,'arr',3],[.9,'arr',4],[.95,'arr',5],[1,'arr',6]]}]};
 const HAU=lv=>{const r=[];for(let i=0;i<HLV.length;i++)if(lv>=HLV[i])r.push(i);return r};
+// v3.7.2 : lancement des sorts (aura de classe + effets réutilisés des attaques)
+const SPV={G:[[[0,'arc']],[],[[0,'slam']],[[0,'streak']],[[0,'slam'],[.3,'arc',1]]],
+ M:[[[0,'bolt']],[],[[0,'heal']],[[0,'beam']],[[0,'rain',0],[.15,'rain',1],[.3,'rain',2],[.45,'rain',3],[.6,'rain',4]]],
+ V:[[],[],[[0,'streak',1],[.25,'streak',-1]],[[0,'dagf',0],[.1,'dagf',1],[.2,'dagf',2]],[[0,'dagf',0],[.1,'dagf',1],[.2,'dagf',2],[.3,'dagf',3],[.4,'dagf',4]]],
+ R:[[[0,'arr',0]],[],[[0,'arr',1]],[],[[0,'arr',2],[.1,'arr',3],[.2,'arr',4],[.3,'arr',5],[.4,'arr',6]]]};
+const SPC={G:[232,191,80],M:[127,232,255],V:[200,90,140],R:[111,208,106]};
+function spellFx(h,o,tm,x,y,z){o.cst=tm;const gy=y+(h.hs?1.5:0),cl=SPC[h.c]||[255,255,255];
+ for(let i=0;i<10;i++){const a=i*.628,r=.9+.3*(i%3),s=fxSp('mote',.7,.7,x+Math.cos(a)*r,gy+.3,z+Math.sin(a)*r);s.material.color.setRGB(cl[0]/255,cl[1]/255,cl[2]/255);fxAdd(s,tm+i*.05*ASL,1.1*ASL,(p,s)=>{s.position.y=gy+.3+p*3.4;s.material.opacity=Math.min(1,(1-p)*2)})}
+ const L=(SPV[h.c]||[])[(h.sp|0)-1]||[];for(const [dl,nm,ar] of L)heroSp(h,[0,nm,ar],tm+dl*ASL,x,y,z)}
 function thFx(o,h,tm,x,y,z){const ts=o.ths;if(!ts||!ts.length||tm-(o.pt||0)<.3||FXL.length>36)return;o.pt=tm;const c=(o.pc=(o.pc||0)+1),th=ts[c%ts.length],q=THP[th-1],cl=c&2?q.g:q.t,up=th===6?-1.2:th===2?0:1.4,s=fxSp('mote',.5,.5,x+(Math.random()-.5)*2.6,y+(h.hs?1.5:0)+.6+Math.random()*3.2,z+(Math.random()-.5)*2.6);s.material.color.setRGB(cl[0]/255,cl[1]/255,cl[2]/255);const y0=s.position.y;fxAdd(s,tm,.9,(p,s)=>{s.position.y=y0+up*p;s.material.opacity=1-p})}
 function heroFx(o,h,fg,tm,x,y,z){
  if(o.lf&&!fg){if(h.loot)o.vt=tm;else o.ft=tm}o.lf=fg;o.fr=!fg&&o.ft&&tm-o.ft<3&&!h.loot;
+ if(fg&&h.spc&&!o.cs){o.cs=1;spellFx(h,o,tm,x,y,z)}if(!h.spc)o.cs=0;
  if(!fg){o.af=o.vt&&tm-o.vt<1.8&&h.loot?12:0;o.at=null;return}
  const T=HAT[h.c];if(!T){o.af=0;return}
  let a=o.at;if(!a||tm-a.t0>=a.ty.d*ASL+a.gp){const c=(o.an=(o.an||0)+1),pk=HAU(h.lv|0);let k=pk[Math.floor(Math.random()*pk.length)];if(pk.length>1&&a&&a.k===k)k=pk[(pk.indexOf(k)+1+Math.floor(Math.random()*(pk.length-1)))%pk.length];const ty=T[k],gp=AGP[0]+Math.random()*(AGP[1]-AGP[0]),en=a?a.t0+a.ty.d*ASL+a.gp:0;a=o.at={ty,k,gp,t0:(a&&tm-en<.3)?en:tm,sp:0}}
- const p=(tm-a.t0)/ASL,ty=a.ty;let af=0;for(const f of ty.fr)if(p>=f[0]&&p<f[1])af=f[2];o.af=af;
+ const p=(tm-a.t0)/ASL,ty=a.ty;let af=0;for(const f of ty.fr)if(p>=f[0]&&p<f[1])af=f[2];o.af=af;if(o.cs&&tm-(o.cst||0)<1.2*ASL)o.af=h.c==='M'?11:6;
  for(let i=0;i<ty.sp.length;i++)if(!(a.sp&(1<<i))&&p>=ty.sp[i][0]){a.sp|=1<<i;heroSp(h,ty.sp[i],tm,x,y,z)}
  const e=ty.mv;if(e&&p>=e[0]&&p<e[1]){const q=Math.sin(PI*(p-e[0])/(e[1]-e[0]));o.g.position.x+=e[2]*q;if(e[3])o.g.position.y+=e[3]*q}}
 function fxDust(o){const g=o.g,sz=Math.max(1,Math.min(3.4,(o.b.S0||1)*(o.b.wide||1)*HS*.32)),tm=performance.now()/1000,bx=g.position.x,bz=g.position.z,by=H3(bx,bz);

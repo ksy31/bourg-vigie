@@ -9,8 +9,9 @@ const ic=(h,k,t)=>(t&&(k==='w'?window.wIcon&&wIcon(h.c,t,h.id):window.gIcon&&gIc
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
 const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
 const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
-const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1);
+const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1)*(h.st==='fight'&&h.spw?1+h.spw:1);
 let GPW,RRF=null;
+function castSp(h){if(!h.sp||h.spc)return;const s=(SPD[h.c]||[])[h.sp-1];if(!s)return;const e=s[1];h.spc=1;h.spw=e.w||0;h.spd=e.d||0;h.spg=e.g||0;h.sps=e.r||0;h.spf=e.f||0;log(`✨ ${h.name} lance ${s[0]}.`,'ok')}
 const ARC0=.35,ARC1=.1,ARCM=.9;
 function armRec(h){const it=bItem('I');if(!it||it.cn||it.rb)return;const sl=SL[h.c].filter(k=>h.eq[k]>0);if(!sl.length)return;
  const p=Math.min(ARCM,ARC0+ARC1*(Math.max(1,S.armory||1)-1));if(Math.random()>=p)return;
@@ -66,12 +67,12 @@ function arrive(h){
  if(z.boss)h.en={n:'Roi Démon',d:bossD(),m:3,boss:1};
  else if(h.lv>=5&&Math.random()<.02){h.en={n:'Champion légendaire',d:power(h)*1.2,m:2.2,el:1};log(`Un champion légendaire surgit face à ${h.name} !`,'bad')}
  else{const nt=isNight(),L=nt?z.f:z.e,e=L[R(0,L.length-1)];h.en={n:e[0],d:dz(z)*e[1]*(nt?NM:1),m:e[1],nt}}
- h.st='fight';h.t=z.boss?R(BT0,BT1):Math.round(R(CB0,CB1)*(.9+CBK*h.en.m));log(`⚔️ ${h.name} affronte ${h.en.n} (${z.n || 'Roi'})`);
+ h.st='fight';h.t=z.boss?R(BT0,BT1):Math.round(R(CB0,CB1)*(.9+CBK*h.en.m));h.ft=h.t;h.spc=0;h.spw=h.spd=h.spg=h.sps=h.spf=0;log(`⚔️ ${h.name} affronte ${h.en.n} (${z.n || 'Roi'})`);
 }
 function resolve(h){
  const z=h.z,e=h.en,c=CL[h.c];
- h.last=z;
- const w=win(h,e.d,GPW),sv=e.boss?.05:Math.min(.4,(1-c.die)*FLEE*(e.el?2:1)*(1+Math.min(.5,(h.eq.a+h.eq.s)*.06))+(h.bless?.04*S.spa+.02*nl('S'):0)),pd=Math.max(DFLOOR,(1-w)*(1-sv)),pw=Math.min(w,1-pd),rr=RRF==null?Math.random():RRF===-2?pw+Math.random()*(1-pw):RRF;
+ h.last=z;castSp(h);
+ const w=win(h,e.d,GPW),sv=e.boss?.05:Math.min(.4,(1-c.die)*FLEE*(e.el?2:1)*(1+Math.min(.5,(h.eq.a+h.eq.s)*.06))+(h.bless?.04*S.spa+.02*nl('S'):0)),pd=Math.max(DFLOOR,(1-w)*(1-sv)*(1-(h.spd||0))),pw0=Math.min(w,1-pd),pw=pw0+(1-pw0-pd)*(h.spf||0),rr=RRF==null?Math.random():RRF===-2?pw+Math.random()*(1-pw):RRF;
  if(rr<pw){
   h.loot={g:0,w:0,s:0,gear:0};
   if(z.n==='Forêt'){h.loot.w=R(3,6);h.loot.g=R(2,6);if(Math.random()<.1)h.loot.s=R(1,2)}
@@ -83,7 +84,7 @@ function resolve(h){
   if(z.n==='Cimetière'){h.loot.g=R(16,26);h.loot.s=R(2,4);if(Math.random()<.4)h.loot.gear=1}
   if(z.n==='Volcan'){h.loot.g=R(35,60);h.loot.w=4;h.loot.s=4;if(Math.random()<.6)h.loot.gear=1}
   const rl=(GPW===undefined?power(h):GPW)/e.d,lk=rl<.8?Math.min(3,.8/rl):1,k=(e.el?2:.7+.3*e.m)*lk,l=h.loot;
-  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.01*nl('V')))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(e.nt?.5:1));
+  l.g=Math.round(l.g*k*c.g*(e.nt?1.6:1)*(1+.15*P.g+.01*nl('V')+(h.spg||0)))+(e.el?Math.round(e.d):0);l.w=Math.round(l.w*k*c.r*(1+(h.sps||0))*(e.nt?.5:1)*WOOD);l.s=Math.round(l.s*k*c.r*(1+(h.sps||0))*(e.nt?.5:1));
   if((e.el&&Math.random()<.7)||Math.random()<(e.nt?.25:.1))l.gear=1;
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
   h.kills++;if(Math.random()<GDROP){h.gem=(h.gem||0)+1;log(`💎 ${h.name} trouve une gemme.`,'ok')}log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}goBack(h);if(e.boss)victory(h);
@@ -115,6 +116,6 @@ function tick(dt){
    if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.wp&&h.wp.length)h.wp.shift();else if(h.pc=null,false){}else if(h.st==='go'){if(h.gp)h.st='wait';else arrive(h)}else townNext(h)}
    else{const nx=h.x+dx/d*sp,ny=h.y+dy/d*sp;bavoid(h,tg,nx,ny);const t2=h.wp&&h.wp.length?h.wp[0]:tg,ex=t2.x-h.x,ey=t2.y-h.y,e=Math.hypot(ex,ey)||1;if(t2===tg){h.x=nx;h.y=ny}else{const q=Math.min(sp,e);h.x+=ex/e*q;h.y+=ey/e*q}}
   }else if(h.st==='wait'){if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'))garrive(h)}
-  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;h.t-=dt;if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
+  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
  }
 }

@@ -1,4 +1,10 @@
 const CL={G:{n:'Guerrier',p:1.15,die:.4,g:1,r:1,cost:20,t:'Solide : survit mieux aux défaites.'},V:{n:'Voleur',p:.95,die:.5,g:1.4,r:1,cost:25,t:'Rapporte 40 % d’or en plus.'},M:{n:'Mage',p:1.3,die:.85,g:1,r:1,cost:30,t:'Très puissant, mais fragile.'},R:{n:'Rôdeur',p:1,die:.55,g:1,r:1.5,cost:22,t:'Rapporte 50 % de ressources en plus.'}};
+// v3.7.2 : 5 sorts par classe (niveau du sort = niveau du bâtiment d'enchantement). Effets : w puissance, d risque de mort, g or, r ressources, f part des fuites transformée en victoire
+const SPD={G:[['Cri de guerre',{w:.03},'+3 % de puissance'],['Peau de pierre',{d:.125},'−12,5 % de risque de mort'],['Frappe sismique',{w:.06},'+6 % de puissance'],['Rempart',{d:.25},'−25 % de risque de mort'],['Fureur du titan',{w:.125},'+12,5 % de puissance']],
+ M:[['Éclair',{w:.03},'+3 % de puissance'],['Bouclier arcanique',{d:.125},'−12,5 % de risque de mort'],['Soin',{d:.2,f:.2},'−20 % de risque de mort, 20 % des fuites deviennent des victoires'],['Rayon',{w:.09},'+9 % de puissance'],['Météores',{w:.125,d:.1},'+12,5 % de puissance, −10 % de risque de mort']],
+ V:[['Poche percée',{g:.05},'+5 % d’or'],['Esquive',{d:.125},'−12,5 % de risque de mort'],['Coup vicieux',{w:.06},'+6 % de puissance'],['Pillage',{g:.125},'+12,5 % d’or'],['Ombre fatale',{w:.1,d:.15},'+10 % de puissance, −15 % de risque de mort']],
+ R:[['Flèche précise',{w:.03},'+3 % de puissance'],['Piste',{r:.075},'+7,5 % de ressources'],['Piège',{w:.06},'+6 % de puissance'],['Camouflage',{d:.2},'−20 % de risque de mort'],['Pluie de flèches',{w:.125},'+12,5 % de puissance']]};
+const spn=h=>{const s=h.sp&&(SPD[h.c]||[])[h.sp-1];return s?'« '+s[0]+' » ('+s[2]+')':'sort niv. '+h.sp};
 const dz=z=>z.d;
 const NE={A:'🛏️',F:'🔨',T:'🍺',S:'⛪',E:'🐴',V:'🏛️',I:'🛡️',C:'⚜️',N:'🔮'};
 const NT={A:'Aubergiste',F:'Forgeron',T:'Tavernier',S:'Guérisseur',E:'Palefrenier',V:'Maire',I:'Intendant',C:'Chancelier',N:'Enchanteur'};

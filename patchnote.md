@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.7.2 « 5 sorts par classe (2/2) »
+
+Version affichée dans les Options : **v3.7.2**
+
+### Ajouté
+- **5 sorts par classe**, un par niveau d'enchantement (le sort appris est celui du niveau du bâtiment, pour la classe de l'aventurier). Chaque sort a un effet de jeu, valable pour le combat où il est lancé :
+  - Guerrier : Cri de guerre (+3 % puissance), Peau de pierre (−12,5 % mort), Frappe sismique (+6 % puissance), Rempart (−25 % mort), Fureur du titan (+12,5 % puissance).
+  - Mage : Éclair (+3 % puissance), Bouclier arcanique (−12,5 % mort), Soin (−20 % mort, 20 % des fuites deviennent des victoires), Rayon (+9 % puissance), Météores (+12,5 % puissance, −10 % mort).
+  - Voleur : Poche percée (+5 % or), Esquive (−12,5 % mort), Coup vicieux (+6 % puissance), Pillage (+12,5 % or), Ombre fatale (+10 % puissance, −15 % mort).
+  - Rôdeur : Flèche précise (+3 % puissance), Piste (+7,5 % ressources), Piège (+6 % puissance), Camouflage (−20 % mort), Pluie de flèches (+12,5 % puissance).
+- Lancement automatique, une fois par combat, au milieu du combat : message « ✨ X lance Y » dans le journal, aura de la couleur de la classe et animation propre au sort en 3D (éclair, rayon, météores, soin, dagues, flèches, frappe au sol…).
+- Le nom du sort et son effet s'affichent dans l'onglet Aventuriers.
+
+### Modifié
+- Message d'apprentissage : indique le nom du sort.
+- Sans sort, le jeu se comporte exactement comme en 3.7.1 (vérifié par simulation avec les mêmes tirages).
+- Combats de groupe (guildes) : la puissance de groupe ne tient pas compte des sorts ; les effets sur la mort, l'or et les ressources s'appliquent.
+- Valeurs des effets : table `SPD` dans `data.js`.
+
 ## v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »
 
 Version affichée dans les Options : **v3.7.1**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »**
+Version actuelle du jeu : **v3.7.2 « 5 sorts par classe (2/2) »**
 
 ## ✅ Déjà intégré
 
@@ -409,6 +409,17 @@ Version actuelle du jeu : **v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) �
 ## ✅ v3.7.0 « Combats plus lents et 4 attaques par classe »
 - [x] Animations de combat ralenties (×1,5) ; coups beaucoup moins fréquents (pause de 1,8 à 3,6 s, constantes `ASL` et `AGP` dans `gl.js`) ; le monstre riposte une fois par coup.
 - [x] 4 attaques de base par classe avec animations différentes, débloquées aux niveaux 1 / 5 / 10 / 20 (`HLV`), tirées au hasard parmi les débloquées, purement visuelles.
+
+## ✅ v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »
+- [x] **Gemmes :** 4 % par victoire (`GDROP`), stockées uniquement dans l'inventaire de l'aventurier, perdues à sa mort.
+- [x] **Bâtiment d'enchantement** + **Enchanteur** ; niveau du bâtiment 1 à 5 = niveau de sort accessible.
+- [x] **Apprentissage :** coût en gemmes = niveau du sort (`GCOST` = 1 à 5) ; réussite 50 % + 4 %/niveau du bâtiment + 3 %/niveau de l'Enchanteur (`EN0`, `EN1`, `EN2`) ; échec = gemmes perdues.
+- [x] 1 sort maximum par aventurier, perdu à la mort ; pour l'instant le sort est un niveau sans effet (`h.sp`).
+
+## ✅ v3.7.2 « 5 sorts par classe (2/2) »
+- [x] 5 sorts par classe (table `SPD` dans `data.js`), un par niveau d'enchantement ; effets : puissance, risque de mort, or, ressources, fuites converties en victoires (Soin).
+- [x] Lancement automatique une fois par combat, à mi-combat, avec journal et animation 3D (aura + effet propre).
+- [x] Nom et effet du sort affichés dans l'onglet Aventuriers.
 
 ## ✅ v3.7.1 « Gemmes et bâtiment d'enchantement (1/2) »
 - [x] **Gemmes :** 4 % par victoire (`GDROP`), stockées uniquement dans l'inventaire de l'aventurier, perdues à sa mort.

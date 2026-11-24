@@ -79,7 +79,7 @@ function applyTask(h,tk){
  else if(tk.k==='forge'){const f=forgeP(h),fp=fpay(h,f.p);if(fp)recG(h).f-=fp;h.gold-=f.p-fp;S.g+=f.p;h.eq[f.k]=f.t;npcx('F');log(`${h.name} achète ${pn(h,f.k)} ${f.t} chez le forgeron (${f.p} or${fp?', dont '+fp+' payés par la caisse de guilde':''}).`)}
  else if(tk.k==='prime'){if(h.prime){const p=h.prime;h.gold+=p.g;h.earned+=p.g;h.prime=null;for(let i=0;i<TVX;i++)npcx('T');log(`🎯 ${h.name} touche la prime sur ${p.n} : +${p.g} or.`,'ok')}}
  else if(tk.k==='bless'){npcx('S');if(Math.random()<blP())h.bless=1;else log(`${h.name} : la bénédiction échoue.`)}
- else if(tk.k==='ench'){const L=enL(h);if(L){const c=GCOST[L-1];npcx('N');h.gem-=c;if(Math.random()<enP()){h.sp=L;log(`✨ ${h.name} apprend un sort de niveau ${L} (${c} gemme${c>1?'s':''}).`,'ok')}else log(`${h.name} : l’enchantement échoue, ${c} gemme${c>1?'s':''} perdue${c>1?'s':''}.`,'bad')}}
+ else if(tk.k==='ench'){const L=enL(h);if(L){const c=GCOST[L-1];npcx('N');h.gem-=c;if(Math.random()<enP()){h.sp=L;log(`✨ ${h.name} apprend « ${SPD[h.c][L-1][0]} » (niveau ${L}, ${c} gemme${c>1?'s':''}).`,'ok')}else log(`${h.name} : l’enchantement échoue, ${c} gemme${c>1?'s':''} perdue${c>1?'s':''}.`,'bad')}}
  else if(tk.k==='armory'){const pk=armPick(h),tx=pk.map(p=>`${pn(h,p.k)} ${S.chest[p.i].t}`);pk.forEach(p=>{h.eq[p.k]=S.chest[p.i].t});
   pk.map(p=>p.i).sort((a,b)=>b-a).forEach(i=>S.chest.splice(i,1));for(let j=0;j<pk.length*AXD;j++)npcx('I');
   log(`🛡️ ${h.name} s’équipe à l’Armurerie : ${tx.join(', ')}.`,'ok')}
