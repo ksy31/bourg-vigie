@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers »
+
+Version affichée dans les Options : **v3.5.8**
+
+### Ajouté
+- **Armures, bottes et boucliers visibles (mode 3D), 14 paliers**, dans les mêmes matières que les armes. Chaque palier a son dessin : motifs (plaques, écailles, chevrons, losange, rayures), cols (simple, ailé, à pointes), jupes et ourlets, emblème à la couleur de l'aventurier.
+- **Une tenue par classe :** plaques et épaulières du Guerrier (rondes, étagées, évasées, à pointes, ailées), robe du Mage, cuir du Voleur et du Rôdeur, toutes évolutives.
+- **Bottes** de plus en plus hautes et ornées (revers, sangles, bouts, éperons), avec des ailes aux paliers 13 et 14.
+- **Boucliers du Guerrier** : rond, écu, en pointe, tour, hexagonal, en étoile, avec bordure, ombilic à la couleur de l'aventurier et emblème.
+- **Mini-images** pixel-art de ces pièces dans la fiche de l'aventurier et dans le journal.
+
+### Modifié
+- Le sprite est régénéré quand l'arme, l'armure, les bottes ou le bouclier changent. Palier 0 : tenue habituelle ; au-delà de 14, le palier 14.
+- De dos, seules les épaulières et la robe du Mage changent. Mode 2D inchangé, aucune migration de sauvegarde.
+
 ## v3.5.7 « Équipements visibles (1/3) : système et paliers »
 
 Version affichée dans les Options : **v3.5.7**

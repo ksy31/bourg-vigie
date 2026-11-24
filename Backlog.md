@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.7 « Équipements visibles (1/3) : système et paliers »**
+Version actuelle du jeu : **v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers »**
 
 ## ✅ Déjà intégré
 
@@ -370,11 +370,14 @@ Version actuelle du jeu : **v3.5.7 « Équipements visibles (1/3) : système et 
 - [x] **Couleur de l'aventurier : simple rappel** (enroulement de la poignée, gemme du pommeau, ruban du bâton, poignée de l'arc), choix valable pour 3.5.8 et 3.5.9.
 - [x] **Affichage :** mini-image pixel-art de l'arme dans la fiche de l'aventurier et dans le journal (butin, forge, Armurerie, récupération). Le coffre de l'Armurerie ne montre qu'un compteur, il n'y a pas de liste de pièces.
 
-## 🛡️ v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers » (prochain)
-- [ ] Armure, bottes et bouclier (Guerrier) avec un design propre à chaque niveau (matière, couleur, ornements, formes inventées et variées, pas seulement un changement de teinte), en respectant le choix « simple rappel de couleur » tranché en v3.5.7.
-- [ ] Tenues spécifiques par classe (robes du Mage, cuir du Voleur et du Rôdeur) qui évoluent aussi avec le niveau.
+## ✅ v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers »
+- [x] **Armure, bottes et bouclier (Guerrier), 14 paliers** avec des designs différents (formes, motifs, cols, épaulières, jupes, ornements), pas seulement une teinte, dans les matières des armes ; couleur de l'aventurier en simple rappel (gemme d'emblème, ornements).
+- [x] **Tenues par classe :** plaques du Guerrier (avec épaulières à 6 styles), robe du Mage, cuir du Voleur et du Rôdeur, chacune évoluant sur 14 paliers. Les bottes se voient pour les 4 classes (ailes aux paliers 13 et 14).
+- [x] **Icônes** pixel-art de l'armure, des bottes et du bouclier dans la fiche et le journal.
+- [x] Sprite régénéré quand `h.eq` change (arme, armure, bottes ou bouclier).
+- Limite : vu de dos, seules les épaulières et la robe du Mage changent (la cape cache le reste).
 
-## ✨ v3.5.9 « Équipements visibles (3/3) : armes légendaires »
+## ✨ v3.5.9 « Équipements visibles (3/3) : armes légendaires » (prochain)
 - [ ] **Armes de haut niveau stylées, inventées par Claude** : prévoir plusieurs thèmes variés pour chaque palier élevé et chaque classe. **Obligatoires :** la lame de lumière façon laser (lame émissive, halo, traînée) et **tout l'ensemble démoniaque** (arme toute noire aux flammes noires qui s'en échappent, et ses équivalents bâton, dagues, arc). **À inventer en plus :** glace, foudre, lave, cristal, os et âmes, nature vivante, étoile, etc. La liste des thèmes inventés est proposée avant de dessiner.
 - [ ] **Armures, bottes et boucliers de haut niveau tout aussi spectaculaires** (pas seulement les armes), **avec obligatoirement la série démoniaque** (armure noire, flammes noires, cornes, etc.) ; en plus, thèmes inventés : aura, ornements animés, matières (écailles, cristal, flammes, ombre, lumière…), avec au moins un design distinct par palier et par classe.
 - [ ] **Couleur de l'aventurier sur l'équipement :** simple rappel (tranché en 3.5.7 : liserés, tissu, plumet, cape, gemmes à sa couleur, matière conservée). Elle doit rester reconnaissable d'un coup d'œil, y compris sur les pièces de haut niveau (démoniaque comprise).
