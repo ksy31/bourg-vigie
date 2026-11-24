@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.4.7 « Aventuriers en pixel-art HD-2D »
+
+Version affichée dans les Options : **v3.4.7**
+
+### Ajouté
+- **Aventuriers en sprites pixel-art (mode 3D) :** les 4 classes (Guerrier, Mage, Voleur, Rôdeur) sont dessinées sur canevas, sans lissage, avec contour sombre et ombrage en 3 tons. Ils se tiennent debout face à la caméra, avec une vraie ombre au sol.
+- **Animations :** images de face et de dos selon la direction, deux images de marche, image d'attaque pendant les combats, miroir quand ils marchent vers la gauche.
+- **Version garçon et fille** pour chaque classe (cheveux longs, jupe, cils pour les filles ; barbe du Mage, coupe courte pour les garçons).
+- **Cheveux et yeux de couleur variable** (12 teintes de cheveux, 6 d'yeux), propres à chaque aventurier.
+
+### Modifié
+- **Couleur d'aventurier :** elle donne maintenant la couleur générale du personnage (armure, cape et bouclier ; robe et chapeau ; capuche, cape et tunique ; cape, chapeau et tunique).
+- **Sac à dos de butin :** flotte désormais à côté de l'aventurier pour rester visible quand il marche vers la caméra.
+- Le mode 2D, les PNJ et les monstres restent inchangés (prochaines étapes). Anciennes sauvegardes compatibles, aucune migration.
+
 ## v3.4.6 « Sols détaillés, sac et couleurs »
 
 Version affichée dans les Options : **v3.4.6**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.4.6 « Sols détaillés, sac et couleurs »**
+Version actuelle du jeu : **v3.4.7 « Aventuriers en pixel-art HD-2D »**
 
 ## ✅ Déjà intégré
 
@@ -237,6 +237,11 @@ Version actuelle du jeu : **v3.4.6 « Sols détaillés, sac et couleurs »**
 - [x] **Flou de profondeur, éclat lumineux, lucioles, fumée.**
 - [x] **Optimisation :** résolution adaptative affinée, ombres, mesure des fps sur Z Fold 3.
 - [x] **Rotation de la caméra à deux doigts**, si elle ne gêne pas le zoom.
+
+## ✅ v3.4.7 « Aventuriers en pixel-art HD-2D »
+- [x] **Aventuriers en sprites pixel-art (3D) :** sprites chibi dessinés sur canevas (contour sombre, ombrage 3 tons), debout face à la caméra, ombre au sol, images de face, de dos, marche et attaque.
+- [x] **Version garçon et fille** pour les 4 classes, **cheveux et yeux de couleur variable** par aventurier, **couleur générale = couleur de l'aventurier**.
+- [ ] Reste à faire (hors de cette release) : PNJ et monstres en sprites, personnages 2D.
 
 ## ✅ v3.4.6 « Sols détaillés, sac et couleurs »
 - [x] **Pavé sur tout le village** (2D et 3D) : cobbles partout, bord usé, place centrale et allées conservées.
