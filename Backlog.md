@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers »**
+Version actuelle du jeu : **v3.5.9 « Équipements visibles (3/3) : équipements légendaires »**
 
 ## ✅ Déjà intégré
 
@@ -377,12 +377,12 @@ Version actuelle du jeu : **v3.5.8 « Équipements visibles (2/3) : armures, bot
 - [x] Sprite régénéré quand `h.eq` change (arme, armure, bottes ou bouclier).
 - Limite : vu de dos, seules les épaulières et la robe du Mage changent (la cape cache le reste).
 
-## ✨ v3.5.9 « Équipements visibles (3/3) : armes légendaires » (prochain)
-- [ ] **Armes de haut niveau stylées, inventées par Claude** : prévoir plusieurs thèmes variés pour chaque palier élevé et chaque classe. **Obligatoires :** la lame de lumière façon laser (lame émissive, halo, traînée) et **tout l'ensemble démoniaque** (arme toute noire aux flammes noires qui s'en échappent, et ses équivalents bâton, dagues, arc). **À inventer en plus :** glace, foudre, lave, cristal, os et âmes, nature vivante, étoile, etc. La liste des thèmes inventés est proposée avant de dessiner.
-- [ ] **Armures, bottes et boucliers de haut niveau tout aussi spectaculaires** (pas seulement les armes), **avec obligatoirement la série démoniaque** (armure noire, flammes noires, cornes, etc.) ; en plus, thèmes inventés : aura, ornements animés, matières (écailles, cristal, flammes, ombre, lumière…), avec au moins un design distinct par palier et par classe.
-- [ ] **Couleur de l'aventurier sur l'équipement :** simple rappel (tranché en 3.5.7 : liserés, tissu, plumet, cape, gemmes à sa couleur, matière conservée). Elle doit rester reconnaissable d'un coup d'œil, y compris sur les pièces de haut niveau (démoniaque comprise).
-- [ ] Effets animés en pixels (particules, lueurs, traînées), reflets au sol la nuit.
-- [ ] Effets visibles de nuit et de jour, sans coût excessif en performances (nombre de particules limité).
+## ✅ v3.5.9 « Équipements visibles (3/3) : équipements légendaires »
+- [x] **10 thèmes légendaires** sur les paliers 11 à 14 (armes, armures, bottes, boucliers) : 11 glace / foudre, 12 lave / cristal, 13 os et âmes / nature / étoile, 14 **laser** (lame émissive, halo, traînée) / **démoniaque** (noir, flammes noires, cornes, yeux rouges) / **lumière** (blanc doré, rayons). Thème choisi selon l'aventurier, identique sur toutes ses pièces du même palier.
+- [x] Variantes par classe : lames (Guerrier, Voleur), têtes de bâton (Mage), arcs à cornes (Rôdeur), motifs sur armures, bottes et boucliers.
+- [x] Particules animées limitées (une toutes les 0,3 s par héros, 36 au total) et reflet coloré au sol la nuit.
+- [x] Icônes de fiche et de journal à l'image du thème. Couleur de l'aventurier toujours en rappel (emblème).
+- Limite : fps sur téléphone non mesurés.
 
 ## 📱 Guide APK
 

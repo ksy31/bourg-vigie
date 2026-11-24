@@ -1,5 +1,18 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.5.9 « Équipements visibles (3/3) : équipements légendaires »
+
+Version affichée dans les Options : **v3.5.9**
+
+### Ajouté
+- **10 thèmes légendaires** pour les paliers 11 à 14 : glace, foudre (11) ; lave, cristal (12) ; os et âmes, nature vivante, étoile (13) ; **lame de lumière laser**, **série démoniaque** (noir, flammes noires, cornes, lueurs rouges) et **lumière** (14).
+- Chaque thème s'applique aux armes, armures, bottes et boucliers des 4 classes (lames, têtes de bâton, arcs à cornes, motifs sur les tenues).
+- **Effets animés** : petites particules aux couleurs du thème et reflet coloré au sol la nuit.
+- Icônes de la fiche et du journal aux couleurs du thème.
+
+### Modifié
+- Le thème dépend de l'aventurier : un même aventurier garde le même thème sur ses pièces du même palier. Palier 10 et moins inchangés. Aucune migration de sauvegarde.
+
 ## v3.5.8 « Équipements visibles (2/3) : armures, bottes, boucliers »
 
 Version affichée dans les Options : **v3.5.8**
