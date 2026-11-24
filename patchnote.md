@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.1 « Monstres : humanoïdes (2/4) »
+
+Version affichée dans les Options : **v3.8.1**
+
+### Ajouté
+- **Chevaliers :** Armure hantée (épaulières et flamme spectrales), Gardien momifié (bandelettes et lance), Chevalier maudit (cape), Chevalier de la mort (grandes cornes et faux).
+- **Mages :** Sorcière des bois (chapeau pointu), Prêtre déchu (mitre à croix et masse), Nécromancien (crâne au sommet du bâton).
+- **Brutes :** Bandit de grand chemin (arc), Orc maudit (grande hache à deux lames et épaulières à pointes), Troll des ombres (cornes et gros gourdin clouté).
+- Nouvelles armes de monstres : lance, faux, arc, grande hache, gros gourdin, masse (options `wp` et `acc` dans `monVar`, dessin dans `pxSprite`).
+
+### Modifié
+- Aucun changement d'équilibrage ni de sauvegarde.
+- Non vérifié : l'animation d'attaque de chaque nouvelle arme dans le jeu en mouvement (captures statiques seulement).
+
 ## v3.8.0 « Variantes de monstres (1/4) »
 
 Version affichée dans les Options : **v3.8.0**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.0 « Variantes de monstres (1/4) »**
+Version actuelle du jeu : **v3.8.1 « Monstres : humanoïdes (2/4) »**
 
 ## ✅ Déjà intégré
 
@@ -406,10 +406,10 @@ Version actuelle du jeu : **v3.8.0 « Variantes de monstres (1/4) »**
 - [x] Teintes variables : plus jaune près des routes, plus sombre en Forêt, grise en Montagne.
 - [x] Densité liée au bouton Qualité (100 % / 60 % / 25 % des touffes).
 
-## 🔜 v3.8.1 « Monstres : humanoïdes (2/4) » (prochain)
-- [ ] Silhouettes dédiées (à valider avant de coder) : chevaliers (4), mages (Nécromancien, Sorcière, Prêtre déchu), bandits, orcs, trolls.
+## ✅ v3.8.1 « Monstres : humanoïdes (2/4) »
+- [x] Silhouettes dédiées : chevaliers (4), mages (3), Bandit de grand chemin, Orc maudit, Troll des ombres.
 
-## 📋 v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
+## 🔜 v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) » (prochain)
 - [ ] Silhouettes dédiées : démons (5), géants (4), squelettes, liches.
 
 ## 📋 v3.8.3 « Monstres : bêtes, esprits, golems (4/4) »
