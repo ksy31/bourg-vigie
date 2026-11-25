@@ -2,7 +2,10 @@ let last=performance.now(),acc=0,curTab='tv',SLP=false,slT=0;
 function sleepOn(){if(SLP)return;SLP=true;slT=Date.now();$('slt').classList.remove('off');$('sl').hidden=false;clearTimeout(sleepOn.t);sleepOn.t=setTimeout(()=>$('slt').classList.add('off'),3000)}
 function sleepOff(){if(!SLP)return;SLP=false;$('sl').hidden=true;ui()}
 let ldf=0;const is3=()=>{try{return localStorage.getItem('bvr')==='3'&&typeof THREE!=='undefined'}catch(e){return false}};
+let FPS=60;try{const f=+localStorage.getItem('bvf');if(f===30||f===120)FPS=f}catch(e){}
+function fpsApply(){GLX.K.fi=FPS>=120?0:1/FPS;const b=$('fpb');if(b)b.textContent='🎞️ '+FPS+' fps'}
 function loop(now){
+ if(now-last<(SLP||curTab!=='tv'?46:FPS>=120?0:1000/FPS-1.5)){requestAnimationFrame(loop);return}
  const dt=Math.min(.1,(now-last)/1000);last=now;
  if(S.speed>0){
   const steps=S.speed;
@@ -21,5 +24,5 @@ $('fp').onclick=()=>folStep(-1);$('fn').onclick=()=>folStep(1);
 $('ros').onclick=e=>{const c=e.target.closest('[data-h]'),h=c&&S.hero.find(x=>x.id===+c.dataset.h);if(!h)return;document.querySelector('#nav button[data-t="tv"]').click();fol=h.id;if(cam.z<1.2)cam.z=1.2;scrollTo(0,0)};
 {let fq=0;const fs=()=>{if(fq)return;fq=requestAnimationFrame(()=>{fq=0;fit()})};addEventListener('resize',fs);addEventListener('orientationchange',fs);if(window.visualViewport)visualViewport.addEventListener('resize',fs)}$('slp').onclick=sleepOn;$('sl').onpointerdown=()=>{if(Date.now()-slT>400)sleepOff()};
 buildZ();loadG();if(!localStorage.getItem(SK)){S=fresh();buildZ()}fit();ui();wake();document.addEventListener('pointerdown',()=>wake());document.addEventListener('touchmove',e=>{if(e.touches.length>1&&!e.target.closest('canvas'))e.preventDefault()},{passive:false});renderLog();if(!S.sat)log('Bienvenue ! Recrute tes premiers aventuriers : ils partiront seuls en quête.');setInterval(saveG,30000);
-$('inst').hidden=!window.dip;$('inst').onclick=async()=>{const e=window.dip;if(!e)return;try{e.prompt();await e.userChoice}catch(_){}window.dip=null;$('inst').hidden=true};
+fpsApply();$('fpb').onclick=()=>{FPS=FPS===30?60:FPS===60?120:30;try{localStorage.setItem('bvf',FPS)}catch(e){}fpsApply()};$('inst').hidden=!window.dip;$('inst').onclick=async()=>{const e=window.dip;if(!e)return;try{e.prompt();await e.userChoice}catch(_){}window.dip=null;$('inst').hidden=true};
 requestAnimationFrame(loop);

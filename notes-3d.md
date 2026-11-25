@@ -1,6 +1,6 @@
 # Notes de passation : refonte 3D (WebGL) de Bourg-Vigie
 
-État au 24/11/2026 : version livrée **v3.6.9 « Micro-ajustement de la piste »** (cache `bv-v93`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
+État au 25/11/2026 : version livrée **v3.9.0 « Optimisation »** (cache `bv-v107`). Prochain point du Backlog : guide APK. Le mode **2D est le mode par défaut** (la 3D s'active avec 🧊 / 🖼️ dans les Options, clé `bvr`='3').
 
 ## Où est quoi
 - `gl.js` : tout le moteur 3D (`GLX`). Aventuriers, terrain, `buildWorld` (forêts, bordure de carte, torches hors village), village (`buildVillageMesh`, puits `wellV`, enceinte `wallV`, torches `torches`, lampadaires `lamp`/`perimLamps`), PNJ, monstres, météo 3D (`wxUpd`), lucioles (`ffUpd`), fumée (`smUpd`), lueur du volcan (`vgUpd`), lave émissive du sol (`paintLava`), post-traitement (`ppRender`), qualité (`qload`, `applyQ`, `qAuto`), éclairage de la démo (`PL` palette par heure, `palAt`, `updLight`, ciel `skyInit`), calque 2D (noms, panneaux, compteur fps).
@@ -61,7 +61,9 @@
 - Heure de jeu : `x=6+24*(S.t-S.ds)/S.dl` ; pour viser l'heure H dans un test, `S.t=S.ds+S.dl*((H+24-6)/24)`. `dk()` : 0 de 5h à 20h, rampe 20→21h, 1 de 21h à 4h, rampe 4→5h.
 - Tout élément posé au-dessus de la carte doit avoir un `z-index` > 1 (le canvas 2D `cv` est au-dessus de tout ce qui n'en a pas, même après retour en 2D).
 - Scripts classiques, `gl.js` en IIFE (`dk` du jeu déjà pris → `dkc`). Le canvas 3D est `position:absolute` : `cv` doit rester `position:relative; z-index:1`.
-- `three.min.js` : esbuild (`export * from 'three'; export {mergeGeometries} ...`, `--format=iife --global-name=THREE`).
+- `three.min.js` : three r187 allégé (v3.9.0) : esbuild `--bundle --minify --format=iife --global-name=THREE` sur une entrée qui n'exporte que les 63 symboles utilisés par `gl.js` et `monsters.js` (`export {Group,Mesh,...} from 'three'; export {mergeGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils.js'`). **Si un nouveau `TH.Xxx` est utilisé, l'ajouter à cette liste et reconstruire** (sinon `undefined`). Liste : `grep -o "\b\(TH\|THREE\)\.[A-Za-z0-9_]*" gl.js monsters.js | sort -u`.
+- Boucle (v3.9.0) : `main.js` limite les images (`FPS` 30/60/120, clé `bvf`, bouton `#fpb`) ; 46 ms (≈20 Hz) en veille ou hors onglet Carte ; `GLX.K.fi` met à l'échelle les mesures de la résolution adaptative. `gl.js` ne recalcule les clés `gk`/`vk` qu'une image sur 3. `ui.js` n'écrit le DOM que si le texte change (`sI`/`sT`).
+- Piège (corrigé en 3.9.0) : un rôle de PNJ absent de la liste de `NPF` (`'AFTSEVICN'`) lève une exception à chaque image dans `updNpc` et coupe toutes les mises à jour d'ambiance du même `try`.
 - Post-traitement : cible demi-flottante (`EXT_color_buffer_float` ou `half_float` requis, sinon rendu direct) ; `ren.info.autoReset=false` + `reset()` à chaque image. Le ciel et le post utilisent `#include <tonemapping_fragment>` / `<colorspace_fragment>`.
 - Matériau des arbres `MV` partagé (arbres, rochers) : sa modification `onBeforeCompile` porte le rond de transparence.
 - Tests : Chrome sans écran (swiftshader), `?dbg=1`. Un aventurier forcé en état `back` sans route donne des positions NaN (caméra vide) : forcer `fight` avec `h.z`, `h.x`, `h.y`. Les fps ne sont mesurables que sur le Z Fold 3 (compteur dans le menu Développeur). Charge relevée : village + forêts ≈ 250–530 k triangles selon le zoom (≈ 425 k au zoom maximal).

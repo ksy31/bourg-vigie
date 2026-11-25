@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.0 « Optimisation : fps réglables, veille légère, chargement allégé »
+
+Version affichée dans les Options : **v3.9.0**
+
+### Ajouté
+- **Bouton « 🎞️ 30 / 60 / 120 fps »** dans les Options (à côté de la qualité) : plafond d'images par seconde, mémorisé. Par défaut **60** (sur un écran 120 Hz, c'est deux fois moins de travail GPU qu'avant). **120** = fréquence de l'écran, sans plafond.
+
+### Modifié
+- **Veille et onglets hors carte :** en mode Veille (écran noir) ou sur un autre onglet que la carte, la boucle tourne à environ 20 fois par seconde au lieu de 60 (la simulation garde le même rythme réel, rien n'est dessiné).
+- **Résolution adaptative et qualité auto :** les mesures de fluidité tiennent compte du plafond choisi, donc 30 fps ne fait plus baisser la qualité à tort. Le compteur fps (menu Développeur) affiche toujours les vraies images par seconde.
+- **Moteur 3D :** le test de reconstruction du terrain et du village n'est fait qu'une image sur trois (moins de calculs et de déchets mémoire par image) ; deux objets temporaires par image supprimés.
+- **Interface :** les compteurs (or, bois, pierre, jour), les boutons Recruter, bâtiments et Roi Démon ne sont réécrits dans la page que si leur texte change (moins de recalculs d'affichage toutes les 0,3 s).
+- **Taille :** `three.min.js` allégé de 754 Ko à 586 Ko (192 Ko → 146 Ko compressé) en ne gardant que les 63 éléments de three.js réellement utilisés. Rendu 3D vérifié identique au pixel près.
+- **Cache :** `three.min.js`, les icônes et le manifeste sont servis directement depuis le cache (moins de requêtes réseau à chaque lancement) ; le reste du jeu reste « réseau d'abord », donc les mises à jour arrivent comme avant. Cache `bv-v107`.
+
+### Corrigé
+- **3D : Enchanteur sans sprite.** Dès que l'Enchanteur était présent, une erreur se produisait à chaque image dans le rendu des PNJ et bloquait météo, torches, vent, herbe, feuilles, lucioles, fumée et lueur du volcan. Il est maintenant dessiné et ces animations fonctionnent.
+
 ## v3.8.7 « KSVillage : logo, installation et chargement »
 
 Version affichée dans les Options : **v3.8.7**

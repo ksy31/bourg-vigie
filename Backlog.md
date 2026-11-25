@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.7 « KSVillage : logo, installation et chargement »**
+Version actuelle du jeu : **v3.9.0 « Optimisation : fps réglables, veille légère, chargement allégé »**
 
 ## ✅ Déjà intégré
 
@@ -412,6 +412,17 @@ Version actuelle du jeu : **v3.8.7 « KSVillage : logo, installation et chargeme
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
 
+## ✅ v3.9.0 « Optimisation : fps réglables, veille légère, chargement allégé »
+- [x] Bouton 🎞️ 30 / 60 / 120 fps dans les Options (défaut 60, clé `bvf`, limiteur dans `loop` de `main.js`).
+- [x] Veille et onglets hors carte : boucle à ≈20 Hz.
+- [x] Mesures de résolution adaptative mises à l'échelle du plafond (`K.fi`).
+- [x] `gl.js` : clés de reconstruction `gk`/`vk` une image sur trois, 2 allocations par image supprimées.
+- [x] `ui.js` : écriture du DOM seulement si le texte change (`sI`, `sT`).
+- [x] `three.min.js` allégé (754 → 586 Ko) : 63 symboles utilisés, rendu identique au pixel près.
+- [x] `sw.js` : cache d'abord pour `three.min.js`, icônes et manifeste ; cache `bv-v107`.
+- [x] Correctif 3D : sprite de l'Enchanteur (`'AFTSEVICN'`).
+- Non fait (choix) : minification du code de l'application (gain ≈ 11 % brut, 5 % compressé, au prix d'un dépôt illisible).
+
 ## ✅ v3.8.7 « KSVillage : logo, installation et chargement »
 - [x] Nom KSVillage, nouveau logo pixel-art (la mairie de face à 34° sur le pavé, écriteau « KSVILLAGE », 4 icônes), manifeste revu, bouton Installer dans les Options, police non bloquante.
 - [x] Écran « Chargement en cours… » jusqu'à la première image 3D (ou 2D).
@@ -484,7 +495,7 @@ Version actuelle du jeu : **v3.8.7 « KSVillage : logo, installation et chargeme
 - [x] Menu Développeur : le bandeau fixe ne cache plus la première option.
 - [x] Zone de flou (haut et bas de l'écran) agrandie : elle commence plus tôt (0,10 au lieu de 0,20 de l'écran à partir du centre).
 
-## 📱 Guide APK
+## 📱 Guide APK (prochain)
 
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 

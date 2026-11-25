@@ -1,17 +1,18 @@
 const cof=()=>{const n=(S.chest||[]).length;return ` · 🛡️ Coffre : ${n} pièce${n>1?'s':''}`};
 const gtag=h=>{const g=(S.guilds||[]).find(x=>x.id===h.gu);if(!g)return '';const w=h.gp?S.hero.filter(x=>x.gp===h.gp&&x!==h).map(x=>x.name):[];return ` · ${g.e} ${g.n}${h.id===g.o?' 👑':''}${g.sl?' 💤':''}${w.length?' · en groupe avec '+w.join(', '):''}`};
 const gcf=()=>{const g=S.guilds||[],z=g.filter(x=>x.sl).length,c=g.reduce((s,x)=>s+(x.f||0),0);return ` · ⚜️ Guildes : ${g.length}/${gmax()}`+(z?` (${z} en sommeil)`:'')+` · 👥 ${gsz()} max · 💰 Caisses : ${c} or`};
+const sI=(id,s)=>{const e=$(id);if(e._i!==s){e._i=s;e.innerHTML=s}},sT=(id,s)=>{const e=$(id);if(e._t!==s){e._t=s;e.textContent=s}};
 const setH=(id,s)=>{const e=$(id);if(e._h!==s){e._h=s;e.innerHTML=fmt(s)}};
 let lbTab='a';
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#lbs button');if(b){lbTab=b.dataset.l;ui()}});
 const hx_=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function ui0(){
- $('g').innerHTML=`<b>${S.g}</b>or`;$('w').innerHTML=`<b>${S.w}</b>bois`;$('s').innerHTML=`<b>${S.s}</b>pierre`;$('rl').textContent=`💰 ${S.g} · 🪵 ${S.w} · 🪨 ${S.s}`;
- $('vt').textContent=S.vn;{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;$('sv').textContent=a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min')}$('day').textContent=`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h ${wxIcon()} · ★${P.runs}`;
- $('bR').innerHTML=`Recruter<small>${rcost()} or · classe aléatoire</small>`;$('bR').disabled=S.g<rcost();
- for(const id in BD){const b=BD[id],c=b.c(lvl(b));$('b'+id).innerHTML=`${b.n} niv. ${lvl(b)+1}<small>${b.t} · ${cs(c)}</small>`;$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g||bBusy(id)}
+ sI('g',`<b>${S.g}</b>or`);sI('w',`<b>${S.w}</b>bois`);sI('s',`<b>${S.s}</b>pierre`);sT('rl',`💰 ${S.g} · 🪵 ${S.w} · 🪨 ${S.s}`);
+ sT('vt',S.vn);{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;sT('sv',a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min'))}sT('day',`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h ${wxIcon()} · ★${P.runs}`);
+ sI('bR',`Recruter<small>${rcost()} or · classe aléatoire</small>`);$('bR').disabled=S.g<rcost();
+ for(const id in BD){const b=BD[id],c=b.c(lvl(b));sI('b'+id,`${b.n} niv. ${lvl(b)+1}<small>${b.t} · ${cs(c)}</small>`);$('b'+id).disabled=S.w<c.w||S.s<c.s||S.g<c.g||bBusy(id)}
  
- const kc=S.hero.find(x=>x.kg),bh=kc||bestChamp();$('bB').innerHTML=kc?`Défier le Roi Démon<small>${kc.name} se prépare · ${Math.round(win(kc,bossD())*100)} % de victoire</small>`:bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`;$('bB').disabled=!bh||kgBusy();
+ const kc=S.hero.find(x=>x.kg),bh=kc||bestChamp();sI('bB',kc?`Défier le Roi Démon<small>${kc.name} se prépare · ${Math.round(win(kc,bossD())*100)} % de victoire</small>`:bh?`Défier le Roi Démon<small>${bh.name} y va · ${Math.round(win(bh,bossD())*100)} % de victoire</small>`:`Défier le Roi Démon<small>aucun aventurier disponible</small>`);$('bB').disabled=!bh||kgBusy();
  $('lb').hidden=lbTab!=='a';$('lbv').hidden=lbTab!=='v';$('lbt').textContent=lbTab==='a'?'Top 10 global (meilleur score par nom)':'Top 10 des villages (jours survécus)';document.querySelectorAll('#lbs button').forEach(b=>b.classList.toggle('on',b.dataset.l===lbTab));
  setH('lbv',P.vlb.length?P.vlb.map((x,i)=>`<div class="chip">${i+1}. <b>${hx_(x.n)}${(x.nn||1)>1||P.vlb.some(y=>y!==x&&y.n===x.n)?' '+(x.nn||1):''}</b> ${x.w?'🏆 victoire':'💀 défaite'} · ${x.d} j<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ☠ ${x.m} aventurier${x.m>1?'s':''} mort${x.m>1?'s':''}<br>🏠 ${x.b} bâtiment${x.b>1?'s':''} · niv. max ${x.bl}${x.bh&&CL[x.bh.c]?` · ⭐ ${hx_(x.bh.n)} ${CI[x.bh.c]} ${CL[x.bh.c].n} niv. ${x.bh.lv}`:''}</i></div>`).join(''):'<p>Aucune partie terminée.</p>');
  setH('lb',P.lb.length?P.lb.map((x,i)=>`<div class="chip">${i+1}. <b>${x.n}</b> ${CI[x.c]} ${CL[x.c].n} niv. ${x.lv}${x.hs?' · 🐎'+x.hs:''}<br><i>⚔ ${x.k} tués · 💰 ${x.g} or gagnés · ${x.d} j · tué par ${x.by}<br>${gn(x)||'sans équip.'}</i></div>`).join(''):'<p>Personne n’est encore mort.</p>');
