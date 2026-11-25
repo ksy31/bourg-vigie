@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.1 « Animations des PNJ »**
+Version actuelle du jeu : **v4.0.2 « Animations des monstres »**
 
 ## ✅ Déjà intégré
 
@@ -547,7 +547,7 @@ Version actuelle du jeu : **v4.0.1 « Animations des PNJ »**
 ## ✅ v3.9.8 « Équilibrage des 8 classes »
 - [x] **Puissance et mortalité rapprochées de la moyenne** pour que chaque classe ait sa chance : puissance entre 1,05 et 1,15, mortalité entre 0,45 et 0,65 (Guerrier 1,12 / 0,50, Voleur 1,05 / 0,55, Mage 1,15 / 0,65, Rôdeur 1,05 / 0,55, Paladin 1,10 / 0,45, Assassin 1,12 / 0,62, Nécromancien 1,10 / 0,60, Chasseur 1,08 / 0,52). Les bonus d'or et de ressources ne changent pas. Les valeurs données plus haut pour les nouvelles classes sont celles de leur sortie.
 
-## ⏳ v4.0.x « Refonte des animations »
+## ✅ v4.0.x « Refonte des animations »
 Grande mise à jour de toutes les animations, en trois étapes : aventuriers, puis PNJ, puis monstres. Chaque étape sera cadrée avec des questions avant le codage.
 
 ### v4.0.0 « Animations des aventuriers » ✅
@@ -563,8 +563,12 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] Rendu 3D seulement ; textures 4 → 28 images par PNJ.
 - [ ] À surveiller en jeu : croisements entre PNJ voisins, vitesse de marche, fps/batterie.
 
-### v4.0.2 « Animations des monstres » (prochain)
-- [ ] Marche, attaque, mort et entrée des monstres, y compris l'animation d'entrée propre à chaque monstre de haut niveau (voir « En attente / à étudier plus tard »). Contenu à définir.
+### v4.0.2 « Animations des monstres » ✅
+- [x] **Apparition sur place** améliorée selon la famille (poussière, lueurs, flammes) avec petit rebond.
+- [x] **Élan** plus ample avec recul d'armement ; **chute** améliorée commune (rebond, repoussée, poussière à l'impact).
+- [x] **Entrées propres** : dragon (atterrissage), hydre (vapeur), seigneur liche et archidémon (portail).
+- [x] Aucune nouvelle image (mouvement et effets seulement), 3D seulement.
+- [ ] À surveiller en jeu : lisibilité des effets, taille de l'élan, fps/batterie.
 
 ## 📱 Guide APK (prochain)
 
@@ -573,7 +577,7 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 ## ⏳ En attente / à étudier plus tard
 - [x] **Top 10 des villages :** fait en v3.8.4.
 - [x] **Monstres manquants :** fait en v3.8.0 à v3.8.3.
-- [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
+- [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…) — *fait en v4.0.2 pour le dragon, l'hydre, la liche et l'archidémon ; reste les golems et les géants*, sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
 - [ ] **Compétence unique par classe (idée) :** chaque classe aurait un talent propre, pour que les nouvelles classes ne soient pas favorisées. Premier exemple : le **Nécromancien** a très peu de chance de recevoir en allié le monstre qu'il vient de combattre. À définir : nature du talent pour les 7 autres classes (Guerrier, Voleur, Mage, Rôdeur, Paladin, Assassin, Chasseur), mécanisme et probabilité de l'allié, équilibrage.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.

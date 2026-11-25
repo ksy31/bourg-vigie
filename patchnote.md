@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.2 « Animations des monstres »
+
+Version affichée dans les Options : **v4.0.2**
+
+### Ajouté
+- **Apparition sur place selon la famille :** les monstres terrestres surgissent avec un petit écrasement (rebond) et un nuage de poussière ; les fantômes et esprits apparaissent en fondu avec des lueurs ; les volants, démons, salamandres et élémentaires apparaissent dans une gerbe de lueurs (flammes pour les trois derniers).
+- **Entrées propres aux monstres de haut niveau (2,2 s) :** le **dragon** (et le dragon ancien) descend du ciel, se pose et soulève un anneau de poussière ; l'**hydre** surgit d'un nuage de vapeur bleutée ; le **seigneur liche** (violet) et l'**archidémon** (rouge) sortent d'un portail tournant au sol. Les autres entrées (géants, élites, Roi Démon) sont inchangées.
+- **Armement avant l'élan :** le monstre recule un peu avant de bondir sur l'aventurier.
+
+### Modifié
+- **Élan vers le héros plus ample** (×1,35 à ×1,6 selon la taille du monstre, au lieu de ×1).
+- **Chute améliorée commune :** la chute dépasse légèrement puis se stabilise (rebond), le corps est repoussé d'environ 1 unité, et la poussière se lève à l'impact (0,4 s) au lieu du début de la chute. Les fantômes se dissipent comme avant.
+- Aucune nouvelle image : tout est du mouvement et des effets (pas de changement de textures, de sauvegarde ni de 2D). Cache `bv-v118`.
+
+### Vérifié
+- Animations d'entrée exécutées sur une scène simulée pour dragon, hydre, liche, archidémon, géant, gobelin, fantôme et loup : aucune erreur, descente du dragon de 7 à 0 en 1,2 s. Courbes de rebond et de chute calculées. Sprites des aventuriers et des PNJ inchangés.
+- Non vérifié : le rendu réel (WebGL non disponible ici) : lisibilité de la poussière, du portail et de la vapeur, taille de l'élan selon les monstres, fps et batterie sur le Z Fold 3.
+
 ## v4.0.1 « Animations des PNJ »
 
 Version affichée dans les Options : **v4.0.1**
