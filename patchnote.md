@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.7 « Nouvelle classe : Chasseur »
+
+Version affichée dans les Options : **v3.9.7**
+
+### Ajouté
+- **Chasseur (➤)** : recrutable dès le départ, puissance ×1,10, mortalité 0,50, ressources +25 %. Il utilise l'équipement du Rôdeur (arc, armure, bottes), sans nouvel objet.
+- **5 sorts :** Tir visé (+3 % de puissance), Œil du chasseur (+7,5 % de ressources), Piège à loups (+6 % de puissance), Appât (+12,5 % de ressources), Volée mortelle (+12,5 % de puissance, −5 % de mortalité).
+- **Sprite propre (homme/femme, face/dos, toutes les poses) :** bonnet de fourrure à bois de cerf, épaulières de fourrure, croc en pendentif.
+- **4 attaques** (tir précis, double tir, flèche perçante, salve en cloche, flèches teintées ambre) et **5 animations de sort** (viseur et flèche, lueur d'œil, mâchoires au sol, appât et feuilles, pluie de flèches). Couleur de sort : ambre.
+
+### Modifié
+- Le recrutement tire désormais parmi 8 classes. Cache `bv-v114`. Pas de changement de sauvegarde.
+- Les 4 nouvelles classes sont terminées : le socle de la 3.9.2 est utilisé par les 4.
+
+### Vérifié
+- Captures des poses et des vues de face et de dos ; recrutement, sauvegarde/rechargement avec un Chasseur, chargement d'une sauvegarde 3.9.6 sans erreur.
+- Non vérifié : animations d'attaque et de sort en 3D (pas de WebGL ici), rendu sur le Z Fold 3.
+
 ## v3.9.6 « Nouvelle classe : Nécromancien »
 
 Version affichée dans les Options : **v3.9.6**

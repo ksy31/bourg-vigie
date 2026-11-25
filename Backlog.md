@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.6 « Nouvelle classe : Nécromancien »**
+Version actuelle du jeu : **v3.9.7 « Nouvelle classe : Chasseur »**
 
 ## ✅ Déjà intégré
 
@@ -532,11 +532,11 @@ Version actuelle du jeu : **v3.9.6 « Nouvelle classe : Nécromancien »**
 - [x] **Silhouette validée :** capuche à deux cornes d'os, pointes d'os aux épaules, crâne et côtes sur la robe, crâne vert flottant.
 - [x] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Mage inchangé ; tests.
 
-## ⏳ v3.9.7 « Nouvelle classe : Chasseur » (prochain)
-- [ ] `regClass('Ch',…)` : base **Rôdeur** (arc, armure, bottes), icône ➤, puissance 1,10, mortalité 0,50, ressources +25 %.
-- [ ] 5 sorts : Tir visé `{w:.03}`, Œil du chasseur `{r:.075}`, Piège à loups `{w:.06}`, Appât `{r:.125}`, Volée mortelle `{w:.125,d:.05}`.
-- [ ] **Silhouette validée :** bonnet de fourrure à bois de cerf, épaulières de fourrure, croc en pendentif.
-- [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Rôdeur inchangé ; tests ; équilibrage final des 8 classes.
+## ✅ v3.9.7 « Nouvelle classe : Chasseur »
+- [x] `regClass('Ch',…)` : base **Rôdeur** (arc, armure, bottes), icône ➤, puissance 1,10, mortalité 0,50, ressources +25 %.
+- [x] 5 sorts : Tir visé `{w:.03}`, Œil du chasseur `{r:.075}`, Piège à loups `{w:.06}`, Appât `{r:.125}`, Volée mortelle `{w:.125,d:.05}`.
+- [x] **Silhouette validée :** bonnet de fourrure à bois de cerf, épaulières de fourrure, croc en pendentif.
+- [x] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Rôdeur inchangé ; tests ; équilibrage final des 8 classes.
 
 ### Règles communes aux 4 classes (validées)
 - Toutes recrutables dès le départ. Effets de sorts existants seulement (puissance `w`, mortalité `d`, or `g`, ressources `r`, fuite→victoire `f`).
@@ -544,7 +544,7 @@ Version actuelle du jeu : **v3.9.6 « Nouvelle classe : Nécromancien »**
 - Prototype des sprites : fonctions `Pa`, `As`, `Ne`, `Ch` écrites sur le moteur `pxSprite` (paramètres de palette ajoutés à `G`, `V`, `M`, `Rg`) ; elles ne sont dans aucune release, à réécrire proprement dans `gl.js`.
 - Non vérifiable ici : fps et batterie sur le Z Fold 3, rendu 2D.
 
-## 📱 Guide APK
+## 📱 Guide APK (prochain)
 
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
@@ -553,6 +553,7 @@ Version actuelle du jeu : **v3.9.6 « Nouvelle classe : Nécromancien »**
 - [x] **Monstres manquants :** fait en v3.8.0 à v3.8.3.
 - [ ] **Animation d'entrée propre à chaque monstre de haut niveau** (dragon ancien, seigneur liche, archidémon, hydre à sept têtes, golems…), sur le modèle de celle du Roi Démon (`b.enter` et `ring` dans `buildSprMon`).
 - [ ] **Idées de la refonte 2D à adapter à la 3D (ex-v3.3.x) :** torches tenues en main et lumières chaudes, rivières animées et reflets, particules d'ambiance (lucioles, fumée, brume, braises), lumière et secousse de caméra sur les gros coups en combat.
+- [ ] **Compétence unique par classe (idée) :** chaque classe aurait un talent propre, pour que les nouvelles classes ne soient pas favorisées. Premier exemple : le **Nécromancien** a très peu de chance de recevoir en allié le monstre qu'il vient de combattre. À définir : nature du talent pour les 7 autres classes (Guerrier, Voleur, Mage, Rôdeur, Paladin, Assassin, Chasseur), mécanisme et probabilité de l'allié, équilibrage.
 - [ ] **Multijoueur (en dernier) :** mode coopératif où les villages de deux joueurs se rassemblent. Nécessite un serveur (Firebase ou équivalent), hors périmètre actuel.
 - [ ] **Widget / arrière-plan :** impossible en web (le jeu se fige écran éteint). Demanderait une réécriture en Android natif (Kotlin) avec service permanent. Non retenu pour l'instant.
 
