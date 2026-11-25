@@ -6,7 +6,18 @@ const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement,fsOk
 function fsApply(){const b=$('fsb');if(!b)return;b.hidden=!fsOk();b.textContent=fsEl()?'🗗':'⛶'}
 function fsToggle(){try{if(fsEl()){const x=document.exitFullscreen||document.webkitExitFullscreen;x&&x.call(document)}else{const d=document.documentElement,x=d.requestFullscreen||d.webkitRequestFullscreen,p=x&&x.call(d);if(p&&p.catch)p.catch(()=>{})}}catch(e){}}
 function saveG(m){try{S.sat=Date.now();S.logs=logs.slice(0,20);localStorage.setItem(SK,JSON.stringify(S));if(m===true)toast('Sauvegarde réussie ✓')}catch(e){if(m===true)toast('Échec de la sauvegarde')}}
-function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+function toast(t,d){const e=$('toast');e.textContent=t;e.classList.toggle('lg',!!d);e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),d||2200)}
+// v4.0.5 : puce graphique perdue -> sauvegarde puis rechargement ; 2e perte rapprochee -> 2D
+const GPUWAIT=600000;
+function gpuLost(){if(gpuLost.on)return;gpuLost.on=1;const bg=document.hidden;try{if(!S.over)saveG()}catch(e){}
+ const go=()=>{try{const now=Date.now(),L=JSON.parse(localStorage.getItem('bvx')||'[]').filter(t=>now-t<GPUWAIT);if(!bg)L.push(now);localStorage.setItem('bvx',JSON.stringify(L));
+   if(L.length>=4){toast('Affichage en panne : redémarre le téléphone.',15000);return}
+   if(L.length>=2)localStorage.setItem('bvr','2');if(!bg)localStorage.setItem('bvxm',L.length>=2?'2':'1')}catch(e){}
+  setTimeout(()=>location.reload(),1500)};
+ if(!document.hidden)go();else{const f=()=>{if(document.hidden)return;document.removeEventListener('visibilitychange',f);go()};document.addEventListener('visibilitychange',f)}}
+function gpuMsg(){let m=null;try{m=localStorage.getItem('bvxm');localStorage.removeItem('bvxm')}catch(e){}if(!m)return;
+ const t=m==='2'?'Puce graphique perdue 2 fois : le jeu repasse en 2D. Redémarre le téléphone avant de réessayer la 3D.':'Puce graphique perdue : le jeu a été sauvegardé puis rechargé.';
+ log(t);setTimeout(()=>toast(t,8000),1200)}
 function mig(s){const M=3;if(s.zp)s.zp=s.zp.map(p=>[p[0]*M,p[1]*M]);(s.marks||[]).forEach(m=>{m.x*=M;m.y*=M});
  (s.hero||[]).forEach(h=>{if(h.st==='town'||h.st==='rest'){h.x+=T.x-50;h.y+=T.y-102}else{h.x*=M;h.y*=M;if(h.pt){h.pt.x*=M;h.pt.y*=M}if(h.v)h.v*=M}});s.mv=2}
 function mig3(s){const f=2.5/3,o={x:150,y:306};if(s.zp)s.zp=s.zp.map(p=>[p[0]*f,p[1]*f]);(s.marks||[]).forEach(m=>{m.x*=f;m.y*=f});

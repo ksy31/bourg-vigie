@@ -63,3 +63,5 @@ html,body{touch-action:manipulation}
 #hb:has(~#tb.on) #rl{display:none}
 #hb{position:sticky;top:0;z-index:5;background:var(--bg);margin:0 -10px 6px;padding:0 10px 2px;border-bottom:1px solid var(--line)}
 html,body{overscroll-behavior-y:none}
+#toast.lg{white-space:normal;width:86vw;text-align:center}
+#bw{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);touch-action:none}#bw[hidden]{display:none}#bw div{background:#14181a;color:#fff;border:1px solid #555;border-radius:10px;padding:14px 18px}

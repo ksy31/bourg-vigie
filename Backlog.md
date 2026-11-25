@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.4 « Icônes bois et pierre »**
+Version actuelle du jeu : **v4.0.5 « Patch d'urgence : carte blanche »**
 
 ## ✅ Déjà intégré
 
@@ -577,6 +577,12 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 
 ## ✅ v4.0.4 « Icônes bois et pierre »
 - [x] **Icônes maison** (SVG pixel-art) pour le bois et la pierre dans le bandeau, à la place des emoji 🪵 et 🪨 absents de Windows 10 ; 🪄 remplacé par 🔮.
+
+## ✅ v4.0.5 « Patch d'urgence : carte blanche »
+- [x] **Récupération** après perte de la puce graphique : sauvegarde, rechargement, repli en 2D à la 2e perte en 10 min.
+- [x] **Gel allégé** et message « Construction en cours ».
+- [x] **Mode 3D sans échec** (bouton de diagnostic dans les Options).
+- [ ] **Cause du plantage 3D sur le Z Fold 3 : non trouvée.** À tester : redémarrage du téléphone, puis 3D sans échec.
 
 ## 📱 Guide APK (prochain)
 

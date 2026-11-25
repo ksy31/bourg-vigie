@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.5 « Patch d'urgence : carte blanche »
+
+Version affichée dans les Options : **v4.0.5**
+
+### Ajouté
+- **3D sans échec** (Options) : coupe le lissage, les ombres, les effets d'image et les lumières dynamiques, et force la qualité Basse. Le bouton recharge le jeu. Il ne change pas le choix 2D/3D.
+- **Message « Construction en cours »** en 3D quand un bâtiment est ajouté ; les taps sont bloqués pendant le calcul.
+
+### Corrigé
+- **Perte de la puce graphique non gérée** (carte blanche) : le jeu sauvegarde puis se recharge. À la 2e perte en 10 min (`GPUWAIT` dans save.js), il repasse en 2D avec un message. Une perte quand l'appli est en arrière-plan ne compte pas. À la 4e, il ne recharge plus.
+- Message affiché si la 3D ne peut pas démarrer.
+
+### Modifié
+- En 3D, un nouveau bâtiment qui n'agrandit pas le village ne reconstruit plus le sol, le terrain et le décor. S'il l'agrandit, tout est encore reconstruit.
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v121`.
+
+### Vérifié
+- Navigateur sans écran, avec une sauvegarde v4.0.4 (jour 36) : chargement, 15 jours simulés, sauvegarde et rechargement, sans erreur.
+- Perte provoquée : 1re = rechargement en 3D, 2e = 2D, partie conservée.
+- Sans agrandissement : l'ancienne version reconstruit tout, la nouvelle seulement le village.
+- **Non vérifié :** le Z Fold 3 et sa puce graphique, la durée réelle du gel. La cause du plantage n'est pas identifiée.
+
 ## v4.0.4 « Icônes bois et pierre »
 
 Version affichée dans les Options : **v4.0.4**
