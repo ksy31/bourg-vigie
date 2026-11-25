@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.8 « Sol allégé et menus rangés »
+
+Version affichée dans les Options : **v4.0.8**
+
+### Ajouté
+- **Sol du village au choix** (Développeur → Affichage 3D) : Actuel (inchangé), **Allégé** (par défaut : sans relief, image deux fois plus petite en largeur et en hauteur, dessin demandé sur le processeur) ou Aucun (terre unie).
+
+### Corrigé
+- Contournement à essayer du plantage 3D déclenché par le sol du village. La cause exacte reste inconnue.
+
+### Modifié
+- Options : boutons « Noms des aventuriers » (liste et genres) et « Classement et réinitialisation ».
+- Développeur : cases et 3D sans échec derrière « Affichage 3D » ; fps, export/import et +500 inchangés. La case « Sol en relief » est remplacée par le choix du sol.
+- Messages de plantage : « force l'arrêt de Chrome ».
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v124`.
+
+### Vérifié
+- Navigateur sans écran avec la sauvegarde v4.0.4 : 3D chargée sans erreur avec les trois sols (allégé : image 579 × 514) ; en capture, l'allégé reste proche de l'actuel. Noms (86), changement de genre, confirmations des deux réinitialisations, choix du sol enregistré après « Valider », défilement des Options.
+- Non vérifié : Z Fold 3, dessin réellement fait sur le processeur par son Chrome.
+
 ## v4.0.7 « Diagnostic 3D détaillé »
 
 Version affichée dans les Options : **v4.0.7**

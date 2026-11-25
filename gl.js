@@ -1,7 +1,7 @@
 // Rendu 3D (WebGL) de la carte : terrain, routes, rivières, zones, village, aventuriers.
 // Dépend de three.min.js (variable globale THREE). Si WebGL est indisponible, le jeu reste en 2D.
 // v4.0.6 : diagnostic 3D (menu Developpeur), true = element non construit. w enceinte, c chantiers, p puits, m personnages et monstres,
-// v4.0.7 : g sol en relief, b batiments, l lampes et torches, d details, q Maison des Guildes (v = ancien reglage Tout le village)
+// v4.0.7 : b batiments, l lampes et torches, d details, q Maison des Guildes (v = ancien reglage Tout le village)
 const DBG=(()=>{try{const o=JSON.parse(localStorage.getItem('bvdbg')||'{}')||{};if(o.v){o.g=o.b=o.l=o.d=true;delete o.v}return o}catch(e){return{}}})();
 const GLX=typeof THREE==='undefined'?{K:{on:false},frame(){return false},resize(){},boot(){},setOn(){}}:(()=>{
 const V3=THREE.Vector3,Q=THREE.Quaternion,E=THREE.Euler,M4=THREE.Matrix4,Col=THREE.Color,PI=Math.PI;
@@ -308,19 +308,21 @@ function paintGround(){
  if(!tex){tex=new TH.CanvasTexture(c);tex.colorSpace=TH.SRGBColorSpace;tex.anisotropy=4}else tex.needsUpdate=true}
 // ===== v3.5.0 : sol du village (terre battue et pavés) en relief, par-dessus le terrain =====
 let VGM=null,VGT=null;
+// v4.0.8 : sol au choix : a actuel (inchange), l allege (defaut : sans relief, image /2, canvas sur processeur), n aucun
+const SOL=(()=>{try{const v=localStorage.getItem('bvsol');return v==='a'||v==='n'?v:'l'}catch(e){return'l'}})();
 function buildVillageGround(){
- if(DBG.g)return;
- const vd=vdim(),{rx,ry}=vd,ex=1.22,w=2*rx*ex,h=2*ry*ex,x0=T.x-w/2,y0=T.y-h/2,PU=Math.min(18,2048/Math.max(w,h));
+ if(SOL==='n')return;const LG=SOL==='l';
+ const vd=vdim(),{rx,ry}=vd,ex=1.22,w=2*rx*ex,h=2*ry*ex,x0=T.x-w/2,y0=T.y-h/2,PU=Math.min(18,2048/Math.max(w,h))/(LG?2:1);
  const c=document.createElement('canvas');c.width=Math.ceil(w*PU);c.height=Math.ceil(h*PU);
- const g=c.getContext('2d');g.setTransform(1,0,0,1,-x0*PU,-y0*PU);const R=rg3(2026);
+ const g=c.getContext('2d',LG?{willReadFrequently:true}:undefined);g.setTransform(1,0,0,1,-x0*PU,-y0*PU);const R=rg3(2026);
  const rr=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),blob=f=>{g.beginPath();for(let i=0;i<=96;i++){const t=i/96*6.2832,r=rr(t)*f,x=(T.x+Math.cos(t)*rx*r)*PU,y=(T.y+Math.sin(t)*ry*r)*PU;i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
  g.save();blob(1);g.clip();vgDirt(g,x0,y0,x0+w,y0+h,PU,R);try{paveVillage(g,vd,R,PU)}catch(e){K.err=e}g.restore();
  blob(1);g.strokeStyle='rgba(60,46,28,.5)';g.lineWidth=.2*PU;g.stroke();
  const t=new TH.CanvasTexture(c);t.colorSpace=TH.SRGBColorSpace;t.anisotropy=8;
  const nx=Math.ceil(w),nz=Math.ceil(h),geo=new TH.PlaneGeometry(w,h,nx,nz);geo.rotateX(-PI/2);
  const p=geo.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i)+T.x,z=p.getZ(i)+T.y;p.setXYZ(i,x,H3(x,z)+.005,z)}geo.computeVertexNormals();
- if(!VGM){VGM=new TH.Mesh(geo,new TH.MeshStandardMaterial({map:t,bumpMap:t,bumpScale:2,alphaTest:.5,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4}));VGM.receiveShadow=true;scn.add(VGM)}
- else{VGM.geometry.dispose();VGM.geometry=geo;VGM.material.map=t;VGM.material.bumpMap=t;VGM.material.needsUpdate=true}
+ if(!VGM){VGM=new TH.Mesh(geo,new TH.MeshStandardMaterial({map:t,...(LG?{}:{bumpMap:t,bumpScale:2}),alphaTest:.5,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4}));VGM.receiveShadow=true;scn.add(VGM)}
+ else{VGM.geometry.dispose();VGM.geometry=geo;VGM.material.map=t;if(!LG)VGM.material.bumpMap=t;VGM.material.needsUpdate=true}
  if(VGT)VGT.dispose();VGT=t}
 // ---------- terrain ----------
 function buildTerrain(){
@@ -2017,7 +2019,7 @@ function init(){
   sun=new TH.DirectionalLight('#fff2d6',2.4);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-95,right:95,top:95,bottom:-95,near:1,far:700});sun.shadow.bias=-.0006;sun.shadow.normalBias=.35;scn.add(sun,sun.target);fill=new TH.DirectionalLight('#ffeacc',.7);scn.add(fill,fill.target);skyInit();
   worldG=new TH.Group();villG=new TH.Group();heroG=new TH.Group();scn.add(worldG,villG,heroG);npcG=new TH.Group();monG=new TH.Group();torchG=new TH.Group();scn.add(npcG,monG,torchG);plInit();
   bindInput();ren.info.autoReset=false;K.ok=true;applyQ()}catch(e){K.fail=true;K.ok=false;if(window.ldHide)ldHide();try{if(glc&&glc.parentElement)glc.parentElement.removeChild(glc)}catch(_){}
-  setTimeout(()=>{try{const t='3D indisponible : redémarre le téléphone puis réessaie.';log(t);toast(t,8000)}catch(_){}},1200)}
+  setTimeout(()=>{try{const t='3D indisponible : force l’arrêt de Chrome puis réessaie.';log(t);toast(t,8000)}catch(_){}},1200)}
  return K.ok}
 function resize(){if(!K.ok)return;const r=cv.getBoundingClientRect();if(!r.width)return;glc.style.width=r.width+'px';glc.style.height=(r.width*1.3)+'px';glc.style.left=(cv.offsetLeft+1)+'px';glc.style.top=(cv.offsetTop+1)+'px';ren.setSize(r.width,r.width*1.3,false);cam3.aspect=1/1.3;cam3.updateProjectionMatrix()}
 let lt=0;

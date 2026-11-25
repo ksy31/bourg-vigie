@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.7 « Diagnostic 3D détaillé »**
+Version actuelle du jeu : **v4.0.8 « Sol allégé et menus rangés »**
 
 ## ✅ Déjà intégré
 
@@ -593,6 +593,13 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Cases à cocher** avec « Valider et recharger », « Tout cocher » et « Tout décocher ».
 - [x] **« Tout le village » découpé :** sol en relief, bâtiments, Maison des Guildes, lampes et torches, détails.
 - [ ] Résultats à relever. v4.0.6 sur Z Fold 3 : 3D correcte avec tout masqué, plantage en réaffichant « Tout le village » (enceinte, chantiers, puits, personnages encore masqués).
+
+## ✅ v4.0.8 « Sol allégé et menus rangés »
+- [x] **Sol du village au choix :** Actuel (conservé), Allégé (par défaut), Aucun.
+- [x] **Menus :** noms et genres, classement et réinitialisation dans les Options ; « Affichage 3D » replié dans Développeur.
+- [x] **Messages :** « force l'arrêt de Chrome ».
+- [ ] **Essai du sol allégé sur le Z Fold 3.** Résultat v4.0.7 : le sol en relief déclenche le plantage, tous les autres éléments affichés fonctionnent. Cause exacte inconnue.
+- [ ] Le sol actuel (beau) est à garder : à rétablir par défaut si la cause est trouvée.
 
 ## 📱 Guide APK (prochain)
 
