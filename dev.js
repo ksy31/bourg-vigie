@@ -7,6 +7,9 @@ $('dim').onclick=()=>{try{importCode($('dt').value);location.reload()}catch(e){t
 $('dlb').onclick=()=>{if(confirm('Effacer le Top 10 ?')){P.lb=[];P.vlb=[];P.vc={};save();ui();toast('Top 10 réinitialisé')}};
 $('dfr').onclick=()=>{if(confirm('Tout effacer : partie, gloire, bonus permanents et Top 10 ?')){try{localStorage.removeItem('bv');localStorage.removeItem(SK)}catch(e){}location.reload()}};
 $('dr1').onclick=()=>{S.g+=500;S.w+=500;S.s+=500;ui();toast('+500 or, bois, pierre')};
-{const L=[['w','Palissade et remparts'],['c','Chantiers'],['p','Puits'],['v','Tout le village'],['m','Personnages et monstres']];
-for(const [k,n] of L){const b=document.createElement('button');b.dataset.k=k;b.textContent=n+' : '+(DBG[k]?'masqué':'affiché');
- b.onclick=()=>{try{saveG();localStorage.setItem('bvdbg',JSON.stringify({...DBG,[k]:!DBG[k]}));localStorage.removeItem('bvx')}catch(e){}location.reload()};$('dbb').append(b,' ')}}
+{const L=[['g','Sol en relief du village'],['b','Bâtiments'],['q','Maison des Guildes'],['l','Lampes et torches'],['d','Détails (toits, accessoires, ombres, fumée)'],['w','Palissade et remparts'],['c','Chantiers'],['p','Puits'],['m','Personnages et monstres']];
+for(const [k,n] of L){const l=document.createElement('label'),t=document.createElement('span'),c=document.createElement('input');l.className='gr';t.textContent=n;c.type='checkbox';c.dataset.k=k;l.append(t,c);$('dbb').append(l)}
+const B=()=>[...$('dbb').querySelectorAll('input')],sync=()=>{B().forEach(c=>c.checked=!DBG[c.dataset.k]);$('sfc').checked=isSafe3()};
+sync();$('dg').addEventListener('click',sync);$('dball').onclick=()=>B().forEach(c=>c.checked=true);$('dbno').onclick=()=>B().forEach(c=>c.checked=false);
+$('dbok').onclick=()=>{try{saveG();const o={};B().forEach(c=>{if(!c.checked)o[c.dataset.k]=true});localStorage.setItem('bvdbg',JSON.stringify(o));localStorage.setItem('bvsafe',$('sfc').checked?'1':'0');localStorage.removeItem('bvx')}catch(e){}location.reload()}}
+function isSafe3(){try{return localStorage.getItem('bvsafe')==='1'}catch(e){return false}}

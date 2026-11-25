@@ -1,7 +1,8 @@
 // Rendu 3D (WebGL) de la carte : terrain, routes, rivières, zones, village, aventuriers.
 // Dépend de three.min.js (variable globale THREE). Si WebGL est indisponible, le jeu reste en 2D.
-// v4.0.6 : diagnostic 3D (menu Developpeur), true = element non construit. w enceinte, c chantiers, p puits, v village, m personnages et monstres
-const DBG=(()=>{try{return JSON.parse(localStorage.getItem('bvdbg')||'{}')||{}}catch(e){return{}}})();
+// v4.0.6 : diagnostic 3D (menu Developpeur), true = element non construit. w enceinte, c chantiers, p puits, m personnages et monstres,
+// v4.0.7 : g sol en relief, b batiments, l lampes et torches, d details, q Maison des Guildes (v = ancien reglage Tout le village)
+const DBG=(()=>{try{const o=JSON.parse(localStorage.getItem('bvdbg')||'{}')||{};if(o.v){o.g=o.b=o.l=o.d=true;delete o.v}return o}catch(e){return{}}})();
 const GLX=typeof THREE==='undefined'?{K:{on:false},frame(){return false},resize(){},boot(){},setOn(){}}:(()=>{
 const V3=THREE.Vector3,Q=THREE.Quaternion,E=THREE.Euler,M4=THREE.Matrix4,Col=THREE.Color,PI=Math.PI;
 const mt=new M4(),qq=new Q();
@@ -308,7 +309,7 @@ function paintGround(){
 // ===== v3.5.0 : sol du village (terre battue et pavés) en relief, par-dessus le terrain =====
 let VGM=null,VGT=null;
 function buildVillageGround(){
- if(DBG.v)return;
+ if(DBG.g)return;
  const vd=vdim(),{rx,ry}=vd,ex=1.22,w=2*rx*ex,h=2*ry*ex,x0=T.x-w/2,y0=T.y-h/2,PU=Math.min(18,2048/Math.max(w,h));
  const c=document.createElement('canvas');c.width=Math.ceil(w*PU);c.height=Math.ceil(h*PU);
  const g=c.getContext('2d');g.setTransform(1,0,0,1,-x0*PU,-y0*PU);const R=rg3(2026);
@@ -755,18 +756,18 @@ function yq(a,px,pz,n){const c=Math.cos(a),s=Math.sin(a),rot=(q,i,j)=>{const dx=
  for(let i=n[3];i<CQ.length;i++){rot(CQ[i],0,1);CQ[i][4]=a}for(let i=n[4];i<RQ.length;i++)RQ[i].push(a,px,pz)}
 function buildVillageMesh(){
  clearG(villG);TQ=[];SQ=[];GQ=[];RQ=[];CQ=[];const W=new TA(),vd=vdim(),{u}=vd;
- if(DBG.v){if(torchG)torchSprites();return}
- for(const [p,e,it] of u){if(DBG.c&&it.cn)continue;const k=NK[e]||'H',x=T.x+p[0],z=T.y+p[1],y0=H3(x,z),w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,tier=Math.max(0,tr(k)-(it.rb?1:0));
+ for(const [p,e,it] of u){if((DBG.c&&it.cn)||(DBG.q&&e===NE.C))continue;const k=NK[e]||'H',x=T.x+p[0],z=T.y+p[1],y0=H3(x,z),w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,tier=Math.max(0,tr(k)-(it.rb?1:0));
   const ya=BYAW(it),yp=z+BDO(k),yn=[TQ.length,SQ.length,GQ.length,CQ.length,RQ.length];W.yaw(ya,x,yp);
   const rc=(it.h&&it.h.o!=null&&(S.hero.find(q=>q.id===it.h.o)||{}).col)||'#8b4a3a';
   let f=1;if(it.cn)f=Math.max(0,bstg(it));
   const hh0=(BTOP[k]||6.7)*.5+tier*.45,roof=k==='H'?rc:ROOF[k]||'#8b4a3a';
-  if(it.cn&&f<=0)W.add('stone',box(w,.35,d),'#8f8a7d',x,y0+.18,z,{shade:0});
-  else{const full=!it.cn||f>=.75;if(k==='M')stall(W,x,y0,z,w,d,roof);else{building(W,k,x,y0,z,w,d,it.cn?hh0*Math.max(.3,f):hh0,roof,tier,full);if(full){lamp(W,x-w/2-1.1,z+d/2+1.4);vprops(W,k,x,z,w,d,it.i)}}}
+  if(!DBG.b){if(it.cn&&f<=0)W.add('stone',box(w,.35,d),'#8f8a7d',x,y0+.18,z,{shade:0});
+  else{const full=!it.cn||f>=.75;if(k==='M')stall(W,x,y0,z,w,d,roof);else{building(W,k,x,y0,z,w,d,it.cn?hh0*Math.max(.3,f):hh0,roof,tier,full)}}}
+  if(!it.cn||f>=.75){if(k!=='M'){lamp(W,x-w/2-1.1,z+d/2+1.4);if(!DBG.d)vprops(W,k,x,z,w,d,it.i)}}
   if((it.cn||it.rb)&&!DBG.c){const sh=(BTOP[k]||6.7)*.85,hw=w/2+.7;for(const sx of[-1,1])for(const sz of[-1,1])W.add('wood',box(.28,sh,.28),'#9a7a4a',x+sx*hw,y0+sh/2,z+sz*(d/2+.7),{shade:0});
    for(let q=1;q<=3;q++)W.add('wood',box(w+1.6,.2,.28),'#b08850',x,y0+q*sh/3.4,z+d/2+.7,{shade:0})}
   W.yaw(0);if(ya)yq(ya,x,yp,yn)}
- if(!DBG.p&&S.pl.length>=4)wellV(W,u);if(!DBG.w&&S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);W.build(villG);csInst(villG,CQ,true,.5);roofIcons();if(torchG)torchSprites()}
+ if(!DBG.p&&S.pl.length>=4)wellV(W,u);if(!DBG.w&&S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);if(DBG.d){RQ=[];CQ=[];SQ=[]}W.build(villG);csInst(villG,CQ,true,.5);roofIcons();if(torchG)torchSprites()}
 // ---------- héros ----------
 function mkHorse(c){const a=new Acc();const hb=c||'#8a5a3a';
  a.add(new TH.CapsuleGeometry(.2,.62,6,12),hb,0,.62,0,{rx:Math.PI/2,sx:1.05,sy:1,shade:.1});
@@ -1682,7 +1683,7 @@ function paintLava(){const vo=ZA.find(z=>z.n==='Volcan'),S2=1.25,w=Math.round(WX
 const VG={ok:0};function vgUpd(tm){const vo=ZA.find(z=>z.n==='Volcan');if(!vo)return;if(!VG.ok){VG.s=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff7a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,fog:false}));scn.add(VG.s);VG.ok=1}
  VG.s.position.set(vo.x,H3(vo.x,vo.y)+3,vo.y);const f=.85+.15*Math.sin(tm*2.3)+.06*Math.sin(tm*7);VG.s.scale.setScalar(48*f);VG.s.material.opacity=K.dist<700?.8:.35}
 // ----- lampadaires (contour du village et entrées des bâtiments) -----
-function lamp(W,x,z){const y0=H3(x,z);W.add('wood',cy2(.16,.22,4.6,6),'#2b2420',x,y0+2.3,z,{shade:0});W.add('wood',box(.95,.18,.95),'#2b2420',x,y0+4.7,z,{shade:0});W.add('lava',box(.6,.85,.6),'#fff',x,y0+5.2,z,{shade:0});W.add('wood',box(1,.16,1),'#2b2420',x,y0+5.75,z,{shade:0});TQ.push([x,y0+5.25,z,9]);GQ.push([x,z,9])}
+function lamp(W,x,z){if(DBG.l)return;const y0=H3(x,z);W.add('wood',cy2(.16,.22,4.6,6),'#2b2420',x,y0+2.3,z,{shade:0});W.add('wood',box(.95,.18,.95),'#2b2420',x,y0+4.7,z,{shade:0});W.add('lava',box(.6,.85,.6),'#fff',x,y0+5.2,z,{shade:0});W.add('wood',box(1,.16,1),'#2b2420',x,y0+5.75,z,{shade:0});TQ.push([x,y0+5.25,z,9]);GQ.push([x,z,9])}
 function perimLamps(W,vd){const rx=vd.rx-1.8,ry=vd.ry-1.8,N=Math.max(5,Math.min(10,Math.round(Math.PI*(rx+ry)/26)));
  for(let i=0;i<N;i++){const a=i/N*6.2832+.35,x=T.x+Math.cos(a)*rx,z=T.y+Math.sin(a)*ry;let bad=nearRiver(x,z,2);for(const q of ZA){const p=RD[q.n];if(p)for(let k=0;k<p.length&&!bad;k+=1)if(Math.hypot(p[k][0]-x,p[k][1]-z)<5)bad=true}if(!bad)lamp(W,x,z)}}
 let OUTP=null;
@@ -1718,7 +1719,7 @@ function wxUpd(dt,tm){
  WX.fl=fl;WX.bolt.visible=fl>.2;WX.bg.visible=fl>.2;WX.bg.material.opacity=Math.min(1,fl)}
 // ===== torches : porte des bâtiments à PNJ (flammes + halos la nuit) =====
 let TQ=[],torchG=null;
-function torches(W,x,y,zf,dx){for(const s of[-1,1]){const tx=x+s*dx;W.add('wood',box(.1,.1,.4),'#2a1e14',tx,y-.15,zf+.2,{shade:0});W.add('wood',cy2(.05,.06,.7,6),'#4a3322',tx,y+.15,zf+.4,{shade:0});W.add('lava',box(.2,.28,.2),'#fff',tx,y+.62,zf+.4,{shade:0});TQ.push([tx,y+.75,zf+.4])}GQ.push([x,zf+1.5,8])}
+function torches(W,x,y,zf,dx){if(DBG.l)return;for(const s of[-1,1]){const tx=x+s*dx;W.add('wood',box(.1,.1,.4),'#2a1e14',tx,y-.15,zf+.2,{shade:0});W.add('wood',cy2(.05,.06,.7,6),'#4a3322',tx,y+.15,zf+.4,{shade:0});W.add('lava',box(.2,.28,.2),'#fff',tx,y+.62,zf+.4,{shade:0});TQ.push([tx,y+.75,zf+.4])}GQ.push([x,zf+1.5,8])}
 function torchSprites(){while(torchG.children.length){const c=torchG.children.pop();if(c.geometry&&!c.isSprite)c.geometry.dispose()}GD=null;
  TQ.forEach((p,i)=>{const s=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));s.position.set(p[0],p[1],p[2]);s.scale.set(5,5,1);s.userData.i=i;s.userData.sz=p[3]||5;torchG.add(s)});
  if(GQ.length){if(!GM)GM=new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false});
@@ -2049,7 +2050,6 @@ function frame(){
 function setOn(v){K.on=!!v;if(K.on&&!init()){K.on=false}window.BRO=K.on;try{localStorage.setItem('bvr',K.on?'3':'2')}catch(e){}if(glc)glc.style.display=K.on?'block':'none';if(!K.on){PT.clear();cx.clearRect(0,0,W,H);K.bwT=0;bwShow(false)}else{gKey=vgKey=vKey='';K.plk=null;try{localStorage.removeItem('bvx')}catch(e){}}const b=$('r3');if(b)b.textContent=K.on?'🧊 3D':'🖼️ 2D';fit()}
 function boot(){qload();
  const SF=isSafe();if(SF){K.q='b';K.ql=0;K.pf=.3;const q=$('qb');if(q){q.textContent='⚙️ Basse';q.onclick=()=>toast('Qualité bloquée par le mode sans échec')}}
- const sf=$('sfb');if(sf){sf.textContent='🛟 3D sans échec : '+(SF?'oui':'non');sf.onclick=()=>{try{saveG();localStorage.setItem('bvsafe',SF?'0':'1');localStorage.removeItem('bvx')}catch(e){}location.reload()}}
  let v='2';try{v=localStorage.getItem('bvr')||'2'}catch(e){}K.on=v==='3'&&typeof THREE!=='undefined';window.BRO=K.on;const b=$('r3');if(b){b.onclick=()=>setOn(!K.on);b.textContent=K.on?'🧊 3D':'🖼️ 2D'}}
 return{K,frame,resize,setOn,boot,H3,pj,hpos,HM,ground,dragTo,zoomAtPt,camPlace,get ok(){return K.ok}}
 })();

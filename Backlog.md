@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.6 « Diagnostic 3D »**
+Version actuelle du jeu : **v4.0.7 « Diagnostic 3D détaillé »**
 
 ## ✅ Déjà intégré
 
@@ -588,6 +588,11 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **5 interrupteurs 3D** dans le menu Développeur (enceinte, chantiers, puits, village, personnages et monstres).
 - [x] **3D sans échec** déplacée dans le menu Développeur.
 - [ ] Résultats à relever sur le Z Fold 3. v4.0.5 : redémarrage et 3D sans échec sans effet, plantage aussi par temps clair.
+
+## ✅ v4.0.7 « Diagnostic 3D détaillé »
+- [x] **Cases à cocher** avec « Valider et recharger », « Tout cocher » et « Tout décocher ».
+- [x] **« Tout le village » découpé :** sol en relief, bâtiments, Maison des Guildes, lampes et torches, détails.
+- [ ] Résultats à relever. v4.0.6 sur Z Fold 3 : 3D correcte avec tout masqué, plantage en réaffichant « Tout le village » (enceinte, chantiers, puits, personnages encore masqués).
 
 ## 📱 Guide APK (prochain)
 

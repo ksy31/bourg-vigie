@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.7 « Diagnostic 3D détaillé »
+
+Version affichée dans les Options : **v4.0.7**
+
+### Ajouté
+- Menu Développeur : cases à cocher (coché = affiché), « Tout cocher », « Tout décocher » et « Valider et recharger ». Rien ne change avant validation.
+- Nouvelles cases : sol en relief du village, bâtiments, Maison des Guildes, lampes et torches du village, détails (icônes de toit, accessoires, ombres au sol, fumée).
+
+### Modifié
+- « Tout le village » est remplacé par ces cases (un ancien réglage masqué est repris sur sol, bâtiments, lampes et détails). La 3D sans échec devient une case.
+- « Maison des Guildes » décochée la masque entièrement, chantier compris. Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v123`.
+
+### Corrigé
+- Rien : version de diagnostic.
+
+### Vérifié
+- Navigateur sans écran avec la sauvegarde v4.0.4 : « Tout décocher » n'enregistre rien avant « Valider » ; 3D chargée sans erreur avec rien, tout, et le sol, les bâtiments, les lampes ou les détails seuls, et avec la Maison des Guildes réaffichée.
+- Non vérifié : Z Fold 3.
+
 ## v4.0.6 « Diagnostic 3D »
 
 Version affichée dans les Options : **v4.0.6**
