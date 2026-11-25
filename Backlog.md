@@ -505,26 +505,44 @@ Version actuelle du jeu : **v3.9.2 « Nouvelles classes : socle »**
 - [x] Menu Développeur : le bandeau fixe ne cache plus la première option.
 - [x] Zone de flou (haut et bas de l'écran) agrandie : elle commence plus tôt (0,10 au lieu de 0,20 de l'écran à partir du centre).
 
-## ⏳ v3.9.3 « Nouvelle classe : Paladin » (prochain)
+## ⏳ v3.9.3 « Coiffures et yeux selon le sexe » (prochain)
+- [ ] **Garçons :** yeux bleus, cheveux courts. **Filles :** yeux roses, cheveux longs (plus de couleur d'yeux aléatoire : `PXEY`, `ec` dans `pxSprite`).
+- [ ] **4 à 5 coiffures par sexe**, tirées selon l'`id` du héros (couleur de cheveux aléatoire conservée, `PXHR`). Face et dos, toutes les poses.
+- [ ] Concerne les 4 classes de base (`G`, `V`, `M`, `R`) et les PNJ qui ont des cheveux (fonction `NP`). Les coiffures sont des paramètres du sprite, utilisables ensuite par les nouvelles classes (casque, capuche, bonnet cachent ou remplacent la coiffure).
+- [ ] Anciennes sauvegardes : les héros existants reçoivent coiffure et yeux selon leur `id` (migration dans `loadG`, rien n'est perdu).
+- [ ] Mode 2D : vérifier qu'il n'est pas cassé. Tests : captures de toutes les coiffures (homme/femme, face/dos), sauvegardes.
+
+## ⏳ v3.9.4 « Nouvelle classe : Paladin »
 - [ ] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, coût 28, « le plus résistant ».
 - [ ] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
-- [ ] Sprite 3D propre (homme/femme, face/dos, repos/action), 4 attaques (`HAT`), 5 animations de sort (`spellFx`), couleur de sort, entrée `own:{spr,fx,atk}`.
-- [ ] Tests : simulation (équilibre), captures du sprite, sauvegardes.
+- [ ] Sprite propre (homme/femme, face/dos, repos/action, marche, construction, victoire), 4 attaques (`HAT`), 5 animations de sort (`spellFx`, clés `Pa1` à `Pa5`), couleur de sort (`CLC`), entrée `own:{spr,fx,atk}`.
+- [ ] **Silhouette validée** (aperçu v2) : grandes ailes blanches, casque ailé à nasal, auréole dorée, cape blanche, écu blanc à croix bleue.
+- [ ] **Lisibilité de l'équipement à régler :** aux paliers hauts (armure légendaire blanche et or) l'armure se confond avec les ailes et la cape blanches. Teinter ailes et cape (gris-bleu ou doré) selon le palier et garder les épaulières et le bouclier bien visibles.
+- [ ] Armes et armures : **celles du Guerrier, pas de nouvelles** (choix validé). Tests : simulation (équilibre vs 3.9.3), captures de tous les paliers (1, 7, 14), sauvegardes.
 
-## ⏳ v3.9.4 « Nouvelle classe : Assassin »
+## ⏳ v3.9.5 « Nouvelle classe : Assassin »
 - [ ] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %, coût 30.
 - [ ] 5 sorts : Lame empoisonnée `{w:.03}`, Pas de l'ombre `{d:.125}`, Coup dans le dos `{w:.06}`, Marque de mort `{g:.125}`, Danse des lames `{w:.1,d:.15}`.
-- [ ] Sprite, 4 attaques, 5 animations de sort, couleur, tests.
+- [ ] **Silhouette validée :** sans capuche, cheveux en pointes (coiffure du héros cachée en partie), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.
+- [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Voleur inchangé ; tests.
 
-## ⏳ v3.9.5 « Nouvelle classe : Nécromancien »
+## ⏳ v3.9.6 « Nouvelle classe : Nécromancien »
 - [ ] `regClass('Ne',…)` : base **Mage** (bâton, armure, bottes), icône ●, puissance 1,15, mortalité 0,70, or +15 % et ressources +15 %, coût 32.
 - [ ] 5 sorts : Drain de vie `{w:.03}`, Armée d'os `{d:.125}`, Malédiction `{w:.06}`, Pillage des tombes `{g:.1,r:.1}`, Danse macabre `{w:.1,d:.15}`.
-- [ ] Sprite, 4 attaques, 5 animations de sort, couleur, tests.
+- [ ] **Silhouette validée :** capuche à deux cornes d'os, pointes d'os aux épaules, crâne et côtes sur la robe, crâne vert flottant.
+- [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Mage inchangé ; tests.
 
-## ⏳ v3.9.6 « Nouvelle classe : Chasseur »
+## ⏳ v3.9.7 « Nouvelle classe : Chasseur »
 - [ ] `regClass('Ch',…)` : base **Rôdeur** (arc, armure, bottes), icône ➤, puissance 1,10, mortalité 0,50, ressources +25 %, coût 26.
 - [ ] 5 sorts : Tir visé `{w:.03}`, Œil du chasseur `{r:.075}`, Piège à loups `{w:.06}`, Appât `{r:.125}`, Volée mortelle `{w:.125,d:.05}`.
-- [ ] Sprite, 4 attaques, 5 animations de sort, couleur, tests ; équilibrage final des 8 classes.
+- [ ] **Silhouette validée :** bonnet de fourrure à bois de cerf, épaulières de fourrure, croc en pendentif.
+- [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Rôdeur inchangé ; tests ; équilibrage final des 8 classes.
+
+### Règles communes aux 4 classes (validées)
+- Toutes recrutables dès le départ. Effets de sorts existants seulement (puissance `w`, mortalité `d`, or `g`, ressources `r`, fuite→victoire `f`).
+- Le socle est en place depuis la 3.9.2 : `classes.js` (`regClass`, `CLB`, `CLO`, `CLC`). Les couleurs du sprite suivent le palier d'équipement porté.
+- Prototype des sprites : fonctions `Pa`, `As`, `Ne`, `Ch` écrites sur le moteur `pxSprite` (paramètres de palette ajoutés à `G`, `V`, `M`, `Rg`) ; elles ne sont dans aucune release, à réécrire proprement dans `gl.js`.
+- Non vérifiable ici : fps et batterie sur le Z Fold 3, rendu 2D.
 
 ## 📱 Guide APK
 
