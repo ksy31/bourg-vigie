@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.6 « Suivi : mémoire du dernier aventurier »**
+Version actuelle du jeu : **v3.8.7 « KSVillage : logo, installation et chargement »**
 
 ## ✅ Déjà intégré
 
@@ -411,6 +411,10 @@ Version actuelle du jeu : **v3.8.6 « Suivi : mémoire du dernier aventurier »*
 
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
+
+## ✅ v3.8.7 « KSVillage : logo, installation et chargement »
+- [x] Nom KSVillage, nouveau logo pixel-art (la mairie de face à 34° sur le pavé, écriteau « KSVILLAGE », 4 icônes), manifeste revu, bouton Installer dans les Options, police non bloquante.
+- [x] Écran « Chargement en cours… » jusqu'à la première image 3D (ou 2D).
 
 ## ✅ v3.8.6 « Suivi : mémoire du dernier aventurier »
 - [x] ◀ / ▶ : le premier clic revient sur le dernier aventurier suivi (`lastF`, `folStep` dans `main.js`) ; s'il est mort, sur son 💀 tant qu'il est affiché (`fpt`).

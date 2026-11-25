@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.7 « KSVillage : logo, installation et chargement »
+
+Version affichée dans les Options : **v3.8.7**
+
+### Ajouté
+- **Nouveau nom : KSVillage** (titre de la page, nom sous l'icône Android et iOS).
+- **Nouveau logo** en pixel-art : la mairie vue de face sur la place pavée (caméra à 34°, l'angle par défaut du jeu), redessinée d'après une capture du jeu sans personnage : murs de pierre, toit d'ardoise bleue, clocher à fenêtre ronde et toit conique, quatre fenêtres sombres, porte en bois, lanternes orange, tonneau, pavés, herbe claire, chemin de terre et pin, avec **« KSVILLAGE »** sur un écriteau en bas (lettres dorées sur fond bleu nuit). Quatre fichiers : `icon-192.png` et `icon-512.png` (coins arrondis), `icon-maskable-512.png` (icône adaptative Android, écriteau inclus dans la zone de sécurité) et `icon-180.png` (iOS).
+- **Écran « Chargement en cours… »** (logo, nom, barre animée) affiché dès l'ouverture, retiré en fondu après les 3 premières images dessinées (3D), ou quelques images en mode 2D ; sécurité : retiré au bout de 10 s, ou tout de suite si la 3D n'est pas disponible. Visible au moins 0,6 s.
+- **Bouton « 📲 Installer l'application »** dans les Options : n'apparaît que lorsque le navigateur propose l'installation, disparaît une fois l'application installée ou le choix fait.
+
+### Modifié
+- Manifeste revu : identifiant (`id`), description, catégorie « games », icône « maskable » séparée de l'icône normale (avant : une seule icône « any maskable », rognée par Android). Même adresse de départ et même portée : l'installation existante reste la même application.
+- La police Alegreya ne bloque plus l'affichage (chargée en arrière-plan).
+- Cache du service worker `bv-v106` ; il mémorise aussi les deux nouvelles icônes.
+- Aucun changement d'équilibrage ni de sauvegarde.
+- Pour voir la nouvelle icône et le nouveau nom sur l'écran d'accueil Android, Chrome doit mettre à jour l'application installée (peut prendre un jour) ; sinon, désinstalle puis réinstalle-la (la sauvegarde est conservée tant que les données du site ne sont pas effacées).
+
 ## v3.8.6 « Suivi : mémoire du dernier aventurier »
 
 Version affichée dans les Options : **v3.8.6**

@@ -1790,7 +1790,7 @@ function init(){
   hemi=new TH.HemisphereLight('#d7e8ff','#6a7a50',1);scn.add(hemi);
   sun=new TH.DirectionalLight('#fff2d6',2.4);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-95,right:95,top:95,bottom:-95,near:1,far:700});sun.shadow.bias=-.0006;sun.shadow.normalBias=.35;scn.add(sun,sun.target);fill=new TH.DirectionalLight('#ffeacc',.7);scn.add(fill,fill.target);skyInit();
   worldG=new TH.Group();villG=new TH.Group();heroG=new TH.Group();scn.add(worldG,villG,heroG);npcG=new TH.Group();monG=new TH.Group();torchG=new TH.Group();scn.add(npcG,monG,torchG);plInit();
-  bindInput();ren.info.autoReset=false;K.ok=true;applyQ()}catch(e){K.fail=true;K.ok=false;try{if(glc&&glc.parentElement)glc.parentElement.removeChild(glc)}catch(_){}}
+  bindInput();ren.info.autoReset=false;K.ok=true;applyQ()}catch(e){K.fail=true;K.ok=false;if(window.ldHide)ldHide();try{if(glc&&glc.parentElement)glc.parentElement.removeChild(glc)}catch(_){}}
  return K.ok}
 function resize(){if(!K.ok)return;const r=cv.getBoundingClientRect();if(!r.width)return;glc.style.width=r.width+'px';glc.style.height=(r.width*1.3)+'px';glc.style.left=(cv.offsetLeft+1)+'px';glc.style.top=(cv.offsetTop+1)+'px';ren.setSize(r.width,r.width*1.3,false);cam3.aspect=1/1.3;cam3.updateProjectionMatrix()}
 let lt=0;
@@ -1807,6 +1807,7 @@ function frame(){
  if(WTEX)WTEX.offset.x=-(tm*.12)%1;
  fcn++;ren.shadowMap.autoUpdate=false;const sunF=!!(fcn&1);sun.shadow.needsUpdate=sunF;let ptF=false;if(plOn&&!sunF){let s=PLS.find(q=>q.fresh&&q.k>.02);if(!s)for(let q=0;q<PLN;q++){const c=PLS[plRot=(plRot+1)%PLN];if(c.k>.02){s=c;break}}if(s){s.fresh=0;s.l.shadow.needsUpdate=true;ptF=true}}ren.shadowMap.needsUpdate=sunF||ptF;if(ptF){SHM.forEach(m=>{m.castShadow=false});PLX.castShadow=true}
  ren.info.reset();if(K.ql===2&&!PP.fail){try{ppRender()}catch(e){PP.fail=1;K.err=e;ren.setRenderTarget(null);ren.render(scn,cam3)}}else ren.render(scn,cam3);
+ if(window.ldHide&&(K.nf=(K.nf||0)+1)>=3)ldHide();
  if(ptF){SHM.forEach(m=>{m.castShadow=true});PLX.castShadow=false}
  // résolution adaptative
  K.ft.push(dt);if(K.ft.length>50){const a=K.ft.reduce((s,v)=>s+v,0)/K.ft.length;K.ft=[];K.fps=1/a;qAuto(a);if(plOn&&a>1/30&&K.pr<=1&&K.plc>3)K.plc--;
