@@ -517,7 +517,7 @@ Version actuelle du jeu : **v3.9.2 « Nouvelles classes : socle »**
 - [ ] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
 - [ ] Sprite propre (homme/femme, face/dos, repos/action, marche, construction, victoire), 4 attaques (`HAT`), 5 animations de sort (`spellFx`, clés `Pa1` à `Pa5`), couleur de sort (`CLC`), entrée `own:{spr,fx,atk}`.
 - [ ] **Silhouette validée** (aperçu v2) : grandes ailes blanches, casque ailé à nasal, auréole dorée, cape blanche, écu blanc à croix bleue.
-- [ ] **Lisibilité de l'équipement à régler :** aux paliers hauts (armure légendaire blanche et or) l'armure se confond avec les ailes et la cape blanches. Teinter ailes et cape (gris-bleu ou doré) selon le palier et garder les épaulières et le bouclier bien visibles.
+- [ ] **Lisibilité de l'équipement à régler (vu sur l'aperçu, thèmes 1 à 10 au palier 14) :** le tabard, les ailes et la cape blancs cachent l'armure et se mélangent aux thèmes sombres (Démon, Éclair, Obsidienne) ; seuls l'arme, le bouclier et les épaulières restent visibles. À faire : tabard réduit à une bande étroite pour laisser voir le plastron et les bottes ; ailes, cape et casque teintés avec la palette du thème (`THP`) quand l'équipement en a un, blanc doré sinon ; épaulières et bouclier toujours visibles. Contrôler les 10 thèmes aux paliers 1, 7, 11 et 14, de face et de dos.
 - [ ] Armes et armures : **celles du Guerrier, pas de nouvelles** (choix validé). Tests : simulation (équilibre vs 3.9.3), captures de tous les paliers (1, 7, 14), sauvegardes.
 
 ## ⏳ v3.9.5 « Nouvelle classe : Assassin »
