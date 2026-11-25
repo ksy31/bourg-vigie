@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.4 « Nouvelle classe : Paladin »**
+Version actuelle du jeu : **v3.9.5 « Nouvelle classe : Assassin »**
 
 ## ✅ Déjà intégré
 
@@ -520,13 +520,13 @@ Version actuelle du jeu : **v3.9.4 « Nouvelle classe : Paladin »**
 - [x] **Lisibilité de l'équipement à régler (vu sur l'aperçu, thèmes 1 à 10 au palier 14) :** le tabard, les ailes et la cape blancs cachent l'armure et se mélangent aux thèmes sombres (Démon, Éclair, Obsidienne) ; seuls l'arme, le bouclier et les épaulières restent visibles. À faire : tabard réduit à une bande étroite pour laisser voir le plastron et les bottes ; ailes, cape et casque teintés avec la palette du thème (`THP`) quand l'équipement en a un, blanc doré sinon ; épaulières et bouclier toujours visibles. Contrôler les 10 thèmes aux paliers 1, 7, 11 et 14, de face et de dos.
 - [x] Armes et armures : **celles du Guerrier, pas de nouvelles** (choix validé). Tests : simulation (équilibre vs 3.9.3), captures de tous les paliers (1, 7, 14), sauvegardes.
 
-## ⏳ v3.9.5 « Nouvelle classe : Assassin » (prochain)
-- [ ] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %, coût 30.
-- [ ] 5 sorts : Lame empoisonnée `{w:.03}`, Pas de l'ombre `{d:.125}`, Coup dans le dos `{w:.06}`, Marque de mort `{g:.125}`, Danse des lames `{w:.1,d:.15}`.
-- [ ] **Silhouette validée :** sans capuche, cheveux en pointes (coiffure du héros cachée en partie), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.
-- [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Voleur inchangé ; tests.
+## ✅ v3.9.5 « Nouvelle classe : Assassin »
+- [x] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %, coût 30.
+- [x] 5 sorts : Lame empoisonnée `{w:.03}`, Pas de l'ombre `{d:.125}`, Coup dans le dos `{w:.06}`, Marque de mort `{g:.125}`, Danse des lames `{w:.1,d:.15}`.
+- [x] **Silhouette validée :** sans capuche, cheveux en pointes (coiffure du héros cachée en partie), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.
+- [x] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Voleur inchangé ; tests.
 
-## ⏳ v3.9.6 « Nouvelle classe : Nécromancien »
+## ⏳ v3.9.6 « Nouvelle classe : Nécromancien » (prochain)
 - [ ] `regClass('Ne',…)` : base **Mage** (bâton, armure, bottes), icône ●, puissance 1,15, mortalité 0,70, or +15 % et ressources +15 %, coût 32.
 - [ ] 5 sorts : Drain de vie `{w:.03}`, Armée d'os `{d:.125}`, Malédiction `{w:.06}`, Pillage des tombes `{g:.1,r:.1}`, Danse macabre `{w:.1,d:.15}`.
 - [ ] **Silhouette validée :** capuche à deux cornes d'os, pointes d'os aux épaules, crâne et côtes sur la robe, crâne vert flottant.

@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.5 « Nouvelle classe : Assassin »
+
+Version affichée dans les Options : **v3.9.5**
+
+### Ajouté
+- **Assassin (✦)** : recrutable dès le départ (coût 30), puissance ×1,20, mortalité 0,75, or +15 %. Il utilise l'équipement du Voleur (dagues, armure, bottes), sans nouvel objet.
+- **5 sorts :** Lame empoisonnée (+3 % de puissance), Pas de l'ombre (−12,5 % de mortalité), Coup dans le dos (+6 % de puissance), Marque de mort (+12,5 % d'or), Danse des lames (+10 % de puissance, −15 % de mortalité).
+- **Sprite propre (homme/femme, face/dos, toutes les poses) :** sans capuche, cheveux en pointes visibles (coiffure du héros en partie cachée par le bandeau), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.
+- **4 attaques :** entailles croisées, lancer de lames, bond dans le dos, tempête de lames. **5 animations de sort :** lame et nuage vert, fumée d'ombre, entaille dans le dos, cible rouge et pièces, tourbillon de lames. Couleur de sort : vert poison.
+
+### Modifié
+- Le recrutement tire désormais parmi 6 classes. Cache `bv-v112`. Pas de changement de sauvegarde.
+
+### Vérifié
+- Captures des 10 thèmes aux paliers 1, 7, 11 et 14 (face et dos) et de toutes les poses ; recrutement, sauvegarde/rechargement avec un Assassin, chargement d'une sauvegarde 3.9.4 sans erreur.
+- Non vérifié : animations d'attaque et de sort en 3D (pas de WebGL ici), rendu sur le Z Fold 3.
+
 ## v3.9.4 « Nouvelle classe : Paladin »
 
 Version affichée dans les Options : **v3.9.4**
