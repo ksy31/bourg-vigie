@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.1 « Village organique »**
+Version actuelle du jeu : **v3.9.2 « Nouvelles classes : socle »**
 
 ## ✅ Déjà intégré
 
@@ -412,6 +412,10 @@ Version actuelle du jeu : **v3.9.1 « Village organique »**
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
 
+## ✅ v3.9.2 « Nouvelles classes : socle »
+- [x] `classes.js` (`regClass`, `CLC`, `CLO`) et `eqb` / `CLB` (`data.js`) : équipement hérité d'une classe de base, visuels propres optionnels (`own:{spr,fx,atk}`).
+- [x] Recrutement sur toutes les classes (`recruit`), replis sur la classe de base dans `gl.js` (icônes, sprite, attaques `HAT`, sorts `spellFx`, `ringTex`, pose de sort, bloc victoire) et `map.js` (`shp`).
+
 ## ✅ v3.9.1 « Village organique »
 - [x] Placement moins régulier (`slot` dans `map.js` : décalage ×2,5, ondulation) ; second anneau décalé d'une demi-case.
 - [x] Rotation ±20° des bâtiments en 3D autour de la porte (`BYAW`, `bctr`, `bbox` dans `map.js` ; `TA.yaw` et `yq` dans `gl.js`) ; mairie toujours de face ; drapeau `window.BRO` = 3D active.
@@ -501,7 +505,28 @@ Version actuelle du jeu : **v3.9.1 « Village organique »**
 - [x] Menu Développeur : le bandeau fixe ne cache plus la première option.
 - [x] Zone de flou (haut et bas de l'écran) agrandie : elle commence plus tôt (0,10 au lieu de 0,20 de l'écran à partir du centre).
 
-## 📱 Guide APK (prochain)
+## ⏳ v3.9.3 « Nouvelle classe : Paladin » (prochain)
+- [ ] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, coût 28, « le plus résistant ».
+- [ ] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
+- [ ] Sprite 3D propre (homme/femme, face/dos, repos/action), 4 attaques (`HAT`), 5 animations de sort (`spellFx`), couleur de sort, entrée `own:{spr,fx,atk}`.
+- [ ] Tests : simulation (équilibre), captures du sprite, sauvegardes.
+
+## ⏳ v3.9.4 « Nouvelle classe : Assassin »
+- [ ] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %, coût 30.
+- [ ] 5 sorts : Lame empoisonnée `{w:.03}`, Pas de l'ombre `{d:.125}`, Coup dans le dos `{w:.06}`, Marque de mort `{g:.125}`, Danse des lames `{w:.1,d:.15}`.
+- [ ] Sprite, 4 attaques, 5 animations de sort, couleur, tests.
+
+## ⏳ v3.9.5 « Nouvelle classe : Nécromancien »
+- [ ] `regClass('Ne',…)` : base **Mage** (bâton, armure, bottes), icône ●, puissance 1,15, mortalité 0,70, or +15 % et ressources +15 %, coût 32.
+- [ ] 5 sorts : Drain de vie `{w:.03}`, Armée d'os `{d:.125}`, Malédiction `{w:.06}`, Pillage des tombes `{g:.1,r:.1}`, Danse macabre `{w:.1,d:.15}`.
+- [ ] Sprite, 4 attaques, 5 animations de sort, couleur, tests.
+
+## ⏳ v3.9.6 « Nouvelle classe : Chasseur »
+- [ ] `regClass('Ch',…)` : base **Rôdeur** (arc, armure, bottes), icône ➤, puissance 1,10, mortalité 0,50, ressources +25 %, coût 26.
+- [ ] 5 sorts : Tir visé `{w:.03}`, Œil du chasseur `{r:.075}`, Piège à loups `{w:.06}`, Appât `{r:.125}`, Volée mortelle `{w:.125,d:.05}`.
+- [ ] Sprite, 4 attaques, 5 animations de sort, couleur, tests ; équilibrage final des 8 classes.
+
+## 📱 Guide APK
 
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 

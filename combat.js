@@ -32,7 +32,7 @@ function renderLog(){$('log').innerHTML=logs.map(l=>`<p class="${l.c||''}">${l.t
 function recruit(){
  if(S.g<rcost())return;
  S.g-=rcost();
- const h={id:S.n++,name:rname(),c:Object.keys(CL)[R(0,3)],eq:{w:0,a:0,b:0,s:0},lv:1,xp:0,gold:0,kills:0,earned:0,hurt:0,bd:S.day,born:S.day-R(18,35)*365,home:null,hs:null,buff:0,bold:Math.random(),col:COL[R(0,COL.length-1)],...base({home:null}),st:'rest',t:1,z:null,last:null,en:null,loot:null,arm:1};
+ const h={id:S.n++,name:rname(),c:(k=>k[R(0,k.length-1)])(Object.keys(CL)),eq:{w:0,a:0,b:0,s:0},lv:1,xp:0,gold:0,kills:0,earned:0,hurt:0,bd:S.day,born:S.day-R(18,35)*365,home:null,hs:null,buff:0,bold:Math.random(),col:COL[R(0,COL.length-1)],...base({home:null}),st:'rest',t:1,z:null,last:null,en:null,loot:null,arm:1};
  h.g=rg(h.name);S.hero.push(h);log(`${h.name} rejoint la ville (${CL[h.c].n}).`,'ok');guRec(h);ui();
 }
 const lvl=b=>(S[b.k]||0)+((S.cp||{})[b.k]||0);

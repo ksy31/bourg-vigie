@@ -489,7 +489,7 @@ function scene(g,z,vi,R){
   g.strokeStyle='#ff7a22';g.lineWidth=.8*u;[[-1,.5],[1,2.6]].forEach(([a,b])=>{g.beginPath();g.moveTo(x+a*u,y-4.6*u);g.lineTo(x+(a*2.2+b)*u,y);g.lineTo(x+(a*3.2+b)*u,y+3.6*u);g.stroke()});
   g.fillStyle='rgba(90,90,95,.38)';[[0,-8,2],[1.5,-10.2,2.4],[-.5,-12,2.8]].forEach(([a,b,r])=>{g.beginPath();g.arc(x+a*u,y+b*u,r*u,0,7);g.fill()})}
 }
-function shp(c,x,y,r){cx.beginPath();const n={G:4,V:3,M:4,R:6}[c],o={G:Math.PI/4,V:-Math.PI/2,M:0,R:0}[c];for(let i=0;i<n;i++){const a=o+i*2*Math.PI/n,px=x+r*Math.cos(a),py=y+r*Math.sin(a);i?cx.lineTo(px,py):cx.moveTo(px,py)}cx.closePath()}
+function shp(c,x,y,r){cx.beginPath();const n={G:4,V:3,M:4,R:6}[eqb(c)],o={G:Math.PI/4,V:-Math.PI/2,M:0,R:0}[eqb(c)];for(let i=0;i<n;i++){const a=o+i*2*Math.PI/n,px=x+r*Math.cos(a),py=y+r*Math.sin(a);i?cx.lineTo(px,py):cx.moveTo(px,py)}cx.closePath()}
 function bstars(x,y){const t=performance.now()/1000*.8,g=cx;g.fillStyle='#ffe082';for(let i=0;i<3;i++){const a=t+i*2.094,px=x+Math.cos(a)*sc*2.8,py=y-sc*1.6+Math.sin(a)*sc*1.1,r=sc*(.55+.15*Math.sin(t*5+i*2));g.beginPath();g.moveTo(px,py-r);g.quadraticCurveTo(px,py,px+r,py);g.quadraticCurveTo(px,py,px,py+r);g.quadraticCurveTo(px,py,px-r,py);g.quadraticCurveTo(px,py,px,py-r);g.fill()}}
 function draw(){
  const BM=bAssign();

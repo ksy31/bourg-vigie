@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.2 « Nouvelles classes : socle »
+
+Version affichée dans les Options : **v3.9.2**
+
+### Ajouté
+- **Table de classes (`classes.js`, nouveau fichier)** : `regClass` enregistre une classe (stats, icône, sorts, couleur de sort) qui **hérite de l'équipement d'une classe de base** (armes en 14 paliers, armure, bottes, bouclier du Guerrier) ; elle peut avoir ses propres sprite, attaques et effets de sorts, sinon ceux de la classe de base sont utilisés.
+- Aucune nouvelle classe n'est encore visible : Paladin, Assassin, Nécromancien et Chasseur arrivent en 3.9.3 à 3.9.6.
+
+### Modifié
+- Le recrutement tire désormais au hasard parmi **toutes** les classes enregistrées (même tirage qu'avant avec les 4 classes actuelles).
+- Icônes d'arme et d'armure, pose de sort, bloc « victoire » des sprites, marqueur 2D, couleur de l'anneau de sort, attaques et animations de sorts : repli automatique sur la classe de base.
+- Cache `bv-v109` ; `classes.js` ajouté à `index.html` (après `combat.js`) et à `sw.js`.
+
+### Vérifié
+- Simulation de 20 jours identique à la 3.9.1, rendu 3D identique au pixel près, sauvegarde 3.8.7 chargée sans erreur.
+- Test avec 4 classes factices (une par classe de base) : recrutement sur 8 classes, équipement, sorts, combats et rendu 3D sans erreur.
+
 ## v3.9.1 « Village organique »
 
 Version affichée dans les Options : **v3.9.1**
