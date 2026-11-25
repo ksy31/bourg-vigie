@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.4 « Icônes bois et pierre »
+
+Version affichée dans les Options : **v4.0.4**
+
+### Corrigé
+- **Bandeau : bois et pierre invisibles sur PC.** Les emoji 🪵 et 🪨 sont trop récents pour la police de Windows 10 (carré vide). Ils sont remplacés par deux **icônes pixel-art dessinées dans le jeu** (deux bûches empilées, un rocher), qui s'affichent partout.
+- **Icône de l'arme du Mage :** 🪄 (même problème) remplacé par 🔮.
+
+### Modifié
+- Pas de changement de sauvegarde ni de textures. Cache `bv-v120`.
+
+### Vérifié
+- Les deux icônes sont dessinées et relues en capture ; la syntaxe de ui.js et combat.js est valide.
+- Non vérifié : l'affichage réel dans le bandeau sur ton PC (taille 1,15 em, alignement vertical).
+
 ## v4.0.3 « Attente d'apparition et blessure durable »
 
 Version affichée dans les Options : **v4.0.3**
