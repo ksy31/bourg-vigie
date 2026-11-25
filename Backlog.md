@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.2 « Animations des monstres »**
+Version actuelle du jeu : **v4.0.3 « Attente d'apparition et blessure durable »**
 
 ## ✅ Déjà intégré
 
@@ -569,6 +569,11 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Entrées propres** : dragon (atterrissage), hydre (vapeur), seigneur liche et archidémon (portail).
 - [x] Aucune nouvelle image (mouvement et effets seulement), 3D seulement.
 - [ ] À surveiller en jeu : lisibilité des effets, taille de l'élan, fps/batterie.
+
+## ✅ v4.0.3 « Attente d'apparition et blessure durable »
+- [x] **Attente de 3 à 10 s** en posture de combat (rond transparent actif) avant l'apparition du monstre, puis combat inchangé.
+- [x] **Blessure jusqu'au village :** posture blessée conservée pendant tout le retour, vitesse à 60 % (`HSP`), temps restant mis à jour.
+- [ ] À surveiller en jeu : durée totale d'une quête (+6,5 s en moyenne par combat), fréquence des fuites.
 
 ## 📱 Guide APK (prochain)
 

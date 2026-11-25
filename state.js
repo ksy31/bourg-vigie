@@ -79,7 +79,7 @@ const fu=o=>{o.used=[o.npc.A.n,o.npc.V.n];return o};
 const fresh=()=>{const zv=ZB.map(()=>Math.floor(Math.random()*3));ZVC=zv;ZSON=true;return fu({zs:1,g:48+40*P.s,w:0,s:0,houses:0,forge:0,tavern:0,spa:0,armory:0,chest:[],guildh:0,ench:0,guilds:[],hero:[],cp:{},t:0,day:1,speed:1,n:0,marks:[],alert:null,inn:1,stable:0,hs:[],horses:[],vn:'Vigie',lb:[],mv:5,zv,zp:genMap(),tp:[T.x,T.y],bp:[BZ.x,BZ.y],ds:0,dl:900,pl:[{e:NE.V,i:0},{e:NE.A,i:1}],npc:(()=>{const a=rn([]),b=rn([a]);return{A:{n:a,g:rg(a),lv:1,xp:0},V:{n:b,g:rg(b),lv:1,xp:0}}})()})};
 let S=fresh(),showT=false;
 const rname=()=>rn([],S);
-const rem=h=>{if(h.st==='fight'||h.st==='loot')return h.t;if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h))};
+const rem=h=>{if(h.st==='fight'||h.st==='loot')return h.t+(h.st==='fight'&&h.pw>0?h.pw:0);if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h)*(h.st==='back'&&h.hurt?HSP:1))};
 const fm=s=>{s=Math.ceil(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
 const nl=k=>S.npc[k]?S.npc[k].lv:0;
 const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);

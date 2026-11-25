@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.3 « Attente d'apparition et blessure durable »
+
+Version affichée dans les Options : **v4.0.3**
+
+### Ajouté
+- **Attente avant le combat :** à l'arrivée sur une zone, l'aventurier reste de 3 à 10 s (durée tirée au hasard, 6,5 s en moyenne) en posture d'attente de combat, rond transparent actif (rayon de combat), sans monstre. Puis le monstre apparaît (avec son animation d'apparition) et le combat commence comme avant. Les groupes attendent ensemble.
+- **Blessure durable :** un aventurier qui fuit reste penché, avec un pas plus lent, jusqu'à son arrivée au village (avant : 3 s seulement).
+
+### Modifié
+- **Retour blessé plus long :** vitesse de retour à 60 % de la normale (constante `HSP` dans combat.js), soit un trajet 1,67 fois plus long. Le temps restant affiché en tient compte.
+- Le message « affronte … » du journal et la ligne du combat en cours s'affichent à l'apparition du monstre, pas à l'arrivée. En 2D, le monstre n'est pas dessiné pendant l'attente.
+- Le temps d'attente s'ajoute à la durée du combat (qui reste de 30 à 45 s environ). Constantes : `PW0`, `PW1` dans combat.js. Pas de changement de format de sauvegarde : une ancienne sauvegarde se charge et son combat se termine normalement. Cache `bv-v119`.
+
+### Vérifié
+- Attente tirée entre 3,00 et 10,00 s (2000 tirages, moyenne 6,47), chronomètre de combat figé pendant l'attente, ligne « affronte » une seule fois après l'attente.
+- Retour blessé : trajet réel 118,3 s contre 71,0 s (rapport 1,67), identique à l'estimation affichée.
+- Sauvegarde/rechargement pendant l'attente (pw conservé) ; sauvegarde sans `pw` (3.9.8) : combat terminé normalement.
+- Non vérifié : rendu réel (posture et rond transparent pendant l'attente), fps et batterie sur le Z Fold 3.
+
 ## v4.0.2 « Animations des monstres »
 
 Version affichée dans les Options : **v4.0.2**

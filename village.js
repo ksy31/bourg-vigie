@@ -40,7 +40,7 @@ function depart(h){const G=gMates(h);if(!G.length){leave(h,pick(h));return}
  const id=S.gpn=(S.gpn||0)+1,g=S.guilds.find(q=>q.id===h.gu);h.gp=id;h.gl=1;leave(h,z);
  G.forEach(m=>{m.gp=id;m.gl=0;m.tk=null;m.tl=[];leave(m,z)});
  for(let j=0;j<AXG;j++)npcx('C');log(`${g.e} ${g.n} (${G.length+1}) part en expédition : ${z.n}.`,'ok')}
-function garrive(h){arrive(h);for(const m of S.hero)if(m.gp===h.gp&&m!==h){m.en=h.en;m.st='fight';m.t=h.t}}
+function garrive(h){arrive(h);for(const m of S.hero)if(m.gp===h.gp&&m!==h){m.en=h.en;m.st='fight';m.t=h.t;m.pw=h.pw}}
 function gres(h){const G=S.hero.filter(x=>x.gp===h.gp),n=G.length,e=h.en,gP=G.reduce((s,m)=>s+power(m),0)*(1+GB*(n-1)),gw=Math.random()<win(h,e.d,gP);
  GPW=gP;for(const m of G){RRF=gw?-1:-2;resolve(m);m.buff=0;m.bless=0}RRF=null;GPW=undefined;
  const Wn=G.filter(m=>S.hero.includes(m)&&m.loot);

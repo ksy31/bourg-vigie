@@ -1596,10 +1596,11 @@ function lootFx(h,tm,x,y,z){const tx=x+5,gy=y+(h.hs?1.5:0),s=fxSp('coin',1,1,tx,
  fxAdd(m,tm,.7,(p,s)=>{s.position.y=gy+.9+p*1.8;s.material.opacity=1-p})}
 function thFx(o,h,tm,x,y,z){const ts=o.ths;if(!ts||!ts.length||tm-(o.pt||0)<.3||FXL.length>36)return;o.pt=tm;const c=(o.pc=(o.pc||0)+1),th=ts[c%ts.length],q=THP[th-1],cl=c&2?q.g:q.t,up=th===6?-1.2:th===2?0:1.4,s=fxSp('mote',.5,.5,x+(Math.random()-.5)*2.6,y+(h.hs?1.5:0)+.6+Math.random()*3.2,z+(Math.random()-.5)*2.6);s.material.color.setRGB(cl[0]/255,cl[1]/255,cl[2]/255);const y0=s.position.y;fxAdd(s,tm,.9,(p,s)=>{s.position.y=y0+up*p;s.material.opacity=1-p})}
 function heroFx(o,h,fg,tm,x,y,z){
- if(o.lf&&!fg){if(h.loot)o.vt=tm;else o.ft=tm}o.lf=fg;o.fr=!fg&&o.ft&&tm-o.ft<3&&!h.loot;
+ if(o.lf&&!fg){if(h.loot)o.vt=tm;else o.ft=tm}o.lf=fg;o.fr=!fg&&!h.loot&&((h.hurt&&h.st==='back')||(o.ft&&tm-o.ft<3));
  if(fg&&h.spc&&!o.cs){o.cs=1;spellFx(h,o,tm,x,y,z)}if(!h.spc)o.cs=0;
  o.cr=0;if(!fg){const lk=h.st==='loot'&&h.lt0,ts=lk?h.lt0-h.t:tm-(o.vt||0);o.af=(o.vt||lk)&&h.loot&&(lk?ts<LTV:ts<1.8)?12:0;
   if(lk&&h.loot&&ts>=LTV){o.af=7;o.cr=h.hs?0:1;if(tm-(o.ct||0)>1.3){o.ct=tm;lootFx(h,tm,x,y,z)}}o.at=null;return}
+ if(h.pw>0){o.af=13;o.at=null;return}
  const T=HAT[CLO.atk.has(h.c)?h.c:eqb(h.c)];if(!T){o.af=0;return}
  let a=o.at;if(!a||tm-a.t0>=a.ty.d*ASL+a.gp){const c=(o.an=(o.an||0)+1),pk=HAU(h.lv|0);let k=pk[Math.floor(Math.random()*pk.length)];if(pk.length>1&&a&&a.k===k)k=pk[(pk.indexOf(k)+1+Math.floor(Math.random()*(pk.length-1)))%pk.length];const ty=T[k],gp=AGP[0]+Math.random()*(AGP[1]-AGP[0]),en=a?a.t0+a.ty.d*ASL+a.gp:0;a=o.at={ty,k,gp,t0:(a&&tm-en<.3)?en:tm,sp:0}}
  const p=(tm-a.t0)/ASL,ty=a.ty;let af=0;for(const f of ty.fr)if(p>=f[0]&&p<f[1])af=f[2];o.af=af||13;if(o.cs&&tm-(o.cst||0)<1.2*ASL)o.af=14;
@@ -1631,7 +1632,7 @@ function updHeroes(dt,tm){
   if(h.st==='town'&&(h.sub==='wait'||h.sub==='do')&&d<.02){let da=PI-o.ry;da=Math.atan2(Math.sin(da),Math.cos(da));o.ry+=da*Math.min(1,dt*8)}
   if(bm&&d<.02){const p=slot(bm.it),a0=Math.atan2(T.x+p[0]-x,T.y+p[1]-z)-o.ry,da=Math.atan2(Math.sin(a0),Math.cos(a0));o.ry+=da*Math.min(1,dt*8)}
   o.x=x;o.z=z;const mv=tm-o.mv<.22&&!bm,fg=h.st==='fight';
-  o.g.position.set(x,y,z);if(fg&&h.en&&h.en.nt&&mkind(h.en.n))o.ry=PI/2;o.g.rotation.y=o.ry;o.ph+=dt*(mv?(o.fr?2:1):.2);
+  o.g.position.set(x,y,z);if(fg&&h.en&&h.en.nt&&mkind(h.en.n))o.ry=PI/2;o.g.rotation.y=o.ry;o.ph+=dt*(mv?(o.fr?(h.hurt?.7:2):1):.2);
   heroAnim(o.m,o.ph,mv);
   if(fg){const u=o.m.userData;u.arms[1].sh.rotation.x=-1.1+Math.sin(tm*13)*.7;u.arms[1].el.rotation.x=-.5}
   o.rg.visible=fg;if(fg){o.rg.scale.setScalar(1+Math.sin(tm*14)*.08);o.rg.rotation.z=tm*.7}
@@ -1900,7 +1901,7 @@ function monAppear(o,tm){const b=o.b,g=o.g,bx=g.position.x,bz=g.position.z,by=g.
  if(b.eth||b.fly>0||fire){const tx=fire?'flame':'mote';for(let i=0;i<6;i++){const a=i/6*6.28+i*.5,r=.5*S,s=fxSp(tx,fire?.7:.6,fire?1:.6,bx+Math.cos(a)*r,by+.2,bz+Math.sin(a)*r);s.material.color.set(fire?'#ff9a40':b.eth?'#cfe8ff':'#ffffff');fxAdd(s,tm+i*.04,.8,(p,s)=>{s.position.y=by+.2+p*1.6*S;s.material.opacity=1-p})}}
  else fxDust(o)}
 function updMon(dt,tm,BM){const seen=new Set();
- for(const h of S.hero){if(h.st!=='fight'||!h.en)continue;const mk=mkind(h.en.n);if(!mk||!SPR(mk))continue;seen.add(h.id);const key=mk+'|'+h.en.n;let o=MN.get(h.id);
+ for(const h of S.hero){if(h.st!=='fight'||!h.en||h.pw>0)continue;const mk=mkind(h.en.n);if(!mk||!SPR(mk))continue;seen.add(h.id);const key=mk+'|'+h.en.n;let o=MN.get(h.id);
   if(o&&o.key!==key){monG.remove(o.g);disp(o.g);MN.delete(h.id);o=null}
   if(!o){const b=monBuild(mk,h);o={g:b.g,b,key,ph:Math.random()*6,t0:tm,nw:1};monG.add(o.g);MN.set(h.id,o)}
   const [hx,hz]=hpos(h,BM),S0=o.b.S0,off=3.4+2.1*S0*Math.min(1.5,o.b.wide||1)+(h.hs?1.3:0),lg=mlg(h,tm),x=hx+off-lg*(1.35+.12*S0)+mwd(h,tm);

@@ -8,7 +8,7 @@ const pn=(h,k)=>k==='w'?PN.w[h.c]:PN[k];
 const ic=(h,k,t)=>(t&&(k==='w'?window.wIcon&&wIcon(h.c,t,h.id):window.gIcon&&gIcon(h.c,k,t,h.id)))||(k==='w'?IC.w[h.c]:IC[k]),iw=(h,k,t)=>ic(h,k,t)+' ';
 const eqP=h=>2*h.eq.w+1.2*h.eq.a+h.eq.b+1.2*h.eq.s;
 const XP0=4,XPP=1.5,XPR2=.35,xpNeed=l=>Math.round(XP0*Math.pow(l,XPP)*Math.exp(XPR2*Math.max(0,l-20)));
-const CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
+const PW0=3,PW1=10,HSP=.6,CB0=30,CB1=45,CBK=.3,BT0=120,BT1=180,PB=1.5,TH0=.92,TH1=.2,RK0=.03,RK1=.04,DFLOOR=.07,FLEE=.2,NM=1.6,WOOD=.45;
 const power=h=>(PB+h.lv*2.5+eqP(h)+S.forge*2)*CL[h.c].p*(1+.06*P.p)*(h.buff||1)*(h.st==='fight'&&h.spw?1+h.spw:1);
 let GPW,RRF=null;
 // v3.7.4 : après une victoire, pose de victoire (LTV s) puis fouille du corps (LT0 à LT1 s selon le butin, LTR = valeur de butin pour la durée maximale)
@@ -70,7 +70,7 @@ function arrive(h){
  if(z.boss)h.en={n:'Roi Démon',d:bossD(),m:3,boss:1};
  else if(h.lv>=5&&Math.random()<.02){h.en={n:'Champion légendaire',d:power(h)*1.2,m:2.2,el:1};log(`Un champion légendaire surgit face à ${h.name} !`,'bad')}
  else{const nt=isNight(),L=nt?z.f:z.e,e=L[R(0,L.length-1)];h.en={n:e[0],d:dz(z)*e[1]*(nt?NM:1),m:e[1],nt}}
- h.st='fight';h.t=z.boss?R(BT0,BT1):Math.round(R(CB0,CB1)*(.9+CBK*h.en.m));h.ft=h.t;h.spc=0;h.spw=h.spd=h.spg=h.sps=h.spf=0;log(`⚔️ ${h.name} affronte ${h.en.n} (${z.n || 'Roi'})`);
+ h.st='fight';h.t=z.boss?R(BT0,BT1):Math.round(R(CB0,CB1)*(.9+CBK*h.en.m));h.ft=h.t;h.spc=0;h.spw=h.spd=h.spg=h.sps=h.spf=0;h.pw=PW0+Math.random()*(PW1-PW0);
 }
 function resolve(h){
  const z=h.z,e=h.en,c=CL[h.c];
@@ -115,11 +115,11 @@ function tick(dt){
   else if(h.st==='town')townTick(h,dt);
   else if(h.st==='go'||h.st==='back'){
    const tg=h.wp&&h.wp.length?h.wp[0]:(h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h)));
-   const dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=h.v*dt*spf(h);
+   const dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=h.v*dt*spf(h)*(h.st==='back'&&h.hurt?HSP:1);
    if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.wp&&h.wp.length)h.wp.shift();else if(h.pc=null,false){}else if(h.st==='go'){if(h.gp)h.st='wait';else arrive(h)}else townNext(h)}
    else{const nx=h.x+dx/d*sp,ny=h.y+dy/d*sp;bavoid(h,tg,nx,ny);const t2=h.wp&&h.wp.length?h.wp[0]:tg,ex=t2.x-h.x,ey=t2.y-h.y,e=Math.hypot(ex,ey)||1;if(t2===tg){h.x=nx;h.y=ny}else{const q=Math.min(sp,e);h.x+=ex/e*q;h.y+=ey/e*q}}
   }else if(h.st==='wait'){if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'))garrive(h)}
   else if(h.st==='loot'){h.t-=dt;if(h.t<=0)goBack(h)}
-  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
+  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;if(h.pw>0){h.pw-=dt;if(h.pw<=0){h.pw=0;log(`⚔️ ${h.name} affronte ${h.en.n} (${h.z.n||'Roi'})`)}if(h.gp)for(const m of S.hero)if(m.gp===h.gp)m.pw=h.pw;continue}h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
  }
 }
