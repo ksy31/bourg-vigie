@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.1 « Animations des PNJ »
+
+Version affichée dans les Options : **v4.0.1**
+
+### Ajouté
+- **Ballades :** quand personne n'est servi, chaque PNJ fait de temps en temps quelques pas autour de son bâtiment (jamais à travers un autre bâtiment) puis s'arrête. Dès qu'un aventurier attend ou que des travaux commencent, il retourne à son poste (un peu plus vite). Son étiquette (nom, niveau) le suit.
+- **Marche 6 images (face, dos, côté)** pour les 9 PNJ, avec jambes qui s'alternent, rebond et balancement du bas de vêtement ; la vue de côté est dérivée de la face (comme pour les aventuriers).
+- **Geste de service propre à chaque métier (2 images) :** Aubergiste (clé), Forgeron (lame), Tavernier (chope), Guérisseur (soin), Palefrenier (rênes), Maire (pièce), Intendant (clés), Chancelier (parchemin déroulé), Enchanteur (orbe).
+- **Petit geste de repos par métier (2 images, toutes les 15 à 30 s environ) :** essuie une chope, frappe au marteau, brosse, lit, écrit, jongle avec l'orbe, etc.
+
+### Modifié
+- **Respiration** plus visible au repos (amplitude ×2).
+- Pendant les travaux, le PNJ garde son bras levé avec le marteau (inchangé). Le marteau n'apparaît plus pendant un simple service du Forgeron, qui a maintenant son geste de lame.
+- Textures des PNJ : 4 → 28 images par PNJ (1344 × 72 px). Les images d'origine (repos et geste) sont identiques à la 4.0.0 (72 comparées).
+- Rendu 3D seulement : la 2D est inchangée. Pas de changement de sauvegarde. Cache `bv-v117`.
+
+### Vérifié
+- 72 images existantes identiques, 9 PNJ × 2 genres × 28 images générés sans erreur, captures relues. Simulation de la logique de ballade (11 minutes de jeu simulées) : écart maximal 2,2 unités, retour au poste en moins de 5 s, environ 8 % du temps en marche.
+- Non vérifié : rendu réel en jeu (vitesse de marche, croisements entre PNJ voisins), fps et batterie sur le Z Fold 3.
+
 ## v4.0.0 « Animations des aventuriers »
 
 Version affichée dans les Options : **v4.0.0**

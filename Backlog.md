@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.0 « Animations des aventuriers »**
+Version actuelle du jeu : **v4.0.1 « Animations des PNJ »**
 
 ## ✅ Déjà intégré
 
@@ -556,10 +556,14 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] Rendu 3D seulement ; textures 13 → 29 images par héros.
 - [ ] À surveiller en jeu : fps/batterie, vitesse du cycle, seuil face/côté (`Math.abs(fx)>.78` dans `sprUpd`).
 
-### v4.0.1 « Animations des PNJ » (prochain)
-- [ ] Marche, gestes et activités des PNJ (Aubergiste, Forgeron, Tavernier, Guérisseur, Palefrenier, Maire, Intendant, Chancelier, Enchanteur). Contenu à définir.
+### v4.0.1 « Animations des PNJ » ✅
+- [x] **Ballades** autour du bâtiment au repos, retour au poste pendant un service ou des travaux.
+- [x] **Marche** 6 images (face, dos, côté) pour les 9 PNJ ; vue de côté dérivée de la face.
+- [x] **Geste de service** propre à chaque métier et **petit geste de repos** ; respiration plus visible.
+- [x] Rendu 3D seulement ; textures 4 → 28 images par PNJ.
+- [ ] À surveiller en jeu : croisements entre PNJ voisins, vitesse de marche, fps/batterie.
 
-### v4.0.2 « Animations des monstres »
+### v4.0.2 « Animations des monstres » (prochain)
 - [ ] Marche, attaque, mort et entrée des monstres, y compris l'animation d'entrée propre à chaque monstre de haut niveau (voir « En attente / à étudier plus tard »). Contenu à définir.
 
 ## 📱 Guide APK (prochain)
