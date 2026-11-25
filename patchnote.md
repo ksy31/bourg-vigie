@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.3 « Coiffures et yeux selon le sexe »
+
+Version affichée dans les Options : **v3.9.3**
+
+### Ajouté
+- **5 coiffures par sexe, style manga / jeu vidéo japonais**, vues de face et de dos, dans toutes les poses. Garçons (cheveux courts) : pointes dressées, ahoge et mèches, pointes en arrière, grande mèche asymétrique, banane. Filles (cheveux longs) : coupe hime, queue de cheval haute, couettes, longue tresse, macarons.
+- La coiffure est tirée selon l'`id` du héros ou du PNJ ; la couleur de cheveux reste aléatoire.
+- Coiffures utilisables par les futures classes : chapeau, capuche et casque masquent le haut de la coiffure, les cheveux longs dépassent derrière.
+
+### Modifié
+- **Yeux :** bleus pour les garçons, roses pour les filles (plus de couleur aléatoire).
+- Concerne le Guerrier, le Mage, le Voleur, le Rôdeur et tous les PNJ ; le Maire, l'Aubergiste, etc. gardent leur couvre-chef.
+- Cache `bv-v110`. Aucun changement de sauvegarde : coiffure et yeux sont calculés, les héros existants les reçoivent donc automatiquement.
+
+### Vérifié
+- Captures des 5 coiffures × 2 sexes × face/dos pour les 4 classes et plusieurs PNJ.
+- Simulation de 20 jours, sauvegarde/rechargement et chargement d'une sauvegarde 3.9.2 sans erreur.
+- Non vérifié : rendu sur le Z Fold 3. Le mode 2D n'utilise pas ces sprites (inchangé).
+
 ## v3.9.2 « Nouvelles classes : socle »
 
 Version affichée dans les Options : **v3.9.2**

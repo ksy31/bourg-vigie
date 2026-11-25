@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.2 « Nouvelles classes : socle »**
+Version actuelle du jeu : **v3.9.3 « Coiffures et yeux selon le sexe »**
 
 ## ✅ Déjà intégré
 
@@ -505,14 +505,14 @@ Version actuelle du jeu : **v3.9.2 « Nouvelles classes : socle »**
 - [x] Menu Développeur : le bandeau fixe ne cache plus la première option.
 - [x] Zone de flou (haut et bas de l'écran) agrandie : elle commence plus tôt (0,10 au lieu de 0,20 de l'écran à partir du centre).
 
-## ⏳ v3.9.3 « Coiffures et yeux selon le sexe » (prochain)
-- [ ] **Garçons :** yeux bleus, cheveux courts. **Filles :** yeux roses, cheveux longs (plus de couleur d'yeux aléatoire : `PXEY`, `ec` dans `pxSprite`).
-- [ ] **4 à 5 coiffures par sexe**, tirées selon l'`id` du héros (couleur de cheveux aléatoire conservée, `PXHR`). Face et dos, toutes les poses.
-- [ ] Concerne les 4 classes de base (`G`, `V`, `M`, `R`) et les PNJ qui ont des cheveux (fonction `NP`). Les coiffures sont des paramètres du sprite, utilisables ensuite par les nouvelles classes (casque, capuche, bonnet cachent ou remplacent la coiffure).
-- [ ] Anciennes sauvegardes : les héros existants reçoivent coiffure et yeux selon leur `id` (migration dans `loadG`, rien n'est perdu).
-- [ ] Mode 2D : vérifier qu'il n'est pas cassé. Tests : captures de toutes les coiffures (homme/femme, face/dos), sauvegardes.
+## ✅ v3.9.3 « Coiffures et yeux selon le sexe »
+- [x] **Garçons :** yeux bleus, cheveux courts. **Filles :** yeux roses, cheveux longs (plus de couleur d'yeux aléatoire : `PXEY`, `ec` dans `pxSprite`).
+- [x] **5 coiffures par sexe (style manga / jeu vidéo japonais)**, tirées selon l'`id` du héros (couleur de cheveux aléatoire conservée, `PXHR`). Face et dos, toutes les poses.
+- [x] Concerne les 4 classes de base (`G`, `V`, `M`, `R`) et les PNJ qui ont des cheveux (fonction `NP`). Les coiffures sont des paramètres du sprite, utilisables ensuite par les nouvelles classes (casque, capuche, bonnet cachent ou remplacent la coiffure).
+- [x] Anciennes sauvegardes : les héros existants reçoivent coiffure et yeux selon leur `id` (migration dans `loadG`, rien n'est perdu).
+- [x] Mode 2D : vérifier qu'il n'est pas cassé. Tests : captures de toutes les coiffures (homme/femme, face/dos), sauvegardes.
 
-## ⏳ v3.9.4 « Nouvelle classe : Paladin »
+## ⏳ v3.9.4 « Nouvelle classe : Paladin » (prochain)
 - [ ] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, coût 28, « le plus résistant ».
 - [ ] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
 - [ ] Sprite propre (homme/femme, face/dos, repos/action, marche, construction, victoire), 4 attaques (`HAT`), 5 animations de sort (`spellFx`, clés `Pa1` à `Pa5`), couleur de sort (`CLC`), entrée `own:{spr,fx,atk}`.
