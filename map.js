@@ -489,6 +489,7 @@ function shp(c,x,y,r){cx.beginPath();const n={G:4,V:3,M:4,R:6}[c],o={G:Math.PI/4
 function bstars(x,y){const t=performance.now()/1000*.8,g=cx;g.fillStyle='#ffe082';for(let i=0;i<3;i++){const a=t+i*2.094,px=x+Math.cos(a)*sc*2.8,py=y-sc*1.6+Math.sin(a)*sc*1.1,r=sc*(.55+.15*Math.sin(t*5+i*2));g.beginPath();g.moveTo(px,py-r);g.quadraticCurveTo(px,py,px+r,py);g.quadraticCurveTo(px,py,px,py+r);g.quadraticCurveTo(px,py,px-r,py);g.quadraticCurveTo(px,py,px,py-r);g.fill()}}
 function draw(){
  const BM=bAssign();
+ if(fpt&&fpt!==cam.fpA){cam.fpA=fpt;cam.x=W/2-fpt.x*sc*cam.z;cam.y=H/2-fpt.y*sc*cam.z;clampCam()}
  if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const bm=BM.get(q.id),bp=bm?bpos(q,bm):[q.x*sc+((q.id%3)-1)*sc*1.5,q.y*sc+((q.id%2)-.5)*sc*2];cam.x=W/2-bp[0]*cam.z;cam.y=H/2-bp[1]*cam.z;clampCam()}else fol=null}
  cx.save();cx.translate(cam.x,cam.y);cx.scale(cam.z,cam.z);cx.fillStyle='#8fae7a';cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4));
  if(W>0){const k=W+JSON.stringify(S.zp)+T.x+','+T.y+BZ.x+','+BZ.y+S.zv.join('');if(GC.k!==k){GC.k=k;buildGround()}cx.drawImage(GC.c,0,0,W*MS,H*MS)}
@@ -546,7 +547,7 @@ cv.addEventListener('pointermove',e=>{if(!pt.has(e.pointerId))return;const o=pt.
 const pup=e=>{pt.delete(e.pointerId);pd=0};cv.addEventListener('pointerup',pup);cv.addEventListener('pointercancel',pup);
 cv.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.15:.87)},{passive:false});
 cv.addEventListener('dblclick',()=>{fol=null;cam.z=1.6;cam.x=W/2-T.x*sc*cam.z;cam.y=H/2-T.y*sc*cam.z;clampCam()});
-let fol=null,tp=null;
+let fol=null,tp=null,fpt=null;
 function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){if(hidn(q))continue;const d=Math.hypot(q.x+((q.id%3)-1)*1.5-mx,q.y+((q.id%2)-.5)*2-my);if(d<bd){bd=d;b=q}}if(b&&bd*sc*cam.z<26){fol=b.id;if(cam.z<1.2)cam.z=1.2}else fol=null}
 cv.addEventListener('pointerdown',e=>{tp=e.isPrimary&&pt.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null});
 cv.addEventListener('pointermove',e=>{if(tp&&Math.hypot(e.offsetX-tp.x,e.offsetY-tp.y)>8){tp.m=1;fol=null}});

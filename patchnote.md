@@ -1,5 +1,15 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.8.6 « Suivi : mémoire du dernier aventurier »
+
+Version affichée dans les Options : **v3.8.6**
+
+### Modifié
+- Les boutons ◀ / ▶ de suivi mémorisent le dernier aventurier suivi (par bouton, tap sur la carte ou liste des aventuriers). Quand plus aucun aventurier n'est suivi (carte déplacée, double tap), le premier clic sur ◀ ou ▶ revient sur lui, sans changer d'aventurier ; les clics suivants passent au précédent ou au suivant.
+- **Aventurier mort :** tant que son 💀 est affiché sur la carte (4 minutes de jeu), le premier clic centre la caméra sur l'endroit de sa mort ; le clic suivant reprend le suivi normal (▶ premier aventurier, ◀ dernier). Une fois le 💀 disparu, comportement d'avant.
+- Les marques de mort enregistrent maintenant l'identifiant de l'aventurier (`id`) ; les anciennes marques (sans identifiant) ne permettent pas ce retour.
+- Aucun changement d'équilibrage ni de sauvegarde (la mémoire n'est pas sauvegardée : elle est vide après un rechargement de la page).
+
 ## v3.8.5 « Fouille accroupie »
 
 Version affichée dans les Options : **v3.8.5**

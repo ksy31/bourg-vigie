@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.8.5 « Fouille accroupie »**
+Version actuelle du jeu : **v3.8.6 « Suivi : mémoire du dernier aventurier »**
 
 ## ✅ Déjà intégré
 
@@ -411,6 +411,9 @@ Version actuelle du jeu : **v3.8.5 « Fouille accroupie »**
 
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
+
+## ✅ v3.8.6 « Suivi : mémoire du dernier aventurier »
+- [x] ◀ / ▶ : le premier clic revient sur le dernier aventurier suivi (`lastF`, `folStep` dans `main.js`) ; s'il est mort, sur son 💀 tant qu'il est affiché (`fpt`).
 
 ## ✅ v3.8.5 « Fouille accroupie »
 - [x] Aventurier accroupi pendant la fouille du butin (`o.cr`, `o.cz` dans `gl.js`).

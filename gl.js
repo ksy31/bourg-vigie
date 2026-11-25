@@ -1732,6 +1732,7 @@ function smUpd(tm){if(!SM.ok){const c=document.createElement('canvas');c.width=c
   s.material.opacity=Math.sin(Math.PI*ph)*(o.v?.5:.42)*(1-Math.min(1,wxMix()[1])*.6);s.material.color.set(o.v?'#4a4540':'#c9c9c9').multiplyScalar(1-.55*dk())}}
 // ---------- caméra / entrées ----------
 function updCam(dt){
+ if(fpt&&fpt!==K.fpB){K.fpB=fpt;K.tx=fpt.x;K.tz=fpt.y;K.dist=Math.min(K.dist,70)}
  if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const [x,z]=hpos(q,bAssign());if(K.lastFol!==fol){K.dist=Math.min(K.dist,70);K.lastFol=fol}K.tx+=(x-K.tx)*Math.min(1,dt*6);K.tz+=(z-K.tz)*Math.min(1,dt*6)}else fol=null}else K.lastFol=null;
  K.dist=Math.min(950,Math.max(32,K.dist));K.tx=Math.min(WXd,Math.max(0,K.tx));K.tz=Math.min(WYd,Math.max(0,K.tz));
  {const s=Math.min(260,Math.max(70,K.dist*.5)),sc3=sun.shadow.camera;if(Math.abs(sc3.right-s)>4){sc3.left=-s;sc3.right=s;sc3.top=s;sc3.bottom=-s;sc3.updateProjectionMatrix()}}
