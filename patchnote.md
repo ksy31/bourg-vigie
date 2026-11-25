@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.6 « Diagnostic 3D »
+
+Version affichée dans les Options : **v4.0.6**
+
+### Ajouté
+- Menu Développeur, **Diagnostic 3D** : interrupteurs Palissade et remparts, Chantiers, Puits, Tout le village, Personnages et monstres. Un élément masqué n'est pas construit en 3D. La partie n'est pas modifiée ; le jeu se recharge à chaque changement. Les réglages restent actifs jusqu'à ce qu'on les remette sur « affiché ».
+
+### Modifié
+- Le bouton **3D sans échec** quitte les Options pour le menu Développeur.
+- « Tout le village » masque bâtiments, sol en relief, enceinte, puits et lampes du village, pas les personnages ; une tache de terre peinte sur le sol reste. Les noms et pourcentages restent affichés. En 2D, rien ne change.
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v122`.
+
+### Corrigé
+- Rien : version de diagnostic. La cause du plantage 3D reste inconnue.
+
+### Vérifié
+- Navigateur sans écran avec la sauvegarde v4.0.4 (jour 36) : 3D chargée avec chaque interrupteur et en sans échec, aucune erreur de page. Clic réel sur l'interrupteur de l'enceinte.
+- En capture : enceinte, chantier, village et personnages disparaissent. Le puits est trop petit pour être confirmé à l'image.
+- Non vérifié : Z Fold 3.
+
 ## v4.0.5 « Patch d'urgence : carte blanche »
 
 Version affichée dans les Options : **v4.0.5**

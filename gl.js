@@ -1,5 +1,7 @@
 // Rendu 3D (WebGL) de la carte : terrain, routes, rivières, zones, village, aventuriers.
 // Dépend de three.min.js (variable globale THREE). Si WebGL est indisponible, le jeu reste en 2D.
+// v4.0.6 : diagnostic 3D (menu Developpeur), true = element non construit. w enceinte, c chantiers, p puits, v village, m personnages et monstres
+const DBG=(()=>{try{return JSON.parse(localStorage.getItem('bvdbg')||'{}')||{}}catch(e){return{}}})();
 const GLX=typeof THREE==='undefined'?{K:{on:false},frame(){return false},resize(){},boot(){},setOn(){}}:(()=>{
 const V3=THREE.Vector3,Q=THREE.Quaternion,E=THREE.Euler,M4=THREE.Matrix4,Col=THREE.Color,PI=Math.PI;
 const mt=new M4(),qq=new Q();
@@ -306,6 +308,7 @@ function paintGround(){
 // ===== v3.5.0 : sol du village (terre battue et pavés) en relief, par-dessus le terrain =====
 let VGM=null,VGT=null;
 function buildVillageGround(){
+ if(DBG.v)return;
  const vd=vdim(),{rx,ry}=vd,ex=1.22,w=2*rx*ex,h=2*ry*ex,x0=T.x-w/2,y0=T.y-h/2,PU=Math.min(18,2048/Math.max(w,h));
  const c=document.createElement('canvas');c.width=Math.ceil(w*PU);c.height=Math.ceil(h*PU);
  const g=c.getContext('2d');g.setTransform(1,0,0,1,-x0*PU,-y0*PU);const R=rg3(2026);
@@ -752,17 +755,18 @@ function yq(a,px,pz,n){const c=Math.cos(a),s=Math.sin(a),rot=(q,i,j)=>{const dx=
  for(let i=n[3];i<CQ.length;i++){rot(CQ[i],0,1);CQ[i][4]=a}for(let i=n[4];i<RQ.length;i++)RQ[i].push(a,px,pz)}
 function buildVillageMesh(){
  clearG(villG);TQ=[];SQ=[];GQ=[];RQ=[];CQ=[];const W=new TA(),vd=vdim(),{u}=vd;
- for(const [p,e,it] of u){const k=NK[e]||'H',x=T.x+p[0],z=T.y+p[1],y0=H3(x,z),w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,tier=Math.max(0,tr(k)-(it.rb?1:0));
+ if(DBG.v){if(torchG)torchSprites();return}
+ for(const [p,e,it] of u){if(DBG.c&&it.cn)continue;const k=NK[e]||'H',x=T.x+p[0],z=T.y+p[1],y0=H3(x,z),w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,tier=Math.max(0,tr(k)-(it.rb?1:0));
   const ya=BYAW(it),yp=z+BDO(k),yn=[TQ.length,SQ.length,GQ.length,CQ.length,RQ.length];W.yaw(ya,x,yp);
   const rc=(it.h&&it.h.o!=null&&(S.hero.find(q=>q.id===it.h.o)||{}).col)||'#8b4a3a';
   let f=1;if(it.cn)f=Math.max(0,bstg(it));
   const hh0=(BTOP[k]||6.7)*.5+tier*.45,roof=k==='H'?rc:ROOF[k]||'#8b4a3a';
   if(it.cn&&f<=0)W.add('stone',box(w,.35,d),'#8f8a7d',x,y0+.18,z,{shade:0});
   else{const full=!it.cn||f>=.75;if(k==='M')stall(W,x,y0,z,w,d,roof);else{building(W,k,x,y0,z,w,d,it.cn?hh0*Math.max(.3,f):hh0,roof,tier,full);if(full){lamp(W,x-w/2-1.1,z+d/2+1.4);vprops(W,k,x,z,w,d,it.i)}}}
-  if(it.cn||it.rb){const sh=(BTOP[k]||6.7)*.85,hw=w/2+.7;for(const sx of[-1,1])for(const sz of[-1,1])W.add('wood',box(.28,sh,.28),'#9a7a4a',x+sx*hw,y0+sh/2,z+sz*(d/2+.7),{shade:0});
+  if((it.cn||it.rb)&&!DBG.c){const sh=(BTOP[k]||6.7)*.85,hw=w/2+.7;for(const sx of[-1,1])for(const sz of[-1,1])W.add('wood',box(.28,sh,.28),'#9a7a4a',x+sx*hw,y0+sh/2,z+sz*(d/2+.7),{shade:0});
    for(let q=1;q<=3;q++)W.add('wood',box(w+1.6,.2,.28),'#b08850',x,y0+q*sh/3.4,z+d/2+.7,{shade:0})}
   W.yaw(0);if(ya)yq(ya,x,yp,yn)}
- if(S.pl.length>=4)wellV(W,u);if(S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);W.build(villG);csInst(villG,CQ,true,.5);roofIcons();if(torchG)torchSprites()}
+ if(!DBG.p&&S.pl.length>=4)wellV(W,u);if(!DBG.w&&S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);W.build(villG);csInst(villG,CQ,true,.5);roofIcons();if(torchG)torchSprites()}
 // ---------- héros ----------
 function mkHorse(c){const a=new Acc();const hb=c||'#8a5a3a';
  a.add(new TH.CapsuleGeometry(.2,.62,6,12),hb,0,.62,0,{rx:Math.PI/2,sx:1.05,sy:1,shade:.1});
@@ -2032,7 +2036,7 @@ function frame(){
  const vk=T.x+','+T.y+';'+S.pl.map(i=>i.i+i.e+(i.cn?'c'+bstg(i):(i.rb?'r':'t')+tr(NK[i.e]||'H'))+((i.h&&i.h.o!=null&&(S.hero.find(q=>q.id===i.h.o)||{}).col)||'')).join(',');
  if(vk!==vKey){vKey=vk;try{buildVillageMesh()}catch(e){K.err=e}}
  K.plk=pk;if(K.bwT){K.bwT=0;bwShow(false)}}}
- const BM=updHeroes(dt,tm);try{updNpc(dt,tm);updMon(dt,tm,BM);wxUpd(dt,tm);torchUpd(tm);windUpd(tm);rockUpd();grassUpd(tm);leafUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dkl())}catch(e){K.err=e}try{holeUpd(BM)}catch(e){K.err=e}
+ const BM=DBG.m?new Map():updHeroes(dt,tm);try{if(!DBG.m){updNpc(dt,tm);updMon(dt,tm,BM)}wxUpd(dt,tm);torchUpd(tm);windUpd(tm);rockUpd();grassUpd(tm);leafUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dkl())}catch(e){K.err=e}try{holeUpd(BM)}catch(e){K.err=e}
  if(WTEX)WTEX.offset.x=-(tm*.12)%1;
  fcn++;ren.shadowMap.autoUpdate=false;const sunF=!!(fcn&1);sun.shadow.needsUpdate=sunF;let ptF=false;if(plOn&&!sunF){let s=PLS.find(q=>q.fresh&&q.k>.02);if(!s)for(let q=0;q<PLN;q++){const c=PLS[plRot=(plRot+1)%PLN];if(c.k>.02){s=c;break}}if(s){s.fresh=0;s.l.shadow.needsUpdate=true;ptF=true}}ren.shadowMap.needsUpdate=sunF||ptF;if(ptF){SHM.forEach(m=>{m.castShadow=false});PLX.castShadow=true}
  ren.info.reset();if(K.ql===2&&!PP.fail){try{ppRender()}catch(e){PP.fail=1;K.err=e;ren.setRenderTarget(null);ren.render(scn,cam3)}}else ren.render(scn,cam3);
