@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.5 « Nouvelle classe : Assassin »**
+Version actuelle du jeu : **v3.9.6 « Nouvelle classe : Nécromancien »**
 
 ## ✅ Déjà intégré
 
@@ -513,7 +513,7 @@ Version actuelle du jeu : **v3.9.5 « Nouvelle classe : Assassin »**
 - [x] Mode 2D : vérifier qu'il n'est pas cassé. Tests : captures de toutes les coiffures (homme/femme, face/dos), sauvegardes.
 
 ## ✅ v3.9.4 « Nouvelle classe : Paladin »
-- [x] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, coût 28, « le plus résistant ».
+- [x] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, « le plus résistant ».
 - [x] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
 - [x] Sprite propre (homme/femme, face/dos, repos/action, marche, construction, victoire), 4 attaques (`HAT`), 5 animations de sort (`spellFx`, clés `Pa1` à `Pa5`), couleur de sort (`CLC`), entrée `own:{spr,fx,atk}`.
 - [x] **Silhouette validée** (aperçu v2) : grandes ailes blanches, casque ailé à nasal, auréole dorée, cape blanche, écu blanc à croix bleue.
@@ -521,19 +521,19 @@ Version actuelle du jeu : **v3.9.5 « Nouvelle classe : Assassin »**
 - [x] Armes et armures : **celles du Guerrier, pas de nouvelles** (choix validé). Tests : simulation (équilibre vs 3.9.3), captures de tous les paliers (1, 7, 14), sauvegardes.
 
 ## ✅ v3.9.5 « Nouvelle classe : Assassin »
-- [x] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %, coût 30.
+- [x] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %.
 - [x] 5 sorts : Lame empoisonnée `{w:.03}`, Pas de l'ombre `{d:.125}`, Coup dans le dos `{w:.06}`, Marque de mort `{g:.125}`, Danse des lames `{w:.1,d:.15}`.
 - [x] **Silhouette validée :** sans capuche, cheveux en pointes (coiffure du héros cachée en partie), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.
 - [x] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Voleur inchangé ; tests.
 
-## ⏳ v3.9.6 « Nouvelle classe : Nécromancien » (prochain)
-- [ ] `regClass('Ne',…)` : base **Mage** (bâton, armure, bottes), icône ●, puissance 1,15, mortalité 0,70, or +15 % et ressources +15 %, coût 32.
-- [ ] 5 sorts : Drain de vie `{w:.03}`, Armée d'os `{d:.125}`, Malédiction `{w:.06}`, Pillage des tombes `{g:.1,r:.1}`, Danse macabre `{w:.1,d:.15}`.
-- [ ] **Silhouette validée :** capuche à deux cornes d'os, pointes d'os aux épaules, crâne et côtes sur la robe, crâne vert flottant.
-- [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Mage inchangé ; tests.
+## ✅ v3.9.6 « Nouvelle classe : Nécromancien »
+- [x] `regClass('Ne',…)` : base **Mage** (bâton, armure, bottes), icône ●, puissance 1,15, mortalité 0,70, or +15 % et ressources +15 %.
+- [x] 5 sorts : Drain de vie `{w:.03}`, Armée d'os `{d:.125}`, Malédiction `{w:.06}`, Pillage des tombes `{g:.1,r:.1}`, Danse macabre `{w:.1,d:.15}`.
+- [x] **Silhouette validée :** capuche à deux cornes d'os, pointes d'os aux épaules, crâne et côtes sur la robe, crâne vert flottant.
+- [x] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Mage inchangé ; tests.
 
-## ⏳ v3.9.7 « Nouvelle classe : Chasseur »
-- [ ] `regClass('Ch',…)` : base **Rôdeur** (arc, armure, bottes), icône ➤, puissance 1,10, mortalité 0,50, ressources +25 %, coût 26.
+## ⏳ v3.9.7 « Nouvelle classe : Chasseur » (prochain)
+- [ ] `regClass('Ch',…)` : base **Rôdeur** (arc, armure, bottes), icône ➤, puissance 1,10, mortalité 0,50, ressources +25 %.
 - [ ] 5 sorts : Tir visé `{w:.03}`, Œil du chasseur `{r:.075}`, Piège à loups `{w:.06}`, Appât `{r:.125}`, Volée mortelle `{w:.125,d:.05}`.
 - [ ] **Silhouette validée :** bonnet de fourrure à bois de cerf, épaulières de fourrure, croc en pendentif.
 - [ ] Sprite complet, 4 attaques, 5 animations de sort, couleur ; équipement du Rôdeur inchangé ; tests ; équilibrage final des 8 classes.

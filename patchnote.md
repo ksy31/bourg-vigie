@@ -1,11 +1,31 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.6 « Nouvelle classe : Nécromancien »
+
+Version affichée dans les Options : **v3.9.6**
+
+### Ajouté
+- **Nécromancien (●)** : recrutable dès le départ, puissance ×1,15, mortalité 0,70, or +15 % et ressources +15 %. Il utilise l'équipement du Mage (bâton, armure, bottes), sans nouvel objet.
+- **5 sorts :** Drain de vie (+3 % de puissance), Armée d'os (−12,5 % de mortalité), Malédiction (+6 % de puissance), Pillage des tombes (+10 % d'or, +10 % de ressources), Danse macabre (+10 % de puissance, −15 % de mortalité).
+- **Sprite propre (homme/femme, face/dos, toutes les poses) :** capuche à deux cornes d'os, pointes d'os aux épaules, côtes et crâne sur la robe, crâne vert flottant.
+- **4 attaques** (orbes, éclairs, rayon et pluie, teintés en vert) et **5 animations de sort** (âmes aspirées, os qui jaillissent, spirale violette, pièces et os, ronde d'os et de flammes vertes). Couleur de sort : vert pâle.
+
+### Corrigé
+- Le « coût de recrutement » par classe annoncé dans le Backlog et les patchnotes 3.9.4 et 3.9.5 n'a jamais eu d'effet : le prix d'un aventurier ne dépend pas de la classe (20 + 8 × nombre d'aventuriers). Mentions retirées, champ supprimé pour les nouvelles classes.
+
+### Modifié
+- Le recrutement tire désormais parmi 7 classes. Cache `bv-v113`. Pas de changement de sauvegarde.
+
+### Vérifié
+- Captures des poses et des vues de face et de dos ; recrutement, sauvegarde/rechargement avec un Nécromancien, chargement d'une sauvegarde 3.9.5 sans erreur.
+- Non vérifié : animations d'attaque et de sort en 3D (pas de WebGL ici), rendu sur le Z Fold 3.
+
 ## v3.9.5 « Nouvelle classe : Assassin »
 
 Version affichée dans les Options : **v3.9.5**
 
 ### Ajouté
-- **Assassin (✦)** : recrutable dès le départ (coût 30), puissance ×1,20, mortalité 0,75, or +15 %. Il utilise l'équipement du Voleur (dagues, armure, bottes), sans nouvel objet.
+- **Assassin (✦)** : recrutable dès le départ, puissance ×1,20, mortalité 0,75, or +15 %. Il utilise l'équipement du Voleur (dagues, armure, bottes), sans nouvel objet.
 - **5 sorts :** Lame empoisonnée (+3 % de puissance), Pas de l'ombre (−12,5 % de mortalité), Coup dans le dos (+6 % de puissance), Marque de mort (+12,5 % d'or), Danse des lames (+10 % de puissance, −15 % de mortalité).
 - **Sprite propre (homme/femme, face/dos, toutes les poses) :** sans capuche, cheveux en pointes visibles (coiffure du héros en partie cachée par le bandeau), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.
 - **4 attaques :** entailles croisées, lancer de lames, bond dans le dos, tempête de lames. **5 animations de sort :** lame et nuage vert, fumée d'ombre, entaille dans le dos, cible rouge et pièces, tourbillon de lames. Couleur de sort : vert poison.
@@ -22,7 +42,7 @@ Version affichée dans les Options : **v3.9.5**
 Version affichée dans les Options : **v3.9.4**
 
 ### Ajouté
-- **Paladin (✚)** : recrutable dès le départ (coût 28), puissance ×1,05, mortalité 0,30 (la plus basse des classes). Il utilise l'équipement du Guerrier (épée, armure, bottes, bouclier), sans nouvel objet.
+- **Paladin (✚)** : recrutable dès le départ, puissance ×1,05, mortalité 0,30 (la plus basse des classes). Il utilise l'équipement du Guerrier (épée, armure, bottes, bouclier), sans nouvel objet.
 - **5 sorts :** Lumière sacrée (+3 % de puissance), Bénédiction (−12,5 % de mortalité), Châtiment (+6 % de puissance), Imposition des mains (−20 % de mortalité, 20 % des fuites deviennent des victoires), Jugement dernier (+10 % de puissance, −15 % de mortalité).
 - **Sprite propre (homme/femme, face/dos, toutes les poses) :** grandes ailes, casque ailé à nasal, auréole dorée, cape, écu blanc à croix bleue. Ailes, cape et casque prennent la palette du thème de l'armure quand elle en a un, blanc doré sinon. Le tabard est réduit à une bande étroite : plastron, épaulières, bottes et bouclier restent visibles.
 - **4 attaques :** arc doré, estoc, coup d'écu, croix lumineuse. **5 animations de sort :** rayon de lumière, pluie d'étincelles, éclair doré, mains vertes, colonne de lumière avec croix. Couleur de sort : or clair.
