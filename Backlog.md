@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.3 « Coiffures et yeux selon le sexe »**
+Version actuelle du jeu : **v3.9.4 « Nouvelle classe : Paladin »**
 
 ## ✅ Déjà intégré
 
@@ -512,15 +512,15 @@ Version actuelle du jeu : **v3.9.3 « Coiffures et yeux selon le sexe »**
 - [x] Anciennes sauvegardes : les héros existants reçoivent coiffure et yeux selon leur `id` (migration dans `loadG`, rien n'est perdu).
 - [x] Mode 2D : vérifier qu'il n'est pas cassé. Tests : captures de toutes les coiffures (homme/femme, face/dos), sauvegardes.
 
-## ⏳ v3.9.4 « Nouvelle classe : Paladin » (prochain)
-- [ ] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, coût 28, « le plus résistant ».
-- [ ] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
-- [ ] Sprite propre (homme/femme, face/dos, repos/action, marche, construction, victoire), 4 attaques (`HAT`), 5 animations de sort (`spellFx`, clés `Pa1` à `Pa5`), couleur de sort (`CLC`), entrée `own:{spr,fx,atk}`.
-- [ ] **Silhouette validée** (aperçu v2) : grandes ailes blanches, casque ailé à nasal, auréole dorée, cape blanche, écu blanc à croix bleue.
-- [ ] **Lisibilité de l'équipement à régler (vu sur l'aperçu, thèmes 1 à 10 au palier 14) :** le tabard, les ailes et la cape blancs cachent l'armure et se mélangent aux thèmes sombres (Démon, Éclair, Obsidienne) ; seuls l'arme, le bouclier et les épaulières restent visibles. À faire : tabard réduit à une bande étroite pour laisser voir le plastron et les bottes ; ailes, cape et casque teintés avec la palette du thème (`THP`) quand l'équipement en a un, blanc doré sinon ; épaulières et bouclier toujours visibles. Contrôler les 10 thèmes aux paliers 1, 7, 11 et 14, de face et de dos.
-- [ ] Armes et armures : **celles du Guerrier, pas de nouvelles** (choix validé). Tests : simulation (équilibre vs 3.9.3), captures de tous les paliers (1, 7, 14), sauvegardes.
+## ✅ v3.9.4 « Nouvelle classe : Paladin »
+- [x] `regClass('Pa',…)` : base équipement **Guerrier** (épée, armure, bottes, bouclier), icône ✚, puissance 1,05, mortalité 0,30, coût 28, « le plus résistant ».
+- [x] 5 sorts : Lumière sacrée `{w:.03}`, Bénédiction `{d:.125}`, Châtiment `{w:.06}`, Imposition des mains `{d:.2,f:.2}`, Jugement dernier `{w:.1,d:.15}`.
+- [x] Sprite propre (homme/femme, face/dos, repos/action, marche, construction, victoire), 4 attaques (`HAT`), 5 animations de sort (`spellFx`, clés `Pa1` à `Pa5`), couleur de sort (`CLC`), entrée `own:{spr,fx,atk}`.
+- [x] **Silhouette validée** (aperçu v2) : grandes ailes blanches, casque ailé à nasal, auréole dorée, cape blanche, écu blanc à croix bleue.
+- [x] **Lisibilité de l'équipement à régler (vu sur l'aperçu, thèmes 1 à 10 au palier 14) :** le tabard, les ailes et la cape blancs cachent l'armure et se mélangent aux thèmes sombres (Démon, Éclair, Obsidienne) ; seuls l'arme, le bouclier et les épaulières restent visibles. À faire : tabard réduit à une bande étroite pour laisser voir le plastron et les bottes ; ailes, cape et casque teintés avec la palette du thème (`THP`) quand l'équipement en a un, blanc doré sinon ; épaulières et bouclier toujours visibles. Contrôler les 10 thèmes aux paliers 1, 7, 11 et 14, de face et de dos.
+- [x] Armes et armures : **celles du Guerrier, pas de nouvelles** (choix validé). Tests : simulation (équilibre vs 3.9.3), captures de tous les paliers (1, 7, 14), sauvegardes.
 
-## ⏳ v3.9.5 « Nouvelle classe : Assassin »
+## ⏳ v3.9.5 « Nouvelle classe : Assassin » (prochain)
 - [ ] `regClass('As',…)` : base **Voleur** (dague, armure, bottes), icône ✦, puissance 1,20, mortalité 0,75, or +15 %, coût 30.
 - [ ] 5 sorts : Lame empoisonnée `{w:.03}`, Pas de l'ombre `{d:.125}`, Coup dans le dos `{w:.06}`, Marque de mort `{g:.125}`, Danse des lames `{w:.1,d:.15}`.
 - [ ] **Silhouette validée :** sans capuche, cheveux en pointes (coiffure du héros cachée en partie), bandeau et masque verts, écharpe verte flottante, épaulière, bandoulière de lames.

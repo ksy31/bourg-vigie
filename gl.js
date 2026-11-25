@@ -974,6 +974,30 @@ function pxSprite(cls,fem,view,fr,o){
   else if(ax2){part([P([[31,33],[36,34],[39,38],[35,41]])],sl);part([E(35,35,41,41)],SK);if(WK)wpn(38,38,1.5708,.5);else{part([R(41,36,48,39)],BL);part([R(39,32,42,44)],GD)}}
   else if(atk){part([P([[32,32],[37,33],[42,26],[38,23]])],sl);part([E(39,21,44,26)],SK);if(WK)wpn(41.5,23,.2,.78);else{part([P([[40,22],[43,22],[46,0],[42,0]])],BL);part([R(37,21,46,23)],GD)}flat([L([[26,8],[18,20],[16,34],[22,46]],2)],[255,255,255])}
   else if(!bld&&fr!=='vc'){if(WK){wpn(39.5,45,0,1);part([E(36,43,42,49)],SK)}else{part([R(38,14,41,45)],BL);part([R(36,44,43,46)],GD);part([R(38,46,41,50)],'#6a4222');part([E(36,43,42,49)],SK)}}};
+ const Pa=()=>{const qa=o.ath?THP[o.ath-1]:null,CP=qa?mx(qa.l,[255,255,255],.2):[246,242,228],CD=qa?qa.m:[212,204,186],HM=qa?mx(qa.m,[255,255,255],.3):[236,238,250],WG=qa?mx(qa.l,[255,255,255],.25):[252,250,242],BLt=[47,88,188],ST=TN('#b4becf',.5),WH=[244,246,252],SKH=Da(HM),
+  halo=()=>flat([L([[15,0],[18,-3],[24,-4],[30,-3],[33,0],[30,2],[24,3],[18,2],[15,0]],2)],GD),
+  wings=()=>{part([P([[17,34],[7,31],[2,20],[0,5],[5,11],[7,1],[11,11],[14,4],[17,17],[19,25]]),P([[31,34],[41,31],[46,20],[48,5],[43,11],[41,1],[37,11],[34,4],[31,17],[29,25]])],WG);flat([L([[17,30],[5,10]]),L([[18,33],[8,24]]),L([[31,30],[43,10]]),L([[30,33],[40,24]])],CD)},
+  helm=()=>{part([P([[12,17],[11,10],[15,4],[24,1],[33,4],[37,10],[36,17],[33,13],[15,13]])],HM);flat([R(12,12,36,14)],GD);
+   part([P([[12,12],[4,4],[1,9],[7,11],[3,15],[11,16]]),P([[36,12],[44,4],[47,9],[41,11],[45,15],[37,16]])],WG)};
+  halo();if(!back)wings();
+  part([P([[13,30],[35,30],[41,60],[7,60]])],CP);if(back)flat([R(22,34,26,58)],Da(CP));
+  hrB(1);
+  legs(TN('#8f9ab0',.4),'#3c3c4c','#c8d0e0',lf,rf);
+  if(!back){part([R(22,44,26,54)],CP);flat([R(22,52,26,54)],GD)}
+  if(AR&&!back)gtor();else part([P([[16,30],[32,30],[31,44],[17,44]])],back?mx(ST,[0,0,0],.12):ST);
+  if(fem)part([P([[15,44],[33,44],[36,52],[12,52]])],CP),flat([R(13,51,35,52)],GD);
+  part([R(16,43,32,46)],'#6a4222');flat([R(22,43,26,46)],GD);
+  if(back){part([P([[15,30],[33,30],[36,58],[12,58]])],CP);flat([R(23,34,25,56)],Da(CP));part([R(16,43,32,46)],'#6a4222');wings()}
+  const sl=TN('#8d98ac',.4);arm(-1,al,sl,'#c8d0e0',!back);arm(1,ar,sl,'#c8d0e0',!back);
+  if(AR)gpl();else{part([E(9,28,20,37),E(28,28,39,37)],mx(ST,[255,255,255],.15));flat([R(10,34,19,35),R(29,34,38,35)],GD)}
+  if(!back){if(SHT)wsh();else if(ax3){part([P([[8,24],[28,24],[28,44],[18,56],[8,44]])],WH);flat([R(16,28,20,52),R(10,34,26,38)],BLt);flat([L([[4,28],[1,25]]),L([[3,36],[0,36]]),L([[4,44],[1,47]])],[255,240,190])}
+   else{part([P([[3,33],[14,33],[14,48],[8,55],[3,48]])],WH);flat([R(7,36,10,48),R(4,40,13,43)],BLt)}
+   if(ax3)flat([L([[4,28],[1,25]]),L([[3,36],[0,36]]),L([[4,44],[1,47]])],[255,240,190]);face();hrF(1);helm();flat([R(23,14,25,23)],SKH)}
+  else{hrK(1);part([E(12,4,36,24)],HM);flat([R(12,12,36,14)],GD);part([P([[12,12],[4,4],[1,9],[7,11],[3,15],[11,16]]),P([[36,12],[44,4],[47,9],[41,11],[45,15],[37,16]])],WG);part([P([[3,33],[14,33],[14,48],[8,55],[3,48]])],'#aab4c8')}
+  if(ax1){part([P([[32,33],[38,35],[43,41],[39,44]])],sl);part([E(38,39,44,45)],SK);if(WK)wpn(41.5,43.5,2.99,.6);else{part([P([[41,44],[44,43],[47,60],[43,61]])],BL);part([R(36,43,47,45)],GD)}}
+  else if(ax2){part([P([[31,33],[36,34],[39,38],[35,41]])],sl);part([E(35,35,41,41)],SK);if(WK)wpn(38,38,1.5708,.5);else{part([R(41,36,48,39)],BL);part([R(39,32,42,44)],GD)}}
+  else if(atk){part([P([[32,32],[37,33],[42,26],[38,23]])],sl);part([E(39,21,44,26)],SK);if(WK)wpn(41.5,23,.2,.78);else{part([P([[40,22],[43,22],[46,0],[42,0]])],BL);part([R(37,21,46,23)],GD)}flat([L([[26,8],[18,20],[16,34],[22,46]],2)],[255,240,190])}
+  else if(!bld&&fr!=='vc'){if(WK){wpn(39.5,45,0,1);part([E(36,43,42,49)],SK)}else{part([R(38,14,41,45)],BL);part([R(36,44,43,46)],GD);part([R(38,46,41,50)],'#6a4222');part([E(36,43,42,49)],SK)}}};
  const M=()=>{const RB=TN('#5b4bc8',.9),HB=TN('#3d30a2',.9),HT=TN('#4a3cb8',.9);
   if(!bld){if(WK)wst();else part([R(5,14,8,64)],'#7a5230')}
   if(atk){flat([E(-4,-6,16,14)],[150,235,255]);flat([E(0,-2,12,10)],[220,250,255]);flat([L([[8,-12],[8,16]]),L([[-6,4],[22,4]]),L([[-2,-6],[18,14]]),L([[18,-6],[-2,14]])],[255,255,255]);flat([E(36,22,44,30),E(30,30,36,36)],[150,235,255])}
@@ -1266,7 +1290,7 @@ function pxSprite(cls,fem,view,fr,o){
   else if(A==='claws'){flat([L([[6,48],[0,62]],2),L([[42,48],[48,62]],2)],[232,232,242]);flat([R(14,25,16,27),R(32,25,34,27)],rgb(o.eye2||'#ff4a3a'))}
   else if(A==='sparks')flat([R(5,20,7,22),R(41,14,43,16),R(9,48,11,50),R(38,40,40,42),R(23,0,25,2),R(44,32,46,34)],[255,240,140])};
  for(const k of ['ghost','shade','soul','spectre','wisp','elem'])BPF['m'+k]=()=>{GH(k);GACC(k)};BPF.mtree=TR;BPF.mhydra=HY;BPF.mwyvern=WV;BPF.mwyrm=WY;
- if(fr==='wicon')wic();else if(fr==='gicon')gic();else ({G,M,V,R:Rg,...NPF,...MPF,...BPF})[CLO.spr.has(cls)?cls:eqb(cls)]();
+ if(fr==='wicon')wic();else if(fr==='gicon')gic();else ({G,Pa,M,V,R:Rg,...NPF,...MPF,...BPF})[CLO.spr.has(cls)?cls:eqb(cls)]();
  if(fr==='vc'&&'GMVR'.includes(eqb(cls))){part([P([[33,31],[38,27],[41,17],[37,15]])],TN({G:'#8d98ac',M:'#5b4bc8',V:'#3a2e58',R:'#a8743c'}[eqb(cls)],{G:.4,M:.9,V:.6,R:.35}[eqb(cls)]));part([E(36,10,42,17)],SK);if(eqb(cls)==='G'){if(WK)wpn(39,12,.05,.9);else part([R(38,-8,41,10)],BL)}if(eqb(cls)==='V'){if(WK)wpn(39,12,.05,1,1);else part([P([[37,12],[41,12],[40,-2],[38,0]])],BL)}}
  // contour sombre
  const out=new Uint8ClampedArray(W*H*4);
@@ -1351,6 +1375,7 @@ function heroSp(h,sp,tm,x,y,z){const mo=MN.get(h.id),tx=mo?mo.g.position.x-(mo.b
   case 'arc':{const sg=sp[2]?1:0,X=x+1.6+sg*.4,Y=gy+2.6-sg*.5,s=fxSp('arc',3.6,3.6,X,Y,z);fxAdd(s,tm,.3*A,(p,s)=>{s.material.rotation=fxAng(X,Y,z,1,0,0)-.6+sg*2.4;s.material.opacity=1-p*p;const k=.75+.5*p;s.scale.set(3.6*k,3.6*k,1)});break}
   case 'streak':{const dy=sp[2]||0,X=x+2.8,Y=gy+1.9+dy*.5,s=fxSp('streak',5,.9,X,Y,z);fxAdd(s,tm,.24*A,(p,s)=>{s.material.rotation=fxAng(X,Y,z,1,0,0)+dy*.5;s.material.opacity=1-p;s.scale.set(5*(.5+.5*p),.9*(1-.4*p),1)});break}
   case 'slam':{heroSp(h,[sp[0],'arc',0],tm,x,y,z);if(mo)fxDust(mo);break}
+  case 'cross':{const s=fxSp('plus',4.2,4.2,tx-.5,gy+2.3,z);s.material.color.set('#ffe08a');fxAdd(s,tm,.5*A,(p,s)=>{s.material.opacity=1-p*p;const k=4.2*(.7+.6*p);s.scale.set(k,k,1)});break}
   case 'orb':fxProj('orb',[x+1.5,gy+2.1,z],[tx,gy+2.1,z],tm,.4*A,[1.1,1.1],.3,3);break;
   case 'bolt':{const s=fxSp('bolt1',2.2,8.4,tx,gy+4.2,z);fxAdd(s,tm,.34*A,(p,s)=>{s.material.map=fxTex(Math.floor(p*12)%2?'bolt2':'bolt1');s.material.opacity=p<.7?1:1-(p-.7)/.3});break}
   case 'beam':{const X0=x+1.6,Y=gy+2.3,L=Math.max(2,tx-X0),mx=(X0+tx)/2,s=fxSp('streak',L,1.4,mx,Y,z),o2=fxSp('orb',2.2,2.2,tx,Y,z),d=.85*A;
@@ -1378,6 +1403,10 @@ const HAT={G:[{d:1.15,fr:[[0,.42,6],[.42,.72,9]],sp:[[.42,'arc']],mv:[.42,.72,.9
   {d:1.6,fr:[[0,.75,6],[.75,1,9]],sp:[[.75,'arr',1]]},
   {d:1.5,fr:[[0,.2,6],[.2,.4,9],[.4,.55,6],[.55,.75,9],[.75,.9,6],[.9,1.1,9]],sp:[[.2,'arr',0],[.55,'arr',0],[.9,'arr',0]]},
   {d:2,fr:[[0,.8,6],[.8,1.2,9]],sp:[[.8,'arr',2],[.85,'arr',3],[.9,'arr',4],[.95,'arr',5],[1,'arr',6]]}]};
+HAT.Pa=[{d:1.15,fr:[[0,.42,6],[.42,.72,9]],sp:[[.42,'arc']],mv:[.42,.72,.9]},
+  {d:1,fr:[[.3,.68,10]],sp:[[.3,'streak']],mv:[.3,.68,1.2]},
+  {d:1.5,fr:[[0,.5,6],[.5,1.05,11]],sp:[[.5,'slam']],mv:[.15,.55,.5,1.2]},
+  {d:1.7,fr:[[0,.3,10],[.3,.6,9],[.6,1.2,6]],sp:[[.3,'arc',0],[.6,'arc',1],[.95,'cross']],mv:[.2,1.1,1.2]}];
 const HAU=lv=>{const r=[];for(let i=0;i<HLV.length;i++)if(lv>=HLV[i])r.push(i);return r};
 // v3.7.3 : une animation propre à chacun des 20 sorts (aura de classe + effet distinct des attaques de base)
 const SPC={G:[232,191,80],M:[127,232,255],V:[200,90,140],R:[111,208,106]};
@@ -1397,6 +1426,13 @@ function spellFx(h,o,tm,x,y,z){o.cst=tm;const A=ASL,gy=y+(h.hs?1.5:0),cl=SPC[h.c
   for(let i=0;i<6;i++)mk('bstar',.9,.9,x+1.6,hy,z,'#fff2b0',.1,.9,(p,s)=>{const a=i*1.047;s.position.set(x+1.6+Math.cos(a)*2.4*p,hy+Math.sin(a)*2.8*p,z);s.material.opacity=1-p});break;
  case 'G5':for(let i=0;i<14;i++){const a=i*.45;mk('flame',1.4,2.2,x+Math.cos(a)*1.3,gy+.2,z+Math.sin(a)*1.3,'#ff5a2a',i*.06,1.2,(p,s)=>{s.position.y=gy+.8+p*4.2+Math.sin(p*9+i)*.2;s.position.x=x+Math.cos(a)*(1.3+.3*Math.sin(p*7));s.material.opacity=fd(p)})}
   ring(x,hy,'#ff3a2a',0,2,8,.8);ring(x,hy,'#ff9a3a',.3,2,10,.8);break;
+ case 'Pa1':mk('streak',10,2.6,tx,gy+5,z,'#fff2b0',0,1,(p,s)=>{s.material.rotation=PI/2;s.scale.set(10,2.6*(1-.4*p)*(.8+.2*Math.sin(p*30)),1);s.material.opacity=fd(p)});ring(tx,gy+.5,'#fff2b0',.15,1,7,.8);break;
+ case 'Pa2':for(let i=0;i<14;i++){const a=i*2.4,r=.4+.9*((i*7)%5)/4;mk('bstar',.9,.9,x+Math.cos(a)*r,gy+7,z+Math.sin(a)*r,'#fff2b0',i*.07,1.2,(p,s)=>{s.position.y=gy+7-p*6.5;s.material.opacity=fd(p)})}ring(x,gy+.5,'#ffe08a',.3,1,5,.9);break;
+ case 'Pa3':for(let i=0;i<2;i++)mk('bolt1',2.6,9.5,tx-i*.9,gy+4.7,z,'#ffd35a',i*.3,.8,(p,s)=>{s.material.map=fxTex(Math.floor(p*14+i)%2?'bolt2':'bolt1');s.material.opacity=fd(p)});ring(tx,gy+.4,'#ffd35a',.05,1.5,6,.6);ring(tx,gy+.4,'#fff2b0',.35,1.5,6,.6);break;
+ case 'Pa4':for(let i=0;i<6;i++){const a=i*1.05,r=.9+.4*(i%2);mk('plus',.9,.9,x+Math.cos(a)*r,gy+.4,z+Math.sin(a)*r,'#9af08a',i*.1,1.1,(p,s)=>{s.position.y=gy+.4+p*3.6;s.material.opacity=Math.min(1,(1-p)*2)})}
+  for(const sx of[-1,1])mk('orb',1.5,1.5,x+sx*1.2,hy-.4,z,'#d8ffb0',0,1.2,(p,s)=>{s.material.opacity=fd(p)});ring(x,hy,'#b8f59a',0,1.5,6,1);ring(x,hy,'#ffe08a',.25,1,5,.9);break;
+ case 'Pa5':mk('streak',14,4.5,tx,gy+6,z,'#fff6c8',0,1.5,(p,s)=>{s.material.rotation=PI/2;s.scale.set(14,4.5*(.8+.2*Math.sin(p*25)),1);s.material.opacity=fd(p)});
+  mk('plus',5,5,tx,gy+6.5,z,'#ffe08a',.3,1.2,(p,s)=>{s.position.y=gy+6.5-p*1.5;const k=5*(.8+.3*Math.sin(p*9));s.scale.set(k,k,1);s.material.opacity=fd(p)});ring(tx,gy+.4,'#fff2b0',.4,2,12,.9);break;
  case 'M1':for(let i=0;i<6;i++){const a=i*1.05+.3,r=1.5+.4*(i%2);mk('bolt1',.9,3.2,x+Math.cos(a)*r,hy+Math.sin(a)*.8,z,'#fff2a0',i*.07,.9,(p,s)=>{s.material.map=fxTex(Math.floor(p*14+i)%2?'bolt2':'bolt1');s.material.opacity=fd(p)})}
   mk('bstar',2.6,2.6,x+1.3,hy+1.2,z,'#fff2a0',0,1.1,(p,s)=>{const k=2.6*(.7+.4*Math.sin(p*30));s.scale.set(k,k,1);s.material.opacity=fd(p)});break;
  case 'M2':mk('bub',1,1,x,hy,z,'#6fb8ff',0,1.8,(p,s)=>{const k=4+.25*Math.sin(p*18);s.scale.set(k,k,1);s.material.opacity=.55*fd(p)});ring(x,hy,'#bfe6ff',0,2,8,.7);

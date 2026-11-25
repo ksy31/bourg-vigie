@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.4 « Nouvelle classe : Paladin »
+
+Version affichée dans les Options : **v3.9.4**
+
+### Ajouté
+- **Paladin (✚)** : recrutable dès le départ (coût 28), puissance ×1,05, mortalité 0,30 (la plus basse des classes). Il utilise l'équipement du Guerrier (épée, armure, bottes, bouclier), sans nouvel objet.
+- **5 sorts :** Lumière sacrée (+3 % de puissance), Bénédiction (−12,5 % de mortalité), Châtiment (+6 % de puissance), Imposition des mains (−20 % de mortalité, 20 % des fuites deviennent des victoires), Jugement dernier (+10 % de puissance, −15 % de mortalité).
+- **Sprite propre (homme/femme, face/dos, toutes les poses) :** grandes ailes, casque ailé à nasal, auréole dorée, cape, écu blanc à croix bleue. Ailes, cape et casque prennent la palette du thème de l'armure quand elle en a un, blanc doré sinon. Le tabard est réduit à une bande étroite : plastron, épaulières, bottes et bouclier restent visibles.
+- **4 attaques :** arc doré, estoc, coup d'écu, croix lumineuse. **5 animations de sort :** rayon de lumière, pluie d'étincelles, éclair doré, mains vertes, colonne de lumière avec croix. Couleur de sort : or clair.
+
+### Modifié
+- Le recrutement tire désormais parmi 5 classes. Cache `bv-v111`. Pas de changement de sauvegarde.
+
+### Vérifié
+- Captures des 10 thèmes aux paliers 1, 7, 11 et 14, de face et de dos, et de toutes les poses ; recrutement, sauvegarde/rechargement avec un Paladin, chargement d'une sauvegarde 3.9.3 sans erreur.
+- Non vérifié : animations d'attaque et de sort en 3D (pas de WebGL ici), rendu sur le Z Fold 3.
+
 ## v3.9.3 « Coiffures et yeux selon le sexe »
 
 Version affichée dans les Options : **v3.9.3**
