@@ -1,5 +1,29 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.8 « Équilibrage des 8 classes »
+
+Version affichée dans les Options : **v3.9.8**
+
+### Modifié
+- **Puissance et mortalité rapprochées de la moyenne**, pour que chaque classe ait sa chance. Les bonus d'or et de ressources, les sorts et les équipements ne changent pas.
+
+| Classe | Puissance (avant → après) | Mortalité (avant → après) |
+|---|---|---|
+| Guerrier | 1,15 → 1,12 | 0,40 → 0,50 |
+| Voleur | 0,95 → 1,05 | 0,50 → 0,55 |
+| Mage | 1,30 → 1,15 | 0,85 → 0,65 |
+| Rôdeur | 1,00 → 1,05 | 0,55 → 0,55 |
+| Paladin | 1,05 → 1,10 | 0,30 → 0,45 |
+| Assassin | 1,20 → 1,12 | 0,75 → 0,62 |
+| Nécromancien | 1,15 → 1,10 | 0,70 → 0,60 |
+| Chasseur | 1,10 → 1,08 | 0,50 → 0,52 |
+
+- Moyenne des 8 classes : puissance 1,11 → 1,10, mortalité 0,57 → 0,56. Pas de changement de sauvegarde. Cache `bv-v115`.
+
+### Vérifié
+- Puissance recalculée pour les 8 classes à niveau et équipement égaux ; recrutement, sauvegarde/rechargement, chargement d'une sauvegarde 3.9.7 sans erreur.
+- Non vérifié : effet sur une vraie partie (or gagné, quêtes par jour, morts) ; à surveiller en jeu.
+
 ## v3.9.7 « Nouvelle classe : Chasseur »
 
 Version affichée dans les Options : **v3.9.7**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.7 « Nouvelle classe : Chasseur »**
+Version actuelle du jeu : **v3.9.8 « Équilibrage des 8 classes »**
 
 ## ✅ Déjà intégré
 
@@ -543,6 +543,9 @@ Version actuelle du jeu : **v3.9.7 « Nouvelle classe : Chasseur »**
 - Le socle est en place depuis la 3.9.2 : `classes.js` (`regClass`, `CLB`, `CLO`, `CLC`). Les couleurs du sprite suivent le palier d'équipement porté.
 - Prototype des sprites : fonctions `Pa`, `As`, `Ne`, `Ch` écrites sur le moteur `pxSprite` (paramètres de palette ajoutés à `G`, `V`, `M`, `Rg`) ; elles ne sont dans aucune release, à réécrire proprement dans `gl.js`.
 - Non vérifiable ici : fps et batterie sur le Z Fold 3, rendu 2D.
+
+## ✅ v3.9.8 « Équilibrage des 8 classes »
+- [x] **Puissance et mortalité rapprochées de la moyenne** pour que chaque classe ait sa chance : puissance entre 1,05 et 1,15, mortalité entre 0,45 et 0,65 (Guerrier 1,12 / 0,50, Voleur 1,05 / 0,55, Mage 1,15 / 0,65, Rôdeur 1,05 / 0,55, Paladin 1,10 / 0,45, Assassin 1,12 / 0,62, Nécromancien 1,10 / 0,60, Chasseur 1,08 / 0,52). Les bonus d'or et de ressources ne changent pas. Les valeurs données plus haut pour les nouvelles classes sont celles de leur sortie.
 
 ## 📱 Guide APK (prochain)
 
