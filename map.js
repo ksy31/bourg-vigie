@@ -9,7 +9,11 @@ function fit(){
 }
 const SLOTS=(()=>{const a=[];for(let dx=-30;dx<=30;dx+=10)for(const dy of[-19,-9.5,0,9.5,19])if(!(Math.abs(dx)===30&&Math.abs(dy)===19))a.push([dx,dy]);return a.sort((p,q)=>(p[0]/1.6)**2+p[1]**2-((q[0]/1.6)**2+q[1]**2)||p[0]-q[0])})();
 const jt=(i,n)=>{const s=Math.sin(i*127.1+n*311.7)*43758.5453;return s-Math.floor(s)};
-const slot=it=>{const k=Math.floor(it.i/SLOTS.length),p=SLOTS[it.i%SLOTS.length],q=it.i?1:0;return[p[0]*1.5+k*4+q*(jt(it.i,1)-.5)*2.4,p[1]*1.5+k*4+q*(jt(it.i,2)-.5)*2]};
+const slot=it=>{const k=Math.floor(it.i/SLOTS.length),p=SLOTS[it.i%SLOTS.length],q=it.i?(k?.4:1):0;return[p[0]*1.5+k*7.5+q*(jt(it.i,1)-.5)*5.6,p[1]*1.5+k*7.1+q*((jt(it.i,2)-.5)*4.8+Math.sin(p[0]*.21+jt(it.i,6)*3)*1)]};
+// v3.9.1 : rotation ±20° en 3D (mairie de face), pivot = la porte ; centre et boîte englobante après rotation
+const BYAW=it=>it.i&&window.BRO?(jt(it.i,8)-.5)*.7:0,BDO=k=>(k==='A'?6.6:5.4)/2+2.4;
+const bctr=it=>{const p=slot(it),a=BYAW(it);if(!a)return p;const o=BDO(NK[it.e]||'H');return[p[0]-o*Math.sin(a),p[1]+o*(1-Math.cos(a))]};
+const bbox=it=>{const k=NK[it.e]||'H',c=bctr(it),a=Math.abs(BYAW(it)),hw=BHW(k)+(k==='A'?.4:0),hd=(k==='A'?6.6:5.4)/2,s=Math.sin(a),co=Math.cos(a);return{x:T.x+c[0],z:T.y+c[1],hw:hw*co+hd*s,hd:hw*s+hd*co}};
 const tr=k=>{const n=S.npc[k];if(!n||k==='A')return 0;return n.lv>=6?2:n.lv>=3?1:0};
 function vdim(){const u=S.pl.map(it=>[slot(it),it.e,it]);let rx=14,ry=11;for(const [p] of u){rx=Math.max(rx,Math.abs(p[0])+9);ry=Math.max(ry,Math.abs(p[1])+8)}const kk=Math.max(0,...u.map(([p])=>Math.hypot(p[0]/rx,p[1]/ry)));if(kk>.9){rx*=kk/.9;ry*=kk/.9}return{u,rx,ry}}
 function dij(NX,NY,src,goal,ok,cost){const N=NX*NY,dist=new Float64Array(N).fill(1e9),prv=new Int32Array(N).fill(-1),h=[[0,src]];dist[src]=0;
@@ -121,7 +125,7 @@ function bld(x,y,k,rc,e,t){t=t||0;
 }
 const BC={c:null,k:''},bstg=it=>{const p=it.cn.t/it.cn.T;return[.75,.5,.25,.1].find(v=>p>=v)||0};
 const BTOP={A:7.4,V:8.2,S:9.4,M:4.4,E:5,F:6.7,T:6.7,I:6.7,C:8.4,N:7.4,H:6.7},BHW=k=>k==='V'?4.2:k==='E'?3.8:3.2;
-function bpos(h,b){const p=slot(b.it),k=NK[b.it.e]||'H',hw=BHW(k),o=[[-hw-1.8,.9],[hw+1.8,.9],[0,4.4]][b.j];return[(T.x+p[0]+o[0])*sc+((h.id%3)-1)*sc*.4,(T.y+p[1]+o[1])*sc]}
+function bpos(h,b){const p=bctr(b.it),k=NK[b.it.e]||'H',hw=BHW(k),o=[[-hw-1.8,.9],[hw+1.8,.9],[0,4.4]][b.j];return[(T.x+p[0]+o[0])*sc+((h.id%3)-1)*sc*.4,(T.y+p[1]+o[1])*sc]}
 function bscaf(x,y,k,f){const u=sc,bt=y+3*u,hw=(BHW(k)+1.1)*u,h=Math.max(.12,f)*((BTOP[k]||4.6)+3)*u+1.4*u;
  cx.lineWidth=1;cx.strokeStyle='rgba(29,35,38,.65)';cx.fillStyle='#9a7a4a';for(const s of[-1,1])cx.fillRect(x+s*hw-.2*u,bt-h,.4*u,h);
  cx.fillStyle='#b08850';for(let yy=bt-1.6*u;yy>bt-h;yy-=2.2*u){cx.fillRect(x-hw,yy,2*hw,.4*u);cx.strokeRect(x-hw,yy,2*hw,.4*u)}
@@ -329,7 +333,7 @@ function vgCobbleFill(g,x0,y0,x1,y1,s,R,ok){
 function vgMoss(g,x0,y0,x1,y1,s,R,ok){
  for(let i=0,N=Math.round((x1-x0)*(y1-y0)/7);i<N;i++){const x=x0+R()*(x1-x0),y=y0+R()*(y1-y0);if(ok&&!ok(x,y))continue;const r=(.15+R()*.3)*s,q=g.createRadialGradient(x*s,y*s,0,x*s,y*s,r);q.addColorStop(0,'rgba(88,120,56,.42)');q.addColorStop(1,'rgba(88,120,56,0)');g.fillStyle=q;g.fillRect(x*s-r,y*s-r,2*r,2*r)}}
 function paveVillage(g,vd,R,s){const {u}=vd,rc=[],m=1,pr=[13,9];
- for(const [p,e] of u){const k=NK[e]||'H';rc.push({x:T.x+p[0],y:T.y+p[1],w:2*BHW(k)+(k==='A'?.8:0),d:k==='A'?6.6:5.4})}
+ for(const [p,e,it] of u){const b=bbox(it);rc.push({x:b.x,y:b.z,w:2*b.hw,d:2*b.hd})}
  const hit=(a,b,r)=>{const x0=r.x-r.w/2-m,x1=r.x+r.w/2+m,y0=r.y-r.d/2-m,y1=r.y+r.d/2+m,dx=b[0]-a[0],dy=b[1]-a[1];let t0=0,t1=1;for(const [d,q,lo,hi] of [[dx,a[0],x0,x1],[dy,a[1],y0,y1]]){if(Math.abs(d)<1e-9){if(q<lo||q>hi)return false}else{let s1=(lo-q)/d,s2=(hi-q)/d;if(s1>s2){const t=s1;s1=s2;s2=t}t0=Math.max(t0,s1);t1=Math.min(t1,s2);if(t0>t1)return false}}return true};
  const route=(a,b,dp)=>{const h=rc.find(r=>hit(a,b,r));if(!h||dp<=0)return[a,b];let best=null,bc=1e9;for(const sx of[-1,1])for(const sy of[-1,1]){const c=[h.x+sx*(h.w/2+m+.7),h.y+sy*(h.d/2+m+.7)],cost=Math.hypot(c[0]-a[0],c[1]-a[1])+Math.hypot(c[0]-b[0],c[1]-b[1])+(rc.some(r=>hit(a,c,r))||rc.some(r=>hit(c,b,r))?500:0);if(cost<bc){bc=cost;best=c}}return route(a,best,dp-1).concat(route(best,b,dp-1).slice(1))};
  const nrm=a=>((a[0]-T.x)/pr[0])**2+((a[1]-T.y)/pr[1])**2,pe=a=>{const vx=(a[0]-T.x)/pr[0],vy=(a[1]-T.y)/pr[1],l=Math.hypot(vx,vy)||1;return[T.x+vx/l*pr[0]*.85,T.y+vy/l*pr[1]*.85]};

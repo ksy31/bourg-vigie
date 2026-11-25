@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v3.9.1 « Village organique »
+
+Version affichée dans les Options : **v3.9.1**
+
+### Ajouté
+- **Orientation des bâtiments (3D) :** chaque bâtiment est tourné au hasard de ±20° autour de sa porte (la porte, l'allée pavée et les personnages restent à la même place). Toit, icône de toit, lampadaire, fumée, lumières, ombre de contact et accessoires suivent la rotation. **La mairie reste toujours de face.** En 2D, les bâtiments restent de face.
+
+### Modifié
+- **Placement du village :** les bâtiments sont beaucoup moins alignés sur la grille (décalage environ 2,5 fois plus large, rangées légèrement ondulées). Les parties en cours voient leur village se réorganiser. Au-delà de 31 bâtiments, la deuxième couronne est décalée d'une demi-case (moins de chevauchements qu'avant).
+- **Collisions des bâtiments :** les aventuriers contournent la boîte englobante du bâtiment tourné ; les allées pavées en tiennent compte.
+- **Cercle de transparence :** il ne s'active plus que pour un aventurier **en combat ou en attente** (donc plus sur les routes, ni au retour, ni au départ). En combat, il devient **un ovale** qui englobe l'aventurier et son monstre ; en attente, il reste rond.
+
 ## v3.9.0 « Optimisation : fps réglables, veille légère, chargement allégé »
 
 Version affichée dans les Options : **v3.9.0**

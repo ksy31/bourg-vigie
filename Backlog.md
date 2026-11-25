@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.0 « Optimisation : fps réglables, veille légère, chargement allégé »**
+Version actuelle du jeu : **v3.9.1 « Village organique »**
 
 ## ✅ Déjà intégré
 
@@ -411,6 +411,12 @@ Version actuelle du jeu : **v3.9.0 « Optimisation : fps réglables, veille lég
 
 ## ✅ v3.8.2 « Monstres : démons, géants, morts-vivants (3/4) »
 - [x] Silhouettes dédiées : démons (4 + base), géants (4), Squelette archer, liches (2).
+
+## ✅ v3.9.1 « Village organique »
+- [x] Placement moins régulier (`slot` dans `map.js` : décalage ×2,5, ondulation) ; second anneau décalé d'une demi-case.
+- [x] Rotation ±20° des bâtiments en 3D autour de la porte (`BYAW`, `bctr`, `bbox` dans `map.js` ; `TA.yaw` et `yq` dans `gl.js`) ; mairie toujours de face ; drapeau `window.BRO` = 3D active.
+- [x] Collisions (`brects`, `bpush`) et allées pavées (`paveVillage`) sur la boîte englobante tournée.
+- [x] Cercle de transparence : combat et attente seulement, ovale englobant le monstre (`HE`, `uE` dans le shader).
 
 ## ✅ v3.9.0 « Optimisation : fps réglables, veille légère, chargement allégé »
 - [x] Bouton 🎞️ 30 / 60 / 120 fps dans les Options (défaut 60, clé `bvf`, limiteur dans `loop` de `main.js`).

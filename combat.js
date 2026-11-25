@@ -100,7 +100,7 @@ function resolve(h){
   h.loot=null;h.hurt=1;goBack(h);log(`${h.name} fuit devant ${e.n}, blessé·e.`);crp(`${h.name} fuit devant ${e.n}`,'#fff');
  }
 }
-function brects(){const r=[];for(const it of S.pl){const k=NK[it.e]||'H',p=slot(it);r.push({x:T.x+p[0],z:T.y+p[1],hw:BHW(k)+(k==='A'?.4:0)+.35,d:(k==='A'?6.6:5.4)/2+.3})}return r}
+function brects(){const r=[];for(const it of S.pl){const b=bbox(it);r.push({x:b.x,z:b.z,hw:b.hw+.35,d:b.hd+.3})}return r}
 function binR(R,x,y){for(const r of R)if(Math.abs(x-r.x)<r.hw&&Math.abs(y-r.z)<r.d)return r;return null}
 function bavoid(h,tg,nx,ny){if(typeof BHW!=='function'||!S.pl||!S.pl.length)return;const R=brects();if(binR(R,h.x,h.y)||binR(R,tg.x,tg.y))return;const r=binR(R,nx,ny);if(!r)return;
  const m=.6,cs=[[r.x-r.hw-m,r.z-r.d-m],[r.x+r.hw+m,r.z-r.d-m],[r.x-r.hw-m,r.z+r.d+m],[r.x+r.hw+m,r.z+r.d+m]];let best=null,bs=1e9;
