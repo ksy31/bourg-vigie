@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.0 « Animations des aventuriers »
+
+Version affichée dans les Options : **v4.0.0**
+
+### Ajouté
+- **Vrai cycle de marche :** 6 images par vue (face, dos, côté) avec balancement des bras, rebond du corps, jambes qui s'alternent, cheveux/coiffe et bas de cape ou de robe qui suivent le pas.
+- **Vue de côté :** utilisée quand l'aventurier se déplace surtout de gauche à droite. Elle est dérivée de la vue de face (corps resserré, jambes et bras en ciseaux), pas redessinée à la main.
+- **Posture d'attente en combat (8 classes) :** genoux fléchis, buste penché vers le monstre, arme ou bras levés selon la classe.
+- **Pose de sort (8 classes) :** bras ou arme levés pendant l'incantation (remplace l'image d'attaque utilisée avant).
+
+### Modifié
+- Textures des aventuriers : 13 → 29 images par héros (1392 × 72 px, environ 0,4 Mo). Les 13 images d'origine sont identiques à la 3.9.8 (vérifié sur 8 classes × 3 paliers d'équipement).
+- Rendu 3D seulement : la 2D est inchangée. Pas de changement de sauvegarde. Cache `bv-v116`.
+
+### Vérifié
+- 672 images existantes comparées à la 3.9.8 sans différence ; 1392 images nouvelles générées sans erreur ; captures PNG relues.
+- Non vérifié : fluidité (fps) et batterie sur le Z Fold 3, rendu réel en jeu (vitesse du cycle, seuil face/côté).
+
 ## v3.9.8 « Équilibrage des 8 classes »
 
 Version affichée dans les Options : **v3.9.8**

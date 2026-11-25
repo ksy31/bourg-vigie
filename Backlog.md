@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v3.9.8 « Équilibrage des 8 classes »**
+Version actuelle du jeu : **v4.0.0 « Animations des aventuriers »**
 
 ## ✅ Déjà intégré
 
@@ -547,15 +547,16 @@ Version actuelle du jeu : **v3.9.8 « Équilibrage des 8 classes »**
 ## ✅ v3.9.8 « Équilibrage des 8 classes »
 - [x] **Puissance et mortalité rapprochées de la moyenne** pour que chaque classe ait sa chance : puissance entre 1,05 et 1,15, mortalité entre 0,45 et 0,65 (Guerrier 1,12 / 0,50, Voleur 1,05 / 0,55, Mage 1,15 / 0,65, Rôdeur 1,05 / 0,55, Paladin 1,10 / 0,45, Assassin 1,12 / 0,62, Nécromancien 1,10 / 0,60, Chasseur 1,08 / 0,52). Les bonus d'or et de ressources ne changent pas. Les valeurs données plus haut pour les nouvelles classes sont celles de leur sortie.
 
-## ⏳ v4.0.x « Refonte des animations » (idée, à détailler avant de coder)
+## ⏳ v4.0.x « Refonte des animations »
 Grande mise à jour de toutes les animations, en trois étapes : aventuriers, puis PNJ, puis monstres. Chaque étape sera cadrée avec des questions avant le codage.
 
-### v4.0.0 « Animations des aventuriers »
-- [ ] **Marche bien mieux représentée :** aujourd'hui, chaque vue (face et dos) n'a que 3 images (arrêt, pas gauche, pas droit). À faire : vrai cycle de marche (plus d'images, balancement des bras et du corps, cape, cheveux et accessoires qui suivent). Durée et fluidité à définir.
-- [ ] **Posture de combat propre à chaque classe (8 classes) :** Guerrier, Voleur, Mage, Rôdeur, Paladin, Assassin, Nécromancien, Chasseur. Posture d'attente en combat, d'attaque et de sort adaptée à la classe. Postures à définir classe par classe.
-- [ ] À trancher : nombre d'images du cycle de marche et poids des textures (batterie et fps sur le Z Fold 3), vue de côté ou non, animations en 2D aussi ou en 3D seulement.
+### v4.0.0 « Animations des aventuriers » ✅
+- [x] **Marche :** cycle de 6 images par vue (face, dos, côté), balancement des bras, rebond, cape/cheveux ; la vue de côté est dérivée de la face.
+- [x] **Postures de combat (8 classes) :** attente en combat, pose de sort ; attaques existantes conservées.
+- [x] Rendu 3D seulement ; textures 13 → 29 images par héros.
+- [ ] À surveiller en jeu : fps/batterie, vitesse du cycle, seuil face/côté (`Math.abs(fx)>.78` dans `sprUpd`).
 
-### v4.0.1 « Animations des PNJ »
+### v4.0.1 « Animations des PNJ » (prochain)
 - [ ] Marche, gestes et activités des PNJ (Aubergiste, Forgeron, Tavernier, Guérisseur, Palefrenier, Maire, Intendant, Chancelier, Enchanteur). Contenu à définir.
 
 ### v4.0.2 « Animations des monstres »
