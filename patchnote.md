@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.0.9 « Enquête sur le sol »
+
+Version affichée dans les Options : **v4.0.9**
+
+### Ajouté
+- Affichage 3D → Sol du village : **Relief**, **Grande image**, **Dessin comme avant** (Chrome choisit, au lieu du processeur demandé). Tout décoché = sol allégé ; tout coché = sol d'origine.
+
+### Modifié
+- Le choix Actuel / Allégé / Aucun est remplacé par ces cases et « Afficher le sol ». L'ancien choix est repris. Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v125`.
+
+### Corrigé
+- Rien : version de diagnostic. La cause du plantage du sol complet reste inconnue.
+
+### Vérifié
+- Navigateur sans écran avec la sauvegarde v4.0.4 : 8 combinaisons et sans sol, 3D chargée sans erreur. Taille de l'image et mode de dessin demandé conformes à chaque fois. Reprise de l'ancien choix « Allégé » et enregistrement après « Valider ».
+- Le relief n'est pas mesuré par le test (vérifié dans le code). Non vérifié : Z Fold 3.
+
 ## v4.0.8 « Sol allégé et menus rangés »
 
 Version affichée dans les Options : **v4.0.8**

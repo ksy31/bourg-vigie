@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.8 « Sol allégé et menus rangés »**
+Version actuelle du jeu : **v4.0.9 « Enquête sur le sol »**
 
 ## ✅ Déjà intégré
 
@@ -600,6 +600,11 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Messages :** « force l'arrêt de Chrome ».
 - [ ] **Essai du sol allégé sur le Z Fold 3.** Résultat v4.0.7 : le sol en relief déclenche le plantage, tous les autres éléments affichés fonctionnent. Cause exacte inconnue.
 - [ ] Le sol actuel (beau) est à garder : à rétablir par défaut si la cause est trouvée.
+
+## ✅ v4.0.9 « Enquête sur le sol »
+- [x] **Trois réglages séparés du sol :** relief, grande image, dessin comme avant.
+- [ ] **Résultats Z Fold 3** (priorité). v4.0.8 : sol allégé OK ; écran blanc bref au passage en qualité Haute (non étudié).
+- [ ] Mis de côté : dernier bâtiment qui dépasse dans la clôture (contour calculé surtout d'après les centres).
 
 ## 📱 Guide APK (prochain)
 
