@@ -603,10 +603,43 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 
 ## ✅ v4.0.9 « Enquête sur le sol »
 - [x] **Trois réglages séparés du sol :** relief, grande image, dessin comme avant.
-- [ ] **Résultats Z Fold 3** (priorité). v4.0.8 : sol allégé OK ; écran blanc bref au passage en qualité Haute (non étudié).
+- [x] **Résultats Z Fold 3** (réglages : 1 relief, 2 grande image, 3 dessin comme avant) : 1, 2, 3, 1+2, 1+3 et 2+3 fonctionnent ; **seul 1+2+3 plante**. Hypothèse non prouvée : limite de la partie graphique. 60 fps constants signalés (avant : 30 à 40 en forêt ; lien avec le sol non mesuré).
 - [ ] Mis de côté : dernier bâtiment qui dépasse dans la clôture (contour calculé surtout d'après les centres).
 
-## 📱 Guide APK (prochain)
+## v4.1.0 « Sol définitif et correctifs » (prochain)
+- [ ] **Sol du village :** forcer **1+2** (relief + grande image, dessin demandé sur le processeur). L'option 3 « Dessin comme avant » ne doit plus être disponible ; un ancien réglage enregistré qui la contient (`bvsol`) ne doit plus l'appliquer.
+- [ ] **Statut « undefined »** dans l'onglet Aventuriers pendant la récupération du butin : corriger.
+- [ ] **Autres trous :** vérifier tous les états d'un aventurier pour trouver les textes manquants ou « undefined ».
+- [ ] **Rond de transparence :** le garder pendant que l'aventurier récupère le butin.
+
+## v4.1.1 « Suivi des morts »
+- [ ] **Cibler un aventurier mort avec les flèches** (déjà demandé auparavant, à corriger). Il peut rester affiché dans l'onglet Aventuriers comme **mort**.
+- [ ] **Durée :** ciblable et affiché **tant que sa tête de mort est visible sur la carte** (actuellement 240 s dans le code).
+- [ ] Compatibilité des anciennes sauvegardes.
+
+## v4.1.2 « Un village plus spacieux »
+- [ ] **Agrandir le contour de la clôture** avec un espace de sécurité : aucun bâtiment dans la clôture, aucune entrée collée à elle. Constat (v4.0.9) : le contour (`vdim`, map.js) est calculé surtout d'après le centre des bâtiments, sans leur taille.
+- [ ] **Entrées dans les barrières du village :** les agrandir (trop petites).
+- [ ] **Marge de sécurité autour des bâtiments :** les aventuriers y rentrent encore.
+- [ ] Vérifier palissade en bois et remparts en pierre, en 2D et en 3D. Le sol du village change de taille avec le contour : revérifier la 3D sur le Z Fold 3.
+
+## v4.1.3 « Montagne et volcan »
+- [ ] **Marcher sur le relief :** à la montagne, le personnage rentre dedans au lieu de marcher dessus. Corriger aussi le volcan.
+- [ ] Vérifier également les monstres et le butin à ces endroits.
+
+## v4.1.4 « À cheval »
+- [ ] **Refaire le cheval en pixel art dans la vue 3D** (même style 2D que les personnages).
+- [ ] **C'est le cheval qui court**, plus l'aventurier.
+
+## ⏸️ Mis de côté
+- [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.
+
+## 📝 Notes de dépannage (Z Fold 3)
+- 3D bloquée en blanc après un plantage : **forcer l'arrêt de Chrome** suffit à la débloquer.
+- Après un envoi sur GitHub, l'appli peut garder l'ancienne version ou mélanger les fichiers (menu ⚙️ sans effet constaté en restant en 4.0.7) : vérifier la version dans les Options. Ouvrir le lien GitHub Pages a donné accès à la 4.0.8 quand l'appli restait en 4.0.7.
+- Ne pas effacer les données du site (perte de la sauvegarde).
+
+## 📱 Guide APK
 
 - [ ] **Transformer l'application en APK :** guide pas à pas avec PWABuilder à partir du lien GitHub Pages. L'APK obtenu est une coquille qui ouvre le jeu, il ne le rend pas natif.
 
