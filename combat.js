@@ -25,7 +25,9 @@ function giveGear(h){
  if(stash(h,k,t))return `garde ${iw(h,k,t)}${pn(h,k)} ${t} pour le coffre de guilde`;
  const g=guSell([{t}]);return `revend ${iw(h,k,t)}${pn(h,k)} ${t} (+${g} or)`;
 }
-const gs=h=>SL[h.c].map(k=>h.eq[k]?`${ic(h,k,h.eq[k])}${h.eq[k]}`:'').join(' ');
+// v4.1.9 : icône touchable (le nom s'affiche en bulle)
+const eqn=(h,k,t)=>`${pn(h,k)} niv. ${t}${k==='w'?' ('+CL[h.c].n+')':''}`,tipI=(h,k,t,x='')=>`<span class="eqi" data-n="${eqn(h,k,t)}">${ic(h,k,t)}${x}</span>`;
+const gs=h=>SL[h.c].map(k=>h.eq[k]?tipI(h,k,h.eq[k],h.eq[k]):'').join(' ');
 const WP=[[0,.02],[.3,.05],[.5,.2],[.8,.45],[1,.7],[1.5,.85],[2,.92]];
 const win=(h,d,P)=>{const r=(P===undefined?power(h):P)/d;for(let i=1;i<WP.length;i++)if(r<=WP[i][0]){const a=WP[i-1],b=WP[i];return a[1]+(b[1]-a[1])*(r-a[0])/(b[0]-a[0])}return .92};
 function log(t,c){logs.unshift({t,c,ts:`[J${S.day} · ${hr()}h]`});logs=logs.slice(0,20);renderLog()}

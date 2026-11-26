@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.8 « Expéditions de guilde »**
+Version actuelle du jeu : **v4.1.9 « Équipement : icônes et noms »**
 
 ## ✅ Déjà intégré
 
@@ -678,12 +678,12 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] Précisé : délai de 60 s ; bonus de +5 % par autre membre conservé dans chaque duel.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.9 « Équipement : icônes et noms » (prochain)
-- [ ] **Icônes plus lisibles :** en particulier les bottes niveau 1 (aujourd'hui un simple rectangle marron).
-- [ ] **Nom de l'objet :** toucher une icône affiche son nom.
+## ✅ v4.1.9 « Équipement : icônes et noms »
+- [x] **Icônes plus lisibles :** en particulier les bottes niveau 1 (aujourd'hui un simple rectangle marron).
+- [x] **Nom de l'objet :** toucher une icône affiche son nom.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.2.0 « Équipement visible sur le sprite »
+## v4.2.0 « Équipement visible sur le sprite » (prochain)
 - [ ] **Apparence :** le personnage reflète ses objets, bottes comprises (2D et 3D).
 - [ ] Essai sur le Z Fold 3.
 

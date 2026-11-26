@@ -55,6 +55,9 @@ html,body{touch-action:manipulation}
 #gpan{position:absolute;left:8px;right:8px;top:56px;max-height:min(340px,55vh);overflow:auto;background:rgba(20,18,14,.93);color:#f2ead8;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;z-index:5}
 #gpan[hidden]{display:none}
 #gpx{float:right}
+.eqi{display:inline-block;padding:3px 2px;cursor:pointer}
+#eqtip{position:fixed;z-index:50;background:#14120e;color:#f2ead8;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px;pointer-events:none;white-space:nowrap}
+#eqtip[hidden]{display:none}
 #slp{position:absolute;z-index:3;top:6px;right:6px;min-height:32px;width:36px;padding:0;font-size:17px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.25)}
 #sl{position:fixed;inset:0;background:#000;z-index:20;display:flex;align-items:center;justify-content:center;color:#6b767b;font-size:14px}
 #sl[hidden]{display:none}

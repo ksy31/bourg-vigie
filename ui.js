@@ -19,10 +19,20 @@ const horsesTxt=()=>S.horses.filter(x=>x.o==null).map(x=>`<br>🐎 À vendre : $
 const primesTxt=()=>((S.pr&&S.pr.l)||[]).map(x=>`<br>🎯 Prime : ${x.n} (${zsn(x.z)}) ${x.g} or`).join('');
 // v4.1.7 : informations de la Maison des Guildes, ouvertes en touchant le bâtiment sur la carte
 let gpOn=false;
+const GPK=['C','F','I'];
 function gpShow(on){gpOn=on;gpDraw()}
-function gpDraw(){const e=$('gpan');if(!e)return;e.hidden=!gpOn;if(!gpOn)return;const l=S.guilds||[];
- setH('gpb','<b>⚜️ Maison des Guildes</b>'+(l.length?l.map(g=>{const c=(g.ch||[]).slice().sort((a,b)=>b.t-a.t);return `<p><b>${g.e} ${g.n}</b> · 👥 ${gmem(g)}/${gsz()} · 💰 ${g.f||0} or${g.sl?' · 💤 coffre bloqué':''}<br>🧰 Coffre : ${c.length?c.map(x=>`<br>${iw({c:x.c,id:0},x.k,x.t)}${iName(x)}${x.k==='w'?' ('+CL[x.c].n+')':''}`).join(''):'vide'}</p>`}).join(''):'<p>Aucune guilde fondée.</p>'))}
+function forgeHtml(){const max=S.forge?FGT*S.forge+Math.floor(nl('F')/3):0,cut=Math.max(.4,1-.05*nl('F'));let s='<b>🔨 Forge</b>';
+ for(let t=1;t<=max;t++)s+=`<p>Niveau ${t} · ${Math.round(t*14*cut)} or<br>${Object.keys(CL).map(c=>tipI({c,id:0},'w',t)).join(' ')} ${['a','b','s'].map(k=>tipI({c:'G',id:0},k,t)).join(' ')}</p>`;return s+(max?'':'<p>Rien à vendre.</p>')}
+function armoryHtml(){const l=(S.chest||[]).slice().sort((a,b)=>b.t-a.t);return '<b>🛡️ Armurerie</b>'+(l.length?'<p>'+l.map(x=>`${tipI({c:x.c,id:0},x.k,x.t)} ${eqn({c:x.c},x.k,x.t)}`).join('<br>')+'</p>':'<p>Coffre vide.</p>')}
+function gpDraw(){const e=$('gpan');if(!e)return;e.hidden=!gpOn;if(!gpOn)return;if(gpOn==='F')return setH('gpb',forgeHtml());if(gpOn==='I')return setH('gpb',armoryHtml());const l=S.guilds||[];
+ setH('gpb','<b>⚜️ Maison des Guildes</b>'+(l.length?l.map(g=>{const c=(g.ch||[]).slice().sort((a,b)=>b.t-a.t);return `<p><b>${g.e} ${g.n}</b> · 👥 ${gmem(g)}/${gsz()} · 💰 ${g.f||0} or${g.sl?' · 💤 coffre bloqué':''}<br>🧰 Coffre : ${c.length?c.map(x=>`<br>${tipI({c:x.c,id:0},x.k,x.t)} ${iName(x)}${x.k==='w'?' ('+CL[x.c].n+')':''}`).join(''):'vide'}</p>`}).join(''):'<p>Aucune guilde fondée.</p>'))}
 let lbTab='a';
+// v4.1.9 : bulle du nom d'objet, TIPD secondes. Le nom est mémorisé à l'appui (la liste peut se redessiner avant le relâchement).
+const TIPD=5;let tipT=0,tipP=null;
+document.addEventListener('pointerdown',e=>{const t=e.target.closest&&e.target.closest('[data-n]');tipP=t?{n:t.dataset.n,x:e.clientX,y:e.clientY}:null},true);
+document.addEventListener('click',e=>{const p=tipP;tipP=null;if(!p||Math.hypot(e.clientX-p.x,e.clientY-p.y)>12)return;e.stopPropagation();e.preventDefault();
+ let b=$('eqtip');if(!b){b=document.createElement('div');b.id='eqtip';document.body.appendChild(b)}b.textContent=p.n;b.hidden=false;
+ b.style.left=Math.max(6,Math.min(innerWidth-b.offsetWidth-6,p.x-b.offsetWidth/2))+'px';b.style.top=Math.max(6,p.y-b.offsetHeight-14)+'px';clearTimeout(tipT);tipT=setTimeout(()=>b.hidden=true,TIPD*1000)},true);
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#lbs button');if(b){lbTab=b.dataset.l;ui()}});
 const hx_=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function ui0(){

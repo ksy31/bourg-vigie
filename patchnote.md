@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.9 « Équipement : icônes et noms »
+
+Version affichée dans les Options : **v4.1.9**
+
+### Ajouté
+- Toucher une icône d'objet (liste des aventuriers, panneaux des bâtiments) : bulle avec son nom et son niveau, 5 s (`TIPD`). Pour une arme, la classe est précisée.
+- Toucher la Forge sur la carte : objets de tous les niveaux vendus, avec leur prix (armes de toutes les classes ; armure illustrée par celle du Guerrier).
+- Toucher l'Armurerie sur la carte : contenu de son coffre.
+
+### Corrigé
+- Bottes : le cadrage les coupait. Nouvelle paire de profil, aux couleurs du niveau.
+
+### Modifié
+- Dague recadrée et agrandie ; icônes d'équipement un peu plus grandes.
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v135`.
+
+### Vérifié
+- Planches d'icônes ; bulle et disparition (liste, Forge, Armurerie en 2D) ; ouverture des panneaux au toucher en 2D et par appel du toucher en 3D ; simulation et rechargement d'une sauvegarde 4.1.8.
+- Non vérifié : toutes les variantes de couleurs des niveaux élevés, console sur capture, Z Fold 3.
+
 ## v4.1.8 « Expéditions de guilde »
 
 Version affichée dans les Options : **v4.1.8**
