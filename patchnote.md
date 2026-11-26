@@ -1,5 +1,30 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.7 « Guildes : inscription et coffre »
+
+Version affichée dans les Options : **v4.1.7**
+
+### Ajouté
+- Coffre de guilde, sans limite : un membre y apporte le butin égal ou moins bon et ses anciens objets remplacés (butin, forge, coffre, Armurerie). Il les porte jusqu'à la Maison des Guildes, où il prend aussi les pièces compatibles meilleures que les siennes.
+- Toucher la Maison des Guildes sur la carte (2D et 3D) : guildes, membres, caisse et coffre.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Tout aventurier peut rejoindre une guilde ; en fonder une reste au niveau 5. Une recrue s'inscrit au retour de sa 1re expédition, à la Maison des Guildes.
+- Le village reçoit 50 % des achats de chevaux et à la forge (`PSH`). Maisons : 100 %. Revente : niveau d'objet × `GSELL` (5), inchangé.
+- Guilde en sommeil : coffre bloqué, objets portés revendus. Dissolution : coffre revendu au village.
+- Un aventurier qui meurt perd les objets qu'il portait pour le coffre.
+- Sauvegardes : coffre vide ajouté aux anciennes guildes. Cache `bv-v133`.
+
+### Équilibre (12 parties de 20 jours, ressources et niveaux de départ gonflés pour le test)
+- Recettes mesurées du village : 12 050 → 11 916 or (-1 %) ; reventes : 1 155 → 430 or ; morts : 177 → 192.
+
+### Vérifié
+- Simulation, chargement d'une sauvegarde 4.1.6, rechargement, revente à la dissolution. Panneau capturé en 3D, ouverture testée en 2D.
+- Non vérifié : Z Fold 3.
+
 ## v4.1.6 « Combats lisibles »
 
 Version affichée dans les Options : **v4.1.6**

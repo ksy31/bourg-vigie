@@ -21,8 +21,9 @@ function armRec(h){const it=bItem('I');if(!it||it.cn||it.rb)return;const sl=SL[h
  const k=sl[R(0,sl.length-1)];(S.chest=S.chest||[]).push({k,c:h.c,t:h.eq[k]});for(let i=0;i<AXR;i++)npcx('I');log(`🛡️ L’Armurerie récupère ${iw(h,k,h.eq[k])}${pn(h,k)} ${h.eq[k]} de ${h.name}.`,'ok')}
 function giveGear(h){
  const sl=SL[h.c],k=sl[R(0,sl.length-1)],base=h.en.el?dz(h.z)*1.5:h.en.d,t=Math.max(1,Math.round(base/5));
- if(t>h.eq[k]){h.eq[k]=t;return `équipe ${iw(h,k,t)}${pn(h,k)} ${t}`}
- const g=t*5;S.g+=g;return `revend ${iw(h,k,t)}${pn(h,k)} ${t} (+${g} or)`;
+ if(t>h.eq[k]){stash(h,k,h.eq[k]);h.eq[k]=t;return `équipe ${iw(h,k,t)}${pn(h,k)} ${t}`}
+ if(stash(h,k,t))return `garde ${iw(h,k,t)}${pn(h,k)} ${t} pour le coffre de guilde`;
+ const g=guSell([{t}]);return `revend ${iw(h,k,t)}${pn(h,k)} ${t} (+${g} or)`;
 }
 const gs=h=>SL[h.c].map(k=>h.eq[k]?`${ic(h,k,h.eq[k])}${h.eq[k]}`:'').join(' ');
 const WP=[[0,.02],[.3,.05],[.5,.2],[.8,.45],[1,.7],[1.5,.85],[2,.92]];
@@ -33,7 +34,7 @@ function recruit(){
  if(S.g<rcost())return;
  S.g-=rcost();
  const h={id:S.n++,name:rname(),c:(k=>k[R(0,k.length-1)])(Object.keys(CL)),eq:{w:0,a:0,b:0,s:0},lv:1,xp:0,gold:0,kills:0,earned:0,hurt:0,bd:S.day,born:S.day-R(18,35)*365,home:null,hs:null,buff:0,bold:Math.random(),col:COL[R(0,COL.length-1)],...base({home:null}),st:'rest',t:1,z:null,last:null,en:null,loot:null,arm:1};
- h.g=rg(h.name);S.hero.push(h);log(`${h.name} rejoint la ville (${CL[h.c].n}).`,'ok');guRec(h);ui();
+ h.g=rg(h.name);S.hero.push(h);log(`${h.name} rejoint la ville (${CL[h.c].n}).`,'ok');ui();
 }
 const lvl=b=>(S[b.k]||0)+((S.cp||{})[b.k]||0);
 const bItem=id=>id==='H'?null:S.pl.find(x=>x.e===NE[id]),bBusy=id=>{const x=bItem(id);return !!x&&!!(x.cn||x.rb)};

@@ -571,7 +571,7 @@ const pup=e=>{pt.delete(e.pointerId);pd=0};cv.addEventListener('pointerup',pup);
 cv.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.15:.87)},{passive:false});
 cv.addEventListener('dblclick',()=>{fol=null;cam.z=1.6;cam.x=W/2-T.x*sc*cam.z;cam.y=H/2-T.y*sc*cam.z;clampCam()});
 let fol=null,tp=null;
-function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){if(hidn(q))continue;const w=h2(q),d=Math.hypot(w[0]/sc-mx,w[1]/sc-my);if(d<bd){bd=d;b=q}}for(const m of deads()){const d=Math.hypot(m.x-mx,m.y-my);if(d<bd){bd=d;b=m}}if(b&&bd*sc*cam.z<26){fol=b.id;if(cam.z<1.2)cam.z=1.2}else fol=null}
+function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){if(hidn(q))continue;const w=h2(q),d=Math.hypot(w[0]/sc-mx,w[1]/sc-my);if(d<bd){bd=d;b=q}}for(const m of deads()){const d=Math.hypot(m.x-mx,m.y-my);if(d<bd){bd=d;b=m}}if(b&&bd*sc*cam.z<26){fol=b.id;if(cam.z<1.2)cam.z=1.2;gpShow(false)}else{fol=null;gpShow(S.pl.some(it=>{if(it.e!==NE.C||it.cn)return false;const p=slot(it);const r=Math.max(5,18/(sc*cam.z));return Math.abs(mx-T.x-p[0])<r&&Math.abs(my-T.y-p[1])<r}))}}
 cv.addEventListener('pointerdown',e=>{tp=e.isPrimary&&pt.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null});
 cv.addEventListener('pointermove',e=>{if(tp&&Math.hypot(e.offsetX-tp.x,e.offsetY-tp.y)>8){tp.m=1;fol=null}});
 cv.addEventListener('pointerup',e=>{if(tp&&!tp.m&&Date.now()-tp.t<500)tap(e.offsetX,e.offsetY);tp=null});

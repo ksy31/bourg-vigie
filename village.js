@@ -23,16 +23,31 @@ const GMIN=5,GSZ0=2,GSZM=6,GB=.05,GRDY=30,GTAX=.1,AXF=10,AXJ=5,AXG=3;
 const GN=[['Les Lames Grises','⚔️','#7b8794'],['Les Loups Noirs','🐺','#3a3a4a'],['Les Faucons d’Argent','🦅','#aab4c0'],['Les Ours de Fer','🐻','#8a5a3a'],['Les Renards Rouges','🦊','#c0482f'],['Les Veilleurs de l’Aube','🌙','#5a5fa8'],['La Compagnie de la Flamme','🔥','#d9822b'],['L’Ordre du Chêne','🌲','#3f7a46'],['Les Sentinelles du Nord','❄️','#6fa8c7'],['Les Dragons Ardents','🐉','#8a2f6a']];
 const gmax=()=>S.guildh||0,gsz=()=>Math.min(GSZM,GSZ0+((S.npc.C||{lv:1}).lv-1)),gAct=g=>g.o!=null&&!g.sl,gmem=g=>S.hero.filter(h=>h.gu===g.id).length;
 const gTarget=()=>(S.guilds||[]).filter(g=>gAct(g)&&gmem(g)<gsz()).sort((a,b)=>gmem(b)-gmem(a))[0]||null;
-const guOk=h=>h.lv>=GMIN&&!h.gu&&!!pickB(NE.C)&&(!!gTarget()||(S.guilds||[]).length<gmax());
+const guOk=h=>!h.gu&&!!pickB(NE.C)&&(!!gTarget()||(h.lv>=GMIN&&(S.guilds||[]).length<gmax()));
+// v4.1.7 : coffre de guilde (g.ch) et objets portés vers la Maison des Guildes (h.bag). PSH = part des achats (chevaux, forge) qui revient au village. GSELL = pièces par niveau d'objet revendu.
+const PSH=.5,GSELL=5;
+const gCh=h=>{const g=h.gu?(S.guilds||[]).find(q=>q.id===h.gu):null;return g&&gAct(g)?g:null};
+function stash(h,k,t){if(t<=0||!gCh(h))return false;(h.bag=h.bag||[]).push({k,c:h.c,t});return true}
+function guSell(l){const v=l.reduce((s,x)=>s+x.t*GSELL,0);S.g+=v;return v}
+const gPick=h=>{const g=gCh(h),out=[];if(g)for(const k of SL[h.c]){let b=null;for(const x of g.ch||[])if(x.k===k&&(k!=='w'||x.c===h.c)&&x.t>h.eq[k]&&(!b||x.t>b.t))b=x;if(b)out.push(b)}return out};
+const guNeed=h=>!!pickB(NE.C)&&(guOk(h)||!!(h.bag&&h.bag.length&&gCh(h))||gPick(h).length>0);
+const iName=x=>`${pn({c:x.c},x.k)} ${x.t}`;
+function guChest(h){const g=gCh(h);if(!g)return;g.ch=g.ch||[];
+ if(h.bag&&h.bag.length){log(`${g.e} ${h.name} dépose au coffre de guilde : ${h.bag.map(iName).join(', ')}.`);g.ch.push(...h.bag);h.bag=[]}
+ const pk=gPick(h);if(!pk.length)return;
+ for(const x of pk){g.ch.splice(g.ch.indexOf(x),1);const old=h.eq[x.k];h.eq[x.k]=x.t;if(old>0)g.ch.push({k:x.k,c:h.c,t:old})}
+ log(`${g.e} ${h.name} prend dans le coffre de guilde : ${pk.map(iName).join(', ')}.`,'ok')}
+// guilde en sommeil ou disparue : les objets portés sont revendus
+function guFlush(){for(const h of S.hero)if(h.bag&&h.bag.length&&!gCh(h)){const v=guSell(h.bag);h.bag=[];log(`${h.name} revend ses objets destinés au coffre (+${v} or).`)}}
 const recG=h=>h.gu&&h.lv<GMIN?(S.guilds||[]).find(g=>g.id===h.gu&&gAct(g)):null,fpay=(h,p)=>{const g=recG(h);return g?Math.min(Math.max(0,g.f||0),p):0};
-function guFix(){const gl=S.guilds;if(!gl||!gl.length)return;for(let i=gl.length-1;i>=0;i--){const g=gl[i],M=S.hero.filter(h=>h.gu===g.id);
- if(!M.length){gl.splice(i,1);log(`${g.e} La guilde « ${g.n} » est dissoute.`,'bad');continue}
+function guFix(){guFix0();guFlush()}
+function guFix0(){const gl=S.guilds;if(!gl||!gl.length)return;for(let i=gl.length-1;i>=0;i--){const g=gl[i],M=S.hero.filter(h=>h.gu===g.id);
+ if(!M.length){const v=guSell(g.ch||[]);gl.splice(i,1);log(`${g.e} La guilde « ${g.n} » est dissoute.${v?` Son coffre est revendu : +${v} or.`:''}`,'bad');continue}
  const nw=M.filter(h=>h.lv>=GMIN).sort((a,b)=>b.lv-a.lv)[0];
  if(g.o===undefined){g.o=nw?nw.id:null;g.sl=nw?0:1;if(g.f===undefined)g.f=0;continue}
  if(g.o!=null&&M.some(h=>h.id===g.o)){g.sl=0;continue}
  if(nw){log(`${g.e} ${nw.name} ${g.sl?'ranime':'prend la tête de'} la guilde « ${g.n} ».`,'ok');g.o=nw.id;g.sl=0}
  else if(!g.sl){g.o=null;g.sl=1;log(`💤 La guilde « ${g.n} » est en sommeil : plus de chef de niveau ${GMIN}.`,'bad')}}}
-function guRec(h){const g=gTarget();if(!g)return;h.gu=g.id;for(let j=0;j<AXJ;j++)npcx('C');log(`${g.e} ${h.name} rejoint la guilde « ${g.n} ».`,'ok')}
 const gMates=h=>{const g=h.gu&&(S.guilds||[]).find(q=>q.id===h.gu);if(!g||!gAct(g))return[];return S.hero.filter(m=>m!==h&&m.gu===g.id&&m.st==='rest'&&!m.kg&&m.t<=GRDY&&!m.arm&&(!isNight()||m.bold>.55)).sort((a,b)=>a.t-b.t).slice(0,gsz()-1)};
 function depart(h){const G=gMates(h);if(!G.length){leave(h,pick(h));return}
  const P=(power(h)+G.reduce((s,m)=>s+power(m),0))*(1+GB*G.length),z=pick(h,P);
@@ -52,7 +67,6 @@ function decide(h){
  if(!h.home&&hs&&h.gold>=hs.p){const it=S.pl.find(x=>x.h===hs);if(it)return{k:'house',b:it.i}}
  if(!h.hs&&bestHorse(h)){const it=pickB(NE.E);if(it)return{k:'horse',b:it.i}}
  if(S.forge){const f=forgeP(h);if(h.eq[f.k]<f.t&&h.gold+fpay(h,f.p)-f.p>=keepG(h)){const it=pickB(NE.F);if(it)return{k:'forge',b:it.i}}}
- if(guOk(h)){const it=pickB(NE.C);if(it)return{k:'guild',b:it.i}}
  if(enL(h)){const it=pickB(NE.N);if(it)return{k:'ench',b:it.i}}
   return null}
 function taskOk(h,tk){
@@ -61,7 +75,7 @@ function taskOk(h,tk){
  if(tk.k==='forge'){if(!S.forge)return false;const f=forgeP(h);return h.eq[f.k]<f.t&&h.gold+fpay(h,f.p)-f.p>=(h.kg===2?0:keepG(h))}
   if(tk.k==='bless')return !!S.spa&&!h.bless;
  if(tk.k==='armory')return armPick(h).length>0;
- if(tk.k==='guild')return guOk(h);
+ if(tk.k==='guild')return guNeed(h);
  if(tk.k==='ench')return enL(h)>0;
  return true}
 function applyTask(h,tk){
@@ -74,21 +88,22 @@ function applyTask(h,tk){
   while(h.xp>=xpNeed(h.lv)){h.xp-=xpNeed(h.lv);h.lv++;log(`${h.name} passe niveau ${h.lv}.`,'ok')}
   h.loot=null;return}
  if(!taskOk(h,tk))return;
- if(tk.k==='horse'){const x=bestHorse(h),p=hPrice(x);h.gold-=p;S.g+=p;x.o=h.id;h.hs=x;npcx('E');restock();log(`${h.name} achète un cheval ${x.sp} (${p} or).`,'ok')}
+ if(tk.k==='horse'){const x=bestHorse(h),p=hPrice(x);h.gold-=p;S.g+=Math.round(p*PSH);x.o=h.id;h.hs=x;npcx('E');restock();log(`${h.name} achète un cheval ${x.sp} (${p} or).`,'ok')}
  else if(tk.k==='house'){const hs=itB(tk.b).h;h.gold-=hs.p;S.g+=hs.p;hs.o=h.id;h.home=hs;log(`${h.name} achète une maison (${hs.p} or).`,'ok')}
- else if(tk.k==='forge'){const f=forgeP(h),fp=fpay(h,f.p);if(fp)recG(h).f-=fp;h.gold-=f.p-fp;S.g+=f.p;h.eq[f.k]=f.t;npcx('F');log(`${h.name} achète ${pn(h,f.k)} ${f.t} chez le forgeron (${f.p} or${fp?', dont '+fp+' payés par la caisse de guilde':''}).`)}
+ else if(tk.k==='forge'){const f=forgeP(h),fp=fpay(h,f.p);if(fp)recG(h).f-=fp;h.gold-=f.p-fp;S.g+=Math.round(f.p*PSH);stash(h,f.k,h.eq[f.k]);h.eq[f.k]=f.t;npcx('F');log(`${h.name} achète ${pn(h,f.k)} ${f.t} chez le forgeron (${f.p} or${fp?', dont '+fp+' payés par la caisse de guilde':''}).`)}
  else if(tk.k==='prime'){if(h.prime){const p=h.prime;h.gold+=p.g;h.earned+=p.g;h.prime=null;for(let i=0;i<TVX;i++)npcx('T');log(`🎯 ${h.name} touche la prime sur ${p.n} : +${p.g} or.`,'ok')}}
  else if(tk.k==='bless'){npcx('S');if(Math.random()<blP())h.bless=1;else log(`${h.name} : la bénédiction échoue.`)}
  else if(tk.k==='ench'){const L=enL(h);if(L){const c=GCOST[L-1];npcx('N');h.gem-=c;if(Math.random()<enP()){h.sp=L;log(`✨ ${h.name} apprend « ${SPD[h.c][L-1][0]} » (niveau ${L}, ${c} gemme${c>1?'s':''}).`,'ok')}else log(`${h.name} : l’enchantement échoue, ${c} gemme${c>1?'s':''} perdue${c>1?'s':''}.`,'bad')}}
- else if(tk.k==='armory'){const pk=armPick(h),tx=pk.map(p=>`${pn(h,p.k)} ${S.chest[p.i].t}`);pk.forEach(p=>{h.eq[p.k]=S.chest[p.i].t});
+ else if(tk.k==='armory'){const pk=armPick(h),tx=pk.map(p=>`${pn(h,p.k)} ${S.chest[p.i].t}`);pk.forEach(p=>{stash(h,p.k,h.eq[p.k]);h.eq[p.k]=S.chest[p.i].t});
   pk.map(p=>p.i).sort((a,b)=>b-a).forEach(i=>S.chest.splice(i,1));for(let j=0;j<pk.length*AXD;j++)npcx('I');
   log(`🛡️ ${h.name} s’équipe à l’Armurerie : ${tx.join(', ')}.`,'ok')}
- else if(tk.k==='guild'){const g=gTarget();
+ else if(tk.k==='guild'){if(!h.gu){if(!guOk(h))return;const g=gTarget();
   if(g){h.gu=g.id;log(`${g.e} ${h.name} rejoint la guilde « ${g.n} ».`,'ok');for(let j=0;j<AXJ;j++)npcx('C')}
-  else{const u=GN.filter(x=>!S.guilds.some(q=>q.n===x[0])),b=u[R(0,u.length-1)]||GN[0],id=1+S.guilds.reduce((m,q)=>Math.max(m,q.id),0),ng={id,n:b[0],e:b[1],c:b[2],o:h.id,f:0,sl:0};S.guilds.push(ng);h.gu=id;for(let j=0;j<AXF;j++)npcx('C');log(`${ng.e} ${h.name} fonde la guilde « ${ng.n} ».`,'ok')}}
+  else{const u=GN.filter(x=>!S.guilds.some(q=>q.n===x[0])),b=u[R(0,u.length-1)]||GN[0],id=1+S.guilds.reduce((m,q)=>Math.max(m,q.id),0),ng={id,n:b[0],e:b[1],c:b[2],o:h.id,f:0,sl:0,ch:[]};S.guilds.push(ng);h.gu=id;for(let j=0;j<AXF;j++)npcx('C');log(`${ng.e} ${h.name} fonde la guilde « ${ng.n} ».`,'ok')}}
+  guChest(h)}
 }
 function goBack(h){
- h.st='back';h.dec=0;h.tk=null;h.tl=[];h.wp=(h.gw||[]).slice().reverse().map(p=>({x:p.x,y:p.y}));
+  h.st='back';h.gv=0;h.dec=0;h.tk=null;h.tl=[];h.wp=(h.gw||[]).slice().reverse().map(p=>({x:p.x,y:p.y}));
  const m=pickB(NE.V);
  if(h.loot&&m)h.tl.push({k:'loot',b:m.i});
  if(h.prime){const tv=pickB(NE.T);if(tv)h.tl.push({k:'prime',b:tv.i});else{h.gold+=h.prime.g;h.earned+=h.prime.g;h.prime=null}}
@@ -102,6 +117,7 @@ function townNext(h){
   h.kg=0;h.kb=0;h.tk=null;h.tl=[];leave(h,BZ);log(`${h.name} part affronter le Roi Démon…`,'bad');return}
  if(h.tl.length){h.tk=h.tl.shift();h.sub='walk';return}
  if(!h.dec&&!h.kg){h.dec=1;const t=decide(h);if(t){h.tk=t;h.sub='walk';return}}
+ if(!h.gv&&!h.kg&&guNeed(h)){h.gv=1;h.tk={k:'guild',b:pickB(NE.C).i};h.sub='walk';return}
  h.tk=null;h.sub='home'
 }
 function startRest(h){

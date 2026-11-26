@@ -17,10 +17,16 @@ const setH=(id,s)=>{const e=$(id);if(e._h!==s){e._h=s;e.innerHTML=fmt(s)}};
 // v4.1.5 : chevaux à vendre et primes dans l'encadré du Palefrenier et du Tavernier
 const horsesTxt=()=>S.horses.filter(x=>x.o==null).map(x=>`<br>🐎 À vendre : ${x.sp} (${x.p} or)`).join('');
 const primesTxt=()=>((S.pr&&S.pr.l)||[]).map(x=>`<br>🎯 Prime : ${x.n} (${zsn(x.z)}) ${x.g} or`).join('');
+// v4.1.7 : informations de la Maison des Guildes, ouvertes en touchant le bâtiment sur la carte
+let gpOn=false;
+function gpShow(on){gpOn=on;gpDraw()}
+function gpDraw(){const e=$('gpan');if(!e)return;e.hidden=!gpOn;if(!gpOn)return;const l=S.guilds||[];
+ setH('gpb','<b>⚜️ Maison des Guildes</b>'+(l.length?l.map(g=>{const c=(g.ch||[]).slice().sort((a,b)=>b.t-a.t);return `<p><b>${g.e} ${g.n}</b> · 👥 ${gmem(g)}/${gsz()} · 💰 ${g.f||0} or${g.sl?' · 💤 coffre bloqué':''}<br>🧰 Coffre : ${c.length?c.map(x=>`<br>${iw({c:x.c,id:0},x.k,x.t)}${iName(x)}${x.k==='w'?' ('+CL[x.c].n+')':''}`).join(''):'vide'}</p>`}).join(''):'<p>Aucune guilde fondée.</p>'))}
 let lbTab='a';
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#lbs button');if(b){lbTab=b.dataset.l;ui()}});
 const hx_=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function ui0(){
+ gpDraw();
  sI('g',`<b>${S.g}</b>or`);sI('w',`<b>${S.w}</b>bois`);sI('s',`<b>${S.s}</b>pierre`);sI('rl',`💰 ${S.g} · ${ICO.w} ${S.w} · ${ICO.s} ${S.s}`);
  sT('vt',S.vn);{const a=S.sat?Math.floor((Date.now()-S.sat)/1000):-1;sT('sv',a<0?'Pas encore sauvegardé':'Dernière sauvegarde : il y a '+(a<60?a+' s':Math.floor(a/60)+' min'))}sT('day',`${isNight()?'🌙':'☀️'} Jour ${S.day} · ${hr()}h ${wxIcon()} · ★${P.runs}`);
  sI('bR',`Recruter<small>${rcost()} or · classe aléatoire</small>`);$('bR').disabled=S.g<rcost();

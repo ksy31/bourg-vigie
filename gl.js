@@ -2054,9 +2054,9 @@ const RV=new TH.Vector3(),RD3=new TH.Vector3();
 function ground(sx,sy){RV.set(sx/W*2-1,-(sy/H)*2+1,.5).unproject(cam3);RD3.copy(RV).sub(cam3.position).normalize();const y=K.ty==null?H3(K.tx,K.tz):K.ty,t=(y-cam3.position.y)/(RD3.y||-1e-6);return[cam3.position.x+RD3.x*t,cam3.position.z+RD3.z*t]}
 function dragTo(a,b){const g0=ground(a[0],a[1]),g1=ground(b[0],b[1]);K.tx+=g0[0]-g1[0];K.tz+=g0[1]-g1[1];camPlace()}
 function zoomAtPt(px,py,f){const g0=ground(px,py);K.dist=Math.min(950,Math.max(32,K.dist/f));camPlace();const g1=ground(px,py);K.tx+=g0[0]-g1[0];K.tz+=g0[1]-g1[1];camPlace()}
-function glTap(x,y){let b=null,bd=1e9;const BM=bAssign();for(const q of S.hero){if(hidn(q)&&!BM.get(q.id))continue;const [hx,hz]=hpos(q,BM);V3a.set(hx,HC(hx,hz)+HS*.7,hz).project(cam3);const sx=(V3a.x*.5+.5)*W,sy=(-V3a.y*.5+.5)*H,d=Math.hypot(sx-x,sy-y);if(d<bd){bd=d;b=q}}
+function glTap(x,y){const y_=y;let b=null,bd=1e9;const BM=bAssign();for(const q of S.hero){if(hidn(q)&&!BM.get(q.id))continue;const [hx,hz]=hpos(q,BM);V3a.set(hx,HC(hx,hz)+HS*.7,hz).project(cam3);const sx=(V3a.x*.5+.5)*W,sy=(-V3a.y*.5+.5)*H,d=Math.hypot(sx-x,sy-y);if(d<bd){bd=d;b=q}}
  for(const m of deads()){V3a.set(m.x,HW(m.x,m.y)+1.5,m.y).project(cam3);if(V3a.z>1)continue;const d=Math.hypot((V3a.x*.5+.5)*W-x,(-V3a.y*.5+.5)*H-8-y);if(d<bd){bd=d;b=m}}
- if(b&&bd<34){fol=b.id;K.dist=Math.min(K.dist,70)}else fol=null}
+ if(b&&bd<34){fol=b.id;K.dist=Math.min(K.dist,70);gpShow(false)}else{fol=null;gpShow(S.pl.some(it=>{if(it.e!==NE.C||it.cn)return false;const p=slot(it),bx=T.x+p[0],bz=T.y+p[1],y=HW(bx,bz),pr=h=>{V3a.set(bx,y+h,bz).project(cam3);return[(V3a.x*.5+.5)*W,(-V3a.y*.5+.5)*H,V3a.z]},c=pr(3),t=pr(7);return c[2]<1&&Math.hypot(c[0]-x,c[1]-y_)<Math.max(26,Math.hypot(t[0]-c[0],t[1]-c[1])*1.4)}))}}
 function bindInput(){
  cv.addEventListener('pointerdown',e=>{if(!K.on)return;e.stopImmediatePropagation();try{cv.setPointerCapture(e.pointerId)}catch(_){}PT.set(e.pointerId,[e.offsetX,e.offsetY]);G3.pd=0;G3.pc=null;G3.pa=null;G3.rg=0;G3.ro=0;G3.tp=e.isPrimary&&PT.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null},true);
  cv.addEventListener('pointermove',e=>{if(!K.on)return;e.stopImmediatePropagation();if(!PT.has(e.pointerId))return;const o=PT.get(e.pointerId),n=[e.offsetX,e.offsetY];PT.set(e.pointerId,n);

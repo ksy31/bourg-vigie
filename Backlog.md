@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.6 « Combats lisibles »**
+Version actuelle du jeu : **v4.1.7 « Guildes : inscription et coffre »**
 
 ## ✅ Déjà intégré
 
@@ -656,19 +656,19 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Transparence :** vérifier que le cercle de transparence agit sur tous les arbres.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.7 « Guildes : inscription et coffre » (prochain)
-- [ ] **Inscription :** tout aventurier sans guilde peut en rejoindre une, quel que soit son niveau (dans la limite des places). Fonder une guilde reste réservé au niveau 5.
-- [ ] **Passage par le bâtiment :** l'inscription se fait uniquement à la Maison des Guildes ; une nouvelle recrue n'entre plus automatiquement dans une guilde.
-- [ ] **Coffre de guilde :** chaque guilde a son coffre. Un membre qui obtient un objet égal ou moins bon que le sien l'y dépose au lieu de le revendre.
-- [ ] **Retrait :** à la Maison des Guildes, un membre prend dans le coffre un objet compatible meilleur que le sien.
-- [ ] **Interface :** afficher le contenu du coffre dans les informations de la guilde.
-- [ ] **Sauvegardes :** migration des anciennes parties (coffre vide).
-- [ ] **Équilibre :** comparer l'or avant/après (reventes en moins, part des achats).
-- [ ] **Dissolution :** le contenu du coffre est revendu et les pièces reviennent au village.
-- [ ] **Part des achats :** sauf pour les maisons, environ 50 % de l'argent des achats faits au village revient à la caisse (au lieu de 100 %). Le reste représente le gagne-pain des PNJ, dont la gestion n'est pas à implémenter pour l'instant.
+## ✅ v4.1.7 « Guildes : inscription et coffre »
+- [x] **Inscription :** tout aventurier sans guilde peut en rejoindre une, quel que soit son niveau (dans la limite des places). Fonder une guilde reste réservé au niveau 5.
+- [x] **Passage par le bâtiment :** l'inscription se fait uniquement à la Maison des Guildes ; une nouvelle recrue n'entre plus automatiquement dans une guilde.
+- [x] **Coffre de guilde :** chaque guilde a son coffre. Un membre qui obtient un objet égal ou moins bon que le sien l'y dépose au lieu de le revendre.
+- [x] **Retrait :** à la Maison des Guildes, un membre prend dans le coffre un objet compatible meilleur que le sien.
+- [x] **Interface :** afficher le contenu du coffre dans les informations de la guilde.
+- [x] **Sauvegardes :** migration des anciennes parties (coffre vide).
+- [x] **Équilibre :** comparer l'or avant/après (reventes en moins, part des achats).
+- [x] **Dissolution :** le contenu du coffre est revendu et les pièces reviennent au village.
+- [x] **Part des achats :** sauf pour les maisons, environ 50 % de l'argent des achats faits au village revient à la caisse (au lieu de 100 %). Le reste représente le gagne-pain des PNJ, dont la gestion n'est pas à implémenter pour l'instant.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.8 « Expéditions de guilde »
+## v4.1.8 « Expéditions de guilde » (prochain)
 - [ ] **Rendez-vous :** l'expédition est annoncée, les membres s'attendent à la Maison des Guildes ; départ quand tous sont là ou après un délai limite.
 - [ ] **Trajet groupé :** départ ensemble, au rythme du plus lent.
 - [ ] **Même destination :** les membres vont au même endroit, légèrement écartés pour que les sprites ne se chevauchent pas.
