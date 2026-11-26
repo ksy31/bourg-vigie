@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.3 « Montagne et volcan »
+
+Version affichée dans les Options : **v4.1.3**
+
+### Ajouté
+- Rien.
+
+### Corrigé
+- 3D, montagne : aventuriers, monstres et tête de mort suivent la surface des pics au lieu de rentrer dedans.
+- 3D, montagne et volcan : en pente, les personnages sont légèrement relevés pour ne pas s'y enfoncer.
+
+### Modifié
+- 3D, montagne et volcan : rochers retirés des routes, des zones de combat et de leurs accès.
+- La caméra qui suit un aventurier suit aussi sa hauteur, sans à-coups ; noms, tap et rond de transparence utilisent la même hauteur.
+- Pas de changement de 2D, de sauvegarde ni d'équilibrage. Cache `bv-v129`.
+
+### Vérifié
+- Navigateur sans écran en 3D : captures avant/après à la montagne et au volcan, aucune erreur relevée. Sur 306 points de la zone de combat de la montagne, 229 étaient sous un pic de plus d'une unité ; 0 point sous la surface maintenant.
+- Non vérifié : Z Fold 3, fluidité de la montée à l'œil, butin d'un monstre tué sur un pic.
+
 ## v4.1.2 « Un village plus spacieux »
 
 Version affichée dans les Options : **v4.1.2**
