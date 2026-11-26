@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.3 « Montagne et volcan »**
+Version actuelle du jeu : **v4.1.4 « À cheval »**
 
 ## ✅ Déjà intégré
 
@@ -634,9 +634,11 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Rochers :** passages et zones de combat dégagés.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.4 « À cheval » (prochain)
-- [ ] **Refaire le cheval en pixel art dans la vue 3D** (même style 2D que les personnages).
-- [ ] **C'est le cheval qui court**, plus l'aventurier.
+## ✅ v4.1.4 « À cheval »
+- [x] **Refaire le cheval en pixel art dans la vue 3D** (même style 2D que les personnages).
+- [x] **C'est le cheval qui court**, plus l'aventurier.
+- [x] **Posture et combat :** assis en selle ; à pied en combat et pendant le butin.
+- [ ] Essai sur le Z Fold 3.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

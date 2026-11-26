@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.4 « À cheval »
+
+Version affichée dans les Options : **v4.1.4**
+
+### Ajouté
+- 3D : cheval en pixel art, vues de côté, de face et de dos, avec un galop en 6 images.
+- 3D : aventurier assis en selle, jambes pliées, qui rebondit avec le galop.
+- 3D : pendant le combat et la récupération du butin, l'aventurier est à pied et son cheval attend derrière lui.
+
+### Corrigé
+- 3D : c'est le cheval qui court ; l'aventurier ne joue plus son animation de marche en selle.
+
+### Modifié
+- 3D : l'ancien cheval en volume est remplacé (4 robes conservées). La descente et la remontée sont instantanées.
+- Pas de changement de 2D, de sauvegarde ni d'équilibrage. Cache `bv-v130`.
+
+### Vérifié
+- Planche des images du cheval (côté, face, dos) et navigateur sans écran en 3D : en selle de côté, de face, de dos, en attente, en combat et pendant le butin, aucune erreur relevée.
+- Non vérifié : fluidité du galop à l'œil, toutes les classes à cheval, Z Fold 3.
+
 ## v4.1.3 « Montagne et volcan »
 
 Version affichée dans les Options : **v4.1.3**
