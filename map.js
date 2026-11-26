@@ -528,7 +528,6 @@ function draw(){
  for(const h of [...S.hero].sort((a,b)=>a.y-b.y)){const bm=BM.get(h.id);if(hidn(h)&&!bm)continue;
   const bp=bm?bpos(h,bm):null,hq=h2(h),x=bp?bp[0]:hq[0],y=bp?bp[1]:hq[1],sl=!bm&&((h.st==='town'&&h.sub==='do')||h.st==='rest');if(sl)cx.globalAlpha=.5;
   const w=mvOf(h.id,x,y),fg=h.st==='fight',top=h.hs?6.6:5.2;
-  if(fg){cx.fillStyle='rgba(192,57,43,.55)';cx.beginPath();cx.arc(x,y+sc*.8,sc*3.6+Math.sin(S.t*14)*2,0,7);cx.fill();}
   const mk=fg&&h.en&&!(h.pw>0)?mkind(h.en.n):null;person(x,y,{g:gd(h,h.name),k:h.c,col:h.col,id:h.id,f:mk?1:w.f,ph:w.ph,mv:w.mv&&!sl&&!bm,fight:fg,hs:h.hs,bd:!!bm});if(mk)monster(x+sc*(h.hs?7.5:6.2),y,h,mk,'b');if(h.bless)bstars(x,y);
   if(showT&&(h.st==='go'||h.st==='back')){cx.fillStyle='#1d2326';cx.font=`700 ${sc*2.6}px Alegreya,serif`;cx.fillText(fm(rem(h)),x,y-sc*(top-1))}
   if(h.loot&&(h.st==='back'||h.st==='town')){cx.fillStyle='#e2b43c';cx.beginPath();cx.arc(x+sc*1.8,y-sc*1.8,sc*.9,0,7);cx.fill()}cx.globalAlpha=1;

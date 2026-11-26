@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.5 « Console, encadrés et affichage »**
+Version actuelle du jeu : **v4.1.6 « Combats lisibles »**
 
 ## ✅ Déjà intégré
 
@@ -650,13 +650,13 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Aventurier suivi :** son nom passe en jaune pâle.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.6 « Combats lisibles » (prochain)
-- [ ] **Cercle de combat :** retirer le cercle sous les aventuriers qui combattent (2D et 3D).
-- [ ] **Clairières :** placer les combats dans un espace sans arbres, surtout en forêt.
-- [ ] **Transparence :** vérifier que le cercle de transparence agit sur tous les arbres.
+## ✅ v4.1.6 « Combats lisibles »
+- [x] **Cercle de combat :** retirer le cercle sous les aventuriers qui combattent (2D et 3D).
+- [x] **Clairières :** placer les combats dans un espace sans arbres, surtout en forêt.
+- [x] **Transparence :** vérifier que le cercle de transparence agit sur tous les arbres.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.7 « Guildes : inscription et coffre »
+## v4.1.7 « Guildes : inscription et coffre » (prochain)
 - [ ] **Inscription :** tout aventurier sans guilde peut en rejoindre une, quel que soit son niveau (dans la limite des places). Fonder une guilde reste réservé au niveau 5.
 - [ ] **Passage par le bâtiment :** l'inscription se fait uniquement à la Maison des Guildes ; une nouvelle recrue n'entre plus automatiquement dans une guilde.
 - [ ] **Coffre de guilde :** chaque guilde a son coffre. Un membre qui obtient un objet égal ou moins bon que le sien l'y dépose au lieu de le revendre.

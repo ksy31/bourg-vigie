@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.6 « Combats lisibles »
+
+Version affichée dans les Options : **v4.1.6**
+
+### Ajouté
+- 3D, forêt : les arbres proches d'un combat s'effacent (avec leur ombre au sol) pendant le combat et le butin, puis reviennent. Transition de 0,3 s ; rayon réglable avec `CLR` (5, gl.js). Buissons et rochers restent.
+
+### Corrigé
+- Transparence : les arbres vérifiés utilisaient déjà le rond ; sa moitié extérieure n'était que partiellement transparente. La zone totalement transparente passe de 50 % à 75 % du rayon.
+
+### Modifié
+- Cercle sous les combattants retiré (2D et 3D).
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v132`.
+
+### Vérifié
+- Navigateur sans écran en 3D : combat en forêt avant et après, arbres revenus après le combat. Simulation et rechargement d'une sauvegarde.
+- Non vérifié : cercle 2D sur capture (ligne supprimée), transition à l'œil, plus de 8 combats en même temps (le rond reste limité à 8), Z Fold 3.
+
 ## v4.1.5 « Console, encadrés et affichage »
 
 Version affichée dans les Options : **v4.1.5**
@@ -17,11 +35,6 @@ Version affichée dans les Options : **v4.1.5**
 - Temps restant : trajets d'expédition seulement (aller et retour), dans la liste et sur les cartes.
 - Chevaux à vendre et primes : dans les encadrés du Palefrenier et du Tavernier, une ligne chacun.
 - Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v131`.
-
-### Vérifié
-- Simulation (12 jours en v4.1.4, puis 18 en v4.1.5), ancienne sauvegarde chargée, sauvegarde et rechargement.
-- Captures dans un navigateur sans écran : nom jaune en 2D et en 3D, encadrés du Tavernier et du Palefrenier, bandeau de mort avec la sous-zone.
-- Non vérifié : Z Fold 3.
 
 ## v4.1.4 « À cheval »
 
