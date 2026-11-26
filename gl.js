@@ -453,11 +453,16 @@ const HRS={value:new TH.Vector2(1,1)};
 MV.onBeforeCompile=sh=>{sh.uniforms.uH={value:HU};sh.uniforms.uE={value:HE};sh.uniforms.uAs=HAS;sh.uniforms.uRs=HRS;
  sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;').replace('#include <project_vertex>','#include <project_vertex>\nvec4 cp_=projectionMatrix*mvPosition;vNd=vec3(cp_.xy/cp_.w,-mvPosition.z);');
  sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;uniform vec4 uH[8];uniform vec4 uE[8];uniform float uAs;uniform vec2 uRs;').replace('void main() {','void main() {\n for(int i=0;i<8;i++){vec4 h=uH[i];if(h.w>0.&&vNd.z<h.z-.6){vec2 v_=(gl_FragCoord.xy*uRs*2.-1.-h.xy)*vec2(uAs,1.);vec4 e_=uE[i];float d=length(vec2(dot(v_,e_.xy)/e_.z,v_.y*e_.x-v_.x*e_.y));if(d<h.w){float a=smoothstep(.5,1.,d/h.w),b=fract(52.9829189*fract(dot(gl_FragCoord.xy,vec2(.06711056,.00583715))));if(a<b)discard;}}}\n')};
-function holeUpd(BM){cam3.updateMatrixWorld();{const v=K.v2||(K.v2=new TH.Vector2());ren.getDrawingBufferSize(v);HRS.value.set(1/Math.max(1,v.x),1/Math.max(1,v.y))}const th=Math.tan(cam3.fov*PI/360);HAS.value=cam3.aspect;let n=0;
- for(const h of S.hero){if(n>=8)break;const hf=h.st==='fight'||h.st==='loot';if(h.st!=='wait'&&!hf)continue;const [x,z]=hpos(h,BM);HV.set(x,H3(x,z)+HS*.7,z);const dep=-(HV.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(dep<1)continue;HV.project(cam3);if(Math.abs(HV.x)>1.4||Math.abs(HV.y)>1.4)continue;
-  const r=Math.max(.05,(hf?10:7.8)/(dep*th)),mo=hf&&MN.get(h.id);let cx=HV.x,cy=HV.y,dz=dep,ex=1,ey=0,rt=1;
-  if(mo){HMO.set(mo.g.position.x,mo.g.position.y+HS*.5,mo.g.position.z);const md=-(HMO.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(md>=1){HMO.project(cam3);const ax=(HMO.x-HV.x)*cam3.aspect,ay=HMO.y-HV.y,L=Math.hypot(ax,ay);if(L>1e-4){ex=ax/L;ey=ay/L;rt=(L/2+r)/r;cx=(HV.x+HMO.x)/2;cy=(HV.y+HMO.y)/2;dz=(dep+md)/2}}}
-  HE[n].set(ex,ey,rt,0);HU[n++].set(cx,cy,dz,r)}
+const HTR=.3,HST=new Map();
+function holeUpd(BM,dt){cam3.updateMatrixWorld();{const v=K.v2||(K.v2=new TH.Vector2());ren.getDrawingBufferSize(v);HRS.value.set(1/Math.max(1,v.x),1/Math.max(1,v.y))}const th=Math.tan(cam3.fov*PI/360);HAS.value=cam3.aspect;let n=0;
+ const stp=dt/HTR,to=(v,t)=>v<t?Math.min(t,v+stp):Math.max(t,v-stp),live=new Set();
+ for(const h of S.hero){const hf=h.st==='fight'||h.st==='loot',on=hf||h.st==='wait';let o=HST.get(h.id);if(!o){if(!on)continue;o={k:0,w:hf?1:0,m:0,p:[0,0],mp:new TH.Vector3()};HST.set(h.id,o)}
+  live.add(h.id);o.on=on;const [x,z]=hpos(h,BM);o.p[0]=x;o.p[1]=z;if(on)o.w=to(o.w,hf?1:0);const mo=hf&&MN.get(h.id);if(mo){o.mp.set(mo.g.position.x,mo.g.position.y+HS*.5,mo.g.position.z);o.hm=1}o.m=to(o.m,mo?1:0)}
+ for(const [id,o] of HST){if(!live.has(id)){o.on=false;o.m=to(o.m,0)}o.k=to(o.k,o.on?1:0);if(!o.on&&o.k<=0)HST.delete(id)}
+ for(const on of[true,false])for(const o of HST.values()){if(n>=8)break;if(o.on!==on||o.k<=0)continue;const [x,z]=o.p;HV.set(x,H3(x,z)+HS*.7,z);const dep=-(HV.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(dep<1)continue;HV.project(cam3);if(Math.abs(HV.x)>1.4||Math.abs(HV.y)>1.4)continue;
+  const r=Math.max(.05,(7.8+2.2*o.w)/(dep*th));let cx=HV.x,cy=HV.y,dz=dep,ex=1,ey=0,rt=1;
+  if(o.hm&&o.m>0){HMO.copy(o.mp);const md=-(HMO.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(md>=1){HMO.project(cam3);const ax=(HMO.x-HV.x)*cam3.aspect,ay=HMO.y-HV.y,L=Math.hypot(ax,ay);if(L>1e-4){ex=ax/L;ey=ay/L;rt=(L*o.m/2+r)/r;cx=HV.x+(HMO.x-HV.x)*o.m/2;cy=HV.y+(HMO.y-HV.y)*o.m/2;dz=dep+(md-dep)*o.m/2}}}
+  const q=o.k*o.k*(3-2*o.k);HE[n].set(ex,ey,rt,0);HU[n++].set(cx,cy,dz,r*q)}
  for(;n<8;n++)HU[n].w=0}
 // ===== v3.6.1 : arbres 3D texturés en pixel-art =====
 const TXN=['oa0','oa1','ob0','ob1','oc0','bi0','wi0','wiS','bu0','bu1','pn','ps','pmF','bkOak','bkBeech','bkBirch','bkPine','bkDead','bkPalm','bkWill','lf'],TXW=512,TXH=384,TXS=64;
@@ -1955,8 +1960,7 @@ function smUpd(tm){if(!SM.ok){const c=document.createElement('canvas');c.width=c
   s.material.opacity=Math.sin(Math.PI*ph)*(o.v?.5:.42)*(1-Math.min(1,wxMix()[1])*.6);s.material.color.set(o.v?'#4a4540':'#c9c9c9').multiplyScalar(1-.55*dk())}}
 // ---------- caméra / entrées ----------
 function updCam(dt){
- if(fpt&&fpt!==K.fpB){K.fpB=fpt;K.tx=fpt.x;K.tz=fpt.y;K.dist=Math.min(K.dist,70)}
- if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const [x,z]=hpos(q,bAssign());if(K.lastFol!==fol){K.dist=Math.min(K.dist,70);K.lastFol=fol}K.tx+=(x-K.tx)*Math.min(1,dt*6);K.tz+=(z-K.tz)*Math.min(1,dt*6)}else fol=null}else K.lastFol=null;
+ if(fol!=null){const h=S.hero.find(z=>z.id===fol),q=h||deads().find(z=>z.id===fol);if(q){const [x,z]=h?hpos(h,bAssign()):[q.x,q.y];if(K.lastFol!==fol){K.dist=Math.min(K.dist,70);K.lastFol=fol}K.tx+=(x-K.tx)*Math.min(1,dt*6);K.tz+=(z-K.tz)*Math.min(1,dt*6)}else fol=null}else K.lastFol=null;
  K.dist=Math.min(950,Math.max(32,K.dist));K.tx=Math.min(WXd,Math.max(0,K.tx));K.tz=Math.min(WYd,Math.max(0,K.tz));
  {const s=Math.min(260,Math.max(70,K.dist*.5)),sc3=sun.shadow.camera;if(Math.abs(sc3.right-s)>4){sc3.left=-s;sc3.right=s;sc3.top=s;sc3.bottom=-s;sc3.updateProjectionMatrix()}}
  camPlace()}
@@ -1968,6 +1972,7 @@ function ground(sx,sy){RV.set(sx/W*2-1,-(sy/H)*2+1,.5).unproject(cam3);RD3.copy(
 function dragTo(a,b){const g0=ground(a[0],a[1]),g1=ground(b[0],b[1]);K.tx+=g0[0]-g1[0];K.tz+=g0[1]-g1[1];camPlace()}
 function zoomAtPt(px,py,f){const g0=ground(px,py);K.dist=Math.min(950,Math.max(32,K.dist/f));camPlace();const g1=ground(px,py);K.tx+=g0[0]-g1[0];K.tz+=g0[1]-g1[1];camPlace()}
 function glTap(x,y){let b=null,bd=1e9;const BM=bAssign();for(const q of S.hero){if(hidn(q)&&!BM.get(q.id))continue;const [hx,hz]=hpos(q,BM);V3a.set(hx,H3(hx,hz)+HS*.7,hz).project(cam3);const sx=(V3a.x*.5+.5)*W,sy=(-V3a.y*.5+.5)*H,d=Math.hypot(sx-x,sy-y);if(d<bd){bd=d;b=q}}
+ for(const m of deads()){V3a.set(m.x,H3(m.x,m.y)+1.5,m.y).project(cam3);if(V3a.z>1)continue;const d=Math.hypot((V3a.x*.5+.5)*W-x,(-V3a.y*.5+.5)*H-8-y);if(d<bd){bd=d;b=m}}
  if(b&&bd<34){fol=b.id;K.dist=Math.min(K.dist,70)}else fol=null}
 function bindInput(){
  cv.addEventListener('pointerdown',e=>{if(!K.on)return;e.stopImmediatePropagation();try{cv.setPointerCapture(e.pointerId)}catch(_){}PT.set(e.pointerId,[e.offsetX,e.offsetY]);G3.pd=0;G3.pc=null;G3.pa=null;G3.rg=0;G3.ro=0;G3.tp=e.isPrimary&&PT.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null},true);
@@ -1992,7 +1997,7 @@ function overlay(BM){
  if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q&&hidn(q)&&!BM.get(q.id)){const ib=vdim().u.find(a=>a[1]===NE.A);if(ib){const x=T.x+ib[0][0],z=T.y+ib[0][1]+3.3,p=pj(x,H3(x,z)+3.6,z);if(p){lab(`${sn(q.name)} · niv. ${q.lv}`,/\u2060/.test(q.name),p,'#fff',[['en repos','#b8e0ff']])}}}}
  for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it||it.cn||!NPV[k])continue;const n=S.npc[k],[x,z]=(o=>o?[o.g.position.x,o.g.position.z]:npcPos(k,it))(NPG.get(k)),p=pj(x,H3(x,z)+HS*(PXSZ*.97+.4),z);lab(`${sn(n.n)} · niv. ${n.lv}`,/\u2060/.test(n.n),p,'#e6d6ff')}
  for(const it of S.pl){const c=it.cn||it.rb;if(!c)continue;const p=slot(it),x=T.x+p[0],z=T.y+p[1],q=pj(x,H3(x,z)+(BTOP[NK[it.e]||'H']||6.7)+3,z);lab('🔨 '+Math.min(99,Math.floor(c.t/c.T*100))+' %',0,q,'#fff')}
- for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;const p=pj(m.x,H3(m.x,m.y)+1.5,m.y);if(!p)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font='20px serif';cx.fillText('💀',p[0],p[1]);if(m.n){cx.font=(/⁠/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineWidth=3;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(sn(m.n),p[0],p[1]+14);cx.fillStyle='#fff';cx.fillText(sn(m.n),p[0],p[1]+14)}cx.globalAlpha=1}
+ for(const m of S.marks){const a=S.t-m.t;if(a>MKT)continue;const p=pj(m.x,H3(m.x,m.y)+1.5,m.y);if(!p)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font='20px serif';cx.fillText('💀',p[0],p[1]);if(m.n){cx.font=(/⁠/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineWidth=3;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(sn(m.n),p[0],p[1]+14);cx.fillStyle='#fff';cx.fillText(sn(m.n),p[0],p[1]+14)}cx.globalAlpha=1}
  const PL=[],lh=fs*1.15;LB.sort((a,b)=>a.y-b.y);for(const l of LB){const f1=`700 ${fs}px Alegreya,serif`,fm1=(l.i?'italic ':'')+f1;cx.font=fm1;l.w=cx.measureText(l.t).width+4;cx.font=f1;for(const e of l.ex)l.w=Math.max(l.w,cx.measureText(e[0]).width+4);const bt=q=>q.y+lh*q.ex.length+3;for(let k=0;k<20&&PL.some(p=>Math.abs(p.x-l.x)<(p.w+l.w)/2&&l.y-fs<bt(p)&&p.y-fs<bt(l));k++)l.y-=fs*1.05;PL.push(l);cx.font=fm1;cx.lineWidth=2.8;cx.strokeStyle='rgba(20,28,22,.85)';cx.strokeText(l.t,l.x,l.y);cx.fillStyle=l.c||'#fff';cx.fillText(l.t,l.x,l.y);cx.font=f1;l.ex.forEach((e,j)=>{const y=l.y+lh*(j+1);cx.strokeText(e[0],l.x,y);cx.fillStyle=e[1];cx.fillText(e[0],l.x,y)})}
  cx.restore();
  {const now=performance.now(),rs=CR.filter(r=>now-r.at<25000).reverse(),f=S.hero.filter(h=>h.st==='fight').slice(0,3),L=[...f.map(h=>({t:`${h.name} ⚔️ ${h.en.n}`,c:'#fff'})),...rs].slice(0,5);
@@ -2037,7 +2042,7 @@ function frame(){
  const vk=T.x+','+T.y+';'+S.pl.map(i=>i.i+i.e+(i.cn?'c'+bstg(i):(i.rb?'r':'t')+tr(NK[i.e]||'H'))+((i.h&&i.h.o!=null&&(S.hero.find(q=>q.id===i.h.o)||{}).col)||'')).join(',');
  if(vk!==vKey){vKey=vk;try{buildVillageMesh()}catch(e){K.err=e}}
  K.plk=pk;if(K.bwT){K.bwT=0;bwShow(false)}}}
- const BM=DBG.m?new Map():updHeroes(dt,tm);try{if(!DBG.m){updNpc(dt,tm);updMon(dt,tm,BM)}wxUpd(dt,tm);torchUpd(tm);windUpd(tm);rockUpd();grassUpd(tm);leafUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dkl())}catch(e){K.err=e}try{holeUpd(BM)}catch(e){K.err=e}
+ const BM=DBG.m?new Map():updHeroes(dt,tm);try{if(!DBG.m){updNpc(dt,tm);updMon(dt,tm,BM)}wxUpd(dt,tm);torchUpd(tm);windUpd(tm);rockUpd();grassUpd(tm);leafUpd(tm);ffUpd(tm);smUpd(tm);vgUpd(tm)}catch(e){K.err=e}updLight();updCam(dt);try{plUpd(dt,dkl())}catch(e){K.err=e}try{holeUpd(BM,dt)}catch(e){K.err=e}
  if(WTEX)WTEX.offset.x=-(tm*.12)%1;
  fcn++;ren.shadowMap.autoUpdate=false;const sunF=!!(fcn&1);sun.shadow.needsUpdate=sunF;let ptF=false;if(plOn&&!sunF){let s=PLS.find(q=>q.fresh&&q.k>.02);if(!s)for(let q=0;q<PLN;q++){const c=PLS[plRot=(plRot+1)%PLN];if(c.k>.02){s=c;break}}if(s){s.fresh=0;s.l.shadow.needsUpdate=true;ptF=true}}ren.shadowMap.needsUpdate=sunF||ptF;if(ptF){SHM.forEach(m=>{m.castShadow=false});PLX.castShadow=true}
  ren.info.reset();if(K.ql===2&&!PP.fail){try{ppRender()}catch(e){PP.fail=1;K.err=e;ren.setRenderTarget(null);ren.render(scn,cam3)}}else ren.render(scn,cam3);

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.0 « Sol définitif et correctifs »**
+Version actuelle du jeu : **v4.1.1 « Suivi des morts »**
 
 ## ✅ Déjà intégré
 
@@ -613,12 +613,14 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Rond de transparence :** le garder pendant que l'aventurier récupère le butin.
 - [ ] Essai sur le Z Fold 3 (sol, 3D, rond de transparence).
 
-## v4.1.1 « Suivi des morts » (prochain)
-- [ ] **Cibler un aventurier mort avec les flèches** (déjà demandé auparavant, à corriger). Il peut rester affiché dans l'onglet Aventuriers comme **mort**.
-- [ ] **Durée :** ciblable et affiché **tant que sa tête de mort est visible sur la carte** (actuellement 240 s dans le code).
-- [ ] Compatibilité des anciennes sauvegardes.
+## ✅ v4.1.1 « Suivi des morts »
+- [x] **Cibler un aventurier mort avec les flèches** (déjà demandé auparavant, à corriger). Il peut rester affiché dans l'onglet Aventuriers comme **mort**.
+- [x] **Durée :** ciblable et affiché **tant que sa tête de mort est visible sur la carte** (actuellement 240 s dans le code).
+- [x] Compatibilité des anciennes sauvegardes.
+- [x] **Rond de transparence (ajout) :** transition rapide de 0,3 s.
+- [ ] Essai sur le Z Fold 3.
 
-## v4.1.2 « Un village plus spacieux »
+## v4.1.2 « Un village plus spacieux » (prochain)
 - [ ] **Agrandir le contour de la clôture** avec un espace de sécurité : aucun bâtiment dans la clôture, aucune entrée collée à elle. Constat (v4.0.9) : le contour (`vdim`, map.js) est calculé surtout d'après le centre des bâtiments, sans leur taille.
 - [ ] **Entrées dans les barrières du village :** les agrandir (trop petites).
 - [ ] **Marge de sécurité autour des bâtiments :** les aventuriers y rentrent encore.

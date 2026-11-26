@@ -80,6 +80,7 @@ const fresh=()=>{const zv=ZB.map(()=>Math.floor(Math.random()*3));ZVC=zv;ZSON=tr
 let S=fresh(),showT=false;
 const rname=()=>rn([],S);
 const rem=h=>{if(h.st==='fight'||h.st==='loot')return h.t+(h.st==='fight'&&h.pw>0?h.pw:0);if(h.st==='town')return h.sub==='do'?h.t:0;if(h.st!=='go'&&h.st!=='back')return 0;const tg=h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h));return plen(h,tg)/(h.v*spf(h)*(h.st==='back'&&h.hurt?HSP:1))};
+const MKT=240;const deads=()=>S.marks.filter(m=>m.id!=null&&m.n&&S.t-m.t<=MKT).sort((a,b)=>a.t-b.t);
 const fm=s=>{s=Math.ceil(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
 const nl=k=>S.npc[k]?S.npc[k].lv:0;
 const hr=()=>Math.floor((6+24*(S.t-S.ds)/S.dl)%24);

@@ -493,8 +493,7 @@ function shp(c,x,y,r){cx.beginPath();const n={G:4,V:3,M:4,R:6}[eqb(c)],o={G:Math
 function bstars(x,y){const t=performance.now()/1000*.8,g=cx;g.fillStyle='#ffe082';for(let i=0;i<3;i++){const a=t+i*2.094,px=x+Math.cos(a)*sc*2.8,py=y-sc*1.6+Math.sin(a)*sc*1.1,r=sc*(.55+.15*Math.sin(t*5+i*2));g.beginPath();g.moveTo(px,py-r);g.quadraticCurveTo(px,py,px+r,py);g.quadraticCurveTo(px,py,px,py+r);g.quadraticCurveTo(px,py,px-r,py);g.quadraticCurveTo(px,py,px,py-r);g.fill()}}
 function draw(){
  const BM=bAssign();
- if(fpt&&fpt!==cam.fpA){cam.fpA=fpt;cam.x=W/2-fpt.x*sc*cam.z;cam.y=H/2-fpt.y*sc*cam.z;clampCam()}
- if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const bm=BM.get(q.id),bp=bm?bpos(q,bm):[q.x*sc+((q.id%3)-1)*sc*1.5,q.y*sc+((q.id%2)-.5)*sc*2];cam.x=W/2-bp[0]*cam.z;cam.y=H/2-bp[1]*cam.z;clampCam()}else fol=null}
+ if(fol!=null){const q=S.hero.find(z=>z.id===fol);if(q){const bm=BM.get(q.id),bp=bm?bpos(q,bm):[q.x*sc+((q.id%3)-1)*sc*1.5,q.y*sc+((q.id%2)-.5)*sc*2];cam.x=W/2-bp[0]*cam.z;cam.y=H/2-bp[1]*cam.z;clampCam()}else{const m=deads().find(z=>z.id===fol);if(m){cam.x=W/2-m.x*sc*cam.z;cam.y=H/2-m.y*sc*cam.z;clampCam()}else fol=null}}
  cx.save();cx.translate(cam.x,cam.y);cx.scale(cam.z,cam.z);cx.fillStyle='#8fae7a';cx.fillRect(-W*2,-H*2,W*(MS+4),H*(MS+4));
  if(W>0){const k=W+JSON.stringify(S.zp)+T.x+','+T.y+BZ.x+','+BZ.y+S.zv.join('');if(GC.k!==k){GC.k=k;buildGround()}cx.drawImage(GC.c,0,0,W*MS,H*MS)}
  cx.textAlign='center';
@@ -524,7 +523,7 @@ function draw(){
    if(q.loot&&(q.st==='back'||q.st==='town')){const lx=x+sc*1.8,ly=y-sc*1.8,lr=Math.max(sc*3.2,8/cam.z);cx.globalAlpha=.8*K;cx.drawImage(GLOW,lx-lr,ly-lr,2*lr,2*lr);cx.globalAlpha=K;cx.fillStyle='#ffe066';cx.beginPath();cx.arc(lx,ly,sc*.9,0,7);cx.fill()}}
   }}
  for(const q of S.hero){if(q.st!=='fight'||!q.en||!q.en.nt||q.pw>0)continue;const mk=mkind(q.en.n);if(mk)monster(q.x*sc+((q.id%3)-1)*sc*1.5+sc*(q.hs?7.5:6.2),q.y*sc+((q.id%2)-.5)*sc*2,q,mk,'g')}
- for(const m of S.marks){const a=S.t-m.t;if(a>240)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);if(m.n){const fs=11/cam.z;cx.font=(/\u2060/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineJoin='round';cx.lineWidth=3/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';const tx=sn(m.n),ty=m.y*sc+sc*2+fs*1.1;cx.strokeText(tx,m.x*sc,ty);cx.fillStyle='#fff';cx.fillText(tx,m.x*sc,ty)}cx.globalAlpha=1}
+ for(const m of S.marks){const a=S.t-m.t;if(a>MKT)continue;cx.globalAlpha=Math.max(.35,1-a/240);cx.font=`${sc*5}px serif`;cx.fillText('💀',m.x*sc,m.y*sc+sc*2);if(m.n){const fs=11/cam.z;cx.font=(/\u2060/.test(m.n)?'italic ':'')+`700 ${fs}px Alegreya,serif`;cx.lineJoin='round';cx.lineWidth=3/cam.z;cx.strokeStyle='rgba(20,28,22,.85)';const tx=sn(m.n),ty=m.y*sc+sc*2+fs*1.1;cx.strokeText(tx,m.x*sc,ty);cx.fillStyle='#fff';cx.fillText(tx,m.x*sc,ty)}cx.globalAlpha=1}
  {cx.globalAlpha=1;cx.textAlign='center';cx.lineJoin='round';const fs=10/cam.z,LB=[],lab=(t,i,x,y,c)=>LB.push({t,i,x,y,c});
   for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it)continue;const p=slot(it),n=S.npc[k];lab(`${sn(n.n)} · niv. ${n.lv}`,/\u2060/.test(n.n),(T.x+p[0]+(k==='V'?5.6:4.8))*sc,(T.y+p[1]+1.1)*sc-sc*4.2-3/cam.z,'#e6d6ff')}
   for(const h of S.hero){const bm=BM.get(h.id);if(hidn(h)&&!bm)continue;const hp=bm?bpos(h,bm):[h.x*sc+((h.id%3)-1)*sc*1.5,h.y*sc+((h.id%2)-.5)*sc*2];lab(`${sn(h.name)} · niv. ${h.lv}`,/\u2060/.test(h.name),hp[0],hp[1]-sc*(h.hs?6.6:5.2)-3/cam.z);if(h.st==='fight')lab(h.en.n,0,hp[0],hp[1]-sc*(h.hs?6.6:5.2)-3/cam.z+fs*1.15)}
@@ -551,8 +550,8 @@ cv.addEventListener('pointermove',e=>{if(!pt.has(e.pointerId))return;const o=pt.
 const pup=e=>{pt.delete(e.pointerId);pd=0};cv.addEventListener('pointerup',pup);cv.addEventListener('pointercancel',pup);
 cv.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.15:.87)},{passive:false});
 cv.addEventListener('dblclick',()=>{fol=null;cam.z=1.6;cam.x=W/2-T.x*sc*cam.z;cam.y=H/2-T.y*sc*cam.z;clampCam()});
-let fol=null,tp=null,fpt=null;
-function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){if(hidn(q))continue;const d=Math.hypot(q.x+((q.id%3)-1)*1.5-mx,q.y+((q.id%2)-.5)*2-my);if(d<bd){bd=d;b=q}}if(b&&bd*sc*cam.z<26){fol=b.id;if(cam.z<1.2)cam.z=1.2}else fol=null}
+let fol=null,tp=null;
+function tap(x,y){const mx=(x-cam.x)/cam.z/sc,my=(y-cam.y)/cam.z/sc;let b=null,bd=1e9;for(const q of S.hero){if(hidn(q))continue;const d=Math.hypot(q.x+((q.id%3)-1)*1.5-mx,q.y+((q.id%2)-.5)*2-my);if(d<bd){bd=d;b=q}}for(const m of deads()){const d=Math.hypot(m.x-mx,m.y-my);if(d<bd){bd=d;b=m}}if(b&&bd*sc*cam.z<26){fol=b.id;if(cam.z<1.2)cam.z=1.2}else fol=null}
 cv.addEventListener('pointerdown',e=>{tp=e.isPrimary&&pt.size<=1?{x:e.offsetX,y:e.offsetY,t:Date.now(),m:0}:null});
 cv.addEventListener('pointermove',e=>{if(tp&&Math.hypot(e.offsetX-tp.x,e.offsetY-tp.y)>8){tp.m=1;fol=null}});
 cv.addEventListener('pointerup',e=>{if(tp&&!tp.m&&Date.now()-tp.t<500)tap(e.offsetX,e.offsetY);tp=null});

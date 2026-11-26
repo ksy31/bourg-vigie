@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.1 « Suivi des morts »
+
+Version affichée dans les Options : **v4.1.1**
+
+### Ajouté
+- Un mort reste suivi tant que sa tête de mort est visible (240 s) : flèches ◀ ▶ (après les vivants, du plus ancien au plus récent), toucher la tête de mort sur la carte, toucher sa fiche.
+- Onglet Aventuriers : fiche grisée après les vivants (nom, classe, niveau, « mort », tueur).
+- La caméra reste sur la tête de mort si elle suivait l'aventurier à sa mort.
+- 3D : le rond de transparence s'ouvre, se ferme et change de forme en 0,3 s.
+
+### Corrigé
+- Les flèches ne permettaient pas de cibler un aventurier mort.
+
+### Modifié
+- La tête de mort enregistre aussi la classe, le niveau et le tueur. Un mort d'une ancienne sauvegarde n'affiche que son nom et « mort ».
+- Pas de changement d'équilibrage. Cache `bv-v127`.
+
+### Vérifié
+- Simulation de 15 jours et chargement d'une sauvegarde v4.0.9 : fiche, flèches, disparition après 240 s, mort réelle suivie.
+- Navigateur sans écran, 2D et 3D : caméra, tap sur la tête de mort et sur la fiche, aucune erreur relevée. Rond mesuré sur des pas de temps simulés : transitions en 0,3 s.
+- Non vérifié : fluidité à l'œil et Z Fold 3.
+
 ## v4.1.0 « Sol définitif et correctifs »
 
 Version affichée dans les Options : **v4.1.0**
