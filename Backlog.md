@@ -640,6 +640,59 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Posture et combat :** assis en selle ; à pied en combat et pendant le butin.
 - [ ] Essai sur le Z Fold 3.
 
+## v4.1.5 « Console, encadrés et affichage » (prochain)
+- [ ] **Console, sous-zone :** afficher le nom de la sous-zone au lieu de celui de la zone (expéditions de guilde et autres messages qui nomment une zone).
+- [ ] **Console, débuts de combat :** retirer ces messages.
+- [ ] **Console, primes :** ajouter un message quand une nouvelle prime est disponible.
+- [ ] **Durées :** n'afficher que les temps de trajet (liste des aventuriers, carte 2D et 3D) ; retirer les temps des actions.
+- [ ] **Chevaux à vendre :** les placer dans l'encadré du Palefrenier.
+- [ ] **Primes :** les placer dans l'encadré du Tavernier.
+- [ ] **Aventurier suivi :** son nom passe en jaune pâle.
+- [ ] Essai sur le Z Fold 3.
+
+## v4.1.6 « Combats lisibles »
+- [ ] **Cercle de combat :** retirer le cercle sous les aventuriers qui combattent (2D et 3D).
+- [ ] **Clairières :** placer les combats dans un espace sans arbres, surtout en forêt.
+- [ ] **Transparence :** vérifier que le cercle de transparence agit sur tous les arbres.
+- [ ] Essai sur le Z Fold 3.
+
+## v4.1.7 « Guildes : inscription et coffre »
+- [ ] **Inscription :** tout aventurier sans guilde peut en rejoindre une, quel que soit son niveau (dans la limite des places). Fonder une guilde reste réservé au niveau 5.
+- [ ] **Passage par le bâtiment :** l'inscription se fait uniquement à la Maison des Guildes ; une nouvelle recrue n'entre plus automatiquement dans une guilde.
+- [ ] **Coffre de guilde :** chaque guilde a son coffre. Un membre qui obtient un objet égal ou moins bon que le sien l'y dépose au lieu de le revendre.
+- [ ] **Retrait :** à la Maison des Guildes, un membre prend dans le coffre un objet compatible meilleur que le sien.
+- [ ] **Interface :** afficher le contenu du coffre dans les informations de la guilde.
+- [ ] **Sauvegardes :** migration des anciennes parties (coffre vide).
+- [ ] **Équilibre :** comparer l'or avant/après (reventes en moins, part des achats).
+- [ ] **Dissolution :** le contenu du coffre est revendu et les pièces reviennent au village.
+- [ ] **Part des achats :** sauf pour les maisons, environ 50 % de l'argent des achats faits au village revient à la caisse (au lieu de 100 %). Le reste représente le gagne-pain des PNJ, dont la gestion n'est pas à implémenter pour l'instant.
+- [ ] Essai sur le Z Fold 3.
+
+## v4.1.8 « Expéditions de guilde »
+- [ ] **Rendez-vous :** l'expédition est annoncée, les membres s'attendent à la Maison des Guildes ; départ quand tous sont là ou après un délai limite.
+- [ ] **Trajet groupé :** départ ensemble, au rythme du plus lent.
+- [ ] **Même destination :** les membres vont au même endroit, légèrement écartés pour que les sprites ne se chevauchent pas.
+- [ ] **Duels séparés :** même ennemi pour tous, mais chacun affronte le sien, avec son propre résultat (victoire, fuite ou mort) et son butin.
+- [ ] **Sauvegardes :** compatibilité des expéditions en cours.
+- [ ] **Équilibre :** comparer or, quêtes par jour et morts avant/après.
+- [ ] À préciser au lancement : délai limite du rendez-vous ; sort du bonus de groupe actuel (+5 % par membre) avec les duels séparés.
+- [ ] Essai sur le Z Fold 3.
+
+## v4.1.9 « Équipement : icônes et noms »
+- [ ] **Icônes plus lisibles :** en particulier les bottes niveau 1 (aujourd'hui un simple rectangle marron).
+- [ ] **Nom de l'objet :** toucher une icône affiche son nom.
+- [ ] Essai sur le Z Fold 3.
+
+## v4.2.0 « Équipement visible sur le sprite »
+- [ ] **Apparence :** le personnage reflète ses objets, bottes comprises (2D et 3D).
+- [ ] Essai sur le Z Fold 3.
+
+## v4.2.1 « Village en anneaux »
+- [ ] **Disposition :** place centrale, bâtiments en anneaux irréguliers tournés vers la place ou la rue, pour supprimer l'effet de grille.
+- [ ] **Ruelles :** chemins courbes ; vérifier les remparts, les portes et les déplacements (aucun passage à travers les bâtiments).
+- [ ] **Sauvegardes :** replacer les bâtiments des anciennes parties.
+- [ ] Essai sur le Z Fold 3.
+
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.
 
