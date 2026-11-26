@@ -25,3 +25,5 @@ const ZV=[[['Clairière brumeuse',2,'Renard enragé,Loup,Sanglier','Chouette spe
 [['Cachots',42,'Geôlier,Orc,Rat-garou','Succube,Spectre de prisonnier,Orc maudit'],['Donjon central',52,'Garde-chiourme,Démon mineur,Dragonnet','Incube,Chevalier maudit,Hydre'],['Citadelle noire',65,'Démon,Wyrm noir,Seigneur liche','Chevalier de la mort,Hydre à sept têtes,Archidémon']],
 [['Pentes fumantes',68,'Salamandre,Lézard de feu,Élémentaire de braise','Spectre ardent,Chimère,Salamandre noire'],['Cratère',85,'Salamandre géante,Golem de lave,Élémentaire de feu','Âme de magma,Chimère ardente,Drake nocturne'],['Cœur du volcan',105,'Golem d’obsidienne,Élémentaire de magma,Dragon ancien','Drake infernal,Titan de cendre,Dragon des cendres']]];
 let Z=[],ZA=[];
+// v4.1.5 : nom de sous-zone d'une zone (affichage), couleur du nom de l'aventurier suivi
+const zsn=n=>(Z.find(z=>z.n===n)||{}).sn||n,FOLC='#fff0a0';

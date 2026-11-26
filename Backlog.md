@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.4 « À cheval »**
+Version actuelle du jeu : **v4.1.5 « Console, encadrés et affichage »**
 
 ## ✅ Déjà intégré
 
@@ -640,17 +640,17 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Posture et combat :** assis en selle ; à pied en combat et pendant le butin.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.5 « Console, encadrés et affichage » (prochain)
-- [ ] **Console, sous-zone :** afficher le nom de la sous-zone au lieu de celui de la zone (expéditions de guilde et autres messages qui nomment une zone).
-- [ ] **Console, débuts de combat :** retirer ces messages.
-- [ ] **Console, primes :** ajouter un message quand une nouvelle prime est disponible.
-- [ ] **Durées :** n'afficher que les temps de trajet (liste des aventuriers, carte 2D et 3D) ; retirer les temps des actions.
-- [ ] **Chevaux à vendre :** les placer dans l'encadré du Palefrenier.
-- [ ] **Primes :** les placer dans l'encadré du Tavernier.
-- [ ] **Aventurier suivi :** son nom passe en jaune pâle.
+## ✅ v4.1.5 « Console, encadrés et affichage »
+- [x] **Console, sous-zone :** afficher le nom de la sous-zone au lieu de celui de la zone (expéditions de guilde et autres messages qui nomment une zone).
+- [x] **Console, débuts de combat :** retirer ces messages.
+- [x] **Console, primes :** ajouter un message quand une nouvelle prime est disponible.
+- [x] **Durées :** n'afficher que les temps de trajet (liste des aventuriers, carte 2D et 3D) ; retirer les temps des actions.
+- [x] **Chevaux à vendre :** les placer dans l'encadré du Palefrenier.
+- [x] **Primes :** les placer dans l'encadré du Tavernier.
+- [x] **Aventurier suivi :** son nom passe en jaune pâle.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.6 « Combats lisibles »
+## v4.1.6 « Combats lisibles » (prochain)
 - [ ] **Cercle de combat :** retirer le cercle sous les aventuriers qui combattent (2D et 3D).
 - [ ] **Clairières :** placer les combats dans un espace sans arbres, surtout en forêt.
 - [ ] **Transparence :** vérifier que le cercle de transparence agit sur tous les arbres.

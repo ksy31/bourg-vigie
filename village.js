@@ -39,7 +39,7 @@ function depart(h){const G=gMates(h);if(!G.length){leave(h,pick(h));return}
  if(z.boss){leave(h,pick(h));return}
  const id=S.gpn=(S.gpn||0)+1,g=S.guilds.find(q=>q.id===h.gu);h.gp=id;h.gl=1;leave(h,z);
  G.forEach(m=>{m.gp=id;m.gl=0;m.tk=null;m.tl=[];leave(m,z)});
- for(let j=0;j<AXG;j++)npcx('C');log(`${g.e} ${g.n} (${G.length+1}) part en expédition : ${z.n}.`,'ok')}
+ for(let j=0;j<AXG;j++)npcx('C');log(`${g.e} ${g.n} (${G.length+1}) part en expédition : ${z.sn||z.n}.`,'ok')}
 function garrive(h){arrive(h);for(const m of S.hero)if(m.gp===h.gp&&m!==h){m.en=h.en;m.st='fight';m.t=h.t;m.pw=h.pw}}
 function gres(h){const G=S.hero.filter(x=>x.gp===h.gp),n=G.length,e=h.en,gP=G.reduce((s,m)=>s+power(m),0)*(1+GB*(n-1)),gw=Math.random()<win(h,e.d,gP);
  GPW=gP;for(const m of G){RRF=gw?-1:-2;resolve(m);m.buff=0;m.bless=0}RRF=null;GPW=undefined;
@@ -135,7 +135,7 @@ function newPr(){const k=Math.min(Z.length,S.tavern),n=Math.min(4,1+Math.floor(n
  for(let t=0;t<n*8&&l.length<n;t++){let r=Math.random()*k*(k+1)/2,j=0;while(j<k-1&&(r-=j+1)>0)j++;
   const z=Z[j],nt=Math.random()<.3,L=nt?z.f:z.e,m=L[R(0,L.length-1)];if(l.some(x=>x.n===m[0]))continue;
   l.push({n:m[0],z:z.n,g:Math.max(PRMIN,Math.round(dz(z)*m[1]*(nt?NM:1)*PRM*(1+PRL*nl('T'))))})}
- S.pr={l};S.pd=S.day+2}
+ S.pr={l};S.pd=S.day+2;for(const p of l)log(`🎯 Nouvelle prime : ${p.n} (${zsn(p.z)}) · ${p.g} or.`,'ok')}
 function restock(){let n=S.horses.filter(x=>x.o==null).length;while(n<3){const sp=Math.min(12,2+nl('E')+R(0,2));S.horses.push({sp,p:Math.round(sp*9*(.7+Math.random()*.6)),o:null});n++}}
 function bDone(it){const c=it.cn,b=BD[c.id];it.cn=null;S.hero.forEach(h=>{if(h.st==='town'&&h.tk&&h.tk.k==='build'&&h.tk.b===it.i){h.tk=null;h.vk=null;h.vw=null;h.sub='home'}});S.cp=S.cp||{};S.cp[b.k]=Math.max(0,(S.cp[b.k]||0)-1);S[b.k]=(S[b.k]||0)+1;
  if(c.id==='H'){const hh={o:null,p:c.hp};S.hs.splice(S.pl.slice(0,S.pl.indexOf(it)).filter(x=>x.h).length,0,hh);it.h=hh}

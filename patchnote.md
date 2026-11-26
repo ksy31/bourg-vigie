@@ -1,5 +1,28 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.5 « Console, encadrés et affichage »
+
+Version affichée dans les Options : **v4.1.5**
+
+### Ajouté
+- Console : un message par nouvelle prime (monstre, sous-zone, or).
+- Cartes 2D et 3D : nom de l'aventurier suivi en jaune pâle (y compris s'il est mort ou au repos).
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Nom de la sous-zone au lieu de la zone : expéditions de guilde, bandeau de mort, primes.
+- Console : le message « X affronte Y » est retiré.
+- Temps restant : trajets d'expédition seulement (aller et retour), dans la liste et sur les cartes.
+- Chevaux à vendre et primes : dans les encadrés du Palefrenier et du Tavernier, une ligne chacun.
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v131`.
+
+### Vérifié
+- Simulation (12 jours en v4.1.4, puis 18 en v4.1.5), ancienne sauvegarde chargée, sauvegarde et rechargement.
+- Captures dans un navigateur sans écran : nom jaune en 2D et en 3D, encadrés du Tavernier et du Palefrenier, bandeau de mort avec la sous-zone.
+- Non vérifié : Z Fold 3.
+
 ## v4.1.4 « À cheval »
 
 Version affichée dans les Options : **v4.1.4**

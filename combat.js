@@ -92,7 +92,7 @@ function resolve(h){
   h.xp+=Math.min(xpNeed(h.lv)-1,Math.max(1,Math.round(e.d*Math.min(1.5,e.d/power(h)*1.2))));
   h.kills++;S.tk=(S.tk||0)+1;if(Math.random()<GDROP){h.gem=(h.gem||0)+1;log(`💎 ${h.name} trouve une gemme.`,'ok')}log(`✔ ${h.name} a vaincu ${e.n}.`,'ok');crp(`✔ ${h.name} a vaincu ${e.n}`,'#7ddc7a');h.won=e.n;{const pb=e.boss||e.el||!S.pr?-1:S.pr.l.findIndex(x=>x.n===e.n);if(pb>=0)h.prime=S.pr.l.splice(pb,1)[0]}if(e.boss){goBack(h);victory(h)}else startLoot(h);
  }else if(rr<pw+pd){
-  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;S.td=(S.td||0)+1;if(!S.bh||h.lv>S.bh.lv)S.bh={n:h.name,c:h.c,lv:h.lv};lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name,id:h.id,c:h.c,lv:h.lv,by:e.n});S.alert={txt:`💀 ${h.name} est mort · ${z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
+  if(h.home){h.home.o=null;h.home.dn=(h.home.dn||0)+1;h.home.p=Math.round(50*Math.max(.5,1-.1*h.home.dn))}if(h.hs)h.hs.o=null;S.td=(S.td||0)+1;if(!S.bh||h.lv>S.bh.lv)S.bh={n:h.name,c:h.c,lv:h.lv};lbAdd({n:h.name,c:h.c,lv:h.lv,d:S.day-h.bd+1,by:e.n,k:h.kills,g:h.earned,eq:{...h.eq},hs:h.hs?h.hs.sp:0});save();S.marks.push({x:h.x,y:h.y,t:S.t,n:h.name,id:h.id,c:h.c,lv:h.lv,by:e.n});S.alert={txt:`💀 ${h.name} est mort · ${z.sn||z.n}`,at:performance.now()};crp(`💀 ${h.name} est mort face à ${e.n}`,'#ff6b5e');
   S.hero=S.hero.filter(x=>x!==h);
   log(`${h.name} (${c.n} niv. ${h.lv}) est tombé·e face à ${e.n}.`,'bad');armRec(h);
   ui();
@@ -120,6 +120,6 @@ function tick(dt){
    else{const nx=h.x+dx/d*sp,ny=h.y+dy/d*sp;bavoid(h,tg,nx,ny);const t2=h.wp&&h.wp.length?h.wp[0]:tg,ex=t2.x-h.x,ey=t2.y-h.y,e=Math.hypot(ex,ey)||1;if(t2===tg){h.x=nx;h.y=ny}else{const q=Math.min(sp,e);h.x+=ex/e*q;h.y+=ey/e*q}}
   }else if(h.st==='wait'){if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'))garrive(h)}
   else if(h.st==='loot'){h.t-=dt;if(h.t<=0)goBack(h)}
-  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;if(h.pw>0){h.pw-=dt;if(h.pw<=0){h.pw=0;log(`⚔️ ${h.name} affronte ${h.en.n} (${h.z.n||'Roi'})`)}if(h.gp)for(const m of S.hero)if(m.gp===h.gp)m.pw=h.pw;continue}h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
+  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;if(h.pw>0){h.pw-=dt;if(h.pw<=0)h.pw=0;if(h.gp)for(const m of S.hero)if(m.gp===h.gp)m.pw=h.pw;continue}h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
  }
 }
