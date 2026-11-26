@@ -1,5 +1,17 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.2.0 « Équipement visible sur le sprite »
+
+Version affichée dans les Options : **v4.2.0**
+
+### Ajouté
+- Bottes (3D) : revers contrasté, clair sur bottes sombres et sombre sur bottes claires.
+
+### Modifié
+- Bottes (3D) plus hautes de 3 pixels.
+- Classes en robe (Mage, Nécromancien) : fin liseré contrasté visible sous la robe, qui n'est pas raccourcie.
+- En 3D, arme, armure, bouclier et bottes reflétaient déjà les objets ; la 2D et les PNJ sont inchangés.
+
 ## v4.1.9 « Équipement : icônes et noms »
 
 Version affichée dans les Options : **v4.1.9**

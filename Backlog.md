@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.9 « Équipement : icônes et noms »**
+Version actuelle du jeu : **v4.2.0 « Équipement visible sur le sprite »**
 
 ## ✅ Déjà intégré
 
@@ -683,11 +683,11 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Nom de l'objet :** toucher une icône affiche son nom.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.2.0 « Équipement visible sur le sprite » (prochain)
-- [ ] **Apparence :** le personnage reflète ses objets, bottes comprises (2D et 3D).
+## ✅ v4.2.0 « Équipement visible sur le sprite »
+- [x] **Apparence :** le personnage reflète ses objets, bottes comprises (3D ; 2D inchangée à la demande). Bottes plus visibles avec revers contrasté.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.2.1 « Village en anneaux »
+## v4.2.1 « Village en anneaux » (prochain)
 - [ ] **Disposition :** place centrale, bâtiments en anneaux irréguliers tournés vers la place ou la rue, pour supprimer l'effet de grille.
 - [ ] **Ruelles :** chemins courbes ; vérifier les remparts, les portes et les déplacements (aucun passage à travers les bâtiments).
 - [ ] **Sauvegardes :** replacer les bâtiments des anciennes parties.

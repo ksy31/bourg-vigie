@@ -1024,15 +1024,15 @@ function pxSprite(cls,fem,view,fr,o){
   else if(s===3){part([P([[8,31],[12,27],[21,29],[21,37],[10,39]]),P([[40,31],[36,27],[27,29],[27,37],[38,39]])],cs.m)}
   else{part([E(9,28,20,37),E(28,28,39,37)],cs.m);part([P([[11,29],[14,21],[17,29]]),P([[31,29],[34,21],[37,29]])],cs.l);if(s>=5)part([P([[9,32],[2,26],[5,37]]),P([[39,32],[46,26],[43,37]])],cs.t)}
   if(s)flat([R(10,34,19,35),R(29,34,38,35)],cs.t);if(o.ath)thP()};
- const wbf=(x0,x1,l,dir)=>{const cs=cpB,d=BOD[BO-1],h=d[0],y1=62-l,y0=y1-h,bm=mx([70,50,36],cs.m,Math.min(.9,.3+.05*BO));
+ const bcf=bm=>bm[0]*.3+bm[1]*.59+bm[2]*.11>135?mx(cpB.d,[0,0,0],.25):mx(cpB.l,[255,255,255],.3);
+ const wbf=(x0,x1,l,dir)=>{const cs=cpB,d=BOD[BO-1],h=d[0]+3,y1=62-l,y0=y1-h,bm=mx([70,50,36],cs.m,Math.min(.9,.3+.05*BO));
   if(d[4])part([P([[dir<0?x0-1:x1+1,y0+2],[dir<0?x0-7:x1+7,y0-3],[dir<0?x0-4:x1+4,y0+4]])],cs.l);
   part([R(x0-1,y0,x1+1,y1)],bm);
-  if(d[1])flat([R(x0-1,y0,x1+1,y0+1)],cs.t);
-  if(d[2])flat([R(x0-1,y0+3,x1+1,y0+4)],cs.d);
+  if(d[2])flat([R(x0-1,y0+5,x1+1,y0+6)],cs.d);
   if(d[3]===1)part([R(x0-1,y1-2,x1+1,y1)],cs.t);else if(d[3]===2)part([P([[x0-1,y1-2],[x1+1,y1-2],[x1+2,y1],[x0-2,y1]])],cs.t);
-  if(d[5])part([P([[x0-1,y1-2],[x0-4,y1],[x0-1,y1]])],cs.d);if(o.bth)thm(o.bth,(x0+x1)>>1,y0-2,x0)};
+  if(d[5])part([P([[x0-1,y1-2],[x0-4,y1],[x0-1,y1]])],cs.d);part([R(x0-(dir<0?2:1),y0-1,x1+(dir<0?1:2),y0+2)],bcf(bm));if(o.bth)thm(o.bth,(x0+x1)>>1,y0-2,x0)};
  const wbt=(lf,rf)=>{wbf(18,23,lf,-1);wbf(25,30,rf,1)};
- const wfm=()=>{const cs=cpB,bm=mx([106,74,42],cs.m,Math.min(.9,.3+.05*BO));part([R(15,61,22,64),R(26,61,33,64)],bm);flat([R(15,63,22,64),R(26,63,33,64)],cs.t);if(BOD[BO-1][4])part([P([[14,62],[8,57],[12,64]]),P([[34,62],[40,57],[36,64]])],cs.l)};
+ const wfm=()=>{const cs=cpB,bm=mx([106,74,42],cs.m,Math.min(.9,.3+.05*BO));part([R(15,61,22,64),R(26,61,33,64)],bm);flat([R(15,62,22,63),R(26,62,33,63)],bcf(bm));flat([R(15,63,22,64),R(26,63,33,64)],cs.t);if(BOD[BO-1][4])part([P([[14,62],[8,57],[12,64]]),P([[34,62],[40,57],[36,64]])],cs.l)};
  const wsh=()=>{const cs=cpS,d=SHD[SHT-1],circ=(cx,cy,rx,ry)=>{const q=[];for(let i=0;i<10;i++){const a=i/10*6.2832;q.push([cx+Math.cos(a)*rx,cy+Math.sin(a)*ry])}return q};
   let pl;if(d[0]===0)pl=circ(8,42,5,6);else if(d[0]===1)pl=circ(8,43,7,9);else if(d[0]===2)pl=[[8,31],[15,35],[14,49],[8,58],[2,49],[1,35]];else if(d[0]===3)pl=[[2,32],[15,32],[15,46],[8,57],[2,46]];else if(d[0]===4)pl=[[2,33],[4,31],[7,33],[9,31],[12,33],[15,31],[15,57],[2,57]];else if(d[0]===5)pl=[[8,31],[15,36],[15,51],[8,57],[1,51],[1,36]];else{pl=[];for(let i=0;i<14;i++){const a=i/14*6.2832;pl.push([8+Math.cos(a)*(i%2?5:8),43+Math.sin(a)*(i%2?6:9)])}}
   let sx=0,sy=0;pl.forEach(p=>{sx+=p[0];sy+=p[1]});const cx=sx/pl.length,cy=sy/pl.length;
