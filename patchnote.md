@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.0 « Sol définitif et correctifs »
+
+Version affichée dans les Options : **v4.1.0**
+
+### Ajouté
+- Rien.
+
+### Corrigé
+- Onglet Aventuriers : « undefined » pendant la récupération du butin, remplacé par « récupère le butin ».
+- 3D : le rond de transparence reste actif pendant la récupération du butin, avec le rayon du combat.
+
+### Modifié
+- Sol du village définitif : relief et grande image, dessin demandé sur le processeur. Les réglages du sol sont retirés de Développeur → Affichage 3D et l'ancien réglage enregistré (`bvsol`) est ignoré.
+- Pas de changement de sauvegarde ni d'équilibrage. Cache `bv-v126`.
+
+### Vérifié
+- Simulation de 15 jours : ancienne version, « undefined » reproduit ; nouvelle version, aucun « undefined » ni « NaN » dans la liste des aventuriers (états rencontrés : repos, au village, en route, combat, butin, retour, en position avec l'ancienne sauvegarde). Rechargement et sauvegarde v4.0.9 corrects.
+- Navigateur sans écran en 3D : sol pavé affiché malgré un ancien réglage « sans sol », rond de transparence actif pendant le butin, aucune erreur 3D.
+- Non vérifié : Z Fold 3.
+
 ## v4.0.9 « Enquête sur le sol »
 
 Version affichée dans les Options : **v4.0.9**

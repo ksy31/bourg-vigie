@@ -308,21 +308,19 @@ function paintGround(){
  if(!tex){tex=new TH.CanvasTexture(c);tex.colorSpace=TH.SRGBColorSpace;tex.anisotropy=4}else tex.needsUpdate=true}
 // ===== v3.5.0 : sol du village (terre battue et pavés) en relief, par-dessus le terrain =====
 let VGM=null,VGT=null;
-// v4.0.9 : sol du village. 'n' = aucun, sinon 3 bits : relief, grande image, dessin comme avant (111 = sol d'origine, 000 = allege, defaut)
-const SOL=(()=>{let v=null;try{v=localStorage.getItem('bvsol')}catch(e){}return v==='n'||/^[01]{3}$/.test(v)?v:v==='a'?'111':'000'})();
+// v4.1.0 : sol du village definitif : relief, grande image, dessin demande sur le processeur
 function buildVillageGround(){
- if(SOL==='n')return;const REL=SOL[0]==='1',BIG=SOL[1]==='1',OLD=SOL[2]==='1';
- const vd=vdim(),{rx,ry}=vd,ex=1.22,w=2*rx*ex,h=2*ry*ex,x0=T.x-w/2,y0=T.y-h/2,PU=Math.min(18,2048/Math.max(w,h))/(BIG?1:2);
+ const vd=vdim(),{rx,ry}=vd,ex=1.22,w=2*rx*ex,h=2*ry*ex,x0=T.x-w/2,y0=T.y-h/2,PU=Math.min(18,2048/Math.max(w,h));
  const c=document.createElement('canvas');c.width=Math.ceil(w*PU);c.height=Math.ceil(h*PU);
- const g=c.getContext('2d',OLD?undefined:{willReadFrequently:true});g.setTransform(1,0,0,1,-x0*PU,-y0*PU);const R=rg3(2026);
+ const g=c.getContext('2d',{willReadFrequently:true});g.setTransform(1,0,0,1,-x0*PU,-y0*PU);const R=rg3(2026);
  const rr=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),blob=f=>{g.beginPath();for(let i=0;i<=96;i++){const t=i/96*6.2832,r=rr(t)*f,x=(T.x+Math.cos(t)*rx*r)*PU,y=(T.y+Math.sin(t)*ry*r)*PU;i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
  g.save();blob(1);g.clip();vgDirt(g,x0,y0,x0+w,y0+h,PU,R);try{paveVillage(g,vd,R,PU)}catch(e){K.err=e}g.restore();
  blob(1);g.strokeStyle='rgba(60,46,28,.5)';g.lineWidth=.2*PU;g.stroke();
  const t=new TH.CanvasTexture(c);t.colorSpace=TH.SRGBColorSpace;t.anisotropy=8;
  const nx=Math.ceil(w),nz=Math.ceil(h),geo=new TH.PlaneGeometry(w,h,nx,nz);geo.rotateX(-PI/2);
  const p=geo.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i)+T.x,z=p.getZ(i)+T.y;p.setXYZ(i,x,H3(x,z)+.005,z)}geo.computeVertexNormals();
- if(!VGM){VGM=new TH.Mesh(geo,new TH.MeshStandardMaterial({map:t,...(REL?{bumpMap:t,bumpScale:2}:{}),alphaTest:.5,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4}));VGM.receiveShadow=true;scn.add(VGM)}
- else{VGM.geometry.dispose();VGM.geometry=geo;VGM.material.map=t;if(REL)VGM.material.bumpMap=t;VGM.material.needsUpdate=true}
+ if(!VGM){VGM=new TH.Mesh(geo,new TH.MeshStandardMaterial({map:t,bumpMap:t,bumpScale:2,alphaTest:.5,roughness:1,metalness:0,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4}));VGM.receiveShadow=true;scn.add(VGM)}
+ else{VGM.geometry.dispose();VGM.geometry=geo;VGM.material.map=t;VGM.material.bumpMap=t;VGM.material.needsUpdate=true}
  if(VGT)VGT.dispose();VGT=t}
 // ---------- terrain ----------
 function buildTerrain(){
@@ -456,8 +454,8 @@ MV.onBeforeCompile=sh=>{sh.uniforms.uH={value:HU};sh.uniforms.uE={value:HE};sh.u
  sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;').replace('#include <project_vertex>','#include <project_vertex>\nvec4 cp_=projectionMatrix*mvPosition;vNd=vec3(cp_.xy/cp_.w,-mvPosition.z);');
  sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vNd;uniform vec4 uH[8];uniform vec4 uE[8];uniform float uAs;uniform vec2 uRs;').replace('void main() {','void main() {\n for(int i=0;i<8;i++){vec4 h=uH[i];if(h.w>0.&&vNd.z<h.z-.6){vec2 v_=(gl_FragCoord.xy*uRs*2.-1.-h.xy)*vec2(uAs,1.);vec4 e_=uE[i];float d=length(vec2(dot(v_,e_.xy)/e_.z,v_.y*e_.x-v_.x*e_.y));if(d<h.w){float a=smoothstep(.5,1.,d/h.w),b=fract(52.9829189*fract(dot(gl_FragCoord.xy,vec2(.06711056,.00583715))));if(a<b)discard;}}}\n')};
 function holeUpd(BM){cam3.updateMatrixWorld();{const v=K.v2||(K.v2=new TH.Vector2());ren.getDrawingBufferSize(v);HRS.value.set(1/Math.max(1,v.x),1/Math.max(1,v.y))}const th=Math.tan(cam3.fov*PI/360);HAS.value=cam3.aspect;let n=0;
- for(const h of S.hero){if(n>=8)break;if(h.st!=='wait'&&h.st!=='fight')continue;const [x,z]=hpos(h,BM);HV.set(x,H3(x,z)+HS*.7,z);const dep=-(HV.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(dep<1)continue;HV.project(cam3);if(Math.abs(HV.x)>1.4||Math.abs(HV.y)>1.4)continue;
-  const r=Math.max(.05,(h.st==='fight'?10:7.8)/(dep*th)),mo=h.st==='fight'&&MN.get(h.id);let cx=HV.x,cy=HV.y,dz=dep,ex=1,ey=0,rt=1;
+ for(const h of S.hero){if(n>=8)break;const hf=h.st==='fight'||h.st==='loot';if(h.st!=='wait'&&!hf)continue;const [x,z]=hpos(h,BM);HV.set(x,H3(x,z)+HS*.7,z);const dep=-(HV.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(dep<1)continue;HV.project(cam3);if(Math.abs(HV.x)>1.4||Math.abs(HV.y)>1.4)continue;
+  const r=Math.max(.05,(hf?10:7.8)/(dep*th)),mo=hf&&MN.get(h.id);let cx=HV.x,cy=HV.y,dz=dep,ex=1,ey=0,rt=1;
   if(mo){HMO.set(mo.g.position.x,mo.g.position.y+HS*.5,mo.g.position.z);const md=-(HMO.clone().applyMatrix4(cam3.matrixWorldInverse).z);if(md>=1){HMO.project(cam3);const ax=(HMO.x-HV.x)*cam3.aspect,ay=HMO.y-HV.y,L=Math.hypot(ax,ay);if(L>1e-4){ex=ax/L;ey=ay/L;rt=(L/2+r)/r;cx=(HV.x+HMO.x)/2;cy=(HV.y+HMO.y)/2;dz=(dep+md)/2}}}
   HE[n].set(ex,ey,rt,0);HU[n++].set(cx,cy,dz,r)}
  for(;n<8;n++)HU[n].w=0}

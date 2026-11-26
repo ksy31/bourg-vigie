@@ -12,8 +12,7 @@ $('dfr').onclick=()=>{if(confirm('Tout effacer : partie, gloire, bonus permanent
 $('dr1').onclick=()=>{S.g+=500;S.w+=500;S.s+=500;ui();toast('+500 or, bois, pierre')};
 {const L=[['b','Bâtiments'],['q','Maison des Guildes'],['l','Lampes et torches'],['d','Détails (toits, accessoires, ombres, fumée)'],['w','Palissade et remparts'],['c','Chantiers'],['p','Puits'],['m','Personnages et monstres']];
 for(const [k,n] of L){const l=document.createElement('label'),t=document.createElement('span'),c=document.createElement('input');l.className='gr';t.textContent=n;c.type='checkbox';c.dataset.k=k;l.append(t,c);$('dbb').append(l)}
-const B=()=>[...$('dbb').querySelectorAll('input')],sync=()=>{B().forEach(c=>c.checked=!DBG[c.dataset.k]);$('sfc').checked=isSafe3();{const v=SOL3();$('so0').checked=v!=='n';[1,2,3].forEach(i=>$('so'+i).checked=v[i-1]==='1')}};
+const B=()=>[...$('dbb').querySelectorAll('input')],sync=()=>{B().forEach(c=>c.checked=!DBG[c.dataset.k]);$('sfc').checked=isSafe3()};
 sync();$('dg').addEventListener('click',sync);$('dball').onclick=()=>B().forEach(c=>c.checked=true);$('dbno').onclick=()=>B().forEach(c=>c.checked=false);
-$('dbok').onclick=()=>{try{saveG();const o={};B().forEach(c=>{if(!c.checked)o[c.dataset.k]=true});localStorage.setItem('bvdbg',JSON.stringify(o));localStorage.setItem('bvsafe',$('sfc').checked?'1':'0');localStorage.setItem('bvsol',$('so0').checked?[1,2,3].map(i=>$('so'+i).checked?'1':'0').join(''):'n');localStorage.removeItem('bvx')}catch(e){}location.reload()}}
-function SOL3(){let v=null;try{v=localStorage.getItem('bvsol')}catch(e){}return v==='n'||/^[01]{3}$/.test(v)?v:v==='a'?'111':'000'}
+$('dbok').onclick=()=>{try{saveG();const o={};B().forEach(c=>{if(!c.checked)o[c.dataset.k]=true});localStorage.setItem('bvdbg',JSON.stringify(o));localStorage.setItem('bvsafe',$('sfc').checked?'1':'0');localStorage.removeItem('bvx')}catch(e){}location.reload()}}
 function isSafe3(){try{return localStorage.getItem('bvsafe')==='1'}catch(e){return false}}

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.0.9 « Enquête sur le sol »**
+Version actuelle du jeu : **v4.1.0 « Sol définitif et correctifs »**
 
 ## ✅ Déjà intégré
 
@@ -606,13 +606,14 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Résultats Z Fold 3** (réglages : 1 relief, 2 grande image, 3 dessin comme avant) : 1, 2, 3, 1+2, 1+3 et 2+3 fonctionnent ; **seul 1+2+3 plante**. Hypothèse non prouvée : limite de la partie graphique. 60 fps constants signalés (avant : 30 à 40 en forêt ; lien avec le sol non mesuré).
 - [ ] Mis de côté : dernier bâtiment qui dépasse dans la clôture (contour calculé surtout d'après les centres).
 
-## v4.1.0 « Sol définitif et correctifs » (prochain)
-- [ ] **Sol du village :** forcer **1+2** (relief + grande image, dessin demandé sur le processeur). L'option 3 « Dessin comme avant » ne doit plus être disponible ; un ancien réglage enregistré qui la contient (`bvsol`) ne doit plus l'appliquer.
-- [ ] **Statut « undefined »** dans l'onglet Aventuriers pendant la récupération du butin : corriger.
-- [ ] **Autres trous :** vérifier tous les états d'un aventurier pour trouver les textes manquants ou « undefined ».
-- [ ] **Rond de transparence :** le garder pendant que l'aventurier récupère le butin.
+## ✅ v4.1.0 « Sol définitif et correctifs »
+- [x] **Sol du village :** forcer **1+2** (relief + grande image, dessin demandé sur le processeur). L'option 3 « Dessin comme avant » ne doit plus être disponible ; un ancien réglage enregistré qui la contient (`bvsol`) ne doit plus l'appliquer.
+- [x] **Statut « undefined »** dans l'onglet Aventuriers pendant la récupération du butin : corriger.
+- [x] **Autres trous :** vérifier tous les états d'un aventurier pour trouver les textes manquants ou « undefined ».
+- [x] **Rond de transparence :** le garder pendant que l'aventurier récupère le butin.
+- [ ] Essai sur le Z Fold 3 (sol, 3D, rond de transparence).
 
-## v4.1.1 « Suivi des morts »
+## v4.1.1 « Suivi des morts » (prochain)
 - [ ] **Cibler un aventurier mort avec les flèches** (déjà demandé auparavant, à corriger). Il peut rester affiché dans l'onglet Aventuriers comme **mort**.
 - [ ] **Durée :** ciblable et affiché **tant que sa tête de mort est visible sur la carte** (actuellement 240 s dans le code).
 - [ ] Compatibilité des anciennes sauvegardes.
