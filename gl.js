@@ -784,7 +784,7 @@ function yq(a,px,pz,n){const c=Math.cos(a),s=Math.sin(a),rot=(q,i,j)=>{const dx=
 function buildVillageMesh(){
  clearG(villG);TQ=[];SQ=[];GQ=[];RQ=[];CQ=[];const W=new TA(),vd=vdim(),{u}=vd;
  for(const [p,e,it] of u){if((DBG.c&&it.cn)||(DBG.q&&e===NE.C))continue;const k=NK[e]||'H',x=T.x+p[0],z=T.y+p[1],y0=H3(x,z),w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,tier=Math.max(0,tr(k)-(it.rb?1:0));
-  const ya=BYAW(it),yp=z+BDO(k),yn=[TQ.length,SQ.length,GQ.length,CQ.length,RQ.length];W.yaw(ya,x,yp);
+  const ya=BYAW(it),yp=z,yn=[TQ.length,SQ.length,GQ.length,CQ.length,RQ.length];W.yaw(ya,x,yp);
   const rc=(it.h&&it.h.o!=null&&(S.hero.find(q=>q.id===it.h.o)||{}).col)||'#8b4a3a';
   let f=1;if(it.cn)f=Math.max(0,bstg(it));
   const hh0=(BTOP[k]||6.7)*.5+tier*.45,roof=k==='H'?rc:ROOF[k]||'#8b4a3a';
@@ -794,7 +794,7 @@ function buildVillageMesh(){
   if((it.cn||it.rb)&&!DBG.c){const sh=(BTOP[k]||6.7)*.85,hw=w/2+.7;for(const sx of[-1,1])for(const sz of[-1,1])W.add('wood',box(.28,sh,.28),'#9a7a4a',x+sx*hw,y0+sh/2,z+sz*(d/2+.7),{shade:0});
    for(let q=1;q<=3;q++)W.add('wood',box(w+1.6,.2,.28),'#b08850',x,y0+q*sh/3.4,z+d/2+.7,{shade:0})}
   W.yaw(0);if(ya)yq(ya,x,yp,yn)}
- if(!DBG.p&&S.pl.length>=4)wellV(W,u);if(!DBG.w&&S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);if(DBG.d){RQ=[];CQ=[];SQ=[]}W.build(villG);csInst(villG,CQ,true,.5);roofIcons();if(torchG)torchSprites()}
+ if(!DBG.p&&S.pl.length>=4)wellV(W);if(!DBG.w&&S.pl.length>=8)wallV(W,vd,S.pl.length>=12);perimLamps(W,vd);if(DBG.d){RQ=[];CQ=[];SQ=[]}W.build(villG);csInst(villG,CQ,true,.5);roofIcons();if(torchG)torchSprites()}
 // ---------- héros ----------
 // v4.1.4 : cheval en pixel art (même échelle de pixel que les personnages). Vues : côté (tête à droite), face, dos ; image 0 = arrêt, 1 à 6 = galop
 const HRW=96,HRH=72,HRG=70,HRS_=36,HRHIP=53,HRBOB=[0,0,2,3,2,0,-1],HRF=[];for(const v of['s','f','b'])for(let k=0;k<7;k++)HRF.push([v,k]);
@@ -1848,9 +1848,7 @@ function plUpd(dt,kd){if(!PLS)return;const on=K.ql===2&&kd>.08&&K.dist<260;
   if(s.key)plPos(s.key,s.l.position);s.l.intensity=s.k*I*(.93+.07*Math.sin(fcn*.7+i*2))});
  if(fcn%15===0)plProx()}
 // ===== puits et enceinte =====
-function wellV(W,u){let best=null,bs=-1e9;for(let px=-11;px<=11;px+=1.5)for(let pz=-9;pz<=9;pz+=1.5){const x=T.x+px,z=T.y+pz;let m=1e9;for(const [p,e] of u){const k=NK[e]||'H',bx=T.x+p[0],bz=T.y+p[1],w=2*BHW(k)+(k==='A'?.8:0),d=k==='A'?6.6:5.4,dx=Math.max(Math.abs(x-bx)-w/2,0),dz=Math.max(Math.abs(z-bz)-d/2,0);m=Math.min(m,Math.hypot(dx,dz))}
-  const sc=Math.min(m,6)-Math.hypot(px,pz)*.05;if(sc>bs&&!nearRiver(x,z,3)){bs=sc;best=[x,z]}}
- if(!best)return;const [x,z]=best,y0=H3(x,z);
+function wellV(W){const x=T.x-7.6,z=T.y+4.6,y0=H3(x,z);
  W.add('stone',cy2(1.45,1.55,1.1,16),'#9a9488',x,y0+.5,z,{cyl:[1.5,1.1],shade:.05});W.add('flat',cy2(1.2,1.2,.1,16),'#2a5a78',x,y0+1.02,z,{shade:0});
  for(const s of[-1,1])W.add('wood',box(.22,2.6,.22),'#5a3d26',x+s*1.35,y0+1.9,z,{shade:.04});
  W.add('wood',cy2(.1,.1,3,8),'#4a3322',x,y0+3,z,{rz:PI/2,shade:0});W.add('tile',gableG(3.6,2.4,1.1),'#8b4a3a',x,y0+3.2,z,{ry:PI/2,shade:.06});
@@ -1867,7 +1865,7 @@ function wallV(W,vd,st){const rx=vd.rx,ry=vd.ry,N=Math.ceil(Math.PI*(rx+ry)/(st?
    W.add(st?'stone':'wood',box(2.8,st?6.6:5.6,2.8),st?'#b4aea2':'#8a6a42',px,y0+(st?2.7:2.2),pz,{shade:.06});W.add('tile',pyrG(2.6),st?'#6a4a8a':'#8b4a3a',px,y0+(st?6:5)+1.3,pz,{sx:3.6,sz:3.6,shade:.1})}}}
 // ===== PNJ du village (3D) =====
 const NPG=new Map();let npcG=null;
-function npcPos(k,it){const kk=NK[it.e]||'H',p=slot(it),w=2*BHW(kk)+(kk==='A'?.8:0),d=kk==='A'?6.6:5.4;return[T.x+p[0]-2.3,T.y+p[1]+d/2+1.5+Math.abs(BYAW(it))*2]}
+function npcPos(k,it){const kk=NK[it.e]||'H',p=slot(it),d=kk==='A'?6.6:5.4,a=BYAW(it),lx=-2.3,lz=d/2+1.5,c=Math.cos(a),s=Math.sin(a);return[T.x+p[0]+lx*c+lz*s,T.y+p[1]-lx*s+lz*c]}
 function updNpc(dt,tm){const seen=new Set(),u1=PXSZ/PXH;
  for(const k in S.npc){const it=S.pl.find(x=>x.e===NE[k]);if(!it||it.cn||!NPV[k])continue;const n=S.npc[k],fem=gd(n,n.n)==='♀',id=hid(n.n);seen.add(k);let o=NPG.get(k);
   if(o&&(o.fem!==fem||o.id!==id)){npcG.remove(o.g);disp(o.g);NPG.delete(k);o=null}

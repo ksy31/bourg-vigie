@@ -7,21 +7,28 @@ function fit(){
  const k=W>0&&Math.abs(r.width-W)>.5?r.width/W:1;cam.x*=k;cam.y*=k;
  W=r.width;H=W*1.3;cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);sc=W/100;clampCam();
 }
-const SLOTS=(()=>{const a=[];for(let dx=-30;dx<=30;dx+=10)for(const dy of[-19,-9.5,0,9.5,19])if(!(Math.abs(dx)===30&&Math.abs(dy)===19))a.push([dx,dy]);return a.sort((p,q)=>(p[0]/1.6)**2+p[1]**2-((q[0]/1.6)**2+q[1]**2)||p[0]-q[0])})();
-const VSP=1.5*1.15;
 const jt=(i,n)=>{const s=Math.sin(i*127.1+n*311.7)*43758.5453;return s-Math.floor(s)};
-const slot=it=>{const k=Math.floor(it.i/SLOTS.length),p=SLOTS[it.i%SLOTS.length],q=it.i?(k?.4:1):0;return[p[0]*VSP+k*8.6+q*(jt(it.i,1)-.5)*5.6,p[1]*VSP+k*8.2+q*((jt(it.i,2)-.5)*4.8+Math.sin(p[0]*.21+jt(it.i,6)*3)*1)]};
-// v3.9.1 : rotation ±20° en 3D (mairie de face), pivot = la porte ; centre et boîte englobante après rotation
-const BYW=it=>it.i?(jt(it.i,8)-.5)*.7:0,BYAW=it=>window.BRO?BYW(it):0,BDO=k=>(k==='A'?6.6:5.4)/2+2.4;
-const bctr=it=>{const p=slot(it),a=BYAW(it);if(!a)return p;const o=BDO(NK[it.e]||'H');return[p[0]-o*Math.sin(a),p[1]+o*(1-Math.cos(a))]};
+// v4.2.1 : village en anneaux. La Mairie (i=0) est au centre de la place ; chaque anneau : demi-axes, ordre de remplissage (angles en degrés, 90 = sud)
+const RGS=[[24,22,[150,30,270,90,210,330]],[44,40,[0,1,2,3,4,5,6,7,8,9,10].map(n=>105+(n*5%11)*360/11)],[63,58,[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n=>80+(n*7%16)*22.5)]];
+const rring=r=>RGS[r]||[63+19*(r-2),58+18*(r-2),Array.from({length:16+5*(r-2)},(_,n)=>75+11*r+n*360/(16+5*(r-2)))];
+const SLC=[];
+const slot=it=>{const i=it.i;if(!i)return[0,0];let p=SLC[i];if(p)return p;let n=i-1,r=0;while(n>=rring(r)[2].length){n-=rring(r)[2].length;r++}
+ const [a,b,L]=rring(r),t=L[n]*Math.PI/180+(jt(i,1)-.5)*6.2832/L.length*.22,q=1+(jt(i,2)-.3)*.07;return SLC[i]=[Math.cos(t)*a*q,Math.sin(t)*b*q]};
+// orientation (3D) : façade vers la place, 75° maximum pour garder la porte visible ; pivot = centre du bâtiment
+const BYW=it=>{if(!it.i)return 0;const p=slot(it);return Math.max(-1.309,Math.min(1.309,Math.atan2(-p[0],-p[1])+(jt(it.i,8)-.5)*.24))},BYAW=it=>window.BRO?BYW(it):0,BDO=k=>(k==='A'?6.6:5.4)/2+2.4;
+// porte (écart au centre) : tourne avec le bâtiment en 3D
+const bdoor=it=>{const p=slot(it),a=BYAW(it),o=BDO(NK[it.e]||'H');return[p[0]+o*Math.sin(a),p[1]+o*Math.cos(a)]};
+const bctr=it=>slot(it);
 const bbox=it=>{const k=NK[it.e]||'H',c=bctr(it),a=Math.abs(BYAW(it)),hw=BHW(k)+(k==='A'?.4:0),hd=(k==='A'?6.6:5.4)/2,s=Math.sin(a),co=Math.cos(a);return{x:T.x+c[0],z:T.y+c[1],hw:hw*co+hd*s,hd:hw*s+hd*co}};
+// rue courbe autour de la place
+const PLZ=[11.5,10],RST=[15.8,13.8],rsw=t=>1+.025*Math.sin(3*t+.9)+.015*Math.sin(5*t+2);
 const tr=k=>{const n=S.npc[k];if(!n||k==='A')return 0;return n.lv>=6?2:n.lv>=3?1:0};
 const VFREE=5,VWH=.6,VGATE=6,VBM=1.5;
 // demi-largeur, profondeur et distance de la porte d'un bâtiment ; haut du dessin 2D
 const bdim=k=>({hw:BHW(k)+(k==='A'?.4:0),hd:(k==='A'?6.6:5.4)/2,o:BDO(k),hw2:k==='A'?4.4:BHW(k),tp:k==='A'?7.4:4.6});
 // repère local d'un bâtiment (pivot = la porte) : [écart latéral, écart en profondeur], tourné de a
-function blocal(it,a,x,y){const k=NK[it.e]||'H',p=slot(it),o=BDO(k),cx=T.x+p[0]-o*Math.sin(a),cz=T.y+p[1]+o*(1-Math.cos(a)),dx=x-cx,dz=y-cz,c=Math.cos(a),sn=Math.sin(a);return{cx,cz,c,sn,r:dx*c-dz*sn,f:dx*sn+dz*c}}
-function vpts(it){const k=NK[it.e]||'H',d=bdim(k),p=slot(it),P=[[p[0],p[1]+d.o]];
+function blocal(it,a,x,y){const p=slot(it),cx=T.x+p[0],cz=T.y+p[1],dx=x-cx,dz=y-cz,c=Math.cos(a),sn=Math.sin(a);return{cx,cz,c,sn,r:dx*c-dz*sn,f:dx*sn+dz*c}}
+function vpts(it){const k=NK[it.e]||'H',d=bdim(k),p=slot(it),P=[[p[0],p[1]+d.o],bdoor(it)];
  for(const u of[-1,1]){P.push([p[0]+u*d.hw2,p[1]-d.tp],[p[0]+u*d.hw2,p[1]+d.hd]);const a=BYW(it),b=blocal(it,a,0,0);for(const v of[-1,1])P.push([b.cx-T.x+u*d.hw*b.c+v*d.hd*b.sn,b.cz-T.y-u*d.hw*b.sn+v*d.hd*b.c])}
  return P}
 const VDC={k:'',rx:14,ry:11};
@@ -45,36 +52,30 @@ function vnet(){const k=(window.BRO?'3':'2')+S.pl.map(i=>i.i+i.e).join(',')+JSON
 function bhit(it,x,y,m){const k=NK[it.e]||'H',d=bdim(k);if(window.BRO){const b=blocal(it,BYW(it),x,y);return Math.abs(b.r)<d.hw+m&&Math.abs(b.f)<d.hd+m}const p=slot(it),dx=x-T.x-p[0],dy=y-T.y-p[1];return Math.abs(dx)<d.hw2+m&&dy>-d.tp&&dy<d.hd+m}
 function buildNet(){
  const {u,rx,ry}=vdim(),x0=Math.floor(T.x-rx-6),y0=Math.floor(T.y-ry-6),NX=Math.ceil(2*rx+12)+2,NY=Math.ceil(2*ry+12)+2,N=NX*NY,blk=new Uint8Array(N),Rr=rng(7700),nz=new Float32Array(N);
- const p1=Rr()*6.28,p2=Rr()*6.28;for(let k=0;k<N;k++){const i=k%NX,j=(k/NX)|0;nz[k]=.5*(.5+.5*Math.sin(i*.28+p1)*Math.cos(j*.24+p2))+Rr()*.12}
+ const p1=Rr()*6.28,p2=Rr()*6.28;for(let k=0;k<N;k++){const i=k%NX,j=(k/NX)|0;nz[k]=1.1*(.5+.5*Math.sin(i*.34+p1)*Math.cos(j*.29+p2))+Rr()*.1}
  const nodes=[];
  for(const [p,e,it] of u.slice().sort((a,b)=>a[2].i-b[2].i)){const k=NK[e]||'H',d=bdim(k),bx=T.x+p[0],by=T.y+p[1];
   for(let j=Math.floor(by-12-y0);j<=Math.ceil(by+12-y0);j++)for(let i=Math.floor(bx-12-x0);i<=Math.ceil(bx+12-x0);i++)if(i>=0&&j>=0&&i<NX&&j<NY&&bhit(it,x0+i,y0+j,VBM))blk[j*NX+i]=1;
-  nodes.push([bx,by+d.o,1])}
+  const dr=bdoor(it);nodes.push([T.x+dr[0],T.y+dr[1],1])}
  const ent={};
  for(const z of ZA){const d=RD[z.n];if(!d)continue;let q=d[d.length-1];for(const p of d)if(((p[0]-T.x)/rx)**2+((p[1]-T.y)/ry)**2>.94){q=p;break}nodes.push([q[0],q[1],2,z.n])}
  const cell=(x,y)=>{const i=Math.min(NX-1,Math.max(0,Math.round(x-x0)));let j=Math.min(NY-2,Math.max(0,Math.round(y-y0)));while(j<NY-1&&blk[j*NX+i])j++;return j*NX+i};
- const cs=nodes.map(n=>cell(n[0],n[1])),path=new Uint8Array(N),lines=[];path[cs[0]]=1;
- const ord=nodes.map((n,i)=>i).slice(1).sort((a,b)=>nodes[a][2]-nodes[b][2]||Math.hypot(nodes[a][0]-nodes[0][0],nodes[a][1]-nodes[0][1])-Math.hypot(nodes[b][0]-nodes[0][0],nodes[b][1]-nodes[0][1]));
- for(const id of ord){const c=cs[id];if(path[c])continue;
-  const r=dij(NX,NY,c,q=>path[q]===1,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.25:1));
+ const cs=nodes.map(n=>cell(n[0],n[1])),path=new Uint8Array(N),lines=[],ring=[];
+ // rue circulaire autour de la place, puis rayons vers les portes du rempart, puis les bâtiments
+ // la rue se resserre là où un bâtiment déborde
+ const rr0=t=>{let r=rsw(t);while(r>.7){const i=Math.round(T.x+Math.cos(t)*RST[0]*r-x0),j=Math.round(T.y+Math.sin(t)*RST[1]*r-y0);if(!blk[j*NX+i])break;r-=.02}return r};
+ const inR=new Uint8Array(N);
+ {let l=-1;const c=[];for(let s=0;s<=160;s++){const t=s/160*6.2832,r=rr0(t),ti=Math.round(T.x+Math.cos(t)*RST[0]*r-x0),tj=Math.round(T.y+Math.sin(t)*RST[1]*r-y0);
+   if(l<0){l=tj*NX+ti;c.push(l);continue}let a=l%NX,b=(l/NX)|0;while(a!==ti||b!==tj){a+=Math.sign(ti-a);b+=Math.sign(tj-b);c.push(b*NX+a)}l=tj*NX+ti}
+  c.forEach(q=>{path[q]=1;inR[q]=1});for(let s=0;s<=96;s++){const t=s/96*6.2832,r=rr0(t);ring.push([T.x+Math.cos(t)*RST[0]*r,T.y+Math.sin(t)*RST[1]*r])}}
+ const ds=i=>Math.hypot(nodes[i][0]-T.x,nodes[i][1]-T.y),ord=nodes.map((n,i)=>i).sort((a,b)=>(b===0)-(a===0)||nodes[b][2]-nodes[a][2]||ds(a)-ds(b));
+ for(const id of ord){const c=cs[id],gt=nodes[id][2]===2;if(gt?inR[c]:path[c])continue;
+  // une porte rejoint directement la rue centrale (rayon), un bâtiment la ruelle la plus proche
+  const r=dij(NX,NY,c,q=>(gt?inR:path)[q]===1,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.25:1));
   if(!r)continue;r.forEach(q=>{path[q]=1});lines.push(r.map(q=>[x0+q%NX,y0+((q/NX)|0)]));if(nodes[id][2]===2)ent[nodes[id][3]]={x:x0+r[0]%NX,y:y0+((r[0]/NX)|0)}}
- const bn=[];nodes.forEach((n,i)=>{if(n[2]===1)bn.push(i)});
- for(const a of bn){let bi=-1,bd=1e9;for(const b of bn){if(b===a)continue;const d=Math.hypot(nodes[a][0]-nodes[b][0],nodes[a][1]-nodes[b][1]);if(d<bd){bd=d;bi=b}}
-  if(bi<0||bd>18)continue;const ca=cs[a],cb=cs[bi];if(!path[ca]||!path[cb])continue;
-  const nr=dij(NX,NY,ca,q=>q===cb,q=>path[q],()=>1);if(nr&&nr.length<bd*1.5+4)continue;
-  const r=dij(NX,NY,ca,q=>q===cb,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.7:1));
-  if(!r)continue;r.forEach(q=>{if(!path[q])path[q]=1});lines.push(r.map(q=>[x0+q%NX,y0+((q/NX)|0)]))}
- {const rr=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),fx=(rx-3.4)/rx,fy=(ry-3.2)/ry,sg=[],near=(x,y)=>nodes.some(n=>Math.hypot(n[0]-x,n[1]-y)<(n[2]===1?10:13)),M=Math.max(60,Math.round(Math.PI*(rx+ry))),ph=Rr()*6.28;let cur=[];
-  for(let s=0;s<=M;s++){const t=s/M*6.2832,r=rr(t)*(1+.015*Math.sin(2*t+ph)),x=T.x+Math.cos(t)*rx*fx*r,y=T.y+Math.sin(t)*ry*fy*r,i=Math.round(x-x0),j=Math.round(y-y0);
-   if(i>=0&&j>=0&&i<NX&&j<NY&&!blk[j*NX+i]&&near(x,y)){const c=j*NX+i,l=cur.length?cur[cur.length-1]:-1;if(l<0)cur.push(c);else if(c!==l){let a=l%NX,b=(l/NX)|0;const ti=c%NX,tj=(c/NX)|0;while(a!==ti||b!==tj){a+=Math.sign(ti-a);b+=Math.sign(tj-b);cur.push(b*NX+a)}}}
-   else{if(cur.length>3)sg.push(cur);cur=[]}}
-  if(cur.length>3)sg.push(cur);
-  for(const S of sg){if(S.some(q=>blk[q]))continue;S.forEach(q=>{if(!path[q])path[q]=2});lines.push(S.map(q=>[x0+q%NX,y0+((q/NX)|0)]));
-   const r=dij(NX,NY,S[S.length>>1],q=>path[q]===1,q=>!blk[q],(q,dg)=>(dg?1.41:1)*(1+nz[q])*(path[q]?.25:1));
-   if(r){r.forEach(q=>{if(!path[q])path[q]=1});lines.push(r.map(q=>[x0+q%NX,y0+((q/NX)|0)]))}}}
  for(const id in nodes)if(nodes[id][2]===2&&!ent[nodes[id][3]])ent[nodes[id][3]]={x:x0+cs[id]%NX,y:y0+((cs[id]/NX)|0)};
  const cl=[],pts=[];for(let q=0;q<N;q++)if(path[q]){cl.push(q);pts.push([x0+q%NX,y0+((q/NX)|0)])}
- return{x0,y0,NX,NY,path,cl,pts,lines,ent,blk}}
+ return{x0,y0,NX,NY,path,cl,pts,lines,ring,ent,blk}}
 function drawNet(g,n,s){g.lineCap='round';g.lineJoin='round';
  for(const L of n.lines){if(L.length<2)continue;const Q=L.map((q,k)=>k&&k<L.length-1?[(L[k-1][0]+2*q[0]+L[k+1][0])/4,(L[k-1][1]+2*q[1]+L[k+1][1])/4]:q),P=Q.filter((q,k)=>k%2===0||k===L.length-1);
   for(const [w,c] of [[2.7,'rgba(95,85,65,.6)'],[2.1,'#b09b68'],[.8,'rgba(240,230,196,.55)']]){g.strokeStyle=c;g.lineWidth=w*s*.9;g.beginPath();g.moveTo(P[0][0]*s,P[0][1]*s);
@@ -351,24 +352,17 @@ function vgCobbleFill(g,x0,y0,x1,y1,s,R,ok){
    if(!ok||ok(cx_,cy_))vgStone(g,cx_,cy_,w-.07,rh*(.84+R()*.08),(R()-.5)*.1,R,s);x+=w}}}
 function vgMoss(g,x0,y0,x1,y1,s,R,ok){
  for(let i=0,N=Math.round((x1-x0)*(y1-y0)/7);i<N;i++){const x=x0+R()*(x1-x0),y=y0+R()*(y1-y0);if(ok&&!ok(x,y))continue;const r=(.15+R()*.3)*s,q=g.createRadialGradient(x*s,y*s,0,x*s,y*s,r);q.addColorStop(0,'rgba(88,120,56,.42)');q.addColorStop(1,'rgba(88,120,56,0)');g.fillStyle=q;g.fillRect(x*s-r,y*s-r,2*r,2*r)}}
-function paveVillage(g,vd,R,s){const {u}=vd,rc=[],m=1,pr=[13,9];
- for(const [p,e,it] of u){const b=bbox(it);rc.push({x:b.x,y:b.z,w:2*b.hw,d:2*b.hd})}
- const hit=(a,b,r)=>{const x0=r.x-r.w/2-m,x1=r.x+r.w/2+m,y0=r.y-r.d/2-m,y1=r.y+r.d/2+m,dx=b[0]-a[0],dy=b[1]-a[1];let t0=0,t1=1;for(const [d,q,lo,hi] of [[dx,a[0],x0,x1],[dy,a[1],y0,y1]]){if(Math.abs(d)<1e-9){if(q<lo||q>hi)return false}else{let s1=(lo-q)/d,s2=(hi-q)/d;if(s1>s2){const t=s1;s1=s2;s2=t}t0=Math.max(t0,s1);t1=Math.min(t1,s2);if(t0>t1)return false}}return true};
- const route=(a,b,dp)=>{const h=rc.find(r=>hit(a,b,r));if(!h||dp<=0)return[a,b];let best=null,bc=1e9;for(const sx of[-1,1])for(const sy of[-1,1]){const c=[h.x+sx*(h.w/2+m+.7),h.y+sy*(h.d/2+m+.7)],cost=Math.hypot(c[0]-a[0],c[1]-a[1])+Math.hypot(c[0]-b[0],c[1]-b[1])+(rc.some(r=>hit(a,c,r))||rc.some(r=>hit(c,b,r))?500:0);if(cost<bc){bc=cost;best=c}}return route(a,best,dp-1).concat(route(best,b,dp-1).slice(1))};
- const nrm=a=>((a[0]-T.x)/pr[0])**2+((a[1]-T.y)/pr[1])**2,pe=a=>{const vx=(a[0]-T.x)/pr[0],vy=(a[1]-T.y)/pr[1],l=Math.hypot(vx,vy)||1;return[T.x+vx/l*pr[0]*.85,T.y+vy/l*pr[1]*.85]};
+function paveVillage(g,vd,R,s){const pr=PLZ;
  const pzp=(f,t)=>{const r=f*(1+.02*Math.sin(4*t+.7));return[(T.x+Math.cos(t)*pr[0]*r)*s,(T.y+Math.sin(t)*pr[1]*r)*s]};
  const pz=f=>{g.beginPath();for(let i=0;i<=60;i++){const [x,y]=pzp(f,i/60*6.2832);i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
  // allées : ombre de bordure, joints, puis pavés alignés
- const pv=(pts,w)=>{g.lineCap='round';g.lineJoin='round';const path=()=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0]*s,p[1]*s):g.moveTo(p[0]*s,p[1]*s))};
-  path();g.strokeStyle='rgba(60,44,26,.34)';g.lineWidth=(w+.9)*s;g.stroke();path();g.strokeStyle=VJT;g.lineWidth=(w+.1)*s;g.stroke();
+ const pv=(pts,w,ps)=>{g.lineCap='round';g.lineJoin='round';const path=()=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0]*s,p[1]*s):g.moveTo(p[0]*s,p[1]*s))};
+  if(ps<2){path();g.strokeStyle=ps?VJT:'rgba(60,44,26,.34)';g.lineWidth=(w+(ps?.1:.9))*s;g.stroke();return}
   for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<.01)continue;const ux=(b[0]-a[0])/L,uy=(b[1]-a[1])/L,ang=Math.atan2(uy,ux);let row=0;
    for(let o=-w/2+.23;o<w/2-.1;o+=.46,row++){let t=(row&1)?-.3:-.05;while(t<L+.3){const sw=.5+R()*.4,c=t+sw/2;if(c>=-.2&&c<=L+.2)vgStone(g,a[0]+ux*c-uy*o,a[1]+uy*c+ux*o,sw-.07,.38,ang+(R()-.5)*.08,R,s);t+=sw}}}};
- // pavage de tout le village (bord irrégulier et usé)
- {const RX=vd.rx,RY=vd.ry,wob=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),bl=f=>{g.beginPath();for(let i=0;i<=96;i++){const t=i/96*6.2832,r=wob(t)*f,x=(T.x+Math.cos(t)*RX*r)*s,y=(T.y+Math.sin(t)*RY*r)*s;i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
-  bl(.99);g.fillStyle='rgba(60,44,26,.3)';g.fill();bl(.95);g.fillStyle=VJT;g.fill();
-  g.save();bl(.95);g.clip();
-  const inV=(x,y)=>{const a=Math.atan2((y-T.y)/RY,(x-T.x)/RX),r=Math.hypot((x-T.x)/RX,(y-T.y)/RY);return r<wob(a)*(.94-(r>.8?R()*.05:0))};
-  vgCobbleFill(g,T.x-RX-1,T.y-RY-1,T.x+RX+1,T.y+RY+1,s,R,inV);vgMoss(g,T.x-RX,T.y-RY,T.x+RX,T.y+RY,s,R,inV);g.restore()}
+ // ruelles courbes (lissées) et rue autour de la place : bordures, joints, puis pavés
+ {const n=vnet();if(n){const soft=L=>{let q=L;for(let k=0;k<14;k++)q=q.map((p,i)=>i&&i<q.length-1?[(q[i-1][0]+2*p[0]+q[i+1][0])/4,(q[i-1][1]+2*p[1]+q[i+1][1])/4]:p);return q.filter((p,i)=>i%2===0||i===q.length-1)};
+  const A=n.lines.filter(L=>L.length>1).map(L=>[soft(L),2.1]);A.push([n.ring,2.7]);for(let ps=0;ps<3;ps++)for(const [L,w] of A)pv(L,w,ps)}}
  // place : ombre, joints, pavés, mousse, bordure de grosses pierres
  pz(1.07);g.fillStyle='rgba(60,44,26,.36)';g.fill();pz(1.01);g.fillStyle=VJT;g.fill();
  g.save();pz(1);g.clip();
@@ -408,10 +402,7 @@ function buildVillage(u,rx,ry,x0,y0,w,h,CS){
   for(const q of[-1,1])for(let j=0;j<3;j++){const x=(bx+q*(hw+.6+RR()*1.3))*s,y=(by+.8+RR()*1.8)*s;tuft(g,x,y,s*(.7+RR()*.5),RR()<.5?'#5f8450':'#7fa468');if(RR()<.25){g.fillStyle=['#fff8e1','#ffe082','#f8bbd0'][j];g.beginPath();g.arc(x+s*.4,y-s*.2,s*.25,0,7);g.fill()}}
   if(it.i===0||(k==='H'&&RR()<.6))continue;
   VC.pr.push({x:bx+sd*(hw+.9),y:by+2.2,t:(k==='F'||k==='M'||RR()<.3)?'c':'b'});if(k==='T')VC.pr.push({x:bx-sd*(hw+.9),y:by+2.2,t:'b'})}
- let wl=null,bc=-1;const rects=u.map(([p,e])=>{const x=T.x+p[0],y=T.y+p[1];return[x-5.4,y-(e===NE.A?8.5:6.5),x+5.4,y+5]});
- for(const f of[.62,.72])for(let j=0;j<16;j++){const a=j/16*6.2832+.2,x=T.x+Math.cos(a)*rx*f,y=T.y+Math.sin(a)*ry*f;if(inGap(x,y,9)||(net&&net.pts.some(c=>Math.hypot(c[0]-x,c[1]-y)<3)))continue;
-  const d=Math.min(...rects.map(([a1,b1,a2,b2])=>Math.hypot(Math.max(a1-x,0,x-a2),Math.max(b1-y,0,y-b2))));if(d>bc){bc=d;wl=[x,y]}}
- if(wl&&bc>=3)well(g,wl[0]*s,wl[1]*s);
+ well(g,(T.x-7.6)*s,(T.y+4.6)*s);
  const pts=[];{let acc=9,pr=null;for(let i=0;i<=720;i++){const a=i/720*6.2832,r=1,x=T.x+Math.cos(a)*rx*r,y=T.y+Math.sin(a)*ry*r;if(pr)acc+=Math.hypot(x-pr[0],y-pr[1]);if(acc>=1.5){pts.push([x,y]);acc=0}pr=[x,y]}}
  const B2=S.pl.length-2,rk=B2<4?0:B2<9?1:B2<16?2:3,n=pts.length,bs=[];for(let i=0;i<Math.ceil(n/9)+1;i++)bs.push(R()<.3?1:0);const gp=pts.map(q=>inGap(q[0],q[1],VGATE/2+(rk>=3?1.3:.6))),it=[];
  for(let k=0;k<n;k++){if(gp[k]||rk===0)continue;const A=pts[k],B=pts[(k+1)%n],pv=gp[(k+n-1)%n],nx=gp[(k+1)%n],st=rk>=2?1:0,x=A[0]*s,y=A[1]*s,x2=B[0]*s,y2=B[1]*s;

@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.2.1 « Village en anneaux »
+
+Version affichée dans les Options : **v4.2.1**
+
+### Ajouté
+- Mairie au centre d'une place ronde, avec le puits ; bâtiments en anneaux irréguliers.
+- Rue courbe autour de la place, rayons vers les portes du rempart, ruelles courbes vers les bâtiments, désormais visibles (2D et 3D).
+
+### Modifié
+- Village plus aéré.
+- 3D : les bâtiments se tournent vers la place (75° au maximum) et pivotent sur leur centre.
+- Sol : terre battue, avec pavés réservés à la place et aux ruelles (le village n'est plus entièrement pavé).
+- Anciennes parties : bâtiments replacés au chargement, trajets recalculés (`vl:3`).
+
 ## v4.2.0 « Équipement visible sur le sprite »
 
 Version affichée dans les Options : **v4.2.0**
