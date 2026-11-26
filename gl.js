@@ -1632,7 +1632,7 @@ function heroFor(h){let o=HM.get(h.id);const fem=gd(h,h.name)==='♀',hs=!!h.hs,
   const gd=new TH.Mesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false}));gd.scale.set(8,1,8);gd.position.y=.05;gd.renderOrder=1;gd.visible=false;g.add(gd);g.add(csChar(hs?2.3:1.5));
   g.scale.setScalar(HS);heroG.add(g);o={g,m,tg,fl,gd,cls:h.c,col:h.col,ek:h.eq.w+'.'+h.eq.a+'.'+h.eq.b+'.'+h.eq.s,ths:[...new Set([thFor(h.eq.w,h.id),thFor(h.eq.a,h.id),thFor(h.eq.b,h.id),thFor(h.eq.s,h.id)].filter(Boolean))],fem,hs,gl,rg,lt,bs,ry:0,mv:0,ph:Math.random()*6,x:0,z:0,init:0};if(o.ths.length){const q=THP[o.ths[0]-1].g;gd.material.color.setRGB((1+q[0]/255)/2,(.6+q[1]/255)/2,(.25+q[2]/255)/2)}HM.set(h.id,o)}
  return o}
-function bpush(x,z){for(const it of S.pl){const b=bbox(it),cx=b.x,cz=b.z,hw=b.hw+.35,d=b.hd+.3,dx=x-cx,dz=z-cz;if(Math.abs(dx)<hw&&Math.abs(dz)<d){const ox=hw-Math.abs(dx),oz=d-Math.abs(dz);if(oz<=ox)z=cz+(dz<0?-d:d);else x=cx+(dx<0?-hw:hw)}}return[x,z]}
+function bpush(x,z){for(const it of S.pl){const d=bdim(NK[it.e]||'H'),b=blocal(it,BYAW(it),x,z),hw=d.hw+.8,hd=d.hd+.8;if(Math.abs(b.r)<hw&&Math.abs(b.f)<hd){let r=b.r,f=b.f;if(hd-Math.abs(f)<=hw-Math.abs(r))f=f<0?-hd:hd;else r=r<0?-hw:hw;x=b.cx+r*b.c+f*b.sn;z=b.cz-r*b.sn+f*b.c}}return[x,z]}
 function hpos(h,BM){const bm=BM.get(h.id);if(bm){const p=bpos(h,bm);return[p[0]/sc,p[1]/sc]}if(h.st==='town'&&(h.sub==='wait'||h.sub==='do'))return bpush(h.x,h.y);const vq=((h.x-T.x)/VR.rx)**2+((h.y-T.y)/VR.ry)**2,f=vq<1.1?0:Math.min(1,(vq-1.1)/.3);return bpush(h.x+((h.id%3)-1)*.5*f,h.y+((h.id%2)-.5)*.6*f)}
 function updHeroes(dt,tm){
  const BM=bAssign(),kd=dkl(),seen=new Set();
@@ -1764,14 +1764,14 @@ function wellV(W,u){let best=null,bs=-1e9;for(let px=-11;px<=11;px+=1.5)for(let 
  W.add('wood',cy2(.1,.1,3,8),'#4a3322',x,y0+3,z,{rz:PI/2,shade:0});W.add('tile',gableG(3.6,2.4,1.1),'#8b4a3a',x,y0+3.2,z,{ry:PI/2,shade:.06});
  W.add('wood',cy2(.2,.17,.3,8),'#6b4a2a',x+.6,y0+1.6,z,{shade:0});W.add('wood',cy2(.02,.02,1,4),'#3a2a1a',x+.6,y0+2.3,z,{shade:0})}
 function wallV(W,vd,st){const rx=vd.rx,ry=vd.ry,N=Math.ceil(Math.PI*(rx+ry)/(st?3.4:1.25)),gates=[];
- for(const z of ZA){const p=RD[z.n];if(!p)continue;for(let k=p.sh||0;k<p.length;k++){const q=p[k];if(((q[0]-T.x)/rx)**2+((q[1]-T.y)/ry)**2>=.9){gates.push(q);break}}}
- const gc=st?4.8:3.8,ep=a=>[T.x+Math.cos(a)*rx,T.y+Math.sin(a)*ry],tg=a=>Math.atan2(Math.cos(a)*ry,-Math.sin(a)*rx),L=Math.PI*(rx+ry)/N*(st?1.08:1);
- for(let i=0;i<N;i++){const a=i/N*6.2832,[x,z]=ep(a);if(gates.some(g=>Math.hypot(g[0]-x,g[1]-z)<gc)||nearRiver(x,z,2))continue;const y0=H3(x,z),ro=-tg(a);
+ gates.push(...vgates(rx,ry));
+ const gc=VGATE/2+1.4,ep=a=>[T.x+Math.cos(a)*rx,T.y+Math.sin(a)*ry],tg=a=>Math.atan2(Math.cos(a)*ry,-Math.sin(a)*rx),L=Math.PI*(rx+ry)/N*(st?1.08:1),cut=(x,z)=>gates.some(g=>Math.hypot(g[0]-x,g[1]-z)<gc+.3);
+ for(let i=0;i<N;i++){const a=i/N*6.2832,[x,z]=ep(a);if(cut(x,z)||nearRiver(x,z,2))continue;const y0=H3(x,z),ro=-tg(a);
   if(st){W.add('stone',box(L,4.2,1.2),'#a8a296',x,y0+1.6,z,{ry:ro,shade:.05});if(i%2)W.add('stone',box(L*.55,.7,1.3),'#a8a296',x,y0+4.05,z,{ry:ro,shade:0})}
   else{const h=3.2+hs(i,1,2)*.9;W.add('wood',box(.62,h,.62),'#8a6a42',x,y0+h/2-.4,z,{shade:.06});W.add('wood',new TH.ConeGeometry(.44,.8,5),'#8a6a42',x,y0+h-.4+.4,z,{shade:0});
-   if(i%3===0)for(const hy of[1.1,2.3])W.add('wood',box(L*3,.18,.22),'#5a3d26',x+Math.cos(ro)*L,y0+hy,z-Math.sin(ro)*L,{ry:ro,shade:0})}}
+   if(i%3===0&&![1,2].some(j=>cut(...ep((i+j)/N*6.2832))))for(const hy of[1.1,2.3])W.add('wood',box(L*3,.18,.22),'#5a3d26',x+Math.cos(ro)*L,y0+hy,z-Math.sin(ro)*L,{ry:ro,shade:0})}}
  for(const g of gates){const a=Math.atan2((g[1]-T.y)/ry,(g[0]-T.x)/rx),[x,z]=ep(a),ta=tg(a),tx=Math.cos(ta),tz=Math.sin(ta);
-  for(const s of[-1,1]){const px=x+tx*s*(gc*.6),pz=z+tz*s*(gc*.6),y0=H3(px,pz);
+  for(const s of[-1,1]){const px=x+tx*s*gc,pz=z+tz*s*gc,y0=H3(px,pz);if(gates.some(o=>o!==g&&Math.hypot(o[0]-px,o[1]-pz)<VGATE/2+1))continue;
    W.add(st?'stone':'wood',box(2.8,st?6.6:5.6,2.8),st?'#b4aea2':'#8a6a42',px,y0+(st?2.7:2.2),pz,{shade:.06});W.add('tile',pyrG(2.6),st?'#6a4a8a':'#8b4a3a',px,y0+(st?6:5)+1.3,pz,{sx:3.6,sz:3.6,shade:.1})}}}
 // ===== PNJ du village (3D) =====
 const NPG=new Map();let npcG=null;

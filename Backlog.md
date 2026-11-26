@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.1 « Suivi des morts »**
+Version actuelle du jeu : **v4.1.2 « Un village plus spacieux »**
 
 ## ✅ Déjà intégré
 
@@ -620,13 +620,15 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Rond de transparence (ajout) :** transition rapide de 0,3 s.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.2 « Un village plus spacieux » (prochain)
-- [ ] **Agrandir le contour de la clôture** avec un espace de sécurité : aucun bâtiment dans la clôture, aucune entrée collée à elle. Constat (v4.0.9) : le contour (`vdim`, map.js) est calculé surtout d'après le centre des bâtiments, sans leur taille.
-- [ ] **Entrées dans les barrières du village :** les agrandir (trop petites).
-- [ ] **Marge de sécurité autour des bâtiments :** les aventuriers y rentrent encore.
-- [ ] Vérifier palissade en bois et remparts en pierre, en 2D et en 3D. Le sol du village change de taille avec le contour : revérifier la 3D sur le Z Fold 3.
+## ✅ v4.1.2 « Un village plus spacieux »
+- [x] **Agrandir le contour de la clôture** avec un espace de sécurité : aucun bâtiment dans la clôture, aucune entrée collée à elle. Constat (v4.0.9) : le contour (`vdim`, map.js) est calculé surtout d'après le centre des bâtiments, sans leur taille.
+- [x] **Entrées dans les barrières du village :** les agrandir (trop petites).
+- [x] **Marge de sécurité autour des bâtiments :** les aventuriers y rentrent encore.
+- [x] Vérifier palissade en bois et remparts en pierre, en 2D et en 3D. Le sol du village change de taille avec le contour : revérifier la 3D sur le Z Fold 3.
+- [x] **Bâtiments écartés d'environ 15 %** (ajout).
+- [ ] Essai sur le Z Fold 3.
 
-## v4.1.3 « Montagne et volcan »
+## v4.1.3 « Montagne et volcan » (prochain)
 - [ ] **Marcher sur le relief :** à la montagne, le personnage rentre dedans au lieu de marcher dessus. Corriger aussi le volcan.
 - [ ] Vérifier également les monstres et le butin à ces endroits.
 

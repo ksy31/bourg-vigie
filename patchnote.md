@@ -1,5 +1,29 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.2 « Un village plus spacieux »
+
+Version affichée dans les Options : **v4.1.2**
+
+### Ajouté
+- Rien.
+
+### Corrigé
+- Clôture : calculée avec la taille réelle des bâtiments et leurs portes, 5 unités libres au minimum.
+- Aventuriers dans les bâtiments : les chemins du village tiennent compte de la profondeur des bâtiments et de leur rotation en 3D, avec une marge. En 2D, le décalage d'affichage entre aventuriers disparaît au village.
+- 3D : les barres de la palissade ne traversent plus les entrées.
+
+### Modifié
+- Bâtiments écartés d'environ 15 %.
+- Entrées du village : passage de 6 unités entre les tours en 3D, en 2D, ouverture réglée à au moins 6 unités (l'ancien réglage pouvait ouvrir plus large). Entrées centrées là où la route traverse la clôture.
+- 2D : clôture régulière (sans ondulation), nom du village placé un peu plus bas.
+- Anciennes sauvegardes : au premier chargement, les aventuriers en file ou au travail sont replacés à la porte et les trajets au village sont recalculés. Cache `bv-v128`.
+
+### Vérifié
+- Simulation de 20 jours, 33 bâtiments : positions de marche dans un bâtiment 6,2 % → 0 % (2D), 4,0 % → 0 % (3D) ; espace libre minimal -0,7 → 5,1 unités ; contour 57×40 → 70×51.
+- Départs en quête par jour et par aventurier : environ 0,6 avant et après, pas d'effet notable.
+- Sauvegardes v4.0.9 et v4.1.1 (simulation) chargées ; captures 2D et 3D, petit et grand village.
+- Non vérifié : Z Fold 3.
+
 ## v4.1.1 « Suivi des morts »
 
 Version affichée dans les Options : **v4.1.1**
