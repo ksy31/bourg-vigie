@@ -110,17 +110,17 @@ function bavoid(h,tg,nx,ny){if(typeof BHW!=='function'||!S.pl||!S.pl.length)retu
   const sc=Math.hypot(c[0]-h.x,c[1]-h.y)+Math.hypot(tg.x-c[0],tg.y-c[1]);if(sc<bs){bs=sc;best=c}}
  if(best){h.pc=best;(h.wp=h.wp||[]).unshift({x:best[0],y:best[1]})}}
 function tick(dt){
- S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(S.tavern&&S.day>=(S.pd||0))newPr();if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);guFix();
+ S.t+=dt;if(S.t-S.ds>=S.dl){S.ds+=S.dl;S.day++}if(S.tavern&&S.day>=(S.pd||0))newPr();if(hr()===4&&S.aw!==S.day){S.aw=S.day;S.hero.forEach(h=>{if(h.st==='rest')for(let i=0;i<AUB;i++)npcx('A')})}wxTick();bTick(dt);guFix();rdvTick(dt);
  for(const h of S.hero.slice()){
   if(h.st==='rest'){h.t-=dt;if(h.t<=0&&h.kg===1){kgPlan(h);continue}if(h.t<=0&&(!isNight()||h.bold>.55)){const bs=needB();if(bs){h.tk={k:'build',b:bs.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const ar=h.arm?armTask(h):null;h.arm=0;if(ar){h.tk=ar;h.tl=[];h.dec=1;h.st='town';h.sub='walk';h.vk=null;continue}const sp=S.spa&&!h.bless?pickB(NE.S):null;if(sp){h.tk={k:'bless',b:sp.i};h.tl=[];h.dec=1;h.st='town';h.sub='walk'}else depart(h)}}
   else if(h.st==='town')townTick(h,dt);
   else if(h.st==='go'||h.st==='back'){
    const tg=h.wp&&h.wp.length?h.wp[0]:(h.st==='go'?h.pt:(h.tl&&h.tl.length?door(itB(h.tl[0].b)):base(h)));
-   const dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=h.v*dt*spf(h)*(h.st==='back'&&h.hurt?HSP:1);
+   const dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=h.gsp?h.gsp*dt:h.v*dt*spf(h)*(h.st==='back'&&h.hurt?HSP:1);
    if(d<=sp){h.x=tg.x;h.y=tg.y;if(h.wp&&h.wp.length)h.wp.shift();else if(h.pc=null,false){}else if(h.st==='go'){if(h.gp)h.st='wait';else arrive(h)}else townNext(h)}
    else{const nx=h.x+dx/d*sp,ny=h.y+dy/d*sp;bavoid(h,tg,nx,ny);const t2=h.wp&&h.wp.length?h.wp[0]:tg,ex=t2.x-h.x,ey=t2.y-h.y,e=Math.hypot(ex,ey)||1;if(t2===tg){h.x=nx;h.y=ny}else{const q=Math.min(sp,e);h.x+=ex/e*q;h.y+=ey/e*q}}
-  }else if(h.st==='wait'){if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'))garrive(h)}
+  }else if(h.st==='wait'){if(h.ret)gback(h.gp);else if(h.gl&&S.hero.every(x=>x.gp!==h.gp||x.st==='wait'&&!x.ret))garrive(h)}
   else if(h.st==='loot'){h.t-=dt;if(h.t<=0)goBack(h)}
-  else if(h.st==='fight'){if(h.gp&&!h.gl)continue;if(h.pw>0){h.pw-=dt;if(h.pw<=0)h.pw=0;if(h.gp)for(const m of S.hero)if(m.gp===h.gp)m.pw=h.pw;continue}h.t-=dt;if(h.ft&&!h.gp&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){if(h.gp)gres(h);else{resolve(h);h.buff=0;h.bless=0}}}
+  else if(h.st==='fight'){if(h.pw>0){h.pw-=dt;if(h.pw<=0)h.pw=0;continue}h.t-=dt;if(h.ft&&h.t<=h.ft*.5)castSp(h);if(h.t<=0){GPW=h.gp?power(h)*(1+GB*((h.gn||1)-1)):undefined;resolve(h);GPW=undefined;h.buff=0;h.bless=0}}
  }
 }

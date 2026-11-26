@@ -1,5 +1,30 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.1.8 « Expéditions de guilde »
+
+Version affichée dans les Options : **v4.1.8**
+
+### Ajouté
+- Rendez-vous annoncé à la Maison des Guildes, délai `RDV` (60 s). Les présents partent ; les retardataires reprennent leur vie normale ; un membre seul part en solo. Sans Maison ouverte, le groupe part directement.
+- Un duel par membre contre le même type d'ennemi, avec son résultat et son butin complet. Bonus de +5 % par autre membre parti, appliqué à chaque duel.
+- Aller et retour au rythme du plus lent. Retour quand tous les survivants ont fini, fuyards compris.
+
+### Corrigé
+- Les membres autres que le meneur pouvaient ne plus relancer leur sort en groupe.
+
+### Modifié
+- Destination choisie selon la puissance moyenne du groupe (bonus compris).
+- Champion légendaire en groupe : force basée sur la puissance moyenne.
+- Écarts entre les membres sur la route et au combat (`GRF`, `GFF`, village.js).
+- Sauvegardes : les expéditions de groupe en cours sont converties. Cache `bv-v134`.
+
+### Équilibre (12 parties de 20 jours, ressources et niveaux de départ gonflés pour le test)
+- Or gagné par les quêtes : 14 144 → 14 938 (+6 %) ; recettes mesurées du village : +4 % ; butins rapportés : 1 011 → 1 017 ; morts : 164 → 173.
+
+### Vérifié
+- Simulation ; rendez-vous, retardataire, retour ensemble ; rechargement pendant un rendez-vous ; sauvegardes 4.1.7 avec groupe en route et en combat. Capture 3D de trois duels.
+- Non vérifié : capture 2D, trajet groupé à l'œil, Z Fold 3.
+
 ## v4.1.7 « Guildes : inscription et coffre »
 
 Version affichée dans les Options : **v4.1.7**

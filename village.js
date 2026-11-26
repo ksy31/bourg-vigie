@@ -1,10 +1,10 @@
-function leave(h,z){h.z=z;const q=zr(z.n),a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);{const en=ventry(z);h.wp=(en?vpath(h,en):[]).concat(h.gw.map(p=>({x:p.x,y:p.y})))}h.st='go'}
+function leave(h,z){h.gsp=0;h.z=z;const q=zr(z.n),a=Math.random()*6.283,r=Math.sqrt(Math.random());h.pt={x:z.x+(q[0]+Math.cos(a)*(q[2]-1.2)*r)*ZS,y:z.y+(q[1]+Math.sin(a)*(q[3]-.5)*r)*ZS};h.v=Math.hypot(h.pt.x-h.x,h.pt.y-h.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);h.gw=roadWP(z);{const en=ventry(z);h.wp=(en?vpath(h,en):[]).concat(h.gw.map(p=>({x:p.x,y:p.y})))}h.st='go'}
 const PRM=.8,PRL=.04,PRMIN=2,TVX=2,FGT=2,AUB=3,BL0=.55,BL1=.04,BL2=.03,blP=()=>Math.min(.95,BL0+BL1*S.spa+BL2*nl('S'));
 // v3.7.1 : gemmes (GDROP = chance par victoire), coût par niveau de sort (GCOST), réussite de l'enchantement = EN0 + EN1 × niveau du bâtiment + EN2 × niveau de l'Enchanteur
 const GDROP=.04,GCOST=[1,2,3,4,5],EN0=.5,EN1=.04,EN2=.03,enP=()=>Math.min(.95,EN0+EN1*(S.ench||0)+EN2*nl('N')),enL=h=>{const L=Math.min(5,S.ench||0);return !h.sp&&L>0&&(h.gem||0)>=GCOST[L-1]?L:0};
 const WALK=1.6,DUR={loot:[30,45],inn:[20,30],horse:[60,120],house:[60,120],forge:[60,120],prime:[25,35],bless:[15,30],armory:[20,30],guild:[20,30],ench:[20,30]};
 const TL={loot:'dépôt à la Mairie',horse:'achat d’un cheval',house:'achat d’une maison',forge:'à la forge',prime:'prime à la taverne',bless:'bénédiction au sanctuaire',inn:'enregistrement à l’Auberge',build:'au chantier',armory:'à l’Armurerie',guild:'à la Maison des Guildes',ench:'à l’Enchantement'};
-const TS=h=>h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'||h.sub==='bld'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
+const TS=h=>h.sub==='rdv'?'rendez-vous de guilde':h.sub==='wait'?'file : '+TL[h.tk.k]:h.sub==='do'||h.sub==='bld'?TL[h.tk.k]:h.sub==='home'?'rentre':'au village';
 const itB=i=>S.pl.find(x=>x.i===i);
 const door=it=>{const p=slot(it),k=NK[it.e]||'H';return{x:T.x+p[0],y:T.y+p[1]+(k==='A'?6.6:5.4)/2+2.4}};
 const busy=i=>S.hero.filter(q=>q.st==='town'&&q.tk&&q.tk.b===i&&(q.sub==='wait'||q.sub==='do')).length;
@@ -49,19 +49,37 @@ function guFix0(){const gl=S.guilds;if(!gl||!gl.length)return;for(let i=gl.lengt
  if(nw){log(`${g.e} ${nw.name} ${g.sl?'ranime':'prend la tête de'} la guilde « ${g.n} ».`,'ok');g.o=nw.id;g.sl=0}
  else if(!g.sl){g.o=null;g.sl=1;log(`💤 La guilde « ${g.n} » est en sommeil : plus de chef de niveau ${GMIN}.`,'bad')}}}
 const gMates=h=>{const g=h.gu&&(S.guilds||[]).find(q=>q.id===h.gu);if(!g||!gAct(g))return[];return S.hero.filter(m=>m!==h&&m.gu===g.id&&m.st==='rest'&&!m.kg&&m.t<=GRDY&&!m.arm&&(!isNight()||m.bold>.55)).sort((a,b)=>a.t-b.t).slice(0,gsz()-1)};
+// v4.1.8 : rendez-vous de guilde (RDV secondes), trajet au rythme du plus lent, duels séparés, retour ensemble.
+// RDVF = places devant la Maison, GRF = écarts sur la route, GFF = écarts au lieu de combat.
+const RDV=60,RDVF=[[0,0],[-1.8,0],[1.8,0],[-.9,1.5],[.9,1.5],[2.7,1.5]],GRF=[[0,0],[1.7,.9],[-1.7,.9],[0,1.9],[1.7,-1.1],[-1.7,-1.1]],GFF=[[0,0],[-4,5.5],[4,-5.5],[-8,0],[8,0],[4,5.5]];
 function depart(h){const G=gMates(h);if(!G.length){leave(h,pick(h));return}
- const P=(power(h)+G.reduce((s,m)=>s+power(m),0))*(1+GB*G.length),z=pick(h,P);
- if(z.boss){leave(h,pick(h));return}
- const id=S.gpn=(S.gpn||0)+1,g=S.guilds.find(q=>q.id===h.gu);h.gp=id;h.gl=1;leave(h,z);
- G.forEach(m=>{m.gp=id;m.gl=0;m.tk=null;m.tl=[];leave(m,z)});
- for(let j=0;j<AXG;j++)npcx('C');log(`${g.e} ${g.n} (${G.length+1}) part en expédition : ${z.sn||z.n}.`,'ok')}
-function garrive(h){arrive(h);for(const m of S.hero)if(m.gp===h.gp&&m!==h){m.en=h.en;m.st='fight';m.t=h.t;m.pw=h.pw}}
-function gres(h){const G=S.hero.filter(x=>x.gp===h.gp),n=G.length,e=h.en,gP=G.reduce((s,m)=>s+power(m),0)*(1+GB*(n-1)),gw=Math.random()<win(h,e.d,gP);
- GPW=gP;for(const m of G){RRF=gw?-1:-2;resolve(m);m.buff=0;m.bless=0}RRF=null;GPW=undefined;
- const Wn=G.filter(m=>S.hero.includes(m)&&m.loot);
- Wn.forEach(m=>{const l=m.loot;l.g=Math.round(l.g/n);l.w=Math.round(l.w/n);l.s=Math.round(l.s/n)});
- const gr=Wn.filter(m=>m.loot.gear);if(gr.length>1){const k=gr[R(0,gr.length-1)];gr.forEach(m=>{if(m!==k)m.loot.gear=0})}
- G.forEach(m=>{m.gp=0;m.gl=0})}
+ const id=S.gpn=(S.gpn||0)+1,g=S.guilds.find(q=>q.id===h.gu),M=[h,...G],it=pickB(NE.C);
+ M.forEach((m,i)=>{m.gp=id;m.gl=i?0:1;m.ret=0;m.gsp=0;m.tk=null;m.tl=[]});
+ if(!it){gstart(M);return}
+ const d=door(it);M.forEach((m,i)=>{const o=RDVF[i%RDVF.length];m.st='town';m.sub='rdv';m.dec=1;m.vk=null;m.vw=null;m.rok=0;m.rp={x:d.x+o[0],y:d.y+o[1]}});
+ (S.rdv=S.rdv||[]).push({id,gu:g.id,t:RDV});log(`${g.e} ${g.n} (${M.length}) annonce une expédition : rendez-vous à la Maison des Guildes.`,'ok')}
+function rdvWalk(h,dt){if(h.rok)return;if(!h.vk){h.vk='rdv';h.vw=vpath(h,h.rp)}
+ const vl=!!(h.vw&&h.vw.length),tg=vl?h.vw[0]:h.rp,dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=WALK*dt;
+ if(d<=sp){h.x=tg.x;h.y=tg.y;if(vl)h.vw.shift();else{h.rok=1;h.vk=null}}else{h.x+=dx/d*sp;h.y+=dy/d*sp}}
+function rdvTick(dt){const l=S.rdv;if(!l||!l.length)return;for(let i=l.length-1;i>=0;i--){const r=l[i],M=S.hero.filter(h=>h.gp===r.id&&h.st==='town'&&h.sub==='rdv');
+ if(!M.length){l.splice(i,1);continue}
+ r.t-=dt;const P=M.filter(h=>h.rok);if(P.length<M.length&&r.t>0)continue;
+ l.splice(i,1);for(const m of M)if(!m.rok){m.gp=0;m.gl=0;m.sub='home';m.vk=null;m.vw=null;log(`${m.name} manque le rendez-vous de guilde.`)}
+ if(P.length===1){const m=P[0];m.gp=0;m.gl=0;leave(m,pick(m))}else if(P.length)gstart(P)}}
+function gstart(M){const lead=M.find(m=>m.gl)||M[0],n=M.length,avg=M.reduce((s,m)=>s+power(m),0)/n*(1+GB*(n-1)),z=pick(lead,avg);
+ if(z.boss){M.forEach(m=>{m.gp=0;m.gl=0;leave(m,pick(m))});return}
+ const g=S.guilds.find(q=>q.id===lead.gu);let road=null,pt=null,slow=1e9;
+ M.forEach((m,i)=>{m.gl=m===lead?1:0;m.gn=n;m.ret=0;m.tk=null;m.tl=[];leave(m,z);if(!i){road=m.gw.map(p=>({x:p.x,y:p.y}));pt={x:m.pt.x,y:m.pt.y}}
+  const a=GRF[i%GRF.length],f=GFF[i%GFF.length],en=ventry(z);m.pt={x:pt.x+f[0],y:pt.y+f[1]};m.gw=road.map(p=>({x:p.x+a[0],y:p.y+a[1]}));m.wp=(en?vpath(m,en):[]).concat(m.gw.map(p=>({x:p.x,y:p.y})));
+  m.v=Math.hypot(m.pt.x-m.x,m.pt.y-m.y)/tt(Math.hypot(z.x-T.x,z.y-T.y)/MS);slow=Math.min(slow,m.v*spf(m))});
+ M.forEach(m=>m.gsp=slow);
+ for(let j=0;j<AXG;j++)npcx('C');log(`${g?g.e+' '+g.n:'La guilde'} (${n}) part en expédition : ${z.sn||z.n}.`,'ok')}
+function garrive(h){const M=S.hero.filter(m=>m.gp===h.gp),n=M.length;arrive(h);if(h.en.el)h.en.d=M.reduce((s,m)=>s+power(m),0)/n*1.2;
+ for(const m of M)if(m!==h){m.en={...h.en};m.st='fight';m.t=h.t;m.ft=h.ft;m.pw=h.pw;m.spc=0;m.spw=m.spd=m.spg=m.sps=m.spf=0}}
+// retour ensemble : quand tous les survivants ont fini (fouille ou fuite), au rythme du plus lent
+function gback(id){const M=S.hero.filter(m=>m.gp===id);if(!M.every(m=>m.st==='wait'&&m.ret))return;
+ const hurt=M.some(m=>m.hurt)?HSP:1,slow=Math.min(...M.map(m=>m.v*spf(m)))*hurt;
+ for(const m of M){m.ret=0;goBack(m);m.gsp=slow}}
 function decide(h){
  const hs=S.hs.find(x=>x.o==null);
  if(!h.home&&hs&&h.gold>=hs.p){const it=S.pl.find(x=>x.h===hs);if(it)return{k:'house',b:it.i}}
@@ -103,6 +121,7 @@ function applyTask(h,tk){
   guChest(h)}
 }
 function goBack(h){
+ if(h.gp&&(h.st==='fight'||h.st==='loot')){h.st='wait';h.ret=1;h.dec=0;h.tk=null;h.tl=[];return}
   h.st='back';h.gv=0;h.dec=0;h.tk=null;h.tl=[];h.wp=(h.gw||[]).slice().reverse().map(p=>({x:p.x,y:p.y}));
  const m=pickB(NE.V);
  if(h.loot&&m)h.tl.push({k:'loot',b:m.i});
@@ -110,7 +129,7 @@ function goBack(h){
  {const en=h.z&&h.gw&&h.gw.length&&ventry(h.z);if(en)h.wp=h.wp.concat(vpath(en,h.tl.length?door(itB(h.tl[0].b)):base(h)))}
 }
 function townNext(h){
- h.st='town';
+ h.st='town';h.gsp=0;h.gp=0;h.gl=0;
  if(h.kg===2){if(h.tl&&h.tl.length){h.tk=h.tl.shift();h.sub='walk';return}
   const f=S.forge?pickB(NE.F):null;if(f&&taskOk(h,{k:'forge'})){h.tk={k:'forge',b:f.i};h.sub='walk';return}
   const sp=S.spa&&!h.bless&&!h.kb?pickB(NE.S):null;if(sp){h.kb=1;h.tk={k:'bless',b:sp.i};h.sub='walk';return}
@@ -126,6 +145,7 @@ function startRest(h){
  h.t=Math.round((R(40,70)+(h.en?Math.round(h.en.d):0))*(h.home?1:2.5)*(1-.02*nl('A'))*Math.max(.5,1-.08*P.h)*(h.hurt?1.6:1));h.hurt=0;ui();
 }
 function townTick(h,dt){
+ if(h.sub==='rdv'){rdvWalk(h,dt);return}
  if(h.sub==='walk'||h.sub==='home'){
   const fin=h.sub==='home'?base(h):door(itB(h.tk.b)),vk=h.sub==='home'?'h':'b'+h.tk.b;if(h.vk!==vk){h.vk=vk;h.vw=vpath(h,fin)}
   const vl=!!(h.vw&&h.vw.length),tg=vl?h.vw[0]:fin,dx=tg.x-h.x,dy=tg.y-h.y,d=Math.hypot(dx,dy),sp=WALK*dt;

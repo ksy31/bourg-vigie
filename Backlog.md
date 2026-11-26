@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.1.7 « Guildes : inscription et coffre »**
+Version actuelle du jeu : **v4.1.8 « Expéditions de guilde »**
 
 ## ✅ Déjà intégré
 
@@ -668,17 +668,17 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Part des achats :** sauf pour les maisons, environ 50 % de l'argent des achats faits au village revient à la caisse (au lieu de 100 %). Le reste représente le gagne-pain des PNJ, dont la gestion n'est pas à implémenter pour l'instant.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.8 « Expéditions de guilde » (prochain)
-- [ ] **Rendez-vous :** l'expédition est annoncée, les membres s'attendent à la Maison des Guildes ; départ quand tous sont là ou après un délai limite.
-- [ ] **Trajet groupé :** départ ensemble, au rythme du plus lent.
-- [ ] **Même destination :** les membres vont au même endroit, légèrement écartés pour que les sprites ne se chevauchent pas.
-- [ ] **Duels séparés :** même ennemi pour tous, mais chacun affronte le sien, avec son propre résultat (victoire, fuite ou mort) et son butin.
-- [ ] **Sauvegardes :** compatibilité des expéditions en cours.
-- [ ] **Équilibre :** comparer or, quêtes par jour et morts avant/après.
-- [ ] À préciser au lancement : délai limite du rendez-vous ; sort du bonus de groupe actuel (+5 % par membre) avec les duels séparés.
+## ✅ v4.1.8 « Expéditions de guilde »
+- [x] **Rendez-vous :** l'expédition est annoncée, les membres s'attendent à la Maison des Guildes ; départ quand tous sont là ou après un délai limite.
+- [x] **Trajet groupé :** départ ensemble, au rythme du plus lent.
+- [x] **Même destination :** les membres vont au même endroit, légèrement écartés pour que les sprites ne se chevauchent pas.
+- [x] **Duels séparés :** même ennemi pour tous, mais chacun affronte le sien, avec son propre résultat (victoire, fuite ou mort) et son butin.
+- [x] **Sauvegardes :** compatibilité des expéditions en cours.
+- [x] **Équilibre :** comparer or, quêtes par jour et morts avant/après.
+- [x] Précisé : délai de 60 s ; bonus de +5 % par autre membre conservé dans chaque duel.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.1.9 « Équipement : icônes et noms »
+## v4.1.9 « Équipement : icônes et noms » (prochain)
 - [ ] **Icônes plus lisibles :** en particulier les bottes niveau 1 (aujourd'hui un simple rectangle marron).
 - [ ] **Nom de l'objet :** toucher une icône affiche son nom.
 - [ ] Essai sur le Z Fold 3.
