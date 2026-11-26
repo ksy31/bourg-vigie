@@ -321,7 +321,7 @@ function cobble(g,x,y,rx,ry,R){const s=sc,C=['#a39e8e','#b3ae9d','#98937f','#aca
   for(let xx=x-hf+((j&1)?s*.7:0);xx<x+hf-s*1.2;xx+=s*1.4){g.fillStyle=C[Math.floor(R()*4)];g.beginPath();g.roundRect(xx,yy-s*.38,s*1.2,s*.76,s*.25);g.fill()}}}
 // ===== v3.5.0 : sols du village (terre battue et pavés), partagés par la 2D et la 3D =====
 // g : contexte ; s : pixels par unité du monde ; les coordonnées passées sont en unités du monde ; R : générateur aléatoire
-const VJT='#4f4a42';
+const VJT='#4f4a42',LDL=9;
 function vgRR(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);g.closePath()}
 function vgDirt(g,x0,y0,x1,y1,s,R){
  const A=(x1-x0)*(y1-y0),X=x0*s,Y=y0*s,W=(x1-x0)*s,H=(y1-y0)*s;
@@ -357,10 +357,16 @@ function paveVillage(g,vd,R,s){const pr=PLZ;
  const pz=f=>{g.beginPath();for(let i=0;i<=60;i++){const [x,y]=pzp(f,i/60*6.2832);i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
  // allées : ombre de bordure, joints, puis pavés alignés
  const pv=(pts,w,ps)=>{g.lineCap='round';g.lineJoin='round';const path=()=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0]*s,p[1]*s):g.moveTo(p[0]*s,p[1]*s))};
-  if(ps<2){path();g.strokeStyle=ps?VJT:'rgba(60,44,26,.34)';g.lineWidth=(w+(ps?.1:.9))*s;g.stroke();return}
+  if(ps<2){path();g.strokeStyle=ps?VJT:'rgba(60,44,26,.22)';g.lineWidth=(w+(ps?.1:.5))*s;g.stroke();return}
   for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(L<.01)continue;const ux=(b[0]-a[0])/L,uy=(b[1]-a[1])/L,ang=Math.atan2(uy,ux);let row=0;
-   for(let o=-w/2+.23;o<w/2-.1;o+=.46,row++){let t=(row&1)?-.3:-.05;while(t<L+.3){const sw=.5+R()*.4,c=t+sw/2;if(c>=-.2&&c<=L+.2)vgStone(g,a[0]+ux*c-uy*o,a[1]+uy*c+ux*o,sw-.07,.38,ang+(R()-.5)*.08,R,s);t+=sw}}}};
- // ruelles courbes (lissées) et rue autour de la place : bordures, joints, puis pavés
+   for(let o=-w/2+.23;o<w/2-.1;o+=.46,row++){let t=(row&1)?-.3:-.05;while(t<L+.3){const sw=.5+R()*.4,c=t+sw/2;if(c>=-.2&&c<=L+.2)vgStone(g,a[0]+ux*c-uy*o,a[1]+uy*c+ux*o,sw-.07,.38,ang+(R()-.5)*.08,R,s,LDL);t+=sw}}}};
+ // pavage de tout le village (bord irrégulier et usé)
+ {const RX=vd.rx,RY=vd.ry,wob=t=>1+.035*Math.sin(3*t+1.3)+.03*Math.sin(5*t+.4),bl=f=>{g.beginPath();for(let i=0;i<=96;i++){const t=i/96*6.2832,r=wob(t)*f,x=(T.x+Math.cos(t)*RX*r)*s,y=(T.y+Math.sin(t)*RY*r)*s;i?g.lineTo(x,y):g.moveTo(x,y)}g.closePath()};
+  bl(.99);g.fillStyle='rgba(60,44,26,.3)';g.fill();bl(.95);g.fillStyle=VJT;g.fill();
+  g.save();bl(.95);g.clip();
+  const inV=(x,y)=>{const a=Math.atan2((y-T.y)/RY,(x-T.x)/RX),r=Math.hypot((x-T.x)/RX,(y-T.y)/RY);return r<wob(a)*(.94-(r>.8?R()*.05:0))};
+  vgCobbleFill(g,T.x-RX-1,T.y-RY-1,T.x+RX+1,T.y+RY+1,s,R,inV);vgMoss(g,T.x-RX,T.y-RY,T.x+RX,T.y+RY,s,R,inV);g.restore()}
+ // ruelles courbes (lissées) et rue autour de la place : même village pavé, pierres plus claires
  {const n=vnet();if(n){const soft=L=>{let q=L;for(let k=0;k<14;k++)q=q.map((p,i)=>i&&i<q.length-1?[(q[i-1][0]+2*p[0]+q[i+1][0])/4,(q[i-1][1]+2*p[1]+q[i+1][1])/4]:p);return q.filter((p,i)=>i%2===0||i===q.length-1)};
   const A=n.lines.filter(L=>L.length>1).map(L=>[soft(L),2.1]);A.push([n.ring,2.7]);for(let ps=0;ps<3;ps++)for(const [L,w] of A)pv(L,w,ps)}}
  // place : ombre, joints, pavés, mousse, bordure de grosses pierres

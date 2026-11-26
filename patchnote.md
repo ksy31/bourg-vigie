@@ -1,5 +1,15 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.2.2 « Village entièrement pavé »
+
+Version affichée dans les Options : **v4.2.2**
+
+### Corrigé
+- Tout le village est de nouveau pavé (2D et 3D).
+
+### Modifié
+- Ruelles et rue de la place : pavés un peu plus clairs (`LDL`) et bordure plus discrète.
+
 ## v4.2.1 « Village en anneaux »
 
 Version affichée dans les Options : **v4.2.1**
