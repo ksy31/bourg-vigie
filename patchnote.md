@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.2 « La Paladine (1/2) »
+
+Version affichée dans les Options : **v4.4.2**
+
+### Ajouté
+- Paladine : nouveau design en marche (face, dos, profil), armure avec cape, ailes, auréole, 5 coiffures, épée et bouclier.
+- Fichiers : `perso_pa_f_corps.png`, `perso_pa_f_tetes.png`.
+- Menu Développeur → Personnage : case « Paladin ♀ » activée.
+- Cavalière provisoire.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Pendant les actions (combat, victoire, fouille, construction), la Paladine garde son image de marche : animations prévues en v4.4.3.
+- Cache `bv-v146`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.1 « Le Paladin (2/2) »
 
 Version affichée dans les Options : **v4.4.1**
