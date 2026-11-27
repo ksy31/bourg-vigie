@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.1 « Le Paladin (2/2) »
+
+Version affichée dans les Options : **v4.4.1**
+
+### Ajouté
+- Paladin : combat, victoire, fouille et construction, avec ailes, auréole et 5 coiffures. Épée, bouclier et marteau en main.
+- Attaque tirée des images PixelLab, traînée effacée. Accroupi (fouille) fait par code ; marteau (construction) sur les mêmes images que l'attaque.
+- Fichier : `perso_pa_act.png`.
+
+### Corrigé
+- Le Paladin fait face au monstre en combat.
+- Le nom du Paladin passe au-dessus de l'auréole.
+
+### Modifié
+- Menu Développeur : « 🧝 Personnage » ouvre des cases à cocher (8 classes, homme et femme), les designs pas encore prêts sont grisés ; « Valider et recharger ». L'ancien réglage « oui » coche tous les designs prêts.
+- Cavalier : même construction que le Guerrier (buste du Paladin, ailes, auréole, jambes en armure du Guerrier), inchangée depuis la v4.4.0.
+- Cache `bv-v145`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.0 « Le Paladin (1/2) »
 
 Version affichée dans les Options : **v4.4.0**

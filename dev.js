@@ -1,8 +1,12 @@
 function dgl(){const d=$('dgl');d.innerHTML=NAMES.map((n,i)=>`<div class="gr"><span>${n.replace(/[<&]/g,'')}</span><select data-i="${i}"><option value="">—</option><option value="♂"${NG[n]==='♂'?' selected':''}>♂</option><option value="♀"${NG[n]==='♀'?' selected':''}>♀</option></select></div>`).join('');d.querySelectorAll('select').forEach(e=>e.onchange=()=>{const n=NAMES[+e.dataset.i];if(e.value)NG[n]=e.value;else delete NG[n];try{localStorage.setItem('bvg',JSON.stringify(NG))}catch(x){}})}
-$('dg').onclick=()=>{$('paf').hidden=true;$('dv').hidden=false};
-{const b=$('dperso'),lab=()=>{b.textContent='🧝 Personnage : '+(PG.on?'oui':'non');b.setAttribute('aria-pressed',PG.on)};lab();
-b.onclick=()=>{try{saveG();localStorage.setItem('bvperso',PG.on?'0':'1')}catch(e){toast('Réglage non enregistré');return}location.reload()}}
-$('baf').onclick=()=>{$('paf').hidden=!$('paf').hidden};
+$('dg').onclick=()=>{$('paf').hidden=$('ppe').hidden=true;$('dv').hidden=false};
+{for(const [c,n] of [['G','Guerrier'],['V','Voleur'],['M','Mage'],['R','Rôdeur'],['Pa','Paladin'],['As','Assassin'],['Ne','Nécromancien'],['Ch','Chasseur']])
+ for(let f=0;f<2;f++){const k=c+f,ok=PG_PRETS.includes(k),l=document.createElement('label'),t=document.createElement('span'),i=document.createElement('input');l.className='gr';t.textContent=n+(f?' ♀':' ♂')+(ok?'':' (pas encore prêt)');if(!ok)t.style.opacity=.45;i.type='checkbox';i.dataset.k=k;i.disabled=!ok;l.append(t,i);$('dpl').append(l)}
+const B=()=>[...$('dpl').querySelectorAll('input:not(:disabled)')],sync=()=>B().forEach(c=>c.checked=PG.sel.includes(c.dataset.k));
+sync();$('dperso').onclick=()=>{const p=$('ppe');p.hidden=!p.hidden;$('paf').hidden=true;if(!p.hidden)sync()};
+$('dpall').onclick=()=>B().forEach(c=>c.checked=true);$('dpno').onclick=()=>B().forEach(c=>c.checked=false);
+$('dpok').onclick=()=>{try{saveG();localStorage.setItem('bvperso',JSON.stringify(B().filter(c=>c.checked).map(c=>c.dataset.k)))}catch(e){toast('Réglage non enregistré');return}location.reload()}}
+$('baf').onclick=()=>{$('ppe').hidden=true;$('paf').hidden=!$('paf').hidden};
 $('bnm').onclick=()=>{const p=$('pnm');p.hidden=!p.hidden;if(!p.hidden){dgl();$('dn').value=NAMES.join('\n');$('dc').textContent=NAMES.length+' noms'}};
 $('bcl').onclick=()=>{$('pcl').hidden=!$('pcl').hidden};$('dcl').onclick=()=>{$('dv').hidden=true};
 $('dns').onclick=()=>{NAMES=$('dn').value.split('\n').map(s=>s.trim()).filter((s,i,a)=>s&&a.indexOf(s)===i);try{localStorage.setItem('bvn',JSON.stringify(NAMES))}catch(e){}$('dc').textContent=NAMES.length+' noms';dgl();toast('Liste enregistrée')};

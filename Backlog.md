@@ -1,6 +1,8 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.0 « Le Paladin (1/2) »**
+Version actuelle du jeu : **v4.4.1 « Le Paladin (2/2) »**
+
+Numérotation : rester en 4.4.x tant que x < 10.
 
 ## ✅ Déjà intégré
 
@@ -731,10 +733,13 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - Femme : dans une release suivante.
 - Sources : face validée, export PixelLab (rotations, marche et attaque East), planche des ailes.
 
-## v4.4.1 « Le Paladin (2/2) » (prochain)
-- [ ] **Actions :** combat, victoire, construction, fouille, avec ailes et auréole. Traînée de l'attaque PixelLab à effacer.
-- [ ] **Cheval :** Paladin cavalier, avec ailes et auréole.
+## ✅ v4.4.1 « Le Paladin (2/2) »
+- [x] **Actions :** combat, victoire, construction, fouille, avec ailes et auréole. Traînée de l'attaque PixelLab effacée.
+- [x] **Cheval :** Paladin cavalier, avec ailes et auréole (jambes en armure du Guerrier).
+- [x] **Menu « Personnage » :** cases à cocher (8 classes, homme et femme), non prêts grisés.
+- [x] **Nom du Paladin :** au-dessus de l'auréole.
 - [ ] Essai sur le Z Fold 3.
+- Release suivante : à définir.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.
