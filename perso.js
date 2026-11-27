@@ -1,4 +1,4 @@
-// v4.3.2 : Guerrière (perso_f_*.png) ; les images du personnage sont dans le dossier img/. Elle reprend les images d'épées et de boucliers du Guerrier, positions décalées (PG_FM, PG_FA).
+// v4.3.2 : Guerrière (perso_f_*.png) ; images à la racine. Elle reprend les images d'épées et de boucliers du Guerrier, positions décalées (PG_FM, PG_FA).
 // v4.3.1 : combat, victoire, construction, fouille (perso_g_act*.png, cases 160x160) et cavalier.
 // v4.3.0 : nouveau personnage (Guerrier homme, 3D). Planches pré-calculées (perso_g_*.png), composées ici :
 // corps (ligne 0 images, ligne 1 zones à recolorer : 40 métal, 80 cape, 120 cheveux, 200 bottes ; ligne 2 poing de profil),
@@ -13,7 +13,7 @@ const PG_FA={"w":160,"n":18,"l":[{"w":62,"h":60,"c":14,"r":1,"f":[[0,31,61],[1,3
 const PG_TH=[[[52,96,142],[232,250,255],[30,70,120],[96,160,214]],[[14,16,44],[104,108,170],[14,16,50],[48,52,116]],[[28,12,8],[142,92,70],[72,22,8],[190,72,18]],[[40,14,72],[214,164,252],[46,12,70],[140,66,190]],[[84,70,56],[246,236,208],[14,50,62],[50,140,156]],[[18,34,18],[142,184,122],[28,50,18],[78,118,44]],[[10,14,40],[100,118,176],[12,18,56],[42,58,128]],[[60,112,150],[240,255,255],[30,118,140],[130,218,230]],[[12,8,16],[118,100,116],null,null],[[96,52,8],[255,236,150],[110,66,18],[214,158,56]]];
 const PG={on:(()=>{try{return localStorage.getItem('bvperso')==='1'}catch(e){return false}})(),ready:false,img:{},d:null};
 // fichier d'une image : perso_g_<nom>.png, ou perso_f_<nom>.png pour les 4 planches propres à la Guerrière
-const pgFile=k=>'img/perso_'+(k.startsWith('f_')?k:'g_'+k)+'.png';
+const pgFile=k=>'perso_'+(k.startsWith('f_')?k:'g_'+k)+'.png';
 // pied à y=120 dans une case 112x128 ; 112 px du nouveau personnage = 66 px de l'ancien
 const PG_FEET=120,PG_AX=56,PG_S=66/112;
 // emplacement de PXF -> image source (0-5 face, 6-11 dos, 12-17 profil ; face 2 et dos 8 = pose d'attente)

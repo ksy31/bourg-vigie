@@ -710,7 +710,7 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [ ] Essai sur le Z Fold 3.
 
 ## ✅ v4.3.2 « La Guerrière »
-- [x] **Rangement :** images du personnage dans `img/`.
+- [ ] **Rangement :** images du personnage dans un dossier `img/` (reporté : elles restent à la racine).
 - [x] **Guerrière :** silhouette affinée, visage, queue de cheval ; marche, actions et cheval ; 12 couleurs de cheveux ; bouton « Personnage ».
 - [x] **Fouille :** jambes corrigées.
 - [ ] Essai sur le Z Fold 3.

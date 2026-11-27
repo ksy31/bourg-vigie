@@ -14,8 +14,7 @@ Version affichée dans les Options : **v4.3.2**
 - Fouille (Guerrier et Guerrière) : genou et pied n'ont plus l'air coupés du reste de la jambe ; brins de cape détachés retirés.
 
 ### Modifié
-- Les 12 images du personnage (`perso_*.png`) sont rangées dans le dossier `img/` ; les icônes restent à la racine.
-- Cache `bv-v141`. Équilibrage et sauvegardes inchangés.
+- Cache `bv-v142`. Équilibrage et sauvegardes inchangés.
 
 ## v4.3.1 « Nouveau Guerrier (2/2) »
 
