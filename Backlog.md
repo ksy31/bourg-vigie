@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.6 « La Voleuse (1/2) »**
+Version actuelle du jeu : **v4.4.7 « La Voleuse (2/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -780,8 +780,8 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 - [x] **Corps** fabriqué par code à partir du Voleur, comme la Paladine ; essai à valider.
 - [x] **Marche, cavalière provisoire,** case Voleur ♀ du menu « Personnage ».
 
-## v4.4.7 « La Voleuse (2/2) » (prochain)
-- [ ] **Actions :** combat, victoire, fouille et construction.
+## ✅ v4.4.7 « La Voleuse (2/2) »
+- [x] **Actions :** combat, victoire, fouille et construction.
 
 ## Après le Voleur (sans numéro)
 - [ ] **Bouclier coupé à la taille à cheval :** Paladin homme, Guerrier, Guerrière.

@@ -1524,17 +1524,16 @@ function buildPgHero(cls,fem,id,eq,coif,col){const pa=cls==='Pa',vo=cls==='V',{c
  const m=new TH.Group(),G0=()=>new TH.Group(),lg=[0,1].map(()=>({hip:G0(),kn:G0()})),ar=[0,1].map(()=>({sh:G0(),el:G0()})),piv=G0();piv.add(mesh);m.add(piv);
  ar.forEach((a,i)=>{a.sh.add(a.el);m.add(a.sh)});
  const ham=mkPxHammer();piv.add(ham.g);
- // Voleuse : pas encore de poses d'action (noAct, v4.4.7) : elle garde l'image de marche, avec le petit marteau
- const noAct=vo&&!!fem;if(noAct)ham.g.position.set(21*u,34*u,.1);
  // poses de profil : case plus large, ancrée au même point au sol (x=74, y=136)
  // Paladin : son axe est à x=80 (image de marche centrée dans la case 160)
  // Voleur : 24 poses (an), même ancre que le Paladin (x=80)
- const A=PG_A.w,an=vo?PG_VA.p.length:PG_A.n,atx=noAct?null:pxTex(vo?vActSheet(eq,id,coif,hair):pa?paActSheet(id,eq,coif,fem,col):pgActSheet(id,eq,fem,coif,col),an),geoA=noAct?null:new TH.PlaneGeometry(A*u,A*u).translate((A/2-(pa||vo?80:74))*u,(A/2-(A-136))*u,0);
- mat.userData.alt=noAct?[tex]:[tex,atx];mat.userData.geos=noAct?[mesh.geometry]:[mesh.geometry,geoA];
- m.userData={legs:lg,arms:ar,T:G0(),body:G0(),cls,fem,orb:null,H:0,mesh,piv,tex,atx,geoW:mesh.geometry,geoA,mat,ham,pg:1,pa,vo,hair,an,noAct};return m}
+ const A=PG_A.w,an=vo?PG_VA.p.length:PG_A.n,atx=pxTex(vo?vActSheet(eq,id,coif,hair,fem):pa?paActSheet(id,eq,coif,fem,col):pgActSheet(id,eq,fem,coif,col),vo?PG_VCOLS:an),geoA=new TH.PlaneGeometry(A*u,A*u).translate((A/2-(pa||vo?80:74))*u,(A/2-(A-136))*u,0);
+ if(vo){atx.repeat.y=1/Math.ceil(an/PG_VCOLS);atx.offset.y=1-atx.repeat.y}
+ mat.userData.alt=[tex,atx];mat.userData.geos=[mesh.geometry,geoA];
+ m.userData={legs:lg,arms:ar,T:G0(),body:G0(),cls,fem,orb:null,H:0,mesh,piv,tex,atx,geoW:mesh.geometry,geoA,mat,ham,pg:1,pa,vo,hair,an};return m}
 // affiche la pose d'action (o.act) ou revient au sprite de marche ; petit saut de victoire
 function pgApply(o,h,tm){const u=o.m.userData,act=o.act;u.mesh.geometry=act!=null?u.geoA:u.geoW;
- if(act!=null){u.mat.map=u.atx;u.atx.offset.x=act/u.an}else if(u.mat.map===u.atx)u.mat.map=u.tex;
+ if(act!=null){u.mat.map=u.atx;if(u.vo)u.atx.offset.set(act%PG_VCOLS/PG_VCOLS,1-(1+(act/PG_VCOLS|0))*u.atx.repeat.y);else u.atx.offset.x=act/u.an}else if(u.mat.map===u.atx)u.mat.map=u.tex;
  if(!ride(h)){const win=o.af===12&&h.st!=='fight';if(!win)o.vs=null;else if(o.vs==null)o.vs=tm;const t=win?tm-o.vs:9;u.piv.position.set(0,t<1?Math.abs(Math.sin(t*PI/.5))*16*PXSZ/PXH*PG_S:0,0)}}
 function mkPxHammer(){const cv=document.createElement('canvas');cv.width=12;cv.height=16;const x=cv.getContext('2d');
  for(let y=0;y<16;y++)for(let i=0;i<12;i++){let c=null;if(y<5&&i>=1&&i<=10){c=(y===0||y===4||i===1||i===10)?'#1e1426':y===1?'#c8ccd8':y===3?'#5a5f6e':'#8a8fa0'}else if(y>=5&&i>=4&&i<=7){c=(i===4||i===7||y===15)?'#1e1426':i===5?'#8a5a30':'#5a3a1c'}if(c){x.fillStyle=c;x.fillRect(i,y,1,1)}}
@@ -1556,9 +1555,9 @@ function sprUpd(o,h,mv,fg,tm,tb){
  const u=o.m.userData,az=K.az||0;o.m.rotation.y=az-o.ry;
  const rel=o.ry-az,fx=Math.sin(rel),fz=Math.cos(rel),bk=fz<-.35;
  let f=bk?3:0;if(fg||o.af===12||o.af===7){if(o.af>0)f=o.af}else if(mv){const k=Math.floor((((o.ph*7/(2*Math.PI))%1)+1)%1*6);f=Math.abs(fx)>.78?WKS[k]:bk?WKB[k]:WKF[k]}else if(o.bl)f=bk?8:7;
- if(u.pg){o.act=u.noAct?null:pgPose(o,h,mv,fg,tm,ride(h));if(fg||o.af===12||o.af===7||(!mv&&o.bl))f=bk?3:0}
+ if(u.pg){o.act=pgPose(o,h,mv,fg,tm,ride(h));if(fg||o.af===12||o.af===7||(!mv&&o.bl))f=bk?3:0}
  u.tex.offset.x=f/PXF.length;u.piv.rotation.x=-Math.atan2(cam3.position.y,Math.hypot(cam3.position.x-K.tx,cam3.position.z-K.tz))*.75;u.piv.scale.x=fx<-.35?-1:1;{const tg=!u.pg&&o.cr&&h.st==='loot'?.72+.03*Math.sin(tm*5+h.id):1;o.cz=o.cz==null?1:o.cz+(tg-o.cz)*.15;u.piv.scale.y=o.cz}u.piv.rotation.z=o.fr?-.22*u.piv.scale.x:0;
- const l=Math.min(1.1,1-.5*dk()+.4*tb);u.mat.color.setRGB(l,l,l*1.06);{const hm=u.ham;hm.g.visible=!!o.bl&&(!u.pg||!!u.noAct&&!ride(h));if(o.bl){hm.g.rotation.z=.35+.85*Math.sin(tm*8+h.id);hm.mat.color.setRGB(l,l,l*1.06)}}
+ const l=Math.min(1.1,1-.5*dk()+.4*tb);u.mat.color.setRGB(l,l,l*1.06);{const hm=u.ham;hm.g.visible=!!o.bl&&!u.pg;if(o.bl){hm.g.rotation.z=.35+.85*Math.sin(tm*8+h.id);hm.mat.color.setRGB(l,l,l*1.06)}}
  const wx=Math.cos(az)*.55+Math.sin(az)*.15,wz=-Math.sin(az)*.55+Math.cos(az)*.15,c=Math.cos(o.ry),s2=Math.sin(o.ry);
  o.lt.position.x=wx*c-wz*s2;o.lt.position.z=wx*s2+wz*c}
 // ===== v3.5.4 : attaques par classe, projectiles pixel-art, poussière de mort =====

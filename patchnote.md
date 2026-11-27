@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.7 « La Voleuse (2/2) »
+
+Version affichée dans les Options : **v4.4.7**
+
+### Ajouté
+- Voleuse : combat (garde basse, coup droit, coup remontant, rafale), victoire (dague lancée qui tournoie), fouille accroupie et construction au marteau.
+- Les 5 coiffures (elles suivent la tête), les dagues, les paliers, les cheveux colorés et l'armure légendaire sur toutes ces poses.
+- Fichiers : `perso_v_f_act.png`, `perso_v_f_actp.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- L'image d'actions du Voleur et de la Voleuse est découpée en deux rangées (1920×320 au lieu de 3840×160), par précaution sur téléphone. Rendu des poses inchangé.
+- Le petit marteau et l'image de marche provisoires de la Voleuse sont retirés.
+
 ## v4.4.6 « La Voleuse (1/2) »
 
 Version affichée dans les Options : **v4.4.6**
