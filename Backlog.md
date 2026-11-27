@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.3.1 « Nouveau Guerrier (2/2) »**
+Version actuelle du jeu : **v4.3.2 « La Guerrière »**
 
 ## ✅ Déjà intégré
 
@@ -708,6 +708,13 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Cheval :** jambes découpées dans les sprites, nouveau cavalier, cheval x2 (détail).
 - [x] **Fouille accroupie.**
 - [ ] Essai sur le Z Fold 3.
+
+## ✅ v4.3.2 « La Guerrière »
+- [x] **Rangement :** images du personnage dans `img/`.
+- [x] **Guerrière :** silhouette affinée, visage, queue de cheval ; marche, actions et cheval ; 12 couleurs de cheveux ; bouton « Personnage ».
+- [x] **Fouille :** jambes corrigées.
+- [ ] Essai sur le Z Fold 3.
+- [ ] Les 9 autres coiffures (5 hommes, 4 femmes), à préparer dans une autre conversation.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

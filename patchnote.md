@@ -1,5 +1,22 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.3.2 « La Guerrière »
+
+Version affichée dans les Options : **v4.3.2**
+
+### Ajouté
+- Nouvelle Guerrière (femme, classe Guerrier) : silhouette affinée, queue de cheval, yeux roses, maquillage, diadème ; marche, attente, combat, construction, fouille et cheval.
+- Mêmes 12 couleurs de cheveux, mêmes zones recolorées et mêmes paliers d'équipement que le Guerrier ; épaulières réduites.
+- Elle s'active avec le même bouton « 🧝 Personnage » du menu Développeur (non par défaut).
+- Fichiers : `perso_f_corps.png`, `perso_f_epaul.png`, `perso_f_act.png`, `perso_f_act_epaul.png` (épées et boucliers partagés avec le Guerrier).
+
+### Corrigé
+- Fouille (Guerrier et Guerrière) : genou et pied n'ont plus l'air coupés du reste de la jambe ; brins de cape détachés retirés.
+
+### Modifié
+- Les 12 images du personnage (`perso_*.png`) sont rangées dans le dossier `img/` ; les icônes restent à la racine.
+- Cache `bv-v141`. Équilibrage et sauvegardes inchangés.
+
 ## v4.3.1 « Nouveau Guerrier (2/2) »
 
 Version affichée dans les Options : **v4.3.1**
