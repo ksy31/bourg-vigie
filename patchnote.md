@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.0 « Le Paladin (1/2) »
+
+Version affichée dans les Options : **v4.4.0**
+
+### Ajouté
+- Nouveau Paladin homme en 3D : marche de face, de dos et de profil, 5 coiffures (celles du Guerrier, avec leur diadème et leurs 12 couleurs).
+- Ailes et auréole, sans animation propre.
+- Épée et bouclier du Guerrier ; armure (épaulières comprises), cape et bottes recolorées selon les paliers ; les ailes gardent leurs couleurs.
+- Il s'active avec le bouton « 🧝 Personnage » du menu Développeur (non par défaut). La Paladine garde l'ancien personnage.
+- Fichiers : `perso_pa_corps.png`, `perso_pa_tetes.png`.
+
+### Modifié
+- En attendant la partie 2/2 : combat, victoire, fouille et construction utilisent l'image d'attente (sans marteau) ; à cheval, buste d'attente et jambes en armure du Guerrier.
+- Cache `bv-v144`. Équilibrage et sauvegardes inchangés.
+
 ## v4.3.3 « Les coiffures »
 
 Version affichée dans les Options : **v4.3.3**

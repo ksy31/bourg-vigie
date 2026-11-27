@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.3.3 « Les coiffures »**
+Version actuelle du jeu : **v4.4.0 « Le Paladin (1/2) »**
 
 ## ✅ Déjà intégré
 
@@ -719,6 +719,21 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 ## ✅ v4.3.3 « Les coiffures »
 - [x] **Coiffures :** 5 par sexe (Guerrier et Guerrière), au hasard, anciens héros compris ; bouton « Personnage ».
 - [x] **Bouche de la Guerrière :** ne prend plus la couleur de la cape.
+- [ ] Essai sur le Z Fold 3.
+
+## ✅ v4.4.0 « Le Paladin (1/2) »
+- [x] **Paladin homme :** nouveau design (crâne nu de base), apparence et marche face, dos, profil.
+- [x] **Coiffures :** les 5 coiffures homme existantes, têtes réutilisées.
+- [x] **Ailes et auréole :** visibles dès le départ ; ailes « discrètes » ; auréole dessinée par code, taille validée.
+- [x] **Équipement :** épées et boucliers du Guerrier réutilisés (positions recalculées) ; le Paladin garde ses épaulières, recolorées selon le palier.
+- [x] **Activation :** bouton « Personnage » du menu Développeur (non par défaut).
+- [ ] Essai sur le Z Fold 3.
+- Femme : dans une release suivante.
+- Sources : face validée, export PixelLab (rotations, marche et attaque East), planche des ailes.
+
+## v4.4.1 « Le Paladin (2/2) » (prochain)
+- [ ] **Actions :** combat, victoire, construction, fouille, avec ailes et auréole. Traînée de l'attaque PixelLab à effacer.
+- [ ] **Cheval :** Paladin cavalier, avec ailes et auréole.
 - [ ] Essai sur le Z Fold 3.
 
 ## ⏸️ Mis de côté
