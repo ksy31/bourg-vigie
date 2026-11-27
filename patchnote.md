@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.3.1 « Nouveau Guerrier (2/2) »
+
+Version affichée dans les Options : **v4.3.1**
+
+### Ajouté
+- Nouveau Guerrier : 4 attaques de profil, posture de combat, victoire (petit saut) et spécial.
+- Construction de profil, marteau intégré au sprite.
+- Fouille : vraie pose accroupie (2 images).
+- Cheval deux fois plus détaillé (même taille à l'écran) et cavalier avec jambes en armure, pour le nouveau Guerrier seulement.
+- Fichiers : `perso_g_act.png`, `perso_g_act_epee.png`, `perso_g_act_bouclier.png`, `perso_g_act_epaul.png`.
+
+### Modifié
+- Effets : seulement ceux du jeu (sans les traînées ni l'aura des aperçus). Autres classes inchangées.
+- Cache `bv-v140`. Équilibrage et sauvegardes inchangés.
+
 ## v4.3.0 « Nouveau Guerrier (1/2) »
 
 Version affichée dans les Options : **v4.3.0**

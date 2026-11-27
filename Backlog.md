@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.3.0 « Nouveau Guerrier (1/2) »**
+Version actuelle du jeu : **v4.3.1 « Nouveau Guerrier (2/2) »**
 
 ## ✅ Déjà intégré
 
@@ -702,11 +702,12 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Guerrier homme (3D) :** marche face, dos, profil ; équipements indépendants ; couleurs de cheveux variées.
 - [ ] Essai sur le Z Fold 3 (taille, fluidité).
 
-## 🔜 v4.3.1 « Nouveau Guerrier (2/2) » (prochain)
-- [ ] **Combat et victoire :** attaques de profil, posture entre deux attaques, sans doubler les effets du jeu.
-- [ ] **Construction :** de profil, marteau intégré au sprite.
-- [ ] **Cheval :** jambes découpées dans les sprites, nouvelles proportions, cheval x2.
-- [ ] **Fouille accroupie :** à tester.
+## ✅ v4.3.1 « Nouveau Guerrier (2/2) »
+- [x] **Combat et victoire :** attaques de profil, posture entre deux attaques, sans doubler les effets du jeu.
+- [x] **Construction :** de profil, marteau intégré au sprite.
+- [x] **Cheval :** jambes découpées dans les sprites, nouveau cavalier, cheval x2 (détail).
+- [x] **Fouille accroupie.**
+- [ ] Essai sur le Z Fold 3.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.
