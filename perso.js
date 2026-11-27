@@ -67,14 +67,16 @@ function vHem(P,D,sx,my,cw,ch,g,ys,off,skip){const al=new Uint8Array(cw*ch),Z=D.
   const bas=!cape(X,y+3),cote=y>=ys&&(!cape(X-2,y)||!cape(X+2,y));if(!bas&&!cote)continue;if(skip&&skip(X,y))continue;
   const q=(X+off+y)%4===0?hi:g;P[n*4]=q[0];P[n*4+1]=q[1];P[n*4+2]=q[2]}}
 // image k (0-17) : corps recoloré, dagues et poings ; armure légendaire : épaulières, liseré de cape, emblème au dos, gemme au col
-function vFrame(k,eq,id,coif,hair){const{cw,ch}=PG_M,view=k/6|0,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),D=PG.vd,sx=k*cw,[dx,dy]=PG_V.o[k],
+// v4.4.6 : Voleuse (perso_v_f_corps.png, mêmes lignes que perso_v_corps.png) ; position de ses dagues. Dagues, épaulières et effets : ceux du Voleur.
+const PG_VF={d:[[[1,25,82],[0,62,82]],[[1,26,81],[0,62,81]],[[1,25,82],[0,62,82]],[[1,25,82],[0,62,82]],[[1,26,81],[0,62,81]],[[1,25,82],[0,62,82]],[[3,24,75],[2,66,75]],[[3,24,74],[2,65,74]],[[3,24,75],[2,66,75]],[[3,24,75],[2,66,75]],[[3,24,74],[2,65,74]],[[3,24,75],[2,66,75]],[[4,52,74],[5,53,79]],[[4,52,74],[5,57,73]],[[4,52,74],[5,54,73]],[[4,52,74],[4,46,77]],[[4,60,68],[4,40,77]],[[4,60,68],[4,42,77]]]};
+function vFrame(k,eq,id,coif,hair,fem){const{cw,ch}=PG_M,view=k/6|0,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),D=fem?PG.vfd:PG.vd,V=fem?PG_VF.d:PG_V.d,sx=k*cw,[dx,dy]=PG_V.o[k],
   c=pgCv(cw,ch),x=c.getContext('2d'),body=pgPaint(D,sx,cf*2*ch,sx,(cf*2+1)*ch,cw,ch,av,bv,hair,1.5),
-  dag=i=>{const[col,px,py]=PG_V.d[k][i];x.drawImage(PG.img.v_dague,col*PG_V.dw,wv*PG_V.dh,PG_V.dw,PG_V.dh,px,py,PG_V.dw,PG_V.dh)},
+  dag=i=>{const[col,px,py]=V[k][i];x.drawImage(PG.img.v_dague,col*PG_V.dw,wv*PG_V.dh,PG_V.dw,PG_V.dh,px,py,PG_V.dw,PG_V.dh)},
   fist=()=>x.drawImage(pgPaint(D,sx,10*ch,sx,11*ch,cw,ch,av,bv,hair,1.5),0,0);
  if(view===0){x.drawImage(body,0,0);dag(0);dag(1);fist()}else if(view===1){dag(0);dag(1);x.drawImage(body,0,0)}else{dag(0);x.drawImage(body,0,0);dag(1);fist()}
  if(av<11)return c;
  const th=av-10,g=PG.dep.THP[th-1].g,ep=(j,X,Y)=>x.drawImage(PG.img.v_epaul,j*32,(th-1)*32,32,32,X-24+dx,Y-16+dy,32,32);
- if(view===2)ep(4,62,63);else{ep(view*2,45,62);ep(view*2+1,83,62)}
+ if(view===2)ep(4,62,63);else{ep(view*2,fem?47:45,62);ep(view*2+1,fem?81:83,62)}
  const im=x.getImageData(0,0,cw,ch),P=im.data;
  vHem(P,D,sx,(cf*2+1)*ch,cw,ch,g,60+dy,8,view===0?(X,y)=>X>=42+dx&&X<71+dx&&y>=64+dy:null);
  if(view===1)pgStamp(P,PG_V.sym[th-1],51+dx,76+dy,pgLight(g,.25),[40,16,56]);
@@ -89,17 +91,17 @@ function vAura(c,k,eq,id,act){const av=pgVar(eq.a,id);if(av<11)return c;const cw
  PG_V.pt[th-1].forEach(([q,y0],n)=>{const px=q+ox,py=oy-((n*11+(ph+y0)*14)%96);for(let y=Math.max(0,py-1);y<Math.min(ch,py+6);y++)for(let X=Math.max(0,px-1);X<px+6;X++)if(P[(y*cw+X)*4+3])return;
   pgStamp(P,PG_V.part[th-1],px,py,pgLight(g,n%3?.2:.7),null,cw,ch)});
  x.putImageData(im,0,0);return c}
-function vSheet(id,eq,coif,hair){const{cw,ch}=PG_M,cv=pgCv(cw*PG_SLOT.length,ch),cx=cv.getContext('2d'),done={};
- PG_SLOT.forEach((k,i)=>cx.drawImage(done[k]||(done[k]=vAura(vFrame(k,eq,id,coif,hair),k,eq,id)),i*cw,0));return cv}
+function vSheet(id,eq,coif,hair,fem){const{cw,ch}=PG_M,cv=pgCv(cw*PG_SLOT.length,ch),cx=cv.getContext('2d'),done={};
+ PG_SLOT.forEach((k,i)=>cx.drawImage(done[k]||(done[k]=vAura(vFrame(k,eq,id,coif,hair,fem),k,eq,id)),i*cw,0));return cv}
 // cavalier provisoire : buste d'attente coupé à la taille (la cape continue sur la croupe), jambes en armure du Guerrier, dagues entières
-function vRideSheet(eq,id,coif,hair){const{cw,ch}=PG_M,Y=PG_A.w*4,av=pgVar(eq.a,id),bv=pgVar(eq.b,id),cf=Math.max(0,Math.min(4,coif|0)),Z=PG.vd.data,W=PG.vd.width,cv=pgCv(cw*PG_SLOT.length,ch),cx=cv.getContext('2d');
+function vRideSheet(eq,id,coif,hair,fem){const{cw,ch}=PG_M,Y=PG_A.w*4,av=pgVar(eq.a,id),bv=pgVar(eq.b,id),cf=Math.max(0,Math.min(4,coif|0)),S=fem?PG.vfd:PG.vd,Z=S.data,W=S.width,cv=pgCv(cw*PG_SLOT.length,ch),cx=cv.getContext('2d');
  // 0 face, 1 profil, 2 dos : image d'attente, décalage vertical
- const views=[[2,-1],[12,-1],[8,-1]].map(([k,dy],v)=>{const top=vFrame(k,eq,id,cf,hair),t=top.getContext('2d'),im=t.getImageData(0,0,cw,ch),P=im.data;
+ const views=[[2,-1],[12,-1],[8,-1]].map(([k,dy],v)=>{const top=vFrame(k,eq,id,cf,hair,fem),t=top.getContext('2d'),im=t.getImageData(0,0,cw,ch),P=im.data;
   for(let y=93;y<ch;y++)for(let x=0;x<cw;x++){const n=(((cf*2+1)*ch+y)*W+k*cw+x)*4,fin=104+Math.round(2.6*Math.sin(x*.52));if(y>fin||!(Z[n+3]>127&&Math.round(Z[n]/40)===2))P[(y*cw+x)*4+3]=0}
   t.putImageData(im,0,0);
-  const wv=pgVar(eq.w,id),dag=i=>{const[col,px,py]=PG_V.d[k][i];t.drawImage(PG.img.v_dague,col*PG_V.dw,wv*PG_V.dh,PG_V.dw,PG_V.dh,px,py,PG_V.dw,PG_V.dh)};
+  const wv=pgVar(eq.w,id),dag=i=>{const[col,px,py]=(fem?PG_VF.d:PG_V.d)[k][i];t.drawImage(PG.img.v_dague,col*PG_V.dw,wv*PG_V.dh,PG_V.dw,PG_V.dh,px,py,PG_V.dw,PG_V.dh)};
   if(v===0){dag(0);dag(1)}else if(v===2){t.globalCompositeOperation='destination-over';dag(0);dag(1);t.globalCompositeOperation='source-over'}else dag(1);
-  const ix=v*cw,lg=pgPaint(PG.a,ix,Y,ix,Y+128,cw,ch,av,bv,null),o=pgCv(cw,ch),x=o.getContext('2d');if(!av){const g=lg.getContext('2d'),L=g.getImageData(0,0,cw,ch),Q=L.data;for(let n=0;n<Q.length;n+=4){Q[n]*=.42;Q[n+1]*=.36;Q[n+2]*=.44}g.putImageData(L,0,0)}(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,c===top?dy:0));return vAura(o,k,eq,id)});
+  const ix=v*cw,lg=pgPaint(fem?PG.fa:PG.a,ix,Y,ix,Y+128,cw,ch,av,bv,null),o=pgCv(cw,ch),x=o.getContext('2d');if(!av){const g=lg.getContext('2d'),L=g.getImageData(0,0,cw,ch),Q=L.data;for(let n=0;n<Q.length;n+=4){Q[n]*=.42;Q[n+1]*=.36;Q[n+2]*=.44}g.putImageData(L,0,0)}(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,c===top?dy:0));return vAura(o,k,eq,id)});
  PG_SLOT.forEach((k,i)=>cx.drawImage(views[i>=23?1:[3,4,5,8,19,20,21,22].includes(i)?2:0],i*cw,0));return cv}
 // v4.4.5 : actions du Voleur. perso_v_act.png (cases 160x160, 11 corps) : lignes 2c image et 2c+1 zones (coiffure c 0-4).
 // perso_v_actp.png : poings (ligne 0 images, ligne 1 zones). perso_v_actd.png : dagues tournées, une ligne par variante.
@@ -124,7 +126,7 @@ function vActSheet(eq,id,coif,hair){const A=160,cf=Math.max(0,Math.min(4,coif|0)
 // thèmes dans l'ordre de THP : [métal sombre, métal clair, cape sombre, cape claire] (null : cape démoniaque)
 const PG_TH=[[[52,96,142],[232,250,255],[30,70,120],[96,160,214]],[[14,16,44],[104,108,170],[14,16,50],[48,52,116]],[[28,12,8],[142,92,70],[72,22,8],[190,72,18]],[[40,14,72],[214,164,252],[46,12,70],[140,66,190]],[[84,70,56],[246,236,208],[14,50,62],[50,140,156]],[[18,34,18],[142,184,122],[28,50,18],[78,118,44]],[[10,14,40],[100,118,176],[12,18,56],[42,58,128]],[[60,112,150],[240,255,255],[30,118,140],[130,218,230]],[[12,8,16],[118,100,116],null,null],[[96,52,8],[255,236,150],[110,66,18],[214,158,56]]];
 // v4.4.1 : bvperso = liste des nouveaux designs cochés (classe + 0 homme / 1 femme) ; ancien réglage '1' = tous les prêts, '0' = aucun
-const PG_PRETS=['G0','G1','Pa0','Pa1','V0'];
+const PG_PRETS=['G0','G1','Pa0','Pa1','V0','V1'];
 const PG={sel:(()=>{try{const v=localStorage.getItem('bvperso');if(v==='1')return PG_PRETS.slice();const l=JSON.parse(v||'[]');return Array.isArray(l)?PG_PRETS.filter(k=>l.includes(k)):[]}catch(e){return[]}})(),ready:false,img:{},d:null};
 PG.on=PG.sel.length>0;
 // fichier d'une image : perso_g_<nom>.png, ou perso_f_<nom>.png pour les 4 planches propres à la Guerrière
@@ -133,8 +135,8 @@ const pgFile=k=>'perso_'+(/^(f|pa|v)_/.test(k)?k:'g_'+k)+'.png';
 const PG_FEET=120,PG_AX=56,PG_S=66/112;
 // emplacement de PXF -> image source (0-5 face, 6-11 dos, 12-17 profil ; face 2 et dos 8 = pose d'attente)
 const PG_SLOT=(()=>{const a=new Array(29).fill(2);[[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]].forEach((l,v)=>l.forEach((k,i)=>{a[[[1,2,15,16,17,18],[4,5,19,20,21,22],[23,24,25,26,27,28]][v][i]]=k}));a[3]=a[8]=8;return a})();
-function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_dague','v_epaul','v_act','v_actp','v_actd'];let n=0;
- for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
+function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_f_corps','v_dague','v_epaul','v_act','v_actp','v_actd'];let n=0;
+ for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vfd=px(PG.img.v_f_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
 const pgCv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
 const pgUse=(cls,fem)=>PG.ready&&!!PG.dep&&PG.sel.includes(cls+(fem?1:0));
 // variante d'une pièce selon son palier (0-14) ; à partir de 11, thème légendaire du jeu

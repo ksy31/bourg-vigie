@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.6 « La Voleuse (1/2) »
+
+Version affichée dans les Options : **v4.4.6**
+
+### Ajouté
+- Voleuse : silhouette affinée, 5 nouvelles coiffures (petite queue haute, carré asymétrique, un côté rasé, dégradé aux épaules, petite tresse sur le côté), cheveux à la couleur de l'aventurier.
+- Marche de face, de dos et de profil, cavalière provisoire, deux dagues, paliers et armure légendaire.
+- Case « Voleur ♀ » dans Développeur → Personnage.
+- Fichier : `perso_v_f_corps.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- En attendant la v4.4.7, la Voleuse garde son image de marche pendant les actions, avec le petit marteau pour construire.
+
 ## v4.4.5 « Le Voleur (2/2) »
 
 Version affichée dans les Options : **v4.4.5**
