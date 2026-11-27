@@ -1,5 +1,19 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.3.0 « Nouveau Guerrier (1/2) »
+
+Version affichée dans les Options : **v4.3.0**
+
+### Ajouté
+- Menu Développeur : bouton « 🧝 Personnage » (non par défaut, mémorisé ; le jeu se recharge). Sur « non », l'ancien personnage est utilisé.
+- Nouveau Guerrier homme en 3D : marche de face, de dos et de profil ; zones recolorées en jeu (armure, cape, bottes, cheveux), avec épée, bouclier et épaulières.
+- Arme, armure et bouclier indépendants (palier 0, paliers 1-10 recolorés, 10 thèmes légendaires) ; bottes recolorées selon leur palier ; cheveux de couleurs variées.
+- Fichiers : `perso.js`, `perso_g_corps.png`, `perso_g_epee.png`, `perso_g_bouclier.png`, `perso_g_epaul.png`.
+
+### Modifié
+- En attendant la partie 2/2, combat, victoire, fouille et construction utilisent l'image d'attente du nouveau Guerrier (de profil face au monstre) ; à cheval, buste d'attente et jambes actuelles du jeu.
+- Cache `bv-v139`. Équilibrage et sauvegardes inchangés.
+
 ## v4.2.2 « Village entièrement pavé »
 
 Version affichée dans les Options : **v4.2.2**

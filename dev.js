@@ -1,5 +1,7 @@
 function dgl(){const d=$('dgl');d.innerHTML=NAMES.map((n,i)=>`<div class="gr"><span>${n.replace(/[<&]/g,'')}</span><select data-i="${i}"><option value="">—</option><option value="♂"${NG[n]==='♂'?' selected':''}>♂</option><option value="♀"${NG[n]==='♀'?' selected':''}>♀</option></select></div>`).join('');d.querySelectorAll('select').forEach(e=>e.onchange=()=>{const n=NAMES[+e.dataset.i];if(e.value)NG[n]=e.value;else delete NG[n];try{localStorage.setItem('bvg',JSON.stringify(NG))}catch(x){}})}
 $('dg').onclick=()=>{$('paf').hidden=true;$('dv').hidden=false};
+{const b=$('dperso'),lab=()=>{b.textContent='🧝 Personnage : '+(PG.on?'oui':'non');b.setAttribute('aria-pressed',PG.on)};lab();
+b.onclick=()=>{try{saveG();localStorage.setItem('bvperso',PG.on?'0':'1')}catch(e){toast('Réglage non enregistré');return}location.reload()}}
 $('baf').onclick=()=>{$('paf').hidden=!$('paf').hidden};
 $('bnm').onclick=()=>{const p=$('pnm');p.hidden=!p.hidden;if(!p.hidden){dgl();$('dn').value=NAMES.join('\n');$('dc').textContent=NAMES.length+' noms'}};
 $('bcl').onclick=()=>{$('pcl').hidden=!$('pcl').hidden};$('dcl').onclick=()=>{$('dv').hidden=true};

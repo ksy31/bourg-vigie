@@ -849,12 +849,14 @@ function mkHorse(coat){const cv=document.createElement('canvas');cv.width=HRW*HR
  const mesh=new TH.Mesh(new TH.PlaneGeometry(HRW*u,HRH*u).translate(0,HRH*u/2-(HRH-HRG)*u,0),mat);mesh.castShadow=true;
  const g=new TH.Group(),rot=new TH.Group(),piv=new TH.Group();piv.add(mesh);rot.add(piv);g.add(rot);g.add(csChar(2.3));g.userData={rot,piv,tex,mat};return g}
 // cavalier : mêmes images que l'aventurier, coupées à la taille, avec les jambes pliées le long du cheval
-function rideTex(src){const n=PXF.length,cv=document.createElement('canvas');cv.width=src.width;cv.height=src.height;const x=cv.getContext('2d');x.drawImage(src,0,0);
- const d0=src.getContext('2d').getImageData(0,0,PXW,PXH).data,pick=(px,py,def)=>{for(const[dx,dy]of[[0,0],[1,0],[-1,0],[0,1],[0,-1],[2,0],[-2,0]]){const i=((py+dy)*PXW+px+dx)*4;if(d0[i+3]>127&&d0[i]+d0[i+1]+d0[i+2]>110)return[d0[i],d0[i+1],d0[i+2]]}return def},pant=pick(20,58,[80,64,50]),boot=pick(20,66,[60,40,30]);
- PXF.forEach(([v,fr],i)=>{x.clearRect(i*PXW,HRHIP+2,PXW,PXH-HRHIP-2);const p=pxCanvas(PXW,PXH);
+// pg : nouveau Guerrier (case plus grande) : mêmes jambes du jeu, mises à son échelle
+function rideTex(src,pg){const n=PXF.length,cv=document.createElement('canvas');cv.width=src.width;cv.height=src.height;const x=cv.getContext('2d');x.drawImage(src,0,0);
+ const SW_=pg?PG_M.cw:PXW,k=pg?1/PG_S:1,ox=pg?PG_AX-24*k:0,oy=pg?PG_FEET-HRG*k:0,cut=pg?Math.round(oy+(HRHIP+2)*k):HRHIP+2;
+ const d0=src.getContext('2d').getImageData(0,0,SW_,src.height).data,pick=(px,py,def)=>{px=Math.round(ox+px*k);py=Math.round(oy+py*k);for(const[dx,dy]of[[0,0],[1,0],[-1,0],[0,1],[0,-1],[2,0],[-2,0]]){const i=((py+dy)*SW_+px+dx)*4;if(d0[i+3]>127&&d0[i]+d0[i+1]+d0[i+2]>110)return[d0[i],d0[i+1],d0[i+2]]}return def},pant=pick(20,58,[80,64,50]),boot=pick(20,66,[60,40,30]);
+ PXF.forEach(([v,fr],i)=>{x.clearRect(i*SW_,cut,SW_,src.height-cut);const p=pxCanvas(PXW,PXH);
   for(const s of v==='s'?[1]:[-1,1]){const knee=v==='s'?[31,58]:[24+s*13,58],foot=v==='s'?[28,66]:[24+s*13,66],hip=v==='s'?[23,54]:[24+s*5,54];
    p.L([hip,knee],5.4,pant);p.L([knee,foot],4.6,pant);p.L([[foot[0],foot[1]-3],[foot[0],foot[1]],[foot[0]+(v==='s'?4:s),foot[1]]],4.4,boot)}
-  const t=document.createElement('canvas');t.width=PXW;t.height=PXH;t.getContext('2d').putImageData(new ImageData(p.im,PXW,PXH),0,0);x.drawImage(t,i*PXW,0)});
+  const t=document.createElement('canvas');t.width=PXW;t.height=PXH;t.getContext('2d').putImageData(new ImageData(p.im,PXW,PXH),0,0);x.imageSmoothingEnabled=false;x.drawImage(t,i*SW_+ox,oy,PXW*k,PXH*k)});
  return pxTex(cv,n)}
 // en selle sauf pendant le combat et la fouille ; RDY : hauteur gagnée en selle (unités du personnage)
 const ride=h=>!!h.hs&&h.st!=='fight'&&h.st!=='loot',RDY=()=>(HRS_-(HRG-HRHIP))*PXSZ/PXH;
@@ -1491,6 +1493,7 @@ function pxSprite(cls,fem,view,fr,o){
   if(im[i*4+3]){out[i*4]=im[i*4];out[i*4+1]=im[i*4+1];out[i*4+2]=im[i*4+2];out[i*4+3]=255}else if(d){out[i*4]=OUT[0];out[i*4+1]=OUT[1];out[i*4+2]=OUT[2];out[i*4+3]=255}}
  return out}
 const PXHR=['#b4552c','#e8c050','#cfc6f4','#3a2c3c','#c04a7a','#4a9ad8','#58b868','#e87838','#7a5a3a','#f0e0a0','#8a58c8','#d8d8e8'],PXEC=f=>f?'#e86aa8':'#3a7ad8',PXHS=id=>(Math.abs(id|0)*7+2)%5;
+PG.dep={WPM,PXHR,thFor};
 const WIC={};
 // v4.1.9 : recadre une image sur ses pixels visibles (dague)
 function icoTrim(cv){const w=cv.width,h=cv.height,d=cv.getContext('2d').getImageData(0,0,w,h).data;let a=w,b=h,c=-1,e=-1;for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(d[(y*w+x)*4+3]){a=Math.min(a,x);c=Math.max(c,x);b=Math.min(b,y);e=Math.max(e,y)}
@@ -1507,7 +1510,7 @@ const GIC={};
 window.gIcon=(c,k,t,id)=>{c=eqb(c);t=Math.max(0,Math.min(14,t|0));if(!t||!'abs'.includes(k))return null;const th=thFor(t,id),key=c+k+t+'_'+th;if(GIC[key])return GIC[key];try{let d;if(k==='a')d={G:[34,32,-7,-19],V:[18,24,-14,-24],R:[18,28,-14,-24],M:[26,38,-11,-25]}[c];else if(k==='b')d=[20,16,-9,-48];else d=[18,30,0,-29];if(!d)return null;
  const o={W:d[0],H:d[1],XO:d[2],OY:d[3],wc:c,gk:k,col:null,hair:'#000',eye:'#000'};if(k==='a'){o.at=t;o.ath=th}else if(k==='b'){o.bt=t;o.bth=th}else{o.sh=t;o.sth=th}
  const im=pxSprite(c,0,'f','gicon',o),cv=document.createElement('canvas');cv.width=d[0];cv.height=d[1];cv.getContext('2d').putImageData(new ImageData(im,d[0],d[1]),0,0);return GIC[key]='<img alt="" src="'+(k==='b'?bootIcon(im):cv).toDataURL()+'" style="height:'+(k==='b'?'1.65em':'2em')+';width:auto;vertical-align:-.55em;image-rendering:pixelated">'}catch(e){return null}};
-function buildSprHero(cls,fem,id,col,eq){eq=eq||{};
+function buildSprHero(cls,fem,id,col,eq){eq=eq||{};if(pgUse(cls,fem))return buildPgHero(cls,fem,id,eq);
  const cv=document.createElement('canvas');cv.width=PXW*PXF.length;cv.height=PXH;const cx=cv.getContext('2d'),o={col:col||null,wth:thFor(eq.w,id),ath:thFor(eq.a,id),bth:thFor(eq.b,id),sth:thFor(eq.s,id),wt:eq.w|0,at:eq.a|0,bt:eq.b|0,sh:eq.s|0,hair:PXHR[(id*5+3)%PXHR.length],eye:PXEC(fem),hs:PXHS(id)};
  PXF.forEach(([v,fr],i)=>cx.putImageData(new ImageData(pxSprite(cls,fem?1:0,v,fr,o),PXW,PXH),i*PXW,0));
  const tex=new TH.CanvasTexture(cv);tex.magFilter=tex.minFilter=TH.NearestFilter;tex.generateMipmaps=false;tex.colorSpace=TH.SRGBColorSpace;tex.repeat.set(1/PXF.length,1);
@@ -1517,6 +1520,15 @@ function buildSprHero(cls,fem,id,col,eq){eq=eq||{};
  ar.forEach((a,i)=>{a.sh.add(a.el);m.add(a.sh)});
  const ham=mkPxHammer(),uu=PXSZ/PXH;ham.g.position.set((33.5-24)*uu,PXSZ-2*uu-52.5*uu,.1);piv.add(ham.g);
  m.userData={legs:lg,arms:ar,T:G0(),body:G0(),cls,fem,orb:null,H:0,mesh,piv,tex,mat,ham};return m}
+// v4.3.0 : nouveau Guerrier : même structure que buildSprHero, case 112x128, pied au sol
+function buildPgHero(cls,fem,id,eq){const{cw,ch}=PG_M,cv=pgSheet(id,eq),tex=pxTex(cv,PXF.length),uu=PXSZ/PXH,u=uu*PG_S,mat=new TH.MeshBasicMaterial({map:tex,alphaTest:.5,side:TH.DoubleSide});mat.userData.px=1;
+ const mesh=new TH.Mesh(new TH.PlaneGeometry(cw*u,ch*u).translate(0,ch*u/2-(ch-PG_FEET)*u,0),mat);mesh.castShadow=true;
+ const m=new TH.Group(),G0=()=>new TH.Group(),lg=[0,1].map(()=>({hip:G0(),kn:G0()})),ar=[0,1].map(()=>({sh:G0(),el:G0()})),piv=G0();piv.add(mesh);m.add(piv);
+ ar.forEach((a,i)=>{a.sh.add(a.el);m.add(a.sh)});
+ const ham=mkPxHammer();piv.add(ham.g);
+ m.userData={legs:lg,arms:ar,T:G0(),body:G0(),cls,fem,orb:null,H:0,mesh,piv,tex,mat,ham,pg:1};return m}
+// marteau du jeu tenu dans la main du nouveau Guerrier (position en pixels de la case)
+function pgHam(u,side){const k=PXSZ/PXH*PG_S;u.ham.g.position.set(((side?66:77)-PG_AX)*k,(PG_FEET-(side?91:96))*k,.1)}
 function mkPxHammer(){const cv=document.createElement('canvas');cv.width=12;cv.height=16;const x=cv.getContext('2d');
  for(let y=0;y<16;y++)for(let i=0;i<12;i++){let c=null;if(y<5&&i>=1&&i<=10){c=(y===0||y===4||i===1||i===10)?'#1e1426':y===1?'#c8ccd8':y===3?'#5a5f6e':'#8a8fa0'}else if(y>=5&&i>=4&&i<=7){c=(i===4||i===7||y===15)?'#1e1426':i===5?'#8a5a30':'#5a3a1c'}if(c){x.fillStyle=c;x.fillRect(i,y,1,1)}}
  const t=new TH.CanvasTexture(cv);t.magFilter=t.minFilter=TH.NearestFilter;t.generateMipmaps=false;t.colorSpace=TH.SRGBColorSpace;const u=PXSZ/PXH,mt=new TH.MeshBasicMaterial({map:t,alphaTest:.5,side:TH.DoubleSide,fog:false});mt.userData.px=1;
@@ -1537,6 +1549,7 @@ function sprUpd(o,h,mv,fg,tm,tb){
  const u=o.m.userData,az=K.az||0;o.m.rotation.y=az-o.ry;
  const rel=o.ry-az,fx=Math.sin(rel),fz=Math.cos(rel),bk=fz<-.35;
  let f=bk?3:0;if(fg||o.af===12||o.af===7){if(o.af>0)f=o.af}else if(mv){const k=Math.floor((((o.ph*7/(2*Math.PI))%1)+1)%1*6);f=Math.abs(fx)>.78?WKS[k]:bk?WKB[k]:WKF[k]}else if(o.bl)f=bk?8:7;
+ if(u.pg){const side=Math.abs(fx)>.6;if(fg||o.af===12||o.af===7||(!mv&&o.bl))f=side?23:bk?3:0;pgHam(u,f>=23)}
  u.tex.offset.x=f/PXF.length;u.piv.rotation.x=-Math.atan2(cam3.position.y,Math.hypot(cam3.position.x-K.tx,cam3.position.z-K.tz))*.75;u.piv.scale.x=fx<-.35?-1:1;{const tg=o.cr&&h.st==='loot'?.72+.03*Math.sin(tm*5+h.id):1;o.cz=o.cz==null?1:o.cz+(tg-o.cz)*.15;u.piv.scale.y=o.cz}u.piv.rotation.z=o.fr?-.22*u.piv.scale.x:0;
  const l=Math.min(1.1,1-.5*dk()+.4*tb);u.mat.color.setRGB(l,l,l*1.06);{const hm=u.ham;hm.g.visible=!!o.bl;if(o.bl){hm.g.rotation.z=.35+.85*Math.sin(tm*8+h.id);hm.mat.color.setRGB(l,l,l*1.06)}}
  const wx=Math.cos(az)*.55+Math.sin(az)*.15,wz=-Math.sin(az)*.55+Math.cos(az)*.15,c=Math.cos(o.ry),s2=Math.sin(o.ry);
@@ -1717,9 +1730,9 @@ function heroFx(o,h,fg,tm,x,y,z){
 function fxDust(o){const g=o.g,sz=Math.max(1,Math.min(3.4,(o.b.S0||1)*(o.b.wide||1)*HS*.32)),tm=performance.now()/1000,bx=g.position.x,bz=g.position.z,by=HC(bx,bz);
  for(let i=0;i<8;i++){const a=i/8*6.283+i*.7,r0=.3*sz,s=fxSp('dust',1,.875,bx+Math.cos(a)*r0,by+.35,bz+Math.sin(a)*r0);fxAdd(s,tm+(i%3)*.05,.9,(p,s)=>{const k=sz*(1.1+p*1.4),rr=r0+p*1.6*sz;s.position.set(bx+Math.cos(a)*rr,by+.35+p*.9,bz+Math.sin(a)*rr);s.scale.set(k,k*.875,1);s.material.opacity=Math.pow(1-p,1.3)})}}
 function heroFor(h){let o=HM.get(h.id);const fem=gd(h,h.name)==='♀',hs=!!h.hs,hv=hs?PCOL.hs[(h.id*7)%4]:null;
- if(o&&(o.cls!==h.c||o.fem!==fem||o.hs!==hs||o.col!==h.col||o.ek!==h.eq.w+'.'+h.eq.a+'.'+h.eq.b+'.'+h.eq.s)){heroG.remove(o.g);disp(o.g);HM.delete(h.id);o=null}
+ if(o&&(!!o.m.userData.pg!==pgUse(h.c,fem)||o.cls!==h.c||o.fem!==fem||o.hs!==hs||o.col!==h.col||o.ek!==h.eq.w+'.'+h.eq.a+'.'+h.eq.b+'.'+h.eq.s)){heroG.remove(o.g);disp(o.g);HM.delete(h.id);o=null}
  if(!o){const m=buildSprHero(h.c,fem,h.id,h.col,h.eq),g=new TH.Group();g.add(m);
-  let hor=null,rtex=null;if(hs){hor=mkHorse(hv);g.add(hor);rtex=rideTex(m.userData.tex.image);m.userData.mat.userData.alt=[m.userData.tex,rtex]}
+  let hor=null,rtex=null;if(hs){hor=mkHorse(hv);g.add(hor);rtex=rideTex(m.userData.tex.image,m.userData.pg);m.userData.mat.userData.alt=[m.userData.tex,rtex]}
   const gl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffd37a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));const tg=new TH.Group();tg.add(mkPxTorch());const fl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff9a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));gl.material.color.set('#ffb35a');gl.scale.set(1.5,1.5,1);gl.position.y=.17;tg.add(gl);tg.position.set(11*PXSZ/PXH,20*PXSZ/PXH,.08);m.userData.piv.add(tg);tg.visible=false;
   const lt=new TH.Group();{const bm=new Acc().add(box(.34,.4,.16),'#ffd21f',0,0,0,{shade:0}).add(box(.37,.12,.19),'#ffe65a',0,.2,0,{shade:0}).add(box(.08,.1,.02),'#fffbd0',0,.1,.09,{shade:0}).add(cyl(.065,.065,.4),'#ffc400',0,.33,0,{rz:PI/2,shade:0}).mesh(lt,0);bm.material=new TH.MeshBasicMaterial({vertexColors:true,fog:false});bm.castShadow=false;bm.receiveShadow=false}lt.userData.sp=[];for(let i=0;i<5;i++){const sp=new TH.Sprite(new TH.SpriteMaterial({map:starTex(),color:'#fff1a0',blending:TH.AdditiveBlending,depthWrite:false,depthTest:false,transparent:true,opacity:0}));sp.renderOrder=6;sp.scale.set(.15,.15,1);lt.add(sp);lt.userData.sp.push(sp)}const lc=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#fff3a0',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:.9}));lc.scale.set(.42,.42,1);lt.add(lc);const lg=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffe033',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:.8}));lg.scale.set(.75,.75,1);lt.add(lg);lt.scale.setScalar(1.25);lt.position.set(0,hs?1.5:1,-.3);lt.visible=false;g.add(lt);const bs=new TH.Group();for(let i=0;i<3;i++){const st=new TH.Sprite(new TH.SpriteMaterial({map:fxTex('bstar'),color:'#ffffff',transparent:true,depthTest:false,depthWrite:false}));st.renderOrder=6;st.scale.set(.34,.34,1);bs.add(st)}bs.visible=false;g.add(bs);
   const gd=new TH.Mesh(new TH.PlaneGeometry(1,1).rotateX(-PI/2),new TH.MeshBasicMaterial({map:glowTex(),color:'#ff9a40',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0,polygonOffset:true,polygonOffsetFactor:-2,fog:false}));gd.scale.set(8,1,8);gd.position.y=.05;gd.renderOrder=1;gd.visible=false;g.add(gd);g.add(csChar(1.5));
