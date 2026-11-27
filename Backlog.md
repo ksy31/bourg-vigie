@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.4 « Le Voleur (1/2) »**
+Version actuelle du jeu : **v4.4.5 « Le Voleur (2/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -769,12 +769,14 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 - [ ] Essai sur le Z Fold 3.
 - Équilibrage et sauvegardes : inchangés.
 
-## v4.4.5 « Le Voleur (2/2) » (prochain)
-- [ ] **Attaque** (références PixelLab), à valider à l'essai.
-- [ ] **Actions :** combat, victoire, fouille et construction (marteau existant), avec les 5 coiffures et les dagues.
+## ✅ v4.4.5 « Le Voleur (2/2) »
+- [x] **Attaque** (références PixelLab), à valider à l'essai.
+- [x] **Actions :** combat, victoire, fouille et construction (marteau existant), avec les 5 coiffures et les dagues.
+- [ ] Essai sur le Z Fold 3.
+- Consigne pour les prochaines demandes d'attaque (PixelLab, Gemini) : préciser « aucune traînée ni effet blanc ».
 
-## v4.4.6 « La Voleuse (1/2) »
-- [ ] **Avant de commencer :** nouvelles coiffures femme dessinées par le joueur (celles de la Guerrière ne sont pas reprises d'office).
+## v4.4.6 « La Voleuse (1/2) » (prochain)
+- [ ] **Avant de commencer :** 5 nouvelles coiffures femme dessinées par le joueur, jusqu'aux épaules au maximum (celles de la Guerrière ne sont pas reprises d'office). Le visage vient de ces planches.
 - [ ] **Corps** fabriqué par code à partir du Voleur, comme la Paladine ; essai à valider.
 - [ ] **Marche, cavalière provisoire,** case Voleur ♀ du menu « Personnage ».
 
@@ -784,6 +786,7 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 ## Après le Voleur (sans numéro)
 - [ ] **Bouclier coupé à la taille à cheval :** Paladin homme, Guerrier, Guerrière.
 - [ ] **Effets légendaires du Voleur à étudier pour le Guerrier, la Guerrière, le Paladin et la Paladine.**
+- [ ] **Cheveux longs :** ajouter des coiffures longues à la Guerrière et à la Paladine, sans retirer les actuelles.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

@@ -52,14 +52,20 @@ function paRideFin(x,v,k,dy,eq,id){const{cw,ch}=PG_PA,im=x.getImageData(0,0,cw,c
 // v4.4.4 : Voleur homme. perso_v_corps.png (cases 112x128) : lignes 2c image et 2c+1 zones (coiffure c 0-4), lignes 10-11 poings et leurs zones.
 // perso_v_dague.png : 21 dagues (lignes), lame en bas ; colonnes face, face miroir, dos, dos miroir, profil lointain, profil proche.
 // perso_v_epaul.png : thèmes 1-10 (lignes), cases 32x32 : face gauche/droite, dos gauche/droite, profil.
-// PG_V : d = dagues par image [colonne,x,y] ; o = décalage des effets ; pt = particules [x,phase] ; sym, part = motifs. Pas encore de poses d'action.
+// PG_V : d = dagues par image [colonne,x,y] ; o = décalage des effets ; pt = particules [x,phase] ; sym, part = motifs. Actions (v4.4.5) : voir PG_VA plus bas.
 const PG_V={"dw":32,"dh":33,"d":[[[1,21,82],[0,66,82]],[[1,21,81],[0,66,81]],[[1,21,82],[0,66,82]],[[1,21,82],[0,66,82]],[[1,21,81],[0,66,81]],[[1,21,82],[0,66,82]],[[3,19,75],[2,71,75]],[[3,19,74],[2,71,74]],[[3,19,75],[2,71,75]],[[3,19,75],[2,71,75]],[[3,19,74],[2,71,74]],[[3,19,75],[2,71,75]],[[4,54,74],[5,54,79]],[[4,54,74],[5,60,73]],[[4,54,74],[5,56,73]],[[4,54,74],[4,46,77]],[[4,63,68],[4,39,77]],[[4,63,68],[4,41,77]]],"o":[[0,0],[0,-1],[0,0],[0,0],[0,-1],[0,0],[0,0],[0,-1],[0,0],[0,0],[0,-1],[0,0],[-2,2],[-2,2],[-4,2],[-2,1],[-2,1],[-2,1]],"pt":[[[84,5],[24,0],[29,1],[77,2],[22,2],[63,3],[78,4],[75,3],[29,4],[29,1],[83,0],[46,2],[80,1],[23,4],[19,2],[29,5],[28,4],[40,3]],[[29,1],[48,4],[24,3],[74,4],[80,0],[57,1],[21,3],[38,0],[83,4],[82,2],[85,5],[77,4],[23,1],[43,2],[84,5],[78,4],[81,5],[36,2]],[[29,1],[33,4],[30,0],[43,2],[27,0],[66,4],[19,2],[78,3],[83,3],[33,4],[89,1],[42,3],[86,1],[82,0],[89,1],[30,1],[88,3],[37,2]],[[89,3],[82,5],[31,3],[40,2],[87,1],[65,5],[21,5],[25,2],[30,4],[83,5],[82,5],[58,5],[26,3],[41,4],[24,3],[27,0],[25,2],[76,3]],[[27,4],[52,3],[81,0],[39,2],[26,0],[22,0],[20,3],[70,1],[22,5],[33,5],[29,2],[62,2],[86,0],[83,3],[30,5],[33,0],[23,5],[43,1]],[[84,2],[82,2],[27,5],[33,3],[86,1],[65,4],[79,0],[78,5],[78,5],[59,4],[28,0],[38,1],[88,2],[56,3],[79,1],[58,2],[30,3],[25,0]],[[85,5],[59,4],[29,1],[40,5],[30,4],[30,4],[83,1],[43,1],[81,2],[52,3],[84,5],[73,4],[28,5],[51,1],[79,3],[29,0],[24,3],[84,2]],[[28,5],[33,1],[87,5],[25,2],[26,2],[24,0],[83,1],[76,1],[20,1],[79,4],[29,1],[50,3],[24,3],[23,5],[79,2],[78,1],[30,1],[49,2]],[[88,1],[29,3],[87,4],[80,5],[88,5],[22,0],[83,2],[79,0],[27,4],[40,5],[87,1],[84,4],[81,4],[83,1],[87,5],[35,5],[88,5],[77,4]],[[29,1],[72,4],[79,3],[31,0],[24,5],[22,2],[25,4],[26,2],[84,4],[80,4],[89,0],[84,4],[23,5],[72,1],[88,1],[29,5],[84,1],[55,1]]],"sym":[[".....#.....","..#..#..#..","...#.#.#...","....###....",".#...#...#.","###########",".#...#...#.","....###....","...#.#.#...","..#..#..#..",".....#....."],["......###..",".....###...","....###....","...###.....","..#######..",".....###...","....###....","...##......","..##.......","..#........","..........."],[".....#.....","....##.....","....###....","..#.####...","..#####.#..",".######.##.",".###.#####.",".##...####.",".##....###.","..##..###..","...#####..."],[".....#.....","....###....","...##.##...","..##...##..",".##..#..##.","##..###..##",".##..#..##.","..##...##..","...##.##...","....###....",".....#....."],["...#####...","..#######..",".#########.",".#..###..#.",".#..###..#.",".####.####.","..###.###..","...#####...","...#.#.#...","...#.#.#...","..........."],[".....#.....",".##..#..##.",".###.#.###.","..###.###..","....###....",".##..#..##.",".###.#.###.","..###.###..","....###....",".....#.....",".....#....."],[".....#.....",".....#.....","....###....","....###....","###########","..#######..","...#####...","..###.###..","..##...##..",".##.....##.","..........."],[".....#.....","....###....","...#####...","..##.#.##..",".##..#..##.","..##.#.##..","...#####...","....###....",".....#.....","...........","..........."],["#.........#","##.......##",".##.....##.",".#########.",".#########.",".#..###..#.",".##.###.##.","..#######..","...#.#.#...","....###....","..........."],[".....#.....",".#...#...#.","..#.....#..","....###....","...#####...","##.#####.##","...#####...","....###....","..#.....#..",".#...#...#.",".....#....."]],"part":[[".#.","###",".#."],["..#",".#.","###",".#.","#.."],[".#.",".##","###",".#."],[".#.","###","###",".#."],["##","##",".#"],[".##","###","##."],["..#..","..#..","#####","..#..","..#.."],[".#.","###","###",".#."],["#..","##.",".##","..#"],[".#.","###",".#."]]};
 // emblème, gemme et particules : pixels posés un à un, cernés si bord
-function pgStamp(P,motif,x,y,col,bord){const{cw,ch}=PG_M,pts=[],S=new Set();motif.forEach((l,j)=>{for(let i=0;i<l.length;i++)if(l[i]==='#'){pts.push([x+i,y+j]);S.add(x+i+','+(y+j))}});
+function pgStamp(P,motif,x,y,col,bord,w,h){const cw=w||PG_M.cw,ch=h||PG_M.ch,pts=[],S=new Set();motif.forEach((l,j)=>{for(let i=0;i<l.length;i++)if(l[i]==='#'){pts.push([x+i,y+j]);S.add(x+i+','+(y+j))}});
  const put=(X,Y,c)=>{if(X>=0&&X<cw&&Y>=0&&Y<ch){const n=(Y*cw+X)*4;P[n]=c[0];P[n+1]=c[1];P[n+2]=c[2];P[n+3]=255}};
  if(bord)for(const[X,Y]of pts)for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1]])if(!S.has(X+a+','+(Y+b)))put(X+a,Y+b,bord);
  for(const[X,Y]of pts)put(X,Y,col)}
 const pgLight=(c,t)=>c.map((v,n)=>Math.floor(v+(255-v)*t));
+// liseré lumineux au bas et sur les côtés de la cape (zone 2 de la planche D, image en sx,my)
+function vHem(P,D,sx,my,cw,ch,g,ys,off,skip){const al=new Uint8Array(cw*ch),Z=D.data,W=D.width,hi=pgLight(g,.55);for(let n=0;n<cw*ch;n++)al[n]=P[n*4+3]>0?1:0;
+ const cape=(X,Y)=>{if(X<0||X>=cw||Y<0||Y>=ch)return false;const n=((my+Y)*W+sx+X)*4;return Z[n+3]>127&&Math.round(Z[n]/40)===2};
+ for(let y=1;y<ch-1;y++)for(let X=1;X<cw-1;X++){const n=y*cw+X;if(!al[n]||!al[n-1]||!al[n+1]||!al[n-cw]||!al[n+cw]||!cape(X,y))continue;
+  const bas=!cape(X,y+3),cote=y>=ys&&(!cape(X-2,y)||!cape(X+2,y));if(!bas&&!cote)continue;if(skip&&skip(X,y))continue;
+  const q=(X+off+y)%4===0?hi:g;P[n*4]=q[0];P[n*4+1]=q[1];P[n*4+2]=q[2]}}
 // image k (0-17) : corps recoloré, dagues et poings ; armure légendaire : épaulières, liseré de cape, emblème au dos, gemme au col
 function vFrame(k,eq,id,coif,hair){const{cw,ch}=PG_M,view=k/6|0,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),D=PG.vd,sx=k*cw,[dx,dy]=PG_V.o[k],
   c=pgCv(cw,ch),x=c.getContext('2d'),body=pgPaint(D,sx,cf*2*ch,sx,(cf*2+1)*ch,cw,ch,av,bv,hair,1.5),
@@ -69,24 +75,19 @@ function vFrame(k,eq,id,coif,hair){const{cw,ch}=PG_M,view=k/6|0,cf=Math.max(0,Ma
  if(av<11)return c;
  const th=av-10,g=PG.dep.THP[th-1].g,ep=(j,X,Y)=>x.drawImage(PG.img.v_epaul,j*32,(th-1)*32,32,32,X-24+dx,Y-16+dy,32,32);
  if(view===2)ep(4,62,63);else{ep(view*2,45,62);ep(view*2+1,83,62)}
- const im=x.getImageData(0,0,cw,ch),P=im.data,al=new Uint8Array(cw*ch),Z=D.data,W=D.width,my=(cf*2+1)*ch;
- for(let n=0;n<cw*ch;n++)al[n]=P[n*4+3]>0?1:0;
- const cape=(X,Y)=>{if(X<0||X>=cw||Y<0||Y>=ch)return false;const n=((my+Y)*W+sx+X)*4;return Z[n+3]>127&&Math.round(Z[n]/40)===2},hi=pgLight(g,.55);
- for(let y=1;y<ch-1;y++)for(let X=1;X<cw-1;X++){const n=y*cw+X;if(!al[n]||!al[n-1]||!al[n+1]||!al[n-cw]||!al[n+cw]||!cape(X,y))continue;
-  const bas=!cape(X,y+3),cote=y>=60+dy&&(!cape(X-2,y)||!cape(X+2,y));if(!bas&&!cote)continue;
-  if(view===0&&X>=42+dx&&X<71+dx&&y>=64+dy)continue;
-  const q=(X+8+y)%4===0?hi:g;P[n*4]=q[0];P[n*4+1]=q[1];P[n*4+2]=q[2]}
+ const im=x.getImageData(0,0,cw,ch),P=im.data;
+ vHem(P,D,sx,(cf*2+1)*ch,cw,ch,g,60+dy,8,view===0?(X,y)=>X>=42+dx&&X<71+dx&&y>=64+dy:null);
  if(view===1)pgStamp(P,PG_V.sym[th-1],51+dx,76+dy,pgLight(g,.25),[40,16,56]);
  else if(view===0)pgStamp(P,['.#.','###','.#.'],55+dx,57+dy,pgLight(g,.3),[40,16,56]);
  x.putImageData(im,0,0);return c}
 // aura en pointillés et particules (opaques : le jeu coupe la transparence)
-function vAura(c,k,eq,id){const av=pgVar(eq.a,id);if(av<11)return c;const{cw,ch}=PG_M,th=av-10,g=PG.dep.THP[th-1].g,x=c.getContext('2d'),im=x.getImageData(0,0,cw,ch),P=im.data,al=new Uint8Array(cw*ch),ph=k%6,hi=pgLight(g,.55);
+function vAura(c,k,eq,id,act){const av=pgVar(eq.a,id);if(av<11)return c;const cw=c.width,ch=c.height,off=act?0:8,ox=act?24:0,oy=act?130:114,th=av-10,g=PG.dep.THP[th-1].g,x=c.getContext('2d'),im=x.getImageData(0,0,cw,ch),P=im.data,al=new Uint8Array(cw*ch),ph=k%6,hi=pgLight(g,.55);
  for(let n=0;n<cw*ch;n++)al[n]=P[n*4+3]>0?1:0;
  const on=(X,Y)=>X>=0&&X<cw&&Y>=0&&Y<ch&&al[Y*cw+X],R1=[[1,0],[-1,0],[0,1],[0,-1]],R2=[[2,0],[-2,0],[0,2],[0,-2],[1,1],[1,-1],[-1,1],[-1,-1]];
- for(let y=0;y<ch;y++)for(let X=0;X<cw;X++){if(al[y*cw+X])continue;let q=null;if(R1.some(([a,b])=>on(X+a,y+b)))q=g;else if((X+8+y*2+ph)%4===0&&R2.some(([a,b])=>on(X+a,y+b)))q=hi;
+ for(let y=0;y<ch;y++)for(let X=0;X<cw;X++){if(al[y*cw+X])continue;let q=null;if(R1.some(([a,b])=>on(X+a,y+b)))q=g;else if((X+off+y*2+ph)%4===0&&R2.some(([a,b])=>on(X+a,y+b)))q=hi;
   if(q){const n=(y*cw+X)*4;P[n]=q[0];P[n+1]=q[1];P[n+2]=q[2];P[n+3]=255}}
- PG_V.pt[th-1].forEach(([px,y0],n)=>{const py=114-((n*11+(ph+y0)*14)%96);for(let y=Math.max(0,py-1);y<Math.min(ch,py+6);y++)for(let X=Math.max(0,px-1);X<px+6;X++)if(P[(y*cw+X)*4+3])return;
-  pgStamp(P,PG_V.part[th-1],px,py,pgLight(g,n%3?.2:.7),null)});
+ PG_V.pt[th-1].forEach(([q,y0],n)=>{const px=q+ox,py=oy-((n*11+(ph+y0)*14)%96);for(let y=Math.max(0,py-1);y<Math.min(ch,py+6);y++)for(let X=Math.max(0,px-1);X<px+6;X++)if(P[(y*cw+X)*4+3])return;
+  pgStamp(P,PG_V.part[th-1],px,py,pgLight(g,n%3?.2:.7),null,cw,ch)});
  x.putImageData(im,0,0);return c}
 function vSheet(id,eq,coif,hair){const{cw,ch}=PG_M,cv=pgCv(cw*PG_SLOT.length,ch),cx=cv.getContext('2d'),done={};
  PG_SLOT.forEach((k,i)=>cx.drawImage(done[k]||(done[k]=vAura(vFrame(k,eq,id,coif,hair),k,eq,id)),i*cw,0));return cv}
@@ -100,6 +101,25 @@ function vRideSheet(eq,id,coif,hair){const{cw,ch}=PG_M,Y=PG_A.w*4,av=pgVar(eq.a,
   if(v===0){dag(0);dag(1)}else if(v===2){t.globalCompositeOperation='destination-over';dag(0);dag(1);t.globalCompositeOperation='source-over'}else dag(1);
   const ix=v*cw,lg=pgPaint(PG.a,ix,Y,ix,Y+128,cw,ch,av,bv,null),o=pgCv(cw,ch),x=o.getContext('2d');if(!av){const g=lg.getContext('2d'),L=g.getImageData(0,0,cw,ch),Q=L.data;for(let n=0;n<Q.length;n+=4){Q[n]*=.42;Q[n+1]*=.36;Q[n+2]*=.44}g.putImageData(L,0,0)}(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,c===top?dy:0));return vAura(o,k,eq,id)});
  PG_SLOT.forEach((k,i)=>cx.drawImage(views[i>=23?1:[3,4,5,8,19,20,21,22].includes(i)?2:0],i*cw,0));return cv}
+// v4.4.5 : actions du Voleur. perso_v_act.png (cases 160x160, 11 corps) : lignes 2c image et 2c+1 zones (coiffure c 0-4).
+// perso_v_actp.png : poings (ligne 0 images, ligne 1 zones). perso_v_actd.png : dagues tournées, une ligne par variante.
+// PG_VA : w,h = case de dague ; k = décalage par colonne ; p = poses [b corps, f poings, dx,dy tête, d dagues [colonne,x,y,derrière],
+// h marteau du Guerrier [colonne,x,y,derrière], s dague lancée]. Poses 0-16 comme le Guerrier ; 2 et 17-23 : victoire (dague qui tournoie).
+const PG_VA={"w":38,"h":38,"k":[[-19,-9],[-10,-8],[-19,-13],[-25,-14],[-11,-14],[-24,-14],[-11,-14],[-11,-12],[-9,-20],[-9,-9],[-16,-15],[-13,-19],[-14,-16],[-19,-13],[-14,-14],[-13,-19],[-15,-14]],"p":[{"b":0,"f":0,"dx":15,"dy":33,"d":[[0,63,92,0],[1,94,90,0]]},{"b":1,"f":1,"dx":12,"dy":33,"d":[[0,59,92,0],[1,90,91,0]]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[2,124,87]},{"b":3,"f":3,"dx":6,"dy":33,"d":[[3,40,77,0],[4,93,90,0]]},{"b":4,"f":4,"dx":25,"dy":30,"d":[[5,66,79,1],[6,127,85,0]]},{"b":5,"f":5,"dx":23,"dy":30,"d":[[5,65,79,0],[7,125,85,0]]},{"b":5,"f":5,"dx":23,"dy":30,"d":[[5,65,79,0],[8,125,85,0]]},{"b":6,"f":6,"dx":15,"dy":42,"d":[[0,63,101,0],[9,94,99,0]]},{"b":5,"f":5,"dx":23,"dy":30,"d":[[5,65,79,0],[7,125,85,0]]},{"b":5,"f":5,"dx":23,"dy":30,"d":[[5,65,79,0],[8,125,85,0]]},{"b":7,"f":7,"dx":2,"dy":29,"d":[],"h":[8,28,55,1]},{"b":3,"f":8,"dx":6,"dy":33,"d":[],"h":[9,20,49,1]},{"b":5,"f":9,"dx":23,"dy":30,"d":[],"h":[10,119,62,0]},{"b":8,"f":10,"dx":13,"dy":28,"d":[],"h":[11,107,80,0]},{"b":2,"f":11,"dx":18,"dy":20,"d":[],"h":[12,97,66,0]},{"b":9,"f":12,"dx":15,"dy":44,"d":[[0,63,103,0],[9,95,100,0]]},{"b":10,"f":13,"dx":15,"dy":45,"d":[[0,63,104,0],[9,95,102,0]]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[10,124,78]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[11,124,71]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[12,124,67]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[13,124,67]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[14,124,71]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[15,124,78]},{"b":2,"f":2,"dx":18,"dy":20,"d":[[1,82,95,0]],"s":[16,124,85]}]};
+const PG_VSPIN=[2,17,18,19,20,21,22,23];
+function vActSheet(eq,id,coif,hair){const A=160,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),n=PG_VA.p.length,cv=pgCv(A*n,A),cx=cv.getContext('2d'),B=PG.vac,F=PG.vap,body={},fist={};
+ PG_VA.p.forEach((q,k)=>{const c=pgCv(A,A),x=c.getContext('2d'),sx=q.b*A,my=(cf*2+1)*A,
+  dag=([col,px,py])=>{const[ox,oy]=PG_VA.k[col];x.drawImage(PG.img.v_actd,col*PG_VA.w,wv*PG_VA.h,PG_VA.w,PG_VA.h,px+ox,py+oy,PG_VA.w,PG_VA.h)},
+  ham=()=>{const[u,px,py]=q.h,e=PG_A.l[0];x.drawImage(PG.img.act_epee,(u%e.c)*e.w,(u/e.c|0)*e.h,e.w,e.h,px,py,e.w,e.h)},der=q.d.filter(d=>d[3]),dev=q.d.filter(d=>!d[3]);
+  der.forEach(dag);if(q.h&&q.h[3])ham();
+  x.drawImage(body[q.b]||(body[q.b]=pgPaint(B,sx,cf*2*A,sx,my,A,A,av,bv,hair,1.5)),0,0);
+  dev.forEach(dag);if(q.h&&!q.h[3])ham();
+  x.drawImage(fist[q.f]||(fist[q.f]=pgPaint(F,q.f*A,0,q.f*A,A,A,A,av,bv,hair,1.5)),0,0);
+  if(q.s)dag(q.s);
+  if(av>10){const th=av-10,g=PG.dep.THP[th-1].g;x.drawImage(PG.img.v_epaul,4*32,(th-1)*32,32,32,62+q.dx-16,63+q.dy-16,32,32);
+   const im=x.getImageData(0,0,A,A);vHem(im.data,B,sx,my,A,A,g,60+q.dy,0,null);x.putImageData(im,0,0)}
+  cx.drawImage(vAura(c,k,eq,id,1),k*A,0)});
+ return cv}
 // gl.js (portée privée) fournit PG.dep={WPM,PXHR,thFor,THP}
 // thèmes dans l'ordre de THP : [métal sombre, métal clair, cape sombre, cape claire] (null : cape démoniaque)
 const PG_TH=[[[52,96,142],[232,250,255],[30,70,120],[96,160,214]],[[14,16,44],[104,108,170],[14,16,50],[48,52,116]],[[28,12,8],[142,92,70],[72,22,8],[190,72,18]],[[40,14,72],[214,164,252],[46,12,70],[140,66,190]],[[84,70,56],[246,236,208],[14,50,62],[50,140,156]],[[18,34,18],[142,184,122],[28,50,18],[78,118,44]],[[10,14,40],[100,118,176],[12,18,56],[42,58,128]],[[60,112,150],[240,255,255],[30,118,140],[130,218,230]],[[12,8,16],[118,100,116],null,null],[[96,52,8],[255,236,150],[110,66,18],[214,158,56]]];
@@ -113,8 +133,8 @@ const pgFile=k=>'perso_'+(/^(f|pa|v)_/.test(k)?k:'g_'+k)+'.png';
 const PG_FEET=120,PG_AX=56,PG_S=66/112;
 // emplacement de PXF -> image source (0-5 face, 6-11 dos, 12-17 profil ; face 2 et dos 8 = pose d'attente)
 const PG_SLOT=(()=>{const a=new Array(29).fill(2);[[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]].forEach((l,v)=>l.forEach((k,i)=>{a[[[1,2,15,16,17,18],[4,5,19,20,21,22],[23,24,25,26,27,28]][v][i]]=k}));a[3]=a[8]=8;return a})();
-function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_dague','v_epaul'];let n=0;
- for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
+function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_dague','v_epaul','v_act','v_actp','v_actd'];let n=0;
+ for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
 const pgCv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
 const pgUse=(cls,fem)=>PG.ready&&!!PG.dep&&PG.sel.includes(cls+(fem?1:0));
 // variante d'une pièce selon son palier (0-14) ; à partir de 11, thème légendaire du jeu
@@ -157,7 +177,8 @@ function pgRideSheet(walk,act,id,eq,fem){const{cw,ch}=PG_M,D=fem?PG.fa:PG.a,Y=PG
   const o=pgCv(cw,ch),x=o.getContext('2d');(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,0));return o});
  PG_SLOT.forEach((k,i)=>cx.drawImage(views[i>=23?1:[3,4,5,8,19,20,21,22].includes(i)?2:0],i*cw,0));return cv}
 // image d'action à afficher (null : marche ou attente). o.af et o.fs viennent de heroFx
-function pgPose(o,h,mv,fg,tm,onHorse){if(onHorse)return null;
+function pgPose(o,h,mv,fg,tm,onHorse){const a=pgPose0(o,h,mv,fg,tm,onHorse);return a===2&&o.m.userData.vo?PG_VSPIN[(tm/.08|0)%8]:a}
+function pgPose0(o,h,mv,fg,tm,onHorse){if(onHorse)return null;
  if(fg){const a=o.af,s=o.fs||0;return a===6||a===12?2:a===9?(s<.07?3:s<.17?4:5):a===10?(s<.14?7:6):a===14?8+((tm/.15|0)&1):(tm%.8)<.4?0:1}
  if(o.af===12)return 2;
  if(o.af===7&&o.cr)return tm-(o.ct||0)<.55?16:15;

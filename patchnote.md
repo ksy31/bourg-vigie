@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.5 « Le Voleur (2/2) »
+
+Version affichée dans les Options : **v4.4.5**
+
+### Ajouté
+- Voleur homme : combat (garde basse, coup droit, coup remontant, rafale), victoire (dague lancée qui tournoie), fouille accroupie et construction au marteau.
+- Les 5 coiffures, les 21 dagues, les paliers, les cheveux colorés et l'armure légendaire sur toutes ces poses.
+- Fichiers : `perso_v_act.png`, `perso_v_actp.png`, `perso_v_actd.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Le marteau provisoire posé à côté du Voleur est retiré.
+- Cache `bv-v149`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.4 « Le Voleur (1/2) »
 
 Version affichée dans les Options : **v4.4.4**
