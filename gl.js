@@ -1508,7 +1508,7 @@ const GIC={};
 window.gIcon=(c,k,t,id)=>{c=eqb(c);t=Math.max(0,Math.min(14,t|0));if(!t||!'abs'.includes(k))return null;const th=thFor(t,id),key=c+k+t+'_'+th;if(GIC[key])return GIC[key];try{let d;if(k==='a')d={G:[34,32,-7,-19],V:[18,24,-14,-24],R:[18,28,-14,-24],M:[26,38,-11,-25]}[c];else if(k==='b')d=[20,16,-9,-48];else d=[18,30,0,-29];if(!d)return null;
  const o={W:d[0],H:d[1],XO:d[2],OY:d[3],wc:c,gk:k,col:null,hair:'#000',eye:'#000'};if(k==='a'){o.at=t;o.ath=th}else if(k==='b'){o.bt=t;o.bth=th}else{o.sh=t;o.sth=th}
  const im=pxSprite(c,0,'f','gicon',o),cv=document.createElement('canvas');cv.width=d[0];cv.height=d[1];cv.getContext('2d').putImageData(new ImageData(im,d[0],d[1]),0,0);return GIC[key]='<img alt="" src="'+(k==='b'?bootIcon(im):cv).toDataURL()+'" style="height:'+(k==='b'?'1.65em':'2em')+';width:auto;vertical-align:-.55em;image-rendering:pixelated">'}catch(e){return null}};
-function buildSprHero(cls,fem,id,col,eq){eq=eq||{};if(pgUse(cls,fem))return buildPgHero(cls,fem,id,eq);
+function buildSprHero(cls,fem,id,col,eq,coif){eq=eq||{};if(pgUse(cls,fem))return buildPgHero(cls,fem,id,eq,coif);
  const cv=document.createElement('canvas');cv.width=PXW*PXF.length;cv.height=PXH;const cx=cv.getContext('2d'),o={col:col||null,wth:thFor(eq.w,id),ath:thFor(eq.a,id),bth:thFor(eq.b,id),sth:thFor(eq.s,id),wt:eq.w|0,at:eq.a|0,bt:eq.b|0,sh:eq.s|0,hair:PXHR[(id*5+3)%PXHR.length],eye:PXEC(fem),hs:PXHS(id)};
  PXF.forEach(([v,fr],i)=>cx.putImageData(new ImageData(pxSprite(cls,fem?1:0,v,fr,o),PXW,PXH),i*PXW,0));
  const tex=new TH.CanvasTexture(cv);tex.magFilter=tex.minFilter=TH.NearestFilter;tex.generateMipmaps=false;tex.colorSpace=TH.SRGBColorSpace;tex.repeat.set(1/PXF.length,1);
@@ -1519,13 +1519,13 @@ function buildSprHero(cls,fem,id,col,eq){eq=eq||{};if(pgUse(cls,fem))return buil
  const ham=mkPxHammer(),uu=PXSZ/PXH;ham.g.position.set((33.5-24)*uu,PXSZ-2*uu-52.5*uu,.1);piv.add(ham.g);
  m.userData={legs:lg,arms:ar,T:G0(),body:G0(),cls,fem,orb:null,H:0,mesh,piv,tex,mat,ham};return m}
 // v4.3.0 : nouveau Guerrier : même structure que buildSprHero, case 112x128, pied au sol
-function buildPgHero(cls,fem,id,eq){const{cw,ch}=PG_M,cv=pgSheet(id,eq,fem),tex=pxTex(cv,PXF.length),uu=PXSZ/PXH,u=uu*PG_S,mat=new TH.MeshBasicMaterial({map:tex,alphaTest:.5,side:TH.DoubleSide});mat.userData.px=1;
+function buildPgHero(cls,fem,id,eq,coif){const{cw,ch}=PG_M,cv=pgSheet(id,eq,fem,coif),tex=pxTex(cv,PXF.length),uu=PXSZ/PXH,u=uu*PG_S,mat=new TH.MeshBasicMaterial({map:tex,alphaTest:.5,side:TH.DoubleSide});mat.userData.px=1;
  const mesh=new TH.Mesh(new TH.PlaneGeometry(cw*u,ch*u).translate(0,ch*u/2-(ch-PG_FEET)*u,0),mat);mesh.castShadow=true;
  const m=new TH.Group(),G0=()=>new TH.Group(),lg=[0,1].map(()=>({hip:G0(),kn:G0()})),ar=[0,1].map(()=>({sh:G0(),el:G0()})),piv=G0();piv.add(mesh);m.add(piv);
  ar.forEach((a,i)=>{a.sh.add(a.el);m.add(a.sh)});
  const ham=mkPxHammer();piv.add(ham.g);
  // poses de profil : case plus large, ancrée au même point au sol (x=74, y=136)
- const A=PG_A.w,atx=pxTex(pgActSheet(id,eq,fem),PG_A.n),geoA=new TH.PlaneGeometry(A*u,A*u).translate((A/2-74)*u,(A/2-(A-136))*u,0);
+ const A=PG_A.w,atx=pxTex(pgActSheet(id,eq,fem,coif),PG_A.n),geoA=new TH.PlaneGeometry(A*u,A*u).translate((A/2-74)*u,(A/2-(A-136))*u,0);
  mat.userData.alt=[tex,atx];mat.userData.geos=[mesh.geometry,geoA];
  m.userData={legs:lg,arms:ar,T:G0(),body:G0(),cls,fem,orb:null,H:0,mesh,piv,tex,atx,geoW:mesh.geometry,geoA,mat,ham,pg:1};return m}
 // affiche la pose d'action (o.act) ou revient au sprite de marche ; petit saut de victoire
@@ -1734,7 +1734,7 @@ function fxDust(o){const g=o.g,sz=Math.max(1,Math.min(3.4,(o.b.S0||1)*(o.b.wide|
  for(let i=0;i<8;i++){const a=i/8*6.283+i*.7,r0=.3*sz,s=fxSp('dust',1,.875,bx+Math.cos(a)*r0,by+.35,bz+Math.sin(a)*r0);fxAdd(s,tm+(i%3)*.05,.9,(p,s)=>{const k=sz*(1.1+p*1.4),rr=r0+p*1.6*sz;s.position.set(bx+Math.cos(a)*rr,by+.35+p*.9,bz+Math.sin(a)*rr);s.scale.set(k,k*.875,1);s.material.opacity=Math.pow(1-p,1.3)})}}
 function heroFor(h){let o=HM.get(h.id);const fem=gd(h,h.name)==='♀',hs=!!h.hs,hv=hs?PCOL.hs[(h.id*7)%4]:null;
  if(o&&(!!o.m.userData.pg!==pgUse(h.c,fem)||o.cls!==h.c||o.fem!==fem||o.hs!==hs||o.col!==h.col||o.ek!==h.eq.w+'.'+h.eq.a+'.'+h.eq.b+'.'+h.eq.s)){heroG.remove(o.g);disp(o.g);HM.delete(h.id);o=null}
- if(!o){const m=buildSprHero(h.c,fem,h.id,h.col,h.eq),g=new TH.Group();g.add(m);
+ if(!o){const m=buildSprHero(h.c,fem,h.id,h.col,h.eq,h.coif),g=new TH.Group();g.add(m);
   let hor=null,rtex=null;if(hs){const U=m.userData;hor=mkHorse(hv,U.pg);g.add(hor);rtex=U.pg?pxTex(pgRideSheet(U.tex.image,U.atx.image,h.id,h.eq||{},fem),PXF.length):rideTex(U.tex.image);U.mat.userData.alt=U.pg?[U.tex,U.atx,rtex]:[U.tex,rtex]}
   const gl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffd37a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));const tg=new TH.Group();tg.add(mkPxTorch());const fl=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ff9a2a',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:0}));gl.material.color.set('#ffb35a');gl.scale.set(1.5,1.5,1);gl.position.y=.17;tg.add(gl);tg.position.set(11*PXSZ/PXH,20*PXSZ/PXH,.08);m.userData.piv.add(tg);tg.visible=false;
   const lt=new TH.Group();{const bm=new Acc().add(box(.34,.4,.16),'#ffd21f',0,0,0,{shade:0}).add(box(.37,.12,.19),'#ffe65a',0,.2,0,{shade:0}).add(box(.08,.1,.02),'#fffbd0',0,.1,.09,{shade:0}).add(cyl(.065,.065,.4),'#ffc400',0,.33,0,{rz:PI/2,shade:0}).mesh(lt,0);bm.material=new TH.MeshBasicMaterial({vertexColors:true,fog:false});bm.castShadow=false;bm.receiveShadow=false}lt.userData.sp=[];for(let i=0;i<5;i++){const sp=new TH.Sprite(new TH.SpriteMaterial({map:starTex(),color:'#fff1a0',blending:TH.AdditiveBlending,depthWrite:false,depthTest:false,transparent:true,opacity:0}));sp.renderOrder=6;sp.scale.set(.15,.15,1);lt.add(sp);lt.userData.sp.push(sp)}const lc=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#fff3a0',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:.9}));lc.scale.set(.42,.42,1);lt.add(lc);const lg=new TH.Sprite(new TH.SpriteMaterial({map:glowTex(),color:'#ffe033',blending:TH.AdditiveBlending,depthWrite:false,transparent:true,opacity:.8}));lg.scale.set(.75,.75,1);lt.add(lg);lt.scale.setScalar(1.25);lt.position.set(0,hs?1.5:1,-.3);lt.visible=false;g.add(lt);const bs=new TH.Group();for(let i=0;i<3;i++){const st=new TH.Sprite(new TH.SpriteMaterial({map:fxTex('bstar'),color:'#ffffff',transparent:true,depthTest:false,depthWrite:false}));st.renderOrder=6;st.scale.set(.34,.34,1);bs.add(st)}bs.visible=false;g.add(bs);

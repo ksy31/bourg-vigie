@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.3.2 « La Guerrière »**
+Version actuelle du jeu : **v4.3.3 « Les coiffures »**
 
 ## ✅ Déjà intégré
 
@@ -714,7 +714,12 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Guerrière :** silhouette affinée, visage, queue de cheval ; marche, actions et cheval ; 12 couleurs de cheveux ; bouton « Personnage ».
 - [x] **Fouille :** jambes corrigées.
 - [ ] Essai sur le Z Fold 3.
-- [ ] Les 9 autres coiffures (5 hommes, 4 femmes), à préparer dans une autre conversation.
+- [x] Autres coiffures : faites en v4.3.3.
+
+## ✅ v4.3.3 « Les coiffures »
+- [x] **Coiffures :** 5 par sexe (Guerrier et Guerrière), au hasard, anciens héros compris ; bouton « Personnage ».
+- [x] **Bouche de la Guerrière :** ne prend plus la couleur de la cape.
+- [ ] Essai sur le Z Fold 3.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

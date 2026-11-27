@@ -1,5 +1,23 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.3.3 « Les coiffures »
+
+Version affichée dans les Options : **v4.3.3**
+
+### Ajouté
+- 5 coiffures par sexe pour le Guerrier et la Guerrière, en style manga : l'ancienne coiffure (hommes), la queue de cheval (femmes) et 4 nouvelles chacun.
+- Hommes : en bataille, grande mèche rabattue, pointes et deux mèches fines, petite queue basse.
+- Femmes : carré, couettes, chignons, couronne tressée.
+- Coiffure tirée au hasard au recrutement puis gardée ; les héros déjà recrutés en reçoivent une au hasard au chargement.
+- Visibles avec le bouton « 🧝 Personnage » du menu Développeur (non par défaut).
+- Fichiers : `perso_g_tetes.png`, `perso_f_tetes.png`.
+
+### Corrigé
+- Guerrière : la bouche prenait la couleur de la cape de l'équipement.
+
+### Modifié
+- Nouveau champ de sauvegarde `coif` (0 à 4) ; les anciennes sauvegardes restent compatibles.
+
 ## v4.3.2 « La Guerrière »
 
 Version affichée dans les Options : **v4.3.2**
