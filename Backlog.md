@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.3 « La Paladine (2/2) »**
+Version actuelle du jeu : **v4.4.4 « Le Voleur (1/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -752,7 +752,38 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Cavalière :** retouches (bouclier entier, pixels isolés effacés).
 - [ ] Essai sur le Z Fold 3.
 - Note : pour les autres classes, les coiffures femme seront de nouveaux dessins (fournis par le joueur).
-- Release suivante : à définir.
+- Release suivante : v4.4.4 « Le Voleur (1/2) ».
+
+## ✅ v4.4.4 « Le Voleur (1/2) »
+Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague dans chaque main.
+- [x] **Références :** image Gemini, puis rotations et marche sur PixelLab (une étape à la fois).
+- [x] **Dagues :** les 21 variantes tirées par code des épées existantes (rien à dessiner), lame vers le bas pendant la marche.
+- [x] **Coiffures :** 5, sans diadème (celle de la référence + 4 nouvelles dessinées avec Gemini).
+- [x] **Essai validé** (marche, dagues, paliers, cheveux, légendaires).
+- [x] **Légendaires :** effet complet : épaulières du Guerrier réduites, liseré lumineux, emblème au dos, gemme au col, aura et particules (préparés à la création du personnage).
+- [x] **Marche :** face, dos, profil ; armure, cape et bottes recolorées selon les paliers.
+- [x] **Cavalier provisoire.**
+- [x] **Cheveux à la couleur de l'aventurier :** tous les nouveaux personnages (Guerrier, Guerrière, Paladin, Paladine, Voleur), toutes coiffures, à pied et à cheval.
+- [x] **Nouvelles couleurs d'aventurier :** 14 au total (les 8 actuelles + marron, blanc, noir, roux, blond clair, lavande). Noir à garder lisible dans les menus (fond sombre).
+- [x] **Code :** généraliser ce qui est propre au Paladin ; case Voleur ♂ du menu « Personnage » ; aucun calcul lourd à chaque image (précalcul ou cache).
+- [ ] Essai sur le Z Fold 3.
+- Équilibrage et sauvegardes : inchangés.
+
+## v4.4.5 « Le Voleur (2/2) » (prochain)
+- [ ] **Attaque** (références PixelLab), à valider à l'essai.
+- [ ] **Actions :** combat, victoire, fouille et construction (marteau existant), avec les 5 coiffures et les dagues.
+
+## v4.4.6 « La Voleuse (1/2) »
+- [ ] **Avant de commencer :** nouvelles coiffures femme dessinées par le joueur (celles de la Guerrière ne sont pas reprises d'office).
+- [ ] **Corps** fabriqué par code à partir du Voleur, comme la Paladine ; essai à valider.
+- [ ] **Marche, cavalière provisoire,** case Voleur ♀ du menu « Personnage ».
+
+## v4.4.7 « La Voleuse (2/2) »
+- [ ] **Actions :** combat, victoire, fouille et construction.
+
+## Après le Voleur (sans numéro)
+- [ ] **Bouclier coupé à la taille à cheval :** Paladin homme, Guerrier, Guerrière.
+- [ ] **Effets légendaires du Voleur à étudier pour le Guerrier, la Guerrière, le Paladin et la Paladine.**
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

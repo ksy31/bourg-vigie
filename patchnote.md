@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.4 « Le Voleur (1/2) »
+
+Version affichée dans les Options : **v4.4.4**
+
+### Ajouté
+- Voleur homme : nouveau design en marche (face, dos, profil), deux dagues lame vers le bas, 5 coiffures.
+- 21 dagues tirées des épées ; tenue, cape et bottes recolorées selon les paliers.
+- Armure légendaire (Voleur) : épaulières, liseré lumineux, emblème au dos, gemme au col, aura et particules (figées à l'arrêt).
+- Cavalier provisoire.
+- 6 couleurs d'aventurier : marron, blanc, noir, roux, blond clair, lavande (14 au total, pour les nouvelles recrues).
+- Menu Développeur → Personnage : case « Voleur ♂ » activée.
+- Fichiers : `perso_v_corps.png`, `perso_v_dague.png`, `perso_v_epaul.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Cheveux à la couleur de l'aventurier : Guerrier, Guerrière, Paladin, Paladine et Voleur, à pied et à cheval.
+- En combat, victoire, fouille et construction, le Voleur garde pour l'instant son image de marche (actions en v4.4.5).
+- Icône de classe noire entourée d'un halo clair dans la liste des aventuriers.
+- Cache `bv-v148`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.3 « La Paladine (2/2) »
 
 Version affichée dans les Options : **v4.4.3**
