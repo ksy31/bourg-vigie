@@ -17,10 +17,12 @@ const PG_T={"g":{"w":59,"h":60,"f":[[[27,8],[27,7],[27,8],[27,8],[27,7],[27,8],[
 // v4.4.1 : perso_pa_act.png, 18 poses 160x160 (ligne 0 images sans tête, ligne 1 zones, ligne 2 poing devant l'arme).
 // PG_PAA : e = arme [orientation,x,y], b = bouclier [orientation,x,y], t = place de la tête (image de profil de perso_pa_tetes.png).
 const PG_PAA={"e":[[3,65,90],[3,59,87],[0,16,17],[7,24,22],[4,93,111],[6,92,105],[6,92,105],[6,61,94],[0,19,22],[7,21,17],[8,31,44],[9,20,37],[10,97,95],[11,96,112],[12,67,81],null,null,null],"b":[[0,96,82],[0,94,82],[0,91,82],[0,91,82],[0,110,90],[0,108,89],[0,108,89],[0,94,82],[0,91,82],[0,91,82],null,null,null,null,null,[2,96,88],[3,96,89],[0,96,82]],"t":[[26,16],[24,16],[21,16],[21,16],[40,24],[38,23],[38,23],[24,16],[21,16],[21,16],[21,16],[21,16],[40,24],[38,23],[24,16],[26,31],[26,32],[26,16]]};
-function paActSheet(id,eq,coif){const{w,n,l}=PG_A,{cw,ch}=PG_PA,hair=pgHairOf(id),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),rows=[pgVar(eq.w,id),pgVar(eq.s,id)],names=['act_epee','act_bouclier'],cv=pgCv(w*n,w),cx=cv.getContext('2d'),cf=Math.max(0,Math.min(4,coif|0)),
-  head=pgPaint(PG.pt,12*cw,cf*2*ch,12*cw,(cf*2+1)*ch,cw,ch,null,null,hair);
+// v4.4.3 : actions de la Paladine (perso_pa_f_act.png) ; mêmes places de tête que le Paladin, armes et bouclier décalés.
+const PG_PAAF={"e":[[3,66,90],[3,61,87],[0,16,17],[7,24,22],[4,92,111],[6,91,105],[6,91,105],[6,63,94],[0,19,22],[7,21,17],[8,31,44],[9,20,37],[10,96,95],[11,95,112],[12,69,81],null,null,null],"b":[[0,92,82],[0,90,82],[0,87,82],[0,87,82],[0,106,90],[0,104,89],[0,104,89],[0,90,82],[0,87,82],[0,87,82],null,null,null,null,null,[2,92,88],[3,92,89],[0,92,82]]};
+function paActSheet(id,eq,coif,fem){const{w,n,l}=PG_A,{cw,ch}=PG_PA,P=fem?PG_PAAF:PG_PAA,D=fem?PG.pfx:PG.px,B=PG.img[fem?'pa_f_act':'pa_act'],hair=pgHairOf(id),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),rows=[pgVar(eq.w,id),pgVar(eq.s,id)],names=['act_epee','act_bouclier'],cv=pgCv(w*n,w),cx=cv.getContext('2d'),cf=Math.max(0,Math.min(4,coif|0)),
+  head=pgPaint(fem?PG.pft:PG.pt,12*cw,cf*2*ch,12*cw,(cf*2+1)*ch,cw,ch,null,null,hair);
  for(let k=0;k<n;k++){const piece=(p,f)=>{if(!f)return;const q=l[p],[u,dx,dy]=f;cx.drawImage(PG.img[names[p]],(u%q.c)*q.w,(rows[p]*q.r+(u/q.c|0))*q.h,q.w,q.h,k*w+dx,dy,q.w,q.h)},[tx,ty]=PG_PAA.t[k];
-  piece(1,PG_PAA.b[k]);cx.drawImage(pgPaint(PG.px,k*w,0,k*w,w,w,w,av,bv,null),k*w,0);cx.drawImage(head,k*w+tx,ty);piece(0,PG_PAA.e[k]);cx.drawImage(PG.img.pa_act,k*w,2*w,w,w,k*w,0,w,w)}
+  piece(1,P.b[k]);cx.drawImage(pgPaint(D,k*w,0,k*w,w,w,w,av,bv,null),k*w,0);cx.drawImage(head,k*w+tx,ty);piece(0,P.e[k]);cx.drawImage(B,k*w,2*w,w,w,k*w,0,w,w)}
  return cv}
 const PG_PA={"cw":112,"ch":128,"l":[{"w":53,"h":58,"f":[[0,66,53],[0,66,52],[0,66,53],[0,66,53],[0,66,52],[0,66,53],[1,74,50],[1,74,49],[1,74,50],[1,74,50],[1,74,49],[1,74,50],[2,49,57],[3,56,58],[2,52,56],[4,33,47],[5,18,54],[4,29,47]]},{"w":32,"h":46,"f":[[0,19,78],[0,19,77],[0,19,78],[0,19,78],[0,19,77],[0,19,78],[0,10,70],[0,10,69],[0,10,70],[0,10,70],[0,10,69],[0,10,70],[1,65,68],[1,64,68],[1,64,68],[1,64,69],[1,64,69],[1,64,69]]}]};
 // v4.4.2 : Paladine (perso_pa_f_*.png, mêmes lignes que le Paladin ; têtes de la Guerrière + auréole). PG_PAF : armes décalées (silhouette affinée).
@@ -39,8 +41,14 @@ function paRideSheet(walk,eq,id,fem){const{cw,ch}=PG_PA,Y=PG_A.w*4,av=pgVar(eq.a
   for(let y=93;y<ch;y++)for(let x=0;x<cw;x++){const j=(y*cw+x)*4,r=P[j],g=P[j+1],b=P[j+2],cape=r>g*2.2&&r>b*1.15&&g<60,aile=r>130&&g>130&&b>140&&Math.abs(x-56)>(v===1?4:14)&&(v!==1||x<56);
    const fin=104+Math.round(2.6*Math.sin(x*.52));if(y>fin||!(cape||aile||(v===2&&P[j+3])))P[j+3]=0}
   t.putImageData(im,0,0);
-  const ix=v*cw,lg=pgPaint(fem?PG.fa:PG.a,ix,Y,ix,Y+128,cw,ch,av,bv,null),o=pgCv(cw,ch),x=o.getContext('2d');(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,0));return o});
+  const ix=v*cw,lg=pgPaint(fem?PG.fa:PG.a,ix,Y,ix,Y+128,cw,ch,av,bv,null),o=pgCv(cw,ch),x=o.getContext('2d');(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,0));if(fem)paRideFin(x,v,PG_SLOT[slot],dy,eq,id);return o});
  PG_SLOT.forEach((k,i)=>cx.drawImage(views[i>=23?1:[3,4,5,8,19,20,21,22].includes(i)?2:0],i*cw,0));return cv}
+// v4.4.3 : retouches de la cavalière : pixels isolés sous la taille effacés, bouclier et épée redessinés entiers (la coupe à la taille les tronquait)
+function paRideFin(x,v,k,dy,eq,id){const{cw,ch}=PG_PA,im=x.getImageData(0,0,cw,ch),P=im.data,vu=new Uint8Array(cw*ch);
+ for(let s=90*cw;s<cw*ch;s++){if(vu[s]||!P[s*4+3])continue;const g=[s];vu[s]=1;for(let i=0;i<g.length;i++){const n=g[i],a=n%cw,b=n/cw|0;for(let u=-1;u<=1;u++)for(let w=-1;w<=1;w++){const c=a+w,d=b+u,m=d*cw+c;if(c>=0&&c<cw&&d>=0&&d<ch&&!vu[m]&&P[m*4+3]){vu[m]=1;g.push(m)}}}if(g.length<8)for(const n of g)P[n*4+3]=0}
+ x.putImageData(im,0,0);
+ const piece=n=>{const q=PG_PAF.l[n],[u,dx,y]=q.f[k];x.drawImage(PG.img[n?'bouclier':'epee'],u*q.w,pgVar(n?eq.s:eq.w,id)*q.h,q.w,q.h,dx,y+dy,q.w,q.h)},derriere=f=>{x.globalCompositeOperation='destination-over';f();x.globalCompositeOperation='source-over'};
+ if(v===0){piece(1);piece(0)}else if(v===2)derriere(()=>{piece(0);piece(1)});else{derriere(()=>piece(1));piece(0);x.drawImage(PG.img.pa_f_corps,k*cw,2*ch,cw,ch,0,dy,cw,ch)}}
 // gl.js (portée privée) fournit PG.dep={WPM,PXHR,thFor}
 // thèmes dans l'ordre de THP : [métal sombre, métal clair, cape sombre, cape claire] (null : cape démoniaque)
 const PG_TH=[[[52,96,142],[232,250,255],[30,70,120],[96,160,214]],[[14,16,44],[104,108,170],[14,16,50],[48,52,116]],[[28,12,8],[142,92,70],[72,22,8],[190,72,18]],[[40,14,72],[214,164,252],[46,12,70],[140,66,190]],[[84,70,56],[246,236,208],[14,50,62],[50,140,156]],[[18,34,18],[142,184,122],[28,50,18],[78,118,44]],[[10,14,40],[100,118,176],[12,18,56],[42,58,128]],[[60,112,150],[240,255,255],[30,118,140],[130,218,230]],[[12,8,16],[118,100,116],null,null],[[96,52,8],[255,236,150],[110,66,18],[214,158,56]]];
@@ -54,8 +62,8 @@ const pgFile=k=>'perso_'+(/^(f|pa)_/.test(k)?k:'g_'+k)+'.png';
 const PG_FEET=120,PG_AX=56,PG_S=66/112;
 // emplacement de PXF -> image source (0-5 face, 6-11 dos, 12-17 profil ; face 2 et dos 8 = pose d'attente)
 const PG_SLOT=(()=>{const a=new Array(29).fill(2);[[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]].forEach((l,v)=>l.forEach((k,i)=>{a[[[1,2,15,16,17,18],[4,5,19,20,21,22],[23,24,25,26,27,28]][v][i]]=k}));a[3]=a[8]=8;return a})();
-function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes'];let n=0;
- for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
+function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act'];let n=0;
+ for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
 const pgCv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
 const pgUse=(cls,fem)=>PG.ready&&!!PG.dep&&PG.sel.includes(cls+(fem?1:0));
 // variante d'une pièce selon son palier (0-14) ; à partir de 11, thème légendaire du jeu

@@ -1,5 +1,20 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.3 « La Paladine (2/2) »
+
+Version affichée dans les Options : **v4.4.3**
+
+### Ajouté
+- Paladine : combat, victoire, fouille et construction, avec ailes, auréole et 5 coiffures. Épée, bouclier et marteau en main.
+- Fouille accroupie faite par code ; construction au marteau sur les images de l'attaque (comme le Paladin).
+- Fichier : `perso_pa_f_act.png`.
+
+### Corrigé
+- Cavalière : le bouclier n'est plus coupé à la taille ; pixels isolés entre les jambes effacés.
+
+### Modifié
+- Cache `bv-v147`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.2 « La Paladine (1/2) »
 
 Version affichée dans les Options : **v4.4.2**

@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.2 « La Paladine (1/2) »**
+Version actuelle du jeu : **v4.4.3 « La Paladine (2/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -747,10 +747,12 @@ Grande mise à jour de toutes les animations, en trois étapes : aventuriers, pu
 - [x] **Menu « Personnage » :** case Paladin ♀ activée.
 - [ ] Essai sur le Z Fold 3.
 
-## v4.4.3 « La Paladine (2/2) » (prochain)
-- [ ] **Actions :** combat, victoire, fouille et construction.
-- [ ] **Cavalière :** finition.
-- [ ] Autres classes : les coiffures femme seront de nouveaux dessins (fournis par le joueur).
+## ✅ v4.4.3 « La Paladine (2/2) »
+- [x] **Actions :** combat, victoire, fouille et construction, avec ailes, auréole, 5 coiffures, épée, bouclier et marteau.
+- [x] **Cavalière :** retouches (bouclier entier, pixels isolés effacés).
+- [ ] Essai sur le Z Fold 3.
+- Note : pour les autres classes, les coiffures femme seront de nouveaux dessins (fournis par le joueur).
+- Release suivante : à définir.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.
