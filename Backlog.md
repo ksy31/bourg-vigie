@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.7 « La Voleuse (2/2) »**
+Version actuelle du jeu : **v4.4.8 « L'Assassin (1/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -783,10 +783,125 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 ## ✅ v4.4.7 « La Voleuse (2/2) »
 - [x] **Actions :** combat, victoire, fouille et construction.
 
-## Après le Voleur (sans numéro)
-- [ ] **Bouclier coupé à la taille à cheval :** Paladin homme, Guerrier, Guerrière.
-- [ ] **Effets légendaires du Voleur à étudier pour le Guerrier, la Guerrière, le Paladin et la Paladine.**
-- [ ] **Cheveux longs :** ajouter des coiffures longues à la Guerrière et à la Paladine, sans retirer les actuelles.
+### Règles pour chaque nouvelle classe
+- Par code tout ce qui peut l'être ; dépôt et sources vérifiés avant de demander une image.
+- Homme d'abord : référence Gemini, puis PixelLab (rotations, marche, attaque), une étape à la fois.
+- Femme ensuite : corps fabriqué par code à partir de l'homme ; nouvelles coiffures femme dessinées par le joueur (aucune reprise d'office).
+- Équipements partagés : indiquer ce qui existe et ce qui reste à dessiner.
+- Cheveux à la couleur de l'aventurier. Essai à valider avant le code du jeu. Pas de calculs lourds à chaque image.
+- Prompts Gemini : style manga/JRPG. Prompts d'attaque : aucune traînée ni effet blanc.
+
+## v4.4.8 « L'Assassin (1/2) »
+- Choix : tête nue, masque sur le nez, **sans cape**, dagues tenues comme le Voleur, couleurs de la tenue selon le palier d'équipement, masque compris (vert sans armure).
+- [x] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : dagues, épaulières du Voleur et marteau existants.
+- [x] Essai à valider.
+- [ ] Essai sur le Z Fold 3.
+
+## 🔜 v4.4.9 « L'Assassin (2/2) » (prochain)
+- [ ] Homme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.0 « L'Assassine (1/2) »
+- [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.1 « L'Assassine (2/2) »
+- [ ] Femme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.2 « Le Mage (1/2) »
+- [ ] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : bâton à créer (21 variantes), partagé avec le Nécromancien.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.3 « Le Mage (2/2) »
+- [ ] Homme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.4 « La Mage (1/2) »
+- [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.5 « La Mage (2/2) »
+- [ ] Femme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.6 « Le Nécromancien (1/2) »
+- [ ] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : bâton du Mage.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.7 « Le Nécromancien (2/2) »
+- [ ] Homme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.8 « La Nécromancienne (1/2) »
+- [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.5.9 « La Nécromancienne (2/2) »
+- [ ] Femme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.0 « Le Rôdeur (1/2) »
+- [ ] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : arc à créer (21 variantes), partagé avec le Chasseur.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.1 « Le Rôdeur (2/2) »
+- [ ] Homme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.2 « La Rôdeuse (1/2) »
+- [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.3 « La Rôdeuse (2/2) »
+- [ ] Femme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.4 « Le Chasseur (1/2) »
+- [ ] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : arc du Rôdeur.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.5 « Le Chasseur (2/2) »
+- [ ] Homme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.6 « La Chasseuse (1/2) »
+- [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.7 « La Chasseuse (2/2) »
+- [ ] Femme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.8 « Refonte du Voleur (1/2) »
+- [ ] Homme aux proportions du Guerrier : référence, rotations, marche, 5 coiffures, cavalier. Même tenue (cuir, cape, capuche rabattue, tête nue).
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.6.9 « Refonte du Voleur (2/2) »
+- [ ] Homme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.7.0 « Refonte de la Voleuse (1/2) »
+- [ ] Femme : corps par code, 5 coiffures (reprise des dessins actuels à essayer d'abord), marche, cavalière.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.7.1 « Refonte de la Voleuse (2/2) »
+- [ ] Femme : combat, victoire, fouille et construction.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.7.2 « Boucliers à cheval »
+- [ ] **Bouclier coupé à la taille à cheval :** Paladin homme, Guerrier, Guerrière. Par code, sans nouvelle image.
+- [ ] **Essai à valider** avant de toucher au code du jeu.
+- [ ] Essai sur le Z Fold 3.
+
+## v4.7.3 « Effets légendaires »
+- [ ] **Effets légendaires du Voleur** (contour lumineux, particules, emblème, gemme, liseré de cape) à étudier pour le Guerrier, la Guerrière, le Paladin et la Paladine ; essai à valider.
+- [ ] Intégration des effets retenus, précalculés (aucun calcul lourd à chaque image).
+- [ ] Essai sur le Z Fold 3.
+
+## v4.7.4 « Cheveux longs »
+- [ ] Coiffures longues pour la Guerrière et la Paladine, sans retirer les actuelles (dessins du joueur).
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

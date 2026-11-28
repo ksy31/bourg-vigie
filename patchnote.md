@@ -1,5 +1,25 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.8 « L'Assassin (1/2) »
+
+Version affichée dans les Options : **v4.4.8**
+
+### Ajouté
+- Assassin homme : nouveau design en marche (face, dos, profil), tête nue, masque sur le nez, sans cape, deux dagues.
+- 5 coiffures à la couleur de l'aventurier.
+- Tenue, bottes et masque recolorés selon le palier d'équipement (masque vert sans armure).
+- Dagues par paliers, épaulières, aura et particules légendaires (reprises du Voleur). Sans cape : ni liseré ni emblème.
+- Cavalier, et petit marteau en construction.
+- Menu Développeur → Personnage : case « Assassin ♂ » activée.
+- Fichier : `perso_as_corps.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- En combat, victoire, fouille et construction, l'Assassin garde pour l'instant son image de marche (actions en v4.4.9).
+- Cache `bv-v152`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.7 « La Voleuse (2/2) »
 
 Version affichée dans les Options : **v4.4.7**
