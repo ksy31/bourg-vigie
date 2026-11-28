@@ -1,8 +1,8 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.5.1 « L'Assassine (2/2) »**
+Version actuelle du jeu : **v4.5.2 « Le Mage (1/2) »**
 
-Numérotation : rester en 4.4.x tant que x < 10.
+Numérotation : rester en 4.5.x tant que x < 10.
 
 ## ✅ Déjà intégré
 
@@ -816,11 +816,14 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 - [x] Essai à valider.
 - [ ] Essai sur le Z Fold 3.
 
-## 🔜 v4.5.2 « Le Mage (1/2) » (prochain)
-- [ ] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : bâton à créer (21 variantes), partagé avec le Nécromancien.
-- [ ] Essai à valider, puis essai sur le Z Fold 3.
+## v4.5.2 « Le Mage (1/2) »
+- Choix : tête nue, robe longue, cape ; paliers par couleur ; tenues légendaires refaites en entier. Planches calculées à l'avance.
+- [x] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : bâton (21 variantes), à reprendre pour le Nécromancien.
+- [x] 10 tenues légendaires complètes et bâtons légendaires à effets.
+- [x] Essai à valider.
+- [ ] Essai sur le Z Fold 3 (vérifier aussi la fluidité et la mémoire).
 
-## v4.5.3 « Le Mage (2/2) »
+## 🔜 v4.5.3 « Le Mage (2/2) » (prochain)
 - [ ] Homme : combat, victoire, fouille et construction.
 - [ ] Essai à valider, puis essai sur le Z Fold 3.
 
@@ -909,6 +912,16 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 ## v4.7.4 « Cheveux longs »
 - [ ] Coiffures longues pour la Guerrière et la Paladine, sans retirer les actuelles (dessins du joueur).
 - [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.7.5 « Profil du Guerrier »
+- [ ] Mesurer et comparer les profils du Guerrier, du Paladin, de la Guerrière et de la Paladine (constat v4.5.2 : visage du Guerrier 40 px de face, 22 de profil ; Assassin 27, Mage 29).
+- [ ] Retoucher les profils trop fins.
+- [ ] Essai à valider, puis essai sur le Z Fold 3.
+
+## v4.7.6 « Légendaires de toutes les classes »
+- [ ] Faire pour toutes les classes comme pour le Mage (v4.5.2) : 10 tenues légendaires complètes (couleurs, motifs sur la tenue, forme de cape, col, épaulières, emblème de dos, matière animée qui en jaillit).
+- [ ] Même niveau pour les armes légendaires : forme propre à chacune et effets qui jaillissent de l'arme.
+- [ ] Essai à valider par classe, puis essai sur le Z Fold 3.
 
 ## ⏸️ Mis de côté
 - [ ] Écran blanc bref au passage en qualité Haute (v4.0.8, Z Fold 3) : non étudié. Il est revenu à la normale en changeant de qualité. À prioriser s'il revient.

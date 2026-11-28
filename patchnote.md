@@ -1,5 +1,27 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.5.2 « Le Mage (1/2) »
+
+Version affichée dans les Options : **v4.5.2**
+
+### Ajouté
+- Mage homme : nouveau design en marche (face, dos, profil), tête nue, robe longue et cape.
+- 5 coiffures, à la couleur de l'aventurier.
+- Bâton en 21 variantes. Les 10 bâtons légendaires ont chacun leur manche et des effets qui en jaillissent.
+- 10 tenues légendaires complètes (givre, orage, feu, arcane, os, nature, nuit étoilée, céleste, démon, lumière) : motifs, découpe de cape, col, épaulières, emblème au dos et effets.
+- Paliers 1 à 10 : la tenue et les bottes changent de couleur.
+- Cavalier.
+- Menu Développeur → Personnage : case « Mage ♂ » activée.
+- Fichiers : `perso_m_corps.png`, `perso_m_baton.png`, `perso_m_leg.png`, `perso_m_selle.png` (chargés seulement si « Mage ♂ » est coché).
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Jusqu'à la v4.5.3, le nouveau Mage garde sa pose d'attente en combat, en victoire, en fouille et en construction (sans marteau). Les sorts sont conservés.
+- Les effets s'animent pendant la marche ; ils sont fixes à l'arrêt.
+- Cache `bv-v156`. Équilibrage et sauvegardes inchangés.
+
 ## v4.5.1 « L'Assassine (2/2) »
 
 Version affichée dans les Options : **v4.5.1**
