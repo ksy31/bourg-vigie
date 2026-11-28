@@ -1,5 +1,24 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.5.0 « L'Assassine (1/2) »
+
+Version affichée dans les Options : **v4.5.0**
+
+### Ajouté
+- Assassine : nouveau design en marche (face, dos, profil), silhouette affinée, même tenue que l'Assassin.
+- 5 nouvelles coiffures (wolf cut, nuque courte et longues mèches devant, anglaises, demi-attache au ruban, pointes retroussées), à la couleur de l'aventurière. Le ruban reste sombre.
+- Dagues et épaulières légendaires ajustées à sa silhouette, paliers, aura et particules.
+- Cavalière.
+- Menu Développeur → Personnage : case « Assassin ♀ » activée.
+- Fichier : `perso_as_f_corps.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- En attendant ses actions (v4.5.1), l'Assassine reste sur son image debout pour le combat, la victoire et la fouille ; petit marteau en construction.
+- Cache `bv-v154`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.9 « L'Assassin (2/2) »
 
 Version affichée dans les Options : **v4.4.9**

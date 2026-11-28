@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.4.9 « L'Assassin (2/2) »**
+Version actuelle du jeu : **v4.5.0 « L'Assassine (1/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -803,11 +803,13 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 - [x] Essai à valider.
 - [ ] Essai sur le Z Fold 3.
 
-## 🔜 v4.5.0 « L'Assassine (1/2) » (prochain)
-- [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
-- [ ] Essai à valider, puis essai sur le Z Fold 3.
+## v4.5.0 « L'Assassine (1/2) »
+- Choix : silhouette affinée de même taille, tenue comme l'Assassin. Coiffures : wolf cut, nuque courte et longues mèches devant, anglaises, demi-attache au ruban, pointes retroussées.
+- [x] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
+- [x] Essai à valider.
+- [ ] Essai sur le Z Fold 3.
 
-## v4.5.1 « L'Assassine (2/2) »
+## 🔜 v4.5.1 « L'Assassine (2/2) » (prochain)
 - [ ] Femme : combat, victoire, fouille et construction.
 - [ ] Essai à valider, puis essai sur le Z Fold 3.
 
