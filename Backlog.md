@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.5.0 « L'Assassine (1/2) »**
+Version actuelle du jeu : **v4.5.1 « L'Assassine (2/2) »**
 
 Numérotation : rester en 4.4.x tant que x < 10.
 
@@ -809,11 +809,14 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 - [x] Essai à valider.
 - [ ] Essai sur le Z Fold 3.
 
-## 🔜 v4.5.1 « L'Assassine (2/2) » (prochain)
-- [ ] Femme : combat, victoire, fouille et construction.
-- [ ] Essai à valider, puis essai sur le Z Fold 3.
+## v4.5.1 « L'Assassine (2/2) »
+- Choix : mêmes poses que l'Assassin, dague qui tournoie en préparation comme lui. Construction sans l'image debout pour les Assassins et les Voleurs.
+- [x] Femme : combat, victoire, fouille et construction.
+- [x] Construction des Assassins et des Voleurs : image debout retirée.
+- [x] Essai à valider.
+- [ ] Essai sur le Z Fold 3.
 
-## v4.5.2 « Le Mage (1/2) »
+## 🔜 v4.5.2 « Le Mage (1/2) » (prochain)
 - [ ] Homme : référence, rotations, marche, coiffures (5), cavalier, case du menu « Personnage ». Équipement : bâton à créer (21 variantes), partagé avec le Nécromancien.
 - [ ] Essai à valider, puis essai sur le Z Fold 3.
 
