@@ -150,8 +150,8 @@ const pgFile=k=>'perso_'+(/^(f|pa|v|as|m)_/.test(k)?k:'g_'+k)+'.png';
 const PG_FEET=120,PG_AX=56,PG_S=66/112;
 // emplacement de PXF -> image source (0-5 face, 6-11 dos, 12-17 profil ; face 2 et dos 8 = pose d'attente)
 const PG_SLOT=(()=>{const a=new Array(29).fill(2);[[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]].forEach((l,v)=>l.forEach((k,i)=>{a[[[1,2,15,16,17,18],[4,5,19,20,21,22],[23,24,25,26,27,28]][v][i]]=k}));a[3]=a[8]=8;return a})();
-function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_f_corps','v_dague','v_epaul','v_act','v_actp','v_actd','v_f_act','v_f_actp','as_corps','as_act','as_actp','as_f_corps','as_f_act','as_f_actp',...(PG.sel.includes('M0')?['m_corps','m_baton','m_leg','m_selle']:[])]; /* planches du Mage : seulement s'il est coché */ let n=0;
- for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vfd=px(PG.img.v_f_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.vfac=px(PG.img.v_f_act);PG.vfap=px(PG.img.v_f_actp);PG.asfd=px(PG.img.as_f_corps);PG.asfac=px(PG.img.as_f_act);PG.asfap=px(PG.img.as_f_actp);PG.asd=px(PG.img.as_corps);PG.asac=px(PG.img.as_act);PG.asap=px(PG.img.as_actp);if(PG.img.m_corps)PG.md=px(PG.img.m_corps);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
+function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_f_corps','v_dague','v_epaul','v_act','v_actp','v_actd','v_f_act','v_f_actp','as_corps','as_act','as_actp','as_f_corps','as_f_act','as_f_actp',...(PG.sel.includes('M0')?['m_corps','m_baton','m_leg','m_selle','m_act','m_actleg','m_actbaton']:[])]; /* planches du Mage : seulement s'il est coché */ let n=0;
+ for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vfd=px(PG.img.v_f_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.vfac=px(PG.img.v_f_act);PG.vfap=px(PG.img.v_f_actp);PG.asfd=px(PG.img.as_f_corps);PG.asfac=px(PG.img.as_f_act);PG.asfap=px(PG.img.as_f_actp);PG.asd=px(PG.img.as_corps);PG.asac=px(PG.img.as_act);PG.asap=px(PG.img.as_actp);if(PG.img.m_corps){PG.md=px(PG.img.m_corps);PG.mad=px(PG.img.m_act)}PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
 const pgCv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
 const pgUse=(cls,fem)=>PG.ready&&!!PG.dep&&PG.sel.includes(cls+(fem?1:0));
 // variante d'une pièce selon son palier (0-14) ; à partir de 11, thème légendaire du jeu
@@ -195,7 +195,9 @@ function pgRideSheet(walk,act,id,eq,fem){const{cw,ch}=PG_M,D=fem?PG.fa:PG.a,Y=PG
   const o=pgCv(cw,ch),x=o.getContext('2d');(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,0));return o});
  PG_SLOT.forEach((k,i)=>cx.drawImage(views[i>=23?1:[3,4,5,8,19,20,21,22].includes(i)?2:0],i*cw,0));return cv}
 // image d'action à afficher (null : marche ou attente). o.af et o.fs viennent de heroFx
-function pgPose(o,h,mv,fg,tm,onHorse){if(o.m.userData.mg)return null; // Mage : poses d'action en v4.5.3
+function pgPose(o,h,mv,fg,tm,onHorse){
+ if(o.m.userData.mg){if(onHorse)return null;if(o.af===12)return PG_MCELL[17+((tm/.15|0)&1)]; // victoire : bâton brandi, l'éclat scintille
+  const p=fg&&o.af===11?2:pgPose0(o,h,mv,fg,tm,onHorse);return p==null?null:PG_MCELL[p]} // pluie : bâton levé au ciel
  if(fg&&!onHorse&&o.af===11&&o.m.userData.as)return 4; // Assassin : fente pendant son attaque bondissante
  const a=pgPose0(o,h,mv,fg,tm,onHorse),dg=o.m.userData.vo||o.m.userData.as;
  if(a===14&&dg)return 13; // v4.5.1 : construction des Voleurs et Assassins sans l'image debout (la 13 est tenue plus longtemps)
@@ -222,6 +224,42 @@ function pgSheet(id,eq,fem,coif,col){const{cw,ch}=PG_M,{l}=fem?PG_FM:PG_M,hair=p
 // v4.5.2 : Mage. Planches calculées à l'avance, simplement superposées ici (cases 112x128, 18 colonnes = images de marche).
 // perso_m_corps.png : lignes 2c image et 2c+1 zones (coiffure c 0-4). perso_m_baton.png : lignes 0-20 bâton, 21-30 matière des bâtons légendaires.
 // perso_m_leg.png : par thème, derrière, tissu (rose vif = pixel effacé), pièces. perso_m_selle.png : jambes (ligne = bottes), pans de robe (ligne = tenue), ligne 21 = poing.
+// ===== v4.5.3 : gestes du Mage. Cases de 192x192 ; une image de marche y est posée en (32,62) =====
+// atlas perso_m_actbaton : une colonne rognée par placement [x dans l'atlas, largeur, hauteur, x, y dans la case] ; ligne 0-20 = bâton, 21-30 = auras des légendaires ; dernière colonne = marteau
+const PG_MBA={"H":131,"c":[[0,63,123,99,24],[63,63,131,98,16],[126,60,117,64,11],[186,73,114,96,30],[259,80,100,111,62],[339,76,104,110,59],[415,57,126,63,2],[472,57,122,64,6],[529,82,123,76,61]],"tip":[[132,69],[132,69],[93,57],[139,74],[159,104],[154,101],[93,57],[93,57]]};
+// case : [image du corps, décalage x, image de la tenue légendaire, placement du bâton (-1 : aucun), marteau (-1 : aucun)]
+const PG_MA=[[0,0,0,0,-1],[0,0,8,1,-1],[1,0,1,2,-1],[0,0,0,3,-1],[4,3,4,4,-1],[4,0,4,5,-1],[2,0,2,6,-1],[3,0,3,7,-1],[1,0,1,-1,0],[1,0,1,-1,1],[0,0,0,-1,2],[5,0,5,-1,3],[6,0,6,-1,-1],[7,0,7,-1,-1],[1,0,1,2,-1],[1,0,1,2,-1]];
+const PG_MCELL=[0,1,2,3,4,5,5,4,6,7,8,9,10,11,11,12,13,14,15]; // pose du jeu (0-16, 17-18 victoire) -> case
+const PG_MCOLS=8,PG_MW=192;
+// couleurs des 10 bâtons légendaires pour les sorts : [sombre, vif, éclat]
+const PG_SPT=[[[20,90,160],[110,214,255],[240,254,255]],[[150,96,0],[255,232,70],[255,255,220]],[[150,30,0],[255,150,30],[255,244,180]],[[110,40,160],[238,130,255],[255,230,255]],[[24,110,74],[96,255,176],[220,255,236]],[[36,96,24],[134,214,72],[236,255,190]],[[48,44,140],[132,150,250],[255,240,180]],[[0,108,160],[64,232,240],[236,255,255]],[[22,0,6],[236,30,44],[255,172,142]],[[200,124,10],[255,214,60],[255,255,230]]];
+// habit légendaire posé sur le corps : tissu (magenta = effacé, jamais sur les cheveux) puis pièces
+function mHabille(P,T,E,cheveu,devant){for(let n=0;n<cheveu.length;n++){const j=n*4;if(T[j+3]&&!cheveu[n]){if(T[j]===255&&T[j+1]===0&&T[j+2]===255)P[j+3]=0;else{P[j]=T[j];P[j+1]=T[j+1];P[j+2]=T[j+2];P[j+3]=255}}
+  if(E[j+3]&&!(devant&&devant[n])){P[j]=E[j];P[j+1]=E[j+1];P[j+2]=E[j+2];P[j+3]=255}}}
+function mActBody(col,eq,id,cf,hair,lc){const L=lc==null?col:lc;const cw=112,ch=128,av=pgVar(eq.a,id),bv=pgVar(eq.b,id),my=(cf*2+1)*ch,c=pgCv(cw,ch),x=c.getContext('2d');
+ x.drawImage(pgPaint(PG.mad,col*cw,cf*2*ch,col*cw,my,cw,ch,av,bv,hair,1.5),0,0);
+ if(av<11)return c;
+ const row=3*(av-11),im=x.getImageData(0,0,cw,ch),P=im.data,Z=PG.mad.data,W=PG.mad.width,cheveu=new Uint8Array(cw*ch);
+ for(let n=0;n<cw*ch;n++)cheveu[n]=P[n*4+3]>0&&Math.round(Z[((my+(n/cw|0))*W+col*cw+n%cw)*4]/40)===3?1:0;
+ mHabille(P,mData(PG.img.m_actleg,L,row+1),mData(PG.img.m_actleg,L,row+2),cheveu);x.putImageData(im,0,0);return c}
+// éclat à la pointe du bâton levé (victoire), dessiné une fois dans la planche
+function mEclat(x,cx,cy,R,ph,col){const p=(u,v,c)=>{x.fillStyle=c;x.fillRect(Math.round(u),Math.round(v),1,1)},c2='rgb('+col+')';
+ for(let i=0;i<8;i++){const a=i*Math.PI/4+ph*.2,L=i%2?R*.6:R;for(let t=2;t<=L;t++)p(cx+Math.cos(a)*t,cy+Math.sin(a)*t,t<L*.45?'#ffffff':c2)}}
+function mActSheet(id,eq,coif,hair){const A=PG_MW,DX=32,DY=62,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),wv=pgVar(eq.w,id),T=PG_MBA,cv=pgCv(A*PG_MCOLS,A*2),cx=cv.getContext('2d'),bodies={};
+ PG_MA.forEach(([b,dx,lg,st,hm],k)=>{const c=pgCv(A,A),x=c.getContext('2d'),
+  pose=(col,row)=>{const[sx,w,h,bx,by]=T.c[col];x.drawImage(PG.img.m_actbaton,sx,row*T.H,w,h,bx,by,w,h)},
+  mat=row=>x.drawImage(PG.img.m_actleg,lg*112,row*128,112,128,DX+dx,DY,112,128);
+  if(av>10)mat(3*(av-11));
+  if(st>=0&&wv>10)pose(st,20+wv-10);
+  if(hm===0)pose(8,0);
+  const body=bodies[b+'.'+lg]||(bodies[b+'.'+lg]=mActBody(b,eq,id,cf,hair,lg));
+  x.drawImage(body,DX+dx,DY);
+  if(st>=0)pose(st,wv);
+  if(hm>0)pose(8,hm);
+  if(k>13){const[u,v]=T.tip[2];mEclat(x,u,v,k===14?7:13,k-14,wv>10?PG_SPT[wv-11][1]:[255,236,150])}
+  const X=k%PG_MCOLS*A,Y=(k/PG_MCOLS|0)*A;
+  if(k===1){cx.drawImage(c,0,0,A,159,X,Y+1,A,159);cx.drawImage(c,0,160,A,A-160,X,Y+160,A,A-160)}else cx.drawImage(c,X,Y)}); // case 1 : la garde respire
+ return cv}
 const mCell=(x,img,col,row,dy)=>x.drawImage(img,col*112,row*128,112,128,0,dy||0,112,128);
 const mData=(img,col,row)=>{const c=pgCv(112,128),x=c.getContext('2d');mCell(x,img,col,row);return x.getImageData(0,0,112,128).data};
 // corps de l'image k : tenue et cheveux recolorés, puis tenue légendaire par-dessus
@@ -235,8 +273,7 @@ function mBody(k,eq,id,cf,hair){const cw=112,ch=128,view=k/6|0,av=pgVar(eq.a,id)
  const devant=new Uint8Array(cw*ch);
  if(view===1&&cf)for(let n=0;n<cw*ch;n++){if(!P[n*4+3])continue;const X=n%cw,y=n/cw|0;let pres=false;for(let a=-1;a<=1&&!pres;a++)for(let b=-1;b<=1;b++){const u=X+a,v=y+b;if(u>=0&&u<cw&&v>=30&&v<ch&&cheveu[v*cw+u]){pres=true;break}}
   if(pres&&((cheveu[n]&&y>=30)||(zone(n)===0&&P[n*4]+P[n*4+1]+P[n*4+2]<170)))devant[n]=1}
- for(let n=0;n<cw*ch;n++){const j=n*4;if(T[j+3]&&!cheveu[n]){if(T[j]===255&&T[j+1]===0&&T[j+2]===255)P[j+3]=0;else{P[j]=T[j];P[j+1]=T[j+1];P[j+2]=T[j+2];P[j+3]=255}}
-  if(E[j+3]&&!devant[n]){P[j]=E[j];P[j+1]=E[j+1];P[j+2]=E[j+2];P[j+3]=255}}
+ mHabille(P,T,E,cheveu,devant);
  x.putImageData(im,0,0);return c}
 // image k : matière de la tenue et du bâton derrière, puis corps et bâton (de dos, le bâton passe derrière)
 function mFrame(k,eq,id,cf,hair){const view=k/6|0,av=pgVar(eq.a,id),wv=pgVar(eq.w,id),c=pgCv(112,128),x=c.getContext('2d'),body=mBody(k,eq,id,cf,hair);

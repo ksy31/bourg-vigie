@@ -1,6 +1,6 @@
 # 🏰 Backlog et Feuille de Route - Mon Jeu de Village
 
-Version actuelle du jeu : **v4.5.2 « Le Mage (1/2) »**
+Version actuelle du jeu : **v4.5.3 « Le Mage (2/2) »**
 
 Numérotation : rester en 4.5.x tant que x < 10.
 
@@ -823,11 +823,13 @@ Voleur homme : tête nue, tenue en cuir avec cape et capuche rabattue, une dague
 - [x] Essai à valider.
 - [ ] Essai sur le Z Fold 3 (vérifier aussi la fluidité et la mémoire).
 
-## 🔜 v4.5.3 « Le Mage (2/2) » (prochain)
-- [ ] Homme : combat, victoire, fouille et construction.
-- [ ] Essai à valider, puis essai sur le Z Fold 3.
+## v4.5.3 « Le Mage (2/2) »
+- Choix : une seule animation de lancer ; 2 gestes (bâton tendu, bâton levé) ; victoire bâton brandi ; fouille et marteau par code ; sorts à la couleur du bâton légendaire.
+- [x] Homme : combat, victoire, fouille et construction.
+- [x] Essai à valider.
+- [ ] Essai sur le Z Fold 3.
 
-## v4.5.4 « La Mage (1/2) »
+## 🔜 v4.5.4 « La Mage (1/2) » (prochain)
 - [ ] Femme : corps par code, 5 nouvelles coiffures du joueur, marche, cavalière, case du menu.
 - [ ] Essai à valider, puis essai sur le Z Fold 3.
 

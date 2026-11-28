@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.5.3 « Le Mage (2/2) »
+
+Version affichée dans les Options : **v4.5.3**
+
+### Ajouté
+- Mage homme, nouveau design en action : garde, lancer de sort bâton tendu en avant, bâton levé au ciel (pluie et sorts de classe), victoire bâton brandi avec éclat, fouille et construction au marteau.
+- Sur ces gestes : les 5 coiffures, la couleur des cheveux, les tenues et les 10 tenues légendaires complètes, les 21 bâtons.
+- Bâton légendaire : les sorts du nouveau Mage prennent sa couleur (rouge et noir pour le bâton démoniaque).
+
+### Corrigé
+- Le nouveau Mage ne reste plus en pose d'attente pendant les combats, la fouille et la construction.
+
+### Modifié
+- Construction : le Mage enchaîne les coups sans jamais revenir debout.
+- La Mage garde l'ancien design jusqu'à la v4.5.4.
+
 ## v4.5.2 « Le Mage (1/2) »
 
 Version affichée dans les Options : **v4.5.2**
