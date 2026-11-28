@@ -70,7 +70,10 @@ function vHem(P,D,sx,my,cw,ch,g,ys,off,skip){const al=new Uint8Array(cw*ch),Z=D.
 // v4.4.6 : Voleuse (perso_v_f_corps.png, mêmes lignes que perso_v_corps.png) ; position de ses dagues. Dagues, épaulières et effets : ceux du Voleur.
 const PG_VF={d:[[[1,25,82],[0,62,82]],[[1,26,81],[0,62,81]],[[1,25,82],[0,62,82]],[[1,25,82],[0,62,82]],[[1,26,81],[0,62,81]],[[1,25,82],[0,62,82]],[[3,24,75],[2,66,75]],[[3,24,74],[2,65,74]],[[3,24,75],[2,66,75]],[[3,24,75],[2,66,75]],[[3,24,74],[2,65,74]],[[3,24,75],[2,66,75]],[[4,52,74],[5,53,79]],[[4,52,74],[5,57,73]],[[4,52,74],[5,54,73]],[[4,52,74],[4,46,77]],[[4,60,68],[4,40,77]],[[4,60,68],[4,42,77]]]};
 // v4.4.8 : Assassin homme (perso_as_corps.png, mêmes lignes que perso_v_corps.png ; zone 4 = masque, à la couleur du palier). Sans cape.
-// Réutilise les fonctions du Voleur (paramètre as) : dagues, épaulières et aura. Actions prévues en v4.4.9.
+// Réutilise les fonctions du Voleur (paramètre as) : dagues, épaulières et aura.
+// v4.4.9 : actions. perso_as_act.png (10 corps) et perso_as_actp.png, même format que le Voleur ; PG_ASA = ses 24 poses (mêmes numéros).
+// 0-1 garde, 3-4-5 fente (4) puis coup droit, 7-6 coup remontant, 8-9 rafale, 10-14 marteau, 15-16 fouille, 2 et 17-23 victoire.
+const PG_ASA=[{"b":0,"f":0,"dx":19,"dy":32,"d":[[0,76,97,0],[1,103,97,0]]},{"b":1,"f":1,"dx":19,"dy":32,"d":[[0,76,97,0],[1,103,97,0]]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[2,118,95]},{"b":1,"f":1,"dx":19,"dy":32,"d":[[0,76,97,0],[1,103,97,0]]},{"b":4,"f":4,"dx":29,"dy":32,"d":[[3,74,96,1],[7,127,97,0]]},{"b":5,"f":5,"dx":18,"dy":32,"d":[[0,70,102,0],[7,124,96,0]]},{"b":6,"f":6,"dx":18,"dy":32,"d":[[0,71,102,0],[8,116,78,0]]},{"b":3,"f":3,"dx":20,"dy":33,"d":[[0,73,103,0],[9,119,112,0]]},{"b":5,"f":5,"dx":18,"dy":32,"d":[[0,70,102,0],[7,124,96,0]]},{"b":7,"f":7,"dx":18,"dy":32,"d":[[0,70,102,0],[6,122,86,0]]},{"b":7,"f":7,"dx":18,"dy":32,"d":[],"h":[12,115,60,0]},{"b":6,"f":6,"dx":18,"dy":32,"d":[],"h":[8,103,52,0]},{"b":5,"f":5,"dx":18,"dy":32,"d":[],"h":[10,118,74,0]},{"b":3,"f":3,"dx":20,"dy":33,"d":[],"h":[11,113,106,0]},{"b":2,"f":2,"dx":22,"dy":27,"d":[],"h":[10,73,90,0]},{"b":8,"f":8,"dx":19,"dy":42,"d":[[0,76,108,0],[1,103,108,0]]},{"b":9,"f":9,"dx":19,"dy":43,"d":[[0,76,109,0],[1,103,109,0]]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[10,118,86]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[11,118,79]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[12,118,75]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[13,118,75]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[14,118,79]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[15,118,86]},{"b":2,"f":2,"dx":22,"dy":27,"d":[[1,79,112,0]],"s":[16,118,93]}];
 const PG_AS={d:[[[1,19,90],[0,67,90]],[[1,20,89],[0,67,89]],[[1,19,90],[0,67,90]],[[1,19,90],[0,67,90]],[[1,20,89],[0,67,89]],[[1,19,90],[0,67,90]],[[3,20,80],[2,68,80]],[[3,20,81],[2,69,81]],[[3,20,80],[2,68,80]],[[3,20,80],[2,68,80]],[[3,20,81],[2,69,81]],[[3,20,80],[2,68,80]],[[4,36,84],[5,59,87]],[[4,48,83],[5,52,87]],[[4,69,81],[5,35,87]],[[4,69,82],[5,33,88]],[[4,65,83],[5,39,88]],[[4,39,84],[5,57,86]]]};
 function vFrame(k,eq,id,coif,hair,fem,as){const{cw,ch}=PG_M,view=k/6|0,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),D=as?PG.asd:fem?PG.vfd:PG.vd,V=as?PG_AS.d:fem?PG_VF.d:PG_V.d,sx=k*cw,[dx,dy]=PG_V.o[k],
   c=pgCv(cw,ch),x=c.getContext('2d'),body=pgPaint(D,sx,cf*2*ch,sx,(cf*2+1)*ch,cw,ch,av,bv,hair,1.5,as),
@@ -118,17 +121,17 @@ const PG_VFA=[{"b":0,"f":0,"dx":15,"dy":33,"d":[[0,64,92,0],[1,93,90,0]]},{"b":1
 // texture d'actions en 2 rangées de 12 cases (1920x320) pour rester loin de la taille maximale des téléphones
 const PG_VCOLS=12;
 const PG_VSPIN=[2,17,18,19,20,21,22,23];
-function vActSheet(eq,id,coif,hair,fem){const A=160,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),L=fem?PG_VFA:PG_VA.p,cv=pgCv(A*PG_VCOLS,A*Math.ceil(L.length/PG_VCOLS)),cx=cv.getContext('2d'),B=fem?PG.vfac:PG.vac,F=fem?PG.vfap:PG.vap,body={},fist={};
+function vActSheet(eq,id,coif,hair,fem,as){const A=160,cf=Math.max(0,Math.min(4,coif|0)),av=pgVar(eq.a,id),bv=pgVar(eq.b,id),wv=pgVar(eq.w,id),L=as?PG_ASA:fem?PG_VFA:PG_VA.p,cv=pgCv(A*PG_VCOLS,A*Math.ceil(L.length/PG_VCOLS)),cx=cv.getContext('2d'),B=as?PG.asac:fem?PG.vfac:PG.vac,F=as?PG.asap:fem?PG.vfap:PG.vap,body={},fist={};
  L.forEach((q,k)=>{const c=pgCv(A,A),x=c.getContext('2d'),sx=q.b*A,my=(cf*2+1)*A,
   dag=([col,px,py])=>{const[ox,oy]=PG_VA.k[col];x.drawImage(PG.img.v_actd,col*PG_VA.w,wv*PG_VA.h,PG_VA.w,PG_VA.h,px+ox,py+oy,PG_VA.w,PG_VA.h)},
   ham=()=>{const[u,px,py]=q.h,e=PG_A.l[0];x.drawImage(PG.img.act_epee,(u%e.c)*e.w,(u/e.c|0)*e.h,e.w,e.h,px,py,e.w,e.h)},der=q.d.filter(d=>d[3]),dev=q.d.filter(d=>!d[3]);
   der.forEach(dag);if(q.h&&q.h[3])ham();
-  x.drawImage(body[q.b]||(body[q.b]=pgPaint(B,sx,cf*2*A,sx,my,A,A,av,bv,hair,1.5)),0,0);
+  x.drawImage(body[q.b]||(body[q.b]=pgPaint(B,sx,cf*2*A,sx,my,A,A,av,bv,hair,1.5,as)),0,0);
   dev.forEach(dag);if(q.h&&!q.h[3])ham();
   x.drawImage(fist[q.f]||(fist[q.f]=pgPaint(F,q.f*A,0,q.f*A,A,A,A,av,bv,hair,1.5)),0,0);
   if(q.s)dag(q.s);
   if(av>10){const th=av-10,g=PG.dep.THP[th-1].g;x.drawImage(PG.img.v_epaul,4*32,(th-1)*32,32,32,62+q.dx-16,63+q.dy-16,32,32);
-   const im=x.getImageData(0,0,A,A);vHem(im.data,B,sx,my,A,A,g,60+q.dy,0,null);x.putImageData(im,0,0)}
+   if(!as){const im=x.getImageData(0,0,A,A);vHem(im.data,B,sx,my,A,A,g,60+q.dy,0,null);x.putImageData(im,0,0)}}
   cx.drawImage(vAura(c,k,eq,id,1),k%PG_VCOLS*A,(k/PG_VCOLS|0)*A)});
  return cv}
 // gl.js (portée privée) fournit PG.dep={WPM,PXHR,thFor,THP}
@@ -144,8 +147,8 @@ const pgFile=k=>'perso_'+(/^(f|pa|v|as)_/.test(k)?k:'g_'+k)+'.png';
 const PG_FEET=120,PG_AX=56,PG_S=66/112;
 // emplacement de PXF -> image source (0-5 face, 6-11 dos, 12-17 profil ; face 2 et dos 8 = pose d'attente)
 const PG_SLOT=(()=>{const a=new Array(29).fill(2);[[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]].forEach((l,v)=>l.forEach((k,i)=>{a[[[1,2,15,16,17,18],[4,5,19,20,21,22],[23,24,25,26,27,28]][v][i]]=k}));a[3]=a[8]=8;return a})();
-function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_f_corps','v_dague','v_epaul','v_act','v_actp','v_actd','v_f_act','v_f_actp','as_corps'];let n=0;
- for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vfd=px(PG.img.v_f_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.vfac=px(PG.img.v_f_act);PG.vfap=px(PG.img.v_f_actp);PG.asd=px(PG.img.as_corps);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
+function pgLoad(){if(!PG.on||typeof document==='undefined'||typeof Image==='undefined')return;const N=['corps','epee','bouclier','epaul','act','act_epee','act_bouclier','act_epaul','f_corps','f_epaul','f_act','f_act_epaul','tetes','f_tetes','pa_corps','pa_tetes','pa_act','pa_f_corps','pa_f_tetes','pa_f_act','v_corps','v_f_corps','v_dague','v_epaul','v_act','v_actp','v_actd','v_f_act','v_f_actp','as_corps','as_act','as_actp'];let n=0;
+ for(const k of N){const im=new Image();im.onload=()=>{PG.img[k]=im;if(++n===N.length){try{const px=m=>{const c=pgCv(m.width,m.height),x=c.getContext('2d');x.drawImage(m,0,0);return x.getImageData(0,0,c.width,c.height)};PG.d=px(PG.img.corps);PG.a=px(PG.img.act);PG.fd=px(PG.img.f_corps);PG.fa=px(PG.img.f_act);PG.tg=px(PG.img.tetes);PG.tf=px(PG.img.f_tetes);PG.pd=px(PG.img.pa_corps);PG.pt=px(PG.img.pa_tetes);PG.px=px(PG.img.pa_act);PG.pfd=px(PG.img.pa_f_corps);PG.pft=px(PG.img.pa_f_tetes);PG.pfx=px(PG.img.pa_f_act);PG.vd=px(PG.img.v_corps);PG.vfd=px(PG.img.v_f_corps);PG.vac=px(PG.img.v_act);PG.vap=px(PG.img.v_actp);PG.vfac=px(PG.img.v_f_act);PG.vfap=px(PG.img.v_f_actp);PG.asd=px(PG.img.as_corps);PG.asac=px(PG.img.as_act);PG.asap=px(PG.img.as_actp);PG.ready=true}catch(e){}}};im.src=pgFile(k)}}
 const pgCv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
 const pgUse=(cls,fem)=>PG.ready&&!!PG.dep&&PG.sel.includes(cls+(fem?1:0));
 // variante d'une pièce selon son palier (0-14) ; à partir de 11, thème légendaire du jeu
@@ -189,7 +192,8 @@ function pgRideSheet(walk,act,id,eq,fem){const{cw,ch}=PG_M,D=fem?PG.fa:PG.a,Y=PG
   const o=pgCv(cw,ch),x=o.getContext('2d');(v===1?[top,lg]:[lg,top]).forEach(c=>x.drawImage(c,0,0));return o});
  PG_SLOT.forEach((k,i)=>cx.drawImage(views[i>=23?1:[3,4,5,8,19,20,21,22].includes(i)?2:0],i*cw,0));return cv}
 // image d'action à afficher (null : marche ou attente). o.af et o.fs viennent de heroFx
-function pgPose(o,h,mv,fg,tm,onHorse){if(o.m.userData.noact)return null;const a=pgPose0(o,h,mv,fg,tm,onHorse);return a===2&&o.m.userData.vo?PG_VSPIN[(tm/.08|0)%8]:a}
+function pgPose(o,h,mv,fg,tm,onHorse){if(fg&&!onHorse&&o.af===11&&o.m.userData.as)return 4; // Assassin : fente pendant son attaque bondissante
+ const a=pgPose0(o,h,mv,fg,tm,onHorse);return a===2&&(o.m.userData.vo||o.m.userData.as)?PG_VSPIN[(tm/.08|0)%8]:a}
 function pgPose0(o,h,mv,fg,tm,onHorse){if(onHorse)return null;
  if(fg){const a=o.af,s=o.fs||0;return a===6||a===12?2:a===9?(s<.07?3:s<.17?4:5):a===10?(s<.14?7:6):a===14?8+((tm/.15|0)&1):(tm%.8)<.4?0:1}
  if(o.af===12)return 2;

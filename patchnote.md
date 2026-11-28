@@ -1,5 +1,21 @@
 # Patchnotes — Bourg-Vigie
 
+## v4.4.9 « L'Assassin (2/2) »
+
+Version affichée dans les Options : **v4.4.9**
+
+### Ajouté
+- Assassin homme : combat (garde, fente suivie du coup droit, coup remontant, rafale), victoire (dague lancée qui tournoie), fouille accroupie et construction au marteau.
+- Les 5 coiffures, les 21 dagues, les paliers, les cheveux colorés et le légendaire (aura et épaulière) sur toutes ces poses.
+- Fichiers : `perso_as_act.png`, `perso_as_actp.png`.
+
+### Corrigé
+- Rien.
+
+### Modifié
+- Le petit marteau provisoire est retiré.
+- Cache `bv-v153`. Équilibrage et sauvegardes inchangés.
+
 ## v4.4.8 « L'Assassin (1/2) »
 
 Version affichée dans les Options : **v4.4.8**
